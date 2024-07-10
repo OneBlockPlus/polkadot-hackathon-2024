@@ -1,1 +1,1 @@
-# polkadot-hackathon-2024
+# Polkadot Hackathon 2024 Singapore & Bangkok
