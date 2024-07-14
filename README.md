@@ -1,3 +1,10 @@
+Participation Guide
+
+1. Singapore: https://dorahacks.io/zh/hackathon/polkadot-2024-singapore/detail
+  
+2. Bangkok: https://dorahacks.io/zh/hackathon/polkadot-2024-bangkok/detail
+
+
 # Polkadot Hackathon 2024 Singapore & Bangkok
 
 ## Hackathon Schedule
