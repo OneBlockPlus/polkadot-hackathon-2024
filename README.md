@@ -126,7 +126,7 @@ Any software, application of Blockchain or Web3
 
 ## Bounty
 
-[TBD[(https://dorahacks.io/hackathon/polkadot-2024-singapore/bounties-details)
+[TBD](https://dorahacks.io/hackathon/polkadot-2024-singapore/bounties-details)
 
 ## Hackathon Prize
 
