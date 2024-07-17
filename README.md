@@ -36,7 +36,7 @@ Offline Sign-in & Rehearsal: September 16 - September 17
 
 Demo Day: September 17, 8:30-12:00, 14:00 - 16:00 (GMT+8)
 
-Announcement of winning projects: 09.17, 1
+Announcement of winning projects: September 17 18:00 (GMT+8)
 
 ### Bangkok
 Hackathon registration starts: July 11
