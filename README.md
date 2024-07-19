@@ -16,7 +16,9 @@
 
 ## Bounty
 
-[Please click here for details](https://dorahacks.io/hackathon/polkadot-2024-singapore/bounties-details)
+1.[Singapore](https://dorahacks.io/hackathon/polkadot-2024-singapore/bounties-details)
+
+2. [Bangkok](https://dorahacks.io/hackathon/polkadot-2024-bangkok/bounties-details)
 
 ## Hackathon Prize
 
