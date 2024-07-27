@@ -1,0 +1,8 @@
+.idea
+.env
+.next
+.vscode
+node_modules
+target
+out
+README_ZH.md
