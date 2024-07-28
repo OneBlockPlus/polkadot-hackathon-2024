@@ -1,3 +1,6 @@
 [submodule "bangkok/01-LibMarket/src/Contract_Testing/lib/forge-std"]
 	path = bangkok/01-LibMarket/src/Contract_Testing/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "bangkok/01-LibMarket/src/Foundry_test/lib/forge-std"]
+	path = bangkok/01-LibMarket/src/Foundry_test/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
