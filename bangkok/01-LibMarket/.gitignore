@@ -6,3 +6,4 @@ node_modules
 target
 out
 README_ZH.md
+src/Foundry_test/lib/forge-std
