@@ -1,0 +1,22 @@
+<div class="flex flex-column justify-content-center m-auto sm:w-12 md:w-12 lg:w-10 xl:w-8">
+  <p-toolbar class="mb-1">
+      <div class="p-toolbar-group-start">
+          <div class="icon">
+              <a routerLink="/home" routerLinkActive="active">
+                  <img src="icon.png" width="40" height="40" alt="icon" />
+              </a>
+          </div>
+      </div>
+      <div class="p-toolbar-group-end">
+          <p-button (onClick)="goToDashboard()" label="Dashboard" icon="pi pi-chart-bar" iconPos="right" raised="true" text="true" />
+          <p-button (onClick)="connect()" *ngIf="!connected" label="Login" icon="pi pi-sign-in" iconPos="right" class="ml-2" [raised]="true" severity="success" text="true" />
+          <p-button (onClick)="connect()" *ngIf="connected" label="Logout" icon="pi pi-sign-out" iconPos="right" class="ml-2" [raised]="true" severity="warning" text="true" />
+      </div>
+  </p-toolbar>
+
+  <router-outlet />
+  
+  <footer class="flex justify-content-end w-12 mt-2 p-2 surface-50">
+      <div class="text-xs font-italic text-600">Lumix &#64;{{getYear()}}</div>
+  </footer>
+</div>
