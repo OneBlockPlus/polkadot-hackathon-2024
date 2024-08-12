@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐NFT平台 - 首页</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="flex h-screen bg-gray-100">
+        <!-- 侧边栏 -->
+        <div class="w-64 bg-white shadow-lg">
+            <div class="p-4">
+                <h1 class="text-2xl font-bold text-pink-600">音乐NFT平台</h1>
+            </div>
+            <nav class="mt-6">
+                <a href="index.html" class="flex items-center px-6 py-3 text-gray-600 hover:bg-pink-100 hover:text-pink-600">
+                    <i class="fas fa-home mr-3"></i>
+                    <span>首页</span>
+                </a>
+                <a href="nft-market.html" class="flex items-center px-6 py-3 text-gray-600 hover:bg-pink-100 hover:text-pink-600">
+                    <i class="fas fa-shopping-bag mr-3"></i>
+                    <span>NFT市场</span>
+                </a>
+                <a href="artist-profile.html" class="flex items-center px-6 py-3 text-gray-600 hover:bg-pink-100 hover:text-pink-600">
+                    <i class="fas fa-user mr-3"></i>
+                    <span>艺术家主页</span>
+                </a>
+                <a href="user-profile.html" class="flex items-center px-6 py-3 text-gray-600 hover:bg-pink-100 hover:text-pink-600">
+                    <i class="fas fa-user-circle mr-3"></i>
+                    <span>个人资料</span>
+                </a>
+                <div class="border-t border-gray-200 my-4"></div>
+                <a href="/creat.html" class="flex items-center px-6 py-3 text-gray-600 hover:bg-pink-100 hover:text-pink-600">
+                    <i class="fas fa-plus-circle mr-3"></i>
+                    <span>创建音乐</span>
+                </a>
+                <a href="/u-pro.html" class="flex items-center px-6 py-3 text-gray-600 hover:bg-pink-100 hover:text-pink-600">
+                    <i class="fas fa-dollar-sign mr-3"></i>
+                    <span>我的收益</span>
+                </a>
+                <a href="/nft-detail.html" class="flex items-center px-6 py-3 text-gray-600 hover:bg-pink-100 hover:text-pink-600">
+                    <i class="fas fa-dollar-sign mr-3"></i>
+                    <span>NFT详情</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- 主内容区 -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- 顶部导航 -->
+            <!-- 在顶部导航栏中的通知图标部分 -->
+<div class="relative inline-block text-left">
+    <div>
+        <button type="button" class="relative p-2 text-gray-600 hover:text-pink-600 focus:outline-none" id="notification-menu-button" aria-expanded="false" aria-haspopup="true">
+            <i class="fas fa-bell"></i>
+            <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-pink-600 rounded-full">
+                3
+            </span>
+        </button>
+    </div>
+
+    <div class="origin-top-right absolute right-0 mt-2 w-80 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="notification-menu-button" tabindex="-1" style="display: none;" id="notification-menu">
+        <div class="py-1" role="none">
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1">
+                <p class="font-semibold">新NFT上架</p>
+                <p class="text-xs text-gray-500">DJ Electro 发布了新的NFT "电子音乐集Vol.2"</p>
+                <p class="text-xs text-gray-400 mt-1">2分钟前</p>
+            </a>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1">
+                <p class="font-semibold">价格更新</p>
+                <p class="text-xs text-gray-500">你关注的NFT "爵士夜曲" 价格下降了10%</p>
+                <p class="text-xs text-gray-400 mt-1">1小时前</p>
+            </a>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1">
+                <p class="font-semibold">新关注者</p>
+                <p class="text-xs text-gray-500">音乐爱好者小王开始关注你了</p>
+                <p class="text-xs text-gray-400 mt-1">昨天</p>
+            </a>
+        </div>
+        <div class="border-t border-gray-100">
+            <a href="#" class="block px-4 py-2 text-sm text-center text-pink-600 hover:bg-gray-100" role="menuitem" tabindex="-1">
+                查看所有通知
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    const notificationButton = document.getElementById('notification-menu-button');
+    const notificationMenu = document.getElementById('notification-menu');
+
+    notificationButton.addEventListener('click', function() {
+        const expanded = this.getAttribute('aria-expanded') === 'true' || false;
+        this.setAttribute('aria-expanded', !expanded);
+        notificationMenu.style.display = expanded ? 'none' : 'block';
+    });
+
+    // 点击其他地方关闭通知菜单
+    document.addEventListener('click', function(event) {
+        if (!notificationButton.contains(event.target) && !notificationMenu.contains(event.target)) {
+            notificationButton.setAttribute('aria-expanded', 'false');
+            notificationMenu.style.display = 'none';
+        }
+    });
+});
+</script>
+
+            <header class="bg-white shadow-sm">
+                <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+                    <h2 class="text-lg font-semibold text-gray-900">个性推荐</h2>
+                    <div class="flex items-center">
+                        <div class="relative mr-4">
+                            <input type="search" placeholder="搜索音乐、艺人、NFT..." class="rounded-full px-4 py-2 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                            <button 
+    class="absolute right-3 top-1/2 transform -translate-y-1/2" 
+    onclick="window.location.href='search.html'">
+    点击跳转
+</button>    
+                            <i class="fas fa-search text-gray-400"></i>
+                            </button>
+                        </div>
+                        <div class="relative">
+                            <button class="relative p-2 text-gray-600 hover:text-pink-600 focus:outline-none">
+                                <i class="fas fa-bell"></i>
+                                <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-pink-600 rounded-full">
+                                    3
+                                </span>
+                            </button>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="User Avatar" class="w-8 h-8 rounded-full ml-4">
+                    </div>
+                </div>
+
+<!-- 顶部导航 -->
+<header class="bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+        <h2 class="text-lg font-semibold text-gray-900">音乐NFT平台</h2>
+        <div class="flex items-center space-x-4">
+            <div class="relative">
+                <input type="search" placeholder="搜索音乐、艺人、NFT..." class="rounded-full px-4 py-2 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                    <i class="fas fa-search text-gray-400"></i>
+                </button>
+            </div>
+            <button id="wallet-connect" class="bg-pink-600 text-white px-4 py-2 rounded-full hover:bg-pink-700 transition duration-300">
+                连接钱包
+            </button>
+            <div class="relative">
+                <button class="relative p-2 text-gray-600 hover:text-pink-600 focus:outline-none">
+                    <i class="fas fa-bell"></i>
+                    <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-pink-600 rounded-full">
+                        3
+                    </span>
+                </button>
+            </div>
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="User Avatar" class="w-8 h-8 rounded-full">
+        </div>
+    </div>
+</header>
+
+<script>
+document.getElementById('wallet-connect').addEventListener('click', function() {
+    // 这里应该是调用Web3钱包连接的逻辑
+    alert('连接钱包功能将在这里实现');
+});
+</script>
+
+            </header>
+
+            <!-- 滚动内容区 -->
+            <main class="flex-1 overflow-y-auto bg-gray-100">
+                <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+                    <!-- NFT市场快捷入口 -->
+                    <div class="mb-8 bg-gradient-to-r from-purple-400 to-pink-500 rounded-lg shadow-lg p-6 text-white" style="background-image: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center;">
+                        <h3 class="text-2xl font-bold mb-2">探索NFT市场</h3>
+                        <p class="mb-4">发现独特的音乐NFT，支持你喜爱的艺术家</p>
+                        <a href="nft-market.html" class="bg-white text-purple-600 px-4 py-2 rounded-full font-semibold hover:bg-purple-100 transition duration-300">
+                            立即探索
+                        </a>
+                    </div>
+
+                    <!-- 热门NFT音乐 -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold mb-4">热门NFT音乐</h3>
+                        <div class="flex space-x-4 overflow-x-auto pb-4">
+                            <!-- NFT卡片 1 -->
+                            <div class="flex-none w-64 bg-white rounded-lg shadow-md overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Music Cover" class="w-full h-40 object-cover">
+                                <div class="p-4">
+                                    <h4 class="font-semibold">电子音乐集</h4>
+                                    <p class="text-sm text-gray-500">DJ Electro</p>
+                                    <div class="mt-2 flex justify-between items-center">
+                                        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">0.05 ETH</span>
+                                        <button class="text-pink-600 hover:text-pink-700">
+                                            <i class="fas fa-share-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- NFT卡片 2 -->
+                            <div class="flex-none w-64 bg-white rounded-lg shadow-md overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Music Cover" class="w-full h-40 object-cover">
+                                <div class="p-4">
+                                    <h4 class="font-semibold">爵士夜曲</h4>
+                                    <p class="text-sm text-gray-500">Jazz Masters</p>
+                                    <div class="mt-2 flex justify-between items-center">
+                                        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">0.08 ETH</span>
+                                        <button class="text-pink-600 hover:text-pink-700">
+                                            <i class="fas fa-share-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 推荐歌单 -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">推荐歌单</h3>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                            <!-- 歌单卡片 1 -->
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Playlist Cover" class="w-full h-40 object-cover">
+                                <div class="p-4">
+                                    <h4 class="font-semibold truncate">夏日清凉</h4>
+                                    <p class="text-sm text-gray-500">123k 收藏</p>
+                                </div>
+                            </div>
+                            <!-- 歌单卡片 2 -->
+                            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1487180144351-b8472da7d491?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Playlist Cover" class="w-full h-40 object-cover">
+                                <div class="p-4">
+                                    <h4 class="font-semibold truncate">摇滚经典</h4>
+                                    <p class="text-sm text-gray-500">89k 收藏</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- 底部播放器 -->
+            <div class="bg-white border-t border-gray-200 py-2">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="Current Song" class="w-12 h-12 rounded-md mr-4">
+                        <div>
+                            <h4 class="font-semibold">电子音乐集</h4>
+                            <p class="text-sm text-gray-500">DJ Electro</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button class="text-gray-600 hover:text-pink-600"><i class="fas fa-step-backward"></i></button>
+                        <button class="w-10 h-10 rounded-full bg-pink-600 text-white flex items-center justify-center hover:bg-pink-700">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <button class="text-gray-600 hover:text-pink-600"><i class="fas fa-step-forward"></i></button>
+                    </div>
+                    <div class="w-1/3">
+                        <div class="bg-gray-200 rounded-full h-2">
+                            <div class="bg-pink-600 h-2 rounded-full w-1/3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
