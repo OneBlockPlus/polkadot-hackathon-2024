@@ -6,25 +6,48 @@ LibMarket uses Polkadot's relay chain and parachain architecture to achieve inte
 
 ## Features planned for the Hackathon
 
+- [ ] 
+
+- [ ] 
+
+- [ ] 
+
+- [ ] 
+
+- [ ] 
+
+...
+
+
+
 ## Architect
 
+#### Overall architecture
 
+#### Smart Contract Architecture
 
-
+#### Front-end and back-end interaction architecture
 
 
 
 ## Schedule
 
-
-
-
+| Phase | Timeline | Description |
+| ----- | -------- | ----------- |
+|       |          |             |
+|       |          |             |
+|       |          |             |
 
 
 
 ## Team info
-
-
+| Name | Role | GitHub/X |
+| ---- | ---- | -------- |
+|      |      |          |
+|      |      |          |
+|      |      |          |
+|      |      |          |
+|      |      |          |
 
 
 
