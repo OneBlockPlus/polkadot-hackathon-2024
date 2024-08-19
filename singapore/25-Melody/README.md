@@ -39,8 +39,8 @@ Project Melody aims to complete these phases over the course of the hackathon, w
 | Skyhigh     | Project & Contract     |
 | Ming        | Designer               |
 | Jackie      | AI Dev                 |
-| Pseudo      | Frontend               |
-| HongChen    | Frontend               |    
+| Pseudoyu    | Frontend               |
+| Hesin       | Frontend               |    
 
 
 ## Material for Demo
