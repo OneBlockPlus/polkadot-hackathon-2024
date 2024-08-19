@@ -15,7 +15,7 @@ Blockchain has introduced exciting decentralized technologies, leading to the em
 | Name        | Role                   |
 | ----------- | ---------------------- |
 | EldenRing   | Full Stack Developer   |
-| Han         | Prudoct Manager        |
+| Han         | Product Manager        |
 | Peng        | UI Designer            |
 | Alex        | Full Stack Developer   |
 
