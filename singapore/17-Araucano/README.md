@@ -7,6 +7,8 @@ With the continuous advancement of finance in all aspects and places, different 
 
 The objective is to present Arauco Chain, an innovative network that uses blockchain technology, specifically the Polkadot SDK and Substrate, to enable and connect open finance with the Web 3.0 world. Arauco Chain aims to revolutionize the way traditional assets and finances are managed, with transparent and efficient blockchain-based solutions.
 
+## Arauco Chain
+
 ## The opportunity
 Arauco Chain represents a significant advance in the evolution of open and decentralized finance. By addressing critical issues in today's financial system using the Substrate to build the network, this blockchain can transform how people and businesses manage and access financial services, creating a more fair, efficient, and accessible system for all.
 
@@ -36,8 +38,8 @@ In summary, Arauco Chain offers a comprehensive network for open and global fina
 
 - [x] Arauco Chain Whitepaper
 - [x] Arauco Chain Website and GitHub
-- [ ] Araucano Blockchain (compatible with EVM) in devnet and testnet
-- [ ] Demo app
+- [x] Araucano Blockchain (compatible with EVM) in devnet: 
+- [x] Demo app
 
 
 ## Architect
@@ -51,16 +53,18 @@ July 29th - August 25th.
 - [x] Stage 1: Create the whitepaper (finishing on August 18th).
 - [x] Stage 2: Create the deck
 - [x] Stage 3: Create the website
-- [ ] Stage 2: Create the network (finishing on August 21st).
-- [ ] Stage 3: Create the demo app (finishing on August 25th)
+- [x] Stage 3: Create the network (finishing on August 21st).
+- [x] Stage 4: Create the demo app (finishing on August 25th)
 
 ## Team info
 
 Néstor Campos: https://www.linkedin.com/in/nescampos/
 
 ## Material for Demo
-1. Demo Video [link to Youtube]
-2. Website: https://araucochain.xyz/
-3. GitHub: https://github.com/AraucoChain
-4. PPT: https://drive.google.com/file/d/1bPwDsjnN9pasYbmwkmjo9F2CqS6GMu3t/view?usp=sharing
-5. Whitepaper: https://drive.google.com/file/d/1ZAMxGQ2c-6gP5iGrkUIuEEHwKGVbwmxJ/view?usp=sharing
+1. Demo Video:
+2. Pitch video: https://youtu.be/81ppp_CC6c8
+3. Website: https://araucochain.xyz/
+4. Project GitHub: https://github.com/AraucoChain
+5. Project demo: 
+6. PPT: https://drive.google.com/file/d/1bPwDsjnN9pasYbmwkmjo9F2CqS6GMu3t/view?usp=sharing
+7. Whitepaper: https://drive.google.com/file/d/1ZAMxGQ2c-6gP5iGrkUIuEEHwKGVbwmxJ/view?usp=sharing
