@@ -1,0 +1,18 @@
+{
+  "editor.tabSize": 4,
+  "editor.inlayHints.enabled": "offUnlessPressed",
+  "editor.formatOnSave": true,
+  "rust-analyzer.files.excludeDirs": [".vscode/", "target/"],
+  "[json]": { "editor.defaultFormatter": "vscode.json-language-features" },
+  "[rust]": { "editor.defaultFormatter": "rust-lang.rust-analyzer" },
+  "rust-analyzer.check.command": "clippy",
+  "debug.allowBreakpointsEverywhere": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+    "source.organizeImports": "always"
+  },
+  "rust-analyzer.imports.granularity.group": "one",
+  "rust-analyzer.imports.prefix": "crate",
+  "rust-analyzer.completion.autoimport.enable": true,
+  "cSpell.words": ["rngs", "secp"]
+}
