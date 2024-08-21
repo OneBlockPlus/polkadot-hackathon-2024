@@ -1,7 +1,7 @@
 # Araucano
 ## Introduction
 
-**Araucano is an ecosystem for Open Finance, including Arauco Chain a new Substrate blockchain network focused on Open Finance for emerging countries.**
+**Araucano is an ecosystem for Open Finance, including Arauco Chain a new Substrate-based blockchain network focused on Open Finance for emerging countries.**
 
 With the continuous advancement of finance in all aspects and places, different services have emerged for people and companies, focusing on various aspects of business. Along these lines, there is still a huge opportunity to take advantage of Blockchain networks in Open Finance, which will enhance the development and use of new stablecoins, tokenize real assets, decentralized finance for people without technical knowledge, and much more.
 
@@ -32,19 +32,26 @@ At Arauco Chain, we are committed to complying with relevant regulations in all 
 
 In summary, Arauco Chain offers a comprehensive network for open and global finance, addressing the accessibility, transparency and liquidity challenges that have limited participation for millions of users in this market. With our Substrate-based network, we are democratizing finance and opening new opportunities for users from all walks of life.
 
+## Arauco Bank
+
+On-chain and API-first bank for individuals and businesses to make financial transactions.
+
+- **Who we serve**: Built on top of the Arauco Chain for enterprises, protocols, people, RWA Issuers, and more, in a gasless experience.
+- **Modules**: Payments, Credits/Escrows, Account Abstraction, including KYC for all users (KYC on-chain and private).
+- **Open**: Any developer can connect and create dApps/Fintechs taking advantage of the bank's modules and gaining access to a user/customer base from the start.
 
 
 ## Features planned for the Hackathon
 
 - [x] Arauco Chain Whitepaper
 - [x] Arauco Chain Website and GitHub
-- [x] Araucano Blockchain (compatible with EVM) in devnet: 
-- [x] Demo app
+- [x] Araucano Blockchain (compatible with EVM) in devnet: https://github.com/AraucoChain/parachain
+- [x] Demo app: https://github.com/AraucoChain/opSyndicate
 
 
 ## Architect
 
-Substrate Blockchain and EVM-compatible.
+Substrate-based Blockchain and EVM-compatible.
 
 ## Schedule
 
@@ -61,10 +68,10 @@ July 29th - August 25th.
 Néstor Campos: https://www.linkedin.com/in/nescampos/
 
 ## Material for Demo
-1. Demo Video:
-2. Pitch video: https://youtu.be/81ppp_CC6c8
+1. Pitch video: https://www.youtube.com/watch?v=81ppp_CC6c8
+2. Demo Video: https://www.youtube.com/watch?v=W4PnrhZJtZw
 3. Website: https://araucochain.xyz/
 4. Project GitHub: https://github.com/AraucoChain
-5. Project demo: 
+5. Project demo: https://github.com/AraucoChain/opSyndicate
 6. PPT: https://drive.google.com/file/d/1bPwDsjnN9pasYbmwkmjo9F2CqS6GMu3t/view?usp=sharing
 7. Whitepaper: https://drive.google.com/file/d/1ZAMxGQ2c-6gP5iGrkUIuEEHwKGVbwmxJ/view?usp=sharing
