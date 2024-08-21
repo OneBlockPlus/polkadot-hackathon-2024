@@ -69,4 +69,4 @@ sequenceDiagram
     WebGLChannel->>React: CallReactFunction2(message)
 ```
 
-This basic timing graph illustrates the communication flow between React, WebGLChannel, and Unity based on the information provided about the WebGLChannel class. You can modify this graph to include more specific timing information or additional interactions as needed.
+This basic timing graph illustrates the communication flow between React, WebGLChannel, and Unity based on the information provided about the WebGLChannel class.
