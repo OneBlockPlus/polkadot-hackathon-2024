@@ -73,5 +73,5 @@ Néstor Campos: https://www.linkedin.com/in/nescampos/
 3. Website: https://araucochain.xyz/
 4. Project GitHub: https://github.com/AraucoChain
 5. Project demo: https://github.com/AraucoChain/opSyndicate
-6. PPT: https://drive.google.com/file/d/1bPwDsjnN9pasYbmwkmjo9F2CqS6GMu3t/view?usp=sharing
+6. PPT Deck: https://drive.google.com/file/d/1f90yqcbE0ar4hUh17n_VAKwBgMJI3HEP/view?usp=sharing
 7. Whitepaper: https://drive.google.com/file/d/1ZAMxGQ2c-6gP5iGrkUIuEEHwKGVbwmxJ/view?usp=sharing
