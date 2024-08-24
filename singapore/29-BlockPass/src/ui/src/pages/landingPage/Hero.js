@@ -29,21 +29,26 @@ const HeroSection = () => {
           BlockPass is the first and best Web3 event management system
         </p>
         <div className="flex space-x-4 mt-8">
-          <Link to={"/gallery"}>
+          <Link to={"/events"}>
             <motion.button
               whileHover={{
-                scale: 1.1,
+                scale: 1.2,
               }}
               className="bg-[#F5167E] hover:bg-pink-700  text-white px-8 py-4 rounded-full"
             >
               Get Ticket
             </motion.button>
           </Link>
-          <a href="#">
-            <button className="bg-purple-600 hover:bg-purple-900 bg-opacity-10 ring-1 ring-white text-white px-8 py-4 rounded-full">
-              Learn More
-            </button>
-          </a>
+          <Link to={"/create"}>
+            <motion.button
+              whileHover={{
+                scale: 1.1,
+              }}
+              className="bg-purple-600 hover:bg-purple-900 bg-opacity-10 ring-1 ring-white text-white px-8 py-4 rounded-full"
+            >
+              Create Event
+            </motion.button>
+          </Link>
         </div>
       </div>
     </div>

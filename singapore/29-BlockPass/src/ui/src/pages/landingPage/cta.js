@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 import cta from "../../assets/cta.png";
+import { Link } from "react-router-dom";
 
 const CreateEventSection = () => {
   return (
@@ -22,14 +23,16 @@ const CreateEventSection = () => {
           Got an idea for an event? Start your journey with us and create an
           unforgettable experience!
         </p>
-        <motion.button
-          whileHover={{
-            scale: 1.1,
-          }}
-          className="text-white bg-[#F5167E] lg:w-[302px] lg:h-[60px] hover:bg-pink-600 font-bold py-2 px-4 rounded-full shadow-2xl transition duration-300"
-        >
-          Create Events
-        </motion.button>
+        <Link to="/create">
+          <motion.button
+            whileHover={{
+              scale: 1.1,
+            }}
+            className="text-white bg-[#F5167E] lg:w-[302px] lg:h-[60px] hover:bg-pink-600 font-bold py-2 px-4 rounded-full shadow-2xl transition duration-300"
+          >
+            Create Events
+          </motion.button>
+        </Link>
       </div>
     </div>
   );

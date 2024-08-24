@@ -59,27 +59,14 @@ const NavBar = () => {
         >
           Create
         </Link>
-        <a
-          href="#"
+        <Link
+          to={"/events"}
           className="block md:inline-block text-white hover:text-[#F5167E] transition-colors duration-200 py-2 md:py-0"
           onClick={toggleMenu}
         >
           All Events
-        </a>
-        <Link
-          to={"/gallery"}
-          className="block md:inline-block text-white hover:text-[#F5167E] transition-colors duration-200 py-2 md:py-0"
-          onClick={toggleMenu}
-        >
-          Gallery
         </Link>
-        <a
-          href="#"
-          className="block md:inline-block text-white hover:text-[#F5167E] transition-colors duration-200 py-2 md:py-0"
-          onClick={toggleMenu}
-        >
-          Contact
-        </a>
+     
         <Link
           to={"/my-tickets"}
           className="block md:inline-block text-white hover:text-[#F5167E] transition-colors duration-200 py-2 md:py-0"
