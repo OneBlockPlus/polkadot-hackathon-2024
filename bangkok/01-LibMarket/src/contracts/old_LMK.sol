@@ -19,7 +19,7 @@ pragma solidity ^0.8.20;
 
 import {Ownable2Step} from "./Ownable2Step.sol";
 import "./Owner_Pausable.sol";  // 通过两步转移定义owner 用来暂停或者开放合约 
-import {EconomyLib} from "./Lib/EconomyLib.sol";
+
 
 
 contract HashLock is Pausable {
@@ -93,23 +93,34 @@ contract HashLock is Pausable {
     }
 }
 
+
+
 // 主要合约
 contract C2CPlatform is HashLock {
-    using EconomyLib for EconomyLib.Economy;
-    using EconomyLib for mapping(uint => EconomyLib.Trade);
 
-    EconomyLib.Economy private economy;
+    // 定义买卖双方的状态
+    enum TradeStatus { Pending, Locked, OrderInProgress, Complete, Cancelled }
+
+    struct Trade {
+        address payable seller;
+        address payable buyer;
+        uint amount;
+        TradeStatus status;
+        bytes32 hashLock;
+        uint256 timelock;
+    }
 
     // 交易ID到交易详情的映射
-    mapping(uint => EconomyLib.Trade) public trades;
+    mapping(uint => Trade) public trades;
     uint public tradeCounter;
 
     event TradeCreated(uint tradeId, address seller, address buyer, uint amount, bytes32 hashLock, uint256 timelock);
     event TradeLocked(uint tradeId);
     event TradeConfirmed(uint tradeId);
     event TradeCancelled(uint tradeId);
-    event FeeCollected(uint tradeId, uint fee);
+
     event LogPreimage(bytes32 preimage);
+
 
     // 创建新交易
     function createTrade(address payable _seller, bytes32 _hashLock, uint256 _timelock) external payable whenNotPaused {
@@ -118,78 +129,74 @@ contract C2CPlatform is HashLock {
 
         bytes32 lockId = lock(_hashLock, _timelock, _seller);
 
-        uint fee = EconomyLib.calculateFee(msg.value);  // 调用库中的calculateFee函数
-        economy.addToRewardPool(fee);
-
-        trades[tradeCounter] = EconomyLib.Trade({
+        trades[tradeCounter] = Trade({
             seller: _seller,
             buyer: payable(msg.sender),
-            amount: msg.value - fee,
-            status: EconomyLib.TradeStatus.Pending,
+            amount: msg.value,
+            status: TradeStatus.Pending,
             hashLock: _hashLock,
             timelock: _timelock
         });
 
-        emit FeeCollected(tradeCounter, fee);
-        emit TradeCreated(tradeCounter, _seller, msg.sender, msg.value - fee, _hashLock, _timelock);
+        emit TradeCreated(tradeCounter, _seller, msg.sender, msg.value, _hashLock, _timelock);
         tradeCounter++;
     }
 
+
     // 锁定资金
     function lockFunds(uint _tradeId) external whenNotPaused {
-        EconomyLib.Trade storage trade = trades[_tradeId];
+        Trade storage trade = trades[_tradeId];
         require(msg.sender == trade.buyer, "Only buyer can lock funds");
-        require(trade.status == EconomyLib.TradeStatus.Pending, "Trade is not in pending state");
+        require(trade.status == TradeStatus.Pending, "Trade is not in pending state");
 
-        trade.status = EconomyLib.TradeStatus.Locked;
+        trade.status = TradeStatus.Locked;
         emit TradeLocked(_tradeId);
     }
 
+
     // 卖家确认发货
     function confirmShipment(uint _tradeId) external whenNotPaused {
-        EconomyLib.Trade storage trade = trades[_tradeId];
+        Trade storage trade = trades[_tradeId];
         require(msg.sender == trade.seller, "Only seller can confirm shipment");
-        require(trade.status == EconomyLib.TradeStatus.Locked, "Funds are not locked");
+        require(trade.status == TradeStatus.Locked, "Funds are not locked");
 
-        trade.status = EconomyLib.TradeStatus.OrderInProgress;
+        trade.status = TradeStatus.OrderInProgress;
         emit TradeConfirmed(_tradeId);
     }
+    
 
     // 买家确认收货
     function confirmReceipt(uint _tradeId, bytes32 _preimage) external whenNotPaused {
-        EconomyLib.Trade storage trade = trades[_tradeId];
+        Trade storage trade = trades[_tradeId];
         require(msg.sender == trade.buyer, "Only buyer can confirm receipt");
-        require(trade.status == EconomyLib.TradeStatus.OrderInProgress, "Funds are not in order progress state");
+        require(trade.status == TradeStatus.OrderInProgress, "Funds are not in order progress state");
         require(keccak256(abi.encodePacked(_preimage)) == trade.hashLock, "Invalid preimage");
 
-        trade.status = EconomyLib.TradeStatus.Complete;
+        trade.status = TradeStatus.Complete;
         trade.seller.transfer(trade.amount);
         emit TradeConfirmed(_tradeId);
 
         emit LogPreimage(_preimage);
     }
 
+
     // 取消交易并退还资金
     function cancelTrade(uint _tradeId) external whenNotPaused {
-        EconomyLib.Trade storage trade = trades[_tradeId];
+        Trade storage trade = trades[_tradeId];
         require(msg.sender == trade.buyer, "Only buyer can cancel trade");
-        require(trade.status == EconomyLib.TradeStatus.Pending || trade.status == EconomyLib.TradeStatus.Locked, "Cannot cancel trade in current state");
+        require(trade.status == TradeStatus.Pending || trade.status == TradeStatus.Locked, "Cannot cancel trade in current state");
 
-        if (trade.status == EconomyLib.TradeStatus.Locked) {
-            trade.status = EconomyLib.TradeStatus.Cancelled;
+        if (trade.status == TradeStatus.Locked) {
+            trade.status = TradeStatus.Cancelled;
             trade.buyer.transfer(trade.amount);
-        } else if (trade.status == EconomyLib.TradeStatus.Pending) {
-            trade.status = EconomyLib.TradeStatus.Cancelled;
+        } else if (trade.status == TradeStatus.Pending) {
+            trade.status = TradeStatus.Cancelled;
         }
 
         emit TradeCancelled(_tradeId);
     }
-
-    // 每周分配激励池
-    function distributeWeeklyRewards() external onlyOwner whenNotPaused {
-        economy.distributeRewards(tradeCounter, trades);
-    }
 }
+
 
 
 
