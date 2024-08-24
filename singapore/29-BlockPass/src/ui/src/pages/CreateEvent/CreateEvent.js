@@ -30,14 +30,19 @@ const CreateEventForm = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [uploadStatus, setUploadStatus] = useState("");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-     // Ensure positive values for ticketPrice and availableSeats
-  if ((name === 'ticketPrice' || name === 'availableSeats') && value < 0) {
-    return;
-  }
+    // Ensure positive values for ticketPrice and availableSeats
+    if ((name === "ticketPrice" || name === "availableSeats") && value < 0) {
+      return;
+    }
 
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
@@ -232,47 +237,77 @@ const CreateEventForm = () => {
 
   return (
     <>
-      <nav className="container flex justify-between mx-auto items-center px-8 py-4">
+      <nav className="container flex justify-between lg:relative mx-auto items-center px-8 py-4">
+        {/* Logo and Brand Name */}
         <Link to="/">
-          <div className="flex items-center">
-            <img
-              src={logo}
-              alt="BlockPass Logo"
-              className="h-8 mr-2 text-blue-500"
-            />
+          <motion.div
+            whileHover={{
+              scale: 1.1,
+            }}
+            className="flex items-center"
+          >
+            <img src={logo} alt="BlockPass Logo" className="h-8 mr-2 " />
             <span className="text-black font-semibold text-lg">
-              Block<span className="text-[#F5167E]">Pass</span>
+              Block<span className="text-[#F5167E]">Pass</span>{" "}
             </span>
-          </div>
+          </motion.div>
         </Link>
-        <div className="hidden md:flex items-center space-x-6">
-          {["Home", "All Events", "Gallery", "My tickets"].map(
-            (text, index) => (
-              <Link
-                key={index}
-                to={
-                  text === "All Events"
-                    ? "/events"
-                    : `/${text.toLowerCase().replace(/\s+/g, "-")}` &&
-                      text === "Home"
-                    ? "/"
-                    : `/${text.toLowerCase().replace(/\s+/g, "-")}` &&
-                      text === "Gallery"
-                    ? "/gallery"
-                    : `/${text.toLowerCase().replace(/\s+/g, "-")}` &&
-                      text === "My tickets"
-                    ? "/my-tickets"
-                    : `/${text.toLowerCase().replace(/\s+/g, "-")}`
-                }
-                className="text-black hover:text-[#F5167E] transition-colors duration-200"
-              >
-                {text}
-              </Link>
-            )
-          )}
-          <button className="block md:inline-block text-white bg-purple-800/30 hover:bg-purple-900 px-4 py-2 rounded-full transition-colors duration-200 ring-2 ring-white ring-opacity-50 hover:ring-opacity-75">
-            Connect Wallet
-          </button>
+        {/* Hamburger Button */}
+        <button
+          className="md:hidden text-black hover:text-[#F5167E] focus:outline-none"
+          onClick={toggleMenu}
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d={
+                isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"
+              }
+            />
+          </svg>
+        </button>
+
+        {/* Navigation Links */}
+        <div
+          className={`${
+            isMenuOpen ? "block" : "hidden"
+          } md:flex md:items-center md:space-x-6 absolute md:static top-16 left-0 w-full md:w-auto bg-black/30 md:bg-transparent p-4 md:p-0 z-10`}
+        >
+          {["Home", "All Events", "My tickets"].map((text, index) => (
+            <Link
+              key={index}
+              to={
+                text === "All Events"
+                  ? "/events"
+                  : `/${text.toLowerCase().replace(/\s+/g, "-")}` &&
+                    text === "Home"
+                  ? "/"
+                  : `/${text.toLowerCase().replace(/\s+/g, "-")}` &&
+                    text === "My tickets"
+                  ? "/my-tickets"
+                  : `/${text.toLowerCase().replace(/\s+/g, "-")}`
+              }
+              className="block md:inline-block text-black hover:text-[#F5167E] transition-colors duration-200 py-2 md:py-0"
+            >
+              {text}
+            </Link>
+          ))}
+          <motion.button
+            whileHover={{
+              scale: 1.1,
+            }}
+            className="block md:inline-block text-white bg-purple-800 hover:bg-purple-900 px-4 py-2 rounded-full transition-colors duration-200 ring-2 ring-white ring-opacity-50 hover:ring-opacity-75"
+          >
+            Connect wallet
+          </motion.button>
         </div>
       </nav>
 
@@ -493,8 +528,7 @@ const CreateEventForm = () => {
           <div className="flex justify-center">
             <motion.button
               whileHover={{
-                scale: 1.5,
-                transition: { duration: 0.3 },
+                scale: 1.1,
               }}
               type="submit"
               disabled={isSubmitting}
