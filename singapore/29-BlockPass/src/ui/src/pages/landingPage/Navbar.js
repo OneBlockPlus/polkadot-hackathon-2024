@@ -1,14 +1,27 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logos/logo.png";
 import { motion } from "framer-motion";
+import { useConnectWallet } from '@subwallet-connect/react';
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  // const { connect, wallet, disconnect } = useWallet();
+  const [{ wallet } = {}, connect, disconnect] = useConnectWallet();
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleConnect = () => {
+    if (!wallet) {
+      connect();
+    }
+  };
+
+  const handleDisconnect = () => {
+    if (wallet) {
+      disconnect(wallet);
+    }
   };
 
   return (
@@ -66,7 +79,7 @@ const NavBar = () => {
         >
           All Events
         </Link>
-     
+
         <Link
           to={"/my-tickets"}
           className="block md:inline-block text-white hover:text-[#F5167E] transition-colors duration-200 py-2 md:py-0"
@@ -76,12 +89,15 @@ const NavBar = () => {
         </Link>
         {/* Connect Button */}
         <motion.button
-          whileHover={{
-            scale: 1.1,
-          }}
-          className="block md:inline-block text-white bg-purple-800/30 hover:bg-purple-900 px-4 py-2 rounded-full transition-colors duration-200 ring-2 ring-white ring-opacity-50 hover:ring-opacity-75"
+          whileHover={{ scale: 1.1 }}
+          className={`text-white px-4 py-2 rounded-full transition-colors duration-200 ring-2 ring-white ring-opacity-50 hover:ring-opacity-75 ${
+            wallet
+              ? "bg-red-600/30 hover:bg-red-700"
+              : "bg-purple-800/30 hover:bg-purple-900"
+          }`}
+          onClick={wallet ? handleDisconnect : handleConnect}
         >
-          Connect Wallet
+          {wallet ? "Disconnect Wallet" : "Connect Wallet"}
         </motion.button>
       </div>
     </nav>

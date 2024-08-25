@@ -64,7 +64,7 @@ const EventGallery = () => {
         <div
           className={`${
             isMenuOpen ? "block" : "hidden"
-          } md:flex md:items-center md:space-x-6 absolute md:static top-16 left-0 w-full md:w-auto bg-black/30 md:bg-transparent p-4 md:p-0 z-10`}
+          } md:flex md:items-center md:space-x-6 absolute md:static top-16 left-0 w-full md:w-auto bg-black/30 md:bg-transparent p-4 md:p-0 md:mr-16 z-10`}
         >
           {["Home", "Create", "My tickets"].map((text, index) => (
             <Link
@@ -85,14 +85,6 @@ const EventGallery = () => {
               {text}
             </Link>
           ))}
-          <motion.button
-            whileHover={{
-              scale: 1.1,
-            }}
-            className="block md:inline-block text-white bg-purple-800 hover:bg-purple-900 px-4 py-2 rounded-full transition-colors duration-200 ring-2 ring-white ring-opacity-50 hover:ring-opacity-75"
-          >
-            Connect wallet
-          </motion.button>
         </div>
       </nav>
       <div className="max-w-6xl mx-auto my-10 p-8 ">
