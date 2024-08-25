@@ -23,7 +23,8 @@ The insured can make claims, and if the votes in total weigh more than average p
 ##### Business value: why it is needed and what is the disruptive potential?
 Helps insured to protect against loss and shock, especially if it is possibly hefty, by paying affordable amounts periodically to hedge against risks. This is useful particularly because many entities want to be moving fast in the blockchain world and it is quite impossible and time consuming to be completely safe from vulnerabilities, which is already proven historically to happen. Insurers on the other hand can make their money work for them by designing clever contracts with the insured.
 
-With use of blockchain, logic and clauses for insurance contract is transparent and enforced by code. There is increase in confidence that consumers are getting what they pay for because things are decentralised and they are equally in control. With adoption, PolkaInsure can become the go to avenue for fair and trusted insurance.
+Traditionally, institutionalised insurers hold the power and would try to manipulate clauses unilaterally set by them into their favor when the insured members need to claim. Additionally, they are free to design and price premiums one sidedly.
+With use of blockchain, logic and clauses for insurance contract is mutual, transparent and enforced by code. There is increase in confidence that consumers are getting what they pay for because things are decentralised and they are equally in control. With adoption, PolkaInsure can become the go to avenue for fair and trusted insurance.
 
 ### Deliverable for hackathon
 - Insurance fund (creation, insurer entry, insurer withdrawal, insured entry, insured claim)
