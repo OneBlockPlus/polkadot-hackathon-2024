@@ -4,14 +4,11 @@ import { motion } from "framer-motion";
 import { useConnectWallet } from "@subwallet-connect/react"
 import { fetchEventsFromContract } from "../../contractAPI"
 
-// import { getAllEvents } from "../MyTicket/ticketApi";
 
 import logo from "../../assets/logos/logo.png";
-import { events } from "../../data";
 
-let eventData = events;
 const EventGallery = () => {
-  const [events, setEvents] = useState(eventData);
+  const [events, setEvents] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [{ wallet},] = useConnectWallet();
 
@@ -30,7 +27,7 @@ const EventGallery = () => {
       const fetchedEvents = await fetchEventsFromContract(wallet);
       setEvents(fetchedEvents);
     };
-
+    
     if (wallet) {
       fetchEvents();
     }

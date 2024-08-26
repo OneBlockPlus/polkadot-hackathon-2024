@@ -75,6 +75,9 @@ const CreateEventForm = () => {
       return;
     }
 
+     // Log the form data to the console
+  console.log("Form Data Submitted:", formData);
+
     try {
       const api = new ApiPromise({
         provider: new WsProvider(crustChainEndpoint),
