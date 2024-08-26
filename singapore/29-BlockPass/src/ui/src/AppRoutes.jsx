@@ -5,7 +5,6 @@ import EventGallery from "./pages/EventGallery/EventGallery";
 import EventDetailPage from "./pages/EventGallery/EventDetailPage";
 import Tickets from "./pages/MyTicket/MyTickets";
 import ProtectedRoute from "./protectedRoute";
-import ConnectWalletModal from "./components/ConnectWalletModal";
 
 export default function AppRoutes() {
  

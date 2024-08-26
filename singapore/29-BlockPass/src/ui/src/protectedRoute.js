@@ -1,6 +1,6 @@
 import React from "react";
 import { useWallet } from "./wallet-context.js";
-import ConnectWalletModal from "./components/ConnectWalletModal";
+import ConnectWalletModal from "./components/ConnectWalletModal.js";
 import { useNavigate } from "react-router-dom"; // import your modal component
 
 const ProtectedRoute = ({ children }) => {
