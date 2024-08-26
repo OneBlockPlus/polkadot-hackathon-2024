@@ -29,7 +29,6 @@ With use of blockchain, logic and clauses for insurance contract is mutual, tran
 ### Deliverable for hackathon
 - Insurance fund (creation, insurer entry, insurer withdrawal, insured entry, insured claim)
 - Rating system
-- Cross chain payout with Acala asset routing 
 
 ##### Demo link: 
 
@@ -46,4 +45,4 @@ With use of blockchain, logic and clauses for insurance contract is mutual, tran
 
 # Track and Selected Bounty
 - Category 3 (Chain)
-- Acala bounty
+- Blockchain for good - security and transparency

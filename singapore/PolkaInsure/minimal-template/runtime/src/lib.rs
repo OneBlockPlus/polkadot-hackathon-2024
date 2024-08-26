@@ -123,6 +123,9 @@ mod runtime {
 	/// A minimal pallet template.
 	#[runtime::pallet_index(5)]
 	pub type Template = pallet_minimal_template::Pallet<Runtime>;
+
+	#[runtime::pallet_index(6)]
+	pub type Insure = pallet_insure::Pallet<Runtime>;
 }
 
 parameter_types! {
@@ -136,6 +139,8 @@ impl frame_system::Config for Runtime {
 	type Version = Version;
 	// Use the account data from the balances pallet
 	type AccountData = pallet_balances::AccountData<<Runtime as pallet_balances::Config>::Balance>;
+
+	type AccountId = frame::runtime::types_common::AccountId;
 }
 
 // Implements the types required for the balances pallet.
@@ -164,6 +169,14 @@ impl pallet_transaction_payment::Config for Runtime {
 
 // Implements the types required for the template pallet.
 impl pallet_minimal_template::Config for Runtime {}
+
+impl pallet_insure::Config for Runtime {
+	type RuntimeEvent = RuntimeEvent;
+	type NativeBalance = Balances;
+	type InitialScore = ConstU32<100>;
+	type PenaltyScore = ConstU32<30>;
+	type SelfPenaltyScore = ConstU32<20>;
+}
 
 type Block = frame::runtime::types_common::BlockOf<Runtime, SignedExtra>;
 type Header = HeaderFor<Runtime>;
