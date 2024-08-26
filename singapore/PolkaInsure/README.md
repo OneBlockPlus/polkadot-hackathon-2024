@@ -27,10 +27,11 @@ Traditionally, institutionalised insurers hold the power and would try to manipu
 With use of blockchain, logic and clauses for insurance contract is mutual, transparent and enforced by code. There is increase in confidence that consumers are getting what they pay for because things are decentralised and they are equally in control. With adoption, PolkaInsure can become the go to avenue for fair and trusted insurance.
 
 ### Deliverable for hackathon
-- Insurance fund (creation, insurer entry, insurer withdrawal, insured entry, insured claim)
+- Insurance fund (creation, insurer entry, insurer withdrawal, insured entry, insured claim) -> slight issue with figuring out transfer of fungibles
 - Rating system
 
 ##### Demo link: 
+- N/A, project still buggy
 
 ### Future enhancements needed to become a viable product
 - Less trust and more truth with onchain monitoring, oracles, zk proofs etc.
