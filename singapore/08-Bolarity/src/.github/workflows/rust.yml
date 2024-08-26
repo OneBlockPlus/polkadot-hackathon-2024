@@ -1,0 +1,73 @@
+name: Rust
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'main-develop'
+  pull_request:
+    branches:
+      - 'main'
+      - 'main-develop'
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Free up space on runner
+      run: |
+        sudo rm -rf /usr/share/dotnet
+        sudo rm -rf /usr/local/lib/android
+        sudo rm -rf /opt/ghc
+        sudo rm -rf "/usr/local/share/boost"
+        sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+
+    - name: Rust Setup
+      uses: actions-rs/toolchain@v1
+      with:
+        profile: minimal
+        toolchain: stable
+        target: wasm32-unknown-unknown
+        override: true
+        components: rustfmt, clippy
+
+    - name: Install smove
+      run: cargo install --git https://github.com/eigerco/smove
+
+    - name: Install protoc
+      run: |
+        sudo apt-get install -y protobuf-compiler
+        protoc --version
+
+    - uses: actions/checkout@v3
+
+    - name: Rustfmt
+      uses: actions-rs/cargo@v1
+      with:
+        toolchain: stable
+        command: fmt
+        args: --all --check
+
+    - name: Rust Cache
+      uses: Swatinem/rust-cache@v2.5.0
+      with:
+        cache-on-failure: true
+        cache-all-crates: true
+
+    - name: Add rust-src
+      run: |
+        rustup component add rust-src
+
+    - name: Cargo Clean
+      run: cargo clean
+
+    - name: Build
+      run: cargo check --release
+
+    - name: Run tests
+      run: cargo test --release --locked --verbose --all
