@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useConnectWallet } from "@subwallet-connect/react"
+import { fetchEventsFromContract } from "../../contractAPI"
 
 // import { getAllEvents } from "../MyTicket/ticketApi";
 
@@ -11,6 +13,7 @@ let eventData = events;
 const EventGallery = () => {
   const [events, setEvents] = useState(eventData);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [{ wallet},] = useConnectWallet();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -20,6 +23,18 @@ const EventGallery = () => {
     const options = { month: "short", day: "numeric" };
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
+
+  console.log(wallet);
+  useEffect(() => {
+    const fetchEvents = async () => {
+      const fetchedEvents = await fetchEventsFromContract(wallet);
+      setEvents(fetchedEvents);
+    };
+
+    if (wallet) {
+      fetchEvents();
+    }
+  }, [wallet]);
   return (
     <>
       <nav className="container flex justify-between mx-auto items-center px-8 py-4">
