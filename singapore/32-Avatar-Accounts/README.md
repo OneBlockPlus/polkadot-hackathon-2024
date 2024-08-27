@@ -13,6 +13,9 @@ It creates a keyless Substrate account that operates on Substrate chains, capabl
 
 This innovation enables Ethereum users to effortlessly explore and utilize the unique features and capabilities of Substrate chains (Parachains) without any extra steps on their end.
 
+### Category
+Tooling: (Infrastructure) Polkadot ecological developer tools
+
 ## Problem
 Polkadot despite being one of the most powerful stacks in the ecoystem is lacking a lot of users as compared to ethereum and other EVM-based chains. Major reason is that most users already have onboarded to wallets like Metamask (and are familiar with EVM EOAs) and these side chains.
 
