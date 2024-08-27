@@ -3,15 +3,17 @@ import React, { useState, useEffect } from "react";
 // import { isWalletConnected, fetchUserTickets } from "./ticketApi";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { BigNumber } from "ethers"; //
 
 import logo from "../../assets/logos/logo.png";
 import { events } from "../../data";
 import { useWallet } from "../../wallet-context.js";
 import { useConnectWallet } from "@subwallet-connect/react";
 import { fetchUserTickets, getEventDetails } from "../../contractAPI";
+import { events as localEvents } from "../../data";
 
 const MyTickets = () => {
-
+  const [dataEvents, setEvents] = useState(localEvents);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userTickets, setUserTickets] = useState([]);
   const [eventDetails, setEventDetails] = useState([]);
@@ -22,34 +24,45 @@ const MyTickets = () => {
   };
 
   useEffect(() => {
-    
     const loadUserTickets = async () => {
       try {
+        if (!wallet) return;
+
         // Fetch user tickets
         const tickets = await fetchUserTickets(wallet);
-        console.log(tickets)
-  
-        // Fetch details for each event associated with the tickets
-        const detailsPromises = tickets.map((ticket) =>
-          getEventDetails(ticket.eventId)
-        );
-        const details = await Promise.all(detailsPromises);
-  
-        // Update state with tickets and their corresponding event details
-        console.log(details)
-        setUserTickets(tickets);
-        setEventDetails(details);
+
+        // Process tickets and merge with local event data
+        const combinedEvents = tickets.map((ticket, index) => {
+          const eventDetails = ticket.details;
+          return {
+            id: BigNumber.isBigNumber(ticket.eventId)
+              ? ticket.eventId.toString()
+              : ticket.eventId,
+            title: eventDetails[0] || "Untitled Event",
+            date: eventDetails[1] || "N/A",
+            startTime: eventDetails[2] || "N/A",
+            endTime: eventDetails[3] || "N/A",
+            location: eventDetails[4] || "Location not provided",
+            imageUrl:
+              dataEvents[index]?.imageUrl || "/path/to/default/image.png", 
+            ticketsSold: BigNumber.isBigNumber(ticket.ticketsSold)
+              ? ticket.ticketsSold.toString()
+              : ticket.ticketsSold,
+            active: ticket.active || false,
+            registered: ticket.registered || false,
+          };
+        });
+
+        setUserTickets(combinedEvents);
       } catch (error) {
         console.error("Failed to load user tickets or event details:", error);
       }
     };
-    if (wallet) {
-      loadUserTickets();
-    }
-  }, [wallet]);
 
- 
+    loadUserTickets();
+  }, [wallet, dataEvents]);
 
+  console.log(userTickets);
 
   return (
     <>
@@ -135,37 +148,35 @@ const MyTickets = () => {
         <p className="mb-4 italic text-gray-700 text-sm">
           To view NFT on other networks, switch connected network
         </p>
-        
-          {/* <ul role="list" className="divide-y divide-gray-100">
-            {registeredEvents.map((event) => (
-              <li key={event.id} className="flex justify-between gap-x-6 py-5">
-                <div className="flex min-w-0 gap-x-4">
-                  <img
-                    alt=""
-                    src={event.imageUrl}
-                    className="h-12 w-12 flex-none rounded-full bg-gray-50"
-                  />
-                  <div className="min-w-0 flex-auto">
-                    <p className="text-sm font-semibold leading-6 text-gray-900">
-                      {event.title}
-                    </p>
-                    <p className="mt-1 truncate text-xs leading-5 text-gray-500">
-                      {event.location}
-                    </p>
-                  </div>
-                </div>
-                <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                  <p className="text-sm leading-6 text-gray-900">
-                    {event.date}
+
+        <ul role="list" className="divide-y divide-gray-100">
+          {userTickets.map((event) => (
+            <li key={event.id} className="flex justify-between gap-x-6 py-5">
+              <div className="flex min-w-0 gap-x-4">
+                <img
+                  alt=""
+                  src={event.imageUrl}
+                  className="h-12 w-12 flex-none rounded-full bg-gray-50"
+                />
+                <div className="min-w-0 flex-auto">
+                  <p className="text-sm font-semibold leading-6 text-gray-900">
+                    {event.title}
                   </p>
-                  <p className="mt-1 text-xs leading-5 text-gray-500">
-                    {event.startTime} - {event.endTime}
+                  <p className="mt-1 truncate text-xs leading-5 text-gray-500">
+                    {event.location}
                   </p>
                 </div>
-              </li>
-            ))}
-          </ul> */}
-        
+              </div>
+              <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+                <p className="text-sm leading-6 text-gray-900">{event.date}</p>
+                <p className="mt-1 text-xs leading-5 text-gray-500">
+                  {event.startTime} - {event.endTime}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
+
         <div
           className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
           aria-hidden="true"

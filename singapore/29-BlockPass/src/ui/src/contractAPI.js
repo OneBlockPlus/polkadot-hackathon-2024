@@ -147,8 +147,12 @@ export const fetchUserTickets = async (wallet) => {
 
     // Fetch tickets associated with the user's wallet address
     const userTickets = await contract.getRegisteredEvents(account.address);
+    const detailsPromises = userTickets.map((ticket) =>
+      contract.events(ticket)
+    );
+    const details = await Promise.all(detailsPromises);
 
-    return userTickets;
+    return details;
   } catch (error) {
     console.error("Error fetching user tickets:", error);
     throw error;
