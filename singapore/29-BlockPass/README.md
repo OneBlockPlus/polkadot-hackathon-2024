@@ -53,7 +53,7 @@ BlockPass provides a decentralized solution to these issues by leveraging blockc
 **Immutable Records:** All ticket transactions are recorded on the blockchain, creating a transparent and tamper-proof ticket ownership and sales history ledger.
 
 **Motivation:**  
-The motivation behind BlockPass stems from real-world challenges highlighted in articles like this CBC News report, which exposes the broken nature of the current event ticketing system. Instances of ticket scalping, inflated prices, and counterfeit tickets have disillusioned fans and undermined the integrity of the live entertainment industry. BlockPass aims to restore trust and fairness to event ticketing by providing a decentralized alternative that prioritizes transparency, accessibility, and authenticity.
+The motivation behind BlockPass stems from real-world challenges highlighted in articles like this [CBC News report](https://www.cbc.ca/news/entertainment/concert-tickets-broken-1.7185987), which exposes the broken nature of the current event ticketing system. Instances of ticket scalping, inflated prices, and counterfeit tickets have disillusioned fans and undermined the integrity of the live entertainment industry. BlockPass aims to restore trust and fairness to event ticketing by providing a decentralized alternative that prioritizes transparency, accessibility, and authenticity.
 
 **Impact:**  
 BlockPass aims to disrupt the event ticketing industry, empowering organizers, artists, and attendees alike. By eliminating intermediaries, reducing ticket fraud, and ensuring fair pricing, we are reshaping the future of event ticketing for the better.
