@@ -1,0 +1,448 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #444444;
+  color: #FFFFFF;
+}
+
+.modal-content{
+  background-color: #444444;
+  counter-reset: #FFFFFF;
+}
+
+.modal-header{
+  padding: 5px 15px 5px 5px;
+}
+
+.modal-minter{
+  max-width: 430px;
+}
+
+.container{
+  background-color: #000000;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.app{
+  max-width: 450px;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.operation{
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+/* PC client support */
+@media screen and (max-width: 450px) {
+  body{
+    background-color: #000000;
+  }
+}
+
+@media screen and (min-width: 450px) {
+  .app{
+    max-width: 450px;
+    margin-top: 40px;
+    border-radius: 30px;
+    min-height: 840px;
+    border: #463d2b solid 8px;
+    box-shadow: 0px 8px 30px rgba(0, 0, 0,1);
+  }
+
+  .modal-minter{
+    max-width: 420px;
+    margin-top: 75px;
+  }
+
+  body{
+    background-image: url("image/bg.jpg");
+    background-size: cover; /* or contain, auto, etc. */
+    background-position: center center; /* or top left, bottom right, etc. */
+    
+  }
+}
+
+/**************************************************************************/
+/******************************** Counter *********************************/
+/**************************************************************************/
+
+
+.countdown {
+  width: 108px;
+  height: 120px;
+  position: relative;
+}
+
+.timer {
+  width: 108px;
+  height: 108px;
+  border-radius: 54px;
+  background-color: #cccccc;
+  position: absolute;
+  clip: rect(0, 200px, 200px, 50px);
+  animation: countdown 12s linear forwards;
+}
+
+@keyframes countdown {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+/**************************************************************************/
+/******************************* Hash Board *******************************/
+/**************************************************************************/
+
+@media screen and (min-width: 414px) {
+  .circle-box {
+    width: 90px;
+    height: 90px;
+  }
+  .circle-text{
+    width: 90px;
+    line-height: 90px;
+  }
+
+  .circle-item {
+    width: 45px;
+    height: 90px;
+  }
+
+  .circle-pro{
+    width: 90px;
+    height: 90px;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .circle-box {
+    width: 70px;
+    height: 70px;
+  }
+  .circle-text{
+    width: 70px;
+    line-height: 70px;
+  }
+
+  .circle-item {
+    width: 35px;
+    height: 70px;
+  }
+
+  .circle-pro{
+    width: 70px;
+    height: 70px;
+  }
+}
+
+
+.circle-box {
+  /* width: 90px;
+  height: 90px; */
+  position: relative;
+  margin-left: 10px;
+}
+
+.circle-text{
+  /* width: 90px;
+  line-height: 90px; */
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.circle-item {
+  /* width: 45px;
+  height: 90px; */
+  position: absolute;
+  top:0;
+  overflow: hidden;
+}
+
+
+.circle-pro{
+  /* width: 90px;
+  height: 90px; */
+  border:8px solid rgb(232, 232, 12);
+  border-radius: 50%;
+  position: absolute;
+  top:0;
+  -webkit-transform: rotate(45deg);
+  transform:rotate(45deg);
+}
+
+.right{
+  right:0;
+}
+.left{
+  left:0;
+}
+
+.rightstatic{
+  border-top:10px solid green;
+  border-right:10px solid green;
+  right:0;
+}
+.rightcircle{
+  border-top:10px solid green;
+  border-right:10px solid green;
+  right:0;
+  -webkit-animation: circleProgressLoad_right 12s linear infinite;
+  animation:circleProgressLoad_right 12s linear infinite;
+}
+.leftstatic{
+  border-bottom:10px solid green;
+  border-left:10px solid green;
+  left:0;
+}
+.leftcircle{
+  border-bottom:10px solid green;
+  border-left:10px solid green;
+  left:0;
+  -webkit-animation: circleProgressLoad_left 12s linear infinite;
+  animation:circleProgressLoad_left 12s linear infinite;
+}
+
+.act{
+  -webkit-animation: circleProgressLoad_right 12s linear infinite;
+  animation:circleProgressLoad_right 12s linear infinite;
+}
+
+@keyframes circleProgressLoad_right{
+  0%{
+      border-top:10px solid #ED1A1A;
+      border-right:10px solid #ED1A1A;
+      -webkit-transform: rotate(45deg);
+  }
+  50%{
+      border-top:10px solid rgb(232, 232, 12);
+      border-right:10px solid rgb(232, 232, 12);
+      border-left:10px solid rgb(81, 197, 81);
+      border-bottom:10px solid rgb(81, 197, 81);
+      -webkit-transform: rotate(225deg);
+  }
+  100%{
+      border-left:10px solid green;
+      border-bottom:10px solid green;
+      -webkit-transform: rotate(225deg);
+  }
+}
+@keyframes circleProgressLoad_left{
+  0%{
+      border-bottom:10px solid #ED1A1A;
+      border-left:10px solid #ED1A1A;
+      -webkit-transform: rotate(45deg);
+  }
+  50%{
+      border-bottom:10px solid rgb(232, 232, 12);
+      border-left:10px solid rgb(232, 232, 12);
+      border-top:10px solid rgb(81, 197, 81);
+      border-right:10px solid rgb(81, 197, 81);
+      -webkit-transform: rotate(45deg);
+  }
+  100%{
+      border-top:10px solid green;
+      border-right:10px solid green;
+      border-bottom:10px solid green;
+      border-left:10px solid green;
+      -webkit-transform: rotate(225deg);
+  }
+}
+
+/**************************************************************************/
+/******************************* Hash Board *******************************/
+/**************************************************************************/
+
+.hash{
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 20px;
+  color: #3c4440;
+  letter-spacing: 4px;
+}
+
+.hash_small{
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 20px;
+  letter-spacing: 6px;
+}
+
+.hash_setting{
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 18px;
+  letter-spacing: 2px;
+}
+
+.part{
+  height: 20px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+  line-height: 14px;
+  color: #000000;
+}
+.unselect{
+  -webkit-user-select:none;
+  user-select: none;
+}
+
+/**************************************************************************/
+/***************************** Progress Bar ******************************/
+/**************************************************************************/
+.waiting{
+  height: 5px;
+  background-color: #888888;
+}
+
+.going{
+  height: 5px;
+  background-color: #4aab67;
+}
+.done{
+  height: 5px;
+  background-color: #ffaabb;
+}
+
+.color_1{background-color: #fc879e;}
+.color_2{background-color: #e4f834;}
+.color_3{background-color: #24dff4;}
+.color_4{background-color: #39f7855e;}
+.color_5{background-color: #b227f8;}
+.color_6{background-color: #dfbc25;}
+
+.shadow{
+  box-shadow: 0px 8px 30px rgba(0, 0, 0,1);
+}
+
+.cornor-left{
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.cornor-right{
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+/**************************************************************************/
+/***************************** Customize CSS ******************************/
+/**************************************************************************/
+
+#footer{
+  position: fixed;
+  width: 100%;
+  max-width: 450px;
+  bottom: 35px;
+}
+.cover{
+  width: 50px;
+  height: 50px;
+  border: solid 2px #71366b;
+  position: absolute;
+  margin: 0px 0px 0px 100px;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 50px;
+  color: #000000;
+  background-color: #ffffff;
+  opacity: 0.4;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.avatar{
+  width: "60px";
+  height: "60px";
+  border-radius: "30px";
+  background: "#FFAABB",
+}
+
+.template{
+  width: 100%;
+}
+
+.thumbnail {
+  width: 150px; /* Width of the thumbnail */
+  height: 150px; /* Height of the thumbnail */
+  background-size: cover; /* Scale the background image to cover the entire element */
+  background-position: 50% 50%; /* Position the center of the background image */
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+
+.mine{
+  width: 100%;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.grid{
+  min-height: 90px;
+}
+
+.offset{
+  width: 36px;;
+}
+.backflip{
+  border-radius: 10px;
+}
+
+.monospaced{
+  font-family: "Courier New", Courier, monospace;
+}
+
+/*限制高度的容器*/
+.limited{
+  max-height: 500px;
+  min-height: 500px;
+  width: 100%;
+  overflow: auto;
+}
+
+.launch{
+  background: #000000;
+  padding: 10px 10px 10px 10px;
+  word-break: break-all;
+}
+
+.launch p{
+  margin-bottom: 5px;
+}
+
+.setting{
+  max-height: 240px;
+  min-height: 240px;
+  width: 100%;
+  overflow: auto;
+}
+.pr-1{margin-right: 5px;}
+.pr-2{margin-right: 10px;}
+.pr-3{margin-right: 15px;}
+
+.pl-1{margin-left: 5px;}
+.pl-2{margin-left: 10px;}
+.pl-3{margin-left: 15px;}
+
+.full{
+  width: 100%;
+}
