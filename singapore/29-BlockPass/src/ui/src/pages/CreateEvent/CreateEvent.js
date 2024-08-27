@@ -80,7 +80,6 @@ const CreateEventForm = () => {
 
      // Log the form data to the console
   console.log("Form Data Submitted:", formData);
-  console.log(wallet)
 
     try {
       const api = new ApiPromise({
@@ -178,6 +177,12 @@ const CreateEventForm = () => {
 
       const bannerCid = await uploadBannerToCrust(formData.banner);
 
+      async function getOrderState(cid) {
+        await api.isReadyOrError;
+        return await api.query.market.filesV2(cid);
+      }
+
+      console.log(getOrderState(bannerCid));
       setUploadStatus(`Banner uploaded successfully with CID: ${bannerCid}`);
       const ticketPriceInWei = ethers.utils.parseUnits(formData.ticketPrice, 18);
       const eventDet = [
@@ -322,7 +327,6 @@ const CreateEventForm = () => {
               {text}
             </Link>
           ))}
-         
         </div>
       </nav>
 
