@@ -53,7 +53,7 @@ The system emits various events (ImprintEvents) to track important actions:
 
 - Deposit: When an Imprint NFT is deposited
 - Withdraw: When an Imprint NFT is withdrawn
-- Combine: (Implementation not shown in the provided code)
+- Combine: -
 
 ## Conclusion
 
