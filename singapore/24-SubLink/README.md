@@ -1,6 +1,8 @@
 # SubLink
 ## Introduction
-SubLink is an open-source tool that converts Extrinsics on the Substrate blockchain into shareable links, allowing users to execute actions directly through these links.
+SubLink is an open-source tool that converts Extrinsics on the Substrate blockchain into shareable links, allowing users to execute actions directly through these links.<br>
+
+Bounty application: VARA
 
 ## Background
 Blockchain has introduced exciting decentralized technologies, leading to the emergence of dApps across various industries such as finance, social networking, and gaming. As builders in the web3, we hope to see an increasing number of users engaging with our products and services. With 5.4 billion web2 users worldwide, we rely on web2 social networks to promote our offerings. Unfortunately, there can be a gap between users and web3. Users must navigate to websites or download extensions to access web3 applications and services, which significantly reduces their willingness to engage.
