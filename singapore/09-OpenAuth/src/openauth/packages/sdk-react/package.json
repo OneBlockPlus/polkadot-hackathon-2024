@@ -1,0 +1,49 @@
+{
+  "name": "@open-auth/sdk-react",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "tsup"
+  },
+  "dependencies": {
+    "@did-network/dapp-sdk": "^0.1.9",
+    "@open-auth/react-discord": "workspace:*",
+    "@open-auth/sdk-core": "workspace:*",
+    "@react-oauth/google": "^0.12.1",
+    "class-variance-authority": "^0.6.0",
+    "ethers": "6.13.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.0",
+    "usehooks-ts": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10"
+  },
+  "tsup": {
+    "entry": [
+      "index.ts"
+    ],
+    "format": [
+      "esm"
+    ],
+    "splitting": false,
+    "sourcemap": true,
+    "clean": true,
+    "dts": true
+  }
+}
