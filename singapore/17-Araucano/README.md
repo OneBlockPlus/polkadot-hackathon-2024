@@ -92,3 +92,9 @@ Néstor Campos: https://www.linkedin.com/in/nescampos/
 6. PPT Deck: https://drive.google.com/file/d/1f90yqcbE0ar4hUh17n_VAKwBgMJI3HEP/view?usp=sharing
 7. Whitepaper: https://drive.google.com/file/d/1ZAMxGQ2c-6gP5iGrkUIuEEHwKGVbwmxJ/view?usp=sharing
 8. PeerPay: https://peerpayapp.com/
+
+
+## Track and Selected Bounty
+
+- Track: **(Chain ) Building a blockchain based on Polkadot SDK**
+- Bounties: **Blockchain for good (Reducing Inequality)**
