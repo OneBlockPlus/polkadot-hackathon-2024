@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://unpkg.com/@polkadot/util@13.0.2/bundle-polkadot-util.js"></script>
+    <script src="https://unpkg.com/@polkadot/util-crypto@13.0.2/bundle-polkadot-util-crypto.js"></script>
+    <script src="https://unpkg.com/@polkadot/types@12.3.1/bundle-polkadot-types.js"></script>
+    <script src="https://unpkg.com/@polkadot/api@latest/bundle-polkadot-api.js"></script>
+    <script src="https://unpkg.com/@polkadot/extension-dapp@0.51.1/bundle-polkadot-extension-dapp.js"></script>
+
+    <title>Pendulum Simulation</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <style>
+        .colormap-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .colormap-display {
+            width: 100px;
+            height: 20px;
+            margin-left: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="../static/logo.jpg" alt="Logo" class="logo">
+            <h1>Pendulum Simulation Parameters</h1>
+            <img src="../static/explanation.jpg" alt="Expl" class="expl" width="300px">
+        </header>
+        <main>
+            <form method="POST" action="/export" onsubmit="this.querySelector('input[type=submit]').disabled=true;">
+                <table>
+                    <tr>
+                        <td><label for="colormap">Colormap:</label></td>
+                        <td>
+                            <div class="colormap-container">
+                                <select id="colormap" name="colormap">
+                                    <option value="rainbow">Rainbow</option>
+                                    <option value="viridis">Viridis</option>
+                                    <option value="plasma">Plasma</option>
+                                    <option value="inferno">Inferno</option>
+                                    <option value="magma">Magma</option>
+                                    <option value="cividis">Cividis</option>
+                                    <option value="jet">Jet</option>
+                                    <option value="spring">Spring</option>
+                                    <option value="summer">Summer</option>
+                                    <option value="autumn">Autumn</option>
+                                    <option value="winter">Winter</option>
+                                    <option value="cool">Cool</option>
+                                    <option value="hot">Hot</option>
+                                </select>
+                                <div id="colormap-display" class="colormap-display"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="background">Background:</label></td>
+                        <td>
+                            <select id="background" name="background">
+                                <option value="white" style="background-color: white;">White</option>
+                                <option value="lightgreen" style="background-color: lightgreen;">Light Green</option>
+                                <option value="darkgreen" style="background-color: darkgreen;">Dark Green</option>
+                                <option value="cyan" style="background-color: cyan;">Cyan</option>
+                                <option value="purple" style="background-color: purple;">Purple</option>
+                                <option value="pink" style="background-color: pink;">Pink</option>
+                                <option value="blue" style="background-color: blue;">Blue</option>
+                                <option value="red" style="background-color: red;">Red</option>
+                                <option value="orange" style="background-color: orange;">Orange</option>
+                                <option value="yellow" style="background-color: yellow;">Yellow</option>
+                                <option value="black" style="background-color: black; color: white;">Black</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="n_pendulums">Number of Pendulums:</label></td>
+                        <td><input type="number" id="n_pendulums" name="n_pendulums" required min="2" max="30" value="10"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="d_diff">Difference:</label></td>
+                        <td>
+                            <input type="range" id="d_diff_slider" name="d_diff_slider" min="0" max="100" value="50" oninput="updateSlider(this.value)">
+                            <span id="d_diff_value">0.000001</span>
+                            <input type="hidden" id="d_diff" name="d_diff" value="0.000001">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="t_max">Max Time:</label></td>
+                        <td><input type="number" step="1" id="t_max" name="t_max" required min="5" max="15" value="10"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="g">Gravity (g):</label></td>
+                        <td><input type="number" step="0.01" id="g" name="g" required value="9.81" min="0.1" max="24.79"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="m1">Mass 1:</label></td>
+                        <td><input type="number" step="0.1" id="m1" name="m1" required min="0.1" max="20" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="m2">Mass 2:</label></td>
+                        <td><input type="number" step="0.1" id="m2" name="m2" required min="0.1" max="20" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="L1">Length 1:</label></td>
+                        <td><input type="number" step="0.1" id="L1" name="L1" required min="0.1" max="2" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="L2">Length 2:</label></td>
+                        <td><input type="number" step="0.1" id="L2" name="L2" required min="0.1" max="2" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="theta1">Theta 1:</label></td>
+                        <td><input type="number" step="0.001" id="theta1" name="theta1" required min="-1.57" max="1.57" value="-0.120"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="theta2">Theta 2:</label></td>
+                        <td><input type="number" step="0.001" id="theta2" name="theta2" required min="-1.57" max="1.57" value="0.210"></td>
+                    </tr>
+                </table>
+                {%if video%}
+                    <input type="submit"  value="Run Simulation" disabled>
+                {%else%}
+                    <input type="submit"  value="Run Simulation">
+                {%endif%}
+            </form>
+            <form method="POST" action="/save" onsubmit="this.querySelector('input[type=submit]').disabled=true;">
+                {%if video%}
+                    <input type="submit" value="Download video">
+                {%else%}
+                    <input type="submit" value="Download video" disabled>
+                {%endif%}
+            </form>
+                {%if video%}
+                    <button id="mint_button" onclick="mint()">Mint NFT (0.2 DOT ~ 1 USD)</button>
+                {%else%}
+                    <button disabled>Mint NFT (0.2 DOT ~ 1 USD)</button>
+                {%endif%}
+            <script>
+                // getting cid from python
+                const video = "{{video}}"
+                const wsEndpoint = "{{wsendpoint}}"
+                const collectionId = "{{collectionid}}"
+
+                async function mint() {
+                    document.getElementById("mint_button").disabled=true;
+
+                    // import from CDN (the links at the top)
+                    const { web3Accounts, web3Enable, web3FromAddress } = polkadotExtensionDapp;
+                    const { WsProvider, ApiPromise } = polkadotApi
+
+                    // Enable Polkadot extension
+                    const allInjected = await web3Enable('Double Pendulum');
+
+                    if (allInjected.length === 0) {
+                        console.log('No extension found');
+                        return;
+                    }
+
+                    // Get all accounts
+                    const allAccounts = await web3Accounts();
+
+                    if (allAccounts.length === 0) {
+                        console.log('No accounts found');
+                        return;
+                    }
+
+                    // Use the first account for simplicity
+                    const SENDER = allAccounts[0].address;
+
+                    // Find injector for the address
+                    const injector = await web3FromAddress(SENDER);
+
+                    // Initialize websocket API
+                    const wsProvider = new WsProvider(wsEndpoint);
+                    const api = await ApiPromise.create({ provider: wsProvider });
+
+                    // check if user has enough DOTs
+                    const accountInfo = await api.query.system.account(SENDER)
+
+                    if (accountInfo.data.free < 10000000000){
+                        document.getElementById("mint_button").innerHTML = "Not enough DOTs :( (you need at least 1 DOT)";
+                        return
+                    }
+
+
+                    //get collection info
+                    const collection = await api.query.nfts.collection(collectionId)
+
+                    // get new item id
+                    const newItemId = collection.value.items
+                    console.log("new itemId: " + newItemId.toString())
+
+                    document.getElementById("mint_button").innerHTML = "Minting..."
+
+                    //NFT minting
+                    const mint = api.tx.nfts.mint(
+                        collectionId,
+                        newItemId,
+                        SENDER,
+                        [0, 2000000000], // 0.2 DOT
+                    )
+
+                    await new Promise(async (resolve) => {
+                        // calling more transactions in correct order (mint, send to ipfs and setting metadata)
+
+                        // first mint
+                        await mint.signAndSend(SENDER, { signer: injector.signer }, async ({ status, events }) => {
+                            if (status.isInBlock) {
+                            console.log("in block")
+                            }
+                          });
+
+                        // then post to ipfs (after minting so nobody can save anything to IPFS without paying)
+                        document.getElementById("mint_button").innerHTML = "Posting to IPFS..."
+                        // get all initial conditions back to python and then send to ipfs and get cid
+                        const response = await fetch("/mint_nft", {
+                            method:"POST",
+                            body: JSON.stringify({
+                                    // n_pendulums, d_diff, t_max, g, m1, m2, L1, L2, theta1, theta2, colormap, background
+                                    n_pendulums: document.getElementById('n_pendulums').value,
+                                    d_diff: document.getElementById('d_diff').value,
+                                    t_max: document.getElementById('t_max').value,
+                                    g: document.getElementById('g').value,
+                                    m1: document.getElementById('m1').value,
+                                    m2: document.getElementById('m2').value,
+                                    L1: document.getElementById('L1').value,
+                                    L2: document.getElementById('L2').value,
+                                    theta1: document.getElementById('theta1').value,
+                                    theta2: document.getElementById('theta2').value
+                                }),
+                            headers: {
+                                "Content-type": "application/json; charset=UTF-8"
+                                }
+                            })
+
+                        const cid = await response.text();
+
+                        console.log("cid received: " + cid)
+
+                        // finally with cid can set metadata
+                        document.getElementById("mint_button").innerHTML = "Setting metadata..."
+                                console.log("setting metadata")
+                                await fetch("/set_nft_metadata", {
+                                  method:"POST",
+                                  body: JSON.stringify({
+                                      itemId: newItemId.toHuman(),
+                                      cid: cid
+                                      }),
+                                  headers: {
+                                      "Content-type": "application/json; charset=UTF-8"
+                                      }
+                                  })
+                        document.getElementById("mint_button").innerHTML = "Done :)"
+                        resolve()
+                    });
+
+                }
+
+            </script>
+
+
+            {% if result %}
+                <h2>Simulation Parameters:</h2>
+                <ul>
+                    <li>Number of Pendulums: {{ result.n_pendulums }}</li>
+                    <li>Damping Difference: {{ result.d_diff }}</li>
+                    <li>Max Time: {{ result.t_max }}</li>
+                    <li>Gravity: {{ result.g }}</li>
+                    <li>Mass 1: {{ result.m1 }}</li>
+                    <li>Mass 2: {{ result.m2 }}</li>
+                    <li>Length 1: {{ result.L1 }}</li>
+                    <li>Length 2: {{ result.L2 }}</li>
+                    <li>Theta 1: {{ result.theta1 }}</li>
+                    <li>Theta 2: {{ result.theta2 }}</li>
+                    <li>Colormap: {{ result.colormap }}</li>
+                    <li>Background: {{ result.background }}</li>
+                </ul>
+            {% endif %}
+        </main>
+    </div>
+    <br>
+    <script>
+        // These are for visuals such as slider or colormaps
+
+        function updateSlider(value) {
+            var min = Math.log(0.000001);
+            var max = Math.log(0.01);
+            var scale = (max - min) * (value / 100) + min;
+            var logValue = Math.exp(scale);
+            document.getElementById('d_diff_value').innerText = logValue.toFixed(9);
+            document.getElementById('d_diff').value = logValue;
+        }
+
+        // get random initial angles every time page loads
+        function getRandomValue(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        function setRandomTheta1() {
+            var minTheta1 = -0.6;
+            var maxTheta1 = 0.6;
+            var randomTheta1 = getRandomValue(minTheta1, maxTheta1);
+            document.getElementById('theta1').value = randomTheta1.toFixed(3);
+        }
+
+        function setRandomTheta2() {
+            var minTheta2 = -0.6;
+            var maxTheta2 = 0.6;
+            var randomTheta2 = getRandomValue(minTheta2, maxTheta2);
+            document.getElementById('theta2').value = randomTheta2.toFixed(3);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // n_pendulums, d_diff, t_max, g, m1, m2, L1, L2, theta1, theta2, colormap, background
+            {% if n_pendulums %}
+                document.getElementById('n_pendulums').value = {{n_pendulums}}
+            {% endif %}
+            {% if d_diff %}
+                initialSliderValue = {{d_diff}}
+            {% else %}
+                var initialSliderValue = document.getElementById('d_diff_slider').value;
+            {% endif %}
+            {% if t_max %}
+                document.getElementById('t_max').value = {{t_max}}
+            {% endif %}
+            {% if g %}
+                document.getElementById('g').value = {{g}}
+            {% endif %}
+            {% if m1 %}
+                document.getElementById('m1').value = {{m1}}
+            {% endif %}
+            {% if m2 %}
+                document.getElementById('m2').value = {{m2}}
+            {% endif %}
+            {% if L1 %}
+                document.getElementById('L1').value = {{L1}}
+            {% endif %}
+            {% if L2 %}
+                document.getElementById('L2').value = {{L2}}
+            {% endif %}
+            {% if theta1 %}
+                document.getElementById('theta1').value = {{theta1}}
+            {% else %}
+                setRandomTheta1();
+            {% endif %}
+            {% if theta2 %}
+                document.getElementById('theta2').value = {{theta2}}
+            {% else %}
+                setRandomTheta2();
+            {% endif %}
+
+            updateSlider(initialSliderValue);
+            updateColormapDisplay();
+        });
+
+        const colormapSelect = document.getElementById('colormap');
+        const colormapDisplay = document.getElementById('colormap-display');
+
+        const colormapGradients = {
+            rainbow: 'linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet)',
+            viridis: 'linear-gradient(to right, #440154, #3b528b, #21918c, #5ec962, #fde725)',
+            plasma: 'linear-gradient(to right, #0d0887, #6a00a8, #b12a90, #e16462, #fca636)',
+            inferno: 'linear-gradient(to right, #000004, #320a5a, #781c6d, #bb3654, #f98c09, #fcffa4)',
+            magma: 'linear-gradient(to right, #000004, #2c115f, #721f81, #b63679, #f1605d, #fcfdbf)',
+            cividis: 'linear-gradient(to right, #00204c, #004d70, #006c8e, #19818d, #5aac82, #9ccb70, #dfee4b)',
+            jet: 'linear-gradient(to right, blue, cyan, yellow, red)',
+            spring: 'linear-gradient(to right, magenta, yellow)',
+            summer: 'linear-gradient(to right, green, yellow)',
+            autumn: 'linear-gradient(to right, red, orange, yellow)',
+            winter: 'linear-gradient(to right, blue, turquoise, green)',
+            cool: 'linear-gradient(to right, cyan, magenta)',
+            hot: 'linear-gradient(to right, black, red, orange, yellow, white)'
+        };
+
+        function updateColormapDisplay() {
+            const selectedColormap = colormapSelect.value;
+            colormapDisplay.style.background = colormapGradients[selectedColormap];
+        }
+
+        colormapSelect.addEventListener('change', updateColormapDisplay);
+    </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+Flask==2.2.2
+matplotlib~=3.9.1
+numpy==1.23.5
+python-dotenv==1.0.1
+Requests==2.32.3
+substrate-interface==1.7.10
+gunicorn==20.1.0
+Werkzeug==2.2.2
+ipfs-cid==1.0.0
+multihash~=0.1.1
+cid~=0.1.3
