@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node src/index.ts"
+    "dev": "ts-node src/index.ts",
+    "con": "ts-node src/utils/ContractAPI.ts"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +13,11 @@
   "dependencies": {
     "@colyseus/playground": "^0.15.12",
     "@colyseus/schema": "^2.0.34",
+    "@polkadot/api": "^12.4.2",
+    "@polkadot/api-contract": "^12.4.2",
+    "@polkadot/types": "^12.4.2",
+    "@polkadot/util": "^13.0.2",
+    "@polkadot/util-crypto": "^13.0.2",
     "colyseus": "^0.15.17",
     "colyseus.js": "^0.15.25",
     "express": "^4.19.2"

@@ -16,8 +16,8 @@ const server = createServer(app);
 const gameServer = new Server({
   server,
 });
-gameServer
-  .define("lobby", LobbyRoom);
+// gameServer
+//   .define("lobby", LobbyRoom);
 
 gameServer
   .define("kart", KartRoom)
