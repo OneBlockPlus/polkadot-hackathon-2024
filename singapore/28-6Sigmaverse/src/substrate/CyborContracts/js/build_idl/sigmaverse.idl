@@ -1,0 +1,117 @@
+type CyborRace = enum {
+  Rodriguez,
+  Nguyen,
+};
+
+type CyborTemplate = struct {
+  race_name: str,
+  price: u128,
+  basic_damage: u32,
+  basic_hp: u32,
+  basic_move_speed: u8,
+  basic_knockdown_hit: u8,
+  score_per_block: u64,
+};
+
+type CyborMetadata = struct {
+  race: CyborRace,
+  cybor_template: CyborTemplate,
+  is_have_finishing_skill: bool,
+  mint_at: u32,
+  image: str,
+};
+
+type CyborStream = struct {
+  race_name: str,
+  basic_damage: u32,
+  basic_hp: u32,
+  basic_move_speed: u8,
+  basic_knockdown_hit: u8,
+  score_per_block: u64,
+  is_have_finishing_skill: bool,
+  mint_at: u32,
+  image: str,
+  level: u16,
+  grade: u16,
+  lucky: u32,
+  is_freeze: bool,
+};
+
+type DebugInfo = struct {
+  source: actor_id,
+  value: u128,
+  temp: CyborTemplate,
+  minted_count: u128,
+  owner_by_id: vec struct { u256, actor_id },
+  token_group_by_owner_len: u128,
+  my_tokens1: vec u256,
+  my_tokens2: vec u256,
+  next_token_id: u256,
+};
+
+type ReferenceCount = struct {
+  u32,
+};
+
+constructor {
+  Default : ();
+};
+
+service CyborNft {
+  Burn : (token_id: u256) -> null;
+  Freeze : (token_id: u256) -> null;
+  GetTemplate : (race: CyborRace) -> CyborTemplate;
+  Mint : (race: CyborRace) -> null;
+  Unfreeze : (token_id: u256) -> null;
+  Approve : (approved: actor_id, token_id: u256) -> null;
+  Transfer : (to: actor_id, token_id: u256) -> null;
+  TransferFrom : (from: actor_id, to: actor_id, token_id: u256) -> null;
+  query AllCybors : () -> vec struct { u256, CyborMetadata };
+  query AllMyCybors : () -> vec struct { u256, CyborStream };
+  query CyborInfo : (token_id: u256) -> CyborStream;
+  query CyborMetadata : (token_id: u256) -> CyborMetadata;
+  query DebugInfo : (race: CyborRace) -> DebugInfo;
+  query BalanceOf : (owner: actor_id) -> u256;
+  query GetApproved : (token_id: u256) -> actor_id;
+  query Name : () -> str;
+  query OwnerOf : (token_id: u256) -> actor_id;
+  query Symbol : () -> str;
+
+  events {
+    Minted: struct { to: actor_id, value: u256, next_id: u256, len_by_minted: u32, len_by_group_user: u32 };
+    Burned: struct { from: actor_id, value: u256 };
+    Freeze: struct { from: actor_id, value: u256 };
+    UnFreeze: struct { from: actor_id, value: u256 };
+    Uplevel: struct { from: actor_id, value: u256 };
+    DEBUG: struct { value: DebugInfo };
+    Transfer: struct { from: actor_id, to: actor_id, token_id: u256 };
+    Approval: struct { owner: actor_id, approved: actor_id, token_id: u256 };
+  }
+};
+
+service Enemy {
+  MakeHit : () -> str;
+  Walk : (dx: i32, dy: i32) -> null;
+  query Position : () -> struct { i32, i32 };
+
+  events {
+    Attack;
+    TakeHit: struct { from: struct { i32, i32 }, to: struct { i32, i32 } };
+  }
+};
+
+service PingPong {
+  Ping : (input: str) -> result (str, str);
+};
+
+service References {
+  Add : (v: u32) -> u32;
+  AddByte : (byte: u8) -> vec u8;
+  GuessNum : (number: u8) -> result (str, str);
+  Incr : () -> ReferenceCount;
+  SetNum : (number: u8) -> result (null, str);
+  query Baked : () -> str;
+  query LastByte : () -> opt u8;
+  query Message : () -> opt str;
+};
+
