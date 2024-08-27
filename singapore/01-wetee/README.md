@@ -28,6 +28,9 @@ WeTEE also offers a TEE Bridge to facilitate interoperability between smart cont
 
 Approved and completed https://grants.web3.foundation/applications/WeTEE_Network
 
+##  Bountiy want to apply 
+ - [Blockchain for good](https://dorahacks.io/hackathon/polkadot-2024-singapore/bounties-details#blockchain-for-good)
+
 ## Material for Demo
 1. Demo Video - [Youtube](https://youtu.be/QveGcIUHLeE)
 2. PPT google doc - [LINK](https://drive.google.com/file/d/1bX5nDMbrPtKXYLLJmnNotGM87QUc-9Ht/view?usp=sharing)
