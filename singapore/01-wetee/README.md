@@ -41,3 +41,4 @@ Approved and completed https://grants.web3.foundation/applications/WeTEE_Network
     - [Side chain TEE DKG for confidential injection code](https://github.com/wetee-dao/tee-dsecret/tree/polkadot-2024-hackathon)
     - [TEE Confidential container libos](https://github.com/wetee-dao/libos-entry/tree/polkadot-2024-hackathon)
     - [DAPP](https://github.com/wetee-dao/dapp/tree/polkadot-2024-hackathon)
+5. Online DAPP Demo [LINK](https://dapp.wetee.app)
