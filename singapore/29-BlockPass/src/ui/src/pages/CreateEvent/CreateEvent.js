@@ -6,7 +6,7 @@ import { typesBundleForPolkadot } from "@crustio/type-definitions";
 import { Keyring } from "@polkadot/keyring";
 import { motion } from "framer-motion";
 import logo from "../../assets/logos/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useConnectWallet } from "@subwallet-connect/react";
 import { createEvent } from "../../contractAPI";
 
@@ -33,7 +33,9 @@ const CreateEventForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [uploadStatus, setUploadStatus] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [{ wallet},] = useConnectWallet();
+  const [{ wallet }] = useConnectWallet();
+
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -78,8 +80,8 @@ const CreateEventForm = () => {
       return;
     }
 
-     // Log the form data to the console
-  console.log("Form Data Submitted:", formData);
+    // Log the form data to the console
+    // console.log("Form Data Submitted:", formData);
 
     try {
       const api = new ApiPromise({
@@ -175,23 +177,27 @@ const CreateEventForm = () => {
         });
       };
 
-      const bannerCid = await uploadBannerToCrust(formData.banner);
+      // const bannerCid = await uploadBannerToCrust(formData.banner);
 
-      async function getOrderState(cid) {
-        await api.isReadyOrError;
-        return await api.query.market.filesV2(cid);
-      }
+      // async function getOrderState(cid) {
+      //   await api.isReadyOrError;
+      //   return await api.query.market.filesV2(cid);
+      // }
 
-      console.log(getOrderState(bannerCid));
-      setUploadStatus(`Banner uploaded successfully with CID: ${bannerCid}`);
-      const ticketPriceInWei = ethers.utils.parseUnits(formData.ticketPrice, 18);
+      // console.log(getOrderState(bannerCid));
+      // setUploadStatus(`Banner uploaded successfully with CID: ${bannerCid}`);
+      const ticketPriceInWei = ethers.utils.parseUnits(
+        formData.ticketPrice,
+        18
+      );
       const eventDet = [
         formData.eventName,
         formData.dateOfEvent,
         formData.startTime,
         formData.endTime,
         formData.location,
-        bannerCid,
+        // bannerCid,
+        "banner",
         formData.description,
         formData.category,
         formData.moreInformation,
@@ -220,6 +226,7 @@ const CreateEventForm = () => {
       setUploadStatus("Failed to upload banner.");
     } finally {
       setIsSubmitting(false);
+      navigate("/events");
     }
   };
 
@@ -375,8 +382,8 @@ const CreateEventForm = () => {
           <input
             id="ticketPrice"
             name="ticketPrice"
-            type="number"
-            min="1"
+            type="float"
+            min="0"
             required
             onChange={handleChange}
             placeholder="e.g. 1DOT"

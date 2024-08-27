@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"; // assuming you're using React Router for routing
 import { useConnectWallet } from "@subwallet-connect/react";
-import {  fetchEventsFromContract } from "../../contractAPI";
-
+import { fetchEventsFromContract, registerForEvent } from "../../contractAPI";
 
 const EventDetailPage = () => {
   const { id } = useParams();
-  const [{ wallet },] = useConnectWallet();
-  const [event, setEvent] = useState(null);
+  const [{ wallet }] = useConnectWallet();
+  const [event, setEvent] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const shortenAddress = (address) => {
@@ -15,11 +14,17 @@ const EventDetailPage = () => {
     return `${address.slice(0, 6)}...${address.slice(-4)}`;
   };
 
+  const registerEVent = async () => {
+    if (wallet) {
+      await registerForEvent(wallet, id, event.ticketPrice);
+    }
+  };
+
   useEffect(() => {
     const fetchEvent = async () => {
       if (wallet) {
         const fetchedEvents = await fetchEventsFromContract(wallet);
-        
+
         // Find the specific event by ID
         const eventDetails = fetchedEvents.find((event) => event.id === id);
 
@@ -119,9 +124,7 @@ const EventDetailPage = () => {
             </p>
 
             <div className="mt-3">
-              <h3 className="text-xl text-gray-300 font-semibold">
-                Hosted By
-              </h3>
+              <h3 className="text-xl text-gray-300 font-semibold">Hosted By</h3>
               <hr className="my-1 border-gray-600" />
               <p className="mt-1 text-gray-100 text-sm">{event.host}</p>
               <p className="my-4 text-gray-300">
@@ -137,6 +140,7 @@ const EventDetailPage = () => {
                     : "bg-purple-800 hover:bg-purple-900"
                 }`}
                 disabled={isPastEvent}
+                onClick={registerEVent}
               >
                 {isPastEvent ? "Past Event" : "Register"}
               </button>
@@ -173,7 +177,7 @@ const EventDetailPage = () => {
                 <br />
                 <br />
                 <li className="inline text-gray-700 px-2 py-1 rounded-lg mr-2">
-                  🎟️ Price: {event.ticketPrice} 
+                  🎟️ Price: {event.ticketPrice}
                 </li>
               </ul>
             </div>

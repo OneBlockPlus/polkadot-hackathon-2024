@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useConnectWallet } from "@subwallet-connect/react"
-import { fetchEventsFromContract } from "../../contractAPI"
-
+import { useConnectWallet } from "@subwallet-connect/react";
+import { fetchEventsFromContract } from "../../contractAPI";
+import { events as localEvents } from "../../data";
 
 import logo from "../../assets/logos/logo.png";
 
 const EventGallery = () => {
-  const [events, setEvents] = useState([]);
+  const [dataEvents, setEvents] = useState(localEvents);
+  const [events, setEvent] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [{ wallet},] = useConnectWallet();
+  const [{ wallet }] = useConnectWallet();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -21,17 +22,22 @@ const EventGallery = () => {
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
 
-  console.log(wallet);
+  // console.log(wallet);
   useEffect(() => {
     const fetchEvents = async () => {
       const fetchedEvents = await fetchEventsFromContract(wallet);
-      setEvents(fetchedEvents);
+
+      const combinedEvents = fetchedEvents.map((event, index) => ({
+        ...event,
+        imageUrl: dataEvents[index].imageUrl || "", // Fallback to empty string if no imageUrl
+      }));
+      setEvent(combinedEvents);
     };
-    
+
     if (wallet) {
       fetchEvents();
     }
-  }, [wallet]);
+  }, [wallet, dataEvents]);
   return (
     <>
       <nav className="container flex justify-between mx-auto items-center px-8 py-4">

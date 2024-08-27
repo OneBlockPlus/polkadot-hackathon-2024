@@ -106,3 +106,25 @@ export const getEventDetails = async (wallet, eventId) => {
     return null;
   }
 };
+
+export const registerForEvent = async (wallet, eventId, ticketPrice) => {
+  try {
+    if (!wallet || wallet.type !== "evm") {
+      console.log("Wallet is not connected or provider is not available");
+      return;
+    }
+
+    const ethersProvider = new ethers.providers.Web3Provider(
+      wallet.provider,
+      "any"
+    );
+    const contract = contractInstance.connect(ethersProvider.getSigner());
+
+    const tx = await contract.purchaseTicket(eventId, "someuri", {value: ethers.utils.parseEther(ticketPrice)});
+    await tx.wait();
+
+    console.log("Registered for event successfully!");
+  } catch (error) {
+    console.error("Error registering for event:", error);
+  }
+};
