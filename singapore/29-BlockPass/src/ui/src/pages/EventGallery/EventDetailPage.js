@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom"; // assuming you're using React Router for routing
+import { useParams, useNavigate } from "react-router-dom"; // assuming you're using React Router for routing
 import { useConnectWallet } from "@subwallet-connect/react";
 import { fetchEventsFromContract, registerForEvent } from "../../contractAPI";
 
@@ -9,6 +9,7 @@ const EventDetailPage = () => {
   const [event, setEvent] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const navigate = useNavigate();
   const shortenAddress = (address) => {
     if (!address) return "";
     return `${address.slice(0, 6)}...${address.slice(-4)}`;
@@ -18,6 +19,7 @@ const EventDetailPage = () => {
     if (wallet) {
       await registerForEvent(wallet, id, event.ticketPrice);
     }
+    navigate("/my-tickets");
   };
 
   useEffect(() => {
