@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的收益 - 音乐NFT平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="flex h-screen bg-gray-100">
+        <!-- 侧边栏 (与首页相同) -->
+        
+        <!-- 主内容区 -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- 顶部导航 (使用新的带钱包集成的导航) -->
+            
+            <!-- 滚动内容区 -->
+            <main class="flex-1 overflow-y-auto bg-gray-100">
+                <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+                    <h1 class="text-3xl font-bold mb-6">我的收益</h1>
+                    
+                    <!-- 收益概览 -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h2 class="text-lg font-semibold mb-2">总收入</h2>
+                            <p class="text-3xl font-bold text-pink-600">5.23 ETH</p>
+                            <p class="text-sm text-gray-500">≈ $9,914.70 USD</p>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h2 class="text-lg font-semibold mb-2">本月收入</h2>
+                            <p class="text-3xl font-bold text-green-600">0.87 ETH</p>
+                            <p class="text-sm text-gray-500">较上月 <span class="text-green-500">+12%</span></p>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h2 class="text-lg font-semibold mb-2">待结算</h2>
+                            <p class="text-3xl font-bold text-blue-600">0.15 ETH</p>
+                            <p class="text-sm text-gray-500">预计3天后到账</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 收入图表 -->
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                        <h2 class="text-lg font-semibold mb-4">收入趋势</h2>
+                        <canvas id="earningsChart" width="400" height="200"></canvas>
+                    </div>
+                    
+                    <!-- 最近交易 -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h2 class="text-lg font-semibold mb-4">最近交易</h2>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">日期</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">类型</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NFT</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">金额</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023/08/10</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">销售</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">电子音乐集Vol.1</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600">+0.05 ETH</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023/08/09</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">版税</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">爵士夜曲</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600">+0.002 ETH</td>
+                                    </tr>
+                                    <!-- 可以添加更多交易记录 -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            
+            <!-- 底部播放器 (与首页相同) -->
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const ctx = document.getElementById('earningsChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1月', '2月', '3月', '4月', '5月', '6月'],
+                datasets: [{
+                    label: '月收入 (ETH)',
+                    data: [0.5, 0.8, 1.2, 0.9, 1.5, 0.87],
+                    borderColor: 'rgb(236, 72, 153)',
+                    backgroundColor: 'rgba(236, 72, 153, 0.1)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+    </script>
+</body>
+</html>
