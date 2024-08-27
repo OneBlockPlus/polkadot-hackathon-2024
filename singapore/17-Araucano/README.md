@@ -1,7 +1,7 @@
 # Araucano
 ## Introduction
 
-**Araucano is an ecosystem for Open Finance, including Arauco Chain a new Substrate-based blockchain network focused on Open Finance for emerging countries.**
+**Araucano is an ecosystem for Open Finance, including Arauco Chain (a new Substrate-based blockchain network focused on Open Finance for emerging countries), Arauco Bank (a neo-bank built on the top of Arauco Chain), and PeerPay (a Web3 payment system for unbanked people).**
 
 With the continuous advancement of finance in all aspects and places, different services have emerged for people and companies, focusing on various aspects of business. Along these lines, there is still a huge opportunity to take advantage of Blockchain networks in Open Finance, which will enhance the development and use of new stablecoins, tokenize real assets, decentralized finance for people without technical knowledge, and much more.
 
@@ -40,6 +40,21 @@ On-chain and API-first bank for individuals and businesses to make financial tra
 - **Modules**: Payments, Credits/Escrows, Account Abstraction, including KYC for all users (KYC on-chain and private).
 - **Open**: Any developer can connect and create dApps/Fintechs taking advantage of the bank's modules and gaining access to a user/customer base from the start.
 
+## PeerPay
+
+**PeerPay** is an Interoperable Web3 payment system focused on inclusion, being built with Arauco Chain.
+
+### Functions
+
+With [PeerPay](https://peerpayapp.com/), you can:
+- Create one or more wallets for user.
+- Manage balance and blockchain address per wallet to receive money.
+- Manage an address book to create recipients for transactions.
+- Move money between accounts.
+- Send money to third parties.
+- Create payment links to share with friends.
+- Integrate with apps and webs thanks to POST requests.
+
 
 ## Features planned for the Hackathon
 
@@ -61,7 +76,8 @@ July 29th - August 25th.
 - [x] Stage 2: Create the deck
 - [x] Stage 3: Create the website
 - [x] Stage 3: Create the network (finishing on August 21st).
-- [x] Stage 4: Create the demo app (finishing on August 25th)
+- [x] Stage 4: Create the demo app (finishing on August 25th).
+- [x] Stage 5: Add PeerPay
 
 ## Team info
 
@@ -75,3 +91,4 @@ Néstor Campos: https://www.linkedin.com/in/nescampos/
 5. Project demo: https://github.com/AraucoChain/opSyndicate
 6. PPT Deck: https://drive.google.com/file/d/1f90yqcbE0ar4hUh17n_VAKwBgMJI3HEP/view?usp=sharing
 7. Whitepaper: https://drive.google.com/file/d/1ZAMxGQ2c-6gP5iGrkUIuEEHwKGVbwmxJ/view?usp=sharing
+8. PeerPay: https://peerpayapp.com/
