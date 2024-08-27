@@ -37,12 +37,15 @@ Go to: https://polkadotpendulums.com/
 Demo video: https://youtu.be/_KV9R0AUE8A
 
 ### Project logo:
-![Logo](/static/logo.jpg)
+![Logo](./static/logo.jpg)
 
 ### Team information:
 My name is Klára Anna Šindlerová, I'm university student from Czechia. 
 This is my first time participating in hackathon. I'm usually just working on something more physics oriented. 
 But this was also fun and I hope my animations will make people more interested in physics.
+
+### Selected Bounty:
+Crust Network
 
 ### Project completed during hackathon
 Everything is completed, web is working, NFT collection is on main net and NFTs are mintable.
