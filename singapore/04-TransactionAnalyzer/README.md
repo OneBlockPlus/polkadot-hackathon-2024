@@ -4,7 +4,7 @@ Project name: Transaction Analyzer
 Initial commit: 30th July
 Team: Rostislav Litovkin, Jaromír Procházka
 
-![logo](/images/plutowalleticon.png)
+![logo](./images/plutowalleticon.png)
 
 ## Project background
 
@@ -45,7 +45,7 @@ https://www.canva.com/design/DAGOkIInTqE/AulQ8MNaoRHYkTiuLCQRfQ/edit?utm_content
 
 There are two parts to Transaction Analyzer. The local **Client in C#** language and a **Webserver running Chopsticks**. The [Chopsticks](https://github.com/AcalaNetwork/chopsticks) tool developed by Acala is used to copy the Blockchain code, simulate the transaction on the server-side copy and return the events resulting from the simulated transaction. The local Client is then used for looking throw the events and displaying them to the user before he can confirm his transaction.
 
-![Alt text](/images/architecture.png)
+![Alt text](./images/architecture.png)
 
 **XCM is also supported** and the events from the simulated transaction are collected from both blockchains participating in the XCM transaction.
 
@@ -79,15 +79,15 @@ git switch TransactionAnalyzer
 
 Then open this cloned project in Visual Studio. You should see something like this:
 
-![Alt Text](/images/opened_plutowallet.png)
+![Alt Text](./images/opened_plutowallet.png)
 
 Here you can navigate to the upper bar, where you go to **View >> Test Explorer**. A test explorer window should open and there you should find the **PlutoWalletTests >> PlutoWalletTests >> ChopsticksTests** tests.
 
-![Alt Text](/images/tests_location.png)
+![Alt Text](./images/tests_location.png)
 
 If you double click any test under the **ChopsticksTests**, you will be able to find the source code for the test. If you `right-click` any test, like SimulateXcmCallAsync for instance, and click **Run**, the test runs and you will be able to see the resulting events of a XCM Transaction between Hydration and PolkadotAssetHub chains.
 
-![Alt Text](/images/run_test.png)
+![Alt Text](./images/run_test.png)
 
 #### Run PlutoWallet locally on your phone (Android guide)
 
@@ -97,7 +97,7 @@ If you double click any test under the **ChopsticksTests**, you will be able to 
 4) Allow USB debugging
 5) in Visual Studio, click on the green start button at the bottom (with the arrow, select **Android local devices >> "your phone"**)
 
-![local device](/images/localdevice.png)
+![local device](./images/localdevice.png)
 
 #### Run PlutoWallet locally on your phone (iOS guide)
 
