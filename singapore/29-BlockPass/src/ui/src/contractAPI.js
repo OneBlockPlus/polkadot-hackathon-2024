@@ -128,3 +128,29 @@ export const registerForEvent = async (wallet, eventId, ticketPrice) => {
     console.error("Error registering for event:", error);
   }
 };
+
+export const fetchUserTickets = async (wallet) => {
+  try {
+    let ethersProvider;
+
+    if (wallet?.type === "evm") {
+      ethersProvider = new ethers.providers.Web3Provider(wallet.provider, "any");
+    } else {
+      throw new Error("Unsupported wallet type");
+    }
+
+    const signer = ethersProvider.getSigner();
+    const account = wallet?.accounts.find((account) => account.address);
+    console.log(signer)
+    const contract = contractInstance.connect(signer);
+    console.log(account.address)
+
+    // Fetch tickets associated with the user's wallet address
+    const userTickets = await contract.getRegisteredEvents(account.address);
+
+    return userTickets;
+  } catch (error) {
+    console.error("Error fetching user tickets:", error);
+    throw error;
+  }
+};

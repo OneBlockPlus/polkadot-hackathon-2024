@@ -7,25 +7,49 @@ import { motion } from "framer-motion";
 import logo from "../../assets/logos/logo.png";
 import { events } from "../../data";
 import { useWallet } from "../../wallet-context.js";
+import { useConnectWallet } from "@subwallet-connect/react";
+import { fetchUserTickets, getEventDetails } from "../../contractAPI";
 
 const MyTickets = () => {
-  const [walletConnected, setWalletConnected] = useState();
-  //   const [tickets, setTickets] = useState([]);
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { isConnected } = useWallet();
-  useEffect(() => {
-    if (isConnected) {
-      setWalletConnected(false);
-    } else {
-      setWalletConnected(true);
-    }
-  }, [isConnected]);
+  const [userTickets, setUserTickets] = useState([]);
+  const [eventDetails, setEventDetails] = useState([]);
+  const [{ wallet }] = useConnectWallet();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const registeredEvents = events.filter((event) => event.registered);
+  useEffect(() => {
+    
+    const loadUserTickets = async () => {
+      try {
+        // Fetch user tickets
+        const tickets = await fetchUserTickets(wallet);
+        console.log(tickets)
+  
+        // Fetch details for each event associated with the tickets
+        const detailsPromises = tickets.map((ticket) =>
+          getEventDetails(ticket.eventId)
+        );
+        const details = await Promise.all(detailsPromises);
+  
+        // Update state with tickets and their corresponding event details
+        console.log(details)
+        setUserTickets(tickets);
+        setEventDetails(details);
+      } catch (error) {
+        console.error("Failed to load user tickets or event details:", error);
+      }
+    };
+    if (wallet) {
+      loadUserTickets();
+    }
+  }, [wallet]);
+
+ 
+
 
   return (
     <>
@@ -111,20 +135,8 @@ const MyTickets = () => {
         <p className="mb-4 italic text-gray-700 text-sm">
           To view NFT on other networks, switch connected network
         </p>
-        {walletConnected ? (
-          <div className="bg-pink-100 p-4 rounded-md text-center">
-            <p className="text-lg text-red-600 mb-3">Wallet not connected!</p>
-            <p>You must connect to metamask to access this page.</p>
-            <button
-              className="mt-4 bg-pink-500 text-white py-2 px-4 rounded hover:bg-pink-600"
-              // Implement wallet connect functionality
-              // onClick={/* Function to connect wallet */}
-            >
-              Connect
-            </button>
-          </div>
-        ) : (
-          <ul role="list" className="divide-y divide-gray-100">
+        
+          {/* <ul role="list" className="divide-y divide-gray-100">
             {registeredEvents.map((event) => (
               <li key={event.id} className="flex justify-between gap-x-6 py-5">
                 <div className="flex min-w-0 gap-x-4">
@@ -152,8 +164,8 @@ const MyTickets = () => {
                 </div>
               </li>
             ))}
-          </ul>
-        )}
+          </ul> */}
+        
         <div
           className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
           aria-hidden="true"
