@@ -9,10 +9,13 @@ export const fetchEventsFromContract = async (wallet) => {
     }
 
     // Create ethers provider for EVM-based interaction
+    console.log(wallet.provider)
     const ethersProvider = new ethers.providers.Web3Provider(
       wallet.provider,
       "any"
     );
+    console.log(ethersProvider)
+    console.log(ethersProvider.getSigner())
     const contract = contractInstance.connect(ethersProvider.getSigner());
 
     // Fetch number of events from contract

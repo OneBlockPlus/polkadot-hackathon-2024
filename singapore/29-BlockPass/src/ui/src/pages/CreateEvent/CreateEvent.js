@@ -7,6 +7,8 @@ import { Keyring } from "@polkadot/keyring";
 import { motion } from "framer-motion";
 import logo from "../../assets/logos/logo.png";
 import { Link } from "react-router-dom";
+import { useConnectWallet } from "@subwallet-connect/react";
+import { createEvent } from "../../contractAPI";
 
 const crustChainEndpoint = "wss://rpc-rocky.crust.network";
 const ipfsW3GW = "https://crustipfs.xyz";
@@ -21,9 +23,9 @@ const CreateEventForm = () => {
     ticketPrice: "",
     availableSeats: "",
     location: "",
-    startDate: "",
-    endDate: "",
-    timeOfEvent: "",
+    startTime: "",
+    endTime: "",
+    dateOfEvent: "",
     banner: null,
   });
 
@@ -31,6 +33,7 @@ const CreateEventForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [uploadStatus, setUploadStatus] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [{ wallet},] = useConnectWallet();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -77,6 +80,7 @@ const CreateEventForm = () => {
 
      // Log the form data to the console
   console.log("Form Data Submitted:", formData);
+  console.log(wallet)
 
     try {
       const api = new ApiPromise({
@@ -175,6 +179,21 @@ const CreateEventForm = () => {
       const bannerCid = await uploadBannerToCrust(formData.banner);
 
       setUploadStatus(`Banner uploaded successfully with CID: ${bannerCid}`);
+      const ticketPriceInWei = ethers.utils.parseUnits(formData.ticketPrice, 18);
+      const eventDet = [
+        formData.eventName,
+        formData.dateOfEvent,
+        formData.startTime,
+        formData.endTime,
+        formData.location,
+        bannerCid,
+        formData.description,
+        formData.category,
+        formData.moreInformation,
+        ticketPriceInWei.toString(),
+        formData.availableSeats,
+      ];
+      await createEvent(wallet, eventDet, "BlockPass", "BPS");
 
       setFormData({
         eventName: "",
@@ -184,9 +203,9 @@ const CreateEventForm = () => {
         ticketPrice: "",
         availableSeats: "",
         location: "",
-        startDate: "",
-        endDate: "",
-        timeOfEvent: "",
+        startTime: "",
+        endTime: "",
+        dateOfEvent: "",
         banner: null,
       });
       setImagePreview(null);
@@ -207,16 +226,16 @@ const CreateEventForm = () => {
   //   ticketPrice: formData.ticketPrice || 0,
   //   availableSeats: formData.availableSeats || "0",
   //   location: formData.location || "TBA",
-  //   startDate: formData.startDate || new Date().toISOString().slice(0, 10),
-  //   endDate: formData.endDate || new Date().toISOString().slice(0, 10),
-  //   timeOfEvent: formData.timeOfEvent || "00:00",
+  //   startTime: formData.startTime || new Date().toISOString().slice(0, 10),
+  //   endTime: formData.endTime || new Date().toISOString().slice(0, 10),
+  //   dateOfEvent: formData.dateOfEvent || "00:00",
   // };
 
   // console.log(content);
 
   // try {
-  //   const start_date = formData.startDate;
-  //   const end_date = formData.endDate;
+  //   const start_date = formData.startTime;
+  //   const end_date = formData.endTime;
   //   const epochTime_start = Date.parse(start_date) / 1000;
   //   const epochTime_end = Date.parse(end_date) / 1000;
   //   const salesEndTime = epochTime_end - epochTime_start;
@@ -394,47 +413,47 @@ const CreateEventForm = () => {
           />
 
           <label
-            htmlFor="startDate"
+            htmlFor="startTime"
             className="block text-sm font-medium text-gray-700 mb-2"
           >
-            Start Date <span className="text-red-700">*</span>
+            Start Time <span className="text-red-700">*</span>
           </label>
           <input
-            id="startDate"
-            name="startDate"
-            type="date"
-            required
-            onChange={handleChange}
-            placeholder="e.g. online, venue"
-            className="mb-4 p-2 w-full border-2 border-gray-300 flex-auto rounded-md bg-white/5"
-          />
-
-          <label
-            htmlFor="endDate"
-            className="block text-sm font-medium text-gray-700 mb-2"
-          >
-            End Date <span className="text-red-700">*</span>
-          </label>
-          <input
-            id="endDate"
-            name="endDate"
-            type="date"
-            required
-            onChange={handleChange}
-            placeholder="e.g. online, venue"
-            className="mb-4 p-2 w-full border-2 border-gray-300 flex-auto rounded-md bg-white/5"
-          />
-
-          <label
-            htmlFor="timeOfEvent"
-            className="block text-sm font-medium text-gray-700 mb-2"
-          >
-            Time of Event <span className="text-red-700">*</span>
-          </label>
-          <input
-            id="timeOfEvent"
-            name="timeOfEvent"
+            id="startTime"
+            name="startTime"
             type="time"
+            required
+            onChange={handleChange}
+            placeholder="e.g. online, venue"
+            className="mb-4 p-2 w-full border-2 border-gray-300 flex-auto rounded-md bg-white/5"
+          />
+
+          <label
+            htmlFor="endTime"
+            className="block text-sm font-medium text-gray-700 mb-2"
+          >
+            End Time <span className="text-red-700">*</span>
+          </label>
+          <input
+            id="endTime"
+            name="endTime"
+            type="time"
+            required
+            onChange={handleChange}
+            placeholder="e.g. online, venue"
+            className="mb-4 p-2 w-full border-2 border-gray-300 flex-auto rounded-md bg-white/5"
+          />
+
+          <label
+            htmlFor="dateOfEvent"
+            className="block text-sm font-medium text-gray-700 mb-2"
+          >
+            Date of Event <span className="text-red-700">*</span>
+          </label>
+          <input
+            id="dateOfEvent"
+            name="dateOfEvent"
+            type="date"
             required
             onChange={handleChange}
             placeholder="e.g. online, venue"
