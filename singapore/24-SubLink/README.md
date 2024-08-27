@@ -8,7 +8,7 @@ Bounty application: VARA
 Blockchain has introduced exciting decentralized technologies, leading to the emergence of dApps across various industries such as finance, social networking, and gaming. As builders in the web3, we hope to see an increasing number of users engaging with our products and services. With 5.4 billion web2 users worldwide, we rely on web2 social networks to promote our offerings. Unfortunately, there can be a gap between users and web3. Users must navigate to websites or download extensions to access web3 applications and services, which significantly reduces their willingness to engage.
 
 ## Features planned for the Hackathon
-[x] Extract the extrinsics of the VARA pallet and convert them to Link<br>
+[x] Extract the extrinsics of the VARA and convert them to Link<br>
 [x] Read the dynamically generated interactive page of the link<br>
 [x] A case of TVARA donation on X
 

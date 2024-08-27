@@ -1,0 +1,11 @@
+{
+  "name": "bolairyt",
+  "version": "1.0.0",
+  "dependencies": {
+    "@polkadot/api": "^12.2.1",
+    "@polkadot/api-contract": "^12.2.1",
+    "@polkadot/keyring": "^13.0.2",
+    "@polkadot/util": "^13.0.2",
+    "ethers": "^6.13.1"
+  }
+}

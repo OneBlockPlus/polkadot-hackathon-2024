@@ -1,0 +1,18 @@
+
+.bg_widget{background: #EEEEEE;}
+
+
+.row_selected{background: #F8F8F8;}
+
+.fixAction{margin: 0px 10px 0px 0px;}
+
+.break{word-break: break-word;}
+.nobreak{white-space:nowrap;}
+
+.block{margin: 0 auto;padding: 0px 0px 0px 0px;}
+.block_earth{background: #EEEEEE;}
+.block_water{background: #EEEEFF;}
+
+.container{width: 100%;}
+.z{float: left;}
+.y{float: right;}
