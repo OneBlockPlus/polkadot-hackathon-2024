@@ -1,0 +1,11 @@
+{
+  "type": "postgres",
+  "host": "127.0.0.1",
+  "port": 11101,
+  "username": "cybor",
+  "password": "123456",
+  "database": "cybor",
+  "entities": ["src/**/**.entity{.ts,.js}"],
+  "synchronize": true,
+  "logging": true
+}
