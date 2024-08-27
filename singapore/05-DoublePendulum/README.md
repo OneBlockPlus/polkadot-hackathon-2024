@@ -4,8 +4,10 @@
 Double Pendulum
 ### First Commit (creation date):
 July 18. 2024
-### Background: 
+### Background:
 new project
+
+Source code with full commit history: https://github.com/AsiKlara/DoublePendulum
 
 ### Problem to be solved: 
 Create interactive animated NFTs using principle of physics called deterministic chaos.
