@@ -91,12 +91,12 @@ valid state, the contract can make any further changes.
 
 My team includes 
 
-Raehat Singh Nanda (Blockchain Developer, Open Source Bitcoin Contributor)
+Raehat Singh Nanda (Blockchain Developer, Open Source Bitcoin Contributor)     
 Surbhit Agrawal (Blockchain Developer)
 
 ## Selected Bounties
 
-Category 1:(Infrastructure) Polkadot ecological developer tools
+Category 1:(Infrastructure) Polkadot ecological developer tools    
 Category 4: Open topic
 
 
