@@ -124,10 +124,12 @@ Education:
 - Alumnus at Polkadot Blockchain Academy 2023 in Berkeley
 - Successful student at Polkadot DevCamp #2 2022
 - Successful student at Solana Summer School 2022
+
 Experience:
 - Experienced .NET MAUI developer
 - Developed Galaxy Logic Game, a successful game for watches and mobiles with over 100k downloads
 - Frontend developer at Calamar explorer (Powered by Subsquid indexer)
+
 Accomplishments:
 - Completed Web3 foundation grant for Plutonication project
 - Polkadot Global Series 2023 (Europe) - Second place
