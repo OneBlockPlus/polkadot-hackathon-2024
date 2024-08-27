@@ -1,0 +1,47 @@
+[package]
+name = "pallet-insure"
+description = "A minimal pallet built with FRAME, part of Polkadot Sdk. (polkadot v1.15.0)"
+version = "0.1.0"
+license = "Unlicense"
+authors.workspace = true
+homepage.workspace = true
+repository.workspace = true
+edition.workspace = true
+publish = false
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+
+[dependencies]
+codec = { features = [
+	"derive",
+], workspace = true }
+scale-info = { features = [
+	"derive",
+], workspace = true }
+frame = { features = ["experimental", "runtime"], workspace = true }
+
+frame-benchmarking = { version = "34.0.0", default-features = false, optional = true }
+frame-support = { version = "34.0.0", default-features = false }
+frame-system = { version = "34.0.0", default-features = false }
+pallet-balances = { version = "35.0.0" }
+
+# sp-core = { version = "33.0.1", default-features = false }
+sp-runtime = { version = "37.0.0", default-features = false }
+# sp-std = { version = "14.0.0", default-features = false }
+
+[dev-dependencies]
+# sp-arithmetic = { version = "26.0.0" }
+
+[features]
+default = ["std"]
+std = [
+	"codec/std", 
+	"frame/std", 
+	"scale-info/std",
+	"frame-support/std",
+	"frame-system/std",
+	"sp-runtime/std",
+	# "sp-core/std",
+	# "sp-std/std",
+]

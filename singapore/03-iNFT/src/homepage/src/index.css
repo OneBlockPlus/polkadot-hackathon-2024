@@ -1,0 +1,89 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@media screen and (max-width: 768px) {
+
+}
+
+@media screen and (min-width: 769px)  and (max-width: 992px) {
+  #slide h3{font-size:44px;}
+  #slide p{font-size: 16px;}  
+  #protocol {font-size: 16px;}
+  #protocol h3{font-size: 44px;}
+  #protocol h4{font-size: 32px;}
+  #plinth {font-size: 18px;}
+  #plinth h3{font-size: 44px;}
+  #plinth h4{font-size: 32px;}
+  #gateway {font-size: 18px;}
+  #gateway h3{font-size: 44px;}
+  #intro_protocol {font-size: 18px;}
+  #intro_gateway {font-size: 18px;}
+}
+
+@media screen and (min-width: 993px)  and (max-width: 1200px) {
+  #slide h3{font-size:66px;}
+  #slide p{font-size: 24px;}  
+  #protocol {font-size: 24px;}
+  #protocol h3{font-size: 66px;}
+  #protocol h4{font-size: 48px;}
+  #plinth {font-size: 24px;}
+  #plinth h3{font-size: 66px;}
+  #plinth h4{font-size: 48px;}
+  #gateway {font-size: 24px;}
+  #gateway h3{font-size: 66px;}
+  #intro_protocol {font-size: 24px;}
+  #intro_gateway {font-size: 24px;}
+}
+
+@media screen and (min-width: 1200px){
+  #slide h3{font-size:66px;}
+  #slide p{font-size: 24px;}  
+  #protocol {font-size: 24px;}
+  #protocol h3{font-size: 66px;}
+  #protocol h4{font-size: 48px;}
+  #plinth {font-size: 24px;}
+  #plinth h3{font-size: 66px;}
+  #plinth h4{font-size: 48px;}
+  #gateway {font-size: 24px;}
+  #gateway h3{font-size: 66px;}
+  #intro_protocol {font-size: 24px;}
+  #intro_gateway {font-size: 24px;}
+}
+
+#slide h3{color :#f3e447;box-shadow: #f3e447;text-shadow: 2px 0px 5px #666666}
+#slide p{color: #000;}
+
+#protocol { color :#f3e447;}
+#protocol h3{text-shadow: 5px 0px 5px #000000}
+#protocol h4{text-shadow: 5px 0px 5px #000000}
+#protocol p{color :#ffffff;text-shadow: 2px 0px 5px #000000}
+
+#plinth { color :#f3e447;}
+#plinth h3{text-shadow: 5px 0px 5px #000000}
+#plinth h4{text-shadow: 5px 0px 5px #000000}
+#plinth p{color :#ffffff;text-shadow: 2px 0px 5px #000000}
+
+#gateway { color :#f3e447;}
+#gateway h3{text-shadow: 5px 0px 5px #000000}
+#gateway p{color :#ffffff;text-shadow: 2px 0px 5px #000000}
+
+#code_shell{width: 100%;background: #f3e447;color :#000000;font-weight: bold;
+  border-radius: 8px;padding: 10px 10px 10px 10px;margin: 10px 0px 10px 0px;
+}
+
+#code_node{width: 100%;background: #f3e447;color :#000000;font-weight: bold;
+  border-radius: 8px;padding: 10px 10px 10px 10px;margin: 10px 0px 10px 0px;
+}
+
+#footer_nav{padding-bottom: 20px;}
