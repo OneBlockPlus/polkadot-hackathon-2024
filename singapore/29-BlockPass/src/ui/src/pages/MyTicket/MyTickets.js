@@ -149,7 +149,7 @@ const MyTickets = () => {
           To view NFT on other networks, switch connected network
         </p>
 
-        <ul role="list" className="divide-y divide-gray-100">
+        <ul role="list" className="divide-y bg-slate-400/10 px-3 rounded-md divide-gray-100">
           {userTickets.map((event) => (
             <li key={event.id} className="flex justify-between gap-x-6 py-5">
               <div className="flex min-w-0 gap-x-4">
