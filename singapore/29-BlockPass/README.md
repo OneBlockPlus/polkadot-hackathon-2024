@@ -24,6 +24,7 @@ BlockPass provides a decentralized solution to these issues by leveraging blockc
 
 - [Presentation](https://drive.google.com/file/d/1wKH26aZXeoojPb6QOdpKDn_tHd3-50LS/view?usp=sharing)
 - [Video](https://youtu.be/DtFTZXOwE0s)
+- [Live Demo](https://blockpass.netlify.app/)
 
 ## Project Architecture
 
