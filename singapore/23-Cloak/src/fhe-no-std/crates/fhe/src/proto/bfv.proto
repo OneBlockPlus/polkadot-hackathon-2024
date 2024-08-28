@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package fhers.bfv;
+
+message Ciphertext {
+    repeated bytes c = 1;
+    bytes seed = 2;
+    uint32 level = 3;
+}
+
+message RGSWCiphertext {
+    KeySwitchingKey ksk0 = 1;
+    KeySwitchingKey ksk1 = 2;
+}
+
+message KeySwitchingKey {
+    repeated bytes c0 = 1;
+    repeated bytes c1 = 2;
+    bytes seed = 3;
+    uint32 ciphertext_level = 4;
+    uint32 ksk_level = 5;
+    uint32 log_base = 6;
+}
+
+message RelinearizationKey {
+    KeySwitchingKey ksk = 1;
+}
+
+message GaloisKey {
+    KeySwitchingKey ksk = 1;
+    uint32 exponent = 2;
+}
+
+message EvaluationKey {
+    repeated GaloisKey gk = 2;
+    uint32 ciphertext_level = 3;
+    uint32 evaluation_key_level = 4;
+}
+
+message Parameters {
+    uint32 degree = 1;
+    repeated uint64 moduli = 2;
+    uint64 plaintext = 3;
+    uint32 variance = 4;
+}
+
+message PublicKey {
+    Ciphertext c = 1;
+}
