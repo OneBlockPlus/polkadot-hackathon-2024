@@ -1,0 +1,31 @@
+FROM ubuntu:20.04
+
+# Install the dependencies
+RUN apt update && apt install -y git clang curl libssl-dev llvm libudev-dev
+
+# Install Rust
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# Set the environment variables
+ENV PATH="/root/.cargo/bin:${PATH}"
+
+# Add the wasm32 target
+RUN rustup target add wasm32-unknown-unknown --toolchain nightly
+
+# Set the default toolchain to 1.59.0
+RUN rustup default 1.59.0
+
+# Show the installed toolchains
+RUN rustup show
+
+# Clone the Diora repository
+RUN git clone https://github.com/Diora-Network/Diora.git
+
+# Build the Diora node
+RUN cd Diora && cargo build --release
+
+# Set the working directory
+WORKDIR /Diora
+
+# Run the Diora node
+CMD ["cargo", "run", "--release"]
