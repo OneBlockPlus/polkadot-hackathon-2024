@@ -1,18 +1,8 @@
-# Double Pendulum
+# Documentation
 
-### Project name: 
-Double Pendulum
-### First Commit (creation date):
-July 18. 2024
-### Background:
-new project
+## Overview
 
-Source code with full commit history: https://github.com/AsiKlara/DoublePendulum
-
-### Problem to be solved: 
-Create interactive animated NFTs using principle of physics called deterministic chaos.
-
-### Overview: 
+### animation
 Program visualises deterministic chaos of double pendulum system.
 Depending on initial conditions and other parameters (such as mass or length) the program calculates trajectory of n
 double pendulums which at the beginning starts at the position differing by only a small fraction of radian.
@@ -23,36 +13,20 @@ Visualisation and animation is created using matplotlib package.
 After creating an animation, user can save it and check if it's pretty enough for them to mint it.
 Saving the animation as .mp4 is done by ffmpeg.
 
+### making it public
 I used flask UI to create a python server. The web page is created mainly in index.html and styles.css.
 Everything is deployed to DigitalOcean. I also needed to use Dockerfile to install ffmpeg.
 All secret details are hidden in .env file.
 
+### NFTs
 Goal was to mint NFTs on Polkadot Asset Hub (system parachain). After NFT is minted, video is posted to IPFS 
 using Apillon api and after getting cid, metadata are created and also posted to IPFS. 
 Connectiong to wallet is done using polkadot.js/extension and minting with polkadot.js/api. 
 Posting to IPFS is done in python in api.py. And setting metadata is also in python (set_metadata.py) with py-substrate-interface, 
 because of using .env file for some secret details.
 
-### Project demonstration:
 
-Go to: https://polkadotpendulums.com/
-Demo video: https://youtu.be/_KV9R0AUE8A
-
-### Project logo:
-![Logo](./src/static/logo.jpg)
-
-### Team information:
-My name is Klára Anna Šindlerová, I'm university student from Czechia. 
-This is my first time participating in hackathon. I'm usually just working on something more physics oriented. 
-But this was also fun and I hope my animations will make people more interested in physics.
-
-### Selected Bounty:
-Crust Network
-
-### Project completed during hackathon
-Everything is completed, web is working, NFT collection is on main net and NFTs are mintable.
-
-# Technical architecture
+## Initialization
 
 # doublependulum.py
 
