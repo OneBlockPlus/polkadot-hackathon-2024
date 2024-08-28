@@ -11,7 +11,7 @@ async function main() {
     // evm call wasm
     // update the contract address to the address of actual contract you've deployed before
     const evmContractAddress = '0xc01Ee7f10EA4aF4673cFff62710E1D7792aBa8f3';
-    const wasmContractAddress = '0x9F60F4CF59b74963B03F962949bF9B741fe7Ff81';
+    const wasmContractAddress = '0x630DA485579530a2D1A99f09e6F999893D565780';
 
     const providerUrl = 'http://localhost:9944';
     const provider = new ethers.JsonRpcProvider(providerUrl);
