@@ -15,8 +15,7 @@
     https://drive.google.com/file/d/1S4xR8e5L-_RK78x0ulzO45RPPza6b-cJ/view?usp=sharing
 - DEMO Video
     https://drive.google.com/file/d/1xhaBh9vsg-oElICl9-2HCXK1FMd9Euzw/view?usp=drive_link
-- Code 
-    https://github.com/CutaGames/cuta-contracts
+
 
 ## Selected Bounty
 
