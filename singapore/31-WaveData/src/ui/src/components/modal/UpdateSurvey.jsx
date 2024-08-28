@@ -11,9 +11,9 @@ export default function UpdateSurveyModal({
     id
 }) {
 
-  
-	const {  api,contract, signerAddress, sendTransaction,ReadContractValue,ReadContractByQuery,getMessage,getQuery,getTX } = useContract();
- 
+
+    const { api, contract, signerAddress, sendTransaction, ReadContractValue, ReadContractByQuery, getMessage, getQuery, getTX } = useContract();
+
 
     async function UpdateSurveyHandle(e) {
         e.preventDefault();
@@ -24,7 +24,7 @@ export default function UpdateSurveyModal({
         updateBTN.children[1].innerText = ""
         updateBTN.disabled = true;
         try {
-            await sendTransaction(api,signerAddress, "UpdateSurvey",[parseInt(id), name.value, description.value, image.value, Number(reward.value)]);
+            await sendTransaction(api, signerAddress, "UpdateSurvey", [parseInt(id), name.value, description.value, image.value, Number(reward.value)]);
             notificationSuccess.style.display = "block";
             updateBTN.children[0].classList.add("hidden")
             updateBTN.children[1].innerText = "Update Survey"
@@ -44,23 +44,26 @@ export default function UpdateSurveyModal({
     }
 
     async function LoadData() {
-        if (typeof window?.contract !== 'undefined') {
-            let survey_element = await ReadContractByQuery(api,signerAddress, getQuery("_surveyMap"),[parseInt(id)]);
-            var new_survey = {
-                id: Number(survey_element.surveyId),
-                study_id: Number(survey_element.studyId),
-                user_id: Number(survey_element.userId),
-                name: survey_element.name,
-                description: survey_element.description,
-                date: survey_element.date,
-                image: survey_element.image,
-                reward: Number(survey_element.reward),
-                submission: Number(survey_element?.submission)
-            };
-            document.getElementById("updatename").value = new_survey.name
-            document.getElementById("updatedescription").value = new_survey.description
-            document.getElementById("updateimage").value = new_survey.image
-            document.getElementById("reward").value = new_survey.reward
+        if (typeof window?.contract !== 'undefined' && api !== null) {
+            try {
+                let survey_element = await ReadContractByQuery(api, signerAddress, getQuery("_surveyMap"), [parseInt(id)]);
+                var new_survey = {
+                    id: Number(survey_element.surveyId),
+                    study_id: Number(survey_element.studyId),
+                    user_id: Number(survey_element.userId),
+                    name: survey_element.name,
+                    description: survey_element.description,
+                    date: survey_element.date,
+                    image: survey_element.image,
+                    reward: Number(survey_element.reward),
+                    submission: Number(survey_element?.submission)
+                };
+                document.getElementById("updatename").value = new_survey.name
+                document.getElementById("updatedescription").value = new_survey.description
+                document.getElementById("updateimage").value = new_survey.image
+                document.getElementById("reward").value = new_survey.reward
+            } catch (error) { }
+
 
         }
 
@@ -69,7 +72,7 @@ export default function UpdateSurveyModal({
 
     useEffect(async () => {
         await LoadData();
-    }, [])
+    }, [api])
 
     return (
         <Modal

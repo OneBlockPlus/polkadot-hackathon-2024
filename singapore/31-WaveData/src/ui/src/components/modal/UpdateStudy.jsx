@@ -46,28 +46,32 @@ export default function UpdateStudyModal({
     }
 
     async function LoadData() {
-        if (typeof window?.contract !== 'undefined') {
-            let study_element = await ReadContractByQuery(api, signerAddress, getQuery("_studyMap"), [parseInt(id)]);
-            var newStudy = {
-                id: Number(study_element.studyId),
-                title: study_element.title,
-                image: study_element.image,
-                description: study_element.description,
-                contributors: Number(study_element.contributors),
-                audience: Number(study_element.audience),
-                budget: Number(study_element.budget)
-            };
-            document.getElementById("updatetitle").value = newStudy.title
-            document.getElementById("updatedescription").value = newStudy.description
-            document.getElementById("updateimage").value = newStudy.image
-            document.getElementById("updatebudget").value = newStudy.budget
+        if (typeof window?.contract !== 'undefined' && api !== null) {
+            try {
+                let study_element = await ReadContractByQuery(api, signerAddress, getQuery("_studyMap"), [parseInt(id)]);
+                var newStudy = {
+                    id: Number(study_element.studyId),
+                    title: study_element.title,
+                    image: study_element.image,
+                    description: study_element.description,
+                    contributors: Number(study_element.contributors),
+                    audience: Number(study_element.audience),
+                    budget: Number(study_element.budget)
+                };
+                document.getElementById("updatetitle").value = newStudy.title
+                document.getElementById("updatedescription").value = newStudy.description
+                document.getElementById("updateimage").value = newStudy.image
+                document.getElementById("updatebudget").value = newStudy.budget
+            }catch(e){}
+
+           
         }
     }
 
 
     useEffect(async () => {
         await LoadData();
-    }, [])
+    }, [api])
 
     return (
         <Modal

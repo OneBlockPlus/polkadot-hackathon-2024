@@ -557,6 +557,10 @@ mod wavedata {
         pub fn _studyMap(&mut self, id: i32) -> study_struct {
             return self._studyMap.get(id).unwrap();
         }
+        #[ink(message)]
+        pub fn _studySubjectMap(&mut self, id: i32) -> study_subject_struct {
+            return self._studySubjectMap.get(id).unwrap();
+        }
 
         #[ink(message)]
         pub fn _studyAudienceMap(&mut self, id: i32) -> String {

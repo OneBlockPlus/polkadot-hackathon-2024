@@ -49,7 +49,7 @@ function Register() {
         }
 
         try {
-            if (contract !== null) {
+            if (contract !== null && api !== null) {
                 const result = await ReadContractByQuery(api, signerAddress, getQuery("CheckEmail"), [emailTXT.value])
 
                 if (result === "False") {
