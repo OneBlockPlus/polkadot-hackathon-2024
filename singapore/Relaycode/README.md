@@ -5,7 +5,13 @@
 <img src="docs/relaycode.png"/>
 </div>
 
-## Key Features:
+## Problem to be Solved
+Relaycode addresses the complexity of building and understanding extrinsics in the Polkadot ecosystem. Many developers and users find it challenging to interact with pallets and construct extrinsics, leading to a steep learning curve and potential errors in blockchain interactions.
+
+## Project Overview
+Relaycode is an intuitive extrinsics builder designed to transform the way developers and users interact with extrinsics in the Polkadot ecosystem. By bridging the gap between complex pallet operations and user-friendly interfaces, Relaycode gives both regular users and developers the ability to harness the full potential of extrinsics the Polkadot ecosystem.
+
+### Key Features:
 
 1. **A New Extrinsic Builder**: Our state-of-the-art builder allows users to construct extrinsics with ease, providing real-time encoding and decoding for immediate visual feedback.
 
@@ -20,14 +26,11 @@
 6. **Educational Tools**: Built-in guides and tooltips help users understand the intricacies of extrinsics, making Relaycode an excellent learning platform for Polkadot users.
 
 
-## Problem to be Solved
-Relaycode addresses the complexity of building and understanding extrinsics in the Polkadot ecosystem. Many developers and users find it challenging to interact with pallets and construct extrinsics, leading to a steep learning curve and potential errors in blockchain interactions.
-
-## Project Overview
-Relaycode is an intuitive extrinsics builder designed to transform the way developers and users interact with extrinsics in the Polkadot ecosystem. By bridging the gap between complex pallet operations and user-friendly interfaces, Relaycode gives both regular users and developers the ability to harness the full potential of extrinsics the Polkadot ecosystem.
-
 ## Project Demonstration
 [Demo Video](docs/demo.mp4)
+<video width="100%" controls>
+  <source src="docs/demo.mp4" type="video/mp4">
+</video>
 
 ## Technical Architecture
 - Frontend: Next.js 15 with App Router, React, TypeScript
