@@ -1,0 +1,117 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["relationJoins"]
+  binaryTargets   = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  isDeleted Boolean  @default(false)
+
+  username String @unique
+  password String
+
+  @@map("oa_admins")
+}
+
+model App {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  isDeleted Boolean  @default(false)
+
+  name        String  @unique
+  description String?
+  logoUrl     String?
+  secret      String? @unique
+  jwtTTL      Int     @default(0)
+
+  emailEnabled       Boolean @default(false)
+  googleEnabled      Boolean @default(false)
+  discordEnabled     Boolean @default(false)
+  twitterEnabled     Boolean @default(false)
+  appleEnabled       Boolean @default(false)
+  ethEnabled         Boolean @default(false)
+  solEnabled         Boolean @default(false)
+  telegramEnabled    Boolean @default(false)
+  tiktokEnabled      Boolean @default(false)
+  githubEnabled      Boolean @default(false)
+  huggingfaceEnabled Boolean @default(false)
+
+  googleClientId       String?
+  telegramBotToken     String?
+  discordApplicationId String?
+  tiktokClientKey      String?
+  tiktokClientSecret   String?
+  githubClientId       String?
+  githubClientSecret   String?
+  huggingfaceClientId  String?
+  huggingfaceAppSecret String?
+
+  users     User[]
+  referrals Referral[]
+
+  @@map("oa_apps")
+}
+
+model User {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  lastSeenAt  DateTime @default(now())
+  referCode   String
+  avatar      String?
+  displayName String?
+
+  email       String?
+  google      String?
+  discord     String?
+  twitter     String?
+  tiktok      String?
+  github      String?
+  huggingface String?
+  apple       String?
+  telegram    String?
+  ethAddress  String?
+  solAddress  String?
+  username    String?
+  password    String?
+
+  appId String
+  app   App    @relation(fields: [appId], references: [id])
+
+  @@unique([appId, referCode])
+  @@unique([appId, email])
+  @@unique([appId, google])
+  @@unique([appId, discord])
+  @@unique([appId, twitter])
+  @@unique([appId, tiktok])
+  @@unique([appId, github])
+  @@unique([appId, huggingface])
+  @@unique([appId, telegram])
+  @@unique([appId, apple])
+  @@unique([appId, ethAddress])
+  @@unique([appId, solAddress])
+  @@unique([appId, username])
+  @@map("oa_users")
+}
+
+model Referral {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  appId     String
+  app       App      @relation(fields: [appId], references: [id])
+
+  referrer String
+  referee  String @unique
+
+  @@index([referrer])
+  @@map("oa_referrals")
+}
