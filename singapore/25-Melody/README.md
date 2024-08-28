@@ -42,7 +42,10 @@ Project Melody aims to complete these phases over the course of the hackathon, w
 | Pseudoyu    | Frontend               |
 | Hesin       | Frontend               |    
 
+##  Bountiy want to apply 
+ - [Crust Network](https://dorahacks.io/hackathon/polkadot-2024-singapore/bounties-details#crust-network)
+ - [Moonbeam](https://dorahacks.io/hackathon/polkadot-2024-singapore/bounties-details#moonbeam)
 
 ## Material for Demo
-1. Demo Video [link to Youtube]
-2. PPT [link to google doc]
+1. Demo Video [https://youtu.be/CL-rGQnSNt4](https://youtu.be/CL-rGQnSNt4)
+2. PPT [https://docs.google.com/presentation/d/1gk9jJAYNp0nq0zw7rwagsEPgSUzj3nsagvWhuVXFaP4/edit?usp=sharing](https://docs.google.com/presentation/d/1gk9jJAYNp0nq0zw7rwagsEPgSUzj3nsagvWhuVXFaP4/edit?usp=sharing)
