@@ -1,0 +1,108 @@
+.container-Study-Template {  display: grid;
+    grid-template-columns: max-content 5fr min-content;
+    grid-template-rows: 0.6fr 1.4fr;
+    gap: 0px 0px;
+    grid-auto-flow: column;
+    grid-template-areas:
+      "Image-Box Title-Template Next-Button"
+      "description-Template description-Template description-Template";
+                             padding: 1rem;
+                             zoom: 0.7;
+  }
+  
+  .Title-Template { padding:10px; grid-area: Title-Template; }
+  
+  .description-Template {  display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      ".";
+    grid-area: description-Template;
+  }
+  
+  .Image-Box { grid-area: Image-Box; }
+  
+  .Next-Button { grid-area: Next-Button; }
+  .profile-pic-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.profile-pic-image {
+    height: 8rem;
+    width: 8rem;
+    border-radius: 50%;
+    background-size: cover !important;
+    border: 2px solid rgb(0, 188, 212);
+}
+
+.overview-survey-img {
+  height: 5rem;
+  width: 5rem;
+  background: lightgrey;
+  border-radius: 50%;
+  border: 2px solid darkgray;
+  background-size: cover !important;
+  filter: contrast(0.5);
+}
+
+.overview-survey-img-container {
+  width: min-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.overview-survey-text {
+  width: 9rem;
+  text-align: center;
+  top: 5rem;
+  position: absolute;
+  color: darkgray;
+
+}
+.each-overview-survey.completed .hr-border{
+  border-color:  rgb(0, 188, 212) !important;
+}
+
+.each-overview-survey.completed .overview-survey-img{
+  border-color:  rgb(0, 188, 212) !important;
+  filter: contrast(1);
+
+}
+.each-overview-survey.completed .overview-survey-text{
+  border-color:  rgb(0, 188, 212) !important;
+  filter: contrast(1);
+  color: black;
+
+}
+
+
+
+.survey-tag{
+  border-radius: 3rem;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.survey-tag.completed{
+  background: lime;
+}
+.survey-tag.not-completed{
+  background: lightgray;
+}
+
+.wearable-tag {
+  border-radius: 3rem;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: center;
+  background: #2b2bf7;
+  color: white;
+}
