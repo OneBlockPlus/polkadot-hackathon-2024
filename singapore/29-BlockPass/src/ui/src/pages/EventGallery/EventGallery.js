@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-
-// import { getAllEvents } from "../MyTicket/ticketApi";
+import { useConnectWallet } from "@subwallet-connect/react";
+import { fetchEventsFromContract } from "../../contractAPI";
+import { events as localEvents } from "../../data";
 
 import logo from "../../assets/logos/logo.png";
-import { events } from "../../data";
 
-let eventData = events;
 const EventGallery = () => {
-  const [events, setEvents] = useState(eventData);
+  const [dataEvents, setEvents] = useState(localEvents);
+  const [events, setEvent] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [{ wallet }] = useConnectWallet();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -20,6 +21,23 @@ const EventGallery = () => {
     const options = { month: "short", day: "numeric" };
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
+
+  // console.log(wallet);
+  useEffect(() => {
+    const fetchEvents = async () => {
+      const fetchedEvents = await fetchEventsFromContract(wallet);
+
+      const combinedEvents = fetchedEvents.map((event, index) => ({
+        ...event,
+        imageUrl: dataEvents[index].imageUrl || "", // Fallback to empty string if no imageUrl
+      }));
+      setEvent(combinedEvents);
+    };
+
+    if (wallet) {
+      fetchEvents();
+    }
+  }, [wallet, dataEvents]);
   return (
     <>
       <nav className="container flex justify-between mx-auto items-center px-8 py-4">
@@ -64,7 +82,7 @@ const EventGallery = () => {
         <div
           className={`${
             isMenuOpen ? "block" : "hidden"
-          } md:flex md:items-center md:space-x-6 absolute md:static top-16 left-0 w-full md:w-auto bg-black/30 md:bg-transparent p-4 md:p-0 z-10`}
+          } md:flex md:items-center md:space-x-6 absolute md:static top-16 left-0 w-full md:w-auto bg-black/30 md:bg-transparent p-4 md:p-0 md:mr-16 z-10`}
         >
           {["Home", "Create", "My tickets"].map((text, index) => (
             <Link
@@ -85,14 +103,6 @@ const EventGallery = () => {
               {text}
             </Link>
           ))}
-          <motion.button
-            whileHover={{
-              scale: 1.1,
-            }}
-            className="block md:inline-block text-white bg-purple-800 hover:bg-purple-900 px-4 py-2 rounded-full transition-colors duration-200 ring-2 ring-white ring-opacity-50 hover:ring-opacity-75"
-          >
-            Connect wallet
-          </motion.button>
         </div>
       </nav>
       <div className="max-w-6xl mx-auto my-10 p-8 ">

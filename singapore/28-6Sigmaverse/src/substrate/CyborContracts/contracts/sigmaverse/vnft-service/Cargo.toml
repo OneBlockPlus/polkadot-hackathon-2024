@@ -1,0 +1,9 @@
+[package]
+name = "vnft-service"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+sails-rs.workspace = true
+gstd.workspace = true
+env_logger = "*"

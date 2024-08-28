@@ -136,3 +136,5 @@ To run the tests, navigate to the `test/` directory and execute the desired scri
 ```bash
 npm install
 node test/deploy_evm_contract.js
+```
+Remember to first deploy contracts and then update the contract addresses in the test scripts before running them.
