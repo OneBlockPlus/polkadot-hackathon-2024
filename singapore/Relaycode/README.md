@@ -5,6 +5,12 @@
 <img src="docs/relaycode.png"/>
 </div>
 
+## Project Name
+Relaycode - Rethinking Extrinsics in Polkadot
+
+## Project Creation Date
+27th August 2024
+
 ## Problem to be Solved
 Relaycode addresses the complexity of building and understanding extrinsics in the Polkadot ecosystem. Many developers and users find it challenging to interact with pallets and construct extrinsics, leading to a steep learning curve and potential errors in blockchain interactions.
 
