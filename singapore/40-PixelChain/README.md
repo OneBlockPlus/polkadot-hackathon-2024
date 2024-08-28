@@ -2,7 +2,7 @@
 
 PixelChain aims to create a groundbreaking decentralized gaming ecosystem where players, developers, and creators can connect and thrive. By leveraging the interoperability and security of the Polkadot Parachain architecture, alongside EVM compatibility, PixelChain will empower a new generation of immersive, player-driven gaming experiences.
 
-📖 [Website](https://www.pixelschain.com)
+📖 [Website](https://www.pixelschain.xyz/)
 📖 [Docs](https://docs.pixelschain.xyz)
 📖 [Repo](https://github.com/bscdapps/PixelChain)
 
@@ -93,4 +93,4 @@ Use Case: A player who excels in a competitive PixelChain game earns $PIXL, whil
 
 Pixelchain heaily uses pallets, precompiles and depnedices from other Polkadot Projects like Astar, Diora, Moonbeam Etc
 
-📖 [Website](https://www.pixelschain.com)
+📖 [Website](https://www.pixelschain.xyz/)
