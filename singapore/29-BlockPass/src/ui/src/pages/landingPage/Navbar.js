@@ -1,14 +1,40 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logos/logo.png";
 import { motion } from "framer-motion";
+import { useConnectWallet } from "@subwallet-connect/react";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const [{ wallet } = {}, connect, disconnect] = useConnectWallet();
+  
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleConnect = () => {
+    if (!wallet) {
+      connect();
+    }
+  };
+
+  const handleDisconnect = () => {
+    if (wallet) {
+      disconnect(wallet);
+    }
+  };
+
+  const account = wallet?.accounts.find((account) => account.address);
+
+  const slicedAddress = account?.address
+    ? `${account.address.slice(0, 6)}...${account.address.slice(-4)}`
+    : "";
+
+  const handleCopyAddress = () => {
+    if (account?.address) {
+      navigator.clipboard.writeText(account.address);
+      alert("Wallet address copied to clipboard!");
+    }
   };
 
   return (
@@ -66,7 +92,7 @@ const NavBar = () => {
         >
           All Events
         </Link>
-     
+
         <Link
           to={"/my-tickets"}
           className="block md:inline-block text-white hover:text-[#F5167E] transition-colors duration-200 py-2 md:py-0"
@@ -74,15 +100,39 @@ const NavBar = () => {
         >
           My tickets
         </Link>
+
+        {/* Wallet Address Button */}
+        {wallet && account && (
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            className="text-white px-4 py-2 rounded-full transition-colors duration-200 bg-purple-800/30 hover:bg-purple-900 ring-2 ring-white ring-opacity-50 hover:ring-opacity-75"
+            onClick={handleCopyAddress}
+          >
+            {slicedAddress}
+          </motion.button>
+        )}
+
+        {/* Disconnect Button (Exit Door) */}
+        {wallet && (
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            className="text-white px-4 py-2 rounded-full transition-colors duration-200 bg-red-600/30 hover:bg-red-700 ring-2 ring-white ring-opacity-50 hover:ring-opacity-75 ml-4"
+            onClick={handleDisconnect}
+          >
+            Disconnect 💳
+          </motion.button>
+        )}
+
         {/* Connect Button */}
-        <motion.button
-          whileHover={{
-            scale: 1.1,
-          }}
-          className="block md:inline-block text-white bg-purple-800/30 hover:bg-purple-900 px-4 py-2 rounded-full transition-colors duration-200 ring-2 ring-white ring-opacity-50 hover:ring-opacity-75"
-        >
-          Connect Wallet
-        </motion.button>
+        {!wallet && (
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            className="text-white px-4 py-2 rounded-full transition-colors duration-200 ring-2 ring-white ring-opacity-50 hover:ring-opacity-75 bg-purple-800/30 hover:bg-purple-900"
+            onClick={handleConnect}
+          >
+            Connect Wallet
+          </motion.button>
+        )}
       </div>
     </nav>
   );

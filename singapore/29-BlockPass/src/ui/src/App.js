@@ -1,11 +1,11 @@
 import AppRoutes from "./AppRoutes";
-
+import { WalletProvider } from "./wallet-context";
 
 function App() {
   return (
-    <div>
-    <AppRoutes />
-  </div>
+    <WalletProvider>
+      <AppRoutes />
+    </WalletProvider>
   );
 }
 
