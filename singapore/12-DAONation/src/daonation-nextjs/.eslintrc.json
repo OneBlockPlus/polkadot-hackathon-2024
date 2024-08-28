@@ -1,0 +1,10 @@
+{
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "@next/next/no-html-link-for-pages": ["error", "packages/my-app/pages/"],
+    "@next/next/no-img-element":"off",
+    "jsx-a11y/alt-text":"off",
+    "react/no-unknown-property": "off",
+    "react/no-unescaped-entities": "off"
+  }
+}

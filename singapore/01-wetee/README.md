@@ -33,11 +33,13 @@ Approved and completed https://grants.web3.foundation/applications/WeTEE_Network
 
 ## Material for Demo
 1. Demo Video - [Youtube](https://youtu.be/QveGcIUHLeE)
-2. PPT google doc - [LINK](https://drive.google.com/file/d/1bX5nDMbrPtKXYLLJmnNotGM87QUc-9Ht/view?usp=sharing)
+2. PPT google doc 
+    - [中文](https://drive.google.com/file/d/1bX5nDMbrPtKXYLLJmnNotGM87QUc-9Ht/view?usp=sharing)
+    - [EN](https://drive.google.com/file/d/1qY2Ttvf7yyVa2smB17eJicxgnK9eabI_/view?usp=sharing)
 3. Devloper Docs - [LINK](https://wetee.gitbook.io/docment) 
 4. Code repository
     - [Main chain code](https://github.com/wetee-dao/chain/tree/polkadot-2024-hackathon)
-    - [Side chain TEE minner code](https://github.com/wetee-dao/tee-worker/tree/polkadot-2024-hackathon)
+    - [Side chain TEE miner code](https://github.com/wetee-dao/tee-worker/tree/polkadot-2024-hackathon)
     - [Side chain TEE DKG for confidential injection code](https://github.com/wetee-dao/tee-dsecret/tree/polkadot-2024-hackathon)
     - [TEE Confidential container libos](https://github.com/wetee-dao/libos-entry/tree/polkadot-2024-hackathon)
     - [DAPP](https://github.com/wetee-dao/dapp/tree/polkadot-2024-hackathon)
