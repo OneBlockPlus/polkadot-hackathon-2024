@@ -30,16 +30,47 @@ https://miner.game.6sig.io/
     3.*Design and develop `version 0.0.1 of the game's survival mode`, integrating elements from [Survivor~io](https://play.google.com/store/apps/details?id=com.dxx.firenow&hl=en_US).*
 
 ## Technology Architecture
+** 
 ![alt text](image.png)
+
+* The project consists of four main technical modules: the Unity game engine, smart contracts, a WebGL frontend, and an NFT indexer (developed in Node.js). 
+```mermaid
+graph TD
+    A[Unity Game Engine] -->|WebGLChannel| B[WebGL Frontend]
+    B --> C[Smart Contracts]
+    D[NFT Indexer Node.js] -->|Validates Game Logic| C
+    C --> E[NFT Foundation]
+    D -->|Pre-registered| C
+    F[Player] -->|Interacts| A
+    F -->|Interacts| B
+    C -->|Gasless & Signless Transactions| F
+```
+
+This graph illustrates the main components of your project and their interactions:
+
+- The Unity Game Engine communicates with the WebGL Frontend through the custom WebGLChannel.
+- The WebGL Frontend interacts with the Smart Contracts.
+- The NFT Indexer, developed in Node.js, validates game logic and is pre-registered in the Smart Contracts.
+- The entire game is built on an NFT Foundation.
+- Players interact with both the Unity Game Engine and the WebGL Frontend.
+- The Smart Contracts enable gasless and signless transactions for players.
+
+This structure allows for a decentralized gaming experience with the flexibility of deploying the NFT Indexer anywhere while maintaining the integrity of the game logic through smart contract integration.
+
 
 ## Schedule
 
 
 ## Team info
-* [Lueey](https://t.me/turtlebig)
-* [Ansen](https://t.me/turtlebig)
+* [Lueey]()
+* [Ansen]()
 * ZZS
 
 ## Material for Demo
-1. Demo Video [[link to Notion](https://file.notion.so/f/f/a00e22d0-998c-4538-81cb-ec0e2e58de5f/61ae4f6f-d058-4cef-a209-8742b9095457/Sigmaverse.mp4?table=block&id=324a7948-9ea6-4aaa-a85a-79ca6309108b&spaceId=a00e22d0-998c-4538-81cb-ec0e2e58de5f&expirationTimestamp=1724371200000&signature=4M-OtQAvicv7M54Kd4IXXnDBOFhrjjO5Xq0IiY7B19w&downloadName=Sigmaverse.mp4)]
+1. Demo Video [[link to Notion](https://lueey.notion.site/Videos-1a524f6a58ac4fd49fb5ad5dfda20283?pvs=25)]
 2. PPT [-]
+
+
+## Track and Selected Bounty
+* Vara Network & Gear
+* GameFi

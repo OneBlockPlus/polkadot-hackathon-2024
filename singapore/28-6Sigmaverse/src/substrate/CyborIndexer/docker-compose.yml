@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  cybor_db:
+    build: .
+    container_name: cybor_postgres_db
+    ports:
+      - 11101:5432
+    environment:
+      POSTGRES_USER: cybor
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: cybor

@@ -1,0 +1,70 @@
+NodeWorkSpace: "./"
+ActorSvcPort: 8080
+
+ChainConfig:
+  # The rpc endpoint of the chain node
+  Rpc:
+    # test network
+    - ""
+    - ""
+  # The storage network you want to connect to, "mainnet" or "testnet"
+  Network: "/cdnnet"
+  # CESS account mnemonic of cacher
+  Mnemonic: ""
+
+ResrcP2P:
+  # Bootstrap Nodes
+  Boots:
+    # test network
+    - ""
+
+  # Service workspace
+  Workspace: ""
+  # P2P communication port
+  P2PPort: 4006
+
+CacheP2P:
+  # Bootstrap Nodes
+  Boots:
+    # test network
+    - ""
+
+  # Service workspace
+  Workspace: ""
+  # P2P communication port
+  P2PPort: 4006
+
+CacherConfig:
+  # User Files Cacher config
+  # File cache size, default 512G, (unit is byte)
+  CacheSize: 512
+  # File cache expiration time, default 3*60 minutes (unit is minutes)
+  Expiration:
+  # Directory to store file cache, default path: ./cache/
+  CacheDir:
+  # Price of downloading a single fragment (unit is 1/10^18 CESS or TCESS, is an integer)
+  CachePrice: ""
+  # The number of free downloads allowed for users
+  FreeDownloads:
+
+CdnProtoConfig:
+  # Cache protocol config
+  # The Id of chain where the EVM contract is deployed
+  ChainId: 11330
+  # Ethereum gas free cap (default is 108694000460)
+  GasFreeCap: 108694000460
+  #Ethereum gas limit (default is 30000000)
+  GasLimit: 30000000
+  #Node staking amount
+  Staking: ""
+  #Protocol smart contracts for node registration, order and revenue management, etc.
+  TokenContract: ""
+  ProtoContract: ""
+  # NFT Token Id that needs to be bound to the cache node(license for cache node to join network)
+  NodeTokenId: ""
+  # Cache Node's ethereum account private key (Hexadecimal string, not including '0x')
+  NodeAccPrivateKey: ""
+  #Token owner's ethereum account address (Hexadecimal string, including '0x')
+  TokenAccAddress: ""
+  #The signature of the token owner's account on the message pair, obtained through the 'eth-tools'
+  TokenAccSign: ""

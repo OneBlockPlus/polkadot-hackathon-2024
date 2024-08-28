@@ -1,0 +1,22 @@
+{
+  "name": "template-vercel",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "frog vercel-build",
+    "dev": "frog dev",
+    "deploy": "vercel"
+  },
+  "dependencies": {
+    "@polkadot/api": "^12.4.2",
+    "blakejs": "^1.2.1",
+    "ethers": "^5.7.0",
+    "frog": "latest",
+    "hono": "^4"
+  },
+  "devDependencies": {
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3",
+    "vercel": "^32.4.1"
+  }
+}

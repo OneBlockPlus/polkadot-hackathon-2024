@@ -47,7 +47,7 @@ contract TestEvmToken is ERC20 {
 		input1 = _bytesConcat(input1, bytes(_bytes20tohex(bob)));
 		input1 = _bytesConcat(input1, bytes('","'));
 		input1 = _bytesConcat(input1, bytes(_uint2str10(value)));
-		input1 = _bytesConcat(input1, bytes('"], "OutputType":[["enum"],["0","2"],["0"]]}'));
+		input1 = _bytesConcat(input1, bytes('"], "OutputType":[["enum"],["2"],["0","3"],["enum"],["5"],["0","0","6"],["string"]]}'));
 		
 		//string input = '{"VM":"wasm", "Account":"0x' + _bytes32tohex(contractid) + '", "Fun": "transfer", "InputType": ["accountid","u128"], 
 		//"InputValue": ["0x' + _bytes32tohex(bob) + '","'+ _uint2str10(value) + '",], "OutputType":[["enum"],["0","2"],["0"]]}';

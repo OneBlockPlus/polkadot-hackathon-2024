@@ -1,17 +1,67 @@
-import React from "react";
-import { useParams } from "react-router-dom"; // assuming you're using React Router for routing
-import { events } from "../../data";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom"; // assuming you're using React Router for routing
+import { useConnectWallet } from "@subwallet-connect/react";
+import { fetchEventsFromContract, registerForEvent } from "../../contractAPI";
 
 const EventDetailPage = () => {
   const { id } = useParams();
-  const event = events.find((event) => event.id === parseInt(id));
+  const [{ wallet }] = useConnectWallet();
+  const [event, setEvent] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const navigate = useNavigate();
+  const shortenAddress = (address) => {
+    if (!address) return "";
+    return `${address.slice(0, 6)}...${address.slice(-4)}`;
+  };
+
+  const registerEVent = async () => {
+    if (wallet) {
+      await registerForEvent(wallet, id, event.ticketPrice);
+    }
+    navigate("/my-tickets");
+  };
+
+  useEffect(() => {
+    const fetchEvent = async () => {
+      if (wallet) {
+        const fetchedEvents = await fetchEventsFromContract(wallet);
+
+        // Find the specific event by ID
+        const eventDetails = fetchedEvents.find((event) => event.id === id);
+
+        if (eventDetails) {
+          setEvent({
+            title: eventDetails.title,
+            date: eventDetails.date,
+            startTime: eventDetails.startTime,
+            endTime: eventDetails.endTime,
+            location: eventDetails.location,
+            imageUrl: eventDetails.imageUrl,
+            description: eventDetails.description,
+            category: eventDetails.category,
+            moreInformation: eventDetails.moreInformation,
+            ticketPrice: eventDetails.ticketPrice,
+            maxTickets: eventDetails.maxTickets,
+            host: shortenAddress(eventDetails.host), // Set the host
+            registered: eventDetails.registered,
+          });
+        }
+        setIsLoading(false);
+      }
+    };
+
+    fetchEvent();
+  }, [wallet, id]);
+  if (isLoading) {
+    return <p className="ml-3">Loading...</p>;
+  }
 
   if (!event) {
     return <p>Event not found</p>;
   }
 
   const isPastEvent = new Date(event.date) < new Date();
-  const { attendees } = event;
 
   const formatDate = (dateString) => {
     const options = { month: "short", day: "numeric" };
@@ -19,7 +69,7 @@ const EventDetailPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-6 relative ">
+    <div className="flex items-center justify-center min-h-screen p-6 relative">
       <div
         className="absolute left-1/2 top-0 -z-10 -translate-x-1/2 blur-3xl xl:-top-6"
         aria-hidden="true"
@@ -53,7 +103,9 @@ const EventDetailPage = () => {
                 <h3 className="text-2xl text-start font-bold mb-2">
                   {event.title}
                 </h3>
-                <p className="text-gray-100 mb-2 text-start text-lg">🪩 {event.category}</p>
+                <p className="text-gray-100 mb-2 text-start text-lg">
+                  🪩 {event.category}
+                </p>
                 <p className="text-gray-100 text-start text-xs">
                   {event.description}
                 </p>
@@ -74,43 +126,13 @@ const EventDetailPage = () => {
             </p>
 
             <div className="mt-3">
-              <h3 className="text-xl  text-gray-300 font-semibold">
-                Hosted By
-              </h3>
-              <hr className="my-2 border-gray-600" />
-              <ul className="mt-2 space-y-2">
-                {event?.hosts.map((host, index) => (
-                  <li key={index} className="text-gray-100">
-                    {host.name} | {host.organization}
-                  </li>
-                ))}
-              </ul>
+              <h3 className="text-xl text-gray-300 font-semibold">Hosted By</h3>
+              <hr className="my-1 border-gray-600" />
+              <p className="mt-1 text-gray-100 text-sm">{event.host}</p>
               <p className="my-4 text-gray-300">
-                {event?.attendees.length} Going
+                {event.maxTickets} Tickets Available
               </p>
               <hr className="mt-1 border-gray-600" />
-              <ul className="mt-2 text-gray-100">
-                {attendees.length <= 3 ? (
-                  attendees.map((attendee, index) => (
-                    <li key={index} className="inline">
-                      {attendee}
-                      {index < attendees.length - 1 ? ", " : ""}
-                    </li>
-                  ))
-                ) : (
-                  <>
-                    {attendees.slice(0, 3).map((attendee, index) => (
-                      <li key={index} className="inline">
-                        {attendee}
-                        {index < 2 ? ", " : ""}
-                      </li>
-                    ))}
-                    <li className="inline">
-                      , and {attendees.length - 3} others
-                    </li>
-                  </>
-                )}
-              </ul>
             </div>
             <div className="mt-6">
               <button
@@ -120,6 +142,7 @@ const EventDetailPage = () => {
                     : "bg-purple-800 hover:bg-purple-900"
                 }`}
                 disabled={isPastEvent}
+                onClick={registerEVent}
               >
                 {isPastEvent ? "Past Event" : "Register"}
               </button>
@@ -130,12 +153,12 @@ const EventDetailPage = () => {
             <h2 className="text-2xl mt-3 font-bold">About Event</h2>
             <hr className="mt-1 border-gray-600/10" />
             <p className="mt-4 text-gray-700">🎉 {event.description} 🎉</p>
-            <p className="mt-4 font-medium  text-gray-700">
+            <p className="mt-4 font-medium text-gray-700">
               {event.moreInformation}
             </p>
             <div className="mt-7 font-medium">
               <ul>
-                <li className="inline  text-gray-700 px-2 py-1 rounded-lg mr-2">
+                <li className="inline text-gray-700 px-2 py-1 rounded-lg mr-2">
                   📆 Date:{" "}
                   {new Date(event.date).toLocaleDateString("en-US", {
                     weekday: "long",
@@ -145,17 +168,17 @@ const EventDetailPage = () => {
                 </li>
                 <br />
                 <br />
-                <li className="inline   text-gray-700 px-2 py-1 rounded-lg mr-2">
+                <li className="inline text-gray-700 px-2 py-1 rounded-lg mr-2">
                   ⏰ Time: {event.startTime} - {event.endTime}
                 </li>
                 <br />
                 <br />
-                <li className="inline  text-gray-700 px-2 py-1 rounded-lg mr-2">
+                <li className="inline text-gray-700 px-2 py-1 rounded-lg mr-2">
                   📍 Location: {event.location}
                 </li>
                 <br />
                 <br />
-                <li className="inline  text-gray-700 px-2 py-1 rounded-lg mr-2">
+                <li className="inline text-gray-700 px-2 py-1 rounded-lg mr-2">
                   🎟️ Price: {event.ticketPrice}
                 </li>
               </ul>
