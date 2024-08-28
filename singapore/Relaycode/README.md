@@ -67,8 +67,8 @@ Category 1:(Infrastructure) Polkadot ecological developer tools
    - Documentation page for user guide
 
 ## Project Completed During the Hackathon
-[x] Implemented core extrinsic builder functionality
-[x] Developed responsive UI with theme support
-[ ] Integrated wallet connection feature
-[ ] Created shareable snippets system
-[ ] Deployed MVP for testing and demonstration
+- [x] Implemented core extrinsic builder functionality
+- [x] Developed responsive UI with theme support
+- [ ] Integrated wallet connection feature
+- [ ] Created shareable snippets system
+- [ ] Deployed MVP for testing and demonstration
