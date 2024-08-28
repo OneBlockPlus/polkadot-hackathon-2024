@@ -6,7 +6,7 @@ ParaContracts is a revolutionary concept which aims to unlock the full potential
 
 (We recommend judges to read our white paper, which is much more technical)
 
-white paper: https://docs.google.com/document/d/1dopiBQFypcg5lfeYkWrcKPrZSoXwWLKcxKagZiu3KSo/edit?usp=sharing
+white paper: https://docs.google.com/document/d/1dopiBQFypcg5lfeYkWrcKPrZSoXwWLKcxKagZiu3KSo/edit?usp=sharing     
 youtube video: https://youtu.be/OUK1mNqTMcs
 
 ## Problem to be Solved
