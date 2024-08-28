@@ -1,0 +1,11 @@
+tmp/*
+*.sqlite
+*.wasm
+node_modules/
+**/compiled/*
+**/specs/*
+html/
+wasm/precompiled*
+
+moonbeam
+polkadot

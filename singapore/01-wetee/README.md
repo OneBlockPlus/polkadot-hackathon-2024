@@ -37,7 +37,7 @@ Approved and completed https://grants.web3.foundation/applications/WeTEE_Network
 3. Devloper Docs - [LINK](https://wetee.gitbook.io/docment) 
 4. Code repository
     - [Main chain code](https://github.com/wetee-dao/chain/tree/polkadot-2024-hackathon)
-    - [Side chain TEE minner code](https://github.com/wetee-dao/tee-worker/tree/polkadot-2024-hackathon)
+    - [Side chain TEE miner code](https://github.com/wetee-dao/tee-worker/tree/polkadot-2024-hackathon)
     - [Side chain TEE DKG for confidential injection code](https://github.com/wetee-dao/tee-dsecret/tree/polkadot-2024-hackathon)
     - [TEE Confidential container libos](https://github.com/wetee-dao/libos-entry/tree/polkadot-2024-hackathon)
     - [DAPP](https://github.com/wetee-dao/dapp/tree/polkadot-2024-hackathon)

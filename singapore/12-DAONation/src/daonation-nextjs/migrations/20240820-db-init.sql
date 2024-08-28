@@ -1,0 +1,9 @@
+CREATE TABLE communities (
+  id SERIAL PRIMARY KEY,
+  subdomain VARCHAR(255) NOT NULL,
+  template TEXT,
+  polkadot_reference_id VARCHAR(50),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  deleted_at TIMESTAMP
+);
