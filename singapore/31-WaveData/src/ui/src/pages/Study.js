@@ -56,16 +56,16 @@ function Studies() {
 	}
 
 	useEffect(() => {
-		const setDimension = () => {
-			getDimension({
-				dynamicWidth: window.innerWidth,
-				dynamicHeight: window.innerHeight
-			});
-		};
+		// const setDimension = () => {
+		// 	getDimension({
+		// 		dynamicWidth: window.innerWidth,
+		// 		dynamicHeight: window.innerHeight
+		// 	});
+		// };
 
-		window.addEventListener("resize", setDimension);
+		// window.addEventListener("resize", setDimension);
 		LoadData();
-	}, []);
+	}, [contract]);
 
 	return (
 		<>

@@ -21,7 +21,7 @@ export default function ViewControbutiors({show,setShow, onHide, id}) {
 	const [BarCharts, setBarCharts] = useState([]);
 
 	async function LoadData() {
-		if (typeof window?.contract !== "undefined") {
+		if (typeof window?.contract !== "undefined" && api !== null) {
 			let element = await ReadContractByQuery(api,signerAddress, getQuery("_ongoingMap"),[Number(id)])
 			let user_element = await ReadContractByQuery(api,signerAddress, getQuery("getUserDetails"),[Number(element.userId)])			
 			let fhir_element = await ReadContractByQuery(api, signerAddress, getQuery("_fhirMap"), [Number(user_element[6])]);

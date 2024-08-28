@@ -4,15 +4,18 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { CurrencyDollarIcon } from "@heroicons/react/solid";
 import Cookies from 'js-cookie';
-import { useDBContext } from '../../contextx/DBContext.js'
+import useContract from '../../services/useContract'
 
 export default function CreateSurveyModal({
     show,
     onHide,
-    Tiralid
+    Studyid
 
 }) {
-    const {createSurvey} = useDBContext();
+  
+    const {  api,contract, signerAddress, sendTransaction,ReadContractValue,ReadContractByQuery,getMessage,getQuery,getTX } = useContract();
+ 
+
  
     async function CreateSurveyHandle(e) {
         e.preventDefault();
@@ -25,8 +28,8 @@ export default function CreateSurveyModal({
         surveyBTN.children[1].innerText = ""
         surveyBTN.disabled = true;
         try {
-            await createSurvey(Tiralid,Cookies.get("userid"),name.value,description.value,d,image.value, Number(reward.value));
-			
+            await sendTransaction(api,signerAddress, "CreateSurvey",[Number(Studyid),Cookies.get("userid"),name.value,description.value,d,image.value, Number(reward.value)]);
+            
             notificationSuccess.style.display = "block";
             surveyBTN.children[0].classList.add("hidden")
             surveyBTN.children[1].innerText = "Create Survey"

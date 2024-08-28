@@ -190,7 +190,7 @@ function SurveyDetails() {
 		setstatus("saved!");
 	}
 	async function LoadDataStudy() {
-		if (contract !== null) {
+		if (contract !== null && api !== null) {
 
 			setstatus("loading...");
 
@@ -212,13 +212,13 @@ function SurveyDetails() {
 
 	}
 	async function LoadSurveyData() {
-		if (contract !== null) {
+		if (contract !== null && api !== null) {
 			setstatus("loading...");
 
 			let survey_element = await ReadContractByQuery(api, signerAddress, getQuery("_surveyMap"), [parseInt(params.id)]);
 			var new_survey = {
 				id: Number(survey_element.surveyId),
-				trial_id: Number(survey_element.trialId),
+				study_id: Number(survey_element.studyId),
 				user_id: Number(survey_element.userId),
 				name: survey_element.name,
 				description: survey_element.description,
@@ -235,7 +235,7 @@ function SurveyDetails() {
 	}
 
 	async function LoadDataSections() {
-		if (contract !== null) {
+		if (contract !== null && api !== null) {
 			setstatus("loading...");
 			setsectionsdata([]);
 			sleep(100);
@@ -251,7 +251,7 @@ function SurveyDetails() {
 	}
 	async function LoadDataCategories() {
 		try {
-			if (contract !== null) {
+			if (contract !== null && api !== null) {
 				setdataCategory([]);
 				sleep(100);
 				
@@ -523,19 +523,19 @@ function SurveyDetails() {
 	}
 
 	useEffect(async () => {
-		const setDimension = () => {
-			getDimension({
-				dynamicWidth: window.innerWidth,
-				dynamicHeight: window.innerHeight
-			});
-		};
+		// const setDimension = () => {
+		// 	getDimension({
+		// 		dynamicWidth: window.innerWidth,
+		// 		dynamicHeight: window.innerHeight
+		// 	});
+		// };
 
-		window.addEventListener("resize", setDimension);
+		// window.addEventListener("resize", setDimension);
 		LoadSurveyData();
 		LoadDataStudy();
 		await LoadDataCategories();
 		LoadDataSections();
-	}, [contract,tabIndex]);
+	}, [contract,tabIndex,api]);
 	async function loadGraph() {
 	}
 
