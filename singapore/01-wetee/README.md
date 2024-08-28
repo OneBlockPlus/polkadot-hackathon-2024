@@ -44,3 +44,4 @@ Approved and completed https://grants.web3.foundation/applications/WeTEE_Network
     - [TEE Confidential container libos](https://github.com/wetee-dao/libos-entry/tree/polkadot-2024-hackathon)
     - [DAPP](https://github.com/wetee-dao/dapp/tree/polkadot-2024-hackathon)
 5. Online DAPP Demo [LINK](https://dapp.wetee.app)
+6. Online Demo chain [LINK](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fxiaobai.asyou.me%3A30001#/explorer)
