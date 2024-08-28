@@ -1,0 +1,14 @@
+type UintType = string | number | bigint;
+export declare const NonZeroU8: (value: UintType) => NonZeroU8;
+export declare const NonZeroU16: (value: UintType) => NonZeroU16;
+export declare const NonZeroU32: (value: UintType) => NonZeroU32;
+export declare const NonZeroU64: (value: UintType) => NonZeroU64;
+export declare const NonZeroU128: (value: UintType) => NonZeroU128;
+export declare const NonZeroU256: (value: UintType) => NonZeroU256;
+export type NonZeroU8 = number;
+export type NonZeroU16 = number;
+export type NonZeroU32 = number;
+export type NonZeroU64 = UintType;
+export type NonZeroU128 = UintType;
+export type NonZeroU256 = UintType;
+export {};

@@ -1,0 +1,46 @@
+
+.dao-container {
+    padding-top: 53px;
+  }
+  
+  .dao-title {
+    width: 55rem;
+    max-width: 95%;
+  }
+  
+  .dao-tabtitle {
+    width: 55rem;
+    justify-content: space-between;
+  }
+  
+  .dao-divider {
+    height: 1px;
+    width: 960px;
+    max-width: 95%;
+    background: #ebebeb;
+  }
+  
+  .dao-image {
+    width: 280px;
+    height: 160px;
+    border-radius: 12px;
+    object-fit: cover;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  
+  .dao-image img {
+    object-fit: cover;
+  }
+  
+  .dao-slideshow-container {
+    width: 960px;
+    max-width: 95%;
+  }
+  
+  .dao-event-image {
+    width: 160px;
+    border-radius: 12px;
+    overflow: hidden;
+    object-fit: cover;
+  }

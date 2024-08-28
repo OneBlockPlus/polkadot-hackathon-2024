@@ -1,0 +1,16 @@
+syntax = "proto3";
+package org.dephy.pproxy.tunnel.v1;
+
+enum TunnelCommand {
+  TUNNEL_COMMAND_UNSPECIFIED = 0;
+  TUNNEL_COMMAND_CONNECT = 1;
+  TUNNEL_COMMAND_CONNECT_RESP = 2;
+  TUNNEL_COMMAND_PACKAGE = 3;
+  TUNNEL_COMMAND_BREAK = 4;
+}
+
+message Tunnel {
+  string tunnel_id = 1;
+  TunnelCommand command = 2;
+  optional bytes data = 3;
+}

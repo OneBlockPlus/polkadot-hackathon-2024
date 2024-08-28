@@ -1,0 +1,137 @@
+use crate::{lexer::Token, ast::*};
+
+grammar;
+
+extern {
+    type Location = usize;
+    type Error = ParseError;
+
+    enum Token {
+        "=" => Token::Equals,
+        "(" => Token::LParen,
+        ")" => Token::RParen,
+        "{" => Token::LBrace,
+        "}" => Token::RBrace,
+        "[" => Token::LBracket,
+        "]" => Token::RBracket,
+        ";" => Token::Semicolon,
+        ":" => Token::Colon,
+        "," => Token::Comma,
+        "->" => Token::Arrow,
+        "constructor" => Token::Ctor,
+        "service" => Token::Service,
+        "events" => Token::Events,
+        "query" => Token::Query,
+        "type" => Token::Type,
+        "struct" => Token::Struct,
+        "enum" => Token::Enum,
+        "opt" => Token::Opt,
+        "result" => Token::Result,
+        "vec" => Token::Vec,
+        "map" => Token::Map,
+        "null" => Token::Null,
+        "id" => Token::Id(<String>),
+        "num" => Token::Num(<u32>),
+    }
+}
+
+Ident: String = {
+    <name: "id"> => name,
+    "constructor" => "constructor".to_owned(),
+    "service" => "service".to_owned(),
+    "events" => "events".to_owned(),
+    "query" => "query".to_owned(),
+    "type" => "type".to_owned(),
+    "struct" => "struct".to_owned(),
+    "enum" => "enum".to_owned(),
+    "opt" => "opt".to_owned(),
+    "result" => "result".to_owned(),
+    "vec" => "vec".to_owned(),
+    "map" => "map".to_owned(),
+    "null" => "null".to_owned(),
+    "num" => "num".to_owned(),
+}
+
+pub Program: Program = {
+    <types: (<Separated<Type, ";">> ";")?> <ctor: (Ctor ";")?> <services: Separated<Service, ";">> =>?
+        Ok(Program::new(
+            ctor.map(|c| c.0),
+            services,
+            types.unwrap_or_default(),
+        )?),
+}
+
+Ctor: Ctor = {
+    "constructor" "{" <Separated<CtorFunc, ";">> "}" =>? Ok(Ctor::new(<>)?),
+}
+
+CtorFunc : CtorFunc = {
+    <name: "id"> ":" "(" <params: Separated<FuncParam, ",">> ")" =>
+        CtorFunc::new(name, params),
+}
+
+Service: Service = {
+    "service" <name: "id"?> "{" <funcs: Separated<ServiceFunc, ";">> <events: ("events" "{" <Separated<EnumVariant, ";">> "}")?> "}" =>?
+        Ok(Service::new(name.unwrap_or_default(), funcs, events.unwrap_or_default())?),
+}
+
+ServiceFunc: ServiceFunc = {
+    <query: "query"?> <name: "id"> ":" "(" <params: Separated<FuncParam, ",">> ")" "->" <output: TypeDecl> =>
+        ServiceFunc::new(name, params, output, query.is_some()),
+}
+
+FuncParam: FuncParam = {
+    <name: Ident> ":" <r#type: TypeDecl> => FuncParam::new(name, r#type),
+}
+
+Type: Type = {
+    "type" <name: "id"> "=" <def: TypeDef> => Type::new(name, def),
+}
+
+TypeDecl: TypeDecl = {
+    "vec" <TypeDecl> => TypeDecl::Vector(Box::new(<>)),
+    "[" <item: TypeDecl> "," <len: "num"> "]" => TypeDecl::Array { item: Box::new(item), len },
+    "map" "(" <key: TypeDecl> "," <value: TypeDecl> ")" => TypeDecl::Map { key: Box::new(key), value: Box::new(value) },
+    "opt" <TypeDecl> => TypeDecl::Optional(Box::new(<>)),
+    "result" "(" <ok: TypeDecl> "," <err: TypeDecl> ")" => TypeDecl::Result { ok: Box::new(ok), err: Box::new(err) },
+    "null" => TypeDecl::Id(TypeId::Primitive(PrimitiveType::Null)),
+    <"id"> => match PrimitiveType::str_to_enum(&<>) {
+        Some(primitive_type) => TypeDecl::Id(TypeId::Primitive(primitive_type)),
+        None => TypeDecl::Id(TypeId::UserDefined(<>)),
+    },
+    <TypeDef> => TypeDecl::Def(<>),
+}
+
+TypeDef: TypeDef = {
+    <StructDef> => TypeDef::Struct(<>),
+    <EnumDef> => TypeDef::Enum(<>),
+}
+
+StructDef: StructDef = {
+    "struct" "{" <Separated<StructField, ",">> "}" =>? Ok(StructDef::new(<>)?),
+}
+
+StructField: StructField = {
+    <name: Ident> ":" <r#type: TypeDecl> => StructField::new(Some(name), r#type),
+    <r#type: TypeDecl> => StructField::new(None, r#type),
+}
+
+EnumDef: EnumDef = {
+    "enum" "{" <Separated<EnumVariant, ",">> "}" =>? Ok(EnumDef::new(<>)?),
+}
+
+EnumVariant: EnumVariant = {
+    <name: "id"> ":" <r#type: TypeDecl> => EnumVariant::new(name, Some(r#type)),
+    <name: "id"> => EnumVariant::new(name, None),
+}
+
+#[inline]
+Separated<Token, Separator>: Vec<Token> = {
+    <mut values:(<Token> Separator)*> <last: Token?> => match last {
+        None => values,
+        Some(last) => {
+            values.push(last);
+            values
+        }
+    }
+}
