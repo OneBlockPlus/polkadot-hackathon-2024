@@ -41,5 +41,5 @@ TBA
 | Alex Wang   | Blockchain Developer | wd30130     |
 | Daniel Wang | Blockchain Developer | usherasnick |
 ## Material for Demo
-1. Demo Video [link to Youtube]
+1. [Demo Video](https://www.youtube.com/watch?v=gX4Ph7PcHaw)
 2. [Multi-VM Contract Interoperability Protocol](https://docs.google.com/document/d/1EkW4szMepA-lUaKQbJWU2NlnzlUDvERWyrQ0IHk-rSU/edit?usp=sharing)
