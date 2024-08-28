@@ -4,7 +4,10 @@
 
 ParaContracts is a revolutionary concept which aims to unlock the full potential of Polkadot. It helps in unlocking the combined TPS of multiple parachains by distributing a contract's state across them. This repository contains Proof of Concept for the same, mainly dev-tools which will facilitate development and deployment of ParaContracts!
 
-(We recommend judges to read our white paper: , which is much more technical)
+(We recommend judges to read our white paper, which is much more technical)
+
+white paper: https://docs.google.com/document/d/1dopiBQFypcg5lfeYkWrcKPrZSoXwWLKcxKagZiu3KSo/edit?usp=sharing
+youtube video: https://youtu.be/OUK1mNqTMcs
 
 ## Problem to be Solved
 
