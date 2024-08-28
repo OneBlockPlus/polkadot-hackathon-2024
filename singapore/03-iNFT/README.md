@@ -167,5 +167,6 @@ Xu
 
 ## Material for Demo
 
-1. [Demo Video ： iNFT_Polkadot_final_2024.mp4](https://drive.google.com/file/d/1l6CNc8hqmtyPV3O0xQxNYitBKkJNB67O/view?usp=sharing)
-2. [PPT：iNFT_Polkadot_final_2024.pptx](https://docs.google.com/presentation/d/1VbfJavDgA2Jo3UHeINXkeGgIMpyxMgeu/edit?usp=sharing&ouid=103801114996040356653&rtpof=true&sd=true)
+1.  Selected Bounty：Crust
+2. [Demo Video ： iNFT_Polkadot_final_2024](https://www.youtube.com/watch?v=qZQgST0lfSs)
+3. [PPT：iNFT_Polkadot_final_2024.pptx](https://docs.google.com/presentation/d/1VbfJavDgA2Jo3UHeINXkeGgIMpyxMgeu/edit?usp=sharing&ouid=103801114996040356653&rtpof=true&sd=true)

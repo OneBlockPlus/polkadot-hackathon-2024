@@ -1,0 +1,5 @@
+error: `route` attribute conflicts with one assigned to 'service1'
+  --> tests/ui/gprogram_fails_for_multiple_services_with_same_route.rs:14:7
+   |
+14 |     #[route("svc")]
+   |       ^^^^^

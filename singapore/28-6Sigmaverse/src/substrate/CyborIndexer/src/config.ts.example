@@ -1,0 +1,6 @@
+import { HexString } from "@gear-js/api";
+
+export const SECRET = 'secret-key';
+
+export const VARA_NODE_ADDRESS = 'wss://testnet.vara.network';
+export const VARA_PROGRAM_ID = '' as HexString;

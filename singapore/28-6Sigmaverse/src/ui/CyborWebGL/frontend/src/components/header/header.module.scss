@@ -1,0 +1,29 @@
+.header {
+  padding: 20px 30px;
+
+  .logo {
+    // color: #7dfbcf;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+}
+
+.container,
+.buttons,
+.wallet {
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  justify-content: space-between;
+}
+
+.buttons {
+  gap: 60px;
+}
+
+.wallet {
+  gap: 90px;
+}

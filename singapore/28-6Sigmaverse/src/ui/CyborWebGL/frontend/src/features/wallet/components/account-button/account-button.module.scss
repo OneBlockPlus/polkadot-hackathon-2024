@@ -1,0 +1,10 @@
+.button {
+  /* identicon override */
+  border: 1px solid #00ffc4;
+  > div {
+    cursor: pointer;
+  }
+  > span {
+    color: #00ffc4;
+  }
+}
