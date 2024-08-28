@@ -1,6 +1,5 @@
 # PixelChain - Singapore Hackathon 2024
 
-[![](https://img.youtube.com/vi/SjAQcoN2aiQ/0.jpg)](https://www.youtube.com/watch?v=SjAQcoN2aiQ) 
 PixelChain aims to create a groundbreaking decentralized gaming ecosystem where players, developers, and creators can connect and thrive. By leveraging the interoperability and security of the Polkadot Parachain architecture, alongside EVM compatibility, PixelChain will empower a new generation of immersive, player-driven gaming experiences.
 
 📖 [Website](https://www.pixelschain.com)
