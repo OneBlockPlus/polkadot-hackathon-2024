@@ -1,0 +1,14 @@
+[
+    {
+      "relation": [
+        "delegate_permission/common.handle_all_urls"
+      ],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.samsung.health.hrdatatransfer",
+        "sha256_cert_fingerprints": [
+          "16:29:62:34:FE:F2:B6:87:1F:B9:35:3D:74:85:51:E3:AC:39:86:AD:3E:46:60:0E:7A:B3:7A:FA:F9:8F:F3:D3"
+        ]
+      }
+    }
+  ]

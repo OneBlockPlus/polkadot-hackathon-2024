@@ -1,0 +1,27 @@
+
+.nav{
+  background-color:#ffffff
+}
+.position-fixed{
+  position: absolute;
+  margin: 0 2vw;
+}
+.main-nav {
+    width: 98%;
+  }
+  .main-nav ul {
+    align-items: center;
+    display: flex;
+  }
+  .main-nav ul li {
+    margin-right: 20px;
+  }
+  .main-nav ul li a {
+    color: blue;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 0.25px;
+    opacity: 0.48;
+  }
+
+  

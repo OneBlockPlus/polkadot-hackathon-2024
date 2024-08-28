@@ -1,0 +1,6 @@
+[build]
+  command = "npm run turbo-build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
