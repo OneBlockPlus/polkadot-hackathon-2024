@@ -25,6 +25,7 @@ Our mission is to aggregate as much decentralized bridges for connecting differe
 
 ## All the code build during the hackathon
 
+* [PPT](./ub-elevator-pitch.pdf)
 * [Product link](https://ub.rwa-wallet.com)
 * [PR code link](https://github.com/HelloRWA/uni-bridge/pull/1)
 * [Video link (check on the PR page)](https://github.com/HelloRWA/uni-bridge/pull/1)
