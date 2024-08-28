@@ -67,7 +67,7 @@ This structure allows for a decentralized gaming experience with the flexibility
 * ZZS
 
 ## Material for Demo
-1. Demo Video [[link to Notion](https://file.notion.so/f/f/a00e22d0-998c-4538-81cb-ec0e2e58de5f/61ae4f6f-d058-4cef-a209-8742b9095457/Sigmaverse.mp4?table=block&id=324a7948-9ea6-4aaa-a85a-79ca6309108b&spaceId=a00e22d0-998c-4538-81cb-ec0e2e58de5f&expirationTimestamp=1724371200000&signature=4M-OtQAvicv7M54Kd4IXXnDBOFhrjjO5Xq0IiY7B19w&downloadName=Sigmaverse.mp4)]
+1. Demo Video [[link to Notion](https://lueey.notion.site/Videos-1a524f6a58ac4fd49fb5ad5dfda20283?pvs=25)]
 2. PPT [-]
 
 
