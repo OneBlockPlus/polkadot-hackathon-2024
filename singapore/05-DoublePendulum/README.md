@@ -39,7 +39,7 @@ Go to: https://polkadotpendulums.com/
 Demo video: https://youtu.be/_KV9R0AUE8A
 
 ### Project logo:
-![Logo](./static/logo.jpg)
+![Logo](./src/static/logo.jpg)
 
 ### Team information:
 My name is Klára Anna Šindlerová, I'm university student from Czechia. 
