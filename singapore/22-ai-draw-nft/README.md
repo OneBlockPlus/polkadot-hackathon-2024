@@ -12,6 +12,12 @@ AI Draw NFT is a web application that lets you to create, enhance, and share you
 - [x] Cross chain support to bridge into opensea(in polygon chain) to sell on opensea.
 - [x] Support to create a NFT collection
 
+## Bountry
+
+* [acala deploy](https://blockscout.acala.network/address/0x8fc379308ca230f922c50af7b17139e40c701e15)
+* [moonbean deploy](https://moonbase.moonscan.io/address/0x7b454ef73abc93ff775c3291a72b138822f955da)
+* crust network
+
 ## Architect
 
 - [Nuxt](https://nuxt.com) - The Intuitive Vue Framework
