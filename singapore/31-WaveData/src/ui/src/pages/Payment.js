@@ -51,7 +51,7 @@ function Payment() {
 		try {
 			let userid = Cookies.get("userid");
 		 
-			await sendTransaction(api,signerAddress, "UpdatePrivatekey",[parseInt(userid), privatekey.value]);
+			// await sendTransaction(api,signerAddress, "UpdatePrivatekey",[parseInt(userid), privatekey.value]);
 			  
 			SaveBTN.children[0].classList.add("hidden")
 			SaveBTN.children[1].innerText = "Save"

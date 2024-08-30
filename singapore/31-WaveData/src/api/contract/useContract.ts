@@ -16,8 +16,8 @@ export default async function useContract() {
 		getTX: getTX,
 		currentChain: null
 	};
-	const WS_PROVIDER = "wss://shibuya-rpc.dwellir.com"; // shibuya
 
+	const WS_PROVIDER = "wss://rpc.shibuya.astar.network"; // shibuya
 
 	try {
 		const provider = new WsProvider(WS_PROVIDER);
@@ -51,22 +51,14 @@ async function sendTransaction(api,contract, signerAddress, method, args = null)
 		const {gasRequired, result, output} = await query(
 			signerAddress,
 			{
-				gasLimit: api.registry.createType("WeightV2", {
-					refTime: 6219235328,
-					proofSize: 131072
-				}),
-				storageDepositLimit: null
+				gasLimit: api.registry.createType("WeightV2", api.consts.system.blockWeights['maxBlock']),
 			},
 			...args as any
 		);
 		gasLimit = api.registry.createType("WeightV2", gasRequired);
 	} else {
 		const {gasRequired, result, output} = await query(signerAddress, {
-			gasLimit: api.registry.createType("WeightV2", {
-				refTime: 6219235328,
-				proofSize: 131072
-			}),
-			storageDepositLimit: null
+			gasLimit: api.registry.createType("WeightV2", api.consts.system.blockWeights['maxBlock']),
 		});
 		gasLimit = api.registry.createType("WeightV2", gasRequired);
 	}
@@ -77,8 +69,7 @@ async function sendTransaction(api,contract, signerAddress, method, args = null)
 
 	const sendTX =	new Promise(function executor(resolve) {
 		 tx({
-				gasLimit: gasLimit,
-				storageDepositLimit: null
+				gasLimit: gasLimit
 			},
 			...args as any)
 			.signAndSend(pair, async (res) => {
@@ -95,14 +86,13 @@ async function sendTransaction(api,contract, signerAddress, method, args = null)
 }
 
 async function ReadContractByQuery(api, signerAddress, query, args = null) {
+	
 	if (args) {
 		const {gasRequired, result, output} = await query(
 			signerAddress,
 			{
-				gasLimit: api.registry.createType("WeightV2", {
-					refTime: 6219235328,
-					proofSize: 131072
-				}),
+				gasLimit: api.registry.createType("WeightV2", api.consts.system.blockWeights['maxBlock']),
+					
 				storageDepositLimit: null
 			},
 			...args as any
@@ -114,11 +104,8 @@ async function ReadContractByQuery(api, signerAddress, query, args = null) {
 		}
 	} else {
 		const {gasRequired, result, output} = await query(signerAddress, {
-			gasLimit: api.registry.createType("WeightV2", {
-				refTime: 6219235328,
-				proofSize: 131072
-			}),
-			storageDepositLimit: null
+			gasLimit: api.registry.createType("WeightV2", api.consts.system.blockWeights['maxBlock']),
+				storageDepositLimit: null
 		});
 		if (output){
 			return output.toHuman().Ok;
@@ -128,6 +115,7 @@ async function ReadContractByQuery(api, signerAddress, query, args = null) {
 	}
 }
 function getMessage(contract, find_contract) {
+	
 	for (let i = 0; i < contract.abi.messages.length; i++) {
 		if (find_contract == contract.abi.messages[i]["identifier"]) {
 			return contract.abi.messages[i];
@@ -136,10 +124,12 @@ function getMessage(contract, find_contract) {
 }
 
 function getQuery(contract,find_contract) {
+	
 	let messageName = "";
 	for (let i = 0; i < contract.abi.messages.length; i++) {
 		if (find_contract == contract.abi.messages[i]["identifier"]) {
 			messageName = contract.abi.messages[i]["method"];
+
 			return contract.query[messageName];
 		}
 	}

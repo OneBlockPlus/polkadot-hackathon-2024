@@ -11,7 +11,8 @@ import 'package:http/http.dart' as http;
 
 class JournalScreen extends StatelessWidget {
   final TextEditingController answerBox;
-  JournalScreen(this.answerBox);
+  final String title ;
+  JournalScreen(this.answerBox, {this.title = "Journal"});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class JournalScreen extends StatelessWidget {
                     width: 200,
                     child: Align(
                         alignment: AlignmentDirectional(0, 0),
-                        child: Text('Journal',
+                        child: Text(title,
                             style: GoogleFonts.getFont(
                               'Lexend Deca',
                               fontSize: 24,

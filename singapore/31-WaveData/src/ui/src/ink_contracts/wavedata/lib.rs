@@ -21,7 +21,6 @@ mod wavedata {
         email: String,
         password: String,
         walletaddress: String,
-        privatekey: String,
         image: String,
         credits: i32,
         accesstoken: String,
@@ -89,6 +88,7 @@ mod wavedata {
         identifier: String,
         phone: String,
         gender: String,
+        birth_date: String,
         about: String,
         patient_id: String,
     }
@@ -125,6 +125,15 @@ mod wavedata {
         date: String,
     }
 
+    #[derive(Debug, PartialEq, Eq, Encode, Decode)]
+    #[cfg_attr(feature = "std", derive(ink::storage::traits::StorageLayout, scale_info::TypeInfo))]
+    pub struct completed_informed_consent_struct {
+        completed_informed_consent_id: i32,
+        study_id: i32,
+        user_id: i32,
+        date: String,
+    }
+
     // endregion: All stucts
 
     // region: Initialize
@@ -140,6 +149,7 @@ mod wavedata {
         _OngoingIds: i32,
         _AnsweredIds: i32,
         _CompletedSurveyIds: i32,
+        _CompletedInformedConsentIds: i32,
         //Variables Multiples
         _userMap: Mapping<i32, user_struct>,
         _studyMap: Mapping<i32, study_struct>,
@@ -152,6 +162,7 @@ mod wavedata {
         _ongoingMap: Mapping<i32, ongoing_struct>,
         _questionanswerdMap: Mapping<i32, survey_question_answer_struct>,
         _completedsurveyMap: Mapping<i32, completed_survey_struct>,
+        _completedinformedMap: Mapping<i32, completed_informed_consent_struct>,
     }
 
     impl Wavedata {
@@ -169,6 +180,7 @@ mod wavedata {
                 _OngoingIds: 0,
                 _AnsweredIds: 0,
                 _CompletedSurveyIds: 0,
+                _CompletedInformedConsentIds: 0,
                 //Variables Multiples
                 _userMap: Mapping::new(),
                 _studyMap: Mapping::new(),
@@ -181,6 +193,7 @@ mod wavedata {
                 _ongoingMap: Mapping::new(),
                 _questionanswerdMap: Mapping::new(),
                 _completedsurveyMap: Mapping::new(),
+                _completedinformedMap: Mapping::new(),
             }
         }
 
@@ -192,19 +205,32 @@ mod wavedata {
         // endregion: Initialize
         // region: Users
         #[ink(message)]
-        pub fn CreateAccount(&mut self, full_name: String, email: String, password: String, accesstoken: String, walletaddress: String) {
+        pub fn CreateAccount(&mut self, full_name: String, email: String, password: String, accesstoken: String, walletaddress: String,birth_date:String) {
             let stuff = user_struct {
                 user_id: self._UserIds,
                 name: full_name,
                 email: email,
                 password: password,
-                privatekey: format!("{}", ""),
                 walletaddress: walletaddress,
                 image: format!("{}", "https://i.postimg.cc/SsxGw5cZ/person.jpg"),
                 credits: 0,
                 accesstoken: accesstoken,
-                fhirid: 0,
+                fhirid: self._UserIds,
             };
+            let fhir_stuff = fhir_struct {
+                user_id: self._UserIds,
+                family_name: format!("{}",""),
+                given_name:  format!("{}",""),
+                identifier:  format!("{}",""),
+                phone:  format!("{}",""),
+                gender:  format!("{}",""),
+                birth_date:birth_date,
+                about:  format!("{}",""),
+                patient_id:  format!("{}",""),
+            };
+
+            self._fhirMap.insert(self._UserIds, &fhir_stuff);
+
             self._userMap.insert(self._UserIds, &stuff);
             self._UserIds += 1;
         }
@@ -221,12 +247,7 @@ mod wavedata {
             return format!("{}", "False");
         }
 
-        #[ink(message)]
-        pub fn UpdatePrivatekey(&mut self, userid: i32, privatekey: String) {
-            let mut user = self._userMap.get(userid).unwrap();
-            user.privatekey = privatekey;
-            self._userMap.insert(userid, &user);
-        }
+      
 
         #[ink(message)]
         pub fn UpdateAccessToken(&mut self, userid: i32, accesstoken: String) {
@@ -256,7 +277,7 @@ mod wavedata {
             result.push(format!("{}", user.credits));
             result.push(user.name);
             result.push(user.email);
-            result.push(String::from(&user.privatekey));
+            result.push(String::from(&user.walletaddress));
             result.push(user.accesstoken);
             result.push(format!("{}", user.fhirid));
 
@@ -415,30 +436,31 @@ mod wavedata {
         }
 
         #[ink(message)]
-        pub fn UpdateFhir(&mut self, user_id: i32, family_name: String, given_name: String, identifier: String, phone: String, gender: String, about: String, patient_id: String) {
-            let mut user = self._userMap.get(user_id).unwrap();
-            let stuff = fhir_struct {
+        pub fn UpdateFhir(&mut self, user_id: i32,walletaddress:String, family_name: String, given_name: String, identifier: String, phone: String, gender: String,birth_date: String,  about: String, patient_id: String) {
+           let stuff = fhir_struct {
                 user_id: user_id,
                 family_name: family_name,
                 given_name: given_name,
                 identifier: identifier,
                 phone: phone,
                 gender: gender,
+                birth_date:birth_date,
                 about: about,
                 patient_id: patient_id,
             };
-            user.fhirid = self._FhirIds;
-
+            let mut user = self._userMap.get(user_id).unwrap();
+            user.walletaddress = walletaddress;
             self._userMap.insert(user_id, &user);
-            self._fhirMap.insert(self._FhirIds, &stuff);
-             self._FhirIds = self._FhirIds.clone() + 1;
+
+
+            self._fhirMap.insert(user_id, &stuff);
         }
 
         // endregion: Study
 
         // region: OngoingStudy
         #[ink(message)]
-        pub fn CreateOngoingTrail(&mut self, study_id: i32, user_id: i32, date: String, given_permission: String) {
+        pub fn CreateOngoingStudy(&mut self, study_id: i32, user_id: i32, date: String, given_permission: String) {
             let stuff = ongoing_struct {
                 ongoing_id: self._OngoingIds,
                 study_id: study_id,
@@ -516,7 +538,31 @@ mod wavedata {
             }
             return result;
         }
+        #[ink(message)]
+        pub fn CreateCompletedInformedConsent(&mut self,  user_id: i32, date: String, study_id: i32) {
+            let stuff = completed_informed_consent_struct {
+                completed_informed_consent_id: self._CompletedSurveyIds,
+                study_id: study_id,
+                user_id: user_id,
+                date: date.clone()
+            };
 
+            self._completedinformedMap.insert(self._CompletedInformedConsentIds, &stuff);
+             self._CompletedInformedConsentIds =  self._CompletedInformedConsentIds.clone() +  1;
+        }
+
+        #[ink(message)]
+        pub fn getCompletedInformedConsentId(&mut self, user_id: i32, study_id: i32) -> String {
+            
+
+            for i in 0..(self._CompletedInformedConsentIds) {
+                let v = self._completedinformedMap.get(i).unwrap();
+                if format!("{}", v.user_id) == format!("{}", user_id) && format!("{}", v.study_id) == format!("{}", study_id) {
+                    return format!("{}",i);
+                }
+            }
+            return format!("{}", "False");
+        }
         // endregion: FromApp
 
         // regiion: GetAllVariables
@@ -548,6 +594,14 @@ mod wavedata {
         #[ink(message)]
         pub fn _AnsweredIds(&mut self) -> i32 {
             return self._AnsweredIds;
+        }
+        #[ink(message)]
+        pub fn _CompletedSurveyIds(&mut self) -> i32 {
+            return self._CompletedSurveyIds;
+        }
+        #[ink(message)]
+        pub fn _CompletedInformedConsentIds(&mut self) -> i32 {
+            return self._CompletedInformedConsentIds;
         }
         #[ink(message)]
         pub fn _userMap(&mut self, id: i32) -> user_struct {
@@ -706,26 +760,6 @@ mod wavedata {
             );
             assert_eq!(wavedata._UserIds, 1);
             return wavedata;
-        }
-
-        #[ink::test]
-        fn User() {
-            // *----------------Create User------------------*
-            let mut wavedata = Wavedata::new();
-            wavedata = create_account(wavedata);
-            assert_eq!(wavedata._UserIds(), 1);
-            assert_eq!(wavedata.Login(String::from("email"), String::from("password")), String::from("0"));
-            assert_eq!(wavedata.Login(String::from("wrong email"), String::from("password")), String::from("False"));
-
-            // *----------------Update User------------------*
-            wavedata.UpdatePrivatekey(0, String::from("privatekey updated"));
-            assert_eq!(wavedata._userMap(0).privatekey, String::from("privatekey updated"));
-            wavedata.UpdateAccessToken(0, String::from("AccessToken updated"));
-            assert_eq!(wavedata._userMap(0).accesstoken, String::from("AccessToken updated"));
-
-            assert_eq!(wavedata.getUserDetails(0)[2], String::from("full_name"));
-
-            // ink_env::debug_println!("{:#?}", wavedata.getUserDetails(0)[2]);
         }
 
         #[ink::test]

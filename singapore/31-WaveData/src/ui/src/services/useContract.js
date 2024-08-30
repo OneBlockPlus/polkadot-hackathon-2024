@@ -10,7 +10,7 @@ import { web3Enable, isWeb3Injected, web3Accounts } from "@polkadot/extension-da
 
 
 const WS_PROVIDER = "wss://rpc.shibuya.astar.network"; // shibuya
-const CONTRACT_ADDRESS = "bZdK8cHsc6SXqJ3xzn4T6t4sNXvBkrxJavDKJdwL2oKwSXm"
+const CONTRACT_ADDRESS = "YTouh9sbh2QbNX882au7uC1otmsFGQFWi25jC4uEya9KiLe"
 export default function useContract() {
 	const [contractInstance, setContractInstance] = useState({
 		api: null,

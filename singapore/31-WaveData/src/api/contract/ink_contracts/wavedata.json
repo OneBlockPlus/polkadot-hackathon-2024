@@ -1,6 +1,6 @@
 {
   "source": {
-    "hash": "0xb0f0a6530e93c38716a4c8db2490ada0f5dc10e4a8e92024ce6d74edbeb079ff",
+    "hash": "0xaedbf8e4449bd9263858540322cc9fefeb5b89bc9bf9fff9ab3c6391993140f4",
     "language": "ink! 5.0.0",
     "compiler": "rustc 1.82.0-nightly",
     "build_info": {
@@ -36,7 +36,7 @@
             "ink_primitives",
             "ConstructorResult"
           ],
-          "type": 47
+          "type": 51
         },
         "selector": "0x9bae9d5e"
       },
@@ -53,7 +53,7 @@
             "ink_primitives",
             "ConstructorResult"
           ],
-          "type": 47
+          "type": 51
         },
         "selector": "0xed4b9d1b"
       }
@@ -64,31 +64,31 @@
         "displayName": [
           "AccountId"
         ],
-        "type": 64
+        "type": 68
       },
       "balance": {
         "displayName": [
           "Balance"
         ],
-        "type": 67
+        "type": 71
       },
       "blockNumber": {
         "displayName": [
           "BlockNumber"
         ],
-        "type": 70
+        "type": 74
       },
       "chainExtension": {
         "displayName": [
           "ChainExtension"
         ],
-        "type": 71
+        "type": 75
       },
       "hash": {
         "displayName": [
           "Hash"
         ],
-        "type": 68
+        "type": 72
       },
       "maxEventTopics": 4,
       "staticBufferSize": 16384,
@@ -96,7 +96,7 @@
         "displayName": [
           "Timestamp"
         ],
-        "type": 69
+        "type": 73
       }
     },
     "events": [],
@@ -105,7 +105,7 @@
         "ink",
         "LangError"
       ],
-      "type": 48
+      "type": 52
     },
     "messages": [
       {
@@ -154,6 +154,15 @@
               ],
               "type": 1
             }
+          },
+          {
+            "label": "birth_date",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
           }
         ],
         "default": false,
@@ -166,7 +175,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 47
+          "type": 51
         },
         "selector": "0x4bf65581"
       },
@@ -192,44 +201,9 @@
             "ink",
             "MessageResult"
           ],
-          "type": 49
+          "type": 53
         },
         "selector": "0x36f73380"
-      },
-      {
-        "args": [
-          {
-            "label": "userid",
-            "type": {
-              "displayName": [
-                "i32"
-              ],
-              "type": 0
-            }
-          },
-          {
-            "label": "privatekey",
-            "type": {
-              "displayName": [
-                "String"
-              ],
-              "type": 1
-            }
-          }
-        ],
-        "default": false,
-        "docs": [],
-        "label": "UpdatePrivatekey",
-        "mutates": true,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 47
-        },
-        "selector": "0x2a8781d8"
       },
       {
         "args": [
@@ -262,7 +236,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 47
+          "type": 51
         },
         "selector": "0x17caf7c5"
       },
@@ -297,7 +271,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 49
+          "type": 53
         },
         "selector": "0x43744c4b"
       },
@@ -323,7 +297,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 50
+          "type": 54
         },
         "selector": "0x4aae464d"
       },
@@ -412,7 +386,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 47
+          "type": 51
         },
         "selector": "0x337f3ec9"
       },
@@ -492,7 +466,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 47
+          "type": 51
         },
         "selector": "0x6e830c0b"
       },
@@ -545,7 +519,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 47
+          "type": 51
         },
         "selector": "0x0d4ab394"
       },
@@ -589,7 +563,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 47
+          "type": 51
         },
         "selector": "0x587d4dc5"
       },
@@ -624,7 +598,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 47
+          "type": 51
         },
         "selector": "0xfb2acb2a"
       },
@@ -659,7 +633,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 47
+          "type": 51
         },
         "selector": "0x70f010e1"
       },
@@ -694,7 +668,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 47
+          "type": 51
         },
         "selector": "0x5aebfd6f"
       },
@@ -720,7 +694,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 52
+          "type": 56
         },
         "selector": "0x120a5148"
       },
@@ -782,7 +756,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 47
+          "type": 51
         },
         "selector": "0xe8c11d8a"
       },
@@ -817,7 +791,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 47
+          "type": 51
         },
         "selector": "0xb66b2d19"
       },
@@ -879,7 +853,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 47
+          "type": 51
         },
         "selector": "0x97309e72"
       },
@@ -932,7 +906,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 47
+          "type": 51
         },
         "selector": "0xd3d618ec"
       },
@@ -967,7 +941,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 47
+          "type": 51
         },
         "selector": "0xe91c8208"
       },
@@ -1011,7 +985,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 47
+          "type": 51
         },
         "selector": "0x22f9fea4"
       },
@@ -1024,6 +998,15 @@
                 "i32"
               ],
               "type": 0
+            }
+          },
+          {
+            "label": "walletaddress",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
             }
           },
           {
@@ -1072,6 +1055,15 @@
             }
           },
           {
+            "label": "birth_date",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
             "label": "about",
             "type": {
               "displayName": [
@@ -1100,7 +1092,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 47
+          "type": 51
         },
         "selector": "0xabbc8dc6"
       },
@@ -1145,7 +1137,7 @@
         ],
         "default": false,
         "docs": [],
-        "label": "CreateOngoingTrail",
+        "label": "CreateOngoingStudy",
         "mutates": true,
         "payable": false,
         "returnType": {
@@ -1153,9 +1145,9 @@
             "ink",
             "MessageResult"
           ],
-          "type": 47
+          "type": 51
         },
-        "selector": "0x19a8c5bc"
+        "selector": "0x4cca34a4"
       },
       {
         "args": [
@@ -1179,7 +1171,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 49
+          "type": 53
         },
         "selector": "0xa7e08bd7"
       },
@@ -1250,7 +1242,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 47
+          "type": 51
         },
         "selector": "0x1f17fb66"
       },
@@ -1303,7 +1295,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 47
+          "type": 51
         },
         "selector": "0x32ff6f2a"
       },
@@ -1329,9 +1321,88 @@
             "ink",
             "MessageResult"
           ],
-          "type": 52
+          "type": 56
         },
         "selector": "0x6bb07367"
+      },
+      {
+        "args": [
+          {
+            "label": "user_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "date",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "study_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "CreateCompletedInformedConsent",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 51
+        },
+        "selector": "0x15d834e0"
+      },
+      {
+        "args": [
+          {
+            "label": "user_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "study_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "getCompletedInformedConsentId",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 53
+        },
+        "selector": "0x71d03e11"
       },
       {
         "args": [],
@@ -1345,7 +1416,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 54
+          "type": 58
         },
         "selector": "0x86709cc0"
       },
@@ -1361,7 +1432,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 54
+          "type": 58
         },
         "selector": "0x12992188"
       },
@@ -1377,7 +1448,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 54
+          "type": 58
         },
         "selector": "0x120296a2"
       },
@@ -1393,7 +1464,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 54
+          "type": 58
         },
         "selector": "0x87095cc2"
       },
@@ -1409,7 +1480,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 54
+          "type": 58
         },
         "selector": "0xe9a9676c"
       },
@@ -1425,7 +1496,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 54
+          "type": 58
         },
         "selector": "0x4494dfb5"
       },
@@ -1441,9 +1512,41 @@
             "ink",
             "MessageResult"
           ],
-          "type": 54
+          "type": 58
         },
         "selector": "0x4676b4a5"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "_CompletedSurveyIds",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 58
+        },
+        "selector": "0x899ca36c"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "_CompletedInformedConsentIds",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 58
+        },
+        "selector": "0xaa10f3d0"
       },
       {
         "args": [
@@ -1467,7 +1570,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 55
+          "type": 59
         },
         "selector": "0xe527b88c"
       },
@@ -1493,7 +1596,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 56
+          "type": 60
         },
         "selector": "0xca12e4fe"
       },
@@ -1519,7 +1622,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 57
+          "type": 61
         },
         "selector": "0x44fcc547"
       },
@@ -1545,7 +1648,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 49
+          "type": 53
         },
         "selector": "0xd440ab17"
       },
@@ -1571,7 +1674,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 58
+          "type": 62
         },
         "selector": "0x96c68520"
       },
@@ -1597,7 +1700,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 59
+          "type": 63
         },
         "selector": "0x84f1ab87"
       },
@@ -1623,7 +1726,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 49
+          "type": 53
         },
         "selector": "0x230ab554"
       },
@@ -1649,7 +1752,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 60
+          "type": 64
         },
         "selector": "0x379b1212"
       },
@@ -1675,7 +1778,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 61
+          "type": 65
         },
         "selector": "0xef2dbdcc"
       },
@@ -1701,7 +1804,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 62
+          "type": 66
         },
         "selector": "0xf49d3c5a"
       },
@@ -1727,7 +1830,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 63
+          "type": 67
         },
         "selector": "0x3d851b4e"
       },
@@ -1753,7 +1856,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 47
+          "type": 51
         },
         "selector": "0xf9cfa6d8"
       },
@@ -1779,7 +1882,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 47
+          "type": 51
         },
         "selector": "0xc5451298"
       },
@@ -1795,7 +1898,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 47
+          "type": 51
         },
         "selector": "0x0549858a"
       },
@@ -1821,7 +1924,7 @@
             "ink",
             "MessageResult"
           ],
-          "type": 47
+          "type": 51
         },
         "selector": "0x1e06cda0"
       }
@@ -1915,6 +2018,15 @@
             },
             {
               "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 0
+                }
+              },
+              "name": "_CompletedInformedConsentIds"
+            },
+            {
+              "layout": {
                 "root": {
                   "layout": {
                     "struct": {
@@ -1963,15 +2075,6 @@
                             }
                           },
                           "name": "walletaddress"
-                        },
-                        {
-                          "layout": {
-                            "leaf": {
-                              "key": "0xfa282f3c",
-                              "ty": 1
-                            }
-                          },
-                          "name": "privatekey"
                         },
                         {
                           "layout": {
@@ -2450,6 +2553,15 @@
                               "ty": 1
                             }
                           },
+                          "name": "birth_date"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x180a8fb3",
+                              "ty": 1
+                            }
+                          },
                           "name": "about"
                         },
                         {
@@ -2671,13 +2783,65 @@
                 }
               },
               "name": "_completedsurveyMap"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "struct": {
+                      "fields": [
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x380e019e",
+                              "ty": 0
+                            }
+                          },
+                          "name": "completed_informed_consent_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x380e019e",
+                              "ty": 0
+                            }
+                          },
+                          "name": "study_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x380e019e",
+                              "ty": 0
+                            }
+                          },
+                          "name": "user_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x380e019e",
+                              "ty": 1
+                            }
+                          },
+                          "name": "date"
+                        }
+                      ],
+                      "name": "completed_informed_consent_struct"
+                    }
+                  },
+                  "root_key": "0x380e019e",
+                  "ty": 46
+                }
+              },
+              "name": "_completedinformedMap"
             }
           ],
           "name": "Wavedata"
         }
       },
       "root_key": "0x00000000",
-      "ty": 46
+      "ty": 50
     }
   },
   "types": [
@@ -2753,11 +2917,6 @@
               },
               {
                 "name": "walletaddress",
-                "type": 1,
-                "typeName": "String"
-              },
-              {
-                "name": "privatekey",
                 "type": 1,
                 "typeName": "String"
               },
@@ -3553,6 +3712,11 @@
                 "typeName": "String"
               },
               {
+                "name": "birth_date",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
                 "name": "about",
                 "type": 1,
                 "typeName": "String"
@@ -3961,6 +4125,112 @@
       "id": 46,
       "type": {
         "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "K",
+            "type": 0
+          },
+          {
+            "name": "V",
+            "type": 47
+          },
+          {
+            "name": "KeyType",
+            "type": 48
+          }
+        ],
+        "path": [
+          "ink_storage",
+          "lazy",
+          "mapping",
+          "Mapping"
+        ]
+      }
+    },
+    {
+      "id": 47,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "completed_informed_consent_id",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "study_id",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "user_id",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "date",
+                "type": 1,
+                "typeName": "String"
+              }
+            ]
+          }
+        },
+        "path": [
+          "wavedata",
+          "wavedata",
+          "completed_informed_consent_struct"
+        ]
+      }
+    },
+    {
+      "id": 48,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "L",
+            "type": 5
+          },
+          {
+            "name": "R",
+            "type": 49
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ResolverKey"
+        ]
+      }
+    },
+    {
+      "id": 49,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "ParentKey",
+            "type": 7
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ManualKey"
+        ]
+      }
+    },
+    {
+      "id": 50,
+      "type": {
+        "def": {
           "composite": {
             "fields": [
               {
@@ -4007,6 +4277,11 @@
                 "name": "_CompletedSurveyIds",
                 "type": 0,
                 "typeName": "<i32 as::ink::storage::traits::AutoStorableHint<::ink::storage\n::traits::ManualKey<1675251087u32, ()>,>>::Type"
+              },
+              {
+                "name": "_CompletedInformedConsentIds",
+                "type": 0,
+                "typeName": "<i32 as::ink::storage::traits::AutoStorableHint<::ink::storage\n::traits::ManualKey<3221971593u32, ()>,>>::Type"
               },
               {
                 "name": "_userMap",
@@ -4062,6 +4337,11 @@
                 "name": "_completedsurveyMap",
                 "type": 42,
                 "typeName": "<Mapping<i32, completed_survey_struct> as::ink::storage::traits::\nAutoStorableHint<::ink::storage::traits::ManualKey<1488405364u32,\n()>,>>::Type"
+              },
+              {
+                "name": "_completedinformedMap",
+                "type": 46,
+                "typeName": "<Mapping<i32, completed_informed_consent_struct> as::ink::storage::\ntraits::AutoStorableHint<::ink::storage::traits::ManualKey<\n2650869304u32, ()>,>>::Type"
               }
             ]
           }
@@ -4074,7 +4354,7 @@
       }
     },
     {
-      "id": 47,
+      "id": 51,
       "type": {
         "def": {
           "variant": {
@@ -4091,7 +4371,7 @@
               {
                 "fields": [
                   {
-                    "type": 48
+                    "type": 52
                   }
                 ],
                 "index": 1,
@@ -4107,7 +4387,7 @@
           },
           {
             "name": "E",
-            "type": 48
+            "type": 52
           }
         ],
         "path": [
@@ -4116,7 +4396,7 @@
       }
     },
     {
-      "id": 48,
+      "id": 52,
       "type": {
         "def": {
           "variant": {
@@ -4135,7 +4415,7 @@
       }
     },
     {
-      "id": 49,
+      "id": 53,
       "type": {
         "def": {
           "variant": {
@@ -4152,7 +4432,7 @@
               {
                 "fields": [
                   {
-                    "type": 48
+                    "type": 52
                   }
                 ],
                 "index": 1,
@@ -4168,7 +4448,7 @@
           },
           {
             "name": "E",
-            "type": 48
+            "type": 52
           }
         ],
         "path": [
@@ -4177,7 +4457,7 @@
       }
     },
     {
-      "id": 50,
+      "id": 54,
       "type": {
         "def": {
           "variant": {
@@ -4185,7 +4465,7 @@
               {
                 "fields": [
                   {
-                    "type": 51
+                    "type": 55
                   }
                 ],
                 "index": 0,
@@ -4194,7 +4474,7 @@
               {
                 "fields": [
                   {
-                    "type": 48
+                    "type": 52
                   }
                 ],
                 "index": 1,
@@ -4206,11 +4486,11 @@
         "params": [
           {
             "name": "T",
-            "type": 51
+            "type": 55
           },
           {
             "name": "E",
-            "type": 48
+            "type": 52
           }
         ],
         "path": [
@@ -4219,7 +4499,7 @@
       }
     },
     {
-      "id": 51,
+      "id": 55,
       "type": {
         "def": {
           "sequence": {
@@ -4229,7 +4509,7 @@
       }
     },
     {
-      "id": 52,
+      "id": 56,
       "type": {
         "def": {
           "variant": {
@@ -4237,7 +4517,7 @@
               {
                 "fields": [
                   {
-                    "type": 53
+                    "type": 57
                   }
                 ],
                 "index": 0,
@@ -4246,7 +4526,7 @@
               {
                 "fields": [
                   {
-                    "type": 48
+                    "type": 52
                   }
                 ],
                 "index": 1,
@@ -4258,11 +4538,11 @@
         "params": [
           {
             "name": "T",
-            "type": 53
+            "type": 57
           },
           {
             "name": "E",
-            "type": 48
+            "type": 52
           }
         ],
         "path": [
@@ -4271,7 +4551,7 @@
       }
     },
     {
-      "id": 53,
+      "id": 57,
       "type": {
         "def": {
           "sequence": {
@@ -4281,7 +4561,7 @@
       }
     },
     {
-      "id": 54,
+      "id": 58,
       "type": {
         "def": {
           "variant": {
@@ -4298,7 +4578,7 @@
               {
                 "fields": [
                   {
-                    "type": 48
+                    "type": 52
                   }
                 ],
                 "index": 1,
@@ -4314,175 +4594,7 @@
           },
           {
             "name": "E",
-            "type": 48
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 55,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 3
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 48
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 3
-          },
-          {
-            "name": "E",
-            "type": 48
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 56,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 9
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 48
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 9
-          },
-          {
-            "name": "E",
-            "type": 48
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 57,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 16
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 48
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 16
-          },
-          {
-            "name": "E",
-            "type": 48
-          }
-        ],
-        "path": [
-          "Result"
-        ]
-      }
-    },
-    {
-      "id": 58,
-      "type": {
-        "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 20
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 48
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 20
-          },
-          {
-            "name": "E",
-            "type": 48
+            "type": 52
           }
         ],
         "path": [
@@ -4499,7 +4611,7 @@
               {
                 "fields": [
                   {
-                    "type": 24
+                    "type": 3
                   }
                 ],
                 "index": 0,
@@ -4508,7 +4620,7 @@
               {
                 "fields": [
                   {
-                    "type": 48
+                    "type": 52
                   }
                 ],
                 "index": 1,
@@ -4520,11 +4632,11 @@
         "params": [
           {
             "name": "T",
-            "type": 24
+            "type": 3
           },
           {
             "name": "E",
-            "type": 48
+            "type": 52
           }
         ],
         "path": [
@@ -4541,7 +4653,7 @@
               {
                 "fields": [
                   {
-                    "type": 31
+                    "type": 9
                   }
                 ],
                 "index": 0,
@@ -4550,7 +4662,7 @@
               {
                 "fields": [
                   {
-                    "type": 48
+                    "type": 52
                   }
                 ],
                 "index": 1,
@@ -4562,11 +4674,11 @@
         "params": [
           {
             "name": "T",
-            "type": 31
+            "type": 9
           },
           {
             "name": "E",
-            "type": 48
+            "type": 52
           }
         ],
         "path": [
@@ -4583,7 +4695,7 @@
               {
                 "fields": [
                   {
-                    "type": 35
+                    "type": 16
                   }
                 ],
                 "index": 0,
@@ -4592,7 +4704,7 @@
               {
                 "fields": [
                   {
-                    "type": 48
+                    "type": 52
                   }
                 ],
                 "index": 1,
@@ -4604,11 +4716,11 @@
         "params": [
           {
             "name": "T",
-            "type": 35
+            "type": 16
           },
           {
             "name": "E",
-            "type": 48
+            "type": 52
           }
         ],
         "path": [
@@ -4625,7 +4737,7 @@
               {
                 "fields": [
                   {
-                    "type": 39
+                    "type": 20
                   }
                 ],
                 "index": 0,
@@ -4634,7 +4746,7 @@
               {
                 "fields": [
                   {
-                    "type": 48
+                    "type": 52
                   }
                 ],
                 "index": 1,
@@ -4646,11 +4758,11 @@
         "params": [
           {
             "name": "T",
-            "type": 39
+            "type": 20
           },
           {
             "name": "E",
-            "type": 48
+            "type": 52
           }
         ],
         "path": [
@@ -4667,6 +4779,174 @@
               {
                 "fields": [
                   {
+                    "type": 24
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 52
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 24
+          },
+          {
+            "name": "E",
+            "type": 52
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 64,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 31
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 52
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 31
+          },
+          {
+            "name": "E",
+            "type": 52
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 65,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 35
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 52
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 35
+          },
+          {
+            "name": "E",
+            "type": 52
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 66,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 39
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 52
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 39
+          },
+          {
+            "name": "E",
+            "type": 52
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 67,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
                     "type": 43
                   }
                 ],
@@ -4676,7 +4956,7 @@
               {
                 "fields": [
                   {
-                    "type": 48
+                    "type": 52
                   }
                 ],
                 "index": 1,
@@ -4692,7 +4972,7 @@
           },
           {
             "name": "E",
-            "type": 48
+            "type": 52
           }
         ],
         "path": [
@@ -4701,13 +4981,13 @@
       }
     },
     {
-      "id": 64,
+      "id": 68,
       "type": {
         "def": {
           "composite": {
             "fields": [
               {
-                "type": 65,
+                "type": 69,
                 "typeName": "[u8; 32]"
               }
             ]
@@ -4721,18 +5001,18 @@
       }
     },
     {
-      "id": 65,
+      "id": 69,
       "type": {
         "def": {
           "array": {
             "len": 32,
-            "type": 66
+            "type": 70
           }
         }
       }
     },
     {
-      "id": 66,
+      "id": 70,
       "type": {
         "def": {
           "primitive": "u8"
@@ -4740,7 +5020,7 @@
       }
     },
     {
-      "id": 67,
+      "id": 71,
       "type": {
         "def": {
           "primitive": "u128"
@@ -4748,13 +5028,13 @@
       }
     },
     {
-      "id": 68,
+      "id": 72,
       "type": {
         "def": {
           "composite": {
             "fields": [
               {
-                "type": 65,
+                "type": 69,
                 "typeName": "[u8; 32]"
               }
             ]
@@ -4768,7 +5048,7 @@
       }
     },
     {
-      "id": 69,
+      "id": 73,
       "type": {
         "def": {
           "primitive": "u64"
@@ -4776,7 +5056,7 @@
       }
     },
     {
-      "id": 70,
+      "id": 74,
       "type": {
         "def": {
           "primitive": "u32"
@@ -4784,7 +5064,7 @@
       }
     },
     {
-      "id": 71,
+      "id": 75,
       "type": {
         "def": {
           "variant": {}

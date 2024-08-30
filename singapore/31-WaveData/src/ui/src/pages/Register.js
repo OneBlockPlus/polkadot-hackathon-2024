@@ -54,7 +54,7 @@ function Register() {
 
                 if (result === "False") {
 
-                    await sendTransaction(api, signerAddress, "CreateAccount", [FullNameTXT.value, emailTXT.value, passwordTXT.value, "", signerAddress]);
+                    await sendTransaction(api, signerAddress, "CreateAccount", [FullNameTXT.value, emailTXT.value, passwordTXT.value, "", signerAddress,""]);
                     SuccessNotification.style.display = "block";
                     window.location.href = "/login"
                 } else {

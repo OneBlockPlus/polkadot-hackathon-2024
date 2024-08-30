@@ -6,17 +6,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "turbo-dev": "npx turbo dev",
-    "turbo-build": "npx turbo build"
+    "lint": "next lint"
   },
   "dependencies": {
-    "@astar-network/astar-api": "^0.1.16",
+    "@astar-network/astar-api": "^0.1.5-7",
     "@netlify/plugin-nextjs": "^5.6.0",
-    "@polkadot/api-contract": "^9.14.1",
-    "@polkadot/types": "^9.14.1",
-    "@polkadot/ui-keyring": "^2.11.2",
-    "crypto-browserify": "^3.12.0",
+    "@polkadot/api": "^12.4.2",
+    "@polkadot/api-contract": "12.3.1",
+    "@polkadot/types": "12.3.1",
+    "@polkadot/ui-keyring": "^3.9.1",
+    "@polkadot/util": "^13.0.2",
+    "crypto-browserify": "^3.11.0",
     "cypress": "^11.2.0",
     "https-browserify": "^1.0.0",
     "next": "13.0.5",
@@ -26,7 +26,6 @@
     "remove": "^0.1.5",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
-    "tronweb": "^4.4.0",
     "web3": "^1.8.2"
   },
   "devDependencies": {

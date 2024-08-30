@@ -1,16 +1,22 @@
 import 'dart:convert';
+import 'dart:typed_data';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:wavedata/components/signature_modal.dart';
+import 'package:wavedata/screens/connect_data.dart';
+import 'package:wavedata/screens/informedconsent_screen.dart';
+import 'package:wavedata/screens/onboarding_questionnaire_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wavedata/components/data_edit_item.dart';
 import 'package:wavedata/components/register_modal.dart';
 import 'package:wavedata/screens/get_ready.dart';
+import 'package:wavedata/screens/study_id_screen.dart';
 import 'package:wavedata/screens/main_screen.dart';
-
-import 'package:url_launcher/url_launcher.dart';
+import 'package:wavedata/model/airtable_api.dart';
+import 'package:signature/signature.dart';
 
 class AuthScreen extends StatefulWidget {
   @override
@@ -25,6 +31,9 @@ class AuthScreenApp extends State<AuthScreen> {
     "Accept": "application/json",
     "Content-Type": "application/x-www-form-urlencoded"
   };
+ String baseURL=  'http://127.0.0.1:3000';
+ 
+
   @override
   initState() {
     GetAccount();
@@ -34,60 +43,62 @@ class AuthScreenApp extends State<AuthScreen> {
   Future<void> GetAccount() async {
     // Obtain shared preferences.
     final prefs = await SharedPreferences.getInstance();
-    print(prefs.getString("userid"));
     if (prefs.getString("userid") != "" && prefs.getString("userid") != null) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => MainScreen(),
+          builder: (context) => OnboardingQuestionnaireScreen(),
         ),
       );
     }
   }
 
   Future<void> LoginAccount() async {
-      const url = 'https://wavedata-singapore-polkadot-app.vercel.app/#/';
-      if(await canLaunch(url)){
-        await launch(url);
-      }else {
-        throw 'Could not launch $url';
-      }
+ 
+     if (emailTXT.text == "" || passwordTXT.text == ""){
+      ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                    content:
+                        Text("Please fill all fields!")));
+          setState(() => isLoading = true);
+          return;
+     }
 
+     var url = Uri.parse('${baseURL}/api/POST/Login');
+    final response = await http.post(url,
+        headers: POSTheader,
+        body: {'email': emailTXT.text, 'password': passwordTXT.text});
+    var responseData = json.decode(response.body);
+    var data = (responseData['value']);
+    if (data != "False") {
+      var userid = data;
+      // Obtain shared preferences.
+      
+      final prefs = await SharedPreferences.getInstance();
+ 
+      prefs.setString("userid", userid);
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => GetStudyIDScreen(),
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Email/password is incorrect!")));
+    }
 
-    // var url = Uri.parse(
-    //     'https://wavedata-polkadot-singapore-api.onrender.com/api/POST/Login');
-    // final response = await http.post(url,
-    //     headers: POSTheader,
-    //     body: {'email': emailTXT.text, 'password': passwordTXT.text});
-    // var responseData = json.decode(response.body);
-    // var data = (responseData['value']);
-    // if (data != "False") {
-    //   var userid = data;
-    //   // Obtain shared preferences.
-    //   final prefs = await SharedPreferences.getInstance();
+    setState(() => isLoading = false);
+    return;
 
-    //   prefs.setString("userid", userid);
-    //   Navigator.pushReplacement(
-    //     context,
-    //     MaterialPageRoute(
-    //       builder: (context) => GetReadyScreen(),
-    //     ),
-    //   );
-    //   print(prefs.getString("userid"));
-    // } else {
-    //   ScaffoldMessenger.of(context).showSnackBar(
-    //       const SnackBar(content: Text("Email/password is incorrect!")));
-    // }
-
-    // setState(() => isLoading = false);
-    // return;
+   
   }
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
-    return Scaffold(
+   return Scaffold(
       body: Container(
         height: size.height,
         width: size.width,

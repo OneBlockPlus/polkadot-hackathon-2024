@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:wavedata/model/airtable_api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wavedata/model/question.dart';
 import 'package:wavedata/providers/feeling_provider.dart';
@@ -26,6 +27,10 @@ class _QuestionnaireScreenState extends ConsumerState<QuestionnaireScreen> {
     "Accept": "application/json",
     "Content-Type": "application/x-www-form-urlencoded"
   };
+String domain = 'http://127.0.0.1:3000';
+  String userId = "";
+  String StudyId = "";
+  String SurveyId = "";
   var allSections = [];
   var allCategory = [
     {"name": "", "image": ""}
@@ -33,12 +38,15 @@ class _QuestionnaireScreenState extends ConsumerState<QuestionnaireScreen> {
   bool isloading = true;
   Future<void> GetData() async {
     final prefs = await SharedPreferences.getInstance();
-    String surveyid = prefs.getString("surveyid").toString();
+    SurveyId = prefs.getString("surveyid").toString();
+    userId = (prefs.getString("userid").toString());
+    StudyId = (prefs.getString("studyid").toString());
+
     allSections = [];
     allCategory = [];
 
-    var url = Uri.parse(
-        'https://wavedata-polkadot-singapore-api.onrender.com/api/GET/Trial/Survey/GetSurveyDetails?surveyid=${surveyid}');
+var url = Uri.parse(
+        '${domain}/api/GET/Study/Survey/GetSurveyDetails?surveyid=${SurveyId}');
     final response = await http.get(url);
     var responseData = json.decode(response.body);
 
@@ -61,7 +69,7 @@ class _QuestionnaireScreenState extends ConsumerState<QuestionnaireScreen> {
         var categoryimage = allCategory.firstWhere(
             (element) => element['name'] == sectElement['category']);
         var object = {
-          "trialid": SurveyData['trial_id'].toString(),
+          "studyid": SurveyData['study_id'].toString(),
           "surveyid": SurveyData['id'],
           "sectionid": i,
           "category": sectElement['category'],
@@ -86,6 +94,8 @@ class _QuestionnaireScreenState extends ConsumerState<QuestionnaireScreen> {
       }
       isloading = false;
     });
+
+    
   }
 
   Future<void> SaveData(sectionindex) async {
@@ -94,7 +104,7 @@ class _QuestionnaireScreenState extends ConsumerState<QuestionnaireScreen> {
     });
     final prefs = await SharedPreferences.getInstance();
     String surveyid = prefs.getString("surveyid").toString();
-    int userid = int.parse(prefs.getString("userid").toString());
+    String userid = prefs.getString("userid").toString();
 
     var item = null;
     for (var element in allSections) {
@@ -104,14 +114,14 @@ class _QuestionnaireScreenState extends ConsumerState<QuestionnaireScreen> {
       ;
     }
 
-    int trialid = int.parse(item['trialid']);
+    String studyid = (item['studyid']);
     var sectionid = item['sectionid'];
     var data = [];
     for (var itemQ in item['questions']) {
       String questionid = itemQ.questionid;
       String answerTXT = itemQ.Answer;
       data.add({
-        'trialid': trialid.toString(),
+        'studyid': studyid.toString(),
         'userid': userid.toString(),
         'surveyid': surveyid.toString(),
         'sectionid': sectionid.toString(),
@@ -119,9 +129,9 @@ class _QuestionnaireScreenState extends ConsumerState<QuestionnaireScreen> {
         'answer': answerTXT
       });
     }
-    var url = Uri.parse(
-        'https://wavedata-polkadot-singapore-api.onrender.com/api/POST/Trial/Survey/CreateSurveyAnswers');
-    await http.post(url, headers: POSTheader, body: json.encode(data));
+    // var url = Uri.parse(
+    //     '${domain}/api/POST/Study/Survey/CreateSurveyAnswers');
+    // await http.post(url, headers: POSTheader, body: json.encode(data));
     setState(() {
       isloading = false;
     });
@@ -132,18 +142,20 @@ class _QuestionnaireScreenState extends ConsumerState<QuestionnaireScreen> {
       isloading = true;
     });
     final prefs = await SharedPreferences.getInstance();
-    String surveyid = prefs.getString("surveyid").toString();
+       String surveyid = prefs.getString("surveyid").toString();
     int userid = int.parse(prefs.getString("userid").toString());
-    int trialid = int.parse(allSections[0]['trialid']);
+    int studyid = int.parse(allSections[0]['studyid']);
+
 
     var url = Uri.parse(
-        'https://wavedata-polkadot-singapore-api.onrender.com/api/POST/Trial/Survey/CreateCompletedSurvey');
+        '${domain}/api/POST/Study/Survey/CreateCompletedSurvey');
     await http.post(url, headers: POSTheader, body: {
       'surveyid': surveyid.toString(),
       'userid': userid.toString(),
       'date': DateTime.now().toIso8601String(),
-      'trialid': trialid.toString()
+      'studyid': studyid.toString()
     });
+
 
     Future.delayed(const Duration(milliseconds: 1500), () async {
       Navigator.of(context).pop();
@@ -234,10 +246,8 @@ class _QuestionnaireScreenState extends ConsumerState<QuestionnaireScreen> {
                             top: 0, left: 24, right: 24, bottom: 24),
                         child: GestureDetector(
                           onTap: () async {
-                            setState(() {
-                              isloading = true;
-                            });
-                            await SaveData(e['sectionid']);
+                           
+                            // await SaveData(e['sectionid']);
                             questionnaireViewmodel.updateIndex(
                                 questionnaireViewmodel.selectedIndex + 1);
                           },
@@ -316,7 +326,7 @@ class _QuestionnaireScreenState extends ConsumerState<QuestionnaireScreen> {
     }
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

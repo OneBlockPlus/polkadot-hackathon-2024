@@ -9,6 +9,11 @@ export default async function handler(req, res) {
 	
 	let userdetails = await ReadContractByQuery(api, signerAddress, getQuery(contract,"getUserDetails"), [Number(req.query.userid)]);
 	let fhir_element = await ReadContractByQuery(api, signerAddress, getQuery(contract,"_fhirMap"), [Number(userdetails[6])]);
+	
+	var bDate = new Date(fhir_element.birthDate);
+	var nDate =new Date()
+	let currentAge = nDate.getFullYear()- bDate.getFullYear();
+
 	var newFhir = {
 		id: Number(fhir_element.userId),
 		family_name: fhir_element.familyName,
@@ -16,9 +21,11 @@ export default async function handler(req, res) {
 		identifier: fhir_element.identifier,
 		phone: fhir_element.phone,
 		gender: fhir_element.gender,
+		birth_date: fhir_element.birthDate,
+		age:currentAge,
 		about: fhir_element.about,
 		patient_id: fhir_element.patientId,
-		privatekey: userdetails[4] + "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+		walletaddress: userdetails[4] ,
 		image: fhir_element.image,
 		credits: fhir_element.credits
 	};

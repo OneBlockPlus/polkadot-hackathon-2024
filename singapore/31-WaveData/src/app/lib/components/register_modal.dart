@@ -8,6 +8,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:wavedata/components/data_edit_item.dart';
+import 'package:wavedata/components/data_edit_date_item.dart';
+import 'package:wavedata/model/airtable_api.dart';
 
 class RegisterModal extends StatefulWidget {
   @override
@@ -17,9 +19,11 @@ class RegisterModal extends StatefulWidget {
 class RegisterApp extends State<RegisterModal> {
   TextEditingController fullnameTXT = new TextEditingController();
   TextEditingController emailTXT = new TextEditingController();
+  TextEditingController dateTXT = new TextEditingController();
   TextEditingController passwordTXT = new TextEditingController();
   TextEditingController ConPassTXT = new TextEditingController();
   bool isLoading = false;
+  String baseURL=  'http://127.0.0.1:3000';
   var POSTheader = {
     "Accept": "application/json",
     "Content-Type": "application/x-www-form-urlencoded"
@@ -27,16 +31,17 @@ class RegisterApp extends State<RegisterModal> {
 
   Future<void> RegisterAccount() async {
     var url = Uri.parse(
-        'https://wavedata-polkadot-singapore-api.onrender.com/api/GET/checkEmail?email=${Uri.encodeComponent(emailTXT.text)}');
+        '${baseURL}/api/GET/checkEmail?email=${Uri.encodeComponent(emailTXT.text)}');
     final response = await http.get(url);
     var responseData = json.decode(response.body);
     if (responseData['value'] == "False") {
       var urlReg = Uri.parse(
-          'https://wavedata-polkadot-singapore-api.onrender.com/api/POST/Register');
+          '${baseURL}/api/POST/Register');
       await http.post(urlReg, headers: POSTheader, body: {
         'fullname': fullnameTXT.text,
         'email': emailTXT.text,
-        'password': passwordTXT.text
+        'password': passwordTXT.text,
+        "birth_date": dateTXT.text,
       });
 
       Navigator.pop(context);
@@ -50,7 +55,7 @@ class RegisterApp extends State<RegisterModal> {
     return Material(
       child: CupertinoPageScaffold(
         child: Container(
-          height: 450,
+          height: 560,
           width: 400,
           child: Column(
             children: [
@@ -67,6 +72,11 @@ class RegisterApp extends State<RegisterModal> {
                 margin: EdgeInsets.only(left: 24, right: 24),
                 child:
                     DataEditItem(label: "Full Name", controller: fullnameTXT),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 24, right: 24),
+                child: DataEditDateItem(
+                    label: "Date Of Birth", controller: dateTXT),
               ),
               Container(
                 margin: EdgeInsets.only(left: 24, right: 24),
