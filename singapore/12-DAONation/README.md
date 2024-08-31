@@ -74,3 +74,14 @@ Password: 12345678
 3. **Aleksey Petrov:** petrov4003@gmail.com
 4. **Elia Zia:** zialia5405@gmail.com
 5. **Sofia Dippel:** sd.kr402@outlook.com
+
+
+
+# Integrated Pallets/Frame for Parachain
+1. [Daos/Charity](./src/daonation-parachain/frame/daos)
+2. [Events](./src/daonation-parachain/frame/events)
+3. [Feeds](./src/daonation-parachain/frame/feeds)
+4. [Goals](./src/daonation-parachain/frame/goals)
+5. [Ideas](./src/daonation-parachain/frame/ideas)
+6. [Users](./src/daonation-parachain/frame/users)
+
