@@ -41,7 +41,7 @@ export default function CreateStudyModal({show, onHide}) {
 		createBTN.children[1].innerText = "";
 		createBTN.disabled = true;
 		try {
-			await sendTransaction(api, signerAddress, "CreateStudy", [Number(Cookies.get("userid")), image.value, title.value, description.value, JSON.stringify(permissionData), 0, 0, parseInt(budget.value)])
+			await sendTransaction(api, signerAddress, "CreateStudy", [Number(Cookies.get("userid")), image.value, title.value, description.value, JSON.stringify(permissionData), 0, 0, ( parseInt(budget.value) * 1e18).toFixed(0)])
 			notificationSuccess.style.display = "block";
 			createBTN.children[0].classList.add("hidden");
 			createBTN.children[1].innerText = "Create Study";

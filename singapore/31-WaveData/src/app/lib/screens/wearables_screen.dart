@@ -27,14 +27,51 @@ class _WearablesScreenState extends ConsumerState<WearablesScreen> {
     GetAccountData();
   }
 
-  int userid = 0;
+String domain = "http://localhost:3000";
+  String userid = "";
   String AccountTokenAddress = "";
   bool hasDevice = false;
-  var allDevices = [];
-  List<ChartData> chartDataBlood = [];
-  List<ChartData> chartDataSleep = [];
-  List<ChartData> chartDataCalories = [];
-  List<ChartData> chartDataSteps = [];
+  var allDevices = "";
+  List<ChartData> chartDataBlood = [
+    ChartData("1/8/2024", 23),
+    ChartData("2/8/2024", 55),
+    ChartData("3/8/2024", 76),
+    ChartData("4/8/2024", 33),
+    ChartData("5/8/2024", 55),
+    ChartData("6/8/2024", 99),
+    ChartData("7/8/2024", 88),
+    ChartData("8/8/2024", 87)
+  ];
+  List<ChartData> chartDataSleep = [
+    ChartData("1/8/2024", 445),
+    ChartData("2/8/2024", 656),
+    ChartData("3/8/2024", 443),
+    ChartData("4/8/2024", 787),
+    ChartData("5/8/2024", 834),
+    ChartData("6/8/2024", 590),
+    ChartData("7/8/2024", 776),
+    ChartData("8/8/2024", 589)
+  ];
+  List<ChartData> chartDataCalories = [
+    ChartData("1/8/2024", 67),
+    ChartData("2/8/2024", 78),
+    ChartData("3/8/2024", 89),
+    ChartData("4/8/2024", 98),
+    ChartData("5/8/2024", 78),
+    ChartData("6/8/2024", 90),
+    ChartData("7/8/2024", 78),
+    ChartData("8/8/2024", 89)
+  ];
+  List<ChartData> chartDataSteps = [
+    ChartData("1/8/2024", 76),
+    ChartData("2/8/2024", 54),
+    ChartData("3/8/2024", 34),
+    ChartData("4/8/2024", 90),
+    ChartData("5/8/2024", 67),
+    ChartData("6/8/2024", 54),
+    ChartData("7/8/2024", 67),
+    ChartData("8/8/2024", 45)
+  ];
   String durationToString(int minutes) {
     var d = Duration(minutes: minutes);
     List<String> parts = d.toString().split(':');
@@ -45,28 +82,28 @@ class _WearablesScreenState extends ConsumerState<WearablesScreen> {
     // Obtain shared preferences.
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      userid = int.parse(prefs.getString("userid").toString());
+      userid = (prefs.getString("userid").toString());
     });
     await GetTokenAddress();
-    this.allDevices = await GetDevices();
   }
 
   Future<void> GetTokenAddress() async {
-    var url = Uri.parse(
-        'https://wavedata-polkadot-singapore-api.onrender.com/api/GET/getUserDetails?userid=${userid}');
-    final response = await http.get(url);
-    var responseData = json.decode(response.body);
+    // var url = Uri.parse(
+    //     domain +'/api/GET/getUserDetails?userid=1');
+    // final response = await http.get(url);
+    // var responseData = json.decode(response.body);
 
-    var dataUD = (responseData['value']);
+    // var dataUD = (responseData['value']);
 
-    setState(() {
-      AccountTokenAddress = dataUD['accessToken'];
-    });
+    // setState(() {
+    //   AccountTokenAddress = dataUD['accessToken'];
+    //   print(AccountTokenAddress);
+    // });
   }
 
   Future<void> generateLoginLink() async {
     var url = Uri.parse(
-        'https://wavedata-polkadot-singapore-api.onrender.com/api/GET/Wearable/getSourceLink?userid=${userid}');
+        domain + '/api/GET/Wearable/getSourceLink?userid=1');
     final response = await http.get(url);
     var responseData = json.decode(response.body);
 
@@ -77,9 +114,15 @@ class _WearablesScreenState extends ConsumerState<WearablesScreen> {
 
   Future<void> GetBloodRate() async {
     chartDataBlood = [];
-    // 'https://wavedata-polkadot-singapore-api.onrender.com/api/GET/Wearable/customAPI?userid=${userid}&url=https://api.und-gesund.de/v5/dailyDynamicValues&token=${this.AccountTokenAddress}&body_startDay=${(new DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day - 9)).toLocal()}&body_endDay=${(new DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day - 3)).toLocal()}&body_valueTypes=3001');
+    // 'http://localhost:8080/api/GET/Wearable/customAPI?userid=${userid}&url=https://api.und-gesund.de/v5/dailyDynamicValues&token=${this.AccountTokenAddress}&body_startDay=${(new DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day - 9)).toLocal()}&body_endDay=${(new DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day - 3)).toLocal()}&body_valueTypes=3001');
+
+    var startDate = DateFormat('yyyy-MM-dd').format(new DateTime(
+        DateTime.now().year, DateTime.now().month, DateTime.now().day - 7));
+    var endDate = DateFormat('yyyy-MM-dd').format(new DateTime(
+        DateTime.now().year, DateTime.now().month, DateTime.now().day - 1));
+
     var url = Uri.parse(
-        'https://wavedata-polkadot-singapore-api.onrender.com/api/GET/Wearable/customAPI?userid=${userid}&url=https://api.und-gesund.de/v5/dailyDynamicValues&token=${this.AccountTokenAddress}&body_startDay=${(new DateTime(2023, 01, 11)).toLocal()}&body_endDay=${(new DateTime(2023, 01, 17)).toLocal()}&body_valueTypes=3001');
+        domain + '/api/GET/Wearable/customAPI?userid=${userid}&url=https://api.und-gesund.de/v5/dailyDynamicValues&token=${this.AccountTokenAddress}&body_startDay=${startDate}&body_endDay=${endDate}&body_valueTypes=3001');
     final response = await http.get(url);
     var responseData = json.decode(response.body);
     var parsed = json.decode(responseData['value']);
@@ -109,13 +152,16 @@ class _WearablesScreenState extends ConsumerState<WearablesScreen> {
     setState(() {
       chartDataSleep = [];
     });
-    // var startDate = DateFormat('yyyy-MM-dd').format(new DateTime(
-    //     DateTime.now().year, DateTime.now().month, DateTime.now().day - 10));
-    // var endDate = DateFormat('yyyy-MM-dd').format(new DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1));
-    var startDate = DateFormat('yyyy-MM-dd').format(new DateTime(2023, 01, 11));
-    var endDate = DateFormat('yyyy-MM-dd').format(new DateTime(2023, 01, 17));
+    var startDate = DateFormat('yyyy-MM-dd').format(new DateTime(
+        DateTime.now().year, DateTime.now().month, DateTime.now().day - 7));
+    var endDate = DateFormat('yyyy-MM-dd').format(new DateTime(
+        DateTime.now().year, DateTime.now().month, DateTime.now().day - 1));
+    // var startDate = DateFormat('yyyy-MM-dd').format(new DateTime(2023, 01, 11));
+    // var endDate = DateFormat('yyyy-MM-dd').format(new DateTime(2023,01, 17));
+    // var url = Uri.parse(
+    //      domain + '/api/GET/Wearable/customAPI?userid=${userid}&url=https://api.und-gesund.de/v5/dailyDynamicValues&token=${this.AccountTokenAddress}&body_startDay=${startDate}&body_endDay=${endDate}&body_valueTypes=2002,2003,2005');
     var url = Uri.parse(
-        'https://wavedata-polkadot-singapore-api.onrender.com/api/GET/Wearable/customAPI?userid=${userid}&url=https://api.und-gesund.de/v5/dailyDynamicValues&token=${this.AccountTokenAddress}&body_startDay=${startDate}&body_endDay=${endDate}&body_valueTypes=2002,2003,2005');
+         domain + '/api/GET/Wearable/customAPI?userid=${userid}&url=https://api.und-gesund.de/v5/dailyDynamicValues&token=${this.AccountTokenAddress}&body_startDay=${startDate}&body_endDay=${endDate}&body_valueTypes=2001');
     final response = await http.get(url);
     var responseData = json.decode(response.body);
     var parsed = json.decode(responseData['value']);
@@ -151,12 +197,14 @@ class _WearablesScreenState extends ConsumerState<WearablesScreen> {
     setState(() {
       chartDataSteps = [];
     });
-    // var startDate = DateFormat('yyyy-MM-dd').format(new DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day - 9));
-    // var endDate = DateFormat('yyyy-MM-dd').format(new DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day - 3));
-    var startDate = DateFormat('yyyy-MM-dd').format(new DateTime(2023, 01, 11));
-    var endDate = DateFormat('yyyy-MM-dd').format(new DateTime(2023, 01, 17));
+    var startDate = DateFormat('yyyy-MM-dd').format(new DateTime(
+        DateTime.now().year, DateTime.now().month, DateTime.now().day - 7));
+    var endDate = DateFormat('yyyy-MM-dd').format(new DateTime(
+        DateTime.now().year, DateTime.now().month, DateTime.now().day - 1));
+    // var startDate = DateFormat('yyyy-MM-dd').format(new DateTime(2023, 01, 11));
+    // var endDate = DateFormat('yyyy-MM-dd').format(new DateTime(2023,01,17));
     var url = Uri.parse(
-        'https://wavedata-polkadot-singapore-api.onrender.com/api/GET/Wearable/customAPI?userid=${userid}&url=https://api.und-gesund.de/v5/dailyDynamicValues&token=${this.AccountTokenAddress}&body_startDay=${startDate}&body_endDay=${endDate}&body_valueTypes=1000');
+         domain + '/api/GET/Wearable/customAPI?userid=${userid}&url=https://api.und-gesund.de/v5/dailyDynamicValues&token=${this.AccountTokenAddress}&body_startDay=${startDate}&body_endDay=${endDate}&body_valueTypes=1000');
     final response = await http.get(url);
     var responseData = json.decode(response.body);
     var parsed = json.decode(responseData['value']);
@@ -175,12 +223,14 @@ class _WearablesScreenState extends ConsumerState<WearablesScreen> {
     setState(() {
       chartDataCalories = [];
     });
-    // var startDate = DateFormat('yyyy-MM-dd').format(new DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day - 9));
-    // var endDate = DateFormat('yyyy-MM-dd').format(new DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day - 3));
-    var startDate = DateFormat('yyyy-MM-dd').format(new DateTime(2023, 01, 11));
-    var endDate = DateFormat('yyyy-MM-dd').format(new DateTime(2023, 01, 17));
+    var startDate = DateFormat('yyyy-MM-dd').format(new DateTime(
+        DateTime.now().year, DateTime.now().month, DateTime.now().day - 7));
+    var endDate = DateFormat('yyyy-MM-dd').format(new DateTime(
+        DateTime.now().year, DateTime.now().month, DateTime.now().day - 1));
+    // var startDate = DateFormat('yyyy-MM-dd').format(new DateTime(2023, 01,11));
+    // var endDate = DateFormat('yyyy-MM-dd').format(new DateTime(2023,01,17));
     var url = Uri.parse(
-        'https://wavedata-polkadot-singapore-api.onrender.com/api/GET/Wearable/customAPI?userid=${userid}&url=https://api.und-gesund.de/v5/dailyDynamicValues&token=${this.AccountTokenAddress}&body_startDay=${startDate}&body_endDay=${endDate}&body_valueTypes=1010');
+         domain + '/api/GET/Wearable/customAPI?userid=${userid}&url=https://api.und-gesund.de/v5/dailyDynamicValues&token=${this.AccountTokenAddress}&body_startDay=${startDate}&body_endDay=${endDate}&body_valueTypes=1010');
     final response = await http.get(url);
     var responseData = json.decode(response.body);
     var parsed = json.decode(responseData['value']);
@@ -196,23 +246,26 @@ class _WearablesScreenState extends ConsumerState<WearablesScreen> {
   }
 
   Future<dynamic> GetDevices() async {
-    var url = Uri.parse(
-        'https://wavedata-polkadot-singapore-api.onrender.com/api/GET/Wearable/customAPI?userid=${userid}&url=https://api.und-gesund.de/v5/userInformation&token=${this.AccountTokenAddress}');
-    final response = await http.get(url);
-    var responseData = json.decode(response.body);
+    // var url = Uri.parse(
+    //      domain + '/api/GET/Wearable/customAPI?userid=${userid}&url=https://api.und-gesund.de/v5/userInformation&token=${this.AccountTokenAddress}');
+    // final response = await http.get(url);
+    // var responseData = json.decode(response.body);
     setState(() {
-      if (json.decode(responseData['value'])[0]['devices'].length > 0) {
-        hasDevice = true;
-        GetBloodRate();
-        GetSleepData();
-        GetStepsData();
-        GetCaloriesData();
-      } else {
-        hasDevice = false;
-      }
+      // if (json.decode(responseData['value'])[0]['devices'].length > 0) {
+      //   hasDevice = true;
+      //   GetBloodRate();
+      //   GetSleepData();
+      //   GetStepsData();
+      //   GetCaloriesData();
+      // } else {
+      //   hasDevice = false;
+      // }
+      //Hard Coded
+      hasDevice = true;
     });
 
-    return json.decode(responseData['value'])[0]['devices'];
+      return "Sense 2";
+    // return json.decode(responseData['value'])[0]['devices'];
   }
 
   @override
@@ -252,7 +305,7 @@ class _WearablesScreenState extends ConsumerState<WearablesScreen> {
                   )
                 ],
               ))),
-      backgroundColor: Colors.white,
+      backgroundColor:Colors.white,
       body: SingleChildScrollView(
           child: Padding(
         padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
@@ -313,9 +366,9 @@ class _WearablesScreenState extends ConsumerState<WearablesScreen> {
                 ),
                 child: Align(
                   alignment: AlignmentDirectional(0, 0),
-                  child: allDevices.length > 0
+                  child: !allDevices.isEmpty 
                       ? Text(
-                          allDevices[0]['deviceName'],
+                          allDevices,
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.white),
                         )
@@ -331,10 +384,12 @@ class _WearablesScreenState extends ConsumerState<WearablesScreen> {
                       SfCartesianChart(
                         primaryXAxis: CategoryAxis(
                           axisLabelFormatter: (AxisLabelRenderDetails args) {
-                            late String text;
-                            text = DateFormat('E')
-                                .format(DateTime.parse(args.text.toString()));
-                            return ChartAxisLabel(text, args.textStyle);
+                            // late String text;
+                            // text = DateFormat('E')
+                            //     .format(DateTime.parse(args.text.toString()));
+                            // return ChartAxisLabel(text, args.textStyle);
+                            return ChartAxisLabel(args.text.toString(),
+                                args.textStyle); //Hard Coded
                           },
                         ),
                         series: <ChartSeries>[
@@ -349,23 +404,32 @@ class _WearablesScreenState extends ConsumerState<WearablesScreen> {
                                   DataLabelSettings(isVisible: true),
                               markerSettings: MarkerSettings(isVisible: true))
                         ],
-                        title: ChartTitle(text: "Weekly Blood Rate"),
+                        title: ChartTitle(text: "Weekly Heart Rate"),
                         tooltipBehavior: TooltipBehavior(enable: true),
                         onTooltipRender: (TooltipArgs args) {
-                          args.header = DateFormat('yMMMEd').format(
-                              DateTime.parse(args
-                                  .dataPoints![args.pointIndex!.toInt()].x));
+                          //Hard Coded
+                          args.header =
+                              (args.dataPoints![args.pointIndex!.toInt()].x);
                           args.text =
-                              '${DateFormat('EEEE').format(DateTime.parse(args.dataPoints![args.pointIndex!.toInt()].x))} : ${args.dataPoints![args.pointIndex!.toInt()].y}';
+                              '${args.dataPoints![args.pointIndex!.toInt()].x} : ${args.dataPoints![args.pointIndex!.toInt()].y}';
+
+                          // args.header = DateFormat('yMMMEd').format(
+                          //     DateTime.parse(args
+                          //         .dataPoints![args.pointIndex!.toInt()].x));
+                          // args.text =
+                          //     '${DateFormat('EEEE').format(DateTime.parse(args.dataPoints![args.pointIndex!.toInt()].x))} : ${args.dataPoints![args.pointIndex!.toInt()].y}';
                         },
                       ),
                       SfCartesianChart(
                         primaryXAxis: CategoryAxis(
                           axisLabelFormatter: (AxisLabelRenderDetails args) {
-                            late String text;
-                            text = DateFormat('E')
-                                .format(DateTime.parse(args.text.toString()));
-                            return ChartAxisLabel(text, args.textStyle);
+                            // late String text;
+                            // text = DateFormat('E')
+                            //     .format(DateTime.parse(args.text.toString()));
+                            // return ChartAxisLabel(text, args.textStyle);
+
+                            return ChartAxisLabel(args.text.toString(),
+                                args.textStyle); //Hard Coded
                           },
                         ),
                         primaryYAxis: NumericAxis(
@@ -394,11 +458,17 @@ class _WearablesScreenState extends ConsumerState<WearablesScreen> {
                         title: ChartTitle(text: "Weekly Sleep Duration"),
                         tooltipBehavior: TooltipBehavior(enable: true),
                         onTooltipRender: (TooltipArgs args) {
-                          args.header = DateFormat('yMMMEd').format(
-                              DateTime.parse(args
-                                  .dataPoints![args.pointIndex!.toInt()].x));
+                          //Hard Coded
+                          args.header =
+                              (args.dataPoints![args.pointIndex!.toInt()].x);
                           args.text =
-                              '${DateFormat('EEEE').format(DateTime.parse(args.dataPoints![args.pointIndex!.toInt()].x))} : ${args.dataPoints![args.pointIndex!.toInt()].y}';
+                              '${args.dataPoints![args.pointIndex!.toInt()].x} : ${args.dataPoints![args.pointIndex!.toInt()].y}';
+
+                          // args.header = DateFormat('yMMMEd').format(
+                          //     DateTime.parse(args
+                          //         .dataPoints![args.pointIndex!.toInt()].x));
+                          // args.text =
+                          //     '${DateFormat('EEEE').format(DateTime.parse(args.dataPoints![args.pointIndex!.toInt()].x))} : ${args.dataPoints![args.pointIndex!.toInt()].y}';
                         },
                         onDataLabelRender: (args) {
                           args.text = durationToString(int.parse(args.text));
@@ -407,10 +477,13 @@ class _WearablesScreenState extends ConsumerState<WearablesScreen> {
                       SfCartesianChart(
                         primaryXAxis: CategoryAxis(
                           axisLabelFormatter: (AxisLabelRenderDetails args) {
-                            late String text;
-                            text = DateFormat('E')
-                                .format(DateTime.parse(args.text.toString()));
-                            return ChartAxisLabel(text, args.textStyle);
+                            // late String text;
+                            // text = DateFormat('E')
+                            //     .format(DateTime.parse(args.text.toString()));
+                            // return ChartAxisLabel(text, args.textStyle);
+
+                            return ChartAxisLabel(args.text.toString(),
+                                args.textStyle); //Hard Coded
                           },
                         ),
                         primaryYAxis: NumericAxis(),
@@ -433,49 +506,19 @@ class _WearablesScreenState extends ConsumerState<WearablesScreen> {
                         title: ChartTitle(text: "Weekly Steps"),
                         tooltipBehavior: TooltipBehavior(enable: true),
                         onTooltipRender: (TooltipArgs args) {
-                          args.header = DateFormat('yMMMEd').format(
-                              DateTime.parse(args
-                                  .dataPoints![args.pointIndex!.toInt()].x));
+                          //Hard Coded
+                          args.header =
+                              (args.dataPoints![args.pointIndex!.toInt()].x);
                           args.text =
-                              '${DateFormat('EEEE').format(DateTime.parse(args.dataPoints![args.pointIndex!.toInt()].x))} : ${args.dataPoints![args.pointIndex!.toInt()].y}';
+                              '${args.dataPoints![args.pointIndex!.toInt()].x} : ${args.dataPoints![args.pointIndex!.toInt()].y}';
+
+                          // args.header = DateFormat('yMMMEd').format(
+                          //     DateTime.parse(args
+                          //         .dataPoints![args.pointIndex!.toInt()].x));
+                          // args.text =
+                          //     '${DateFormat('EEEE').format(DateTime.parse(args.dataPoints![args.pointIndex!.toInt()].x))} : ${args.dataPoints![args.pointIndex!.toInt()].y}';
                         },
                       ),
-                      SfCartesianChart(
-                        primaryXAxis: CategoryAxis(
-                          axisLabelFormatter: (AxisLabelRenderDetails args) {
-                            late String text;
-                            text = DateFormat('E')
-                                .format(DateTime.parse(args.text.toString()));
-                            return ChartAxisLabel(text, args.textStyle);
-                          },
-                        ),
-                        primaryYAxis: NumericAxis(),
-                        series: <ChartSeries>[
-                          // Renders line chart
-                          ColumnSeries<ChartData, String>(
-                              color: Color.fromARGB(255, 63, 221, 253),
-                              dataSource: chartDataCalories,
-                              xValueMapper: (ChartData data, _) =>
-                                  data.x as String,
-                              yValueMapper: (ChartData data, _) {
-                                return data.y;
-                              },
-                              dataLabelSettings: const DataLabelSettings(
-                                  isVisible: true,
-                                  textStyle: TextStyle(fontSize: 10)),
-                              name: 'Weekly Calories Burned',
-                              markerSettings: MarkerSettings(isVisible: true))
-                        ],
-                        title: ChartTitle(text: "Weekly Calories Burned"),
-                        tooltipBehavior: TooltipBehavior(enable: true),
-                        onTooltipRender: (TooltipArgs args) {
-                          args.header = DateFormat('yMMMEd').format(
-                              DateTime.parse(args
-                                  .dataPoints![args.pointIndex!.toInt()].x));
-                          args.text =
-                              '${DateFormat('EEEE').format(DateTime.parse(args.dataPoints![args.pointIndex!.toInt()].x))} : ${args.dataPoints![args.pointIndex!.toInt()].y}';
-                        },
-                      )
                     ])
                   : Text("")
             ])),

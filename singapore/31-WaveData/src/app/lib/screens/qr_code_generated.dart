@@ -50,7 +50,7 @@ class QRgeneratedScreen extends StatelessWidget {
                 ],
               ))),
       
-      backgroundColor: Colors.white,
+      backgroundColor:Colors.white,
       body: SingleChildScrollView(
         child: Container(
           width: size.width,

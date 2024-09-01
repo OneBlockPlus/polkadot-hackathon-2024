@@ -202,7 +202,7 @@ function SurveyDetails() {
 				description: study_element.description,
 				contributors: Number(study_element.contributors),
 				audience: Number(study_element.audience),
-				budget: Number(study_element.budget)
+				budget: window.ParseBigNum(study_element.budget)
 			};
 
 			setSTUDY_DATA(newStudy);
@@ -224,7 +224,7 @@ function SurveyDetails() {
 				description: survey_element.description,
 				date: survey_element.date,
 				image: survey_element.image,
-				reward: Number(survey_element.reward),
+				reward: window.ParseBigNum(survey_element.reward),
 				submission: Number(survey_element?.submission)
 			};
 			setSURVEY_DATA(new_survey);

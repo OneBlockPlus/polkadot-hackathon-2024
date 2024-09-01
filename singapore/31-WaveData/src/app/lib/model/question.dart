@@ -7,6 +7,7 @@ class Question {
   String QuestionType2;
   String content;
   String Answer;
+  List<String>? AnswerOptions;
 
   Question({
     required this.id,
@@ -15,6 +16,7 @@ class Question {
     required this.QuestionType2,
     required this.content,
     required this.Answer,
+    this.AnswerOptions,
   });
 
   Question copyWith({
@@ -24,6 +26,7 @@ class Question {
     String? QuestionType2,
     String? content,
     String? Answer,
+    List<String>? AnswerOptions,
   }) {
     return Question(
         id: id ?? this.id,
@@ -31,7 +34,8 @@ class Question {
         QuestionType: QuestionType ?? this.QuestionType,
         QuestionType2: QuestionType2 ?? this.QuestionType2,
         content: content ?? this.content,
-        Answer: Answer ?? this.Answer);
+        Answer: Answer ?? this.Answer,
+        AnswerOptions: AnswerOptions ?? this.AnswerOptions);
   }
 
   Map<String, dynamic> toMap() {
@@ -52,7 +56,8 @@ class Question {
         QuestionType: map['QuestionType'] ?? '',
         QuestionType2: map['QuestionType2'] ?? '',
         content: map['content'] ?? '',
-        Answer: map['Answer'] ?? "");
+        Answer: map['Answer'] ?? "",
+        AnswerOptions: map['AnswerOptions'] ?? []);
   }
 
   String toJson() => json.encode(toMap());

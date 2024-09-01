@@ -10,7 +10,7 @@ import { web3Enable, isWeb3Injected, web3Accounts } from "@polkadot/extension-da
 
 
 const WS_PROVIDER = "wss://rpc.shibuya.astar.network"; // shibuya
-const CONTRACT_ADDRESS = "bZdK8cHsc6SXqJ3xzn4T6t4sNXvBkrxJavDKJdwL2oKwSXm"
+const CONTRACT_ADDRESS = "WtrZb7krkFMHiQSsPjUJ8ReFaAkyoKe5TiKroGdURe2A26d"
 export default function useContract() {
 	const [contractInstance, setContractInstance] = useState({
 		api: null,
@@ -57,6 +57,7 @@ export default function useContract() {
 					contract.signerAddress = injectedAccounts[0].address;
 					window.AddressPolkadot = injectedAccounts[0].address;
 					window.contract = contract.contract;
+				
 					setContractInstance(contract);
 				} catch (error) {
 					console.error(error);
@@ -68,7 +69,7 @@ export default function useContract() {
 	}, []);
 
 
-	async function sendTransaction(api, signerAddress, method, args = []) {
+	async function sendTransaction(api, signerAddress, method, args = [],value=0) {
 		let tx = getTX(method);
 		let query = getQuery(method);
 		let gasLimit;
@@ -90,7 +91,8 @@ export default function useContract() {
 
 		const sendTX = new Promise(function executor(resolve) {
 			tx({
-				gasLimit: gasLimit
+				gasLimit: gasLimit,
+				value:value
 			},
 				...args)
 				.signAndSend(signerAddress, async (res) => {
@@ -163,3 +165,4 @@ export default function useContract() {
 
 	return contractInstance;
 }
+window.ParseBigNum = (num)=> Number(num.replaceAll(",",""))/1e18

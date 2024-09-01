@@ -13,9 +13,9 @@ class FeelingScreen extends ConsumerWidget {
     var size = MediaQuery.of(context).size;
 
     var feelingViewmodel = ref.watch(feelingProvider);
-
+//rgba(253, 249, 242, 1)
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor:Colors.white,
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

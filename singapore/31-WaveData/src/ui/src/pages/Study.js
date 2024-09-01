@@ -42,7 +42,7 @@ function Studies() {
 					description: study_element.description,
 					contributors: Number(study_element.contributors),
 					audience: Number(allAudiences.length),
-					budget: Number(study_element.budget),
+					budget: window.ParseBigNum(study_element.budget) ,
 					rewardtype: study_element.rewardType
 				};
 				arr.push(newStudy)

@@ -43,7 +43,7 @@ class GetReadyScreen extends StatelessWidget {
               //width: 400,
               margin: EdgeInsets.only(top: 24, left: 24, bottom: 24),
               child: Text(
-                'To contribute to medical trials please connect your medical data.',
+                'To contribute to medical studies please connect your medical data.',
                 style:
                  GoogleFonts.getFont('Lexend Deca',  fontSize: 16,color: Color(0xFF423838),letterSpacing: 0.5,fontWeight: FontWeight.w400)
               ),

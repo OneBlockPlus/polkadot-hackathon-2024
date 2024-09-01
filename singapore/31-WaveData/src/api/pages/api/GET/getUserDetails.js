@@ -15,7 +15,8 @@ export default async function handler(req, res) {
     id: Number(req.query.userid),
     image: details_element[0],
     credits: Number(details_element[1]),
-    accessToken:details_element[5]
+    accessToken:details_element[5],
+    walletAddress:details_element[4]
   };
 
   res.status(200).json({ value: newUser })

@@ -24,7 +24,7 @@ export default function UpdateSurveyModal({
         updateBTN.children[1].innerText = ""
         updateBTN.disabled = true;
         try {
-            await sendTransaction(api, signerAddress, "UpdateSurvey", [parseInt(id), name.value, description.value, image.value, Number(reward.value)]);
+            await sendTransaction(api, signerAddress, "UpdateSurvey", [parseInt(id), name.value, description.value, image.value, (Number(reward.value) * 1e18).toFixed(0)]);
             notificationSuccess.style.display = "block";
             updateBTN.children[0].classList.add("hidden")
             updateBTN.children[1].innerText = "Update Survey"
@@ -55,7 +55,7 @@ export default function UpdateSurveyModal({
                     description: survey_element.description,
                     date: survey_element.date,
                     image: survey_element.image,
-                    reward: Number(survey_element.reward),
+                    reward: window.ParseBigNum(survey_element.reward),
                     submission: Number(survey_element?.submission)
                 };
                 document.getElementById("updatename").value = new_survey.name

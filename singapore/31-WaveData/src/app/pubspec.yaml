@@ -34,22 +34,29 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  flutter_svg:
-  modal_bottom_sheet:
-  flutter_riverpod:
-  http:
-  percent_indicator:
-  flutter_staggered_grid_view:
+  flutter_svg: 0.23.0+1
+  modal_bottom_sheet: 2.0.1
+  bubble: ^1.1.9+1
+  flutter_riverpod: ^1.0.3
+  http: 0.13.4
+  percent_indicator: 4.0.0
+  flutter_staggered_grid_view: 0.6.1
   shared_preferences: ^2.0.13
-  image_picker:
-  get:
-  google_fonts:
-  jiffy:
-  path_provider: 
-  qr_flutter: 
-  barcode_scan_fix: 
-  syncfusion_flutter_charts:
-  intl: 
+  image_picker: 0.8.5
+  dropdown_button2: ^2.0.1
+  get: 4.6.1
+  google_fonts:  3.0.1
+  jiffy: ^4.1.0
+  path_provider:  2.0.9
+  qr_flutter: 4.0.0
+  syncfusion_flutter_charts: 20.3.49
+  intl: 0.17.0
+  flutter_html: ^2.2.1
+  youtube_player_flutter: ^8.1.2
+  dio: ^4.0.0
+  signature: ^4.0.0
+  flutter_hooks: ^0.18.6
+  hooks_riverpod: ^1.0.3
   url_launcher:
 
 dev_dependencies:

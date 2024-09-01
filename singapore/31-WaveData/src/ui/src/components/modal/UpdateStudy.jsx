@@ -24,7 +24,7 @@ export default function UpdateStudyModal({
         updateBTN.disabled = true;
 
         try {
-            await sendTransaction(api,signerAddress, "UpdateStudy",[Number(id),image.value,title.value,description.value, parseInt(budget.value)]);
+            await sendTransaction(api,signerAddress, "UpdateStudy",[Number(id),image.value,title.value,description.value, (parseInt(budget.value) * 1e18).toFixed(0)]);
             
             notificationSuccess.style.display = "block";
             updateBTN.children[0].classList.add("hidden")
@@ -56,7 +56,7 @@ export default function UpdateStudyModal({
                     description: study_element.description,
                     contributors: Number(study_element.contributors),
                     audience: Number(study_element.audience),
-                    budget: Number(study_element.budget)
+                    budget: window.ParseBigNum(study_element.budget) 
                 };
                 document.getElementById("updatetitle").value = newStudy.title
                 document.getElementById("updatedescription").value = newStudy.description

@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import "./StudyDetails.css";
 import CreateSurveyModal from "../components/modal/CrateSurvey.jsx";
 import useContract from "../services/useContract";
+import { useDBContext } from "../contextx/DBContext.js";
 
 import UpdateStudyModal from "../components/modal/UpdateStudy.jsx";
 import ViewControbutiors from "../components/modal/ViewControbutiors.jsx";
@@ -14,6 +15,7 @@ function StudyDetails() {
 
 	const params = useParams();
 	const navigate = useNavigate();
+	const {CreateSubject,UpdateSubject,base} = useDBContext();
 	const { api, contract, signerAddress, sendTransaction, ReadContractValue, ReadContractByQuery, getMessage, getQuery } = useContract();
 	const [tabIndex, setTabIndex] = useState(0);
 	const [UpdatemodalShow, setModalShow] = useState(false);
@@ -100,8 +102,8 @@ function StudyDetails() {
 	};
 	async function UpdateAgesHandle(event) {
 		DisableButton("AgeSave");
-		await sendTransaction(api,signerAddress, "UpdateStudyAges",[Number(params.id),JSON.stringify(agesData)]);
-            
+		await sendTransaction(api, signerAddress, "UpdateStudyAges", [Number(params.id), JSON.stringify(agesData)]);
+
 		EnableButton("AgeSave");
 	}
 
@@ -132,19 +134,16 @@ function StudyDetails() {
 	}
 
 	async function CreateSubjectHandle(subInfo, idx) {
-		let subject_id = await ReadContractByQuery(api, signerAddress, getQuery("_StudySubjectsIds"), []);
+		let subject_id = await CreateSubject(params.id, subInfo.subject_index_id, subInfo.title, JSON.stringify(subInfo.ages_ans));
 
-		await sendTransaction(api,signerAddress, "CreateSubject",[Number(params.id),subInfo.subject_index_id, subInfo.title, JSON.stringify(subInfo.ages_ans)]);
-            
-		
 		subjects[idx].subject_id = subject_id;
 		updateState();
 	}
 
 
 	async function UpdateSubjectHandle(subInfo) {
-		await sendTransaction(api,signerAddress, "UpdateSubject",[subInfo.subject_id, subInfo.title, JSON.stringify(subInfo.ages_ans)]);
-         
+		await UpdateSubject(subInfo.subject_id, subInfo.title, JSON.stringify(subInfo.ages_ans));
+
 	}
 
 
@@ -171,8 +170,9 @@ function StudyDetails() {
 
 	async function UpdateStudyTitleHandle() {
 		DisableButton("StudyTitleSave");
-		await sendTransaction(api,signerAddress, "CreateOrSaveStudyTitle",[Number(params.id), JSON.stringify(studyTitle.ages_ans)]);
-         
+		console.log("UpdateStudyTitleHandle");
+		await sendTransaction(api, signerAddress, "CreateOrSaveStudyTitle", [Number(params.id), JSON.stringify(studyTitle.ages_ans)]);
+
 		EnableButton("StudyTitleSave");
 	}
 
@@ -201,7 +201,7 @@ function StudyDetails() {
 		DisableButton("rewardsSave");
 
 		try {
-			await sendTransaction(api, signerAddress, "UpdateReward", [Number(parseInt(params.id)), rewardselect.value, Number(rewardprice.value), parseInt(totalspendlimit.value)]);
+			await sendTransaction(api, signerAddress, "UpdateReward", [Number(parseInt(params.id)), rewardselect.value, (Number(rewardprice.value) * 1e18).toFixed(0), (parseInt(totalspendlimit.value)* 1e18).toFixed(0)]);
 		} catch (error) {
 			console.error(error);
 		}
@@ -226,7 +226,7 @@ function StudyDetails() {
 	}
 	async function LoadStudyData() {
 
-	
+
 		let allAudiences = [];
 		try {
 			allAudiences = JSON.parse(await ReadContractByQuery(api, signerAddress, getQuery("_studyAudienceMap"), [Number(params.id)]));
@@ -244,67 +244,58 @@ function StudyDetails() {
 			setSTUDY_DATA({});
 			let study_element = await ReadContractByQuery(api, signerAddress, getQuery("_studyMap"), [Number(params.id)]);
 
-		
+
 			let allAges = [];
 			try {
-				allAges = JSON.parse(study_element.ages);
-			} catch (e) {
-				allAges = [];
-			}
+				if (study_element.ages !== '[]')
+					allAges = JSON.parse(study_element.ages);
+			} catch (e) { }
 			setAgesData(allAges)
-			
 
-			let allTitles = {ages_ans: {}};
+
+			let allTitles = { ages_ans: {} };
 			try {
-				allTitles.ages_ans = JSON.parse(study_element.titles);
-			} catch (e) {
-				allTitles = {ages_ans: {}};
-			}
-		
+				if (study_element.titles !== '[]')
+					allTitles.ages_ans = JSON.parse(study_element.titles);
+			} catch (e) { }
+
 			setStudyTitle(allTitles)
-			
-			let allAudiences  = await LoadStudyData()
+
+			let allAudiences = await LoadStudyData()
 
 
-			var newTrial = {
+			var newStudy = {
 				id: Number(study_element.studyId),
 				title: study_element.title,
 				image: study_element.image,
 				description: study_element.description,
 				contributors: Number(study_element.contributors),
 				audience: Number(allAudiences.length),
-				budget: Number(study_element.budget),
+				budget: window.ParseBigNum(study_element.budget),
 				reward_type: study_element.rewardType,
-				reward_price: Number(study_element.rewardPrice),
-				total_spending_limit: Number(study_element.totalSpendingLimit)
+				reward_price: window.ParseBigNum(study_element.rewardPrice),
+				total_spending_limit: window.ParseBigNum(study_element.totalSpendingLimit) 
 			};
-			setSTUDY_DATA(newTrial);
+			setSTUDY_DATA(newStudy);
 		}
 	}
 
 
 	async function LoadDataInformed() {
-		const totalSubjects = await ReadContractByQuery(api, signerAddress, getQuery("_StudySubjectsIds"));
-		let draft_subjects = [];
-		try {
-			for (let i = 0; i < Number(totalSubjects); i++) {
-				let subject_element = await ReadContractByQuery(api, signerAddress, getQuery("_studySubjectMap"), [i]);
+		const studyDataTable = base('study_subjects');
+		const records = await studyDataTable.select({
+			filterByFormula: `{study_id} = '${params.id}'`
+		}).firstPage();
 
 
-				var new_subject = {
-					subject_id: Number(subject_element.subject_id),
-					study_id: Number(subject_element.study_id),
-					subject_index_id: (subject_element.subject_index_id),
-					title: subject_element.title,
-					ages_ans:  JSON.parse(subject_element.ages_ans),
-				};
-				if (parseInt(params.id) === new_subject.study_id) {
-					draft_subjects.push(new_subject)
-				}
-			}
-		} catch (ex) { }
-
-		setSubjects(draft_subjects);
+		let new_subjects = [];
+		for (let i = 0; i < records.length; i++) {
+			let element = records[i].fields;
+			element['ages_ans'] = JSON.parse(element['ages_ans']);
+			element['subject_id'] = records[i].id;
+			new_subjects.push(element);
+		}
+		setSubjects(new_subjects);
 	}
 
 
@@ -424,7 +415,7 @@ function StudyDetails() {
 				let survey_data = []
 				setData([]);
 				const totalSurveys = await ReadContractByQuery(api, signerAddress, getQuery("_SurveyIds"));
-		
+
 				try {
 					for (let i = 0; i < Number(totalSurveys); i++) {
 						let survey_element = await ReadContractByQuery(api, signerAddress, getQuery("_surveyMap"), [i]);
@@ -437,7 +428,7 @@ function StudyDetails() {
 							description: survey_element.description,
 							date: survey_element.date,
 							image: survey_element.image,
-							reward: Number(survey_element.reward),
+							reward: window.ParseBigNum(survey_element.reward),
 							submission: Number(survey_element?.submission),
 							completed: {
 
@@ -630,7 +621,7 @@ function StudyDetails() {
 		let contributes = await LoadDataContributors();
 		LoadDataSurvey(contributes);
 	}
-	useEffect( () => {
+	useEffect(() => {
 		// const setDimension = () => {
 		// 	getDimension({
 		// 		dynamicWidth: window.innerWidth,
@@ -640,9 +631,9 @@ function StudyDetails() {
 
 		// window.addEventListener("resize", setDimension);
 		LoadData();
-	}, [contract,api]);
+	}, [contract, api]);
 
-	useEffect( () => {
+	useEffect(() => {
 		if (tabIndex === 4) {
 			loadOverview();
 		} else if (tabIndex === 1) {
@@ -652,7 +643,7 @@ function StudyDetails() {
 		} else if (tabIndex === 0) {
 			LoadStudyData();
 		}
-	}, [tabIndex,api]);
+	}, [tabIndex, api]);
 	return (
 		<>
 			<div style={{ zoom: screenSize.dynamicWidth < 760 ? 0.8 : 1 }} className="bg-white border border-gray-400 rounded-lg py-4 px-6 flex mb-2 items-center">
@@ -734,7 +725,7 @@ function StudyDetails() {
 							</>
 						)}
 					</div>
-					 <div className="flex items-center ml-6">
+					<div className="flex items-center ml-6">
 						<CurrencyDollarIcon className="w-5 h-5 text-gray-500" />
 						{screenSize.dynamicWidth > 760 ? (
 							<>
@@ -745,7 +736,7 @@ function StudyDetails() {
 								<p className="text-gray-500 font-semibold ml-1">{`${STUDY_DATA?.budget} ${STUDY_DATA?.reward_type}`}</p>
 							</>
 						)}
-					</div> 
+					</div>
 				</div>
 			</div>
 			<div className="bg-white border border-gray-400 rounded-lg flex mt-4">
@@ -1189,7 +1180,7 @@ function StudyDetails() {
 							<p className="text-white ml-2">Survey</p>
 						</button>
 					</div>
-					<table className="table-responsive-xl">
+					<table>
 						<thead className="border-b border-b-gray-400">
 							<tr>
 								{TABLE_COLS.map(({ id, title }) => {
@@ -1218,7 +1209,7 @@ function StudyDetails() {
 												<td className="py-3 px-3" style={{ minWidth: "20rem" }}>
 													{description.slice(0, 100)}...
 												</td>
-												<td className="py-3 px-3" style={{ minWidth: "8rem" }}>{`${reward} Points`}</td>
+												<td className="py-3 px-3" style={{ minWidth: "8rem" }}>{`${reward} SBY`}</td>
 												<td className="py-3 px-3">{`${Number(submission)}/24`}</td>
 												<td className="py-3 px-3">{date && !isNaN(new Date(date).getTime()) ? formatDistance(new Date(date), new Date(), { addSuffix: true }) : "-"}</td>
 												<td className="flex justify-end py-3">
