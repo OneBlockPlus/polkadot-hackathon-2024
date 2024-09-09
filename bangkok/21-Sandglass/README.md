@@ -2,7 +2,7 @@
 
 Sandglass is a currency mixer protocol.
 
-this project join Bifrost bounty
+this project join Acala/Bifrost bounty
 
 ## Introduction
 
