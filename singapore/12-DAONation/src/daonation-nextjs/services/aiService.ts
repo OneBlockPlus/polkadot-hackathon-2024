@@ -1,14 +1,16 @@
 import { IdeaSuggestion } from '../data-model/idea-suggestion';
+import { TemplateType } from '../data-model/template-type';
 
 export class AiService {
-  static async generateTemplate(daoDescription: string) {
+  static async generateTemplate(daoDescription: string, templateType: TemplateType) {
     const response = await fetch('/api/ai/generateTemplate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        daoDescription
+        daoDescription,
+        templateType
       })
     });
 

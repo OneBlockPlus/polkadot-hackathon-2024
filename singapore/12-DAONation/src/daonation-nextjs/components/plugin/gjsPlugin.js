@@ -89,6 +89,7 @@ export function gjsPlugin(editor) {
       },
 
       handleClick(e) {
+        console.log('YEAH?');
         e.preventDefault();
       }
     }

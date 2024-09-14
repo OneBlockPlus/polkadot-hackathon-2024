@@ -25,7 +25,7 @@ export default function Login() {
       if (isSubdomain()) {
         window.location.href = `/daos/${getCommunityBranding().polkadotReferenceId}`;
       } else {
-        window.location.href = '/joined';
+         window.location.href = '/joined';
       }
     }
   }, [isConnected, router]); // Dependency array
@@ -43,8 +43,6 @@ export default function Login() {
 
     const expiryDate = new Date();
     expiryDate.setMonth(expiryDate.getMonth() + 2);
-
-    Cookies.set('loggedin', 'true', { expires: 30, path: '/', sameSite: 'Lax' }); // covers localhost
 
     setIsConnected(true);
   }

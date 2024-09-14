@@ -1,22 +1,22 @@
-
-Demo flow
+Video demo flow
 User 1
 Start from landing page
 Login with Polkadot SDK
+Register  NEW
 Create charity (highlight Subdomain and brand colour)
-Generate charity homepage (highlight generated layout)
-Edit charity homepage (just edit a text to show edit capabilities)
-Generate a goal (use one of the suggested images)
+Edit charity homepage NEW
+Generate mission statement
+Generate charity activities
+Generate impact stories
+Generate contact information
+Edit and change the first image of the charity activities
 Create Auction Event
-Create Live Stream Event (link to live YouTube event)
 
 User 2
 Login with SubWallet
 Join charity
 Donate NFT to Auction Event
 Donate DOT to Auction Event
-Buy ticket to Live Stream Event
-Refresh page after Live Stream started and watch event
 
 User 3
 Login with Polkadot SDK
@@ -26,16 +26,25 @@ Bid on NFT on Auction Event
 User 1
 Login with Polkadot SDK
 Sell NFT to highest bidder on the Auction Event 
+Create Live Stream Event (link to live YouTube event)
+
+User 2
+Buy ticket to Live Stream Event
+Refresh page after Live Stream started and watch event
+
+User 1
+Generate a goal (use one of the suggested images)
 
 User 2
 Login with Polkadot SDK
-Go to goal and use AI suggestion for idea (highlight generated idea page)
+Go to goal and use AI suggestion to create an idea (highlight generated idea page)
 
 User 3
 Login with Polkadot SDK
-Go to idea: vote, donate and comment
+Go to the idea created by user 2
+Vote on the idea
+Donate on the idea
+Comment on the idea NEW
 
 All 3 users 
 Show profile badges and NFT collectibles
-
-

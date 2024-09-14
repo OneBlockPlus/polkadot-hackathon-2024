@@ -1,20 +1,9 @@
 import { Button } from '@heathmont/moon-core-tw';
-import Cookies from 'js-cookie';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 
 export default function Welcome() {
-  const router = useRouter();
-
-  useEffect(() => {
-    if (Cookies.get('loggedin') == 'true') {
-      router.push('/joined');
-    }
-  }, [router]);
-
   return (
     <>
       <Head>

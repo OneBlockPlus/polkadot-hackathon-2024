@@ -4,19 +4,19 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { usePolkadotContext } from '../../../../../contexts/PolkadotContext';
-import DonateCoinToEventModal from '../../../../../features/DonateCoinToEventModal';
-import DonateNFTModal from '../../../../../features/DonateNFTModal';
-import Loader from '../../../../../components/components/Loader';
+import { usePolkadotContext } from '../../contexts/PolkadotContext';
+import DonateCoinToEventModal from '../../features/DonateCoinToEventModal';
+import DonateNFTModal from '../../features/DonateNFTModal';
+import Loader from '../../components/components/Loader';
 import Link from 'next/link';
-import { Bid, NFT } from '../../../../../data-model/nft';
-import NFTCard from '../../../../../components/components/NFTCard';
-import BidHistoryModal from '../../../../../features/BidHistoryModal';
-import PlaceHigherBidModal from '../../../../../features/PlaceHigherBidModal';
-import { Dao } from '../../../../../data-model/dao';
+import { Bid, NFT } from '../../data-model/nft';
+import NFTCard from '../../components/components/NFTCard';
+import BidHistoryModal from '../../features/BidHistoryModal';
+import PlaceHigherBidModal from '../../features/PlaceHigherBidModal';
+import { Dao } from '../../data-model/dao';
 import { toast } from 'react-toastify';
-import BuyTicketModal from '../../../../../features/BuyTicketModal';
-import LivestreamEmbed from '../../../../../components/components/LivestreamEmbed';
+import BuyTicketModal from '../../features/BuyTicketModal';
+import LivestreamEmbed from '../../components/components/LivestreamEmbed';
 
 declare let window;
 export default function Events() {
@@ -46,7 +46,7 @@ export default function Events() {
     Description: '',
     Budget: '',
     End_Date: '',
-    TimeFormat: "",
+    TimeFormat: '',
     user_info: {
       fullName: '',
       id: null
@@ -57,7 +57,7 @@ export default function Events() {
     isOwner: true,
     eventType: '',
     ticketPrice: 0,
-    eventStreamUrl: "",
+    eventStreamUrl: '',
     participantsCount: 0,
     LiveStarted: false,
     status: ''
@@ -95,10 +95,9 @@ export default function Events() {
         let allEvents = await GetAllEvents();
         let eventURIFull = allEvents.filter((e) => Number(e?.eventId) === eventId)[0];
 
-        setBoughtTicket(eventURIFull.boughtTicket)
+        setBoughtTicket(eventURIFull.boughtTicket);
 
         setNfts(eventURIFull.NFTS);
-
 
         let allDaos = await GetAllDaos();
         let eventDAO = allDaos.filter((e) => e.daoId == eventURIFull.daoId)[0];
@@ -106,12 +105,12 @@ export default function Events() {
 
         let user_info = await getUserInfoById(Number(eventURIFull.UserId));
         eventURIFull.user_info = user_info;
-       
+
         setEventURI(eventURIFull);
 
         setLoading(false);
       }
-    } catch (error) { }
+    } catch (error) {}
     setLoading(false);
   }
 
@@ -147,9 +146,8 @@ export default function Events() {
 
     async function onSuccess() {
       setBoughtTicket(true);
-      openBuyTicketModal()
+      openBuyTicketModal();
       setBuyingTicket(false);
-
     }
 
     try {
@@ -162,8 +160,6 @@ export default function Events() {
           onSuccess();
         });
       });
-
-
     } catch (e) {
       console.error(e);
     }
@@ -191,8 +187,6 @@ export default function Events() {
           onSuccess();
         });
       });
-
-
     } catch (e) {
       console.error(e);
     }
@@ -214,13 +208,13 @@ export default function Events() {
       <div className={`flex items-center flex-col gap-8`}>
         <div className={`gap-8 flex flex-col w-full bg-gohan pt-10 border-beerus border min-h-[178px] ${isLivestream() && 'pb-10'}`}>
           <div className="container flex w-full justify-between relative">
-            <div className="flex flex-col gap-1 w-[650px]"  >
+            <div className="flex flex-col gap-1">
               <Loader
                 loading={loading}
                 width={300}
                 element={
                   <h5 className="font-semibold">
-                    <Link className="text-piccolo" href={`/daos/${EventDAOURI.daoId}`}>
+                    <Link className="text-piccolo" href={`../../${router.query.daoId}`}>
                       {EventDAOURI?.Title}
                     </Link>{' '}
                     {isAuction() ? 'Event' : 'Live event'}
@@ -250,25 +244,24 @@ export default function Events() {
               {EventURI.status == 'ended' ? (
                 <></>
               ) : (
-                <>{!EventURI.isOwner &&
-                  <>
-                    {isAuction() && (
-                      <Button iconLeft={<GenericLoyalty />} onClick={openDonateNFTModal}>
-                        Donate NFT
+                <>
+                  {!EventURI.isOwner && (
+                    <>
+                      {isAuction() && (
+                        <Button iconLeft={<GenericLoyalty />} onClick={openDonateNFTModal}>
+                          Donate NFT
+                        </Button>
+                      )}
+                      {isLivestream() && !BoughtTicket && (
+                        <Button iconLeft={<ShopWallet />} onClick={buyTicketHandle}>
+                          Buy ticket
+                        </Button>
+                      )}
+                      <Button iconLeft={<ShopWallet />} variant="secondary" onClick={openDonateCoinModal}>
+                        Donate Coin
                       </Button>
-                    )}
-                    {isLivestream() && !BoughtTicket && (
-                      <Button iconLeft={<ShopWallet />} onClick={buyTicketHandle}>
-                        Buy ticket
-                      </Button>
-                    )}
-                    <Button iconLeft={<ShopWallet />} variant="secondary" onClick={openDonateCoinModal}>
-                      Donate Coin
-                    </Button>
-                  </>
-                }
-
-
+                    </>
+                  )}
                 </>
               )}
             </div>
@@ -291,18 +284,30 @@ export default function Events() {
               {!showEmbedVideo && (
                 <>
                   <Image unoptimized={true} objectFit="cover" layout="fill" className="rounded-xl object-cover" src={EventURI.logo} alt="" />
-                  {(BoughtTicket || EventURI.isOwner) && <div className="absolute inset-0 flex items-center justify-center cursor-pointer bg-black bg-opacity-10" onClick={openEmbedVideo}>
-                    <div className="h-[56px] w-[56px] bg-gohan rounded-full flex justify-center items-center">{<MediaPlay className="text-moon-48 text-popo" />}</div>
-                  </div>}
+                  {(BoughtTicket || EventURI.isOwner) && (
+                    <div className="absolute inset-0 flex items-center justify-center cursor-pointer bg-black bg-opacity-10" onClick={openEmbedVideo}>
+                      <div className="h-[56px] w-[56px] bg-gohan rounded-full flex justify-center items-center">{<MediaPlay className="text-moon-48 text-popo" />}</div>
+                    </div>
+                  )}
                 </>
               )}
               {(BoughtTicket || EventURI.isOwner) && showEmbedVideo && <LivestreamEmbed link={EventURI.eventStreamUrl} />}
             </div>
             <div className="flex flex-col gap-5 bg-gohan rounded-xl w-full max-w-[300px] items-center p-6 pt-10 shadow-moon-lg">
               <MediaMiceAlternative className="text-hit text-moon-48" />
-              {EventURI.LiveStarted && <div className="font-bold text-moon-20"> Live stream started <br /> {EventURI.TimeFormat}, {EventURI.End_Date}</div>}
+              {EventURI.LiveStarted && (
+                <div className="font-bold text-moon-20">
+                  {' '}
+                  Live stream started <br /> {EventURI.TimeFormat}, {EventURI.End_Date}
+                </div>
+              )}
 
-              {!EventURI.LiveStarted && <div className="font-bold text-moon-20"> Starts {EventURI.TimeFormat}, {EventURI.End_Date}</div>}
+              {!EventURI.LiveStarted && (
+                <div className="font-bold text-moon-20">
+                  {' '}
+                  Starts {EventURI.TimeFormat}, {EventURI.End_Date}
+                </div>
+              )}
               {EventURI.status == 'ended' ? (
                 <>
                   <div className="text-chichi text-center">Live event ended</div>
@@ -314,16 +319,16 @@ export default function Events() {
 
                   {!EventURI.isOwner && (
                     <>
-
-                      {<Button animation={isBuyingTicket ? 'progress' : false} disabled={isBuyingTicket || BoughtTicket} className="font-bold w-full" onClick={buyTicketHandle}>
-                        {!BoughtTicket ? `Buy ticket for ${EventURI.ticketPrice} DOT` : 'You already own a ticket'}
-                      </Button>}
-
+                      {
+                        <Button animation={isBuyingTicket ? 'progress' : false} disabled={isBuyingTicket || BoughtTicket} className="font-bold w-full" onClick={buyTicketHandle}>
+                          {!BoughtTicket ? `Buy ticket for ${EventURI.ticketPrice} DOT` : 'You already own a ticket'}
+                        </Button>
+                      }
                     </>
-                  ) }
+                  )}
                   <div className="flex flex-1 flex-col justify-end text-center text-trunks text-moon-12">
-                      99.9% of the proceeds go to the charity. <br /> Just 0.1% goes to DAOnation.
-                    </div>
+                    99.9% of the proceeds go to the charity. <br /> Just 0.1% goes to DAOnation.
+                  </div>
                 </>
               )}
             </div>

@@ -2,25 +2,25 @@ import { Button } from '@heathmont/moon-core-tw';
 import { GenericHeart, ShopWallet } from '@heathmont/moon-icons-tw';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
-import CommentBox from '../../../../../../components/components/CommentBox';
-import SlideShow from '../../../../../../components/components/Slideshow';
-import UseFormTextArea from '../../../../../../components/components/UseFormTextArea';
-import DonateCoinModal from '../../../../../../features/DonateCoinModal';
+import CommentBox from '../../../../components/components/CommentBox';
+import SlideShow from '../../../../components/components/Slideshow';
+import UseFormTextArea from '../../../../components/components/UseFormTextArea';
+import DonateCoinModal from '../../../../features/DonateCoinModal';
 import Image from 'next/legacy/image';
-import Loader from '../../../../../../components/components/Loader';
-import { usePolkadotContext } from '../../../../../../contexts/PolkadotContext';
+import Loader from '../../../../components/components/Loader';
+import { usePolkadotContext } from '../../../../contexts/PolkadotContext';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import useEnvironment from '../../../../../../contexts/EnvironmentContext';
+import useEnvironment from '../../../../contexts/EnvironmentContext';
 import { toast } from 'react-toastify';
-import { Dao } from '../../../../../../data-model/dao';
-import { Goal } from '../../../../../../data-model/goal';
-import { Idea } from '../../../../../../data-model/idea';
+import { Dao } from '../../../../data-model/dao';
+import { Goal } from '../../../../data-model/goal';
+import { Idea } from '../../../../data-model/idea';
 
 export default function GrantIdeas() {
-  const { api, showToast, getUserInfoById, userInfo, userWalletPolkadot, userSigner, GetAllVotes, GetAllDaos, GetAllGoals, GetAllJoined, GetAllIdeas, PolkadotLoggedIn } = usePolkadotContext();
-  const [ideaId, setIdeasId] = useState(0);
-  const [goalId, setGoalId] = useState(0);
+  const { api, showToast, getUserInfoById, GetAllComments, userInfo, userWalletPolkadot, userSigner, GetAllVotes, GetAllDaos, GetAllGoals, GetAllJoined, GetAllIdeas, PolkadotLoggedIn } = usePolkadotContext();
+  const [ideaId, setIdeasId] = useState(-1);
+  const [goalId, setGoalId] = useState(-1);
   const [PollIndex, setPollIndex] = useState(-1);
   const [imageList, setimageList] = useState([]);
   const [isJoined, setIsJoined] = useState(false);
@@ -43,7 +43,7 @@ export default function GrantIdeas() {
     id: '',
     name: 'comment',
     rows: 1,
-    minHeight: 54
+    minHeight: 60
   });
   const [emptydata, setemptydata] = useState([]);
 
@@ -85,10 +85,10 @@ export default function GrantIdeas() {
 
     try {
       if (id != -1 && Goalid != -1 && api) {
-        let allIdeas = await GetAllIdeas();
+        let allIdeas = await GetAllIdeas(true);
         let currentIdea = allIdeas.filter((e) => e.ideasId == id)[0];
 
-        let allGoals = await GetAllGoals();
+        let allGoals = await GetAllGoals(true);
         let currentGoal = allGoals.filter((e) => e.goalId == Goalid)[0];
 
         currentIdea.End_Date = currentGoal.End_Date;
@@ -100,8 +100,8 @@ export default function GrantIdeas() {
 
         setCurrentDAO(currentDao);
         let allJoined = await GetAllJoined();
-        let currentJoined = allJoined.filter((e) => Number(e?.daoId) ==Number( currentGoal.daoId));
-        let joinedInfo = currentJoined.filter((e) => Number( e?.user_id) ==  Number(window.userid));
+        let currentJoined = allJoined.filter((e) => Number(e?.daoId) == Number(currentGoal.daoId));
+        let joinedInfo = currentJoined.filter((e) => Number(e?.user_id) == Number(window.userid));
         if (joinedInfo.length > 0) {
           setIsJoined(true);
         } else {
@@ -121,11 +121,13 @@ export default function GrantIdeas() {
 
         setAccountAddress(currentIdea.wallet);
         setIdeasURI(currentIdea);
-
+        let allComments = await GetAllComments();
+        let currentIdeasComments = allComments.filter((item)=> item.ideasId == id);
+        setCommentsList(currentIdeasComments)
         setimageList(currentIdea.allfiles);
         setLoading(false);
 
-        let totalComments = [];
+
       }
     } catch (error) {
       console.error(error);
@@ -146,7 +148,6 @@ export default function GrantIdeas() {
   }
 
   async function VoteIdea() {
-   
     setVoting(true);
     const ToastId = toast.loading('Voting ...');
     const showBadgesAmount = [10, 50, 100, 150, 200, 250, 500];
@@ -211,9 +212,9 @@ export default function GrantIdeas() {
       replies: [],
       user_info: {}
     };
-    await saveMessage(newComment);
     newComment.replies = [];
     newComment.user_info = userInfo;
+    await saveMessage(newComment);
     setCommentsList([...CommentsList, newComment] as any);
     setComment('');
     setCommenting(false);
@@ -221,9 +222,24 @@ export default function GrantIdeas() {
   }
 
   async function saveMessage(newComment) {
-    removeElementFromArrayBYID(emptydata, 0, setemptydata);
+    const pro = new Promise(async (resolve) => {
+      const toastId = toast.loading('Posting comment ...');
+      function onSuccess() {
+        resolve("sent!");
+        removeElementFromArrayBYID(emptydata, 0, setemptydata);
+      };
+
+      await api._extrinsics.comments.sendMsg(ideaId, goalId, CurrentDAO.daoId,JSON.stringify(newComment), Number(window.userid)).signAndSend(userWalletPolkadot, { signer: userSigner }, async (status) => {
+        showToast(status, toastId, 'Commented Successfully!', onSuccess);
+      });
+    })
+    await pro;
+
   }
 
+  function isInvalid() {
+    return !(Comment);
+  }
   async function sendReply(replyText, MessageId, MessageIndex) {
     removeElementFromArrayBYID(emptydata, 0, setemptydata);
   }
@@ -254,7 +270,7 @@ export default function GrantIdeas() {
                 width={300}
                 element={
                   <h5 className="font-semibold whitespace-nowrap">
-                    <Link href={`../../../../${router.query.daoId}`} className="text-piccolo truncate">
+                    <Link href={`/daos/${CurrentDAO.daoId}`} className="text-piccolo truncate">
                       {CurrentDAO?.Title}
                     </Link>{' '}
                     &gt;{' '}
@@ -337,21 +353,21 @@ export default function GrantIdeas() {
               height={500}
             />
           </div>{' '}
-           <div className="full-w">
+          <div className="full-w">
             <form onSubmit={PostComment} className="full-w flex flex-col gap-2">
               {CommentInput}
               <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <Button animation={commenting} data-element-id="btn_donate" style={{ width: '135px' }} data-analytic-event-listener="true" type="submit">
+                <Button animation={commenting ? 'progress' : false} disabled={commenting || isInvalid()} data-element-id="btn_donate" style={{ width: '135px' }} data-analytic-event-listener="true" type="submit">
                   Post Comment
                 </Button>
               </div>
             </form>
           </div>
-          <div className="flex flex-col gap-6 pb-8">{uniqueAndSort(CommentsList).map((listItem: any, index) => (listItem.address !== '' ? <CommentBox user_info={listItem.user_info} address={listItem.address} MessageID={listItem.id} MessageIndex={index} date={listItem.date} sendReply={sendReply} message={listItem.message} replies={listItem.replies} key={listItem.id} /> : <></>))}</div> 
+          <div className="flex flex-col gap-6 pb-8">{uniqueAndSort(CommentsList).map((listItem: any, index) => (listItem.address !== '' ? <CommentBox user_info={listItem.user_info} address={listItem.address} MessageID={listItem.id} MessageIndex={index} date={listItem.date} sendReply={sendReply} message={listItem.message} replies={listItem.replies} key={listItem.id} /> : <></>))}</div>
         </div>
       </div>
 
-      <DonateCoinModal ideasid={ideaId} daoId={router.query.daoId} goalURI={IdeasURI?.goalURI} show={DonatemodalShow} onHide={closeDonateModal} address={AccountAddress} recieveWallet={IdeasURI.recieve_wallet} recievetype={IdeasURI.recievetype} />
+      <DonateCoinModal ideasid={ideaId} goalId={goalId} daoId={router.query.daoId} goalURI={IdeasURI?.goalURI} show={DonatemodalShow} onHide={closeDonateModal} address={AccountAddress} recieveWallet={IdeasURI.recieve_wallet} recievetype={IdeasURI.recievetype} />
     </>
   );
 }

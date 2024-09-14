@@ -13,12 +13,14 @@ import BadgesPanel from '../../features/BadgesPanel';
 import CollectiblesPanel from '../../features/CollectiblesPanel';
 
 export default function Profile() {
-  const { api, getUserInfoById, GetAllDaos, GetAllIdeas, GetAllNfts, GetAllGoals, GetAllJoined, GetAllVotes, GetAllUserDonations, PolkadotLoggedIn } = usePolkadotContext();
+  const { api, getUserInfoById, GetAllDaos, GetAllIdeas, GetAllNfts, GetAllGoals, GetAllFeeds, GetAllComments, GetAllJoined, GetAllVotes, GetAllUserDonations, PolkadotLoggedIn } = usePolkadotContext();
   const [Goals, setGoals] = useState([]);
   const [Ideas, setIdeas] = useState([]);
   const [loading, setLoading] = useState(true);
   const [Daos, setDaos] = useState([]);
   const [Nfts, setNfts] = useState([]);
+  const [AllTransactions, setAllTransactions] = useState([]);
+
   const [UserBadges, setUserBadges] = useState({
     dao: false,
     joined: false,
@@ -26,8 +28,7 @@ export default function Profile() {
     ideas: false,
     vote: false,
     donation: false,
-    comment: false,
-    reply: false
+    comment: false
   });
 
   const [UserInfo, setUserInfo] = useState({ fullName: '', imgIpfs: [] });
@@ -59,7 +60,7 @@ export default function Profile() {
     let allDonations = await GetAllUserDonations(true);
     let allIdeas = await GetAllIdeas(true);
     let allNfts = await GetAllNfts(true);
-    let allUserNfts = allNfts.filter((e)=>e.owner === Number(user_id));
+    let allUserNfts = allNfts.filter((e) => e.owner === Number(user_id));
     setNfts(allUserNfts);
 
     // let donated = Number(await contract._donated(Number(user_id))) / 1e12;
@@ -88,9 +89,10 @@ export default function Profile() {
 
     let foundGoals = allGoals.filter((e) => Number(e.UserId) == Number(user_id));
     let donated = allDonations[user_id.toString()];
+    let foundJoined = allJoined.filter((e) => Number(e.user_id) == Number(user_id))
 
     allBadges['dao'] = founddao.length > 0 ? true : false;
-    allBadges['joined'] = allJoined.filter((e) => Number(e.user_id) == Number(user_id)).length > 0 ? true : false;
+    allBadges['joined'] = foundJoined.length > 0 ? true : false;
     allBadges['goal'] = foundGoals.length > 0 ? true : false;
     allBadges['ideas'] = foundidea.length > 0 ? true : false;
     allBadges['vote'] = allVotes.filter((e) => Number(e.user_id) == Number(user_id)).length > 0 ? true : false;
@@ -99,30 +101,64 @@ export default function Profile() {
     let totalDonationsRecieved = 0;
     foundidea.forEach((e) => (totalDonationsRecieved += e.donation));
 
-    let ideasReplied = 0;
 
-    // let _reply_ids = await contract._reply_ids();
-    // for (let i = 0; i < _reply_ids; i++) {
-    // 	let repliesURI = await contract.all_replies(i);
-    // 	if (JSON.parse(repliesURI.message).userid == user_id) {
-    // 		ideasReplied += 1;
-    // 		let ideaURI = JSON.parse((await window.contract._ideas_uris(Number(repliesURI.ideas_id))).ideas_uri);
+    let allComments = await GetAllComments();
+    let allUserCommentsCreated = allComments.filter((item) => item.userid == Number(user_id));
+    let AllCommentsRecieved = allComments.filter((item) => {
+      for (let i = 0; i < foundidea.length; i++) {
+        const element = foundidea[i];
+        if (element.ideasId === item.ideasId) {
+          return true
+        }
+      }
+      return false;
+    });
+    let allFeeds = await GetAllFeeds()
+    let allUserRelatedFeeds = allFeeds.filter((item) => item.data.userId == Number(user_id))
+    let AllTransactionArray = []
+    for (let i = 0; i < allUserRelatedFeeds.length; i++) {
+      const element = allUserRelatedFeeds[i];
+      if (element.type === 'join') {
+        let feed = {
+          subTitle: "Monthly subscription for ",
+          Title: element.data.daoTitle,
+          Id: element.data.daoId,
+          Amount: element.data.donated,
+          date:element.date,
+          url:"/daos/"+element.data.daoId
+        }
+        AllTransactionArray.push(feed)
+      }
+      if (element.type === 'donation') {
+        if (element.data.eventid != null) {
+          let feed = {
+            subTitle: "Donated to ",
+            Title: element.data.eventTitle,
+            Id: element.data.eventid,
+            Amount: element.data.donated,
+            date:element.date,
+            url:"/events/"+element.data.eventid
+          }
+          AllTransactionArray.push(feed)
+        }else{
+          let feed = {
+            subTitle: "Donated to ",
+            Title: allIdeas.filter((item)=>item.ideasId == element.data.ideasid)[0].Title,
+            Id: element.data.ideasid,
+            Amount: element.data.donated,
+            date:element.date.toLocaleString(),
+            url:`/goals/${element.data.goalId}/ideas/${element.data.ideasid}`
+          }
+          AllTransactionArray.push(feed)
+        }
 
-    // 		let parsed_rplied = JSON.parse(repliesURI.message);
-    // 		parsed_rplied.idea = ideaURI;
-    // 		allMessages.push(parsed_rplied);
+      }
 
-    // 		let existsIdea = MessagesIdeasURIS.findIndex(e => e.id == Number(repliesURI.ideas_id));
-    // 		if (existsIdea != -1) {
-    // 			MessagesIdeasURIS[existsIdea].replied += 1;
-    // 			continue;
-    // 		}
 
-    // 		ideaURI.replied = 1;
-    // 		ideaURI.id = Number(repliesURI.ideas_id);
-    // 		MessagesIdeasURIS.push(ideaURI);
-    // 	}
-    // }
+    }
+    setAllTransactions(AllTransactionArray)
+    console.log(allFeeds)
+
 
     setDaos(founddao);
     setGoals(foundGoals);
@@ -134,10 +170,10 @@ export default function Profile() {
       daosCreated: founddao.length,
       goalsCreated: foundGoals.length,
       ideasCreated: foundidea.length,
-      commentsCreated: ideasReplied,
+      commentsCreated: allUserCommentsCreated.length,
       donated: donated,
       donationsReceived: totalDonationsRecieved,
-      commentsReceived: null
+      commentsReceived: AllCommentsRecieved.length
     });
     setLoading(false);
   }
@@ -199,7 +235,7 @@ export default function Profile() {
         {tabIndex === 0 && <SummaryPanel Daos={Daos} Goals={Goals} Ideas={Ideas} loggedUser={loggedUser} loading={loading} stats={stats} />}
         {tabIndex === 1 && <CollectiblesPanel nfts={Nfts} />}
         {tabIndex === 2 && <BadgesPanel badges={UserBadges} />}
-        {tabIndex === 3 && <TransactionsPanel />}
+        {tabIndex === 3 && <TransactionsPanel transactions={AllTransactions} />}
       </div>
     </>
   );

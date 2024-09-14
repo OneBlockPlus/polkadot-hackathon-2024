@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 
 declare let window;
 
-export default function DonateCoinModal({ ideasid, daoId, goalURI, show, onHide, address, recieveWallet, recievetype }) {
+export default function DonateCoinModal({ ideasid, daoId, goalURI,goalId, show, onHide, address, recieveWallet, recievetype }) {
   const [Balance, setBalance] = useState('');
   const { userInfo, PolkadotLoggedIn, userWalletPolkadot, userSigner, showToast, api } = usePolkadotContext();
   const [Coin, setCoin] = useState('');
@@ -43,9 +43,11 @@ export default function DonateCoinModal({ ideasid, daoId, goalURI, show, onHide,
 
     let feed2 = JSON.stringify({
       donated: Amount,
+      goalId:goalId,
       goalTitle: goalURI.Title,
       ideasid: ideasid,
-      daoId: daoId
+      daoId: daoId,
+      userId:Number(window.userid)
     });
 
     async function onSuccess() {

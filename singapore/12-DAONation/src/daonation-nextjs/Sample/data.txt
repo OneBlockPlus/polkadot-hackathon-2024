@@ -22,9 +22,8 @@ Video link: https://www.youtube.com/watch?v=-caKTHhZRko
 background color: #196666
 button background color: #C1A050
 
-Image 1: https://i.postimg.cc/2SBFj30Q/1.png
-Image 2: https://i.postimg.cc/SK6683Fj/2.jpg
-Image 3: https://i.postimg.cc/9McGBbCb/3.png
+Image 1: https://i.postimg.cc/jdRFpB3j/Schermafbeelding-2024-08-27-om-18-14-52.png
+Image 2: https://i.postimg.cc/W4tRQx3Z/Fund-city-no-startups-Mesa-de-trabajo-1-1.png
 
 
 3.
@@ -35,7 +34,12 @@ Auction Events:
 
 *Title:* "Digital Art for Good"
 
-*Description:* Support Feeding America by bidding on exclusive NFTs from talented artists. Every piece sold helps provide meals to those facing hunger. Join us in using digital art to make a real-world impact!
+*Description:* Support Conscious Nona by bidding on exclusive NFTs from talented artists. Every piece sold helps provide meals to those facing hunger. Join us in using digital art to make a real-world impact!
+
+
+
+NFT #538
+https://i.postimg.cc/yx2ryVyr/c3a.png
 
 
 
@@ -47,6 +51,7 @@ Auction Events:
 
 
 Live: https://www.youtube.com/@stevethijssen2941/streams
+https://youtu.be/VXTgRmxdAJQ
 rtmp://a.rtmp.youtube.com/live2
 rtmp://b.rtmp.youtube.com/live2?backup=1
 4y17-y787-hkrz-25qh-6t2v
@@ -56,7 +61,7 @@ rtmp://b.rtmp.youtube.com/live2?backup=1
 
 Goal:
 Title: Community food security in Uganda
-Description: Community food security in Uganda" aims to ensure that every Texan has consistent access to nutritious food, free from the constraints of financial limitations or geographical barriers. This objective involves multifaceted strategies, including addressing food insecurity by implementing programs for food distribution, meal assistance, and nutrition education targeted at vulnerable communities. Beyond mere sustenance, the objective emphasizes the importance of promoting nutritional health, offering diverse and wholesome food options to support the overall well-being of individuals and families.
+Description: Community food security in Uganda aims to ensure that every Texan has consistent access to nutritious food, free from the constraints of financial limitations or geographical barriers. This objective involves multifaceted strategies, including addressing food insecurity by implementing programs for food distribution, meal assistance, and nutrition education targeted at vulnerable communities. Beyond mere sustenance, the objective emphasizes the importance of promoting nutritional health, offering diverse and wholesome food options to support the overall well-being of individuals and families.
 
 
 Image: https://shoutoutdfw.com/wp-content/uploads/2022/09/c-PersonalRajAsava__IMG62621_1661282528627.jpg

@@ -83,7 +83,7 @@ const EventCard = ({ item, className = '', openDonateCoinModal, openDonateNFTMod
               </>
             )}
 
-            {isLivestream() && item.status !== 'ended' &&  (!item.boughtTicket && !item.isOwner ) && !preview && (
+            {isLivestream() && item.status !== 'ended' && !item.boughtTicket && !item.isOwner && !preview && (
               <>
                 <Button
                   variant="secondary"
@@ -97,7 +97,7 @@ const EventCard = ({ item, className = '', openDonateCoinModal, openDonateNFTMod
               </>
             )}
 
-            <Link href={`${location.pathname}/event/${item.eventId}`}>
+            <Link href={`/events/${item.eventId}`}>
               <Button iconLeft={<ArrowsRightShort />}>Go to event</Button>
             </Link>
           </div>

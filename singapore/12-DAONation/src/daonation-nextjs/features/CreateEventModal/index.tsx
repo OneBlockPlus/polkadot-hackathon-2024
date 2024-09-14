@@ -124,9 +124,9 @@ export default function CreateEventModal({ open, onClose, daoId }) {
           type: 'string',
           description: EndDate
         },
-        Time:{
-          type:'string',
-          description:Time
+        Time: {
+          type: 'string',
+          description: Time
         },
         user_id: {
           type: 'string',
@@ -221,11 +221,12 @@ export default function CreateEventModal({ open, onClose, daoId }) {
   }
 
   useEffect(() => {
+    console.log(daoId);
     let dateTime = new Date();
 
     setEndDate(dateTime.toISOString().split('T')[0]);
     setTime('12:00');
-  }, []);
+  }, [daoId]);
 
   return (
     <Modal open={open} onClose={onClose}>

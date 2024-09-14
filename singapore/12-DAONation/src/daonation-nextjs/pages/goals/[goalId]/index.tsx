@@ -2,18 +2,18 @@ import { Button, Tabs } from '@heathmont/moon-core-tw';
 import { ControlsPlus, GenericIdea } from '@heathmont/moon-icons-tw';
 import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
-import IdeaCard from '../../../../../components/components/IdeaCard';
-import Loader from '../../../../../components/components/Loader';
-import CreateIdeaModal from '../../../../../features/CreateIdeaModal';
-import EmptyState from '../../../../../components/components/EmptyState';
-import DonateCoinModal from '../../../../../features/DonateCoinModal';
-import { usePolkadotContext } from '../../../../../contexts/PolkadotContext';
+import IdeaCard from '../../../components/components/IdeaCard';
+import Loader from '../../../components/components/Loader';
+import CreateIdeaModal from '../../../features/CreateIdeaModal';
+import EmptyState from '../../../components/components/EmptyState';
+import DonateCoinModal from '../../../features/DonateCoinModal';
+import { usePolkadotContext } from '../../../contexts/PolkadotContext';
 import Image from 'next/legacy/image';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import useEnvironment from '../../../../../contexts/EnvironmentContext';
+import useEnvironment from '../../../contexts/EnvironmentContext';
 import { toast } from 'react-toastify';
-import { Dao } from '../../../../../data-model/dao';
+import { Dao } from '../../../data-model/dao';
 
 export default function Goal() {
   //Variables
@@ -337,7 +337,7 @@ export default function Goal() {
         )}
       </div>
       <CreateIdeaModal show={showCreateIdeaModal} onClose={closeCreateIdeaModal} goalId={goalId} daoId={GoalURI.daoId} goal={GoalURI} dao={GoalDAOURI} />
-      <DonateCoinModal recievetype="" ideasid={selectedIdeasId} daoId={router.query.daoId} goalURI={GoalURI} show={DonatemodalShow} onHide={closeDonateModal} address={selectedIdeasWallet} recieveWallet={selectedIdeasRecieveWallet} />
+      <DonateCoinModal recievetype="" goalId={goalId} ideasid={selectedIdeasId} daoId={router.query.daoId} goalURI={GoalURI} show={DonatemodalShow} onHide={closeDonateModal} address={selectedIdeasWallet} recieveWallet={selectedIdeasRecieveWallet} />
     </>
   );
 }
