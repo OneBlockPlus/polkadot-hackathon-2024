@@ -89,7 +89,7 @@ export default function Profile() {
 
     let foundGoals = allGoals.filter((e) => Number(e.UserId) == Number(user_id));
     let donated = allDonations[user_id.toString()];
-    let foundJoined = allJoined.filter((e) => Number(e.user_id) == Number(user_id))
+    let foundJoined = allJoined.filter((e) => Number(e.user_id) == Number(user_id));
 
     allBadges['dao'] = founddao.length > 0 ? true : false;
     allBadges['joined'] = foundJoined.length > 0 ? true : false;
@@ -101,64 +101,58 @@ export default function Profile() {
     let totalDonationsRecieved = 0;
     foundidea.forEach((e) => (totalDonationsRecieved += e.donation));
 
-
     let allComments = await GetAllComments();
     let allUserCommentsCreated = allComments.filter((item) => item.userid == Number(user_id));
     let AllCommentsRecieved = allComments.filter((item) => {
       for (let i = 0; i < foundidea.length; i++) {
         const element = foundidea[i];
         if (element.ideasId === item.ideasId) {
-          return true
+          return true;
         }
       }
       return false;
     });
-    let allFeeds = await GetAllFeeds()
-    let allUserRelatedFeeds = allFeeds.filter((item) => item.data.userId == Number(user_id))
-    let AllTransactionArray = []
+    let allFeeds = await GetAllFeeds();
+    let allUserRelatedFeeds = allFeeds.filter((item) => item.data.userId == Number(user_id));
+    let AllTransactionArray = [];
     for (let i = 0; i < allUserRelatedFeeds.length; i++) {
       const element = allUserRelatedFeeds[i];
       if (element.type === 'join') {
         let feed = {
-          subTitle: "Monthly subscription for ",
+          subTitle: 'Monthly subscription for ',
           Title: element.data.daoTitle,
           Id: element.data.daoId,
           Amount: element.data.donated,
-          date:element.date,
-          url:"/daos/"+element.data.daoId
-        }
-        AllTransactionArray.push(feed)
+          date: element.date,
+          url: '/daos/' + element.data.daoId
+        };
+        AllTransactionArray.push(feed);
       }
       if (element.type === 'donation') {
         if (element.data.eventid != null) {
           let feed = {
-            subTitle: "Donated to ",
+            subTitle: 'Donated to ',
             Title: element.data.eventTitle,
             Id: element.data.eventid,
             Amount: element.data.donated,
-            date:element.date,
-            url:"/events/"+element.data.eventid
-          }
-          AllTransactionArray.push(feed)
-        }else{
+            date: element.date,
+            url: '/events/' + element.data.eventid
+          };
+          AllTransactionArray.push(feed);
+        } else {
           let feed = {
-            subTitle: "Donated to ",
-            Title: allIdeas.filter((item)=>item.ideasId == element.data.ideasid)[0].Title,
+            subTitle: 'Donated to ',
+            Title: allIdeas.filter((item) => item.ideasId == element.data.ideasid)[0].Title,
             Id: element.data.ideasid,
             Amount: element.data.donated,
-            date:element.date.toLocaleString(),
-            url:`/goals/${element.data.goalId}/ideas/${element.data.ideasid}`
-          }
-          AllTransactionArray.push(feed)
+            date: element.date.toLocaleString(),
+            url: `/goals/${element.data.goalId}/ideas/${element.data.ideasid}`
+          };
+          AllTransactionArray.push(feed);
         }
-
       }
-
-
     }
-    setAllTransactions(AllTransactionArray)
-    console.log(allFeeds)
-
+    setAllTransactions(AllTransactionArray);
 
     setDaos(founddao);
     setGoals(foundGoals);

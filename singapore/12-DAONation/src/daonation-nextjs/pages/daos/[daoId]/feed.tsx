@@ -31,8 +31,6 @@ export default function Feed() {
     const element = await api._query.daos.daoById(Number(daoId));
     let daoURI = element['__internal__raw'].daoUri.toString();
 
-    console.log(daoURI);
-
     setDaoURI(daoURI);
 
     await getGoalsList(daoId);

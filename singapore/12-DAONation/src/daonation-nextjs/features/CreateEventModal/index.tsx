@@ -221,7 +221,6 @@ export default function CreateEventModal({ open, onClose, daoId }) {
   }
 
   useEffect(() => {
-    console.log(daoId);
     let dateTime = new Date();
 
     setEndDate(dateTime.toISOString().split('T')[0]);

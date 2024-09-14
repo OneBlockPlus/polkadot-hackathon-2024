@@ -9,12 +9,9 @@ const CreatePostModal = ({ show, onClose, avatarUrl, userName, communityName }) 
 
   function createPost() {
     setIsLoading(true);
-    console.log('CREATE POST');
   }
 
-  function uploadImage() {
-    console.log('UPLOAD IMAGE');
-  }
+  function uploadImage() {}
 
   return (
     <Modal open={show} onClose={onClose}>
