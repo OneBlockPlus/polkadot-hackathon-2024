@@ -1,45 +1,117 @@
 # Sandglass
+Privacy-Preserving Mixer Protocol
 
-Sandglass is a currency mixer protocol.
+## Table of Contents
+- [Sandglass](#sandglass)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Features Planned for the Hackathon](#features-planned-for-the-hackathon)
+  - [Architecture](#architecture)
+    - [Zero-Knowledge Proof (zk-SNARK)](#zero-knowledge-proof-zk-snark)
+    - [Merkle Tree](#merkle-tree)
+    - [Smart Contract (Pallet) Features](#smart-contract-pallet-features)
+  - [Schedule](#schedule)
+  - [Selected Bounty](#selected-bounty)
+  - [Team Info](#team-info)
+  - [Material for Demo](#material-for-demo)
+  - [How to Run the Project](#how-to-run-the-project)
+  - [References](#references)
 
-this project join Acala/Bifrost bounty
 
 ## Introduction
+**Sandglass** is a decentralized currency mixer protocol that enhances privacy in token transactions within the Polkadot/Substrate ecosystem. Our primary focus is on solving two critical challenges:
+
+- **Private Transfers:** Ensuring that transactions between parties remain completely anonymous by disconnecting the sender and receiver’s identities.
+- **Quantitative Trading Follow-up:** Breaking the visibility of trading patterns and strategies often exposed by public transaction records, which can lead to copy trading or surveillance of large-scale traders.
+
+To ensure compliance with legal standards, Sandglass incorporates access control mechanisms such as whitelisting and digital identity verification (e.g., Gitcoin Passport). This helps minimize legal risks commonly associated with anonymous transactions, such as those seen with Tornado Cash. Our approach ensures privacy while maintaining transparency where required by law.
+
+Additionally, we have created unique functional points within the protocol:
+
+- **Token Swapping:** Users can directly swap their deposited mixed tokens within the mixer, providing additional flexibility and utility beyond standard mixing functions. This feature differentiates Sandglass from other mixers, making it both a privacy tool and a DeFi solution.
 
 
 ## Features Planned for the Hackathon
+- **Develop Mixer Pallet**:
+  - `setup_verification`: Verifies zk-SNARK proof inputs.
+  - `deposit`: Enables users to deposit tokens while committing to a zk-SNARK proof.
+  - `withdraw`: Enables users to withdraw tokens while proving ownership without disclosing their identity.
 
-- Develop: mixer pallet
-  - setup_verification
-  - deposit
-  - withdraw
-- Develop: mixer froentend
-  - deposit
-  - withdraw
+- **Develop Mixer Frontend**:
+  - **Deposit**: Frontend interface that interacts with the blockchain for depositing tokens.
+  - **Withdraw**: Frontend interface for users to anonymously withdraw tokens.
+
 ## Architecture
 
+### Zero-Knowledge Proof (zk-SNARK)
+The core of the mixer’s privacy lies in zk-SNARK technology, which ensures that users can prove ownership of tokens (via commitments) without revealing any private information. A proof is generated based on a secret input and verified on-chain without disclosing the input itself.
+
+### Merkle Tree
+A Merkle Tree structure is used to store token commitments securely. The root of the Merkle Tree is public and verifiable, but individual commitments remain private. The tree grows with every deposit, and withdrawals are authorized by providing a zk-SNARK proof that corresponds to a valid leaf in the tree.
+
+### Smart Contract (Pallet) Features
+- **Commitment Storage**: Deposits are recorded as commitments in the Merkle Tree.
+- **Nullifier Hashes**: Prevents double-spending by ensuring each withdrawal is unique.
+- **Verification**: On-chain zk-SNARK proof verification for withdrawal authorization.
+
 ## Schedule
+- **July 11, 2024**: Hackathon registration opens.
+- **October 23, 2024**: Code submission deadline.
+- **October 24-25, 2024**: Preliminary review.
+- **November 16, 2024**: Demo Day in Bangkok (9:00 - 18:00, UTC+8).
+
+## Selected Bounty
+By integrating with Acala and Bifrost DeFi protocols, Sandglass also enables liquid staking (LST) and cross-chain liquidity to enhance the platform’s financial offerings. These integrations allow us to participate in their bounties, aligning our project with the broader goals of the Polkadot ecosystem.
 
 ## Team Info
+
 **Smith Li**
 - Blockchain Developer
-- Over 9 years of working experience in various aspects of computer programming.
-- Worked in the blockchain industry for 5+ years,  a blockchain development engineer, familiar with polkadot, bitshares, fabric, etc.
-- Github: https://github.com/baidang201
+- Over 9 years of experience in various aspects of programming.
+- 5+ years of blockchain development experience, working with Polkadot, BitShares, Hyperledger Fabric, and more.
+- [GitHub](https://github.com/baidang201)
 
-**Pavel Burylichev**  
-- Product manager
-- I am a dedicated professional with over 23 years of developing and managing experience. Blockchain enthusiast, entrepreneur.
-- Github: https://github.com/uchu
+**Pavel Burylichev**
+- Product Manager
+- Over 23 years of experience in software development and project management.
+- Blockchain enthusiast, entrepreneur, and dedicated professional.
+- [GitHub](https://github.com/uchu)
 
-**Yunfei Li**  
-- FRONT END
-- Over 8 years of front-end experience,good at vue, react and nodejs，and interested in blockchain and decentralization
-- Github: https://github.com/liyunfei22
+**Yunfei Li**
+- Front-End Developer
+- 8+ years of front-end development experience, skilled in Vue, React, and Node.js.
+- Enthusiast in blockchain and decentralization technologies.
+- [GitHub](https://github.com/liyunfei22)
 - Email: liyunfei696@gmail.com
 
 ## Material for Demo
+1. **Demo Video**: An overview of the mixer’s functionality and its usage.
+2. **Slideshow**: Presentation slides explaining the mixer’s architecture and features.
+3. **Live Demo**: Ideally, a live demonstration of the mixer, showcasing the deposit and withdrawal features in action.
 
-1. Demo Video
-2. Slideshow
-3. Ideally a live demo
+## How to Run the Project
+
+1. **Substrate Node**: Clone and run the Substrate node repository:
+   ```
+   git clone https://github.com/redstone-network/sandglass-node
+   cd sandglass-node
+   cargo build --release
+   ./target/release/sandglass-node --dev
+   ```
+
+2. **Frontend**: Clone and run the frontend:
+   ```
+   git clone https://github.com/redstone-network/sandglass-frontend
+   cd sandglass-frontend
+   npm install
+   npm run dev
+   ```
+
+3. **Connecting the Frontend to the Node**: Ensure the frontend is configured to connect with the Substrate node.
+
+## References
+- [Tornado Cash UI](https://github.com/tornadocash/tornado-classic-ui)
+- [Substrate Merkle Tree](https://paritytech.github.io/polkadot-sdk/master/binary_merkle_tree/index.html)
+- [Acala Documentation](https://evmdocs.acala.network/)
+- [Bifrost Documentation](https://docs.bifrost.io/builders/liquid-staking-x-slpx)
+- [zk-SNARK Overview](https://learnblockchain.cn/article/270)
