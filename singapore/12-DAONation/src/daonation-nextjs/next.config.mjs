@@ -9,7 +9,11 @@ const nextConfig = {
       {
         hostname: 'aqua-dull-locust-679.mypinata.cloud',
         protocol: 'https'
-      }
+      },
+      {
+        hostname: 'tny.im',
+        protocol: 'http'
+      },
     ]
   }
 };

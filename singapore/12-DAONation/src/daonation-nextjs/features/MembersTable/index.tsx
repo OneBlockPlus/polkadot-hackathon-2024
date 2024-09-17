@@ -65,47 +65,48 @@ const MembersTable = ({ allJoined, goals }) => {
   const columns = useMemo(() => columnsInitial, []);
 
   async function loadData() {
-    if (api) {
-      let Members = [];
-      let allIdeas = await GetAllIdeas();
-      for (let i = 0; i < allJoined.length; i++) {
-        const element = allJoined[i];
-        let userInfo = await getUserInfoById(Number(element.user_id));
-        let allIdeasIds = allIdeas.map((e) => Number(e.user_id) == Number(element.user_id));
+    let Members = [];
+    let allIdeas = await GetAllIdeas();
+    for (let i = 0; i < allJoined.length; i++) {
+      const element = allJoined[i];
+      let userInfo = await getUserInfoById(Number(element.user_id));
+      let allIdeasIds = allIdeas.map((e) => Number(e.user_id) == Number(element.user_id));
 
-        let allDonations = await GetAllDonations();
-        let totalAmount = 0;
-        let donations = allDonations.filter((e) => allIdeasIds.indexOf(e.ideasId) != -1);
-        donations.forEach((e) => (totalAmount += e.donation));
-        let allVotes = await GetAllVotes();
-        let votes = allVotes.filter((e) => allIdeasIds.indexOf(e.ideasId) != -1);
+      let allDonations = await GetAllDonations();
+      let totalAmount = 0;
+      let donations = allDonations.filter((e) => allIdeasIds.indexOf(e.ideasId) != -1);
+      donations.forEach((e) => (totalAmount += e.donation));
+      let allVotes = await GetAllVotes();
+      let votes = allVotes.filter((e) => allIdeasIds.indexOf(e.ideasId) != -1);
 
-        let UserCreatedGoals = goals.filter((e) => Number(e.UserId) == Number(element.user_id));
+      let UserCreatedGoals = goals.filter((e) => Number(e.UserId) == Number(element.user_id));
 
-        let totalVotes = 0;
-        UserCreatedGoals.forEach((e) => (totalVotes += e.votesCount));
+      let totalVotes = 0;
+      UserCreatedGoals.forEach((e) => (totalVotes += e.votesCount));
 
-        let info = {
-          name: userInfo?.fullName?.toString(),
-          joinDate: element.joined_date,
-          votePower: 1,
-          votesReceived: votes.length,
-          commentsReceived: 0,
-          donationsReceived: donations.length,
-          donated: totalAmount
-        };
+      let info = {
+        name: userInfo?.fullName?.toString(),
+        joinDate: element.joined_date,
+        votePower: 1,
+        votesReceived: votes.length,
+        commentsReceived: 0,
+        donationsReceived: donations.length,
+        donated: totalAmount
+      };
 
-        Members.push(info);
-      }
-
-      // let formattedData = formatData(Members);
-
-      setData(Members);
+      Members.push(info);
     }
+
+    console.log('members', Members);
+
+    setData(Members);
   }
+
   useEffect(() => {
-    loadData();
-  }, []);
+    if (api && allJoined.length > 0) {
+      loadData();
+    }
+  }, [api, allJoined]);
 
   return (
     <>

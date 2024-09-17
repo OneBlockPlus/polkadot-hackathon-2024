@@ -33,7 +33,8 @@ export default function DonateCoinToEventModal({ open, onClose, eventName, event
     let feed = JSON.stringify({
       donated: Amount,
       eventTitle: eventName,
-      eventid: eventid
+      eventid: eventid,
+      userId: Number(window.userid)
     });
 
     async function onSuccess() {

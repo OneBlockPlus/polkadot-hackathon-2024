@@ -1,10 +1,11 @@
 import { Table } from '@heathmont/moon-table-tw';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import useEnvironment from '../../contexts/EnvironmentContext';
 import HeaderLabel from '../../components/components/HeaderLabel';
 
-const TransactionsPanel = () => {
+const TransactionsPanel = ({ transactions }) => {
   const { getCurrency } = useEnvironment();
+  const [Data, setData] = useState([])
 
   const columnsInitial = [
     {
@@ -31,36 +32,31 @@ const TransactionsPanel = () => {
 
   const columns = useMemo(() => columnsInitial, []);
 
-  const mockData = [
-    {
-      description: (
-        <span>
-          Monthly subscription for "
-          <a className="text-piccolo" href="/daos/m_0">
-            DAO
-          </a>
-          "
-        </span>
-      ),
-      date: '22 Nov 2025 06:05 PM',
-      subscriptionAmount: `${getCurrency()} 2.40 `
-    },
-    {
-      description: (
-        <span>
-          Monthly subscription for "
-          <a className="text-piccolo" href="/daos/m_0">
-            Concious Nona
-          </a>
-          "
-        </span>
-      ),
-      date: '22 Nov 2025 06:05 PM',
-      subscriptionAmount: `${getCurrency()} 40.4`
+  function generateData() {
+    let allData = [];
+    for (let i = 0; i < transactions.length; i++) {
+      const element = transactions[i];
+      allData.push({
+        description: (
+          <span>
+            {element.subTitle} "
+            <a className="text-piccolo" href={element.url}>
+              {element.Title}
+            </a>
+            "
+          </span>
+        ),
+        date: element.date,
+        subscriptionAmount: `${getCurrency()} ${element.Amount}`
+      },)
     }
-  ];
+    setData(allData);
+  }
+  useEffect(() => {
+    generateData()
+  },[transactions])
 
-  return <Table columns={columns} rowSize="xl" data={mockData} isSorting={true} defaultColumn={defaultColumn} width={800} defaultRowBackgroundColor="white" evenRowBackgroundColor="white" headerBackgroundColor="trunks" />;
+  return <Table columns={columns} rowSize="xl" data={Data} isSorting={true} defaultColumn={defaultColumn} width={800} defaultRowBackgroundColor="white" evenRowBackgroundColor="white" headerBackgroundColor="trunks" />;
 };
 
 export default TransactionsPanel;

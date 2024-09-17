@@ -34,6 +34,8 @@ const LoginCard = ({ step, onConnectPolkadot, isConnected, setStep }) => {
         found = true;
         Cookies.set('user_id', i.toString(), { expires: 30, path: '/', sameSite: 'Lax' }); // covers localhost
 
+        Cookies.set('loggedin', 'true', { expires: 30, path: '/', sameSite: 'Lax' }); // covers localhost
+
         EasyToast('Logged in Successfully!', 'success', true, ToastId.toString());
 
         setStep(2);
