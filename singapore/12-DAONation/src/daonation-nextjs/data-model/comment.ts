@@ -1,7 +1,12 @@
 export interface Comment {
-  address: string;
-  message: string;
-  date: Date;
-  id: number;
-  replies: Comment[];
+  id: number,
+  ideasId: number,
+  goalId: number,
+  daoId: number,
+  address: string,
+  date: string,
+  message: string,
+  user_info: object,
+  userid: number,
+  replies: []
 }

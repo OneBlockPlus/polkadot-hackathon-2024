@@ -97,7 +97,7 @@ export default function DAOs() {
       </div>
 
       <CreateDaoModal open={showCreateDaoModal} onClose={closeModal} />
-      <JoinCommunityModal SubsPrice={communityToJoin?.SubsPrice} customUrl={communityToJoin.customUrl} show={showJoinModal} onHide={closeJoinCommunityModal} address={communityToJoin?.wallet} recieveWallet={communityToJoin?.recievewallet} recievetype={communityToJoin?.recievetype} title={communityToJoin?.Title} daoId={communityToJoin?.daoId} />
+      <JoinCommunityModal SubsPrice={communityToJoin?.SubsPrice} customUrl={communityToJoin?.customUrl} show={showJoinModal} onHide={closeJoinCommunityModal} address={communityToJoin?.wallet} recieveWallet={communityToJoin?.recievewallet} recievetype={communityToJoin?.recievetype} title={communityToJoin?.Title} daoId={communityToJoin?.daoId} />
     </>
   );
 }

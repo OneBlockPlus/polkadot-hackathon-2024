@@ -28,7 +28,11 @@ export default function JoinCommunityModal({ SubsPrice, show, onHide, address, r
     const ToastId = toast.loading('Joining charity ...');
     let feed = JSON.stringify({
       daoId: daoId,
-      name: userInfo?.fullName?.toString()
+      name: userInfo?.fullName?.toString(),
+      daoTitle: title,
+      userId: Number(window.userid),
+      donated:Amount
+      
     });
     async function onSuccess() {
       router.push(`${location.protocol}//${customUrl}.${location.host}/daos/${daoId}`);

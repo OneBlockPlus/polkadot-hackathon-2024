@@ -12,23 +12,20 @@ import { toast } from 'react-toastify';
 import useEnvironment from '../../contexts/EnvironmentContext';
 import { useIPFSContext } from '../../contexts/IPFSContext';
 import { AiService } from '../../services/aiService';
-import { Dao } from '../../data-model/dao';
 import { MediaService } from '../../services/mediaService';
 import InfoBox from '../../components/components/InfoBox';
 import { UnsplashImage } from '../../data-model/unspash-image';
 import SuggestedImage from '../../components/components/SuggestedImage';
-import { useRouter } from 'next/router';
 
 let addedDate = false;
 
-export default function CreateGoalModal({ open, onClose, item, daoId }: { item: Dao; daoId: string; onClose; open }) {
+export default function CreateGoalModal({ open, onClose, daoId }: { onClose; open; daoId: string }) {
   const [mode, setMode] = useState<'ai' | 'manual'>('ai');
   const [goalImage, setGoalImage] = useState([]);
   const [isCreating, setIsCreating] = useState(false);
   const [suggestedImages, setSuggestedImages] = useState<UnsplashImage[]>([]);
   const { api, userInfo, showToast, userWalletPolkadot, userSigner, PolkadotLoggedIn } = usePolkadotContext();
   const { isServer } = useEnvironment();
-  const { query } = useRouter();
 
   const { UploadBlob } = useIPFSContext();
 
