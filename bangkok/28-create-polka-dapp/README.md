@@ -37,20 +37,14 @@ The project's main code repository is available [here](https://github.com/OpeOgi
 
 ## Things Planned to be Done During the Hackathon
 
-### Blockchain
+### CLI Tool
 
 - Runtime Module
   - [ ] Scaffold contracts for different parachains.
   - [ ] Integrate contract templates alongside frontend templates.
-
-### Client
-
 - Web Frontend
   - [ ] Add Next.js as a frontend option.
   - [ ] Improve existing React and Svelte templates with modern best practices.
-
-### CLI Tool
-
 - CLI Templates
   - [ ] Scaffold options for contracts, frontend-only, or full-stack depending on developer needs.
   - [ ] Custom CLI templates for specific parachains.
@@ -63,6 +57,10 @@ As the project develops during the hackathon, this section will track the comple
   - Added new CLI templates.
   - Enhanced wallet functionality.
   - Initial contract scaffolding support.
+
+## Choosen Track
+
+This project is for the **(Infrastructure) Polkadot ecological developer tools** Track
 
 ## Member Information
 
