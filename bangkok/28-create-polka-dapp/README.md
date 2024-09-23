@@ -48,7 +48,6 @@ The project's main code repository is available [here](https://github.com/OpeOgi
 - Web Frontend
   - [ ] Add Next.js as a frontend option.
   - [ ] Improve existing React and Svelte templates with modern best practices.
-  - [ ] Expand support for cross-chain wallet integration.
 
 ### CLI Tool
 
@@ -72,8 +71,3 @@ As the project develops during the hackathon, this section will track the comple
 - Over 2 years of software development experience, specializing in blockchain and decentralized applications.
 - Github: [OpeOginni](https://github.com/OpeOginni)
 - Discord: obo.baddest
-
-**Additional Team Members**
-
-- Name: Expertise in frontend frameworks like React and Svelte.
-- Name: Contract development specialist with experience on Polkadot parachains.
