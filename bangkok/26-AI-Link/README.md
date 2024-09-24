@@ -9,6 +9,6 @@ AI-LINK is a Byzantine-Robust Circuit designed to ensure privacy and data sovere
 ## Schedule
 
 ## Team info
-Kwuaint Lee, Dai Tony, Mark Liu
+Kwuaint Lee, Mark Liu, Tony Dai
 
 ## Material for Demo
