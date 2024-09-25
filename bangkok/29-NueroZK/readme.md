@@ -20,7 +20,7 @@ Cyborg Network is developing a DePIN-based marketplace for edge computing resour
 
 Approved and completed https://grants.web3.foundation/applications/WeTEE_Network
 
-##  Bountiy want to apply 
+##  Bounty tracks 
  - [Blockchain for good](https://dorahacks.io/hackathon/polkadot-2024-singapore/bounties-details#blockchain-for-good)
 
 ## Material for Demo
