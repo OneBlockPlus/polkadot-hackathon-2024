@@ -10,9 +10,9 @@ Cyborg Network is developing a DePIN-based marketplace for edge computing resour
 The planned milestone deliveries within the hacking period of this hackathon includes and is not limited to the following:
 - [X] Oracle Pallet implementation - for secure and private data exchange between off-chain and on-chain components using ORML Oracle
 - [X] Cyborg worker node PoC - A new implementation for launching cyborg nodes with just one click
-- [] ZK Worker - Offchain SNARK proof generator that generates a ZK proof to verify integrity of the executed ZK Algorithm
-- [] ZK verfier pallet - substrate pallet logic to verify and approve recieved ZK proofs.
-- [] UI Updates for NeuroZK
+- [ ] ZK Worker - Offchain SNARK proof generator that generates a ZK proof to verify integrity of the executed ZK Algorithm
+- [ ] ZK verfier pallet - substrate pallet logic to verify and approve recieved ZK proofs.
+- [ ] UI Updates for NeuroZK
 
 ## Architecture
 
