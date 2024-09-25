@@ -16,7 +16,7 @@ The planned milestone deliveries within the hacking period of this hackathon inc
 
 ## Architecture
 
-[NueroZK-baseline](https://github.com/user-attachments/assets/d7d73cc1-a045-4fab-a7f1-b3affd32e692)
+![NueroZK-baseline](https://github.com/user-attachments/assets/d7d73cc1-a045-4fab-a7f1-b3affd32e692)
 
 ## Schedule
 
