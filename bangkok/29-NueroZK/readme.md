@@ -1,4 +1,4 @@
-# Project - Cyborg Network's NeuroZK - Empowering AI at the edge with zero-knowledge proofs.
+# Cyborg Network's NeuroZK - Empowering AI at the edge with zero-knowledge proofs.
 
 ![Untitled design (3)](https://github.com/user-attachments/assets/11a20dd5-4dbf-4ee5-b99a-b99a4c56ae27)
 
