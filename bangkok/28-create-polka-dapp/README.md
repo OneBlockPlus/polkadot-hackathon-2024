@@ -4,17 +4,24 @@ Project name: Create Polka Dapp
 
 Project approval date (month and year): September 2024
 
+Project Creation date: May, 2024
+
+Project Background
+
+- [Repo](https://github.com/OpeOginni/create-polka-dapp)
+- Participated in the Polkadot Prodigy Hackathon where the project was initiated, but have received no funding.
+
 ## Project Overall Introduction
 
 ### Logo
 
 ![image-20220622110833152](./docs/create-polka-dapp.png)
 
-### Background
+### Problem Statement
 
 Polkadot offers a highly scalable, interoperable network for building decentralized applications, but many developers face the challenge of getting started with setting up projects. To solve this, **Create Polka Dapp** provides an easy-to-use CLI for scaffolding starter applications, simplifying the development process for Polkadot-based dApps.
 
-Despite its initial utility, the project currently supports only frontend creation, and there’s a strong need for more flexibility in terms of frameworks, contracts, and parachains.
+Despite its initial utility, the project currently supports only frontend creation, and there’s a strong need for more flexibility in terms of frameworks, contracts, and evm and substrate chains.
 
 ### Introduction
 
