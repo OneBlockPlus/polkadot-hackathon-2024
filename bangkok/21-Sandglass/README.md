@@ -29,14 +29,21 @@ To ensure compliance with legal standards, Sandglass incorporates access control
 Additionally, we have created unique functional points within the protocol:
 
 - **Token Swapping:** Users can directly swap their deposited mixed tokens within the mixer, providing additional flexibility and utility beyond standard mixing functions. This feature differentiates Sandglass from other mixers, making it both a privacy tool and a DeFi solution.
-
+- **TOTP:** In order to increase the security of account operations, we have added the  Time-based one-time password base ZKP.Time-based one-time password (TOTP) is a computer algorithm that generates a one-time password (OTP) using the current time as a source of uniqueness. As an extension of the HMAC-based one-time password algorithm (HOTP).
+- **Blacklist:** In order to avoid legal risks, we have added a blacklist function. Accounts on the blacklist are prohibited from participating in currency swaps.
 
 ## Features Planned for the Hackathon
 - **Develop Mixer Pallet**:
   - `setup_verification`: Verifies zk-SNARK proof inputs.
   - `deposit`: Enables users to deposit tokens while committing to a zk-SNARK proof.
   - `withdraw`: Enables users to withdraw tokens while proving ownership without disclosing their identity.
-
+- **OTP Pallet**:
+  - `naive_approval`: Only checks that time in the proof is larger than lastUsedTime, i.e. behaves like HOTP
+  - `block_time_approval`: Uses block timestamp to validate time, TOTP.
+- **SWAP Pallet**:
+  - `submit_order`: Submit order with token id, amount.
+  - `take_order`: Take order by order id.
+  - `cancel_order`:  cancel order by order id
 - **Develop Mixer Frontend**:
   - **Deposit**: Frontend interface that interacts with the blockchain for depositing tokens.
   - **Withdraw**: Frontend interface for users to anonymously withdraw tokens.
