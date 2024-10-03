@@ -69,6 +69,11 @@ As the project develops during the hackathon, this section will track the comple
 
 - Updated CLI dependencies (moved to more lightweight deps) & Setup templates into categories (frontend, contract, frontend + contract) -> [check out commit](https://github.com/OpeOginni/create-polka-dapp/commit/13d0a79bab110845b73aec3310b9bb8c80ccf43a)
 
+- Worked on Current React Frontend Templates -> [check out commit](https://github.com/OpeOginni/create-polka-dapp/commit/c1b479e8be1353d0c641227a4243969dd50f3764)
+  - Reduced the size of the package by getting rid of JS frontend templates as developers can easily switch the TS templates to work as JS.
+  - Completely updated the React + TS frontend template, adding tailwindcss for styling and improving the wallet connection UI and UX.
+  - Lastly I decided to stick with `Polkadot-Onboard` for the wallet connection and interaction as this provides end developers with a smooth use and they can make their own custom changes as easy as they like.
+
 ## Choosen Track
 
 This project is for the **(Infrastructure) Polkadot ecological developer tools** Track
