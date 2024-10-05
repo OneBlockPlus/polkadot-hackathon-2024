@@ -47,7 +47,7 @@ The project's main code repository is available [here](https://github.com/OpeOgi
 ### CLI Tool
 
 - Runtime Module
-  - [ ] Scaffold contracts for different parachains.
+  - [x] Scaffold contracts for different parachains.
   - [ ] Integrate contract templates alongside frontend templates.
 - Web Frontend
   - [x] Add Next.js as a frontend option.
@@ -76,8 +76,13 @@ As the project develops during the hackathon, this section will track the comple
   - Lastly I decided to stick with `Polkadot-Onboard` for the wallet connection and interaction as this provides end developers with a smooth use and they can make their own custom changes as easy as they like.
 
 - [Created Template for NextJS App Router + Typescript plus new frontend features](https://github.com/OpeOginni/create-polka-dapp/commit/b6d627b0e6cba04f3762b571601f5de9ebfc5189)
+
   - Added extra extension wallets and nice UI making users install suggested wallets they dont have
   - Implemented a chain switching system where users can move from chain to chain
+
+- [Added Ink Contract Template](https://github.com/OpeOginni/create-polka-dapp/commit/3f971c3edb1c8f85294f5d26f8244e6ae4589ed3)
+
+  - Implemented a simple Hello World Ink Contract Teamplte with a simple Set and Get function.
 
 ## Choosen Track
 
