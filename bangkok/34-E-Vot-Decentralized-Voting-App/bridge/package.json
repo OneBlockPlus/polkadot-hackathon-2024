@@ -1,0 +1,22 @@
+{
+  "name": "evolt-dapp-bridge",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app"
+  },
+  "author": "kwaoquaye",
+  "type": "module",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "crypto-js": "^4.2.0",
+    "ethers": "^6.13.2",
+    "express": "^4.19.2",
+    "ipfs-http-client": "^60.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
