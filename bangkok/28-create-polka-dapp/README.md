@@ -47,11 +47,11 @@ The project's main code repository is available [here](https://github.com/OpeOgi
 ### CLI Tool
 
 - Runtime Module
-  - [ ] Scaffold contracts for different parachains.
+  - [x] Scaffold contracts for different parachains.
   - [ ] Integrate contract templates alongside frontend templates.
 - Web Frontend
-  - [ ] Add Next.js as a frontend option.
-  - [ ] Improve existing React and Svelte templates with modern best practices.
+  - [x] Add Next.js as a frontend option.
+  - [x] Improve existing React and Svelte templates with modern best practices.
 - CLI Templates
   - [x] Scaffold options for contracts, frontend-only, or full-stack depending on developer needs.
   - [ ] Custom CLI templates for specific parachains based on development tools (EVM or INK)
@@ -67,7 +67,22 @@ As the project develops during the hackathon, this section will track the comple
 
 ## Commit Progress
 
-- Updated CLI dependencies (moved to more lightweight deps) & Setup templates into categories (frontend, contract, frontend + contract) -> [check out commit](https://github.com/OpeOginni/create-polka-dapp/commit/13d0a79bab110845b73aec3310b9bb8c80ccf43a)
+- [Updated CLI dependencies (moved to more lightweight deps) & Setup templates into categories (frontend, contract, frontend + contract)](https://github.com/OpeOginni/create-polka-dapp/commit/13d0a79bab110845b73aec3310b9bb8c80ccf43a)
+
+- [Worked on Current React Frontend Templates](https://github.com/OpeOginni/create-polka-dapp/commit/c1b479e8be1353d0c641227a4243969dd50f3764)
+
+  - Reduced the size of the package by getting rid of JS frontend templates as developers can easily switch the TS templates to work as JS.
+  - Completely updated the React + TS frontend template, adding tailwindcss for styling and improving the wallet connection UI and UX.
+  - Lastly I decided to stick with `Polkadot-Onboard` for the wallet connection and interaction as this provides end developers with a smooth use and they can make their own custom changes as easy as they like.
+
+- [Created Template for NextJS App Router + Typescript plus new frontend features](https://github.com/OpeOginni/create-polka-dapp/commit/b6d627b0e6cba04f3762b571601f5de9ebfc5189)
+
+  - Added extra extension wallets and nice UI making users install suggested wallets they dont have
+  - Implemented a chain switching system where users can move from chain to chain
+
+- [Added Ink Contract Template](https://github.com/OpeOginni/create-polka-dapp/commit/3f971c3edb1c8f85294f5d26f8244e6ae4589ed3)
+
+  - Implemented a simple Hello World Ink Contract Teamplte with a simple Set and Get function.
 
 ## Choosen Track
 
