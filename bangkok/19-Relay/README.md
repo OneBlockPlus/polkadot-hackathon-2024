@@ -36,6 +36,10 @@ At the core of our project is a Polkadot-enabled microcontroller (RFID device) i
 5. **Demo Implementation:**
    - Full end-to-end demonstration of a payment scenario
    - Showcase of user registration, NFC card creation, and transaction processing
+  
+
+![image](https://github.com/user-attachments/assets/e39b5c2e-1807-4dc3-b16a-9d103b6624b7)
+
 
 ## Architecture
 
