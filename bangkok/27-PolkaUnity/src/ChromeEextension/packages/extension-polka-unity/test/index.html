@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Test</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="bookmark" type="image/x-icon" href="favicon.ico" />
+</head>
+
+<body id="body">
+    <div id="change"></div>
+    <button id="btn1">sign</button>&nbsp;&nbsp;
+    <button id="btn2">Store Set</button>&nbsp;&nbsp;
+    <button id="btn3">Store Get</button>&nbsp;&nbsp;
+    <button id="btn4">Test</button>&nbsp;&nbsp;
+    <script charset="utf-8" type="module">
+        import api from "./js/sdk.js";
+        import store from "./js/store.js";
+        async function mytest1(e) {
+            console.log("click");
+
+            let res=await api.sign("dfsafdsaf");
+            console.log(res);
+            alert(res.msg);
+
+            console.log("click ok");
+        }
+        async function mytest2(e) {
+            console.log("click2");
+
+            let res=await send("store-set",{key:"hi",value:"haha"+new Date().valueOf()});
+            console.log(res);
+            console.log("click ok");
+        }
+        async function mytest3(e) {
+            console.log("click3");
+
+            let res=await send("store-get",{key:"hi"});
+            console.log(res);
+            console.log("click ok");
+        }
+        async function mytest4(e) {
+            console.log("click4");
+
+            store("from test/index.html");
+            console.log("click ok");
+        }
+        document.getElementById("btn1").addEventListener("click", mytest1);
+        document.getElementById("btn2").addEventListener("click", mytest2);
+        document.getElementById("btn3").addEventListener("click", mytest3);
+        document.getElementById("btn4").addEventListener("click", mytest4);
+    </script>
+</body>
+
+</html>
