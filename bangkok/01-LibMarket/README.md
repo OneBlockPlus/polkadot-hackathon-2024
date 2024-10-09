@@ -54,7 +54,7 @@ Relying on the shared security mechanism of Polkadot's relay chain, using homomo
 | S7iter  | PM&Full stack dev | S7iter      |
 | Ch1hiro | backend dev       | Ch1hiro4002 |
 | Azhan   | CD&Code Auditor   | Azhan1431   |
-|         |                   |             |
+|LittleNewbie| Front Dev      | XiaoLiisnotwritingbugs |
 |         |                   |             |
 
 
