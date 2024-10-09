@@ -49,13 +49,13 @@ Relying on the shared security mechanism of Polkadot's relay chain, using homomo
 
 
 ## Team info
-| Name   | Role              | GitHub/X |
-| ------ | ----------------- | -------- |
-| S7iter | PM&Full stack dev | S7iter   |
-|        |                   |          |
-|        |                   |          |
-|        |                   |          |
-|        |                   |          |
+| Name   | Role              | GitHub/X  |
+| ------ | ----------------- | --------  |
+| S7iter | PM&Full stack dev | S7iter    |
+| Ch1hiro|   backend dev     |Ch1hiro4002|
+|        |                   |           |
+|        |                   |           |
+|        |                   |           |
 
 
 
