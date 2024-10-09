@@ -1,0 +1,10 @@
+[package]
+name = "pfx-pal"
+version = "0.1.0"
+edition = "2021"
+description = "Platform abstraction layer for Pflix"
+
+[dependencies]
+anyhow = { workspace = true }
+pfx-types = { workspace = true, features = ["enable_serde", "full_crypto"] }
+pfx-api = { workspace = true }

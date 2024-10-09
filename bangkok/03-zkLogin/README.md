@@ -1,5 +1,7 @@
 # Project zkLogin
 ## Introduction
+> For more detailed introduction please check the [zkLogin_zh_CN](./doc/zkLogin_zh_CN.md)
+
 The zkLogin project aims to simplify the user interact experience, enable large-scale onboarding of Web2 users, create a decentralized and privacy-preserving authentication system using zero-knowledge proofs (zk). Traditional authentication systems often require users to remember complex private keys or mnemonic phrases. zkLogin leverages zero-knowledge tools to enable users to prove their identity without revealing any sensitive information, ensuring both security and privacy.
 
 zkLogin provides the ability for Users to send transactions from a Polkadot address using an OAuth credential, without publicly linking the two.
@@ -44,6 +46,7 @@ zkLogin provides great convenience for end users without compromising security. 
 
 
 ## Material for Demo
-1. Demo Video [link to Youtube]
-2. PPT [link to google doc]
+1. Docs(Chinese Version: [zkLogin_zh_CN](./doc/zkLogin_zh_CN.md))
+2. Demo Video [link to Youtube]
+3. PPT [link to google doc]
 
