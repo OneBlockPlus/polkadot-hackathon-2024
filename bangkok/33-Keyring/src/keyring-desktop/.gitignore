@@ -1,0 +1,11 @@
+build/bin
+node_modules
+frontend/dist
+*.db
+**/.DS_Store
+**/*.sqlite3
+.env
+
+crosschain-mainnet.yaml
+crosschain-testnet.yaml
+crosschain.yaml

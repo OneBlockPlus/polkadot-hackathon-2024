@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SubWallet</title>
+  <link href="fonts/PlusJakartaSans/index.css" rel="stylesheet">
+  <link href="./main.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0 auto;
+      height: 600px;
+      width: 390px;
+      display: flex;
+      align-items: center;
+      min-height: 600px;
+    }
+
+    div#root {
+      overflow: hidden;
+      box-sizing: border-box;
+      height: 100%;
+      max-height: 599px;
+      margin: 0 auto;
+      padding: 0;
+      text-align: left;
+      width: 100%;
+      position: relative;
+    }
+  </style>
+</head>
+<body style="background-color: rgb(12, 12, 12);">
+  <div id="root"></div>
+  <div id="loading-placeholder" style="background-color: rgb(12, 12, 12); position:fixed; top: 0; left: 0; right: 0; bottom: 0">
+    <img src="/images/loading.svg" style="position: absolute; top: calc(50% - 50px); left: calc(50% - 50px)" alt="Loading">
+  </div>
+</body>
+</html>
