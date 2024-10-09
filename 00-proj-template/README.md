@@ -1,4 +1,6 @@
 # Project XXX
+Each project must provide the sufficient information, please check all mandatory parts as follows.
+
 -- mandatory parts
 ## Introduction
 -- project name
@@ -37,8 +39,8 @@
 
 -- bounty you will apply
 
--- mandatory before offline demo
-## Material for Demo
+
+** mandatory before offline demo, submit aterial for Demo
 1. Demo Video [link to Youtube]
 2. PPT [link to google doc]
 
