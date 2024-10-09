@@ -39,12 +39,12 @@ Relying on the shared security mechanism of Polkadot's relay chain, using homomo
 
 | Phase                  | Description |
 | ---------------------  | ----------- |
-| Order message validity |           |
-| Market Mode |            |
-| Fully on-chain trust notes | |
-| Economic and Integral Models |                  |
-| ZK-Proof Verification | |
-| Supply and demand | |
+| Order message validity | Use hash locks to limit the order validity date and add mapping status to match it |
+| Market Mode | The market adopts the CToC model, and any user can be a buyer or a seller |
+| Fully on-chain trust notes | It provides a communication platform for buyers and sellers but without off-chain trust relationship, giving buyers on-chain bargaining power as the only proof. |
+| Economic and Integral Models | An incentive system is used to build an economic and points model, and the handling fees are added to the total reward pool and distributed to buyers and sellers. |
+| ZK-Proof Verification | Use homomorphic encryption algorithm to ensure the security of message transmission and consistency between buyers and sellers |
+| Supply and demand | There is a situation where there is a single seller and multiple buyers. The seller decides the final price. After the decision is made, the buyer signs and initiates the order. |
 
 
 
