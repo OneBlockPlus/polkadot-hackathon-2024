@@ -38,11 +38,12 @@ Besides, can also run with lower gas fees and high performance.
 The Intractable problem in cross-chain circulation and use of assets, including fragmentation, security, performance and Gas cost.
 
 ### Selected Bounty
-We will participate Moonbeam bounty 1 and bounty 2
+We will participate Moonbeam bounty 1 and bounty 2:
 - Bounty 1: Use a Moonbeam Precompile
-  - The ZK-Proofs of the execution of batched transactions will be verified on Moonbeam, then use XCM Transactor precompile smart contract to make the verification result be shared by all Parachains
-- Bounty 2: Build an Application on Moonbeam
-  - Ledger Chain Cell and Operation Chain Cell will be both built on Moonbeam
+    The ZK-Proofs of the execution of batched transactions will be verified on Moonbeam, then use XCM Transactor precompile smart contract to make the verification result be shared by all Parachains
+- Bounty 2: Build an Application on Moonbeam 
+    Ledger Chain Cell and Operation Chain Cell will be both built on Moonbeam.
+  
 ## Features planned for the Hackathon
 
 - a ZK-Rollup Layer serving for multiple chains, including parachain( like moonbeam ), BTC, and Ethereum.
