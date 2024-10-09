@@ -55,7 +55,7 @@ Relying on the shared security mechanism of Polkadot's relay chain, using homomo
 | Ch1hiro | backend dev       | Ch1hiro4002 |
 | Azhan   | CD&Code Auditor   | Azhan1431   |
 |LittleNewbie| Front Dev      | XiaoLiisnotwritingbugs |
-|         |                   |             |
+| UPON | Blockchain architecture and cryptography expert | UPON-2021 |
 
 
 
