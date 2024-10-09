@@ -7,7 +7,7 @@ Besides, can also run with lower gas fees and high performance.
 - the Ledger chain cell, in form of smart contract and substrate pallet and Taproot script.
 - the Operation chain cell,  in form of smart contract and substrate pallet
 ## Architect
-![image](https://github.com/user-attachments/assets/2822f8cd-3230-4db2-8132-6bb5a0fe0bea)
+TBA
 
 ## Schedule
 
