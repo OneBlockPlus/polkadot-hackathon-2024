@@ -1,4 +1,15 @@
-# zk-omni
+zk-omni
+# Basic Information
+
+## Project Name
+
+zk-omni
+
+## Project Creation Date
+
+2024.08.27
+
+## Project Background
 ## Introduction
 
 zk-omni is an omni-chain asset solution which enable the asset to be used across many chains without fragmentation, and with universal security.
