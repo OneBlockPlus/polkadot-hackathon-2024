@@ -7,7 +7,8 @@ Besides, can also run with lower gas fees and high performance.
 - the Ledger chain cell, in form of smart contract and substrate pallet and Taproot script.
 - the Operation chain cell,  in form of smart contract and substrate pallet
 ## Architect
-![ZK- OMNI System Architecture.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/1d9a94f5-fd30-418b-9adf-bb7a15b7a98b/d25d61fa-8b9e-48e0-892c-92d726e1fa27/ZK-_OMNI_System_Architecture.png)
+![image](https://github.com/user-attachments/assets/2822f8cd-3230-4db2-8132-6bb5a0fe0bea)
+
 ## Schedule
 
 ## Team info
