@@ -31,7 +31,7 @@ Relying on the shared security mechanism of Polkadot's relay chain, using homomo
 
 #### Smart Contract Architecture
 
-#### Front-end and back-end interaction architecture
+![](./img/Smart Contract Architecture.jpg)
 
 
 
