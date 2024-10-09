@@ -2,7 +2,7 @@
 
 ## Introduction
 
-LibMarket uses Polkadot's relay chain and parachain architecture to achieve interoperability between different blockchains, support cross-chain asset transactions and data exchange, and through this feature of Polkadot, realize a Defi platform with free transactions based on C2C mode, aiming to provide a free trade market system.
+LibMarket aims to explore the possibility of decentralized e-commerce platforms, uses Polkadot's relay chain and parachain architecture to achieve interoperability between different blockchains, support cross-chain asset transactions and data exchange, and through this feature of Polkadot, realize a Defi platform with free transactions based on C2C mode, aiming to provide a free trade market system.
 Relying on the shared security mechanism of Polkadot's relay chain, using homomorphic encryption algorithm to ensure the security of information, buyers and sellers can communicate directly and securely. Different from the current traditional transaction model of "sellers set prices and buyers seek to purchase NFTs", we have targeted all items under the chain, including entities, and negotiated on the off-chain platform-guaranteed transactions on the chain without the need for third-party trust. This has realized a new market model in which buyers and sellers can communicate and set prices.
 
 ## Features planned for the Hackathon
