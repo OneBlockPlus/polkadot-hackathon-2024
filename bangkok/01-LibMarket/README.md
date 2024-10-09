@@ -31,7 +31,7 @@ Relying on the shared security mechanism of Polkadot's relay chain, using homomo
 
 #### Smart Contract Architecture
 
-![](./img/Smart Contract Architecture.jpg)
+![](./img/Smart_Contract_Architecture.jpg)
 
 
 
