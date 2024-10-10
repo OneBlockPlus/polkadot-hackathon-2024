@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@polkadot/api": "^12.3.1",
+    "@polkadot/api-contract": "^12.3.1"
+  }
+}
