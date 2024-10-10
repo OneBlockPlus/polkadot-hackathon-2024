@@ -1,0 +1,91 @@
+{
+  "api": {
+    "cognidexUserApi": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "cognidexUserLambda"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "auth": {
+    "cognidexproto1fd4d481d": {
+      "customAuth": false,
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
+    }
+  },
+  "function": {
+    "cognidexUserLambda": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "storage",
+          "resourceName": "cognidexUserDynamo"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_cognidexUserLambda_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "cognidexUserLambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_cognidexUserLambda_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "cognidexUserLambda"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "cognidexUserDynamo": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    }
+  }
+}
