@@ -6,10 +6,9 @@ import { useInkathon } from '@scio-labs/use-inkathon'
 import { toast } from 'react-hot-toast'
 
 import { ConnectButton } from '@/components/web3/connect-button'
-import { GreeterContractInteractions } from '@/components/web3/greeter-contract-interactions'
+import { MixerBody } from '@/components/web3/mixer-body'
 
 export default function HomePage() {
-  // Display `useInkathon` error messages (optional)
   const { error } = useInkathon()
   useEffect(() => {
     if (!error) return
@@ -26,7 +25,7 @@ export default function HomePage() {
           <ConnectButton />
         </div>
         <div className="mt-12 flex w-full flex-wrap items-start justify-center gap-4">
-          <GreeterContractInteractions />
+          <MixerBody />
         </div>
       </div>
     </>
