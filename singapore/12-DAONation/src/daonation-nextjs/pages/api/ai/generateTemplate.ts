@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { OpenAiService } from '../../../lib/services/openAiService';
+import { TemplateType } from '../../../data-model/template-type';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -7,13 +8,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const { daoDescription } = req.body;
+    const { daoDescription, templateType } = req.body as { daoDescription: string; templateType: TemplateType };
 
     if (!daoDescription || typeof daoDescription !== 'string') {
       return res.status(400).json({ message: 'daoDescription is required and must be a string' });
     }
 
-    const completion = await OpenAiService.generateTemplate(daoDescription);
+    if (!templateType || typeof templateType !== 'string') {
+      return res.status(400).json({ message: 'templateType is required' });
+    }
+
+    const completion = await OpenAiService.generateTemplate(daoDescription, templateType);
 
     res.status(200).json(completion.choices[0].message);
   } catch (error) {

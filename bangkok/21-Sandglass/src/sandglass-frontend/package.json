@@ -1,5 +1,8 @@
 {
-  "name": "@inkathon/frontend",
+  "name": "@inkathon/monorepo",
+  "description": "Full-Stack DApp Boilerplate for ink! Smart Contracts",
+  "homepage": "https://inkathon.xyz",
+  "author": "Scio Labs <hello@scio.xyz> (https://scio.xyz)",
   "private": true,
   "version": "0.8.1",
   "scripts": {
@@ -58,24 +61,12 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
-    "@types/bn.js": "~5.1.5",
-    "@types/downloadjs": "^1.4.5",
-    "@types/eslint": "^8.56.10",
-    "@types/eslint-config-prettier": "^6.11.3",
-    "@types/node": "^20.14.5",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/eslint-plugin": "^7.13.1",
-    "@typescript-eslint/parser": "^7.13.1",
-    "concurrently": "^8.2.2",
-    "eslint": "^8.57.0",
-    "eslint-config-next": "^14.2.4",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-react": "^7.34.2",
-    "prettier": "^3.3.2",
-    "prettier-plugin-tailwindcss": "^0.6.5",
-    "tailwindcss": "^3.4.4",
-    "typescript": "^5.4.5"
+    "@changesets/changelog-github": "^0.5.0",
+    "@changesets/cli": "^2.27.5",
+    "lint-staged": "^15.2.7",
+    "next": "^14.2.4",
+    "simple-git-hooks": "^2.11.1",
+    "typescript": "^5.4.5",
+    "typesync": "^0.12.1"
   }
 }

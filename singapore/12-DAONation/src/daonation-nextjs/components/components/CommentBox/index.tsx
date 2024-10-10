@@ -29,7 +29,7 @@ const CommentBox = ({ address, user_info, date, message, replies = [], sendReply
   }
 
   return (
-    <div className="flex flex-col gap-2" data-id={MessageID}>
+    <div className="flex flex-col gap-2" key={MessageID} data-id={MessageID}>
       <div className="flex justify-between items-center">
         <div className="flex gap-1 items-center">
           {user_info?.imgIpfs !== '' ? (

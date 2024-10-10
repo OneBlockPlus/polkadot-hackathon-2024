@@ -17,7 +17,6 @@ import { Dao } from '../../../../../data-model/dao';
 import { toast } from 'react-toastify';
 import BuyTicketModal from '../../../../../features/BuyTicketModal';
 import LivestreamEmbed from '../../../../../components/components/LivestreamEmbed';
-import { el } from 'date-fns/locale';
 
 declare let window;
 export default function Events() {
@@ -96,7 +95,7 @@ export default function Events() {
         let allEvents = await GetAllEvents();
         let eventURIFull = allEvents.filter((e) => Number(e?.eventId) === eventId)[0];
 
-       
+        setBoughtTicket(eventURIFull.boughtTicket)
 
         setNfts(eventURIFull.NFTS);
 
@@ -215,13 +214,13 @@ export default function Events() {
       <div className={`flex items-center flex-col gap-8`}>
         <div className={`gap-8 flex flex-col w-full bg-gohan pt-10 border-beerus border min-h-[178px] ${isLivestream() && 'pb-10'}`}>
           <div className="container flex w-full justify-between relative">
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1 w-[650px]"  >
               <Loader
                 loading={loading}
                 width={300}
                 element={
                   <h5 className="font-semibold">
-                    <Link className="text-piccolo" href={`../../${router.query.daoId}`}>
+                    <Link className="text-piccolo" href={`/daos/${EventDAOURI.daoId}`}>
                       {EventDAOURI?.Title}
                     </Link>{' '}
                     {isAuction() ? 'Event' : 'Live event'}

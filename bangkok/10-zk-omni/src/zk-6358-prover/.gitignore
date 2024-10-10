@@ -1,0 +1,11 @@
+/target
+/.config
+/object-store
+/test-data
+/snark-proof
+/generated-sc
+/.DS_Store
+/kv-smt-db
+**/data-circuit
+**/*.log
+*object-store

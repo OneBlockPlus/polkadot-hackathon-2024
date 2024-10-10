@@ -1,0 +1,32 @@
+[package]
+name = "pfx-node-rpc-ext"
+version = "0.1.0"
+edition = "2021"
+authors = ["PFLX Network"]
+license = "Apache-2.0"
+homepage = "https://pflx.cloud/"
+repository = "https://github.com/PensiveFlix/PensiveFlix"
+
+[dependencies]
+# third-party dependencies
+serde = { workspace = true, features = ["derive"] }
+thiserror = { workspace = true }
+jsonrpsee = { workspace = true, features = ["server", "macros"] }
+impl-serde = { workspace = true }
+log = { workspace = true }
+hex = { workspace = true }
+parity-scale-codec = { workspace = true }
+scale-info = { workspace = true }
+# primitives
+sp-runtime = { workspace = true }
+sp-blockchain = { workspace = true }
+sp-api = { workspace = true }
+sp-state-machine = { workspace = true }
+# client dependencies
+sc-client-api = { workspace = true }
+sc-transaction-pool-api = { workspace = true }
+
+pfx-mq = { workspace = true, default-features = true }
+pfx-pallet-mq = { workspace = true, default-features = true }
+pfx-pallet-mq-runtime-api = { workspace = true, default-features = true }
+pfx-node-rpc-ext-types = { workspace = true, default-features = true }

@@ -1,0 +1,35 @@
+name: Test
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version-file: go.mod
+
+    - name: Fix empty in dist
+      run: |
+        mkdir frontend/dist
+        touch frontend/dist/temp
+    - name: Install libpcsclite
+      run: sudo apt install libpcsclite-dev
+    - name: Test
+      run: go test ./...
+
+  

@@ -6,5 +6,4 @@ export interface Badges {
   vote: boolean,
   donation: boolean,
   comment: boolean,
-  reply: boolean
 }

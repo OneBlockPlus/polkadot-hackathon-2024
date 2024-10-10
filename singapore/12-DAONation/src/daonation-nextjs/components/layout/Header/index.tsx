@@ -7,6 +7,7 @@ import useEnvironment from '../../../contexts/EnvironmentContext';
 import { CommunityService } from '../../../services/communityService';
 import { hex2rgb } from '../../../utils/hex-to-rgb';
 import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
 
 export const Header = () => {
   const [linkTarget, setLinkTarget] = useState('/');
@@ -38,6 +39,11 @@ export const Header = () => {
         document.documentElement.style.setProperty('--piccolo', hex2rgb(communityBranding.brandingColor));
       }
 
+      if (Cookies.get('loggedin') !== 'true' && !(router.pathname === 'login' || router.pathname === 'register')) {
+        router.push('/login');
+        return;
+      }
+
       if (router.pathname === '/daos' || router.pathname === '/joined') {
         router.push(`daos/${communityBranding.polkadotReferenceId}`);
       }
@@ -47,15 +53,15 @@ export const Header = () => {
   }
 
   return (
-    <header className={`w-full px-8 py-4 gap-4 flex justify-between items-center z-10 ${styles.header}`}>
+    <header className={`w-full px-8 py-4 gap-4 flex justify-between z-5 items-center ${styles.header}`}>
       <Link href={linkTarget}>
         {!isLoading && !communityLogo && (
-          <div>
+          <div className="min-w-[200px]">
             <Image height={48} width={119} src="/images/logo.svg" alt="DAOnation" />
           </div>
         )}
         {communityLogo && (
-          <div className="w-[120px] h-[48px] relative">
+          <div className="w-[120px] h-[48px] relative mr-[80px]">
             <Image className="object-contain" fill src={communityLogo} alt={communityName} />
           </div>
         )}

@@ -1,0 +1,53 @@
+[package]
+name = "enfrost"
+version = "0.2.1"
+authors = ["PFLX Network"]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = { workspace = true }
+futures = { workspace = true }
+log = { workspace = true }
+tokio = { workspace = true, features = ["full"] }
+reqwest = { workspace = true, features = ["rustls-tls", "socks"] }
+hex = { workspace = true }
+base64 = { workspace = true }
+serde = { workspace = true, features = ["derive"] }
+serde_json = { workspace = true }
+rand = { workspace = true }
+clap = { workspace = true, features = ["derive"] }
+tonic ={ workspace = true }
+async-trait = { workspace = true }
+
+frame-system = { workspace = true }
+sp-core = { workspace = true }
+sp-runtime = { workspace = true }
+sp-consensus-grandpa = { workspace = true }
+sp-trie = { workspace = true }
+sc-consensus-grandpa = { workspace = true }
+parity-scale-codec = { workspace = true }
+scale-info = { workspace = true }
+hash-db = { workspace = true }
+
+pallet-grandpa = { workspace = true }
+pallet-indices = { workspace = true }
+pallet-balances = { workspace = true }
+
+pfx-sanitized-logger ={ workspace = true }
+pfx-types = { workspace = true }
+pfx-trie-storage = { workspace = true }
+pfx-node-rpc-ext = { workspace = true }
+pfx-mq = { workspace = true }
+pfx-xt = { workspace = true }
+pfx-api = { workspace = true, features = ["pflix-client", "std"] }
+
+
+[features]
+only-attestation = [
+	"pfx-api/only-attestation"
+]
+verify-pflixbin = [
+	"pfx-api/verify-pflixbin"
+]
