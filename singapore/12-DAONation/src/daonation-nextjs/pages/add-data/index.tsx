@@ -2,6 +2,8 @@ import { Button } from '@heathmont/moon-core-tw';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { usePolkadotContext } from '../../contexts/PolkadotContext';
+import { CommunityService } from '../../services/communityService';
+import { Dao } from '../../data-model/dao';
 
 const AllUsers = [
   {
@@ -15,6 +17,7 @@ const AllUsers = [
 const AllCharities = [
   {
     wallet: '5HBgU6yBy49MT6FC2g8v2YFZnw4FmpQa2ER997gA5M4tJbWX',
+
     metadata: {
       title: 'Asset Metadata',
       type: 'object',
@@ -28,7 +31,12 @@ const AllCharities = [
         SubsPrice: { type: 'number', description: '5' },
         typeimg: { type: 'string', description: 'Dao' },
         Created_Date: { type: 'string', description: '8/17/2024' },
-        allFiles: [{ url: 'https://aqua-dull-locust-679.mypinata.cloud/ipfs/bafkreicguxof5vnszbfgotxhgnbulmrjcuifourdvu6r336l5ofejy7az4?pinataGatewayToken=v8BV9VKQs69NLLcVsQaw_fd_pcihpitKGBGpB13WTx40K9pHydzCcywsW0F1yAeL', type: 'image/png' }]
+        brandingColor: { type: 'string', description: "#FF7E01" },
+        allFiles: [{ url: 'https://aqua-dull-locust-679.mypinata.cloud/ipfs/bafkreicguxof5vnszbfgotxhgnbulmrjcuifourdvu6r336l5ofejy7az4?pinataGatewayToken=v8BV9VKQs69NLLcVsQaw_fd_pcihpitKGBGpB13WTx40K9pHydzCcywsW0F1yAeL', type: 'image/png' }],
+        customUrl: {
+          type: 'string',
+          description: "feeding-america"
+        },
       }
     }
   }
@@ -107,7 +115,7 @@ const AllIdeas = [
 
 export default function AddData() {
   const [isAdding, setIsAdding] = useState(false);
-  const { api, showToast, EasyToast, deriveAcc } = usePolkadotContext();
+  const { api, showToast, EasyToast, deriveAcc,GetAllDaos } = usePolkadotContext();
 
   async function AddUsers() {
     const ToastId = toast.loading(`Registering Users (${AllUsers.length})`);
@@ -136,6 +144,11 @@ export default function AddData() {
       const charity = AllCharities[i];
       const newPromise = new Promise(async (resolve, reject) => {
         async function onSuccess() {
+          const daos:Dao[] = await GetAllDaos();
+          const newDao = daos.find((dao) => dao.customUrl === charity.metadata.properties.customUrl.description);
+    
+          await CommunityService.create({ template: '', polkadotReferenceId: newDao.daoId.toString(), name: newDao.Title, imageUrl: newDao.logo, brandingColor:newDao.brandingColor, subdomain: newDao.customUrl, description: '' });
+    
           resolve(true);
         }
         await api._extrinsics.daos.createDao(charity.wallet, JSON.stringify(charity.metadata), {}).signAndSend(deriveAcc, (status) => {

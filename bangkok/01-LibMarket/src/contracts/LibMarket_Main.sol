@@ -20,11 +20,16 @@ pragma solidity ^0.8.20;
 import {Ownable2Step} from "./Ownable2Step.sol";
 import "./Owner_Pausable.sol";  // 通过两步转移定义owner 用来暂停或者开放合约 
 import {EconomyLib} from "./Lib/EconomyLib.sol";
+import {HomomorphicEncryptionLib} from "./Lib/HomomorphicEncryptionLib.sol";
 
 
 contract HashLock is Pausable {
+
+    //using HomomorphicEncryptionLib for HomomorphicEncryptionLib.EncryptedData;
+
     struct Lock {
         uint256 amount;
+        //HomomorphicEncryptionLib.EncryptedData hashLock; // 使用同态加密数据结构
         bytes32 hashLock;
         uint256 timelock;
         address payable sender;
@@ -40,6 +45,7 @@ contract HashLock is Pausable {
     event Withdrawn(bytes32 indexed lockId, bytes32 preimage);
     event Refunded(bytes32 indexed lockId);
 
+     
     function lock(bytes32 _hashLock, uint256 _timelock, address payable _receiver) internal whenNotPaused returns (bytes32 lockId) {
         require(msg.value > 0, "Amount must be greater than 0");
         require(_timelock > block.timestamp, "Timelock must be in the future");
@@ -47,9 +53,15 @@ contract HashLock is Pausable {
         lockId = keccak256(abi.encodePacked(msg.sender, _receiver, msg.value, _hashLock, _timelock));
         require(locks[lockId].sender == address(0), "Lock already exists");
 
+
+    // 使用同态加密
+    //  HomomorphicEncryptionLib.KeyPair memory key = HomomorphicEncryptionLib.generateKeyPair();
+    //  HomomorphicEncryptionLib.EncryptedData memory encryptedHashLock = HomomorphicEncryptionLib.encrypt(_hashLock, key);
+
         locks[lockId] = Lock({
             amount: msg.value,
             hashLock: _hashLock,
+            //hashLock: encryptedHashLock,
             timelock: _timelock,
             sender: payable(msg.sender),
             receiver: _receiver,
@@ -68,10 +80,13 @@ contract HashLock is Pausable {
         require(lock.receiver == msg.sender, "Not the receiver");
         require(!lock.withdrawn, "Already withdrawn");
         require(!lock.refunded, "Already refunded");
-        require(keccak256(abi.encodePacked(_preimage)) == lock.hashLock, "Invalid preimage");
+        require(keccak256(abi.encodePacked(_preimage)) == lock.hashLock, "Invalid preimage");   //x
+
+        // 验证预影像
+        //require(lock.hashLock.verify(_preimage), "Invalid preimage");
 
         lock.withdrawn = true;
-        lock.preimage = _preimage;
+        lock.preimage = _preimage;  //x
         lock.receiver.transfer(lock.amount);
 
         emit Withdrawn(_lockId, _preimage);

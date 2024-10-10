@@ -31,7 +31,7 @@ const GoalCard = ({ item, className = '' }) => {
             <p className="font-semibold text-moon-20 text-hit">{item?.ideasCount?.toString()}</p>
             <p>Ideas</p>
           </div>
-          <Link href={`${location.pathname}/goal/${item.goalId}`}>
+          <Link href={`/goals/${item.goalId}`}>
             <Button className="absolute bottom-0 right-0" iconLeft={<ArrowsRightShort />}>
               Go to goal
             </Button>

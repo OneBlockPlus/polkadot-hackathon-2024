@@ -1,0 +1,17 @@
+body{
+    background-color: #0c0c0c;
+    background: linear-gradient(to bottom,#12221C 20%,#0C0C0C 50.09%); 
+    width: 390px;
+    height: 600px;
+    padding:0;
+    margin:0;
+    color:#fff;
+}
+#main{
+    margin:56px 13px;
+    display: block;
+    width: calc(100% - 26px);
+}
+::-webkit-scrollbar {
+    width: 0px;
+}

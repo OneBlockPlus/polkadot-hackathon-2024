@@ -1,0 +1,45 @@
+[package]
+name = "primitives"
+version = "0.0.1"
+authors = ["Substrate DevHub <https://github.com/substrate-developer-hub>"]
+edition = "2021"
+license = "Unlicense"
+
+[dependencies]
+bstringify = { version = "0.1.2" }
+log = "0.4.17"
+serde = { version = "1.0", default-features = false, features = ["alloc", "derive"] }
+scale-codec = {package = "parity-scale-codec", version = "3.5.0", default-features = false, features = ["derive", "max-encoded-len"] }
+scale-info = { version = "2.5.0", default-features = false, features = ["derive"] }
+num_enum = { version = "0.5.3", default-features = false }
+
+sp-core = { default-features = false, git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0" }
+sp-runtime = { default-features = false, git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0" }
+sp-std = { default-features = false, git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0" }
+sp-io = { default-features = false, git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0" }
+sp-api = { default-features = false, git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0" }
+
+frame-support = { default-features = false, git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0" }
+
+[dev-dependencies]
+serde_json = { version = "1.0.68", features = ["std"] }
+
+
+[features]
+default = ["std"]
+std = [
+	"serde/std",
+	"scale-codec/std",
+	"scale-info/std",
+	"sp-runtime/std",
+	"sp-core/std",
+	"sp-std/std",
+	"sp-io/std",
+	"sp-api/std",
+
+	"frame-support/std",
+
+]
+evm-tests = []
+try-runtime = []
+tracing = []

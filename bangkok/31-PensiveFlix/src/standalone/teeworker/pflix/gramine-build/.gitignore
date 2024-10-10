@@ -1,0 +1,10 @@
+/*.o
+/OUTPUT
+/pflix
+/pflix.manifest
+/pflix.manifest.sgx
+/pflix.sig
+/pflix.token
+/bin
+/data
+/cruntime
