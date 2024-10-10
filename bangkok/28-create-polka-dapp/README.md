@@ -48,7 +48,7 @@ The project's main code repository is available [here](https://github.com/OpeOgi
 
 - Runtime Module
   - [x] Scaffold contracts for different parachains.
-  - [ ] Integrate contract templates alongside frontend templates.
+  - [x] Integrate contract templates alongside frontend templates.
 - Web Frontend
   - [x] Add Next.js as a frontend option.
   - [x] Improve existing React and Svelte templates with modern best practices.
@@ -62,7 +62,7 @@ As the project develops during the hackathon, this section will track the comple
 
 - 2024 Hackathon Milestone:
   - Added new CLI templates.
-  - Enhanced wallet functionality.
+  - Enhanced wallet functionality and flow.
   - Initial contract scaffolding support.
 
 ## Commit Progress
@@ -83,6 +83,11 @@ As the project develops during the hackathon, this section will track the comple
 - [Added Ink Contract Template](https://github.com/OpeOginni/create-polka-dapp/commit/3f971c3edb1c8f85294f5d26f8244e6ae4589ed3)
 
   - Implemented a simple Hello World Ink Contract Teamplte with a simple Set and Get function.
+
+- [Updated CLI Generation Script](https://github.com/OpeOginni/create-polka-dapp/commit/13a426a0d01c7e2b8fc609784b24e9ff6297fd85)
+
+  - Upgraded Scripts to work for Contracts, Frontend and Contacts + Frontend
+  - Added a SubDir Option for users who want to scaffold in a new project but a unique directory.
 
 ## Choosen Track
 
