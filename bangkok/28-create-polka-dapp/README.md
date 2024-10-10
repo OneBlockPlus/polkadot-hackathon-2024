@@ -6,10 +6,10 @@ Project approval date (month and year): September 2024
 
 Project Creation date: May, 2024
 
-Project Background
+### Project Background
 
 - [Repo](https://github.com/OpeOginni/create-polka-dapp)
-- Participated in the Polkadot Prodigy Hackathon where the project was initiated, but have received no funding.
+- Participated in the Polkadot Prodigy Hackathon where the project was initiated. Have received no extra funding or grants.
 
 ## Project Overall Introduction
 
@@ -32,10 +32,6 @@ Despite its initial utility, the project currently supports only frontend creati
 - **Future Expansion**: Plans to support contracts, full-stack setups, and integration with various parachains.
 
 The project's main code repository is available [here](https://github.com/OpeOginni/create-polka-dapp/tree/polkadot-2024-hackathon), and the NPM package can be found [here](https://www.npmjs.com/package/create-polka-dapp).
-
-### Technology Architecture
-
-![image-20220622110833152](./docs/create-polka-dapp.png) -> will be updated
 
 ### Details
 
