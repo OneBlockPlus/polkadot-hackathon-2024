@@ -1,0 +1,10 @@
+{
+  "resourceName": "cognidexUserDynamo",
+  "tableName": "cognidexUserDynamo",
+  "partitionKey": {
+    "fieldName": "userId",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}
