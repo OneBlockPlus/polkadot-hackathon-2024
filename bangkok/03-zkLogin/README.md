@@ -1,6 +1,6 @@
 # Project zkLogin
 ## Introduction
-> For more detailed introduction please check the [zkLogin_zh_CN](./doc/zkLogin_zh_CN.md)
+> For more detailed introduction please check the [zkLogin_zh_CN](./doc/zkLogin_zh_CN.md), or [zkLogin_en_US](./doc/zkLogin_en_US.md)
 
 The zkLogin project aims to simplify the user interact experience, enable large-scale onboarding of Web2 users, create a decentralized and privacy-preserving authentication system using zero-knowledge proofs (zk). Traditional authentication systems often require users to remember complex private keys or mnemonic phrases. zkLogin leverages zero-knowledge tools to enable users to prove their identity without revealing any sensitive information, ensuring both security and privacy.
 
@@ -46,7 +46,7 @@ zkLogin provides great convenience for end users without compromising security. 
 
 
 ## Material for Demo
-1. Docs(Chinese Version: [zkLogin_zh_CN](./doc/zkLogin_zh_CN.md))
+1. Docs(Chinese Version: [zkLogin_zh_CN](./doc/zkLogin_zh_CN.md), English Version [zkLogin_en_US](./doc/zkLogin_en_US.md))
 2. Demo Video [link to Youtube]
 3. PPT [link to google doc]
 
