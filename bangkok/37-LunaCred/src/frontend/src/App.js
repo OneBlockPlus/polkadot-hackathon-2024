@@ -1,23 +1,32 @@
 import logo from './logo.svg';
 import './App.css';
-
+import { AnimatePresence } from 'framer-motion';
+import LandingPage from './pages/Landing';
+import Dashboard from './pages/DashBoard';
+import { Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import {Contract } from 'ethers'
+import { useEthers } from '@usedapp/core';
 function App() {
+  // const contract = new Contract(contractAddress, MintableERC20.abi);
+  const { activateBrowserWallet, deactivate, account } = useEthers();
+
+   // Handle the wallet toggle
+   const handleWalletConnection = () => {
+    if (account) deactivate();
+    else activateBrowserWallet();
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+        <AnimatePresence>
+          <Routes>
+            <Route path='/' element={<LandingPage />} />
+            <Route path='/staking' element={<Dashboard />} />
+          
+          </Routes>
+        </AnimatePresence>
     </div>
   );
 }
