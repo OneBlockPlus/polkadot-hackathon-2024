@@ -7,7 +7,7 @@ import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import { Button } from '@mui/material';
 import useTheme from "../context/theme";
 import { useEthers } from '@usedapp/core';
-
+//this is navbar for lunacred
 function Navbar() {
   const { pathname } = useLocation();
   const [activeRoute, setActiveRoute] = useState('');

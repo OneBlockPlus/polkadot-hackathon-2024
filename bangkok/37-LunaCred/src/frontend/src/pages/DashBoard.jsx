@@ -24,6 +24,8 @@ moment.updateLocale("en", {
   },
 });
 
+// this is dashboard for lunacred
+
 function Dashboard({ value }) {
   const [isStaking, setIsStaking] = useState(true);
 
