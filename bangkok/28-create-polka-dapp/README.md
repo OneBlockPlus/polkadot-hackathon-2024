@@ -51,6 +51,8 @@ The project's main code repository is available [here](https://github.com/OpeOgi
 - CLI Templates
   - [x] Scaffold options for contracts, frontend-only, or full-stack depending on developer needs.
   - [ ] Custom CLI templates for specific parachains based on development tools (EVM or INK)
+- Contract LifeCycle Process Support (Mentorship Meetup advice)
+  - [x] Provide developers who decide to generate contracts witsihmple tools to perfom tasks like deploy and interact with their contracts. Though the Command Line or Through easy to write scripts.. Just like Hardhat for the Eth ecosystem
 
 ## Hackathon Progress
 
@@ -91,6 +93,9 @@ As the project develops during the hackathon, this section will track the comple
   - Fixed Bugs on React + TS template
 
 - [Updated polkagate-icon](https://github.com/OpeOginni/create-polka-dapp/commit/f64218e0d6f169dac6d403d95bea265905db8505)
+
+- [Added Development utilities for ink contract templates](https://github.com/OpeOginni/create-polka-dapp/commit/50fe3b9f2eab7c083d897bae0e8fbe4e0d28a47b)
+  - Created Scripts and CLI commands that developers can use to simply deploy their contracts to various chains.
 
 ## Choosen Track
 
