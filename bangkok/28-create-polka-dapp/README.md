@@ -90,6 +90,8 @@ As the project develops during the hackathon, this section will track the comple
   - Added details on how users can implement contract calls on their frontends
   - Fixed Bugs on React + TS template
 
+- [Updated polkagate-icon](https://github.com/OpeOginni/create-polka-dapp/commit/f64218e0d6f169dac6d403d95bea265905db8505)
+
 ## Choosen Track
 
 This project is for the **(Infrastructure) Polkadot ecological developer tools** Track
