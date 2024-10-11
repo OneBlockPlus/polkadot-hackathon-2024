@@ -85,6 +85,11 @@ As the project develops during the hackathon, this section will track the comple
   - Upgraded Scripts to work for Contracts, Frontend and Contacts + Frontend
   - Added a SubDir Option for users who want to scaffold in a new project but a unique directory.
 
+- [Final Template Details](https://github.com/OpeOginni/create-polka-dapp/commit/2467a9b492be91d8f5a4c915d10fd0c64c26aa81)
+
+  - Added details on how users can implement contract calls on their frontends
+  - Fixed Bugs on React + TS template
+
 ## Choosen Track
 
 This project is for the **(Infrastructure) Polkadot ecological developer tools** Track
