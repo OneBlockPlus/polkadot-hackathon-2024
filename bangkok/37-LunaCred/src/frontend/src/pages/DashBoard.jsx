@@ -11,7 +11,7 @@ import RankIcon from "../assets/rankIcon.svg";
 // import LockedMand from "../assets/lockedMandIcon.svg";
 import infoIcon from "../assets/infoIcon.svg";
 import { motion } from "framer-motion";
-
+import '../App.css'
 
 moment.updateLocale("en", {
   relativeTime: {
@@ -77,15 +77,16 @@ function Dashboard({ value }) {
     >
       {/* <div class="bg-gradient-to-br from-pink-500 via-purple-700 to-teal-800 min-h-screen flex items-center justify-center"> */}
       {/* <!-- Your glass cards go here --> */}
-      <div class="bg-black min-h-screen flex items-center justify-center">
+      <div class=" min-h-screen flex items-center justify-center dashboard-bg backdrop-blur-lg">
+      {/* <div class="bg-black min-h-screen flex items-center justify-center "> */}
       {/* <div class="bg-black min-h-screen grid grid-cols-12 grid-rows-12 gap-4"> */}
-      <div className="  w-full  font-mono  dark:bg-black   text-white pb-5">
+      <div className="  w-full  font-mono  text-white pb-5">
         <div className="flex flex-col items-center  ">
           <div className="dashboard-container  w-[90%]  mt-4 ">
             <div className="top-container flex flex-col ">
               <div className="heading-container font-bold text-[#fff] text-[32px]">
                <span className="merriweather-regular">
-               LunaCred   staking</span> 
+               Luna<span className="text-[#07d3ba]">Cred</span>   staking</span> 
               </div>
               <div className="description-container text-slate-400">
                 Boost your credibility and earn more rewards!
@@ -93,7 +94,7 @@ function Dashboard({ value }) {
             </div>
           </div>
           <div className="main-container  flex flex-col md:flex-row justify-between gap-4 mt-4 w-[90%]">
-            <div className="credibility-staking-container  dark:bg-[rgba(112,113,232,0.03)] border-2 rounded-lg border-white/30  p-4 md:p-5 shadow-md md:w-[40%] mb-4 md:mb-0 ">
+            <div className="credibility-staking-container backdrop-blur-lg bg-white/10 dark:bg-[rgba(112,113,232,0.03)] border-2 rounded-lg border-white/30  p-4 md:p-5 shadow-md md:w-[40%] mb-4 md:mb-0 ">
               <h1 className="text-2xl font-bold mb-4  text-[#fff] uppercase merriweather-regular  underline ">
                 Stake on Trust
               </h1>

@@ -16,11 +16,15 @@ function LandingPage() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.6, -0.05, 0.01, 0.99] }}
     >
-      <div className=" flex  justify-center   md:h-[90vh] bg-black   dark:text-white font-mono">
-        <div className="left-container w-[60%] pl-[5%] flex flex-col justify-between  ">
+      <div className=" flex  justify-center   backdrop-blur-lg bg-black dashboard-bg h-screen   dark:text-white font-mono">
+        <div className="left-container w-[60%] pl-[5%] flex flex-col justify-between    ">
           <div className="text-container flex flex-col gap-2 flex-1 justify-center">
             <div className="hero-title font-semibold md:text-[36px] text-[18px] text-pink-600 merriweather-regular  ">
-            Welcome to LunaCred, 
+            Welcome to <Link to="/" className=" text-white" >
+              <span className="merriweather-regular">
+               Luna<span className="text-[#07d3ba]">Cred</span>   </span> 
+              
+              </Link>, 
             </div>
             <div className="hero-description  md:text-[20px] text-[12px] text-slate-400">
             Welcome to LunaCred, where trust is the foundation of our decentralized platform built on Moonbeam. Forge authentic connections and drive meaningful change in a community where credibility matters. Earn $LUNA as you participate in shaping a future driven by trust and transparency.
@@ -29,7 +33,7 @@ Join us and build a trusted digital world.
             </div>
             <div className="button flex ">
               <Link
-                to={"/airdrop"}
+                to={"/staking"}
                 className={`button  text-pink-600 md:text-[28px] text-[15px] font-semibold dark:bg-hero-button border-[1px] px-2 border-[#70b7af] mt-8 flex justify-start  cursor-pointer shadow-[#07d3ba] shadow-md hover:shadow-[5px_5px_#07d3ba,_10px_10px_#07d3ba,_15px_15px_rgba(0,0,0,_0.0),_20px_20px_rgba(0,0,0,_0.0),_25px_25px_rgba(112,_113,_232,_0.05)]  `}
               >
                 Start Staking

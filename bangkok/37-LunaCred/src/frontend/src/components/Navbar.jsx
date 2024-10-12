@@ -1,204 +1,128 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import Twitter from '../assets/twitter.svg';
-import Discord from '../assets/discord.svg';
-// import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import { Button } from '@mui/material';
 import useTheme from "../context/theme";
 import { useEthers } from '@usedapp/core';
-//this is navbar for lunacred
+
 function Navbar() {
   const { pathname } = useLocation();
   const [activeRoute, setActiveRoute] = useState('');
-
+  const [nav, setNav] = useState(false);
   const { activateBrowserWallet, deactivate, account } = useEthers();
+  const { themeMode, brightTheme, darkTheme } = useTheme();
 
-  // Handle the wallet toggle
   const handleWalletConnection = () => {
     if (account) deactivate();
     else activateBrowserWallet();
   };
 
-  useEffect(() => {
-    setActiveRoute(pathname);
-    handleNav();
-  }, [pathname]);
-
-  // State to manage the navbar's visibility
-  const [nav, setNav] = useState(false);
-
-  // Toggle function to handle the navbar's display
   const handleNav = () => {
     setNav(!nav);
   };
-  // Dark Mode
-  const { themeMode, brightTheme, darkTheme } = useTheme();
-  const onChangeBtn = (e) => {
-    const darkModeStatus = e.currentTarget.checked;
-    if (darkModeStatus) {
-      darkTheme();
-    } else {
-      brightTheme();
-    }
-  };
-  console.log("themeMode", themeMode);
 
-  // Array containing navigation items
+  useEffect(() => {
+    setActiveRoute(pathname);
+    setNav(false);
+  }, [pathname]);
+
   const navItems = [
-    { id: 1, text: 'Home', to: '/' },
+   
     { id: 2, text: 'Airdrop', to: '/airdrop' },
     { id: 3, text: 'Credibility staking', to: '/staking' },
     { id: 4, text: 'Leaderboard', to: '/leaderboard' },
   ];
 
   return (
-    <div className='nav-container font-mono flex flex-1 justify-between backdrop-blur-lg bg-white/10  h-[10vh] mx-auto text-black  dark:text-white max-w-[90%] border-white/30 border'>
-      {/* Logo */}
-      <div className='flex  content-center'>
-        <Link
-          className='text-3xl font-semibold text-white flex items-center justify-self-start gap-2 tracking-wider'
-          to={'/'}
-        >
-            {" "}
-          {themeMode !== null && themeMode === "dark" ? (
-            // <img height={150} width={150} src={Mande}></img><>
-            <>LunaCred</>
-          ) : (
-            <>LunaCred</>
-            // <img height={150} width={150} src={MandeLogodark}></img>
-          )}
-        </Link>
-      </div>
-      <div className='flex content-center justify-end w-full'>
-        {/* Desktop Navigation */}
-        <ul className='navbar-left-container gap-8 md:flex items-center justify-self-end hidden'>
-          {navItems.map(item => (
-            <Link
-              to={item.to}
-              className={`${
-                activeRoute == item.to
-                  ? 'text-[#7071E8] font-bold'
-                  : 'dark:text-white'
-              }   text-[18px]`}
-            >
-              {item.text}
-            </Link>
-          ))}
-         {/* <a href="https://twitter.com/MandeNetwork" target="_blank">
-            {themeMode !== null && themeMode === "dark" ? (
-              <img
-                src={Twitter}
-                width={25}
-                height={25}
-                className="cursor-pointer"
-              ></img>
-            ) : (
-              <img
-                src={twitterdark}
-                width={25}
-                height={25}
-                className="cursor-pointer"
-              ></img>
-            )}
-          </a> */}
-          {/* <a href="https://discord.gg/9Ugch3fRC2" target="_blank">
-            {themeMode !== null && themeMode === "dark" ? (
-              <img
-                src={Discord}
-                width={25}
-                height={25}
-                className="cursor-pointer"
-              ></img>
-            ) : (
-              <img
-                src={discorddark}
-                width={25}
-                height={25}
-                className="cursor-pointer"
-              ></img>
-            )}
-          </a> */}
-          <div className='text-[18px]'>
-             <Button variant='contained' onClick={handleWalletConnection}>
-            {account
-              ? `Disconnect ${account.substring(0, 5)}...`
-              : 'Connect Wallet'}
-          </Button>
+    <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 w-11/12 max-w-7xl z-50">
+      <div className="backdrop-filter backdrop-blur-lg bg-white bg-opacity-10 border border-gray-200 border-opacity-20 rounded-full shadow-lg">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center">
+              <Link to="/" className="flex-shrink-0 text-2xl text-white" >
+              <span className="merriweather-regular">
+               Luna<span className="text-[#07d3ba]">Cred</span>   </span> 
+              
+              </Link>
+            </div>
+            <div className="hidden md:block">
+              <div className="ml-10 flex items-baseline space-x-4">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.id}
+                    to={item.to}
+                    className={`${
+                      activeRoute === item.to
+                        ? 'bg-gray-900 text-white'
+                        : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                    } px-3 py-2 rounded-md text-sm font-medium`}
+                  >
+                    {item.text}
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <div className="hidden md:block">
+              <Button
+                variant="contained"
+                onClick={handleWalletConnection}
+                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+              >
+                {account
+                  ? `Disconnect ${account.substring(0, 5)}...`
+                  : 'Connect Wallet'}
+              </Button>
+            </div>
+            <div className="-mr-2 flex md:hidden">
+              <button
+                onClick={handleNav}
+                type="button"
+                className="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+              >
+                <span className="sr-only">Open main menu</span>
+                {nav ? (
+                  <AiOutlineClose className="block h-6 w-6" />
+                ) : (
+                  <AiOutlineMenu className="block h-6 w-6" />
+                )}
+              </button>
+            </div>
           </div>
-        
-        </ul>
+        </div>
 
-        {/* Mobile Connect wallet and Navigation Icon */}
-        {!nav && <div className='content-center block md:hidden text-[12px] pr-2'>
-            <Button variant='contained' onClick={handleWalletConnection}>
-            {account
-              ? `Disconnect ${account.substring(0, 5)}...`
-              : 'Connect Wallet'}
-          </Button>
-        </div>}
-        <div onClick={handleNav} className='content-center block md:hidden'>
-          {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
+        {/* Mobile menu */}
+        <div 
+          className={`${
+            nav ? 'block' : 'hidden'
+          } md:hidden absolute top-full left-0 w-full mt-2`}
+        >
+          <div className="backdrop-filter backdrop-blur-lg bg-white bg-opacity-10 border border-gray-200 border-opacity-20 rounded-lg shadow-lg px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            {navItems.map((item) => (
+              <Link
+                key={item.id}
+                to={item.to}
+                className={`${
+                  activeRoute === item.to
+                    ? 'bg-gray-900 text-white'
+                    : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                } block px-3 py-2 rounded-md text-base font-medium`}
+              >
+                {item.text}
+              </Link>
+            ))}
+            <Button
+              variant="contained"
+              onClick={handleWalletConnection}
+              className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+            >
+              {account
+                ? `Disconnect ${account.substring(0, 5)}...`
+                : 'Connect Wallet'}
+            </Button>
+          </div>
         </div>
       </div>
-
-      {/* Mobile Navigation Menu */}
-      <ul
-        className={
-          nav
-            ? "flex flex-col z-50 fixed md:hidden left-0 top-0 w-[60%] h-full border-r dark:border-r-gray-900 text-white bg-black  dark:bg-[#000300] ease-in-out duration-500"
-            : "ease-in-out w-[60%] duration-500 fixed top-0 bottom-0 left-[-100%]"
-        }
-      >
-        {/* Mobile Logo */}
-        <Link
-          className="p-4 text-3xl font-semibold text-white bg-black dark:text-white flex items-center gap-2 tracking-wider"
-          to={"/"}
-        >
-          <img
-            height={100}
-            width={100}
-             alt={"image"}src={themeMode === "dark" ? "luna light" : "luna dark"}
-          ></img>
-        </Link>
-
-        {/* Mobile Navigation Items */}
-        {navItems.map((item) => (
-          <Link
-            to={item.to}
-            className={`${
-              activeRoute == item.to
-                ? "text-[black] font-bold"
-                : ""
-            }  p-4 cursor-pointer text-[18px]`}
-          >
-            {item.text}
-          </Link>
-        ))}
-     
-
-        <a
-          href="https://twitter.com/MandeNetwork"
-          target="_blank"
-          className="p-4"
-        >
-          {/* <img
-            src={themeMode === "dark" ? Twitter : twitterdark}
-            width={25}
-            height={25}
-            className="cursor-pointer"
-          ></img> */}
-        </a>
-        <a href="https://discord.gg/9Ugch3fRC2" target="_blank" className="p-4">
-          {/* <img
-            src={themeMode === "dark" ? Discord : discorddark}
-            width={25}
-            height={25}
-            className="cursor-pointer"
-          ></img> */}
-        </a>
-      </ul>
-    </div>
+    </nav>
   );
 }
 
