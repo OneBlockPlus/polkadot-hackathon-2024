@@ -98,10 +98,15 @@ As the project develops during the hackathon, this section will track the comple
 
   - Created Scripts and CLI commands that developers can use to simply deploy their contracts to various chains.
 
-- [Updated Contract Utilities & Added Nex Pages Router Frontend Template](https://github.com/OpeOginni/create-polka-dapp/commit/4868bcd5fdba3aa111cf0396abde54732e05220e)
+- [Updated Contract Utilities & Added Next Pages Router Frontend Template](https://github.com/OpeOginni/create-polka-dapp/commit/4868bcd5fdba3aa111cf0396abde54732e05220e)
 
   - Created NextJS Pages Router template for frontend
   - Updated Contract Utilities
+
+- [Added Finishing touches to CLI](https://github.com/OpeOginni/create-polka-dapp/commit/4c1abb465ff1614ef8a130b2cc5d77ee71cecc8e)
+
+  - Made sure Uncompleted Templates show as disabled on the CLI
+  - Update Package Readme
 
 ## Choosen Track
 
