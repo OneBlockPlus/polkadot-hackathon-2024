@@ -10,6 +10,7 @@ Project approval date (month and year): November 2024
 ## Background
 
 Voting governance is the most widely used collective decision-making method, but there are four pain points in voting governance decision-making:
+
 1: Governance attack issues;
 
 2: The problem of majority tyranny;
@@ -39,29 +40,33 @@ In some communities, it often happens that different solutions to a problem may 
 
 ## Architect
 
- Super-fair governance is divided into the following stages:
-### Voting preparation stage:
+
+###  System structure framework:
+![Architecture](./doc/arc.png)
+
+### Super-fair governance is divided into the following stages:
+#### Voting preparation stage:
 The main task of this stage is to set voting topics, tokens, and others. Among them, voting tokens should support the ability to abstain from voting: distribute abstained votes evenly to all proposals or set up a default agent;
 
-### Ballot distribution stage:
+#### Ballot distribution stage:
 At this stage, it is necessary to complete the task of distributing votes, and if it is required to auction votes, it should also be completed during this period;
 
-### Proposal collection stage:
+#### Proposal collection stage:
 At this stage, all members can put forward proposals, and the proposal information should support the public inquiry function;
 
-### Voting stage ( Commit ):
+#### Voting stage ( Commit ):
 When the participant base is too large, due to the openness of blockchain information, we need to take specific measures to ensure that the participants who voted first have sufficient self-protection ability. Therefore, the following semi-repudiation encryption scheme is designed, and the particular measures include the following:
 (1) The voting stage does not vote (transfer tokens) but only grants the transfer permission to the governance contract;
 (2) Each participant can vote many time ;
 (3) Voting adopts the bit commitment model, and the hash value H(x) of x to be voted is sent and stored in the blockchain;
 
-### Voting Reveal:
+#### Voting Reveal:
 In the voting disclosure stage, it is necessary to calculate the number of votes cast by members on each proposal. The specific process is as follows:
 (1) Members send both the voting value x and the hash value H(x) to the governancer;
 (2) The governancer counts the total number;
 (3) The governancer counts the support votes of all proposals.  
  
-### Decision-making and proposal implementation stage:
+#### Decision-making and proposal implementation stage:
 In this stage, the governance contract mainly realizes two functions:
 (1) Realize the distribution of tokens (that is, incentive compensation) according to the super-fair governance formula according to the number of votes supported by all proposals. If there is proxy voting, it is necessary to allocate tokens based on the number of votes held by the principal;
 (2) On-chain execution of approved proposals.
@@ -89,7 +94,7 @@ By using bit commitment contracts, a super-fair distribution of voting governanc
 ### Customize a pallet-DAO:
 By utilizing the previously referenced contracts, community circulation tokens facilitate members’ independent acquisition of votes, with the tokens being automatically transferred to their wallets. This mechanism promotes member-driven vote purchasing, culminating in an exceptionally fair governance system for resolving internal community disputes.
   
-  
+
 ## Web frontend: call extrinsics and querys. 
 
 #### User 
