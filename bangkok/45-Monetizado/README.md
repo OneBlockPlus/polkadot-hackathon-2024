@@ -46,7 +46,7 @@ For the architecture and how you can use Monetized in your Web applications, you
 Néstor Campos: https://www.linkedin.com/in/nescampos/
 
 ## Material for Demo
-1. Demo Video [link to Youtube]
+1. Demo Video: https://www.youtube.com/watch?v=VCosYEFZF_Q
 2. Pitch deck: https://drive.google.com/file/d/1VXan-3tvcvv_uDz0zpFDd4WTkvO7eM-Z/view?usp=drive_link
 3. Demo with Moonbeam (testnet): https://monetizado.github.io/demosmonetizado/demo_moonbeam.html
 4. Smart contract and docs: https://github.com/Monetizado/Contracts
@@ -56,5 +56,5 @@ Néstor Campos: https://www.linkedin.com/in/nescampos/
 
 ## Track and Selected Bounty
 
-- Tracks: (Infrastructure) Polkadot ecological developer tools, Open topic.
-- Bounties: Moonbeam
+- **Tracks**: (Infrastructure) Polkadot ecological developer tools, Open topic.
+- **Bounties**: Moonbeam
