@@ -1,9 +1,13 @@
 from Crypto.Cipher import AES
 from base64 import b64decode, b64encode
 from file_utils import read_as_bytes, get_filepath
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
+secret_key = b64decode(os.getenv('ENCODED_ENCRYPTION_SECRET_KEY'))
 
-def encryption(data_to_encrypt: bytes, header: bytes, secret_key: bytes):
+def encryption(data_to_encrypt: bytes, header: bytes, secret_key: bytes=secret_key):
     cipher = AES.new(secret_key, AES.MODE_GCM)
 
     # Adding header to the cipher for authentication
@@ -20,7 +24,7 @@ def encryption(data_to_encrypt: bytes, header: bytes, secret_key: bytes):
     return result
 
 
-def decryption(data: dict, secret_key: bytes):
+def decryption(data: dict, secret_key: bytes=secret_key):
     try:
         json_k = [ 'nonce', 'header', 'ciphertext', 'tag' ]
         jv = {k:b64decode(data[k]) for k in json_k}
@@ -36,26 +40,15 @@ def decryption(data: dict, secret_key: bytes):
 
     
 if __name__=='__main__':
-    from dotenv import load_dotenv
-    import os
-
-    load_dotenv()
-    encoded_key = os.getenv('ENCODED_ENCRYPTION_SECRET_KEY')
-    secret_key = b64decode(encoded_key)
-    
-    print(f'encoded {encoded_key}')
-    print(f'decoded {secret_key}')
-
     original_data_fpath=get_filepath('8f0fd05f.diff')
-
     data_to_encrypt = read_as_bytes(fpath=original_data_fpath)
 
     # Example header (e.g., metadata like data type, collection date)
     header = b"DNA Sequence Data 2024-12-10"
     
-    encrypted_dict = encryption(data_to_encrypt, header, secret_key)
+    encrypted_dict = encryption(data_to_encrypt, header)
 
-    result = decryption(encrypted_dict, secret_key)
+    result = decryption(encrypted_dict)
     assert result == data_to_encrypt
     print('suc lulw')
     print(result == data_to_encrypt)
