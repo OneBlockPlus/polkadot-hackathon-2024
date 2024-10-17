@@ -106,24 +106,24 @@ def end_session(bucket_id, session_id):
         return f"Request failed: {e}"
 
 
+if __name__=='__main__':
+    # Example usage
+    file_name = "test_file2.txt"
+    result = create_upload_session(file_name)
 
-# Example usage
-file_name = "test_file2.txt"
-result = create_upload_session(file_name)
+    print(">>> CREATE session result:")
+    print(result)
 
-print(">>> CREATE session result:")
-print(result)
+    session_uuid = result['data']['sessionUuid']
+    upload_url = result['data']['files'][0]['url']
 
-session_uuid = result['data']['sessionUuid']
-upload_url = result['data']['files'][0]['url']
+    result = put_file(upload_url, 'test_file2.txt')
 
-result = put_file(upload_url, 'test_file2.txt')
+    print(">>> PUT result:")
+    print(result)
 
-print(">>> PUT result:")
-print(result)
-
-result = end_session(bucket_id, session_uuid)
+    result = end_session(bucket_id, session_uuid)
 
 
-print(">>> END session result:")
-print(result)
+    print(">>> END session result:")
+    print(result)
