@@ -1,0 +1,7 @@
+{
+    "provider": "https://sepolia-rollup.arbitrum.io/rpc",
+    "private_key": "82b46d10cd14ec7afe513bcb1f2283125255798dda67e0c35293954dffe206d3",
+    "contract_addr": "0x636b7E4E9b7331047b431179809F3546e1f7A841",
+
+    "api_key": "81a0aea27f8840a286fccc53436600a2"
+}
