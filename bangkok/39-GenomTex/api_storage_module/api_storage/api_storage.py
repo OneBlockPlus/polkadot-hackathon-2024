@@ -106,6 +106,27 @@ def end_session(bucket_id, session_id):
         return f"Request failed: {e}"
 
 
+def get_file_details(cid):
+    url = f"https://api.apillon.io/storage/buckets/{bucket_id}/files/{cid}"
+    headers = {
+        "Authorization": f"{authentication}"
+    }
+    
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.HTTPError as http_err:
+        print(f"HTTP error occurred: {http_err}")
+    except Exception as err:
+        print(f"Other error occurred: {err}")
+
+
+def is_file_uploaded(cid) -> bool:
+    return get_file_details(cid)["status"] == 200
+   
+
+
 if __name__=='__main__':
     # Example usage
     file_name = "test_file2.txt"
@@ -127,3 +148,8 @@ if __name__=='__main__':
 
     print(">>> END session result:")
     print(result)
+
+    # check file presence
+    my_cid = "bafybeihwcndvlxjknls7ojoycwoqkz52js32n4ns5kt76wslz7hwxoma4a"
+    result = is_file_uploaded(my_cid)
+    print(f'file present: {result}')
