@@ -1,53 +1,49 @@
-# Project zkLogin
+# Cyferio Hub
+
 ## Introduction
 
-Cyferio hub is a decentralized cryptographic collaborative caching layer based on Substrate. It is dedicated to building a modular network stack based on critical infrastructure to enhance the experience of billions of users in the future and promote the ultimate realization of a decentralized Internet.
+Cyferio Hub is a decentralized cryptographic collaborative caching layer based on Substrate. It aims to build a modular network stack on critical infrastructure to enhance the experience of billions of users and promote the realization of a decentralized Internet.
 
-![Breif WorkFlow](doc/ecosystem.png)
+![Cyferio Ecosystem](doc/ecosystem.png)
 
-At the same time, Cyferio Hub provides an AVS ecosystem for the AVS consumer bearer server-side framework TMC (Trustless Modular Calculator) to help the project provide end-to-end capabilities to enhance and expand the realization. Based on this, no matter which tier of Vertical Saas the project is in, it can connect to Cyferio Hub as a caching relay tier to provide a better user experience.
+Cyferio Hub provides an AVS (Autonomous Validation System) ecosystem for the TMC (Trustless Modular Calculator), an AVS consumer bearer server-side framework. This helps projects provide end-to-end capabilities and expand their realization. Regardless of the tier of Vertical SaaS, projects can connect to Cyferio Hub as a caching relay tier for an improved user experience.
 
-TMC is a modular co-processor and rollup stack enabling verifiable Fully Homomorphic Encryption (FHE). It unlocks privacy-preserving, massively parallel execution of computations for both Web2 and Web3 applications.
+### Key Components
 
-By leveraging FHE, advanced modular Rollup designs, and parallelism in computational proofs within a trustless computing layer, TMC enables secure, near-real-time computations on public and private on-chain states while preserving composability and interoperability.
+1. **TMC (Trustless Modular Calculator)**: A modular co-processor and rollup stack enabling verifiable Fully Homomorphic Encryption (FHE). It unlocks privacy-preserving, massively parallel execution of computations for both Web2 and Web3 applications.
 
-Float Cache DB: Based on DragonflyDB's fastest modern architectural cache database and JMT(**Jellyfish Merkle Tree) from Diem** implementation.With our self-developed Float Cache DB, we have unlocked powerful distributed caching capabilities into Cyferio's technology stack to bring huge improvements to the network load and user experience.
+2. **Float Cache DB**: Based on DragonflyDB's modern architectural cache database and Jellyfish Merkle Tree (JMT) implementation from Diem. Our self-developed Float Cache DB unlocks powerful distributed caching capabilities, bringing significant improvements to network load and user experience.
 
-## Features planned for the Hackathon
+![Cyferio Architecture](doc/architect.png)
 
-- [ ] Tmc Integration with Cache Layer:When the tmc node receives a transaction request from the user, tmc will be the first to send the transaction to the execution module for processing, and at the same time, it will send the data related to this transaction to the cyferio cache layer for backup.
-- [ ] Cache Message queue Pallet : The cache information module of Cyferio hub will accept the cache blob data sent from Tmc nodes and queue it up, waiting for the down-chain worker to extract the cache information.
-- [ ] Off chain work integration with T Tmc relay message cluster: Whenever an off-chain worker waits until the next block is generated, it will fetch the cache information from the cache module to send the data to the data publishing layer or availability layer, or other service layer and waits for the result to be written into the next produced block data.
-- [ ] tmc relay message cluster Integration walrus storage
-- [ ] Web page:One website example for full process demonstration
+## Features Planned for the Hackathon
 
-## Architect
-![Breif WorkFlow](doc/architect.png)
+- [ ] TMC Integration with Cache Layer
+- [ ] Cache Message Queue Pallet
+- [ ] Off-chain Worker Integration with TMC Relay Message Cluster
+- [ ] TMC Relay Message Cluster Integration with Walrus Storage
+- [ ] Web Page: Example for full process demonstration
 
 ## Schedule
-—TimeLine for hachathon 
 
-:We only had 7 days between signing up for the contest and completing the code.
+We had only 7 days between signing up for the contest and completing the code. Our focus was on delivering an MVP version that covers:
 
-So we decided to finish an MVP version . Covers
+1. Planned features
+2. Demo video
+3. Presentation
 
-(1) Features planned
+## Team Information
 
-(2) Video
+| Name  | Role                   | GitHub                               |
+|-------|------------------------|--------------------------------------|
+| Moven | ZK & FHE Cryptography  | https://github.com/moven0831         |
+| Henry | TMC Engineer           | https://github.com/Zombieliu         |
+| Frenk | Blockchain Developer   | https://github.com/vladilen11        |
+| Bob   | Blockchain Developer   | https://github.com/web3olalala       |
 
-(3) PPT
+## Demo Materials
 
-## Team info
-| name         | role         | GitHub |
-| ----------- | ----------- | -----------  |
-| Moven  | ZK & FHE Cryptography  | https://github.com/moven0831   
-| Henry       | Tmc Engineer   |   https://github.com/Zombieliu     |
-| Frenk  | BlockChain  | https://github.com/vladilen11   
-| bob       | BlockChain   |   https://github.com/web3olalala     |
-
-
-## Material for Demo
-1. Docs
-2. Demo Video [link to Youtube]
-3. PPT [link to google doc]
+1. Documentation
+2. Demo Video: [YouTube Link]
+3. Presentation: [Google Docs Link]
 
