@@ -6,13 +6,12 @@ Target Audience: All Web3 application developers, decentralized application (DAp
 
 ## Features planned for the Hackathon
 
-- [ ] basic sdk support in-app function and api function.
+- [x] basic sdk support in-app function and api function.
 
-- [ ] Api function allow third-app‘s developer to transfer token and mint NFT.
+- [x] Api function allow third-app‘s developer to transfer token and mint NFT.
 
-- [ ] Implement wallet and DID integration, with initial support for Polkadot ecosystem projects.
+- [x] Implement wallet and DID integration, with initial support for Polkadot ecosystem projects.
 
-- [ ] In addition to Twitter integration, if time permits, the SDK will also include support for other social media platforms such as Facebook and Instagram. 
 
 
 
@@ -21,11 +20,12 @@ Target Audience: All Web3 application developers, decentralized application (DAp
 ![how works](./doc/arch.png)
 
 ## Schedule
-| Phase | Timeline | Description |
-| ----- | -------- | ----------- |
-|    Phase 1   |          | Implement wallet and DID integration, with initial support for Polkadot ecosystem projects. |
-|    Phase 2   |          |             |
-|    Phase 3   |          |             |
+| Phase | Description |
+| ----- | ----------- |
+|    Phase 1   | Implement wallet and DID integration, with initial support for Polkadot ecosystem projects. |
+|    Phase 2   | Expand to social media integration features. |
+|    Phase 3   | Provide support for multi-chain projects and cross-chain compatibility. |
+|    Phase 4   | Launch developer documentation and promote the SDK to a broader audience. |
 
 ## Team info
 | name         | role         | GitHub |
@@ -42,5 +42,5 @@ Target Audience: All Web3 application developers, decentralized application (DAp
 
 ## Material for Demo
 
-1. Demo Video [link to Youtube]
+1. Demo Video [https://youtu.be/2R-FylaX7dQ]
 2. PPT [https://drive.google.com/file/d/1BLdetsUvaycmYNY5sA819rbVfIsvH17Y/view?usp=sharing]
