@@ -3,6 +3,7 @@ package services
 import (
 	"keyring-desktop/utils"
 
+	"github.com/ethereum/go-ethereum/crypto"
 	keycard "github.com/status-im/keycard-go"
 	"github.com/status-im/keycard-go/types"
 )
@@ -73,7 +74,8 @@ func (i *KeyringCard) ChainAddress(pin string, pairingInfo *types.PairingInfo, c
 		return sig.PubKey, nil
 	}
 
-	sig, err := cmdSet.Sign([]byte("hello"))
+	data := crypto.Keccak256([]byte("hello"))
+	sig, err := cmdSet.Sign(data)
 	if err != nil {
 		utils.Sugar.Infof("sign failed, error: %s", err)
 		return nil, err

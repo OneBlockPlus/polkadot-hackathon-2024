@@ -524,9 +524,7 @@ func (a *App) Transfer(
 	}
 
 	// submit the tx
-	txId := tx.Hash()
-	utils.Sugar.Infof("Submitting tx id: %s", txId)
-	err = client.SubmitTx(ctx, tx)
+	txId, err := client.SubmitTx(ctx, tx)
 	if err != nil {
 		utils.Sugar.Error(err)
 		return "", errors.New("failed to submit transaction")
@@ -560,6 +558,7 @@ func (a *App) Teleport(
 	gas string,
 	pin string,
 	cardId int,
+	parachainId int64,
 ) (crosschain.TxHash, error) {
 	utils.Sugar.Infof("Teleport %s %s %s from %s to %s on %s network", amount, asset, contract, from, to, chainName)
 	if from == "" || to == "" || amount == "" || pin == "" {
@@ -636,7 +635,7 @@ func (a *App) Teleport(
 		utils.Sugar.Error(err)
 		return "", errors.New("failed to create transaction builder")
 	}
-	tx, err := builder.NewTeleport(fromAddress, toAddress, amountInteger, input)
+	tx, err := builder.NewTeleport(fromAddress, toAddress, amountInteger, input, parachainId)
 	if err != nil {
 		utils.Sugar.Error(err)
 		return "", fmt.Errorf("failed to create transaction: %s", err)
@@ -668,9 +667,7 @@ func (a *App) Teleport(
 	}
 
 	// submit the tx
-	txId := tx.Hash()
-	utils.Sugar.Infof("Submitting tx id: %s", txId)
-	err = client.SubmitTx(ctx, tx)
+	txId, err := client.SubmitTx(ctx, tx)
 	if err != nil {
 		utils.Sugar.Error(err)
 		return "", errors.New("failed to submit transaction")

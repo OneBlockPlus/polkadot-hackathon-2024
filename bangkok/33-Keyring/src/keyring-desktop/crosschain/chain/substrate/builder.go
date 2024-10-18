@@ -324,7 +324,7 @@ func (builder Builder) NewStaking(from xc.Address, pool uint32, amount xc.Amount
 	}, nil
 }
 
-func (builder Builder) NewTeleport(from xc.Address, to xc.Address, amount xc.AmountBlockchain, input xc.TxInput) (xc.Tx, error) {
+func (builder Builder) NewTeleport(from xc.Address, to xc.Address, amount xc.AmountBlockchain, input xc.TxInput, parachainID int64) (xc.Tx, error) {
 	_, fromPubkey, err := subkey.SS58Decode(string(from))
 	if err != nil {
 		return nil, err
@@ -396,7 +396,7 @@ func (builder Builder) NewTeleport(from xc.Address, to xc.Address, amount xc.Amo
 	//   fee_asset_item:= 0
 	//   weight_limit:= XcmV3WeightLimit.Unlimited()
 
-	parachain_id := types.NewUCompact(big.NewInt(1000))
+	parachain_id := types.NewUCompact(big.NewInt(parachainID))
 	dest_location := types.VersionedMultiLocation{
 		IsV4: true,
 		MultiLocationV4: types.MultiLocationV4{

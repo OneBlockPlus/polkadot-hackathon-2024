@@ -59,10 +59,11 @@ func (client *BlockchairClient) LatestBlock(ctx context.Context) (uint64, error)
 	return stats.Data.Blocks, nil
 }
 
-func (client *BlockchairClient) SubmitTx(ctx context.Context, tx xc.Tx) error {
+func (client *BlockchairClient) SubmitTx(ctx context.Context, tx xc.Tx) (xc.TxHash, error) {
+	txId := tx.Hash()
 	serial, err := tx.Serialize()
 	if err != nil {
-		return fmt.Errorf("bad tx: %v", err)
+		return "", fmt.Errorf("bad tx: %v", err)
 	}
 
 	postUrl := fmt.Sprintf("%s/push/transaction?key=%s", client.opts.Host, client.opts.Password)
@@ -71,13 +72,13 @@ func (client *BlockchairClient) SubmitTx(ctx context.Context, tx xc.Tx) error {
 	res, err := client.httpClient.Post(postUrl, "application/x-www-form-urlencoded", bytes.NewBuffer([]byte(postData)))
 	if err != nil {
 		log.Warn(err)
-		return err
+		return "", err
 	}
 
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		log.Error(err)
-		return err
+		return "", err
 	}
 
 	var apiData blockchairData
@@ -85,15 +86,15 @@ func (client *BlockchairClient) SubmitTx(ctx context.Context, tx xc.Tx) error {
 	if err != nil {
 		log.Error(err)
 		log.Error(string(body))
-		return err
+		return "", err
 	}
 
 	if apiData.Context.Code != 200 {
 		log.Error(string(body))
-		return errors.New(apiData.Context.Error)
+		return "", errors.New(apiData.Context.Error)
 	}
 
-	return nil
+	return txId, nil
 }
 
 func (client *BlockchairClient) UnspentOutputs(ctx context.Context, minConf, maxConf int64, addr xc.Address) ([]Output, error) {
