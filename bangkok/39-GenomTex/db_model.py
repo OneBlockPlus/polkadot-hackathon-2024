@@ -54,3 +54,9 @@ class DBModel:
 
         result = cur.execute(query, (name,))
         return result.fetchall()
+
+    def update_uuid(self, genome_id: int, ap_uuid: str):
+        cur = self.get_connection().cursor()
+        cur.execute("UPDATE genomes SET ap_uuid = ? WHERE id = ?",
+                    (ap_uuid, genome_id))
+        self.commit()
