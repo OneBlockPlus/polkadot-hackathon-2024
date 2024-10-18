@@ -4,6 +4,8 @@ import numpy as np
 from rapidfuzz.distance.metrics_cpp import levenshtein_distance
 from sklearn.decomposition import PCA
 
+PCA_COMPONENTS = 16
+
 
 def dna_to_vector(base: str) -> np.ndarray[np.complex_]:
     """
@@ -43,16 +45,30 @@ def lev_distance(base1: str, base2: str) -> int:
     return levenshtein_distance(base1, base2)
 
 
-def make_dna_fingerprint(matrix, output_index) -> str:
+def make_chromosomal_fingerprint(chromosome: np.ndarray) -> np.ndarray:
     """
-    Input is list of all DNAs as Matrix of (n, bases).
+    Input is list of all human bases in a specific chromosome (n, chromosome).
     Output is location of one specific DNA in the entire DNA space, so it can be used in similarity calculations.
     """
 
-    pca = PCA(n_components=16)
-    components = pca.fit_transform(matrix)
+    pca = PCA(n_components=PCA_COMPONENTS)
+    components = pca.fit_transform(chromosome)
+    return components
 
-    b_fp = components[output_index].tobytes()
+
+def make_dna_fingerprint(chr_reducts: List[np.ndarray], output_index) -> str:
+    """
+    Input is list of all DNAs as List of 23 PCA-reduced chromosomes each of shape (n, 16).
+    Output is location of every chromosome of a given human in their chromosomal spaces,
+        so it can be used in similarity calculations.
+    """
+
+    components = np.array([])
+    for chromosome in chr_reducts:
+        components = np.append(components, chromosome[output_index])
+    assert components.shape[0] == 23 * PCA_COMPONENTS
+
+    b_fp = components.tobytes()
     return ''.join('{:02x}'.format(x) for x in b_fp)
 
 
