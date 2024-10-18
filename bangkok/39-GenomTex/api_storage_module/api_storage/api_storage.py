@@ -1,6 +1,8 @@
 from dotenv import load_dotenv
 import requests
 import os
+from enum import Enum
+
 
 load_dotenv()
 
@@ -8,6 +10,10 @@ api_key = os.getenv('API_KEY')
 api_key_secret = os.getenv('API_KEY_SECRET')
 authentication = os.getenv('AUTHENTICATION')
 bucket_id = os.getenv('BUCKET_ID')
+
+class Result(Enum):
+    OK = 0,
+    ERROR = 1,
 
 
 def create_upload_session(file_name, content_type='text/plain'):
@@ -48,7 +54,7 @@ def create_upload_session(file_name, content_type='text/plain'):
         return f"Request failed: {e}"
 
 
-def put_file(upload_url, filename):
+def put_file_fp(upload_url, filepath) -> tuple[Result, str|None]:
     """
     Uploads a file to the provided upload URL using the PUT request.
 
@@ -60,24 +66,50 @@ def put_file(upload_url, filename):
     - Success message or error message based on the result of the upload.
     """
     try:
-        with open(filename, 'rb') as file_pointer:
+        with open(filepath, 'rb') as file_pointer:
             headers = {
                 "Content-Type": "text/plain"
             }
 
             response = requests.put(upload_url, headers=headers, data=file_pointer)
-
-            if response.status_code == 200:
-                return "File uploaded successfully!"
+            
+            if response.status_code == 200 or response.status_code == 201:
+                return Result.OK, "File uploaded successfully!"
             else:
-                return f"Error: {response.status_code}, {response.text}"
+                return Result.ERROR, f"Error: {response.status_code}, {response.text}"
     except FileNotFoundError:
-        return f"Error: File '{filename}' not found."
+        return Result.ERROR, f"Error: File '{filepath}' not found."
     except requests.exceptions.RequestException as e:
-        return f"Request failed: {e}"
+        return Result.ERROR, f"Request failed: {e}"
+    
+
+def put_file_data(upload_url, data) -> tuple[Result, str|None]:
+    """
+    Uploads a file to the provided upload URL using the PUT request.
+
+    Args:
+    - upload_url (str): The URL to which the file will be uploaded.
+    - data: Data to be uploaded
+
+    Returns:
+    - Success message or error message based on the result of the upload.
+    """
+    try:
+        headers = {
+            "Content-Type": "text/plain"
+        }
+
+        response = requests.put(upload_url, headers=headers, data=data)
+        
+        if response.status_code == 200 or response.status_code == 201:
+            return Result.OK, "File uploaded successfully!"
+        else:
+            return Result.ERROR, f"Error: {response.status_code}, {response.text}"
+    except requests.exceptions.RequestException as e:
+        return Result.ERROR, f"Request failed: {e}"
 
 
-def end_session(bucket_id, session_id):
+def end_session(session_id, bucket_id=bucket_id) -> tuple[Result, str|None]:
     """
     Ends the upload session using the Apillon API.
 
@@ -99,11 +131,11 @@ def end_session(bucket_id, session_id):
         response = requests.post(url, headers=headers)
 
         if response.status_code == 200:
-            return "Session ended successfully!"
+            return Result.OK, None
         else:
-            return f"Error: {response.status_code}, {response.text}"
+            return Result.ERROR, f"Error: {response.status_code}, {response.text}"
     except requests.exceptions.RequestException as e:
-        return f"Request failed: {e}"
+        return Result.ERROR, f"Request failed: {e}"
 
 
 def get_file_details(cid):
@@ -129,7 +161,7 @@ def is_file_uploaded(cid) -> bool:
 
 if __name__=='__main__':
     # Example usage
-    file_name = "test_file2.txt"
+    file_name = "test_file3.txt"
     result = create_upload_session(file_name)
 
     print(">>> CREATE session result:")
@@ -138,7 +170,8 @@ if __name__=='__main__':
     session_uuid = result['data']['sessionUuid']
     upload_url = result['data']['files'][0]['url']
 
-    result = put_file(upload_url, 'test_file2.txt')
+    import file_utils
+    result = put_file_fp(upload_url, file_utils.get_filepath(file_name))
 
     print(">>> PUT result:")
     print(result)

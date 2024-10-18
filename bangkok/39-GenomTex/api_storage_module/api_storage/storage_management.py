@@ -3,6 +3,9 @@ from api_storage import is_file_uploaded
 from file_utils import get_filepath
 from file_utils import read_as_bytes
 from encryption import encryption, decryption
+import datetime
+from api_storage import create_upload_session, put_file_data, end_session, Result
+
 
 def sync_file(filename, cid):
     filepath = get_filepath(filename)
@@ -17,13 +20,36 @@ def sync_file(filename, cid):
             pass 
             # TODO
             # 1. encrypt
+            formatted_date = datetime.datetime.now().strftime("%Y/%m/%d %H:%M:%S.%f")
+            header = f"DNA Diff Data {formatted_date}".encode()
+            
             data_to_encrypt = read_as_bytes(fpath=filepath)
 
-            header = b"DNA Sequence Data 2024-12-10" # TODO tweak the header
             encrypted_dict = encryption(data_to_encrypt, header)
             
             # 2. upload
-            # 3. store cid to db (alter the record col)
+            # create session
+            response = create_upload_session(filename)
+
+            file_uuid = response['data']['files'][0]['fileUuid']
+            session_uuid = response['data']['sessionUuid']
+            upload_url = response['data']['files'][0]['url']
+            
+            # upload file
+            result, message = put_file_data(upload_url, data=encrypted_dict)
+            
+            if result != Result.OK:
+                print(result, message)
+            
+            # end session & (triggers upload IPFS)
+            result, message = end_session(session_uuid)
+            
+            if result != Result.OK:
+                print(result, message)
+            
+            # 3. store uuid to db (alter the record col)
+            # TODO @Vonsovsky store (db) uuid 'ee433f65-ea35-48bb-9ae1-4b364bacf6a1' to reference diff in cache
+            # TODO process(file_uuid) for future uploads
         case False, True:
             pass 
             # TODO
