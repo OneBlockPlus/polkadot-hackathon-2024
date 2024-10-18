@@ -2,3 +2,6 @@ Flask==3.0.3
 requests
 python-dotenv
 pycryptodome
+numpy==1.24.4
+levenshtein==0.26.0
+scikit-learn==1.5.2

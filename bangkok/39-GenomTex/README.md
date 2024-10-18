@@ -75,3 +75,9 @@ Convert back to .vcf
 Filter out low-quality data for even better compression
 
     bcftools filter -s LOWQUAL -e '%QUAL<20 || DP<10' variants.vcf -o filtered_variants.vcf
+
+
+## Future development
+
+- better metrics for DNA distances, e.g. to cover complementary strings
+- rewrite string operations to C
