@@ -49,6 +49,13 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import GasFee from "./gas";
 import { Badge } from "./ui/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 
 type Props = {
   ledger: string;
@@ -118,6 +125,7 @@ const Asset = ({
   const [txConfirmOpen, setTxConfirmOpen] = useState(false);
   const [imgUrl, setImgUrl] = useState("");
   const [isTeleport, setIsTeleport] = useState(false);
+  const [parachainId, setParachainId] = useState(0);
 
   const [stakingOpen, setStakingOpen] = useState(false);
 
@@ -156,6 +164,18 @@ const Asset = ({
   const transfer = (data: z.infer<typeof AssetTransferSchema>) => {
     setLoadingTx(true);
     if (isTeleport) {
+      console.log("parachainId", parachainId);
+      if (parachainId === 0) {
+        toast({
+          variant: "destructive",
+          title: "Please select a parachain.",
+          description: "Please select a parachain to teleport the asset.",
+        });
+        setLoadingTx(false);
+        setPin("");
+        return;
+      }
+
       Teleport(
         symbol,
         contract ? contract : "",
@@ -165,7 +185,8 @@ const Asset = ({
         data.amount,
         gas,
         data.pin,
-        account.id
+        account.id,
+        parachainId
       )
         .then((resp) => {
           setLoadingTx(false);
@@ -597,7 +618,6 @@ const Asset = ({
   };
 
   const showAssetImage = () => {
-    console.log("symbolImage", symbolImage);
     if (imgUrl) {
       return imgUrl;
     }
@@ -675,6 +695,21 @@ const Asset = ({
                     className="space-y-6 mt-4"
                     onSubmit={transferForm.handleSubmit(transfer)}
                   >
+                    {isTeleport && (
+                      <Select
+                        onValueChange={(v) => setParachainId(parseInt(v))}
+                      >
+                        <SelectTrigger className="w-[180px]">
+                          <SelectValue placeholder="Select Parachain" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="1000">Asset Hub</SelectItem>
+                          <SelectItem value="1002">Bridge Hub</SelectItem>
+                          <SelectItem value="1005">Coretime</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    )}
+
                     <FormField
                       control={transferForm.control}
                       name="toAddr"

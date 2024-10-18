@@ -87,7 +87,7 @@ func (s *CrosschainTestSuite) TestSubmitTx() {
 	server, close := test.MockJSONRPC(&s.Suite, `{}`)
 	defer close()
 	client, _ := NewClient(&xc.NativeAssetConfig{NativeAsset: xc.ETH, URL: server.URL})
-	err := client.SubmitTx(s.Ctx, &test.MockXcTx{
+	_, err := client.SubmitTx(s.Ctx, &test.MockXcTx{
 		SerializedSignedTx: []byte{1, 2, 3, 4},
 	})
 	require.NoError(err)

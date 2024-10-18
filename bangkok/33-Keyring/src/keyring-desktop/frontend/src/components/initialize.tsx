@@ -163,6 +163,7 @@ const InitializeDialog = ({ handleClose }: Props) => {
         <span>{index + 1}.</span>
         <Input
           className="bg-secondary w-[90px]"
+          type="password"
           autoCorrect="off"
           {...loadForm.register(`mnemonics.${index}.word`)}
         />
