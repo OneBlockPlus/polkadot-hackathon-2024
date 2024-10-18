@@ -56,5 +56,5 @@ Néstor Campos: https://www.linkedin.com/in/nescampos/
 
 ## Track and Selected Bounty
 
-- **Tracks**: (Infrastructure) Polkadot ecological developer tools, Open topic.
+- **Tracks**: Open topic.
 - **Bounties**: Moonbeam
