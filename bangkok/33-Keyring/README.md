@@ -63,8 +63,11 @@ Tech stack used,
 - React and React Native
 
 
-## Team info
+## Team Introduction
 
 - Kaichao, researcher and developer, 10 years software development and 5 years blockchain development.
 - Echo, product design and hardware engineer, 8 years hardware development, 2 years blockchain research
 
+## Bounty
+
+Moonbeam
