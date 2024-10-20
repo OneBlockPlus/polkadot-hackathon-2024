@@ -36,7 +36,7 @@ The project's main code repository is available [here](https://github.com/OpeOgi
 ### Details
 
 - [Pitch Deck](https://github.com/OpeOginni/create-polka-dapp/tree/polkadot-2024-hackathon) -> will be updated
-- [Demo Video](https://github.com/OpeOginni/create-polka-dapp/tree/polkadot-2024-hackathon) -> will be updated
+- [Demo Video (LOOM)](https://www.loom.com/share/a3b65bf8b5f34e9bb6dbf363dc590c68?sid=e1f71081-60cc-457a-addf-ed2beec2437a)
 
 ## Things Planned to be Done During the Hackathon
 
