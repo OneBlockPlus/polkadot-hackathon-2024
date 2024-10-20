@@ -1,18 +1,24 @@
 # Cyborg Network's NeuroZK - Empowering AI at the edge with zero-knowledge proofs.
 
-![Untitled design (3)](https://github.com/user-attachments/assets/11a20dd5-4dbf-4ee5-b99a-b99a4c56ae27)
-
+![photo_2023-10-30 21 15 10](https://github.com/user-attachments/assets/0d8298e7-ef7d-4d2d-a3b0-7a59edcecc80)
 
 ## Introduction
 Cyborg Network is developing a DePIN-based marketplace for edge computing resources, enabling latency-sensitive applications to scale globally with ease. Users can seamlessly offload specific low-latency workloads to edge locations while maintaining their core deployment in the cloud. Our vision is to serve as essential middleware at the network edge, orchestrating these tasks to reduce cloud operational costs and enhance existing cloud services. In response to user demand and recognizing the growing importance of distributed AI inference infrastructure, we are prioritizing the development of a decentralized AI compute platform leveraging ZK proofs as our go-to-market strategy.
+
+Since this is an existing project, we have been continuously developing the Cyborg parachain since early 2024. However, we have only included features/milestones achieved during the hacking period of this hackathon. Judges can check the main branch of all the repositories mentioned to verify the code timeline.
+
+For this hackathon, our team has focussed on building NeuroZK, a ZK based task verification system
 
 ## Features planned for the Hackathon ( July 11 2024 - Oct 23 2024)
 The planned milestone deliveries within the hacking period of this hackathon includes and is not limited to the following:
 - [X] Oracle Pallet implementation - for secure and private data exchange between off-chain and on-chain components using ORML Oracle
 - [X] Cyborg worker node PoC - A new implementation for launching cyborg nodes with just one click
-- [ ] ZK Worker - Offchain SNARK proof generator that generates a ZK proof to verify integrity of the executed ZK Algorithm
+- [X] Inventory feature in base pallet for efficient handling of connected edge servers
+- [X] Payments Pallet - Custom logic for enabling on-chain payments for customers to buy compute hours
+- [X] ZK Worker - Offchain SNARK proof generator that generates a ZK proof to verify integrity of the executed ZK Algorithm
+- [X] UI Updates for NeuroZK
 - [ ] ZK verfier pallet - substrate pallet logic to verify and approve recieved ZK proofs.
-- [ ] UI Updates for NeuroZK
+
 
 ## Architecture
 
@@ -36,17 +42,14 @@ Approved and completed https://grants.web3.foundation/applications/Cyborg
 
 ## Material for Demo
 1. Demo Video - [Youtube]()
-2. PPT google doc 
-    -
+2. PPT google doc - 
 3. Devloper Docs - 
 4. Code repository
 - https://github.com/Cyborg-Network/cyborg-parachain
 - https://github.com/Cyborg-Network/cyborg-connect
+- https://github.com/Cyborg-Network/zk-verifier-circom
     
-5. Online DAPP Demo 
-6. Online Demo chain
-
-    Past Achievements
+5. Live Demo - [Live App](https://www.demo.cyborgnetwork.io/) 
 
 ##  Additional Information
 
