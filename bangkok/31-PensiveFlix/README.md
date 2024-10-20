@@ -8,20 +8,20 @@
 
 ## Problem
 
-​	As the NFT market and technology continue to develop, and as users' awareness of intellectual property rights continues to grow,more and more content creators are benefiting from their creations through NFT platforms. However, the current NFT market faces the following problems:
+​	As the NFT market and technology continue to develop, and as users' awareness of intellectual property rights continues to grow,more and more content creators are benefiting from their creations through NFT-based platforms. However, the current NFT-based projects faces the following problems:
 
 * 😰**Poor Security**: Content creators need to send their digital assets to third-party platforms, where these platforms host the content. This poses a significant security risk to the digital assets of content creators.
 * 😰**Piracy Issues**: Although NFT technology offers protection in terms of ownership and transaction transparency, problems such as piracy and plagiarism still persist. Digital copies of works can still be freely copied or shared on other non-blockchain platforms.
 * 😰**Incomplete Decentralization**: Some NFT-based platforms cannot achieve full decentralization in the true sense. They still rely on certain centralized services to perform certain operations in order to control user behavior and implement complex functionalities.
-* 😰**Overwhelming**: The variety of features and platforms in different NFT-based projects can be overwhelming for users, requiring them to spend significant time on browsing and reading.
+* 😰**Overwhelming**: There are too many projects,The variety of features and platforms in different NFT-based projects can be overwhelming for users, requiring them to spend significant time on browsing and reading.
 
 ## Introduction
 
 ​	PensiveFlix is a security tool designed to support the NFT market, offering a new solution for intellectual property protection. It consists of a blockchain built on Substrate that supports NFT minting (called Gringotts) and a specialized player (PensiveFlix) that operates within a TEE environment.
 
-​	PensiveFlix leverages its TEE technology to fully protect NFTs from minting to usage through its security capabilities. Additionally, the tamper-proof nature of TEE regulates the behavior of content creators (hereafter referred to as "Author") and buyers (hereafter referred to as "Customer"). This not only completely prevents the possibility of users' digital assets being illegally copied or misused but also provides decentralized support for various NFT market functionalities.
+​	PensiveFlix leverages its TEE technology to comprehensively protect the entire process of NFTs, from minting to usage, through its security features, preventing the possibility of users' digital assets being illegally copied or misused. Additionally, the tamper-proof nature of TEE regulates the behavior of content creators (hereafter referred to as "creators") and buyers (hereafter referred to as "customers"), ensuring that end users faithfully execute the corresponding business logic. Numerous NFT-based projects can develop on PensiveFlix to gain decentralized capabilities.
 
-​	PensiveFlix integrates the infrastructure capabilities of the Polkadot ecosystem, uses the CESS network to store encrypted user knowledge content, and can use Polkadot's XCM protocol through the Unique network to help the NFT of the entire Polkadot ecosystem.
+​	PensiveFlix integrates the infrastructure capabilities of the Polkadot ecosystem, uses the CESS network to store encrypted user digital assets, and can use Polkadot's XCM protocol through the Unique network to help the NFT of the entire Polkadot ecosystem.
 
 <img src="./doc/PensiveFlixIntroduce.png" alt="introduce"  />
 
@@ -31,9 +31,9 @@
 
 ## Features planned for the Hackathon
 
-- [x] Users can purchase NFTs through the NFT marketplace and access the encrypted content, such as images, to view them using **PensiveFlix**.
+- [x] Author use PensiveFlix to encrypt files and mint NFTs, while users purchase and use the NFTs.
 - [ ] PensiveFlix supports more format through PAVP technology, such as PDF, Word, Blu-ray movies, and more.
-- [ ] PensiveFlix is not limited to standard digital assets; it will support AI model data NFTs. PensiveFlix includes federated learning capabilities, allowing users to train AI models in a trusted environment.
+- [ ] PensiveFlix supports other NFT platforms to develop applications on top of it, enabling more innovative use cases in the NFT space.
 
 ## Architect
 
@@ -47,15 +47,15 @@
 
   **Chain RPC (optional)**: Provides on-chain data; it is not necessary to run locally, as other Chain RPC nodes can be used.
 
-​	The system and business processes of PensiveFlix are illustrated in the diagram below:
+​	Taking a typical NFT marketplace as an example, the system and business process of PensiveFlix are shown in the following diagram:
 
 <img src="./doc/PensiveFlixArchitect.png" alt="PensiveFlixArchitect"/>
 
 * **Overall Business Process**:
 
-  ​	As NFT merchants on PensiveFlix, knowledge owners*(Author Side)* only need to encrypt their content in a trusted local environment provided by PensiveFlix*(step 1)*. Once the knowledge is encrypted, the file can be uploaded to decentralized storage infrastructures like CESS*(step 2)*. During the NFT minting process, the file link and other relevant information are added, then you will completing the intellectual property sale*(step 3)*. Any user can download the encrypted file*(step 5)*, but PensiveFlix only allows NFT holders*(step 4)* to play the encrypted content*(step 6)*. 
+  ​	As NFT merchants on PensiveFlix, content creator*(Author Side)* only need to encrypt their content in a trusted local environment provided by PensiveFlix*(step 1)*. Once the knowledge is encrypted, the file can be uploaded to decentralized storage infrastructures like CESS*(step 2)*. During the NFT minting process, the file link and other relevant information are added, then you will completing the intellectual property sale*(step 3)*. Any user can download the encrypted file*(step 5)*, but PensiveFlix only allows NFT holders*(step 4)* to play the encrypted content*(step 6)*. 
 
-  ​	Additionally, from a business perspective, knowledge owners can mint NFTs based on different contracts, leveraging PensiveFlix's capabilities. This means they can define various business logic scenarios, such as whether to allow buyers to resell, implement a "burn after reading" feature, subscription-based columns, and more.
+  ​	Additionally, from a business perspective, content creator can mint NFTs based on different contracts, leveraging PensiveFlix's capabilities. This means they can define various business logic scenarios, such as whether to allow buyers to resell, implement a "burn after reading" feature, subscription-based columns, and more.
 
 * **System Workflow**:
 
@@ -97,20 +97,20 @@
 
 ### Bottleneck Kill
 
-PensiveFlix addresses the following critical pain points in the knowledge payment sector:
+PensiveFlix addresses the following critical pain points in the NFT space:
 
 * 🥳**Prevention of Piracy**: Since user behavior is regulated by PensiveFlix, users are unable to pirate or plagiarize digital assets.
 * 🥳**Low Credit Cost**: The encryption of digital assets by creators occurs securely and reliably on their local devices, preventing the possibility of digital asset leakage.
 * 🥳**Fully Decentralized**: With a decentralized design, users' digital assets and operations occur securely on their local devices without relying on external centralized services.
 * 🥳**Simplified Process**: As a security tool, PensiveFlix supports other NFT projects to develop on its foundation, allowing them to implement the required complex business logic without relying on centralized services. For users, only one tool is needed to enjoy the benefits brought by NFT technology.
 
-### Benefits For Polkadot
+### Why Polkadot
 
-​	Knowledge payment is a very popular topic today, with numerous thriving platforms emerging in the industry. As a knowledge payment platform, PensiveFlix:
+​	PensiveFlix thrives within the Polkadot ecosystem, complementing each other perfectly:
 
-* 😆Acts as a practical application of a decentralized DApp, promoting traditional internet users' understanding and participation in the Web3 ecosystem.
-* 😆Offers significant advantages over traditional knowledge payment platforms, attracting a large number of Web2 users to the Polkadot ecosystem.
-* 😆The audience willing to pay for knowledge generally possesses a higher level of education, potentially bringing more talent into the Web3 field and creating new possibilities for Web3.
+* 😆As a tool, PensiveFlix aims to have greater adaptability to support more on-chain NFT assets, and Polkadot, with its strong cross-chain capabilities, is a perfect fit for this.
+* 😆The integrated design and development philosophy enhances security while simplifying usage, attracting more Web2 and Web3 users to enter the Polkadot ecosystem.
+* 😆It promotes the development of Polkadot infrastructure projects.
 
 
 
