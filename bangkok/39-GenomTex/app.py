@@ -32,6 +32,7 @@ def get_record(name: str):
             "dna_fingerprint": records[0]["dna_fingerprint"],
         }
     records = [{
+        "uuid": record["ap_uuid"],
         "sequenced_at": record["sequenced_at"].split(" ")[0],
         "full_file_name": record["full_file_name"],
         "diff_file_name": record["diff_file_name"],
@@ -39,6 +40,31 @@ def get_record(name: str):
     } for record in records]
 
     return render_template('record.html', name=name, client=client, records=records)
+
+
+@app.route('/dev_record/<string:name>')
+def dev_get_record(name: str):
+    """
+    Get client's records by his name
+    """
+
+    records = model.get_client_records_by_name(name)
+    client = None
+    if len(records) > 0:
+        client = {
+            "id": records[0]["id"],
+            "name": records[0]["name"],
+            "dna_fingerprint": records[0]["dna_fingerprint"],
+        }
+    records = [{
+        "uuid": record["ap_uuid"],
+        "sequenced_at": record["sequenced_at"].split(" ")[0],
+        "full_file_name": record["full_file_name"],
+        "diff_file_name": record["diff_file_name"],
+        "ipfs_cid": record["ipfs_cid"],
+    } for record in records]
+
+    return render_template('dev_record.html', name=name, client=client, records=records)
 
 
 if __name__ == '__main__':

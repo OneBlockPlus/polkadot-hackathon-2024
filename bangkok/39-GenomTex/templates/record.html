@@ -1,32 +1,33 @@
 {% if client %}
-  <header class="bg-primary text-white text-center py-4">
     <h1>{{ client["name"] }}</h1>
-  </header>
 {% else %}
-  <header class="bg-primary text-white text-center py-4">
     <h1>Client {{ name }} not found</h1>
-  </header>
 {% endif %}
-
-  <div class="container my-5">
-    <h2 class="text-center">ID: {{ client["id"] }}</h2>
-    <h2 class="text-center">DNA fingerprint: {{ client["dna_fingerprint"] }}</h2>
-    <table class="table table-striped table-bordered">
-      <thead class="table-dark">
-        <tr>
-          <th>File name</th>
-          <th>Sequenced At</th>
-          <th>CID</th>
-        </tr>
-      </thead>
-      <tbody>
-      {% for record in records %}
-        <tr>
-          <td>{{ record["diff_file_name"] }}</td>
-          <td>{{ record["sequenced_at"] }}</td>
-          <td>{{ record["ipfs_cid"] }}</td>
-        </tr>
-      {% endfor %}
-      </tbody>
-    </table>
-  </div>
+<table class="table align-middle mb-0 bg-white">
+<thead class="bg-light">
+    <tr>
+      <th>File name</th>
+      <th>UUID</th>
+      <th>Sequenced At</th>
+      <th>CID</th>
+    </tr>
+</thead>
+<tbody>
+{% for record in records %}
+    <tr>
+      <td>
+          <p class="fw-bold mb-2">{{ record["diff_file_name"] }}</p>
+      </td>
+      <td>
+          <p class="fw-normal mb-1">{{ record["uuid"] }}</p>
+      </td>
+      <td>
+          <p class="fw-normal mb-1">{{ record["sequenced_at"] }}</p>
+      </td>
+      <td>
+          <p class="fw-normal mb-1">{{ record["ipfs_cid"] }}</p>
+      </td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>

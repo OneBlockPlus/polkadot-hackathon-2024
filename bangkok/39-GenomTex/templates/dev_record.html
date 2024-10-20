@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Records</title>
+  <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
+  <script src="{{ url_for('static', filename='js/jquery-3.7.1.min.js') }}"></script>
+</head>
+<body style="background-color: rgba(255, 0, 135, 0.05);">
+  <div class="container mt-5">
+    <h2>Search DNA Records</h2>
+    <form id="genomeForm" class="mt-4">
+      <div class="mb-3">
+        <label for="clientID" class="form-label">Client's Name</label>
+        <input type="text" class="form-control" id="clientID" placeholder="Enter client's name">
+      </div>
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <div id="genomeRecords" class="mt-5">
+        {% if client %}
+            <h1>{{ client["name"] }}</h1>
+        {% else %}
+            <h1>Client {{ name }} not found</h1>
+        {% endif %}
+        <table class="table align-middle mb-0 bg-white">
+      <thead class="bg-light">
+        <tr>
+          <th>File name</th>
+          <th>UUID</th>
+          <th>Sequenced At</th>
+          <th>CID</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for record in records %}
+            <tr>
+              <td>
+                  <p class="fw-bold mb-2">{{ record["diff_file_name"] }}</p>
+              </td>
+              <td>
+                  <p class="fw-normal mb-1">{{ record["uuid"] }}</p>
+              </td>
+              <td>
+                  <p class="fw-normal mb-1">{{ record["sequenced_at"] }}</p>
+              </td>
+              <td>
+                  <p class="fw-normal mb-1">{{ record["ipfs_cid"] }}</p>
+              </td>
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    </div>
+  </div>
+</body>
+</html>
