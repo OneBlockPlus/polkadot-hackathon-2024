@@ -6,7 +6,8 @@
     "packages": [
       "packages/hardhat",
       "packages/nextjs",
-      "packages/lunacred-subgraph"
+      "packages/lunacred-subgraph",
+      "packages/backend"
     ]
   },
   "scripts": {
