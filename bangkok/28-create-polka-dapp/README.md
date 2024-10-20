@@ -108,6 +108,11 @@ As the project develops during the hackathon, this section will track the comple
   - Made sure Uncompleted Templates show as disabled on the CLI
   - Update Package Readme
 
+- [Bug Fixes to Contract LifeCycle Commands](https://github.com/OpeOginni/create-polka-dapp/commit/6f21a19f6b70ca8f39dc8ead5e1bbb0b0613695d)
+
+  - Fixed CLI Bugs
+  - Completed Interact Command
+
 ## Choosen Track
 
 This project is for the **(Infrastructure) Polkadot ecological developer tools** Track
