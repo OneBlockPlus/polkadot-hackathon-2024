@@ -35,7 +35,8 @@
 import { onMounted, Ref, ref, useTemplateRef } from 'vue';
 import { useQuasar } from 'quasar';
 import { MapParameters } from 'src/services/map/definitions';
-import { mountCanvas, redrawMap } from 'src/services/map/canvas';
+import { mountCanvas } from 'src/services/map/canvas';
+import { redrawMap } from 'src/services/map/drawMap';
 
 const myCanvas = useTemplateRef('myCanvas');
 
