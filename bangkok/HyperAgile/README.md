@@ -80,7 +80,22 @@ Finally, once the order is fulfilled, a lifecycle report is generated and stored
 
 Our eCommerce store sells three products, which serve as the inventory items for this setup. Our team manages the inventory by tokenizing each product into an ERC-1155 collection. This is a valuable implementation for industries that want to tokenize their inventory, such as stocks, products, or raw materials, providing a digital twin representation on Polkadot. We manage stock levels using a hybrid on-off-chain approach, which allows clients to hold products in their cart, and once the order is completed, the off-chain stock level is updated on-chain. We also have the capability to replenish stock levels directly on-chain.
 
-## Track and Bounty
+### 📸 Some screenshots of our demo DApp
+
+### 🔌Connecting local robotic fleet
+
+## 📅 Timeline for all features planned (completed)
+
+## Deliverables
+
+1. Demo Video
+2. PPT 
+3. Our Demo DApp
+
+### Code Submission Breakdown
+
+
+## 🏆 Track and Bounty
 
 **Track**: Open Topic
 
