@@ -113,6 +113,10 @@ As the project develops during the hackathon, this section will track the comple
   - Fixed CLI Bugs
   - Completed Interact Command
 
+- [Merged Polkadot 2024 Hackahton Branch to Prod](https://github.com/OpeOginni/create-polka-dapp/pull/1)
+
+- [Released Version 0.1.0](https://www.npmjs.com/package/create-polka-dapp)
+
 ## Choosen Track
 
 This project is for the **(Infrastructure) Polkadot ecological developer tools** Track
