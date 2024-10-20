@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- <p>{{ title }}</p> -->
-    <canvas ref="myCanvas" width="600" height="400"></canvas>
+    <canvas ref="myCanvas" :width="mapWidth" :height="mapHeight"></canvas>
     <br />
     <q-btn label="Save" @click="save()"></q-btn>
     <q-btn label="Load" @click="load()"></q-btn>
@@ -106,7 +106,17 @@ const buttons: Ref<
     height: baseSize * 2,
     xOffset: (baseSize + 1) * 3,
     yOffset: (baseSize + 1) * 3,
-    name: 'iron-seller',
+    name: 'seaport',
+  },
+  {
+    image: TilesImage,
+    tileWidth: 3,
+    tileHeight: 3,
+    width: baseSize * 3,
+    height: baseSize * 3,
+    xOffset: (baseSize + 1) * 0,
+    yOffset: (baseSize + 1) * 3,
+    name: 'barn',
   },
 ]);
 
@@ -195,6 +205,8 @@ const roadImageRaw: [string, number, number][] = [
   ['horizontal', 1, 3],
   ['vertical', 0, 3],
   ['grass', 0, 0],
+  ['leaf1', 2, 0],
+  ['leaf2', 4, 0],
   ['eastnorth', 0, 5],
   ['eastsouth', 1, 5],
   ['westsouth', 2, 5],
@@ -253,6 +265,14 @@ for (let i = 0; i < roadImageRaw.length; i++) {
     xOffset: xOffset * (baseSize + 1),
     yOffset: yOffset * (baseSize + 1),
   };
+}
+
+let mapPattern: Record<number, string> = {};
+const grassTypes = ['grass', 'leaf1', 'leaf2'];
+for (let i = 0; i < mapColumns * mapRows; i++) {
+  const randomGrassType =
+    grassTypes[Math.floor(Math.random() * grassTypes.length)];
+  mapPattern[i] = randomGrassType;
 }
 
 // Function to redraw the map
@@ -317,7 +337,7 @@ function redrawMap(): void {
         if (tile === 0 && !!buttons.value[tile]) {
           roadImage = roadImages[roadMapping[`${north}${east}${south}${west}`]];
         } else {
-          roadImage = roadImages['grass'];
+          roadImage = roadImages[mapPattern[tileIndex]];
         }
 
         context.drawImage(
