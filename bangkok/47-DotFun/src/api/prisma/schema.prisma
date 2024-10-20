@@ -1,0 +1,114 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["relationJoins"]
+  binaryTargets   = ["native", "debian-openssl-3.0.x", "linux-arm64-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  polkadotWallet String? @unique
+  username       String?
+  bio            String?
+  avatar         String?
+
+  apps       App[]
+  commits    Commit[]
+  likes      Like[]
+  followings Follow[] @relation("Following")
+  followers  Follow[] @relation("Follower")
+
+  @@map("users")
+}
+
+model App {
+  id        String   @id
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String?
+  description String?
+
+  commits Commit[] @relation("Commit")
+  likes   Like[]
+  forks   App[]    @relation("ForkApp")
+
+  userId        String
+  user          User           @relation(fields: [userId], references: [id])
+  upstreamAppId String?
+  upstreamApp   App?           @relation("ForkApp", fields: [upstreamAppId], references: [id])
+  lastCommitId  BigInt?        @unique
+  lastCommit    Commit?        @relation("LastCommit", fields: [lastCommitId], references: [id])
+  inferenceLogs InferenceLog[]
+
+  @@map("apps")
+}
+
+model Commit {
+  id        BigInt   @id @default(autoincrement())
+  createdAt DateTime @default(now())
+
+  prompt   String  @db.Text
+  content  String? @db.Text
+  code     String? @db.Text
+  snapshot String?
+
+  appId         String
+  app           App            @relation("Commit", fields: [appId], references: [id])
+  userId        String
+  user          User           @relation(fields: [userId], references: [id])
+  lastApp       App?           @relation("LastCommit")
+  inferenceLogs InferenceLog[]
+
+  @@map("commits")
+}
+
+model Like {
+  id        BigInt   @id @default(autoincrement())
+  createdAt DateTime @default(now())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+  appId  String
+  app    App    @relation(fields: [appId], references: [id])
+
+  @@unique([userId, appId])
+  @@map("likes")
+}
+
+model Follow {
+  id        BigInt   @id @default(autoincrement())
+  createdAt DateTime @default(now())
+
+  followingId String
+  following   User   @relation("Following", fields: [followingId], references: [id])
+  followerId  String
+  follower    User   @relation("Follower", fields: [followerId], references: [id])
+
+  @@unique([followingId, followerId])
+  @@map("follows")
+}
+
+model InferenceLog {
+  id        BigInt   @id @default(autoincrement())
+  createdAt DateTime @default(now())
+
+  system     String @db.Text
+  input      String @db.Text
+  output     String @db.Text
+  stopReason String
+
+  appId    String
+  app      App    @relation(fields: [appId], references: [id])
+  commitId BigInt
+  commit   Commit @relation(fields: [commitId], references: [id])
+
+  @@map("inference_logs")
+}

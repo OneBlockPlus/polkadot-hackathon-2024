@@ -1,0 +1,33 @@
+{
+  "lock": "deno.lock",
+  "compilerOptions": {
+    "allowJs": true,
+    "lib": ["deno.window"],
+    "strict": true
+  },
+  // "importMap": "import_map.json",
+  "lint": {
+    "files": {
+      "include": ["./"],
+      "exclude": ["./main.js"]
+    },
+    "rules": {
+      "tags": ["recommended"],
+      "include": [],
+      "exclude": ["no-unused-vars", "no-explicit-any"]
+    }
+  },
+  "fmt": {
+    "files": {
+      "include": ["./"]
+      // "exclude": ["src/testdata/"]
+    },
+    "options": {
+      "useTabs": false,
+      "lineWidth": 120,
+      "indentWidth": 2,
+      "singleQuote": false,
+      "proseWrap": "preserve"
+    }
+  }
+}
