@@ -121,6 +121,25 @@ As the project develops during the hackathon, this section will track the comple
 
 This project is for the **(Infrastructure) Polkadot ecological developer tools** Track
 
+## Features Worked on and completed
+
+- [x] Scaffold for INK contracts.
+- [x] Integrate contract templates alongside frontend templates.
+- [x] Add Next.js as a frontend option (app router & pages router).
+- [x] Improved existing React Template.
+- [x] Scaffold options for contracts, frontend-only, or full-stack depending on developer needs.
+- [x] Provide developers who decide to generate contracts with simple tools (utilities) to perfom tasks like deploy and interact with their contracts. Though the Command Line or Through easy to write scripts.. Just like Hardhat for the Eth ecosystem
+
+### Future Features
+
+1. **Standalone Contract Development Library**: We're extracting our contract development utility to create a tool on its own making it a separate library for more flexibility and easier maintenance.
+
+2. **Modular Wallet Connection Component**: The wallet connection functionality will be available as a standalone, customizable component library, so developers can decide to use the component if they
+
+3. **Enhanced CLI Capabilities**: More commands and options to further streamline your development workflow.
+
+4. **Additional Framework Support**: We're planning to add support for more frontend frameworks and build tools.
+
 ## Member Information
 
 **Ope Oginni**
