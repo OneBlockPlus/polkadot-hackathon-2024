@@ -47,6 +47,11 @@ Existing solutions for implementing robotic process automation (RPA) in industri
 
 ☹️ Although industries can create their own tools or middleware for Web3 integration, this approach can be costly, time-consuming, and resource-intensive. We need a solution to bridge the gap between industry robotic automation (web2 layer) and the Polkadot ecosystem (web3 layer).
 
+Here is a concept illustration:
+
+![Frame 40 (2)](https://github.com/user-attachments/assets/b429a7b0-577a-4499-a1f6-5d1ecfc95b76)
+
+
 ## 💪 We launch HyperAgile, focusing on robots (Our Solution)
 
 We are launching the HyperAgile project as the first middleware-as-a-service (MaaS) provider, assisting industries across various sectors with industrial robotic automation by designing and developing a custom HyperAgile API Hub. This hub acts like a bridge, which connects all components in their Robotic Process Automation (RPA) setup architecture to the Polkadot ecosystem. The benefit of using a HyperAgile Hub is that all of the important layers in the Web2-based robotic automation systems such as the factory floor (physical hardwares and robotics), IoT connectivity layer, security layer and also control and management layer, able to interact with the blockchain layer component easily (which involve on-chain assets, parachains, accounts, smart contract or any on-chain tooling integration). A HyperAgile Hub will now become the common interface for industries to connect all RPA components built by different language, framework, hardware, and communication protocol into a unified Web3 system. Below is a high-level architecture overview of a HyperAgile Hub in a industry robotic setup:
