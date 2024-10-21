@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useCallback, useRef, useState } from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Bars3Icon, BugAntIcon } from "@heroicons/react/24/outline";
@@ -19,6 +19,19 @@ export const menuLinks: HeaderMenuLink[] = [
     label: "Home",
     href: "/",
   },
+  {
+    label: "Staking",
+    href: "/dashboard",
+  },
+  {
+    label: "Leaderboard",
+    href: "/dashboard",
+  },
+  {
+    label: "airdrop",
+    href: "/dashboard",
+  },
+
   {
     label: "Debug Contracts",
     href: "/debug",
@@ -39,8 +52,8 @@ export const HeaderMenuLinks = () => {
               href={href}
               passHref
               className={`${
-                isActive ? "bg-secondary shadow-md" : ""
-              } hover:bg-secondary hover:shadow-md focus:!bg-secondary active:!text-neutral py-1.5 px-3 text-sm rounded-full gap-2 grid grid-flow-col`}
+                isActive ? "bg-secondary text-white shadow-md" : "text-gray-300 hover:bg-gray-700 hover:text-white"
+              } px-3 py-2 rounded-md text-sm font-medium grid grid-flow-col gap-2`}
             >
               {icon}
               <span>{label}</span>
@@ -64,47 +77,49 @@ export const Header = () => {
   );
 
   return (
-    <div className="sticky lg:static top-0 navbar bg-base-100 min-h-0 flex-shrink-0 justify-between z-20 shadow-md shadow-secondary px-0 sm:px-2">
-      <div className="navbar-start w-auto lg:w-1/2">
-        <div className="lg:hidden dropdown" ref={burgerMenuRef}>
-          <label
-            tabIndex={0}
-            className={`ml-1 btn btn-ghost ${isDrawerOpen ? "hover:bg-secondary" : "hover:bg-transparent"}`}
-            onClick={() => {
-              setIsDrawerOpen(prevIsOpenState => !prevIsOpenState);
-            }}
-          >
-            <Bars3Icon className="h-1/2" />
-          </label>
-          {isDrawerOpen && (
-            <ul
-              tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-              onClick={() => {
-                setIsDrawerOpen(false);
-              }}
-            >
+    <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 w-11/12 max-w-7xl z-50">
+      <div className="backdrop-filter backdrop-blur-lg bg-white bg-opacity-10 border border-gray-200 border-opacity-20 rounded-full shadow-lg">
+        <div className="flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
+          {/* Logo Section */}
+          <Link href="/" passHref className="flex items-center text-2xl text-white">
+            <span className="merriweather-regular">
+              Luna<span className="text-[#07d3ba]">Cred</span>
+            </span>
+          </Link>
+
+          {/* Desktop Menu */}
+          <div className="hidden lg:flex">
+            <ul className="ml-10 flex space-x-4">
               <HeaderMenuLinks />
             </ul>
-          )}
+          </div>
+
+          {/* Wallet Connection & FaucetButton */}
+          <div className="hidden lg:flex">
+            <RainbowKitCustomConnectButton />
+            <FaucetButton />
+          </div>
+
+          {/* Mobile Menu Toggle */}
+          <div className="lg:hidden">
+            <button
+              onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+              className="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none"
+            >
+              {isDrawerOpen ? <Bars3Icon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
-        <Link href="/" passHref className="hidden lg:flex items-center gap-2 ml-4 mr-6 shrink-0">
-          <div className="flex relative w-10 h-10">
-            <Image alt="SE2 logo" className="cursor-pointer" fill src="/logo.svg" />
+
+        {/* Mobile Menu */}
+        <div className={`lg:hidden ${isDrawerOpen ? "block" : "hidden"} mt-2`}>
+          <div className="backdrop-filter backdrop-blur-lg bg-white bg-opacity-10 border border-gray-200 border-opacity-20 rounded-lg shadow-lg px-2 pt-2 pb-3">
+            <ul>
+              <HeaderMenuLinks />
+            </ul>
           </div>
-          <div className="flex flex-col">
-            <span className="font-bold leading-tight">Scaffold-ETH</span>
-            <span className="text-xs">Ethereum dev stack</span>
-          </div>
-        </Link>
-        <ul className="hidden lg:flex lg:flex-nowrap menu menu-horizontal px-1 gap-2">
-          <HeaderMenuLinks />
-        </ul>
+        </div>
       </div>
-      <div className="navbar-end flex-grow mr-4">
-        <RainbowKitCustomConnectButton />
-        <FaucetButton />
-      </div>
-    </div>
+    </nav>
   );
 };
