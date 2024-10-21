@@ -2,6 +2,8 @@
 
 # HyperAgile: Industrial Robotic Automation on Polkadot 🤖
 
+> **TL;DR:** Watch our 6 minutes [video](https://www.youtube.com/watch?v=-Otl40WUKOo) to have a clear idea~ 
+
 ## Problems
 
 ![Frame 29 (4)](https://github.com/user-attachments/assets/26216ed2-e8f1-4ed9-a70d-92a71dca5b0d)
@@ -101,7 +103,7 @@ We also replicated this functionality using our Webots simulation (hosted locall
 
 ## Deliverables
 
-1. Demo Video
+1. [Demo Video](https://www.youtube.com/watch?v=-Otl40WUKOo)
 2. PPT 
 3. Our Demo DApp
 
