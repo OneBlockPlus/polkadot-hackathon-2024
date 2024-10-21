@@ -1,6 +1,6 @@
 import os
 from .api_storage import is_file_uploaded
-from .file_utils import get_filepath, read_as_bytes
+from .file_utils import get_filepath, read_as_bytes, make_tarfile
 from .encryption import encryption, decryption
 import datetime
 from .api_storage import create_upload_session, put_file_data, end_session, Result
@@ -16,13 +16,13 @@ def sync_file(filename, cid):
         case True, True:
             pass # file synced, just smile :)
         case True, False:
-            pass 
-            # TODO
+            # 0. compress
+            tar_filepath = make_tarfile(filename)
             # 1. encrypt
             formatted_date = datetime.datetime.now().strftime("%Y/%m/%d %H:%M:%S.%f")
             header = f"DNA Diff Data {formatted_date}".encode()
             
-            data_to_encrypt = read_as_bytes(fpath=filepath)
+            data_to_encrypt = read_as_bytes(fpath=tar_filepath)
 
             encrypted_dict = encryption(data_to_encrypt, header)
             
@@ -39,6 +39,10 @@ def sync_file(filename, cid):
             
             if result != Result.OK:
                 print(result, message)
+
+            # tar tmp file cleanup
+            if os.path.exists(tar_filepath):
+                os.remove(tar_filepath)
             
             # end session & (triggers upload IPFS)
             result, message = end_session(session_uuid)
@@ -46,9 +50,7 @@ def sync_file(filename, cid):
             if result != Result.OK:
                 print(result, message)
             
-            # 3. store uuid to db (alter the record col)
-            # TODO @Vonsovsky store (db) uuid 'ee433f65-ea35-48bb-9ae1-4b364bacf6a1' to reference diff in cache
-            # TODO process(file_uuid) for future uploads
+            return file_uuid
         case False, True:
             pass 
             # TODO
@@ -63,4 +65,4 @@ def sync_file(filename, cid):
     
 if __name__=='__main__':
     filename = "8f0fd05f.diff"
-    sync_file(filename, None)
+    sync_file(get_filepath(filename), None)

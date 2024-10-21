@@ -1,6 +1,7 @@
 from flask import Flask, render_template, jsonify, request
 from db_model import DBModel
 import api_storage_module.api_storage.storage_management as storage
+from api_storage_module.api_storage.file_utils import get_filepath
 
 app = Flask(__name__)
 model = DBModel("api_storage_module/genomtex.sqlite")
@@ -80,9 +81,10 @@ def save_to_appilon():
 
     genome_id = request.form.get("genome_id")
     filename = request.form.get("filename")
-
-    #ap_uuid = storage.sync_file(filename, cid=None)
-    #model.update_uuid(genome_id, ap_uuid)
+    filepath = get_filepath(filename)
+    
+    ap_uuid = storage.sync_file(filepath, cid=None)
+    model.update_uuid(genome_id, ap_uuid)
 
     # uncomment this to test loading button
     #from time import sleep
