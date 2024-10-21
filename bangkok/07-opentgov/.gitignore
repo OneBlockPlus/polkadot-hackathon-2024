@@ -1,0 +1,7 @@
+.idea
+.env
+.next
+.vscode
+node_modules
+target
+out
