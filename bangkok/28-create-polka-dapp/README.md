@@ -12,7 +12,7 @@ Project Creation date: May, 2024
 
 ### Project Background
 
-- [Repo](https://github.com/OpeOginni/create-polka-dapp)
+- [Repo](https://github.com/OpeOginni/create-polka-dapp/tree/polkadot-2024-hackathon)
 - Participated in the Polkadot Prodigy Hackathon where the project was initiated.
 - Have received no extra funding or grants.
 
@@ -130,7 +130,15 @@ This project is for the **Category 1: (Infrastructure) Polkadot ecological devel
 
 - [Demo Video (LOOM)](https://www.loom.com/share/a3b65bf8b5f34e9bb6dbf363dc590c68?sid=e1f71081-60cc-457a-addf-ed2beec2437a)
 
-### Post Hackathon Features
+## Member Information
+
+**Ope Oginni**
+
+- Over 2 years of software development experience, specializing in blockchain and decentralized applications.
+- Github: [OpeOginni](https://github.com/OpeOginni)
+- Discord: obo.baddest
+
+## Post Hackathon Features
 
 These are some extra features I would like to continue to work on, based on advice given from workshops and mentor sessions
 
@@ -141,11 +149,3 @@ These are some extra features I would like to continue to work on, based on advi
 3. **Enhanced CLI Capabilities**: More commands and options to further streamline your development workflow.
 
 4. **Additional Framework Support**: We're planning to add support for more frontend frameworks and build tools.
-
-## Member Information
-
-**Ope Oginni**
-
-- Over 2 years of software development experience, specializing in blockchain and decentralized applications.
-- Github: [OpeOginni](https://github.com/OpeOginni)
-- Discord: obo.baddest
