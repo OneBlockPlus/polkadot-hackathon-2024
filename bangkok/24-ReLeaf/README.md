@@ -1,6 +1,6 @@
-<img src="./doc/Images/logo.png" width="40%">
-
 # Project name: ReLeaf
+
+<img src="./doc/Images/logo.png" width="40%">
 
 ReLeaf Wallet: Batch transactions, smart savings, and easy card payments.
 
