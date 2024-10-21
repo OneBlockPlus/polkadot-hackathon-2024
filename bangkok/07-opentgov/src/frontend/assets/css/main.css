@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #f5f5ee;
+  font-family: 'Outfit';
+}
+
+.blueBg {
+  background-color: #4794c9;
+}
+
+.yellowBg {
+  background-color: #fac651;
+}
+
+.yellow {
+  color: #fac651;
+}
+
+.blue {
+  color: #4794c9;
+}
+
+.blueDecoration {
+  text-decoration-color: #4794c9;
+}
