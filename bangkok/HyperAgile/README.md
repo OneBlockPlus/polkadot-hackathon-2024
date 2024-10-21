@@ -4,11 +4,20 @@
 
 The first B2B Middleware-as-a-Service (MaaS) project to help industries design and develop custom API hub which connect their Robotic Process Automation (RPA) infrastructure (**ROBOTS~**) to the Polkadot ecosystem seamlessly.
 
-> **TL;DR:** Watch our 6 minutes [video](https://www.youtube.com/watch?v=-Otl40WUKOo) to have a quick idea~ 👈👈👈
+> 👉👉👉 **TL;DR:** Watch our 6 minutes [video](https://www.youtube.com/watch?v=-Otl40WUKOo) to have a quick idea~ 👈👈👈
 
 ### Table of Contents
 1. [Problems](#problems)
-2. []
+2. [Inspirations](#inspirations)
+3. [Existing Solutions & Challenges](#%EF%B8%8F-existing-solutions-and-challenges)
+4. [Our Solution](#-we-launch-hyperagile-focusing-on-robots-our-solution)
+5. [Architecture](#concept-hyperagile-hub---architecture-overview)
+6. [Potential Clients](#how-hyperagile-helps-our-industry-clients-not-limited-to)
+7. [PoC](#proof-of-concept-an-implementation-prototype)
+8. [Timeline](#-timeline-for-all-features-planned-completed)
+9. [Deliverables](#-deliverables)
+10. [Track and Bounty](#-track-and-bounty)
+11. [Team Info](#team-info-%EF%B8%8F%EF%B8%8F)
 
 ## Problems
 
