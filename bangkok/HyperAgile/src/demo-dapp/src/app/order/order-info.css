@@ -1,0 +1,284 @@
+main.order-info {
+    width: 100%;
+    padding: 0 10rem;
+
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: 0.4fr 0.1fr 0.6fr;
+    gap: 2rem;
+}
+
+main.order-info > .order-id {
+    display: flex;
+    align-items: center;
+    column-gap: 1.5rem;
+
+    grid-column: 1 / 4;
+}
+
+main.order-info > .order-id > a {
+    font-size: 2.5rem;
+    text-decoration: underline;
+}
+
+main.order-info > .order-id > h5#completed,
+main.order-info > .order-id > h5#processing {
+    padding: 0.75rem 1rem;
+    border-radius: 5px;
+}
+
+main.order-info > .order-id > div.receipt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 0.5rem;
+
+    text-decoration: underline;
+}
+
+main.order-info > .order-details {
+    height: stretch;
+
+    display: grid;
+    grid-template-columns: 0.7fr 1fr;
+
+    grid-column: 1 / 2;
+}
+
+main.order-info > .order-details > * {
+    padding: 1rem 1.25rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 0.25rem;
+
+    border: 1px solid var(--secondary);
+}
+
+main.order-info > .order-details > :first-child {
+    border-top-left-radius: 5px;
+    border-right-color: transparent;
+}
+
+main.order-info > .order-details > div.mailing-info {
+    border-top-right-radius: 5px;
+}
+
+main.order-info > .order-details > div.dispatcher {
+    grid-column: 1 / 3;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-color: transparent;
+}
+
+main.order-info > .order-details > div h4 {
+    color: var(--secondary);
+    margin-bottom: 0.75rem;
+}
+
+main.order-info > .order-details > div.dispatcher h4 {
+    margin-bottom: 0;
+}
+
+main.order-info > .order-details > div.dispatcher > div:first-child {
+    margin-bottom: 0.75rem;
+
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+}
+
+main.order-info > .order-details > div.dispatcher > div:last-child {
+    width: fit-content;
+}
+
+main.order-info > .order-details > div.dispatcher > div > img {
+    cursor: pointer;
+}
+
+main.order-info > .load-assignment {
+    display: grid;
+    grid-template-columns: repeat(3, 14.55rem);
+    gap: 0.75rem 0.5rem;
+
+    grid-column: 2 / 4;
+}
+main.order-info > .load-assignment > div#header {
+    grid-column: 1 / 4;
+}
+
+main.order-info > .load-assignment > div.assignment-card {
+    position: relative;
+    width: 100%;
+    padding: 0.75rem;
+
+    display: grid;
+    grid-template-columns: 3.625rem auto;
+    align-items: center;
+    gap: 1rem;
+
+    border: 1px solid var(--secondary);
+    border-radius: 5px;
+}
+
+main.order-info > .load-assignment > div.assignment-card > a.open-full {
+    position: absolute;
+    top: 0;
+    right: 0.5rem;
+
+    width: 0.5rem;
+    height: auto;
+}
+
+main.order-info > .load-assignment > div.assignment-card > h6.hash {
+    grid-column: 1 / 3;
+
+    display: flex;
+    align-items: center;
+    column-gap: 0.25rem;
+
+    color: var(--secondary);
+    white-space: nowrap;
+}
+
+main.order-info > .load-assignment > div.assignment-card > h6.hash > img {
+    cursor: pointer;
+}
+
+main.order-info > .load-assignment > div.assignment-card > img {
+    width: 3.625rem;
+    height: auto;
+}
+
+main.order-info > .load-assignment > div.assignment-card > .data > div {
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
+
+    font-size: 0.625rem;
+    color: var(--secondary);
+}
+
+main.order-info > .detail-log {
+    grid-column: 1 / 3;
+    grid-row: 3 / 4;
+}
+
+main.order-info > .detail-log {
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+}
+
+main.order-info > .detail-log > .logs {
+    max-height: 25rem;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+
+    overflow-y: auto;
+}
+
+main.order-info .log {
+    padding: 1rem;
+
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    gap: 1rem;
+
+    border: 1px solid var(--secondary);
+    border-radius: 5px;
+}
+
+main.order-info .log > div,
+main.order-info .log > h6 {
+    display: flex;
+    align-items: center;
+    column-gap: 0.25rem;
+}
+
+main.order-info .log > h6 {
+    color: var(--secondary);
+}
+
+main.order-info .log > h6 > img {
+    cursor: pointer;
+}
+
+main.order-info .log > a {
+    width: auto;
+
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+    justify-self: flex-end;
+}
+
+section.simulation-design {
+    position: fixed;
+    top: 15%;
+    z-index: 1;
+
+    width: 50dvw;
+    max-width: fit-content;
+    padding: 2.5rem;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+
+    border: 1px solid var(--text);
+    background-color: var(--background);
+    border-radius: 10px;
+}
+
+section.simulation-design > h5 {
+    color: var(--secondary);
+}
+
+section.simulation-design > div > img:first-of-type {
+    width: 100%;
+    height: auto;
+}
+
+section.simulation-design > div > img:last-of-type {
+    width: 1rem;
+    height: auto;
+}
+
+section.simulation-design > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 0.5rem;
+}
+
+#order-prop {
+    padding: 0.5rem;
+    justify-self: flex-start;
+    align-items: center;
+
+    display: flex;
+    column-gap: 0.3rem;
+
+    background-color: var(--secondary-background);
+    border-radius: 5px;
+}
+
+#order-prop > img {
+    width: 0.5rem;
+    height: auto;
+}
+
+#order-prop h6 > {
+    font-size: 0.625rem;
+}
+
+#header {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+}

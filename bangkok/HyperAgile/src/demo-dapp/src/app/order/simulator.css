@@ -1,0 +1,36 @@
+main.order-info > section.simulator {
+    width: auto;
+    height: 27.5rem;
+
+    grid-column: 3 / 4;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+}
+
+main.order-info > section.simulator > div.simulation {
+    width: 100%;
+    height: 68%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 0.75rem;
+
+    overflow: hidden;
+
+    border: 1px solid var(--secondary);
+    border-radius: 5px;
+}
+
+main.order-info > section.simulator > div.simulation > img#logo {
+    width: 6rem;
+    height: auto;
+}
+
+main.order-info > section.simulator > div.simulation > img:last-of-type {
+    width: 2.25rem;
+    height: auto;
+}
