@@ -13,15 +13,15 @@ The first B2B Middleware-as-a-Service (MaaS) project to help industries design a
 
 Data centralization is one of the key issue when industries are operating their robotic process automation (RPA) in a web2-based infrastructure setup. Industries often adopt distributed manufacturing strategy which form a complex supply chain and involve various stakeholders and manufacturing units spreading in different locations. Hence, in a web2-based robotic infrastructure, each parties are actually siloed, as the data systems are disjoint, causing information asymmetry. In other words, A robot system in one factory may collect data that are not shared with robots in another factory, making it difficult to get a unified view of operations. The problems which arises will be:
 
-#### Data is not Transparent: 
+#### ❌ Data is not Transparent: 
 
 Factories and warehouses operating their robotic fleets in an isolated data systems or across various locations, will create a "visibility gap" that limits transparency and access to real-time operational data for stakeholders.
    
-#### Low Efficiency + Track and Trace Challenge: 
+#### ❌ Low Efficiency + Track and Trace Challenge: 
 
 Workflow efficiency suffers due to the complex data integration processes that slow decision-making and create operational bottlenecks. This lack of transparency also complicates essential tasks like tracking the history of production or the origin of raw materials, even among connected facilities. The underlying reason is the lack of clear auditing trials which can be easily access, and this is a classic problem in supply chain sector.
    
-#### Security Concerns: 
+#### ❌ Security Concerns: 
 
 Security concerns are heightened in Web2 environments, where mutable data is vulnerable to tampering and counterfeiting, which is considered a damage to the supply chain trust. Additionally, the risk of a single point of failure can lead to significant disruptions, cascading through the entire robotic automation operation.
 
@@ -39,15 +39,15 @@ To address the problems, letting current industries robotic setup to transition 
 6. Vendor independence. No more traditional vendor-locked-in system
 7. Reducing long term cost for Web2 infrastructure maintenance.
 
-## Existing Solutions and Challenges
+## ⚔️ Existing Solutions and Challenges
 
 Existing solutions for implementing robotic process automation (RPA) in industries include a variety of software platforms (such as UiPath, Gazebo, and Automation Anywhere), industry-specific solutions (like those from ABB, KUKA, and Fanuc), and integration tools (including ROS, AWS IoT, and Microsoft Azure IoT Hub). However, challenges emerge when considering the implementation of Web3 solutions in RPA. A significant hurdle is that the Polkadot ecosystem lacks robotics-related development tools to facilitate the integration of blockchain solutions with existing legacy systems, which are often incompatible.
 
 >  A simple example: while developing a prototype for our demo, we found that no industry-grade robotic simulators offer tools for easily interacting with Polkadot parachains to conduct simulations.
 
-Although industries can create their own tools or middleware for Web3 integration, this approach can be costly, time-consuming, and resource-intensive. We need a solution to bridge the gap between industry robotic automation and the Polkadot ecosystem.
+☹️ Although industries can create their own tools or middleware for Web3 integration, this approach can be costly, time-consuming, and resource-intensive. We need a solution to bridge the gap between industry robotic automation (web2 layer) and the Polkadot ecosystem (web3 layer).
 
-## We launch HyperAgile, focusing on robots (Our Solution)
+## 💪 We launch HyperAgile, focusing on robots (Our Solution)
 
 We are launching the HyperAgile project as the first middleware-as-a-service (MaaS) provider, assisting industries across various sectors with industrial robotic automation by designing and developing a custom HyperAgile API Hub. This hub acts like a bridge, which connects all components in their Robotic Process Automation (RPA) setup architecture to the Polkadot ecosystem. The benefit of using a HyperAgile Hub is that all of the important layers in the Web2-based robotic automation systems such as the factory floor (physical hardwares and robotics), IoT connectivity layer, security layer and also control and management layer, able to interact with the blockchain layer component easily (which involve on-chain assets, parachains, accounts, smart contract or any on-chain tooling integration). A HyperAgile Hub will now become the common interface for industries to connect all RPA components built by different language, framework, hardware, and communication protocol into a unified Web3 system. Below is a high-level architecture overview of a HyperAgile Hub in a industry robotic setup:
 
@@ -55,7 +55,7 @@ We are launching the HyperAgile project as the first middleware-as-a-service (Ma
 
 ![Frame 25 (5)](https://github.com/user-attachments/assets/fe2d6f95-8e41-491c-bb63-c71a0020da52)
 
-### Why custom, not a “one-size-fits-all” solution?
+### Why custom, not a “one-size-fits-all” solution❓
 
 Our role is crucial because industrial robotic architectures are often complex and highly customized. Each industry has unique operational needs, diverse technologies, and specific regulatory requirements, making a one-size-fits-all approach impractical. That's why we offer tailored solutions, enabling industries to integrate Web3 infrastructure efficiently, which aligns perfectly with our product-market fit. This approach not only saves significant time for indsutries but also reduces costs.
 
@@ -123,7 +123,7 @@ We also replicated this functionality using our Webots simulation (hosted locall
 - [x] incorporate DeOSS of CESS
 - [x] preparing initial review materials
 
-## Deliverables
+## 📦 Deliverables
 
 1. [Demo Video](https://www.youtube.com/watch?v=-Otl40WUKOo)
 2. [Our Demo DApp](https://hyper-agile.vercel.app/)
@@ -156,7 +156,7 @@ Our team introduce a new innovative application of CESS Network product in the i
 
 HyperAgile is promoting more trustworthy and secure operations for future robotic-automated industries. Robotic operations can now be recorded on-chain to create clear audit trails, introducing **transparency** to all stakeholders participating in a supply chain operation. Additionally, we address the classic track-and-trace challenge in supply chains, as **traceability** can now be improved through HyperAgile. With the immutable and tamper-proof nature of data on Polkadot and utilizing a distributed data system to operate robotic fleet, **security** will be further strengthened, reducing cases like counterfeiting in the production line.
 
-## Team Info
+## Team Info 🙋‍♂️🙋‍♀️
 
 #### Tan (Jimmy) Zhi Xuan
 - Computer Science and Artificial Intelligence @ University of Nottingham Malaysia
