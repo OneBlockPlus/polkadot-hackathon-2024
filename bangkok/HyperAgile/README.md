@@ -114,11 +114,11 @@ HyperAgile uses three moonbeam precompile to facilitate operations in a robotic 
 
 #### CESS Network
 
-For a complete cycle in the supply chain or production line (for example, order fulfilment in an ecommerce warehouse), HyperAgile will generate a lifecycle report JSON file which act as a comprehensive record consisting the info of each operations on the blockchain. The lifecycle report will be uploaded and stored on the DeOSS - Decentralised Object Storage Service of CESS network. Hence, industry can easily retrieve lifecycle reports from DeOSS in the future, ensuring the availability of tamper-proof records in the supply chain.
+Our team introduce a new innovative application of CESS Network product in the industry supply chain sector. For a complete cycle in the supply chain or production line (for example, order fulfilment in an ecommerce warehouse), HyperAgile will generate a lifecycle report JSON file which act as a comprehensive record consisting the info of each operations on the blockchain. The lifecycle report will be uploaded and stored on the DeOSS - Decentralised Object Storage Service of CESS network. Hence, industry can easily retrieve lifecycle reports from DeOSS in the future, ensuring the availability of tamper-proof records in the supply chain.
 
 #### Blockchain for Good - Security and Transparency
 
-HyperAgile is promoting more trustworthy and secure operations for future robotic-automated industries. Robotic operations can now be recorded on-chain to create clear audit trails, introducing **transparency** to all stakeholders participating in a supply chain operation. Additionally, we address the classic track-and-trace challenge in supply chains, as **traceability** can now be improved through HyperAgile. With the immutable and tamper-proof nature of data on Polkadot and utilizing a distributed data system, **security** will be further strengthened, reducing cases like counterfeiting.
+HyperAgile is promoting more trustworthy and secure operations for future robotic-automated industries. Robotic operations can now be recorded on-chain to create clear audit trails, introducing **transparency** to all stakeholders participating in a supply chain operation. Additionally, we address the classic track-and-trace challenge in supply chains, as **traceability** can now be improved through HyperAgile. With the immutable and tamper-proof nature of data on Polkadot and utilizing a distributed data system to operate robotic fleet, **security** will be further strengthened, reducing cases like counterfeiting in the production line.
 
 ## Team Info
 
