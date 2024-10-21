@@ -117,6 +117,10 @@ As the project develops during the hackathon, this section will track the comple
 
 - [Released Version 0.1.0](https://www.npmjs.com/package/create-polka-dapp)
 
+- [Updated Pakcage Description and Added Fixes to reduce package size](https://github.com/OpeOginni/create-polka-dapp/commit/28d5915c54873af1032abcac8c80d87b9abe88db)
+
+- [Released Version 0.1.1 & 0.1.2](https://github.com/OpeOginni/create-polka-dapp/commit/3fb57a2a6b024db07f473aedcb2ddc3097931d98)
+
 ## Choosen Track
 
 This project is for the **(Infrastructure) Polkadot ecological developer tools** Track
