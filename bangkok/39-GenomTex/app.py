@@ -83,7 +83,7 @@ def save_to_appilon():
     filename = request.form.get("filename")
     filepath = get_filepath(filename)
     
-    ap_uuid = storage.sync_file(filepath, cid=None)
+    ap_uuid = storage.sync_file(filepath, uuid=None)
     model.update_uuid(genome_id, ap_uuid)
 
     # uncomment this to test loading button

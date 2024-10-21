@@ -138,8 +138,22 @@ def end_session(session_id, bucket_id=bucket_id) -> tuple[Result, str|None]:
         return Result.ERROR, f"Request failed: {e}"
 
 
-def get_file_details(cid):
-    url = f"https://api.apillon.io/storage/buckets/{bucket_id}/files/{cid}"
+'''returns data as bytes'''
+def download_data(link):
+    response = requests.get(link, stream=True)
+    
+    if response.status_code == 200:
+        file_data = b""
+        for chunk in response.iter_content(chunk_size=8192):
+            if chunk:
+                file_data += chunk
+        return file_data  # data as bytes
+    else:
+        raise Exception(f"Failed to download file, status code: {response.status_code}")
+
+
+def get_file_details(uuid):
+    url = f"https://api.apillon.io/storage/buckets/{bucket_id}/files/{uuid}"
     headers = {
         "Authorization": f"{authentication}"
     }

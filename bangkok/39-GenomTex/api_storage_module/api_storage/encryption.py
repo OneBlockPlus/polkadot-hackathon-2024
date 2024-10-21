@@ -3,6 +3,7 @@ from base64 import b64decode, b64encode
 from .file_utils import read_as_bytes, get_filepath
 from dotenv import load_dotenv
 import os
+import json
 
 load_dotenv()
 secret_key = b64decode(os.getenv('ENCODED_ENCRYPTION_SECRET_KEY'))
@@ -24,6 +25,15 @@ def encryption(data_to_encrypt: bytes, header: bytes, secret_key: bytes=secret_k
     return result
 
 
+def encrypted_bytes_to_json(file_data):
+
+    json_data = json.loads(file_data.decode('utf-8'))
+    json_k = ['nonce', 'header', 'ciphertext', 'tag']
+    prepared_data = {k: b64decode(json_data[k]) for k in json_k}
+
+    return prepared_data
+
+
 def decryption(data: dict, secret_key: bytes=secret_key):
     try:
         json_k = [ 'nonce', 'header', 'ciphertext', 'tag' ]
@@ -34,8 +44,8 @@ def decryption(data: dict, secret_key: bytes=secret_key):
         plaintext = cipher.decrypt_and_verify(jv['ciphertext'], jv['tag'])
 
         return plaintext
-    except (ValueError, KeyError):
-        print("Incorrect decryption")
+    except (ValueError, KeyError) as e:
+        print(f"Incorrect decryption: {e}")
 
 
     
