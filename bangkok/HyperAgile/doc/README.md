@@ -111,3 +111,4 @@ All contracts are deployed on Moonbase Alpha (Moonbeam Testnet)
 - lib/`Randomness.sol`
 - lib/`RandomnessConsumer.sol`
 - interfaces
+- scripts (deploy,verify)
