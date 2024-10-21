@@ -92,6 +92,7 @@ contract address, detail log template, product collection data, wallet links, cu
 
 - function encoders for smart contracts
 - customer info random generator (built for faster demo purpose)
+- unique off-chain order reference generator: using user wallet address and time
 - `owner`: to process txn as warehouse owner
 - `permitPrecompile`: creation and signing of call permit messsages
 - `generateRandomNumber`: obtain random number from Moonbeam
