@@ -94,6 +94,9 @@ To simplify the demonstration, our team utilized ngrok to establish a secure com
 
 We also replicated this functionality using our Webots simulation (hosted locally in Webots software) to control the robotic fleet. By creating an intermediate connectivity layer (via a Flask server) and utilizing the ngrok tunnel, we successfully recreated the same results as with the physical robot. You can see the full demonstration in the video!
 
+![Frame 30](https://github.com/user-attachments/assets/8c109716-bc22-4f27-97d1-324b4c049fdb)
+
+
 ## 📅 Timeline for all features planned (completed)
 
 ## Deliverables
