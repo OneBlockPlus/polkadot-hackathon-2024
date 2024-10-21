@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="q-ma-md">
     <!-- <p>{{ title }}</p> -->
     <div class="container">
       <canvas
@@ -13,7 +13,8 @@
       <q-btn
         v-for="(button, index) in par.placements"
         :key="index"
-        :color="index == par.sourceTile ? 'primary' : ''"
+        :color="index == par.sourceTile ? 'primary' : 'grey-9'"
+        outline
         @click="par.sourceTile = index"
       >
         <img
@@ -29,9 +30,9 @@
       <br />
       Production Rate: {{ productionRate }}
       <br />
-      <q-btn label="Save" @click="save()"></q-btn>
-      <q-btn label="Load" @click="load()"></q-btn>
-      <q-btn label="Generate" @click="generate()"></q-btn>
+      <q-btn label="Save" @click="save()" color="secondary"></q-btn>
+      <q-btn label="Load" @click="load()" color="secondary"></q-btn>
+      <q-btn label="Generate" @click="generate()" color="primary"></q-btn>
       <template v-for="(_layer, index) in layers" :key="index">
         <br />
         <q-input
