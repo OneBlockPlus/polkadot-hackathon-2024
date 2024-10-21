@@ -101,10 +101,10 @@ contract address, detail log template, product collection data, wallet links, cu
 All contracts are deployed on Moonbase Alpha (Moonbeam Testnet)
 
 - `Robots.sol`
-    - picking robot: 0x196598A7601ED166F290a1C2f22448a61F9A9967
-    - packing robot: 0x1D9Ba76adB519BE9539e837A681e9D548cB74604
-    - delivering robot: 0x81E3eEBC00d1e9232F96540bA197909ddD77236B
-- `Products.sol`- An ERC-1155 collection: 0x6c2465442516401b0181D8e5E17053E336DDFA82
+    - **picking robot:** 0x196598A7601ED166F290a1C2f22448a61F9A9967
+    - **packing robot:** 0x1D9Ba76adB519BE9539e837A681e9D548cB74604
+    - **delivering robot:** 0x81E3eEBC00d1e9232F96540bA197909ddD77236B
+- `Products.sol`- **An ERC-1155 collection:** 0x6c2465442516401b0181D8e5E17053E336DDFA82
 - `Shop.sol`: 0x052826c623eDdd5adcceA79f65061DFAA18274f2
 - `Warehouse.sol`: 0x82875A011Ecb07c617FB38f1CC266634cab0163e
 - utils/`WarehouseManager.sol`
