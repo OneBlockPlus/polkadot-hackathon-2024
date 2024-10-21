@@ -2,7 +2,9 @@
 
 # HyperAgile: Industrial Robotic Automation on Polkadot 🤖
 
-## Problems
+## Tackling the Problems
+
+![Frame 29 (4)](https://github.com/user-attachments/assets/26216ed2-e8f1-4ed9-a70d-92a71dca5b0d)
 
 Data centralization is one of the key issue when industries are operating their robotic process automation (RPA) in a web2-based infrastructure setup. Industries often adopt distributed manufacturing strategy which form a complex supply chain and involve various stakeholders and manufacturing units spreading in different locations. Hence, in a web2-based robotic infrastructure, each parties are actually siloed, as the data systems are disjoint, causing information asymmetry. In other words, A robot system in one factory may collect data that are not shared with robots in another factory, making it difficult to get a unified view of operations. The problems which arises will be:
 
@@ -50,9 +52,9 @@ We are launching the HyperAgile project as the first middleware-as-a-service (Ma
 
 ### Why custom, not a “one-size-fits-all” solution?
 
-Our role is crucial because industrial robotic architectures are often complex and highly customized. Each industry has unique operational needs, diverse technologies, and specific regulatory requirements, making a one-size-fits-all approach impractical. That's why we offer tailored solutions, enabling industries to integrate Web3 infrastructure efficiently, which aligns perfectly with our product-market fit. This approach not only saves significant time but also reduces costs.
+Our role is crucial because industrial robotic architectures are often complex and highly customized. Each industry has unique operational needs, diverse technologies, and specific regulatory requirements, making a one-size-fits-all approach impractical. That's why we offer tailored solutions, enabling industries to integrate Web3 infrastructure efficiently, which aligns perfectly with our product-market fit. This approach not only saves significant time for indsutries but also reduces costs.
 
-As a B2B (business-to-business) service provider, we are proud to be the first to offer this service on Polkadot. In one of our future milestone (which will be showcased during our Phase 2 business pitch), the HyperAgile project will serve as a key driver in introducing a comprehensive ecosystem of industry-specific robotic development tools to the Polkadot community as part of our ongoing service journey.
+As a B2B (business-to-business) service provider, we are proud to be the first to offer this service on Polkadot. In one of our future milestone (which will be showcased during our Phase 2 business pitch), the HyperAgile project will also serve as a key driver in introducing a comprehensive ecosystem of industry-specific robotic development tools to the Polkadot community as part of our ongoing service journey.
 
 ## How HyperAgile helps our industry clients? (Not Limited To)
 
@@ -85,6 +87,12 @@ Our eCommerce store sells three products, which serve as the inventory items for
 ![Frame 27 (2)](https://github.com/user-attachments/assets/58724024-6d5f-4770-afd3-88843ac8b042)
 
 ### 🔌Connecting local robotic fleet
+
+To further validate the feasibility of our implementation, we perform testing on a physical robot, which we refer to as a local robotic fleet. The system is centered around a HyperAgile Hub, enabling industries to interact with an IoT connectivity layer (refer to above architecture overview). This layer acts as an intermediary between the robotic fleet and the HyperAgile Hub, which is integrated with the Polkadot blockchain layer. The IoT connectivity layer can incorporate various technologies such as AWS IoT Core, Microsoft Azure IoT, Oracle IoT cloud, and MQTT-based solutions like RabbitMQ or Kafka, etc. 
+
+To simplify the demonstration, our team utilized ngrok to establish a secure communication tunnel between our physical robot—a combination of a ROS-powered CoBot and a mobile AGV (Automated Guided Vehicle), with operations built using the Elephant Robotics Python API—and initiated the order fulfillment process on our DApp. As shown in the demo video, the commands assigned from the Moonbeam blockchain are successfully captured and transmitted to the connectivity layer, where they are received and executed by the robot in real time. Once the task is completed, the operation is logged and sent back via the same route. This process mirrors what can be tested directly on our demo DApp.
+
+We also replicated this functionality using our Webots simulation (hosted locally in Webots software) to control the robotic fleet. By creating an intermediate connectivity layer (via a Flask server) and utilizing the ngrok tunnel, we successfully recreated the same results as with the physical robot. You can see the full demonstration in the video!
 
 ## 📅 Timeline for all features planned (completed)
 
@@ -124,3 +132,6 @@ HyperAgile is promoting more trustworthy and secure operations for future roboti
 
 ## Team Info
 
+## Project Info
+- Created on August 2024
+- Not funded by any party
