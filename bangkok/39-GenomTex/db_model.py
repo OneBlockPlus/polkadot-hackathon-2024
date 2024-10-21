@@ -46,7 +46,7 @@ class DBModel:
         cur = self.get_connection().cursor()
 
         query = "SELECT C.id, C.name, C.dna_fingerprint, G.sequenced_at, " \
-                "G.full_file_name, G.diff_file_name, G.ipfs_cid, G.ap_uuid, G.mutations " \
+                "G.full_file_name, G.diff_file_name, G.ipfs_cid, G.ap_uuid, G.mutations, G.cos_dist " \
                 "FROM clients C " \
                 "LEFT JOIN genomes G ON G.client_id = C.id " \
                 "WHERE C.name = ? COLLATE NOCASE " \

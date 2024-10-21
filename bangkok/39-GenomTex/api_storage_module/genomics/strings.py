@@ -2,7 +2,7 @@ import logging
 import os
 import shutil
 import subprocess
-from typing import List, Tuple
+from typing import Tuple
 
 logger = logging.getLogger(__name__)
 
@@ -58,16 +58,10 @@ def apply_patch_to_file(filepath_src: str, filepath_diff: str) -> Tuple[str, str
     return outfilename, err
 
 
-def reconstruct_dna_from_diff(ref_genome_f: str, diff_genome_f: str) -> List[str]:
-    """
-    Reconstruct the entire DNA sequence from a reference genome in .fa format and diff in .vcf format.
-
-    :return: 6 billion long string made of ACGT characters
-    """
-
-    # TODO
-
-    pass
+def fill_to_len(string, length):
+    fill_len = length - len(string)
+    fill_str = 'N' * fill_len
+    return string + fill_str
 
 
 def test_make_and_apply_patch_from_files():

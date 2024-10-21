@@ -18,7 +18,8 @@ def dna_to_vector(base: str) -> np.ndarray[np.complex_]:
         'A': 1,
         'G': 1j,
         'T': -1,
-        'C': -1j
+        'C': -1j,
+        'N': 0j,
     }
 
     char_array = np.array(list(base))
