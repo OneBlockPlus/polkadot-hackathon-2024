@@ -50,3 +50,47 @@ Our team organise our code submission into two main root:
 - **order/approval:** multi-signature mechanism, keep track Activity Verifier of each phase
 - **order/page:** perform order lifecycle on-chain, manage order state, detail on-chain log, render order page UI components
 
+## class/  
+
+- `HyperAgileContracts`: able to interact with all the order fulfilment process via smart contracts and run the order fulfilment lifecycle
+- `WebotsSimulator`: able to interact (sending requests) with the connectivity layer of the Webot Simulator
+
+## components/ 
+
+Some reusable frontend UI components are stored here (cards, toast, styling)
+
+## config/
+
+database and wagmi configuration
+
+## context/
+
+- `WalletProvider`: manage wallet connection
+- `OrdersProvider`: access and update order context through dapp
+
+## contracts ABI/
+
+ABI of respective contract, refer to `hyperagile-contracts/section` for contracts info
+
+## data/
+
+contract address, detail log template, product collection data, wallet links, customer-info rand value (a randomizer for faster demo purpose)
+
+## hooks/
+
+- `useOrders`: for add,retrieve,updating orders
+- `useProcessOrder`: smart contract event listening, checking event logs, syncing order status, update data in each phase in cycle
+- `useProducts`: load products, refresh stock info and update, fetch on-chain stock info
+
+## services/
+
+- `Database`: all firebase db interaction
+- `DeOSS`: storing lifecycle reports on DeOSS
+
+## utils/
+
+- function encoders for smart contracts
+- customer info random generator (built for faster demo purpose)
+- `owner`: to process txn as warehouse owner
+- `permitPrecompile`: creation and signing of call permit messsages
+- `generateRandomNumber`: obtain random number from Moonbeam
