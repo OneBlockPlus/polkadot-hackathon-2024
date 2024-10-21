@@ -82,6 +82,8 @@ Our eCommerce store sells three products, which serve as the inventory items for
 
 ### 📸 Some screenshots of our demo DApp
 
+![Frame 27 (2)](https://github.com/user-attachments/assets/58724024-6d5f-4770-afd3-88843ac8b042)
+
 ### 🔌Connecting local robotic fleet
 
 ## 📅 Timeline for all features planned (completed)
