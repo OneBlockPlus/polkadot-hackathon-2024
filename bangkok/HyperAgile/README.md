@@ -2,7 +2,7 @@
 
 # HyperAgile: Industrial Robotic Automation on Polkadot 🤖
 
-## Tackling the Problems
+## Problems
 
 ![Frame 29 (4)](https://github.com/user-attachments/assets/26216ed2-e8f1-4ed9-a70d-92a71dca5b0d)
 
