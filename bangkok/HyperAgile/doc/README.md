@@ -36,10 +36,17 @@ Our team organise our code submission into two main root:
 
 ```
 
-# Folder Descriptions
-- src/: This is the main source folder where the core application logic resides.
-- components/: Contains reusable React components that are used across the application. Each component is generally placed in its own file for modularity and maintainability.
-- utils/: Helper functions and utilities that provide reusable functionality, such as data formatting, API response parsing, etc.
-- services/: Handles communication with external APIs or databases. This is where you'll find modules for making API requests, like authentication or fetching data.
-- tests/: Contains all test files for the project. Each file typically mirrors the structure of the src folder, with unit and integration tests for components and services.
-- README.md: The project documentation file. This file contains an overview of the project, setup instructions, and additional resources for contributors.
+## DApp-Demo Folder Description
+
+## app/
+
+- **api/order/local:** running local simulations on Webot Simulator
+- **api/order/random-number:** performing Moonbeam randomness process (request sending and fulfil request)
+- **api/robot:** running online embeded Webot simulation, handle robot operation in each phase
+- **home/inventory:** stock replenishment (erc-1155 product collection, off-chain stock tracker)
+- **home/store:** off-chain on-hold mechanism (order form), order creation (Handling Moonbeam call permit, Moonbeam batch), off-chain db update, choose simulation method
+- **home/track:** track each individual wallet address order list (via useOrder hook)
+- **order/simulator:** run Webot simulations
+- **order/approval:** multi-signature mechanism, keep track Activity Verifier of each phase
+- **order/page:** perform order lifecycle on-chain, manage order state, detail on-chain log, render order page UI components
+
