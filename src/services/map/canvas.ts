@@ -12,6 +12,7 @@ export function mountCanvas(canvas: HTMLCanvasElement): MapParameters {
   canvas.addEventListener('mousemove', (e) => doMouseMove(e, par));
   canvas.addEventListener('click', (e) => doMouseClick(e, par));
   canvas.addEventListener('mouseup', (e) => doMouseUp(e, par));
+  canvas.addEventListener('mouseleave', (e) => doMouseUp(e, par));
 
   // draw the grid
   for (let i: number = 0; i <= par.mapColumns; i++) {
