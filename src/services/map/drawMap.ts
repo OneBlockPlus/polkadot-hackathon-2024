@@ -4,14 +4,14 @@ export function redrawMap(par: MapParameters): void {
   if (par.context) {
     par.context.clearRect(0, 0, par.mapWidth, par.mapHeight);
 
-    const occupyed: Record<number, boolean> = {};
-    // convert tiles to occupyed by fill component width/height
+    const occupied: Record<number, boolean> = {};
+    // convert tiles to occupied by fill component width/height
     for (let i = 0; i < par.mapColumns * par.mapRows; i++) {
       if (par.tiles[i] !== null) {
         const t = par.placements[par.tiles[i]];
         for (let j = 0; j < t.tileWidth; j++) {
           for (let k = 0; k < t.tileHeight; k++) {
-            occupyed[i + k * par.mapColumns + j] = true;
+            occupied[i + k * par.mapColumns + j] = true;
           }
         }
       }
@@ -30,7 +30,7 @@ export function redrawMap(par: MapParameters): void {
             ? 0
             : par.tiles[tileIndex - par.mapColumns] == 0
               ? 1
-              : occupyed[tileIndex - par.mapColumns]
+              : occupied[tileIndex - par.mapColumns]
                 ? 1
                 : 0;
         const south =
@@ -38,7 +38,7 @@ export function redrawMap(par: MapParameters): void {
             ? 0
             : par.tiles[tileIndex + par.mapColumns] == 0
               ? 1
-              : occupyed[tileIndex + par.mapColumns]
+              : occupied[tileIndex + par.mapColumns]
                 ? 1
                 : 0;
         const east =
@@ -46,7 +46,7 @@ export function redrawMap(par: MapParameters): void {
             ? 0
             : par.tiles[tileIndex + 1] == 0
               ? 1
-              : occupyed[tileIndex + 1]
+              : occupied[tileIndex + 1]
                 ? 1
                 : 0;
         const west =
@@ -54,7 +54,7 @@ export function redrawMap(par: MapParameters): void {
             ? 0
             : par.tiles[tileIndex - 1] == 0
               ? 1
-              : occupyed[tileIndex - 1]
+              : occupied[tileIndex - 1]
                 ? 1
                 : 0;
         let roadImage: ImageOffset;
