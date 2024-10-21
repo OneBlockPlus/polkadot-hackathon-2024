@@ -9,8 +9,8 @@ Murmur introduces a novel solution for account abstraction for Substrate-based c
 Our submission showcases the implementation of this protocol.
 
 - **Team Name**: [Ideal Labs](https://idealabs.network)
-- **Category 1**:(Infrastructure) Polkadot ecological developer tools
-- **Development Start**: September, 2024
+- **Category 1**: (Infrastructure) Polkadot ecological developer tools
+- **Development Start**: September 2024
 
 ## Problem to be Solved
 
@@ -62,7 +62,7 @@ Due to the hackathon's limited scope, we outline known issues and limitations to
 
 The Murmur protocol is designed for flexibility and can be adapted to various contexts. This section outlines its components and their connections.
 
-The visualization below depicts dependencies and flow of data of each component of Murmur's architecture.
+The visualization below depicts dependencies and the flow of data of each component of Murmur's architecture.
 
 ![arch](<https://murmur.idealabs.network/assets/images/murmur_connections.drawio(1)-4783283a08a2398947a580adf3b5e2a1.png>)
 
@@ -72,7 +72,7 @@ It handles the logic for constructing and proving MMR data for Murmur wallets.
 
 [**murmur-lib**](https://github.com/ideal-lab5/murmur/tree/polkadot-hackathon-2024/lib)
 
-This is an implementation of the murmur protocol over BLS377 using type III pairings.
+This is an implementation of the Murmur protocol over BLS377 using type III pairings.
 
 [**murmur-api**](https://github.com/ideal-lab5/murmur-api/tree/polkadot-hackathon-2024)
 
@@ -80,7 +80,7 @@ This is an HTTP API that serves as a convenience to externalize OTP code generat
 
 [**murmur.js**](https://github.com/ideal-lab5/murmur.js/tree/polkadot-hackathon-2024)
 
-It encapsulates communication with the `murmur-api` and the Ideal Network as a JS library, facilitating creation and execution of Murmur wallets.
+It encapsulates communication with the `murmur-api` and the Ideal Network as a JS library, facilitating the creation and execution of Murmur wallets.
 
 **The Ideal Network**
 
@@ -90,7 +90,7 @@ The Ideal Network (IDN) is a blockchain that enables **publicly verifiable on-ch
 
 ### Pallets
 
-> IMPORTANT: The Ideal Network's palelts and the Randomness Beacon pallet should not be considered for evaluation.
+> IMPORTANT: The Ideal Network's pallets and the Randomness Beacon pallet should not be considered for evaluation.
 
 The Murmur pallet is the core component enabling Murmur wallets. It acts as a "prover" by registering unique Murmur proxies and verifying execution parameters before dispatch. It works with a modified Proxy pallet, allowing uncallable proxies without a delegate, which can only be accessed using valid future OTP codes through the Murmur pallet's proxy extrinsic.
 
@@ -102,9 +102,9 @@ The Murmur pallet is the core component enabling Murmur wallets. It acts as a "p
 ## Examples
 
 - [murmur-cli](https://github.com/ideal-lab5/murmur/blob/polkadot-hackathon-2024/lib/src/bin/murmur/main.rs): a terminal-based way to use Murmur as a standalone client.
-- [murmur-dapp](https://github.com/ideal-lab5/murmur-dapp/tree/polkadot-hackathon-2024): A basic dapp to create Murmur wallets and execute balance transfers (see: [browser integration guide](https://murmur.idealabs.network/docs/quick_start/browser)).
+- [murmur-dapp](https://github.com/ideal-lab5/murmur-dapp/tree/polkadot-hackathon-2024): A basic dapp to create wallets and execute balance transfers (see: [browser integration guide](https://murmur.idealabs.network/docs/quick_start/browser)).
 - [discord bot](https://murmur.idealabs.network/docs/quick_start/discord): A Discord bot that allows in-app wallets to be created and used.
-- [twitch bot](https://murmur.idealabs.network/docs/quick_start/twitch): A Twith bot that allows in-app wallets to be created and used.
+- [twitch bot](https://murmur.idealabs.network/docs/quick_start/twitch): A Twitch bot that allows in-app wallets to be created and used.
 
 ## Schedule
 
@@ -115,15 +115,15 @@ All work completed as part of this hackathon was tracked [here](https://github.c
 | Name           | Description                                                                                                                                            | Github                         | LinkedIn                                            |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------ | --------------------------------------------------- |
 | Tony Riemer    | Lead protocol engineer, Math at University of Wisconsin, Former S.E. Fannie Mae & Capital One, PBA Alumni                                              | https://github.com/driemworks  | https://www.linkedin.com/in/tony-riemer/            |
-| Carlos Montoya | Serialial Entrepreneur, 4x CTO with exit, M.S. Information Technology, Carnegie Mellon, PBA Alumni                                                     | https://github.com/carloskiron | https://www.linkedin.com/in/cmonvel/                |
-| Coleman Irby   | 10+ years software engineering experience, B.S. Electrical Engineering from University of Mississippi, Physics graduate student at Univ. of Mississipp | https://github.com/colemanirby | https://www.linkedin.com/in/coleman-irby-229b13103/ |
+| Carlos Montoya | Serial Entrepreneur, 4x CTO with exit, M.S. Information Technology, Carnegie Mellon, PBA Alumni                                                        | https://github.com/carloskiron | https://www.linkedin.com/in/cmonvel/                |
+| Coleman Irby   | 10+ years software engineering experience, B.S. Electrical Engineering from University of Mississippi, Physics graduate student at Univ. of Mississippi | https://github.com/colemanirby | https://www.linkedin.com/in/coleman-irby-229b13103/ |
 | Juan Girini    | 10+ years leading engineering teams, Former core engineer at Parity, B.S. Information Systems Engineering, UTN, PBA Alumni                             | https://github.com/juangirini  | https://www.linkedin.com/in/juan-girini/            |
 
 ## Material for Demo
 
 ### Overview
 
-A brief video to explain the demo and the protocol. This is not the demo itself and it _does_ exceed 6 minutes.
+It briefly explains the demo video and the protocol. This is not the demo itself and it _does_ exceed 6 minutes.
 
 [![Overview](./doc/murmur_overview_video.jpg)](https://youtu.be/kWeHdbYi8ps)
 
