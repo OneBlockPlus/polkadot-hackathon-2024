@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background-color: #222222;
+  --foreground-color: #333333;
+
+  --accent-color: #d45161;
+
+  --text-primary-color: #ffffff;
+  --text-secondary-color: #ffffff7f;
+
+  --button-primary-color: #222222;
+
+  --border-color: #555555;
+  --header-border-color: #ffffff50;
+  --hover-bg: #333333;
+}
+
+/*
+html.light {
+    --background-color: #fff;
+    --text-color: #121416d8;
+    --link-color: #543fd7;
+}
+html.dark {
+    --background-color: #212a2e;
+    --text-color: #F7F8F8;
+    --link-color: #828fff;
+}
+*/
+
+html,
+body {
+  background-color: var(--background-color);
+  overflow-x: hidden;
+}
+
+* {
+  color: #ffffff;
+}
+
+.bookadot-btn-primary {
+  background: var(--accent-color);
+  border: none;
+  border-radius: 0.938rem;
+}
+
+.bookadot-btn-primary > span {
+  color: var(--button-primary-color);
+}
+
+.bookadot-btn-secondary {
+  background: transparent;
+  border: 1px solid #ffffff;
+  color: white;
+  border-radius: 0.625rem;
+}
+
+.bookadot-header {
+  background-color: transparent;
+  border-bottom: 1px solid var(--header-border-color);
+}
+
+a {
+  color: var(--accent-color);
+}
+@layer components {
+  .hero {
+    background-image: url('./components/Icon/home-ticket.svg');
+    background-repeat: no-repeat;
+    background-position: right center; /* Align to the right */
+    background-size: contain;
+  }
+}
