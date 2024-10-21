@@ -1,7 +1,7 @@
 from flask import Flask, render_template, jsonify, request
 from db_model import DBModel
-import api_storage_module.api_storage.storage_management as storage
-from api_storage_module.api_storage.file_utils import get_filepath
+import src.api_storage.storage_management as storage
+from src.api_storage.file_utils import get_filepath
 
 app = Flask(__name__)
 model = DBModel("api_storage_module/genomtex.sqlite")

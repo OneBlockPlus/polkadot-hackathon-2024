@@ -1,4 +1,4 @@
-from api_storage_module.api_storage.encryption import encryption, decryption
+from src.api_storage.encryption import encryption, decryption
 from Crypto.Random import get_random_bytes
 
 def test_encrypt_decrypt_eq_rand_data():
