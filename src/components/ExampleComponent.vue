@@ -25,6 +25,8 @@
         />
       </q-btn>
       <br />
+      Production Rate: {{ productionRate }}
+      <br />
       <q-btn label="Save" @click="save()"></q-btn>
       <q-btn label="Load" @click="load()"></q-btn>
       <q-btn label="Generate" @click="generate()"></q-btn>
@@ -60,7 +62,8 @@ onMounted(() => {
   }
 });
 
-let layers: Ref<string[]> = ref([]);
+const layers: Ref<string[]> = ref([]);
+const productionRate = ref(0);
 
 const $q = useQuasar();
 function save() {
@@ -208,6 +211,18 @@ function generate() {
     }
   }
 
+  // assumption: linear comsumption
+  // 2 x 1 + 1 x 2 + 1 x 3
+  // 1: 0 - 1
+  // 2: 2 - 1
+  // 3: 1 - 1
+
+  const out1 = machineTypeCount[1] * 1;
+  const out2 = Math.min(out1 / 2, machineTypeCount[2]);
+  const out3 = Math.min(out2, machineTypeCount[3]);
+
+  productionRate.value = out3;
+
   // calculate production rate of machines
   // find connected storage
 
@@ -226,11 +241,11 @@ function generate() {
     'Road connectivity verification: (components)\n' +
     formatMatrix(components, par.value.mapColumns, par.value.mapRows, 2);
 
-  layers.value[2] =
-    'Road connectivity verification: (component map)\n' +
-    JSON.stringify(componentMap, null, 4);
+  // layers.value[2] =
+  //   'Road connectivity verification: (component map)\n' +
+  //   JSON.stringify(componentMap, null, 4);
 
-  layers.value[3] =
+  layers.value[2] =
     'Road connectivity verification: (component type count)\n' +
     JSON.stringify(machineTypeCount, null, 4);
   // == generate the 3rd layer: road connectivity layer

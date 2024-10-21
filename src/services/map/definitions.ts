@@ -56,8 +56,8 @@ export const getMapParameters = (
 export const placementRaw: [string, string, number, number, number, number][] =
   [
     [TerrainImage, 'road', 1, 1, 0, 3],
-    [TilesImage, 'iron-processor', 4, 2, 0, 0],
     [TilesImage, 'iron-buyer', 2, 2, 4, 0],
+    [TilesImage, 'iron-processor', 4, 2, 0, 0],
     [TilesImage, 'iron-seller', 1, 2, 6, 0],
     [TilesImage, 'seaport', 2, 2, 3, 3],
     [TilesImage, 'barn', 3, 3, 0, 3],
