@@ -46,7 +46,7 @@ Our goal is to deliver an MVP of the Murmur protocol as a standalone CLI and JS 
 - A standalone [library](https://github.com/ideal-lab5/murmur/tree/polkadot-hackathon-2024/lib) to implement the protocol
 - A permissionless [HTTP API](https://github.com/ideal-lab5/murmur-api/tree/polkadot-hackathon-2024) for outsourced computation
 - A JavaScript [library](https://github.com/ideal-lab5/murmur.js/tree/polkadot-hackathon-2024) wrapping the API
-- A set of [examples](#examples) showcasing Murmur's versatility
+- A set of [examples](#examples)
 
 **Limitations & Future Work**
 
@@ -89,7 +89,7 @@ The Ideal Network (IDN) is a blockchain that enables **publicly verifiable on-ch
 
 ### Pallets
 
-> ❗IMPORTANT: The Ideal Network's pallets and the Randomness Beacon pallet should not be considered for evaluation.
+> ❗IMPORTANT: The IDN's pallets and the Randomness Beacon pallet should not be considered for evaluation.
 
 The Murmur pallet is the core component enabling Murmur wallets. It acts as a "prover", registering unique Murmur proxies and verifying execution parameters before dispatch. It works with a modified Proxy pallet that enables a new kind of proxy only accessible through the Murmur pallet's `proxy` extrinsic.
 
@@ -100,7 +100,7 @@ The Murmur pallet is the core component enabling Murmur wallets. It acts as a "p
 
 ## Examples
 
-- [murmur-cli](https://github.com/ideal-lab5/murmur/blob/polkadot-hackathon-2024/lib/src/bin/murmur/main.rs): a terminal-based Murmur client.
+- [murmur-cli](https://github.com/ideal-lab5/murmur/blob/polkadot-hackathon-2024/lib/src/bin/murmur/main.rs): A terminal-based Murmur client.
 - [murmur-dapp](https://github.com/ideal-lab5/murmur-dapp/tree/polkadot-hackathon-2024): A basic dapp to create wallets and execute balance transfers (see: [browser integration guide](https://murmur.idealabs.network/docs/quick_start/browser)).
 
 Murmur provides a **seamless**, **trustless** solution for **web2 users** to effortlessly transition to web3 platforms and interact with crypto wallets, **eliminating traditional barriers** to entry.
@@ -120,11 +120,12 @@ Murmur provides a **seamless**, **trustless** solution for **web2 users** to eff
 
 ### Overview
 
-It briefly explains the demo video and the protocol. This is not the demo itself and exceeds 6 minutes.
-
+Video overview of the protocol: this is not the demo and exceeds 6 minutes.
 [![Overview](./doc/murmur_overview_video.jpg)](https://youtu.be/kWeHdbYi8ps)
 
 ### Demo
+
+Get the docker compose script from the demo [here](https://gist.github.com/juangirini/a58126b8bf9d6a32d4c6bdfed782b832)
 
 [![Demo](./doc/murmur_demo_video.jpg)](https://youtu.be/VFDtozEAXq0)
 
