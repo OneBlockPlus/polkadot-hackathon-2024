@@ -1,4 +1,4 @@
-<img src="../doc/murmur-logo.png" height="180" width="180" />
+![logo](../doc/logo.png)
 
 # Murmur 
 
