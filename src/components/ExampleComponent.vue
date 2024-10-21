@@ -1,11 +1,13 @@
 <template>
   <div>
     <!-- <p>{{ title }}</p> -->
-    <canvas
-      ref="myCanvas"
-      :width="par?.mapWidth ?? 300"
-      :height="par?.mapHeight ?? 200"
-    ></canvas>
+    <div class="container">
+      <canvas
+        ref="myCanvas"
+        :width="par?.mapWidth ?? 300"
+        :height="par?.mapHeight ?? 200"
+      ></canvas>
+    </div>
     <template v-if="par">
       <br />
       <q-btn
@@ -273,4 +275,21 @@ function formatMatrix(
 
 <style lang="scss" scoped>
 //
+.container {
+  // position: relative;
+  width: 614px;
+  height: 410px;
+  background-image: url('../assets/background.png');
+  background-size: 614px 410px;
+  // background-position: center;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+
+  canvas {
+    // position: absolute;
+    margin-left: 109px; /* Offset from the left */
+    margin-top: 113px; /* Offset from the top */
+  }
+}
 </style>
