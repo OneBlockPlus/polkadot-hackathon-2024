@@ -1,13 +1,39 @@
 # Code Submission Breakdown
 
+### Project Folder Structure
+
+Our team organise our code submission into two main root: 
+
+1. `dapp-demo`: All the dapp related, contracts, and blockchain interaction code
+2. `robot-sim`: All the robotic simulation setup and connection layer code
+
 ```bash
-📦dapp-project-root
- ┣ 📂src
- ┃ ┣ 📂components
- ┃ ┣ 📂utils
- ┃ ┗ 📂services
- ┣ 📂tests
- ┗ 📄README.md
+📦dapp-demo-root
+┣ 📂public
+┣ 📂src
+.....┣ 📂app
+..........┣ 📂api
+...............┣ 📂order
+....................┣ 📂local
+....................┗ 📂random number
+...............┗ 📂robot
+..........┣ 📂home
+...............┣ 📂inventory
+...............┣ 📂store
+...............┗ 📂track
+..........┣ 📂order
+...............┣ 📂approval
+...............┗ 📂simulator
+.....┣ 📂class
+.....┣ 📂components
+.....┣ 📂config
+.....┣ 📂context
+.....┣ 📂contracts ABI
+.....┣ 📂data
+.....┣ 📂hooks
+.....┣ 📂services
+.....┗ 📂utils
+
 ```
 
 # Folder Descriptions
