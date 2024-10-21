@@ -126,7 +126,7 @@ It briefly explains the demo video and the protocol. This is not the demo itself
 
 ### Demo
 
-[![Demo](./doc/murmur_demo_video.jpg)](https://youtu.be/MNTS5NZ7aTk)
+[![Demo](./doc/murmur_demo_video.jpg)](https://youtu.be/VFDtozEAXq0)
 
 ### Slideshow
 
