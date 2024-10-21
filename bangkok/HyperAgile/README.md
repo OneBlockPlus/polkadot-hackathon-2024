@@ -2,7 +2,10 @@
 
 # HyperAgile: Industrial Robotic Automation on Polkadot 🤖
 
-> **TL;DR:** Watch our 6 minutes [video](https://www.youtube.com/watch?v=-Otl40WUKOo) to have a clear idea~ 
+The first B2B Middleware-as-a-Service (MaaS) project to help industries design and develop custom API hub which connect their Robotic Process Automation (RPA) infrastructure (**ROBOTS~**) to the Polkadot ecosystem seamlessly.
+
+
+> **TL;DR:** Watch our 6 minutes [video](https://www.youtube.com/watch?v=-Otl40WUKOo) to have a quick idea~ 
 
 ## Problems
 
@@ -123,8 +126,8 @@ We also replicated this functionality using our Webots simulation (hosted locall
 ## Deliverables
 
 1. [Demo Video](https://www.youtube.com/watch?v=-Otl40WUKOo)
-2. PPT 
-3. Our Demo DApp
+2. [PPT]() 
+3. [Our Demo DApp](https://hyper-agile.vercel.app/)
 
 ### Code Submission Breakdown
 
@@ -155,6 +158,19 @@ Our team introduce a new innovative application of CESS Network product in the i
 HyperAgile is promoting more trustworthy and secure operations for future robotic-automated industries. Robotic operations can now be recorded on-chain to create clear audit trails, introducing **transparency** to all stakeholders participating in a supply chain operation. Additionally, we address the classic track-and-trace challenge in supply chains, as **traceability** can now be improved through HyperAgile. With the immutable and tamper-proof nature of data on Polkadot and utilizing a distributed data system to operate robotic fleet, **security** will be further strengthened, reducing cases like counterfeiting in the production line.
 
 ## Team Info
+
+#### Tan (Jimmy) Zhi Xuan
+- Computer Science and Artificial Intelligence @ University of Nottingham Malaysia
+- Final year research in supply chain technologies
+- Polkadot Global Hackathon * 3 🏆
+- Full stack development and blockchain integration
+- Discord Handle: #lidar7032
+
+#### Lee Shi Min
+- Electrical and Electronic Engineering @ University of Nottingham Malaysia
+- Test Backend Department @ NXP Semiconductors (Malaysia) - Internship
+- Robotics and IoT integration
+- Discord Handle: #sabashinigami
 
 ## Project Info
 - Created on August 2024
