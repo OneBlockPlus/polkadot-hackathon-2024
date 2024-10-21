@@ -101,6 +101,25 @@ We also replicated this functionality using our Webots simulation (hosted locall
 
 ## 📅 Timeline for all features planned (completed)
 
+##### End of July-August
+- [x] idea and concept preplanning
+- [x] hub architecture design
+- [x] simulation design
+- [x] implementation research
+- [x] CoBot and AGV stl for simulation
+- [x] Webot warehouse scene
+- [x] Webot operations development
+- [x] setup flask server as connectivity layer
+- [x] simulation testing with sandbox DApp
+##### September-October
+- [x] design UI for implementation prototype
+- [x] frontend development
+- [x] smart contract and features development
+- [x] integration testing with simulation
+- [x] incorporate Moonbeam precompiles
+- [x] incorporate DeOSS of CESS
+- [x] preparing initial review materials
+
 ## Deliverables
 
 1. [Demo Video](https://www.youtube.com/watch?v=-Otl40WUKOo)
