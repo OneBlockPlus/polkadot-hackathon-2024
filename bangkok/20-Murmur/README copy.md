@@ -1,6 +1,6 @@
-# Murmur
-
 ![logo](./doc/logo.png)
+
+# Murmur
 
 [Murmur](https://murmur.idealabs.network) is a **keyless crypto wallet protocol** powered by the [Ideal Network](https://docs.idealabs.network/docs/intro) (IDN). Inspired by [Hours of Horus](https://eprint.iacr.org/2021/715), the protocol uses [timelock encryption](https://docs.idealabs.network/docs/learn/crypto/timelock_encryption) and secure time-based [one-time password](https://www.techtarget.com/searchsecurity/definition/one-time-password-OTP) (OTP) generation to enable a frictionless and keyless crypto wallet. It introduces a novel solution for account abstraction on Substrate-based chains, eliminating the need for private key management while maintaining complete user control and security.
 
