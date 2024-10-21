@@ -45,7 +45,7 @@ class DBModel:
     def get_client_records_by_name(self, name) -> List[sqlite3.Row]:
         cur = self.get_connection().cursor()
 
-        query = "SELECT C.id, C.name, C.dna_fingerprint, G.sequenced_at, " \
+        query = "SELECT C.id, C.name, C.dna_fingerprint, G.id as gid, G.sequenced_at, " \
                 "G.full_file_name, G.diff_file_name, G.ipfs_cid, G.ap_uuid, G.mutations, G.cos_dist " \
                 "FROM clients C " \
                 "LEFT JOIN genomes G ON G.client_id = C.id " \

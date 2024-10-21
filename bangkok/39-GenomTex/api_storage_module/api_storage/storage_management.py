@@ -1,10 +1,9 @@
 import os
-from api_storage import is_file_uploaded
-from file_utils import get_filepath
-from file_utils import read_as_bytes
-from encryption import encryption, decryption
+from .api_storage import is_file_uploaded
+from .file_utils import get_filepath, read_as_bytes
+from .encryption import encryption, decryption
 import datetime
-from api_storage import create_upload_session, put_file_data, end_session, Result
+from .api_storage import create_upload_session, put_file_data, end_session, Result
 
 
 def sync_file(filename, cid):

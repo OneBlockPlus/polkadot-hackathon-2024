@@ -1,6 +1,6 @@
 from Crypto.Cipher import AES
 from base64 import b64decode, b64encode
-from file_utils import read_as_bytes, get_filepath
+from .file_utils import read_as_bytes, get_filepath
 from dotenv import load_dotenv
 import os
 
