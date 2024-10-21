@@ -104,7 +104,7 @@ For the convenience of the technical judges, our team has organized the code sub
 
 #### 1. Moonbeam - Bounty 1: Use a Moonbeam Precompile
 
-HyperAgile uses three moonbeam precompile to facilitate operations in a robotic automation setup:
+HyperAgile uses three moonbeam precompile to facilitate operations in a robotic automation setup, exploring the feasibility to implement in real-world industries workflow:
 
 1. **Moonbeam Randomness Precompile**: Using an on-chain randomness on Moonbeam for load balancing in robotic fleet is an innovative approach in the space. On-chain randomness generated on Moonbeam can be combined with more approaches (e.g., Weighted Random Assignment) for more dynamic industry environments.
  
