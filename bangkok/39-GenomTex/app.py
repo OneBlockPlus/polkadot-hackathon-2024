@@ -37,6 +37,7 @@ def get_record(name: str):
         "full_file_name": record["full_file_name"],
         "diff_file_name": record["diff_file_name"],
         "ipfs_cid": record["ipfs_cid"],
+        "mutations": record["mutations"],
     } for record in records]
 
     return render_template('record.html', name=name, client=client, records=records)
@@ -62,6 +63,7 @@ def dev_get_record(name: str):
         "full_file_name": record["full_file_name"],
         "diff_file_name": record["diff_file_name"],
         "ipfs_cid": record["ipfs_cid"],
+        "mutations": record["mutations"],
     } for record in records]
 
     return render_template('dev_record.html', name=name, client=client, records=records)

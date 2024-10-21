@@ -29,8 +29,9 @@
       <thead class="bg-light">
         <tr>
           <th>File name</th>
-          <th>UUID</th>
+          <th>Mutations</th>
           <th>Sequenced At</th>
+          <th>UUID</th>
           <th>CID</th>
         </tr>
       </thead>
@@ -41,10 +42,13 @@
                   <p class="fw-bold mb-2">{{ record["diff_file_name"] }}</p>
               </td>
               <td>
-                  <p class="fw-normal mb-1">{{ record["uuid"] }}</p>
+                  <p class="fw-normal mb-1">{{ record["mutations"] }}</p>
               </td>
               <td>
                   <p class="fw-normal mb-1">{{ record["sequenced_at"] }}</p>
+              </td>
+              <td>
+                  <p class="fw-normal mb-1">{{ record["uuid"] }}</p>
               </td>
               <td>
                   <p class="fw-normal mb-1">{{ record["ipfs_cid"] }}</p>
