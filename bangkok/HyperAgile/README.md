@@ -94,6 +94,7 @@ Our eCommerce store sells three products, which serve as the inventory items for
 
 ### Code Submission Breakdown
 
+For the convenience of the technical judges, our team has organized the code submission by breaking down the structure and providing descriptions for each folder and important files. You can access the documentation folder [here]().
 
 ## 🏆 Track and Bounty
 
