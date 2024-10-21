@@ -8,7 +8,7 @@ Our team organise our code submission into two main root:
 2. `robot-sim`: All the robotic simulation setup and connection layer code
 
 ```bash
-📦dapp-demo-root
+📦dapp-demo
 ┣ 📂public
 ┣ 📂src
 .....┣ 📂app
@@ -34,6 +34,17 @@ Our team organise our code submission into two main root:
 .....┣ 📂services
 .....┗ 📂utils
 ┣ 📂hyperagile-contracts
+
+-------------------------------------
+
+📦robot-sim
+┣ 📂_pycache_
+┣ 📂controller-system
+┣ 📂flask-webots
+┣ 📂robot-statetxt
+┣ 📂stls
+┣ 📂templates
+┣ 📂webot-world-setup
 
 ```
 
@@ -113,3 +124,26 @@ All contracts are deployed on Moonbase Alpha (Moonbeam Testnet)
 - lib/`RandomnessConsumer.sol`
 - interfaces
 - scripts (deploy,verify)
+
+## Robot-Sim Folder Description
+
+## controller-system/
+
+This folder contain the controller system of each individual robot which define their operations in the warehouse. Robot 1,2,3 representing picking, packing, and delivering.
+
+## flask-webots/
+
+Containing the flask server acting as the connectivity layer. Using ngrok tunneling to connect.
+
+## robot-statetxt/
+
+Acting as a simple robot temp memory for demo purpose.
+
+## stls/
+
+Containing all the robotic parts use for simulation purpose in the showcase.
+
+## webot-world-setup
+
+Containing the warehouse 3D scene our team setup for simulation purpose in the showcase. In the format of wbt file.
+
