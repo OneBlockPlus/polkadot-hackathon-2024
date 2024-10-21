@@ -90,7 +90,6 @@ def save_to_appilon():
     #from time import sleep
     #sleep(3)
 
-    ap_uuid = "ABC"
     return jsonify({"uuid": ap_uuid})
 
 
