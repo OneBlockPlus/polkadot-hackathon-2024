@@ -1,7 +1,8 @@
 # Project name: ReLeaf
-ReLeaf Wallet: Batch transactions, smart savings, and easy card payments.
 
 <img src="./doc/Images/logo.png" width="40%">
+
+ReLeaf Wallet: Batch transactions, smart savings, and easy card payments.
 
 ### Project Creation Date: August 13, 2024
 
