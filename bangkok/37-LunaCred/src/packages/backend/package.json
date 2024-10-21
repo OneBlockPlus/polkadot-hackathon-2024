@@ -58,8 +58,9 @@
     "supertest": "^6.1.6",
     "swagger-ui-express": "^4.3.0",
     "ts-jest": "^27.1.1",
+    "ts-node": "latest",
     "twitter-api-sdk": "^1.2.1",
-    "typescript": "^4.5.2",
+    "typescript": "latest",
     "urql": "^4.1.0",
     "uuid": "^9.0.0",
     "web3": "^1.10.4",
@@ -80,7 +81,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-security": "^1.4.0",
     "prettier": "^2.5.1",
-    "ts-node-dev": "^1.1.8",
+    "ts-node-dev": "latest",
     "tsc-alias": "^1.5.0",
     "tsconfig-paths": "^3.12.0"
   }
