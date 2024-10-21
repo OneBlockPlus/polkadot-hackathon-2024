@@ -1,0 +1,22 @@
+# dependencies
+/node_modules
+
+# IDE
+/.awcache
+
+# misc
+npm-debug.log
+
+# example
+/quick-start
+
+# tests
+/test
+/coverage
+/.nyc_output
+
+# dist
+/dist
+
+# environment
+.env

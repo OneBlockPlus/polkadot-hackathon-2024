@@ -1,0 +1,99 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model reservation_mapping {
+  id               Int     @id(map: "id_key") @default(autoincrement())
+  reservation_id   String  @unique(map: "reservation_mapping_reservation_id_index") @db.VarChar(255)
+  transaction_hash String? @unique(map: "reservation_mapping_transaction_hash_index") @db.VarChar(512)
+}
+
+model listing_mapping {
+  id               Int       @id(map: "listing_mapping_pk") @default(autoincrement())
+  listing_id       String?   @db.VarChar(255)
+  on_chain_mapping String?   @db.VarChar(512)
+  created_at       DateTime? @default(now()) @db.Timestamp(6)
+  host_address     String?   @db.VarChar(512)
+}
+
+model reservation {
+  id             Int      @id @default(autoincrement())
+  reservation_id String   @unique @db.VarChar(20)
+  status         String   @db.VarChar(255)
+  checkinDate    DateTime @map("checkin_date") @db.Date
+  checkoutDate   DateTime @map("checkout_date") @db.Date
+  guest_wallet   String?  @db.VarChar(255)
+  host_wallet    String?  @db.VarChar(255)
+  listing_id     Int?     @map("listing_id")
+  final_price    Decimal  @map("final_price") @db.Decimal(19, 8)
+}
+
+model property_info {
+  id                   Int       @id @default(autoincrement())
+  userId               String?   @db.VarChar(255)
+  walletId             String?   @db.VarChar(255)
+  hostId               String?   @db.VarChar(255)
+  status               String?   @db.VarChar(255)
+  internalName         String?   @db.VarChar(255)
+  externalName         String?   @db.VarChar(255)
+  doorCode             String?   @db.VarChar(255)
+  keyPickup            String?   @db.VarChar(255)
+  description          String?   @db.Text
+  propertyTypeId       Int?      @db.Integer
+  roomType             String?   @db.VarChar(255)
+  bathRoomType         String?   @db.VarChar(255)
+  defaultCheckInTime   String?   @db.VarChar(255)
+  defaultCheckOutTime  String?   @db.VarChar(255)
+  personCapacity       Int?      @db.Integer
+  guestsIncluded       Int?      @db.Integer
+  bedrooms             Int?      @db.Integer
+  beds                 Int?      @db.Integer
+  bathrooms            Int?      @db.Integer
+  address              Json?     @db.JsonB
+  amenities            String?   @db.Text
+  additionalInfo       String?   @db.Text
+  contact              String?   @db.Text
+  rooms                String?   @db.Text
+  cleaningStatus       String?   @db.Text
+  policies             String?   @db.Text
+  cancelPolicy         String?   @db.VarChar(255)
+  cancelPolicies       String?   @db.Text
+  importedAt           DateTime? @default(now()) @db.Timestamp(6)
+  pmsType              String?   @db.VarChar(255)
+  pmsPropertyId        String?   @db.VarChar(255)
+  propertyType         String?   @db.Text
+  propertyTypeName     String?   @db.VarChar(255)
+  propertyRooms        String?   @db.Text
+  propertyPrice        Json?     @db.JsonB
+  propertyImages       Json?     @db.JsonB
+  feeSettings          String?   @db.Text
+  houseRules           String?   @db.Text
+  minNights            Int?      @db.Integer
+  maxNights            Int?      @db.Integer
+  timezone             String?   @db.VarChar(255)
+  listingInfo          String?   @db.Text
+  cancellationPolicy   String?   @db.Text
+  thumbnail            String?   @db.VarChar(255)
+  publishedStatus      String?   @db.VarChar(255)
+  fiat                 Boolean?  @db.Boolean
+  crypto               Boolean?  @db.Boolean
+  isActive             Boolean?  @db.Boolean
+  fiatPaymentEnabled   Boolean?  @db.Boolean
+  cryptoPaymentEnabled Boolean?  @db.Boolean
+  guestMessage         String?   @db.Text
+  expiredAt            String?   @db.VarChar(255)
+  priceInfo            String?   @db.Text
+  superhogKYGId        String?   @db.VarChar(255)
+  superhogProtectId    String?   @db.VarChar(255)
+  superhogStatus       String?   @db.VarChar(255)
+  channel              String?   @db.VarChar(255)
+  markupPrice          String?   @db.Text
+  pictures             String?   @db.Text
+  title                String?   @db.VarChar(255)
+}
