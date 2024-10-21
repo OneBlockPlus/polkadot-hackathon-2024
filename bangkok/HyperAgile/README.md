@@ -169,6 +169,7 @@ HyperAgile is promoting more trustworthy and secure operations for future roboti
 #### Lee Shi Min
 - Electrical and Electronic Engineering @ University of Nottingham Malaysia
 - Test Backend Department @ NXP Semiconductors (Malaysia) - Internship
+- President of IEEE University of Nottingham Malaysia Student Chapter 
 - Robotics and IoT integration
 - Discord Handle: #sabashinigami
 
