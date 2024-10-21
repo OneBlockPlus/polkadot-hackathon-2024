@@ -126,8 +126,7 @@ We also replicated this functionality using our Webots simulation (hosted locall
 ## Deliverables
 
 1. [Demo Video](https://www.youtube.com/watch?v=-Otl40WUKOo)
-2. [PPT]() 
-3. [Our Demo DApp](https://hyper-agile.vercel.app/)
+2. [Our Demo DApp](https://hyper-agile.vercel.app/)
 
 ### Code Submission Breakdown
 
