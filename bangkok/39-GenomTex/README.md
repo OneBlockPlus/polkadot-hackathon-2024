@@ -20,17 +20,13 @@ run IPFS node for data <-> cache exchange
 
 `npm run start`
     
-## What we have well before hackathon
+## What we have for the presentation
 
   - cooperation with genome sequencing laboratory
   - know-how to create minimal differential DNA files
   - code to work with the blockchain storage
-
-## Deliverables for the hackathon
-
   - functional front-end and back-end
   - code to correctly calculate changes for the entire DNA reconstruction
-  - mathematical function for DNA fingerprinting
 
 ## Storage
 
@@ -76,8 +72,29 @@ Filter out low-quality data for even better compression
 
     bcftools filter -s LOWQUAL -e '%QUAL<20 || DP<10' variants.vcf -o filtered_variants.vcf
 
+### Create bcftools index
+
+Index is required if you don't want to process difference files (.vcf) sequentially.
+
+    bcftools index 8f0fd05f-variants-from-bcf.vcf.gz
+
+### Compute distance to reference genome
+
+Call in the following methods from `dna.py`:
+
+    align_all_chromosomes(`vcf filepath`)
+    compute_chromosomes_similarity_from_cache(`vcf filepath`)
+
+### Get the complete reading for a chromosome
+
+In `dna.py`:
+
+    chr_ref = read_ref_chromosome(`chr num`)
+    reconstruct_specific_chromosome(chr_ref, `chr num`, `vcf filepath`)
 
 ## Future development
 
+- PCA to generate DNA fingerprints
 - better metrics for DNA distances, e.g. to cover complementary strings
 - rewrite string operations to C
+- look for cancerous mutations

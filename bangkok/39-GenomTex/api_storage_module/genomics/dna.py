@@ -41,29 +41,6 @@ def split_ref_genome_to_chr_files(filepath: str):
         fwrite.close()
 
 
-def compute_chromosomes_similarity(vcf_genome_filepath: str, save_reconstructed: bool = False):
-    save_filepath = vcf_genome_filepath.split(".")[0] + "/"
-    if save_reconstructed and not os.path.exists(save_filepath):
-        os.makedirs(save_filepath)
-
-    dists = []
-    for chr_id in BASE_CHROMOSOMES:
-        chr_ref = read_ref_chromosome(chr_id)
-        chr_rec = reconstruct_specific_chromosome(chr_ref, chr_id, vcf_genome_filepath)
-        if save_reconstructed:
-            save_reconstructed_chr_path = save_filepath + "chr" + chr_id + ".txt"
-            with open(save_reconstructed_chr_path, "w") as fwrite:
-                fwrite.write(chr_rec)
-        #vec1 = dna_to_vector(chr_rec)
-        #vec2 = dna_to_vector(chr_ref)
-        #dist = cosine_distance(vec1, vec2)
-        #dists.append(dist)
-
-    print(dists[0])
-    dists = np.array(dists)
-    return np.mean(dists)
-
-
 def compute_chromosomes_similarity_from_cache(vcf_genome_filepath: str):
     basename = vcf_genome_filepath.split(".")[0]
 
@@ -201,15 +178,5 @@ if __name__ == '__main__':
     if not os.path.exists("ref_chromosomes/"):
         split_ref_genome_to_chr_files(REF_FILENAME)
 
-    #chr_ref = read_ref_chromosome("1")
-    #chr1 = reconstruct_specific_chromosome(chr_ref, 1, vcf_genome_filepath="8f0fd05f.vcf")
-    #print(len(chr1))
-
-    #compute_chromosomes_similarity("8f0fd05f.vcf", save_reconstructed=True)
-    #compute_chromosomes_similarity_from_cache(vcf_genome_filepath="8f0fd05f.vcf")
-
-    #chr_ref = read_ref_chromosome("1")
-    #align_chromosomes(chr_ref, "1", "8f0fd05f.vcf")
-
-    #align_all_chromosomes("8f0fd05f.vcf")
+    align_all_chromosomes("8f0fd05f.vcf")
     compute_chromosomes_similarity_from_cache("8f0fd05f.vcf")
