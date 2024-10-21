@@ -147,7 +147,7 @@ We also replicated this functionality using our Webots simulation (hosted locall
 
 ### Code Submission Breakdown
 
-For the convenience of the technical judges, our team has organized the code submission by breaking down the structure and providing descriptions for each folder and important files. You can access the documentation folder [here](/doc#code-submission-breakdown).
+For the convenience of the technical judges, our team has organized the code submission by breaking down the structure and providing descriptions for each folder and important files. You can access the documentation folder [here](/HyperAgile/doc#code-submission-breakdown).
 
 ## 🏆 Track and Bounty
 
