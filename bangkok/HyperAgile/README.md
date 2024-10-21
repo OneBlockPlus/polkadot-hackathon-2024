@@ -174,5 +174,5 @@ HyperAgile is promoting more trustworthy and secure operations for future roboti
 - Discord Handle: #sabashinigami
 
 ## Project Info
-- Created on August 2024
+- Created in August 2024
 - Not funded by any party
