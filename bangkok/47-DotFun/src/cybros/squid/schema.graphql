@@ -1,0 +1,328 @@
+# Squid abstract TypeORM so it's impossible to get the foreign key field, so we have to have some duplicates
+# But actually it will generate _id field, but don't expose them
+
+enum ApplicableScope {
+  Owner
+  Public
+  AllowList
+}
+
+enum AttestationMethod {
+  OptOut
+}
+
+enum JobScheduler {
+  DemoOnly
+}
+
+enum ImplBuildStatus {
+  Released
+  Deprecated
+  Retired
+  Deregistered
+}
+
+enum WorkerStatus {
+  Registered
+  Deregistered
+  Online
+  Unresponsive
+  RequestingOffline
+  Offline
+}
+
+enum OfflineReason {
+  Graceful
+  Forced
+  Unresponsive
+  AttestationExpired
+  ImplBuildRetired
+  InsufficientDepositFunds
+  Other
+}
+
+enum JobDestroyReason {
+  Safe
+  Force
+  Completed
+  Expired
+}
+
+enum JobStatus {
+  Pending
+  Processing
+  Processed
+  Discarded
+}
+
+enum JobResult {
+  Success
+  Fail
+  Error
+  Panic
+}
+
+type Account @entity {
+  "Account address"
+  id: ID!
+
+  workersCount: Int!
+  poolsCount: Int!
+  createdJobsCount: Int!
+
+  owningWorkers: [Worker!] @derivedFrom(field: "refOwner")
+  owningPools: [Pool!] @derivedFrom(field: "refOwner")
+  beneficialJobs: [Job!] @derivedFrom(field: "refBeneficiary")
+}
+
+type Impl @entity {
+  id: ID!
+  implId: Int!
+
+  refOwner: Account! @index
+  ownerAddress: String!
+
+  attestationMethod: AttestationMethod!
+  metadata: Bytes
+
+  # stats
+  onlineWorkersCount: Int!
+  poolsCount: Int!
+  jobsCount: Int!
+
+  # timestamps
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+
+  builds: [ImplBuild!] @derivedFrom(field: "refImpl")
+  workers: [Worker!] @derivedFrom(field: "refImpl")
+  pools: [Pool!] @derivedFrom(field: "refImpl")
+}
+
+type ImplBuild @entity {
+  id: ID!
+
+  refImpl: Impl! @index
+  implId: Int!
+
+  version: Int!
+  magicBytes: String
+  status: ImplBuildStatus!
+
+  # stats
+  onlineWorkersCount: Int!
+
+  # timestamps
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+}
+
+type Worker @entity {
+  id: ID!
+  address: String! @index
+
+  refOwner: Account! @index
+  ownerAddress: String!
+
+  refImpl: Impl! @index
+  implId: Int!
+
+  refImplBuild: ImplBuild @index
+  implBuildVersion: Int
+
+  status: WorkerStatus! @index
+  implSpecVersion: Int
+  attestationMethod: AttestationMethod
+  attestationExpiresAt: DateTime
+  lastAttestedAt: DateTime
+  lastHeartbeatReceivedAt: DateTime
+  offlineAt: DateTime
+  offlineReason: OfflineReason
+  uptimeStartedAt: DateTime
+  uptime: Int
+
+  # stats
+  poolsCount: Int!
+  pendingJobsCount: Int!
+  processingJobsCount: Int!
+  processedJobsCount: Int!
+  successfulJobsCount: Int!
+  failedJobsCount: Int!
+  erroredJobsCount: Int!
+  panickyJobsCount: Int!
+
+  # timestamps
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+
+  events: [WorkerEvent!] @derivedFrom(field: "refWorker")
+
+  subscribedPools: [PoolWorkers!] @derivedFrom(field: "refWorker")
+  assignedJobs: [Job!] @derivedFrom(field: "refAssignee")
+}
+
+enum WorkerEventKind {
+  Registered
+  Deregistered
+  Online
+  Unresponsive
+  RequestingOffline
+  Offline
+  AttestationRefreshed
+  SubscribedPool
+  UnsubscribedPool
+}
+
+type WorkerEvent @entity {
+  id: ID!
+  sequence: Int!
+
+  refWorker: Worker! @index
+
+  kind: WorkerEventKind!
+  payload: JSON
+
+  blockNumber: Int!
+  blockTime: DateTime!
+}
+
+type Pool @entity {
+  id: ID!
+  poolId: Int!
+
+  refOwner: Account! @index
+  ownerAddress: String!
+
+  refImpl: Impl! @index
+  implId: Int!
+
+  jobScheduler: JobScheduler!
+  createJobEnabled: Boolean!
+  autoDestroyProcessedJobEnabled: Boolean!
+  metadata: Bytes
+
+  # stats
+  workersCount: Int!
+  onlineWorkersCount: Int!
+  pendingJobsCount: Int!
+  processingJobsCount: Int!
+  processedJobsCount: Int!
+  successfulJobsCount: Int!
+  failedJobsCount: Int!
+  erroredJobsCount: Int!
+  panickyJobsCount: Int!
+
+  # timestamps
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+
+  workers: [PoolWorkers!] @derivedFrom(field: "refPool")
+  jobPolicies: [JobPolicy!] @derivedFrom(field: "refPool")
+  jobs: [Job!] @derivedFrom(field: "refPool")
+}
+
+type PoolWorkers @entity {
+  id: ID! # Useless, but required
+
+  refPool: Pool!
+  poolId: Int!
+
+  refWorker: Worker!
+  workerAddress: String!
+
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+}
+
+type JobPolicy @entity {
+  id: ID!
+  policyId: Int!
+
+  refPool: Pool! @index
+  poolId: Int!
+
+  enabled: Boolean!
+  applicableScope: ApplicableScope!
+  startBlock: Int
+  endBlock: Int
+
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+}
+
+type Job @entity {
+  id: ID!
+  jobId: Int! @index
+  uniqueTrackId: String @index
+
+  refPool: Pool! @index
+  poolId: Int!
+
+  refPolicy: JobPolicy! @index
+  policyId: Int!
+
+  refDepositor: Account! @index
+  depositorAddress: String!
+
+  refBeneficiary: Account! @index
+  beneficiaryAddress: String!
+
+  refAssignee: Worker @index
+  assigneeAddress: String
+
+  implBuildVersion: Int
+
+  refDestroyer: Account
+  destroyerAddress: String
+
+  status: JobStatus! @index
+  result: JobResult
+
+  implSpecVersion: Int!
+  input: String
+  output: String
+  proof: String
+
+  # timestamps
+  expiresAt: DateTime!
+  assignedAt: DateTime
+  processingAt: DateTime
+  endedAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+
+  events: [JobEvent!] @derivedFrom(field: "refJob")
+}
+
+enum JobEventKind {
+  Created
+  Assigned
+  Resigned
+  Processing
+  Discarded
+  Success
+  Fail
+  Error
+  Panic
+  Destroyed
+}
+
+type JobEvent @entity {
+  id: ID!
+  sequence: Int!
+
+  refJob: Job! @index
+
+  kind: JobEventKind!
+  payload: JSON
+
+  blockNumber: Int!
+  blockTime: DateTime!
+}

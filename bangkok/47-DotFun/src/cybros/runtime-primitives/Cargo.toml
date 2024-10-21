@@ -1,0 +1,25 @@
+[package]
+name = "cybros-runtime-primitives"
+version = "0.0.1-dev"
+description = "Cybros runtimes' common low-level primitives."
+authors.workspace = true
+repository.workspace = true
+license = "GPL-3.0-or-later WITH Classpath-exception-2.0"
+edition = "2021"
+
+[lints]
+workspace = true
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+
+[dependencies]
+sp-core = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master", default-features = false }
+sp-runtime = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master", default-features = false }
+
+[features]
+default = ["std"]
+std = [
+	"sp-core/std",
+	"sp-runtime/std",
+]

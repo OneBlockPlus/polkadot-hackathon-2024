@@ -1,0 +1,47 @@
+{
+  "rootKey": "5HSw7pMDf5wjeDqZywe1vaEE4MyQXj4g43VKoezZZnKUdHrt",
+  "initialAuthorities": [
+    [
+      "5EnMRSNGnqBRY8t1oQMDZQxEny3DB9feJWf8sJm7DEAtmADg",
+      "5Ci1oiUJpPmr9hg5DZLFjC4nChtAGkT1tGnugqtNNKd7E2vy",
+      "5GjuNzMB4C59CLwKCjf6bCdFqwEyQYyxtRH2JXZJNCQvyF4P"
+    ],
+    [
+      "5G9eL1c1e2sNjLWNwmWLjgY9yUVSuKPyyj3KHJAaouguS9NF",
+      "5FjdAEiN6ynDVDjecsHb4WBHQfoLZLtEDwtj5LuB1nnWzAzp",
+      "5Ef5xwsxwRCeiDQyxodwb3d4cPgappqS5kwbTAerCZr3iX8K"
+    ],
+    [
+      "5CdF8r4NzKTeurswBJFQ12EUJM6u41GsPajcZWE5Tzmc5rdB",
+      "5G73j3unGGa9otLuNs6bCPx1pPho2xuaB92zGZGSUGSsYN5C",
+      "5ChkvzHpoPGD6cm3Q349WpEcT7TFk7X96ekXVRVP1jNcD6io"
+    ],
+    [
+      "5EcfarFqgyUrtjdv4t3M4LyavrdBTyatJaS4Y5yGZRTEmj2M",
+      "5FHxeZWRbbTjqopLnMX4qURLJFk2tuKRdDf5PE6w2nHDgbzC",
+      "5FmEsZtX8CjkB3qMzSoMAD8c97bn8tS6VDJW7oHiRf5EFebB"
+    ]
+  ],
+  "endowedAccounts": [
+    [
+      "5EnMRSNGnqBRY8t1oQMDZQxEny3DB9feJWf8sJm7DEAtmADg",
+      "1000000000000000"
+    ],
+    [
+      "5G9eL1c1e2sNjLWNwmWLjgY9yUVSuKPyyj3KHJAaouguS9NF",
+      "1000000000000000"
+    ],
+    [
+      "5CdF8r4NzKTeurswBJFQ12EUJM6u41GsPajcZWE5Tzmc5rdB",
+      "1000000000000000"
+    ],
+    [
+      "5EcfarFqgyUrtjdv4t3M4LyavrdBTyatJaS4Y5yGZRTEmj2M",
+      "1000000000000000"
+    ],
+    [
+      "5HSw7pMDf5wjeDqZywe1vaEE4MyQXj4g43VKoezZZnKUdHrt",
+      "1000000000000000"
+    ]
+  ]
+}
