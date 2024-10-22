@@ -1,11 +1,18 @@
 # Dazhbog: Decentralized Perpetual Futures on Polkadot
+
+**Dazhbog** is a plug-and-play solution for a decentralized perpetual futures exchange that can be integrated into any parachain within the Polkadot ecosystem which supports ```contract-pallet```. It utilizes Ink! smart contracts to facilitate peer-to-peer margin trading of perpetual contracts. The platform  allows users to trade perpetual futures contracts in a decentralized manner, leveraging  the security, scalability, and interoperability of the Polkadot network. By integrating into  their parachains, builders aim to provide a seamless and efficient trading experience  without relying on centralized intermediaries. 
+
+We already have a smart contract repository set up on [link](https://github.com/Ceres-Blockchain-Solutions/dazhbog-contracts/tree/polkadot-hackathon-2024).
+
 ## Introduction
 
-Dazhbog is a decentralized perpetual futures exchange built on Polkadot. It utilizes Ink! smart contracts to facilitate peer-to-peer margin trading of perpetual contracts.
+**Dazhbog** - Decentralized Perpetual Futures Exchange
 
-Our project, Dazhbog, previously earned first place in the DeFi category at the [Polkadot Prodigy hackathon](https://x.com/PolkadotProdigy/status/1800506214658494794), and we aim to continue its development here. We already have a smart contract repository set up on [link](https://github.com/Ceres-Blockchain-Solutions/dazhbog-contracts/tree/polkadot-hackathon-2024).
+**Project creation date: 16.05.2024.**
 
+We developed Dazhbog for the [Polkadot Prodigy hackathon](https://x.com/PolkadotProdigy/status/1800506214658494794), using the same repository as in this current hackathon. Our project won first place in the DeFi category. Following this success, we applied for Level 2 funding through the Web3 Foundation (W3F) grants, but our proposal was rejected. Subsequently, we submitted it to [OpenGov](https://polkadot.polkassembly.io/referenda/1043) for community consideration. However, during the decision period, the proposal failed despite receiving 60% Ayes within the regular voting window.
 
+-- the problem the project try to resolve
 
 ## Features planned for the Hackathon
 
@@ -55,12 +62,17 @@ Later, we built a Distributor contract that enables liquidity providers and the 
 
 ## Team info
 
+- **Rastko Misulic** - Smart Contract Developer across all Rust/Solidity based chains
+- **Cvijan Djukanovic** - Full-stack & Blockchain Delevoper w/ years of Rust based development 
+
 | Team members              | Github | X | Linkedin |
 | :----------- | :------: | :----: | :---:|
 | Rastko Misulic        |   https://github.com/rastkoCBS   | https://x.com/rmisulic | https://linkedin.com/in/rmisulic/ |
 | Cvijan Djukanovic     |   https://github.com/CvijanCBS   | https://x.com/cvijanxd | https://linkedin.com/in/cvijan-djukanovic/ |
 
-## Material for Demo
+## Track and bounty
+**Track:** Category 2: (Hot) Smart Contract, DeFi, AI, Layer2, DePIN, etc.
+### Material for Demo
 1. Demo Video [link to Youtube]
 2. [Dazhbog Pitch Deck](https://drive.google.com/file/d/1wT30sNVUs4WRH6014FOMT3DW1r9QtKuq/view)
 3. [Previous version of Dazhbog whitepaper](https://drive.google.com/file/d/1yrAES0Kq5Lq4pcoIiv29Sg0GWI4pvDj_/view)
