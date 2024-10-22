@@ -1,0 +1,135 @@
+[workspace]
+
+resolver = "2"
+
+members = [
+    "crates/rollup",
+    "crates/stf",
+    "crates/full-node/sov-sequencer",
+    "crates/module-system/sov-modules-rollup-blueprint",
+    "crates/module-system/sov-test-utils",
+    "crates/adapters/cyferio",
+]
+
+[workspace.package]
+version = "0.3.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+authors = ["Cyferio Labs <info@cyferio.com>"]
+homepage = "https://cyferio.com"
+publish = false
+repository = "https://github.com/cyferio-labs"
+rust-version = "1.73"
+
+[workspace.lints.rust]
+dead_code = "deny"
+non_ascii_idents = "deny" # Bad for readability and it can also be a security vulnerability
+
+# In case you need inspiration for new lints to add to the list, this is a good
+# reference: <https://github.com/EmbarkStudios/rust-ecosystem/blob/6783ae1573d62f3f5439b8ff9e04bec191ec2eaf/lints.toml>.
+[workspace.lints.clippy]
+debug_assert_with_mut_call = "deny"
+inefficient_to_string = "deny"
+map_flatten = "deny"
+manual_ok_or = "deny"
+doc_link_with_quotes = "deny"
+match_same_arms = "deny"
+semicolon_if_nothing_returned = "deny"
+float_arithmetic = "deny"
+
+[workspace.dependencies]
+sov-modules-api = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-state = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-accounts = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-nonces = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-bank = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-ledger-apis = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-prover-incentives = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-sequencer-registry = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-modules-stf-blueprint = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+#sov-modules-rollup-blueprint = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-modules-rollup-blueprint = { path = "./crates/module-system/sov-modules-rollup-blueprint" }
+sov-stf-runner = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-db = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+#sov-sequencer = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-sequencer = { path = "./crates/full-node/sov-sequencer" }
+sov-rollup-interface = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-risc0-adapter = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-mock-zkvm = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-first-read-last-write-cache = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-cli = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-mock-da = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-celestia-adapter = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-sui-da = { path = "./crates/adapters/sui" }
+sov-kernels = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-capabilities = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+#sov-test-utils = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-test-utils = { path = "./crates/module-system/sov-test-utils" }
+stf-starter = { path = "./crates/stf" }
+
+axum = { version = "0.7", default-features = false }
+serde = { version = "1.0.192", features = ["derive", "rc"] }
+serde_json = { version = "1.0" }
+
+prometheus_exporter = "0.8.5"
+prometheus = { version = "0.13.3", default-features = false }
+sha2 = { version = "0.10.6", default-features = false }
+
+anyhow = "1.0.86"
+clap = { version = "4.4.10", features = ["derive"] }
+async-trait = "0.1.71"
+borsh = { version = "1", features = ["rc", "bytes"] }
+tracing = { version = "0.1.40", default-features = false }
+tracing-appender = "0.2"
+tokio = { version = "1", features = ["full"] }
+tempfile = "3.5"
+jsonrpsee = { version = "0.24.2", features = ["jsonrpsee-types"] }
+
+risc0-build = "1.0.5"
+
+#sui
+derive_more = { version = "0.99.11", default-features = false }
+hex = { version = "0.4.3" }
+reqwest = { version = "0.12", features = [
+    "rustls-tls",
+], default-features = false }
+thiserror = "1.0.50"
+
+# sov-sequencer
+base64 = "0.22"
+bincode = "1.3.3"
+derivative = { version = "2.2", features = ["use_core"] }
+futures = { version = "0.3", default-features = false }
+rockbound = { git = "https://github.com/sovereign-Labs/rockbound", rev = "d640252e19c08ff47ce1dc2c209b9b1ba2bf9343" }
+serde_with = { version = "3.7", features = ["schemars_0_8"] }
+serde_yaml = { version = "0.9", default-features = false }
+sov-rest-utils = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+tokio-stream = { version = "0.1", features = ["sync"] }
+utoipa-swagger-ui = { version = "6", features = ["axum"] }
+uuid = { version = "1.9", default-features = false }
+proptest = { version = "1.3", default-features = false, features = ["alloc"] }
+proptest-derive = "0.5.0"
+rand = "0.8"
+reltester = { git = "https://github.com/sovereign-labs/reltester.git", rev = "d6209abff72929f5ba41614f5cea3e4a748428c3" }
+sov-sequencer-json-client = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-value-setter = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+
+# sov-modules-rollup-blueprint
+tower-http = "0.5"
+axum-server = { version = "0.6", features = ["tls-rustls"] }
+ethereum-types = "0.14.1"
+ethers-contract = { version = "=2.0.14", default-features = false }
+ethers-core = { version = "=2.0.14", default-features = false }
+sov-attester-incentives = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-chain-state = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-ledger-json-client = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+
+# sui da
+sui_sdk = { git = "https://github.com/mystenlabs/sui", package = "sui-sdk" }
+fastcrypto = { git = "https://github.com/MystenLabs/fastcrypto", rev = "b1ff61a2fcf20f689849ae270c93dc849c486d80" }
+sui-json-rpc-types = { git = "https://github.com/mystenlabs/sui" }
+sui-types = { git = "https://github.com/mystenlabs/sui" }
+shared-crypto = { git = "https://github.com/mystenlabs/sui" }
+
+# cyferio hub
+sov-cyferio-hub = { path = "./crates/adapters/cyferio" }

@@ -1,0 +1,37 @@
+- name: install NGINX
+  become: true
+  become_user: root
+  apt:
+    name: nginx
+    state: latest
+
+- name: Render NGINX configuration file for rollup
+  become: true
+  become_user: root
+  template:
+    src: rollup_nginx.conf.j2
+    dest: /etc/nginx/sites-available/rollup_nginx.conf
+
+- name: Enable configuration by creating symlink
+  become: true
+  become_user: root
+  file:
+    src: /etc/nginx/sites-available/rollup_nginx.conf
+    dest: /etc/nginx/sites-enabled/rollup_nginx.conf
+    state: link
+    force: yes
+
+- name: Remove default NGINX configuration
+  become: true
+  become_user: root
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+
+- name: Ensure NGINX is restarted and enabled on boot
+  become: true
+  become_user: root
+  systemd:
+    name: nginx
+    state: restarted
+    enabled: yes
