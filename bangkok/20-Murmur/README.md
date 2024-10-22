@@ -14,7 +14,7 @@
 
 Traditional crypto wallet solutions force users to choose between security or convenience. Custodial wallets offer a user-friendly experience but sacrifice true ownership and control - Not your keys, not your crypto. Conversely, non-custodial wallets offer full user control yet burden users with the complexity of key management, increasing risk of wallets being lost or compromised. 
 
-MPC (Multi-Party Computation) wallets aim to address these issues by distributing private keys among a set of workers, eliminting the inherent risks of non-custodial wallets. This approach reduces the risk of corrupt entities, including the wallet provider, from gaining full control of the wallet. However, they can be
+MPC (Multi-Party Computation) wallets aim to address these issues by distributing private keys among a set of workers, eliminating the inherent risks of non-custodial wallets. This approach reduces the risk of corrupt entities, including the wallet provider, from gaining full control of the wallet. However, they can be
 
 - **Scalability limited**: Increased users result in more signature requests and network load.
 - **Costly**: Enhanced security can come with significant fees, creating paywalls for wallet access and security.
@@ -55,13 +55,13 @@ Our goal is to deliver an MVP of the Murmur protocol as a standalone CLI and JS 
 
 ## Schedule
 
-**All** work planned and completed during our participation was tracked [here](https://github.com/orgs/ideal-lab5/projects/8).
+The project was tracked [here](https://github.com/orgs/ideal-lab5/projects/8).
 
 ## Technical Architecture
 
-The Murmur protocol is designed for flexibility and can be adapted to various contexts. This section outlines its components and their connections.
+Murmur is designed for flexibility and can be adapted to various contexts. This section outlines its components and their connections.
 
-The visualization below depicts dependencies and the flow of data of each component of Murmur's architecture.
+The visualization below depicts dependencies and the data flow of each component of Murmur's architecture.
 
 ![arch](<https://murmur.idealabs.network/assets/images/murmur_connections.drawio(1)-4783283a08a2398947a580adf3b5e2a1.png>)
 
@@ -71,7 +71,7 @@ It handles the logic for constructing and proving MMR data for Murmur wallets.
 
 [**murmur-lib**](https://github.com/ideal-lab5/murmur/tree/polkadot-hackathon-2024/lib)
 
-An implementation of the Murmur protocol over BLS377 using type III pairings.
+An implementation of the protocol over BLS377 using type III pairings.
 
 [**murmur-api**](https://github.com/ideal-lab5/murmur-api/tree/polkadot-hackathon-2024)
 
@@ -79,11 +79,11 @@ An unpermissioned HTTP API to externalize OTP code generation and ensure adequat
 
 [**murmur.js**](https://github.com/ideal-lab5/murmur.js/tree/polkadot-hackathon-2024)
 
-It encapsulates communication with the `murmur-api` as a JS library, facilitating the creation and execution of MMR data and proofs.
+It encapsulates communication with `murmur-api` as a JS library, enabling creation and execution of MMR data and proofs.
 
 **The Ideal Network**
 
-> ❗IMPORTANT: This is **NOT** part of our submission. Work done on the Ideal Network was funded by the [Decentralized Futures](https://medium.com/web3foundation/decentralized-futures-introducing-etf-network-cd8282be6143) program.
+> ❗IMPORTANT: This is **NOT** part of our submission. Ideal Network work was funded by the [Decentralized Futures](https://medium.com/web3foundation/decentralized-futures-introducing-etf-network-cd8282be6143) program.
 
 The Ideal Network (IDN) is a blockchain that enables **publicly verifiable on-chain randomness** and **timelock encryption** for Substrate-based chains.
 
@@ -91,7 +91,7 @@ The Ideal Network (IDN) is a blockchain that enables **publicly verifiable on-ch
 
 > ❗IMPORTANT: The IDN's pallets and the Randomness Beacon pallet should not be considered for evaluation.
 
-The Murmur pallet is the core component enabling Murmur wallets. It acts as a "prover", registering unique Murmur proxies and verifying execution parameters before dispatch. It works with a modified Proxy pallet that enables a new kind of proxy only accessible through the Murmur pallet's `proxy` extrinsic.
+The Murmur pallet is the core component for Murmur wallets, acting as a 'prover' to register proxies and verify execution. It uses a modified Proxy pallet with a proxy type accessible only via the Murmur pallet's `proxy` extrinsic."
 
 ![new-pallets](https://murmur.idealabs.network/assets/images/murmur_pallets.drawio-299ac7dc90339ba68cd6f046d89b5366.png)
 
