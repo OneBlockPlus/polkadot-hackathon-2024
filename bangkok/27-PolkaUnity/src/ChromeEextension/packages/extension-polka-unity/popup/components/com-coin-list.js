@@ -6,23 +6,23 @@ let arr=[];
 arr.push({
     id:1,
     name:"DOT",
-    price:1.685,
-    balance:1685,
-    balanceUSDT:1685
+    price:4.685,
+    balance:"500.00",
+    balanceUSDT:"2,342.5"
 });
 arr.push({
     id:2,
     name:"ETH",
-    price:1.685,
-    balance:1685,
-    balanceUSDT:1685
+    price:2604,
+    balance:"1.00",
+    balanceUSDT:2604
 });
 arr.push({
     id:3,
     name:"KSM",
-    price:1.685,
+    price:18.81,
     balance:1685,
-    balanceUSDT:1685
+    balanceUSDT:"31,694.85"
 });
 let htmls=[];
 for(let i=0;i<arr.length;i++){

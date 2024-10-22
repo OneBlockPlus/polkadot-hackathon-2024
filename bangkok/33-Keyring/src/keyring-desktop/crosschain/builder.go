@@ -5,7 +5,7 @@ import "math/big"
 // TxBuilder is a Builder that can transfer assets
 type TxBuilder interface {
 	NewTransfer(from Address, to Address, amount AmountBlockchain, input TxInput) (Tx, error)
-	NewTeleport(from Address, to Address, amount AmountBlockchain, input TxInput) (Tx, error)
+	NewTeleport(from Address, to Address, amount AmountBlockchain, input TxInput, chain int64) (Tx, error)
 	NewSendTransaction(from Address, to Address, gas uint64, value *big.Int, data []byte, input TxInput) (Tx, error)
 }
 

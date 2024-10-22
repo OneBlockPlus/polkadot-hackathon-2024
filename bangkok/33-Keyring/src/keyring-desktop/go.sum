@@ -205,8 +205,8 @@ github.com/kaichaosun/selfupdate v0.1.0 h1:eZHQyX82fCx02v1R4QBxrbT3Gg+fQrhsX6W9f
 github.com/kaichaosun/selfupdate v0.1.0/go.mod h1:rCdliRnLw+koUanA+lrqub9wWlNc2wPDTsyRC6A+vfc=
 github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51 h1:Z9n2FFNUXsshfwJMBgNA0RU6/i7WVaAegv3PtuIHPMs=
 github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51/go.mod h1:CzGEWj7cYgsdH8dAjBGEr58BoE7ScuLd+fwFZ44+/x8=
-github.com/keyring-so/go-substrate-rpc-client/v4 v4.3.5 h1:dxqDgebP1Yp74slavQbAQ6kEPq/DgqIzGCrfVNXtdVs=
-github.com/keyring-so/go-substrate-rpc-client/v4 v4.3.5/go.mod h1:k61SBXqYmnZO4frAJyH3iuqjolYrYsq79r8EstmklDY=
+github.com/keyring-so/go-substrate-rpc-client/v4 v4.3.6 h1:2npMdybg67dpV/27U3zB/uebmfdYKKtZs+tsQFo7zjs=
+github.com/keyring-so/go-substrate-rpc-client/v4 v4.3.6/go.mod h1:k61SBXqYmnZO4frAJyH3iuqjolYrYsq79r8EstmklDY=
 github.com/keyring-so/keyring-go-sdk v0.0.0-20240918045220-e3b6293bec33 h1:5T3lEbCrq40ptBEGpQoC4htmqQy01m76c5y44g894lQ=
 github.com/keyring-so/keyring-go-sdk v0.0.0-20240918045220-e3b6293bec33/go.mod h1:wlp8ZLbsmrF6g6WjugPAx+IzoLrkdf9+mHxBEeo3Hbg=
 github.com/kkdai/bstream v0.0.0-20161212061736-f391b8402d23/go.mod h1:J+Gs4SYgM6CZQHDETBtE9HaSEkGmuNXF86RwHhHUvq4=

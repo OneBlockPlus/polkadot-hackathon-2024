@@ -296,7 +296,7 @@ func (s *CrosschainTestSuite) TestSubmitTx() {
 	asset := &xc.AssetConfig{NativeAsset: xc.BTC, URL: server.URL, Net: "testnet"}
 	client, err := NewClient(asset)
 	require.NoError(err)
-	err = client.SubmitTx(s.Ctx, &Tx{
+	_, err = client.SubmitTx(s.Ctx, &Tx{
 		msgTx: wire.NewMsgTx(2),
 	})
 	require.NoError(err)
