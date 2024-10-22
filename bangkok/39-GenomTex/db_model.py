@@ -42,6 +42,18 @@ class DBModel:
 
         return self.select_value(cur=cur, sql=query, sql_params=(rec_id,))
 
+    
+    def get_distances(self):
+        cur = self.get_connection().cursor()
+
+        query = "SELECT cos_dist " \
+                "FROM genomes " \
+                "ORDER BY sequenced_at"
+
+        result = cur.execute(query)
+        return result.fetchall()
+    
+    
     def get_client_records_by_name(self, name) -> List[sqlite3.Row]:
         cur = self.get_connection().cursor()
 

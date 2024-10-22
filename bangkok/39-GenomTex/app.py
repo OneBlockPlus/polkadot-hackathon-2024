@@ -2,6 +2,7 @@ from flask import Flask, render_template, jsonify, request
 from db_model import DBModel
 import src.api_storage.storage_management as storage
 from src.api_storage.file_utils import get_filepath
+import random
 
 app = Flask(__name__)
 model = DBModel("src/genomtex.sqlite")
@@ -73,6 +74,13 @@ def dev_get_record(name: str):
     } for record in records]
 
     return render_template('dev_record.html', name=name, client=client, records=records)
+
+@app.route('/distance', methods=['GET'])
+def get_distances():
+    
+    distances = [d['cos_dist']  for d in model.get_distances()]
+    random.shuffle(distances)
+    return jsonify(distances)
 
 
 @app.route('/upload', methods=['POST'])
