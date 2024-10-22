@@ -61,7 +61,7 @@ Approved and completed https://grants.web3.foundation/applications/Cyborg
 ## Material for Demo
 1. Demo Video - [Youtube]()
 2. PPT google doc - 
-3. Devloper Docs - 
+3. Devloper Docs - https://github.com/Cyborg-Network/cyborg-parachain/blob/master/INSTRUCTIONS.md
 4. Code repository
 - https://github.com/Cyborg-Network/cyborg-parachain
 - https://github.com/Cyborg-Network/cyborg-connect
