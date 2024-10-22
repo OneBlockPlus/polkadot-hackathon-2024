@@ -37,13 +37,19 @@ Run flask web server for front-end access of our data.
 
 As you can see, Michael Taylor has 2 DNA scans available. One on which is synchonized to IPFS via Crust (decentralized pinning service).
 
-![Our Application (1)](image-1.png)
+![Our Application](image-1.png)
 
 You can use [ipfs scan](https://ipfs-scan.io) to verify that the file is stored on [IPFS network](https://https://ipfs.tech/). See the IPFS Scan image.
 
 ![IPFS Scan](image.png)
 
 **Security** is our priority. All DNA data that are stored on IPFS are encrypted ([AES-GCM]([url](https://www.techtarget.com/searchsecurity/definition/Advanced-Encryption-Standard))) to ensure that no sensitive data will be compromised.
+
+Explanation of Dist to RED parameter in the Our Application Image above. Distance represents a difference from hg38 reference genome data. This distance value is computed in a way so it is most likely unique for the user.
+
+![alt text](image-2.png)
+
+We work on more robust method for a digital identity use cases (see Future development section).
 
 ## Things planned to be done during the hackathon
 
