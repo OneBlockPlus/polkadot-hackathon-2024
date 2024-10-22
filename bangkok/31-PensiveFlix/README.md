@@ -13,7 +13,7 @@
 * 😰**Poor Security**: Content creators need to send their digital assets to third-party platforms, where these platforms host the content. This poses a significant security risk to the digital assets of content creators.
 * 😰**Piracy Issues**: Although NFT technology offers protection in terms of ownership and transaction transparency, problems such as piracy and plagiarism still persist. Digital copies of works can still be freely copied or shared on other non-blockchain platforms.
 * 😰**Incomplete Decentralization**: Some NFT-based platforms cannot achieve full decentralization in the true sense. They still rely on certain centralized services to perform certain operations in order to control user behavior and implement complex functionalities.
-* 😰**Overwhelming**: There are too many projects,The variety of features and platforms in different NFT-based projects can be overwhelming for users, requiring them to spend significant time on browsing and reading.
+* 😰**Overwhelming**: There are too many projects,The variety of features and platforms in different NFT-based projects can be overwhelming for users, requiring them to spend significant time on browsing and reading. They also need to remain cautious of data leaks or phishing attacks.
 
 ## Introduction
 
