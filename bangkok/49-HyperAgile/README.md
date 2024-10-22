@@ -145,9 +145,9 @@ We also replicated this functionality using our Webots simulation (hosted locall
 1. [Demo Video](https://www.youtube.com/watch?v=-Otl40WUKOo)
 2. [Our Demo DApp](https://hyper-agile.vercel.app/)
 
-### Code Submission Breakdown
+### Code Submission Breakdown 📃
 
-For the convenience of the technical judges, our team has organized the code submission by breaking down the structure and providing descriptions for each folder and important files. You can access the documentation folder [here](/HyperAgile/doc#code-submission-breakdown).
+For the convenience of the technical judges, our team has organized the code submission by breaking down the structure and providing descriptions for each folder and important files. You can access the documentation folder [here](https://github.com/OneBlockPlus/polkadot-hackathon-2024/tree/main/bangkok/49-HyperAgile/doc#code-submission-breakdown).
 
 ## 🏆 Track and Bounty
 
