@@ -8,6 +8,14 @@ the individual's identity remains unambiguous.
 
 A company specializing in DNA analysis.
 
+### Team
+
+- **Jakub Vonsovky:** senior full-stack developer, specialized in machine learning and AI.
+
+- **Dusan Jansky:** blockchain development, also competent in cybersecurity and computer graphics.
+
+- **Vit Majer:** sales management, marketing.
+
 ## Problem to be solved
 
 We seeked for decentralized storage solution for the DNA files of the users. Obsticles to solve:
@@ -25,36 +33,12 @@ We seeked for decentralized storage solution for the DNA files of the users. Obs
   - functional front-end and back-end
   - code to correctly calculate changes for the entire DNA reconstruction
 
-## Installation
-
-`pip install -r requirements.txt`
-
-Run flask web server for front-end access of our data.
-
-`python run app.py`
-
-## Demo images
-
-As you can see, Michael Taylor has 2 DNA scans available. One on which is synchonized to IPFS via Crust (decentralized pinning service).
-
-![Our Application](image-1.png)
-
-You can use [ipfs scan](https://ipfs-scan.io) to verify that the file is stored on [IPFS network](https://https://ipfs.tech/). See the IPFS Scan image.
-
-![IPFS Scan](image.png)
-
-**Security** is our priority. All DNA data that are stored on IPFS are encrypted ([AES-GCM]([url](https://www.techtarget.com/searchsecurity/definition/Advanced-Encryption-Standard))) to ensure that no sensitive data will be compromised.
-
-Explanation of Dist to RED parameter in the Our Application Image above. Distance represents a difference from hg38 reference genome data. This distance value is computed in a way so it is most likely unique for the user.
-
-![alt text](image-2.png)
-
-We work on more robust method for a digital identity use cases (see Future development section).
-
 ## Things planned to be done during the hackathon
 
 - [X] Reading various DNA properties from DNA files.
 - [X] Creation of DNA diff files.
+- [X] Creation of cosine distances to visualize difference between 
+- [X] DNA fingerprints: PCA model to generate DNA fingerprints
 - [X] Database: structured for users and their samples.
 - [X] Server cache storage of the diff files.
 - [X] Encryption of DNA diff files (for decentralized storage).
@@ -62,12 +46,39 @@ We work on more robust method for a digital identity use cases (see Future devel
 - [X] Synchronization between server cache and decentralized storage (IPFS).
 - [X] Frontend demo page.
 
+
 ## Future development
 
-- PCA to generate DNA fingerprints
 - better metrics for DNA distances, e.g. to cover complementary strings
 - rewrite string operations to C
 - look for cancerous mutations
+
+## Project Explained
+
+As a demontration, we used "Michael Taylor".
+
+As you can see, Michael Taylor has 2 DNA scans available. One on which is synchonized to IPFS via Crust (decentralized pinning service).
+
+![Our Application](showcase/image-1.png)
+
+You can use [ipfs scan](https://ipfs-scan.io) to verify that the file is stored on [IPFS network](https://https://ipfs.tech/). See the IPFS Scan image.
+
+![IPFS Scan](showcase/image.png)
+
+**Security** is our priority. All DNA data that are stored on IPFS are encrypted ([AES-GCM]([url](https://www.techtarget.com/searchsecurity/definition/Advanced-Encryption-Standard))) to ensure that no sensitive data will be compromised.
+
+Explanation of Dist to RED parameter in the Our Application Image above. Distance represents a difference from *hg38* reference genome data. This distance value is computed in a way so it is likely unique for the user and we can visualize the difference from hg38. See the 
+
+
+Where our project really shines is in DNA fingerprinting. Jakub, a machine learning and AI expert, developed a custom model that assigns a unique value known as a fingerprint. This fingerprint is unique to every user and can serve as a distinct identifier.
+
+Unlike traditional biometric fingerprints used for verification on smartphones, DNA has the unique property of producing similar fingerprint values for geneticaly related individuals. This behavior unlocks new use cases.
+
+**Simplified Data:** We would like to point out that many of the values are simplified. The reason is simple: DNA data are very private, and we do not want to expose any sensitive information that we hold.
+
+- The fingerprint model was trained and tested on smaller samples than usual. (One sample of full genome data is 65 GB, making it expensive for us to train the model at this time, especially for the purpose of the hackathon). However, we believe that our data is completely suitable for demonstration purposes and more importantely algorithms and codebase overall is robust.
+- Records of dist_cos in database is simplified. No public link to complete users/DNA records. Complete record is available at Michael Taylor.
+
 
 ## Storage
 
@@ -91,6 +102,18 @@ protecting it from any malicious attempts to alter its content.
 - Python: Flask
 - Apillon (Crust and IPFS abstraction)
 - SQLite
+
+## Installation
+
+`pip install -r requirements.txt`
+
+Run flask web server for front-end access of our data.
+
+`python run app.py`
+
+Visit `localhost:5000` in browser of your choice, input "Michael Taylor" to the search bar.
+
+**Note:** You won't be able to upload files to IPFS (because of missing API keys). Demontrated in demo.
 
 ## Development
 

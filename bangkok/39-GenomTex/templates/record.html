@@ -164,19 +164,21 @@
     // Draw surrounding circles with lines
     $.get("/distance", function (data) {
         distances = data;
+        let found = false;
         for (let i = 0; i < distances.length; i++) {
 
             // client distance
             if (distances[i] == {{ records[0]["cos_dist"] }}) {
-                let cos_dist = {{ records[0]["cos_dist"] }};
-                let distanceLabelText = (cos_dist).toExponential(3);
-                let pos = positionCircle(distances.length, distances.length+1, cos_dist*DIST_CONST);
-                drawCircleAndLabel(pos, radius -15, 'YOU', "#7AE7C7", distanceLabelText);
+                continue;
             } else {
                 const pos = positionCircle(i, distances.length+1, distances[i]*DIST_CONST);
                 drawCircleAndLabel(pos, radius - 15, `user ${i+1}`, "#89c2f8", (distances[i]).toExponential(3));
             }
         }
+        let cos_dist = {{ records[0]["cos_dist"] }};
+        let distanceLabelText = (cos_dist).toExponential(3);
+        let pos = positionCircle(distances.length, distances.length+1, cos_dist*DIST_CONST);
+        drawCircleAndLabel(pos, radius -15, 'YOU', "#7AE7C7", distanceLabelText);
     }).then(() => {
         // Draw the central "origin" circle
         const circle = svg.append("circle")
