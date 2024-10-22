@@ -34,6 +34,7 @@ The main features of Keyring including,
 
 - [x] ED25519 implementation for Javacard
 - [x] SLIP-0010 implementation for Javacard
+- [x] Implement Go SDK for XCM v4 
 - [x] Support native functionalities of Polkadot/Substrate based blockchain, including:
   - [x] transfer native token
   - [x] teleport assets between relay chain and system parachain
@@ -50,6 +51,7 @@ The main features of Keyring including,
 4. Source code:
    - Javacard applets: https://github.com/keyring-so/applets
    - Desktop wallet app: https://github.com/keyring-so/keyring-desktop
+   - XCM v4 Go SDK: https://github.com/keyring-so/go-substrate-rpc-client/commit/5475676bf00a8f84751c1bd08385ff36394ca4da
 
 ## Technical Architecture
 
