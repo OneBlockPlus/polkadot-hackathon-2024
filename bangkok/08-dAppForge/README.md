@@ -9,12 +9,12 @@ dAppForge is an AI-powered plug-in for Polkadot developers that reduces developm
 ## Features planned for the Hackathon
 
 - [ ] Integration of AI autocompletion for Ink! & Substrate into the VS code plug-in.
-- [ ] AI Chat feature that works for both Substrate and Ink!
+- [ ] Add AI Chat feature that works for both Substrate and Ink!
 
 ## Architecture
 
 - AWS API Gateway, Websockets, Lambda, and DynamoDb for the API.
-- Typescript and Svelte for the VS Code plugin.
+- Typescript and React for the VS Code plugin.
 - AI LLM hosted on AWS.
 
 ## Schedule
@@ -24,6 +24,19 @@ dAppForge is an AI-powered plug-in for Polkadot developers that reduces developm
 - Fine-tune AI model for substrate: We already had a POC where we built an AI model tailored for the substrate. We fine-tuned an existing AI model in AWS bedrock with substrate documentation and GitHub repositories.
 - Implement AI model specified for ink! Development
 
-## Team info
+## Team Info
+
+| Name               | Role                                            | LinkedIn/GitHub                                       |
+| ------------------ | ----------------------------------------------- | ----------------------------------------------------- |
+| Christian Casini   | Business Development / Product Management       | LinkedIn: https://www.linkedin.com/in/christiancasini |
+| Etienne van Tonder | Full Stack and Lead Back-End Developer          | GitHub: https://github.com/springbok                  |
+| Andy Chipperfield  | Product Designer                                | Website: https://andychip.com                         |
+| Rahul              | Lead AI Engineer specialist ( from Neuron Labs) | GitHub: https://github.com/goodrahstar                |
+| Merxhan Bajrami    | Developer (from Neuron Labs)                    | Linkedin: https://www.linkedin.com/in/merxhanbajrami/ |
 
 ## Material for Demo
+
+| Type         | Link                                                                                                 |
+| ------------ | ---------------------------------------------------------------------------------------------------- |
+| Video        | https://www.loom.com/share/e63e931ee0064e39a1d5fa5df20e2c69                                          |
+| Presentation | https://docs.google.com/presentation/d/1PwtxhX6R8uwLj0s1EjO7mV7VGvPwmmw5y3I1mrM3zWo/edit?usp=sharing |
