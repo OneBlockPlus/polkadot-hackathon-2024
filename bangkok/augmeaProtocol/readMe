@@ -1,1 +1,73 @@
+# Project "./augmeaProtocol"
 "./augmeaProtocol" is a decentralized overcollateralized stablecoin backed by liquid staking value where simply by holding the asset allows users to automatically earn yield, thanks to the continuous rewards from staking plus up to four different ways to generate even more yield on the same invested capital.
+
+## Introduction
+-- project name: 
+"./augmeaProtocol"
+
+-- project creation date:
+Coding for the project started the 10/11/24.
+
+-- project background, including github link before, won any rewards before, got any grant from web3 foundation and so on:
+The project started with the idea of implementing metapool (liquid staking tech) and extending its use case on a defi protocol on an ethereum ecosystem using solidity contracts.
+
+-- the problem the project try to resolve:
+The concept behind this project emerged in response to practices by Tether, the pioneering entity in centralized, fiat-backed stablecoins. Tether traditionally invests the fiat collateral in treasury bonds and various financial instruments, retaining the generated revenue rather than distributing it among the stablecoin holders. This project seeks to eliminate the centralized intermediary by directly distributing the revenue accrued from the stablecoin’s collateral to its holders, thereby fostering a more equitable and decentralized financial ecosystem.
+
+## Features planned for the Hackathon
+-- The status of project before participate the Hackathon:
+Already had the idea and the overall architecture to implement it on rust/ink smart contracts.
+
+-- Features are planed for the Hackathon:
+- Use runtime api interaction to implement liquid staking
+- Create smart contracts for:
+  - liquid staking token
+  - liquid staking backed stablecoin
+  - defi lending protocol
+- Use DIA oracle to get price feeds
+- Build a basic/medium front end
+
+## Architect
+-- Diagram of architect for the project:
+
+
+-- Description for each components
+- liquidStaking contract interacts with the parachainRuntime to enable runtime api calls from contract.
+- liquidStablecoinVault contract locks the liquidStakingTokens collateral, controls the minting of the augmeaStablecoin and uses the diaPriceOracle to calculate how much liquidStakingTokens equals to 2 usd to mint 1 augmeaStablecoin.
+- wrappedDot contract emits PSP22 tokens by locking dot asset.
+- augmeaLendingProtocol contract uses the augmeaStablecoin as asset that lenders use, wrappedDot that borrowers locks as collateral and diaPriceOracle to calculate the liquidation price of positions and borrowing power of the collateral.
+
+## Schedule
+-- timeline for all activities of your project during Hackathon
+
+-- important milestone like first submit, pre-demo, testnet
+
+-- completed features, tests, docs or in production
+
+## Team info
+-- all team members and each one's background
+- Erezedor / Carlos Arroyo: Fullstack Dapp developer
+
+-- contact info for each one, email, github hander and so on
+- Erezedor
+  - github: @Kanoopz
+  - email: agonzalez.carlos@gmail.com
+  - X: https://x.com/yoSoyDev_eth
+
+## Track and bounty
+-- track you choose:
+Category 2 (HOT)
+
+-- bounty you will apply:
+None
+
+
+** mandatory before offline demo, submit aterial for Demo
+1. Demo Video [link to Youtube]: 
+2. PPT [link to google doc]: https://drive.google.com/file/d/1cUFQYWzzS0RW2pYS8A55ATlg1PY-tf4-/view?usp=sharing
+
+-- optional parts
+1. tokenomics design
+2. marketing plan
+3. vc, investment
+4. community growth
