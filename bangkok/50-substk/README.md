@@ -10,6 +10,8 @@
 
 ## Team info
 
+Jiahao: https://github.com/yjhmelody
+
 ## Material for Demo
 
 1. Demo Video [link to Youtube]
