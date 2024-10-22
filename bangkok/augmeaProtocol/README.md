@@ -23,8 +23,76 @@ The project started with the idea of implementing metapool (liquid staking tech)
 
 The problem the project try to resolve:
 
+Cryptocurrencies are notoriously volatile, which makes them less attractive for those seeking stability or predictable yield. Moreover, most DeFi protocols provide limited ways to maximize returns on the same invested capital.
+
+"./augmeaProtocol" solves this by creating an overcollateralized stablecoin that is pegged to the value of liquid staking tokens (with additional collateral as a buffer). Users earn automatic rewards from staking, and the protocol offers multiple ways to generate yield from the same capital, including:
+
+Yield from liquid staking
+Flash loans through its vault
+Providing liquidity to a lending protocol
+
+By providing a stable asset with built-in yield generation mechanisms, augmeaProtocol enables users to both preserve value and maximize returns, even in volatile markets.
+
+In short, augmeaProtocol seeks to decentralize the benefits of collateralized stablecoins, ensuring equitable distribution of staking rewards while offering multiple ways to enhance yield. At the same time, it promotes decentralization by securing blockchain networks through liquid staking.
+
+
+
+## Description:
+
+Idea:
+
 The concept behind this project emerged in response to practices by Tether, the pioneering entity in centralized, fiat-backed stablecoins. Tether traditionally invests the fiat collateral in treasury bonds and various financial instruments, retaining the generated revenue rather than distributing it among the stablecoin holders. This project seeks to eliminate the centralized intermediary by directly distributing the revenue accrued from the stablecoin’s collateral to its holders, thereby fostering a more equitable and decentralized financial ecosystem.
 
+
+Important technical details:
+
+- Uses the parachainRuntime exposed API to implement liquidStaking.
+- The stablecoinVault issues one augmeaStablecoin for every 2 usd in value used as collateral.
+- Uses a wrappedPsp22Token for the dot asset in order to interact with smartContracts.
+- The stablecoin has a fee on the staking and keeps it as extra collateral in order to try to keep the peg stable during extreme market volatily.
+
+
+Project goals:
+
+- Promote securing the blockchain and enhancing decentralization through liquid staking.
+- Create a stablecoin with mechanics to preserve the peg in any type of market situation.
+- Offer yield maximization on the invested capital.
+
+
+Yield Mehod:
+
+- liquidStaking
+- liquidStakingToken flashLoans through vault
+- Providing liquidity to lendingProtocol
+- augmeaStablecoin flashloans through lendingProtocol available liquidity reserves
+
+
+Potential users & growth:
+
+- Every single user on the dotSama ecosystem that seek to be protected from assets volatility.
+- DeFi projects that need the integration of a stable asset for their protocol mechanics: DEXs & lending protocols.
+
+
+How impactful and useful is the dotSama ecosystem?
+
+- Flow liquidity from the traditional investors to the blockchain ecosystem, which is measured by billions. 
+- Represent a really solid asset on the polkadot ecosystem that functions as a store of value, just like dot.
+- Work as a deFi primitive that serves as one of the foundations to build mature deFi protocols and produce more use cases and models
+
+
+Mass usability:
+
+- How adaptable is it across other integrations?
+
+  Thanks to dotSama crossChan features, augmeaStablecoin could be use on any protocol / project / user of any parachain by migrating the token interacting with the assets pallet.
+  
+- How sound is the business model?
+
+  The businnes model works on a fee model, which has been battle tested already on the big, successfull and most mature projects.
+
+- Is it sustainable in the long run?
+
+  Thanks to the overcollateralization and the fee model for extra collateral, Augmea´s sustainability and peg is secured on the long run
 
 
 ## Features planned for the Hackathon
@@ -47,7 +115,7 @@ Features are planed for the Hackathon:
 - Build a basic/medium UI front end with contracts interaction
 
 
-## Architect
+## Architecture
 
 Diagram of architect for the project:
 
