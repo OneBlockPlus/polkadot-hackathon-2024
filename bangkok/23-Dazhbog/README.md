@@ -77,5 +77,5 @@ Later, we built a Distributor contract that enables liquidity providers and the 
 **Track:** Category 2: (Hot) Smart Contract, DeFi, AI, Layer2, DePIN, etc.
 ### Material for Demo
 1. Demo Video [link to Youtube]
-2. [Dazhbog Pitch Deck](https://drive.google.com/file/d/1wT30sNVUs4WRH6014FOMT3DW1r9QtKuq/view)
-3. [Previous version of Dazhbog whitepaper](https://drive.google.com/file/d/1yrAES0Kq5Lq4pcoIiv29Sg0GWI4pvDj_/view)
+2. [Dazhbog Pitch Deck](https://docsend.com/view/azxqmnarkhu8yxhh)
+3. [Dazhbog Whitepaper](https://docsend.com/view/iszpqea9f8fae3xy)
