@@ -32,6 +32,24 @@ You can use [ipfs scan](https://ipfs-scan.io) to verify that the file is stored 
 
 **Security** is our priority. All DNA data that are stored on IPFS are encrypted (AES-GCM) to ensure that no sensitive data will be compromised.
 
+## Things planned to be done during the hackathon
+
+- [X] Reading various DNA properties from DNA files.
+- [X] Creation of DNA diff files.
+- [X] Database: structured for users and their samples.
+- [X] Server cache storage of the diff files.
+- [X] Encryption of DNA diff files (for decentralized storage).
+- [X] Decentralized storage of the diff files (via Crust).
+- [X] Synchronization between server cache and decentralized storage (IPFS).
+- [X] Frontend demo page.
+
+## Future development
+
+- PCA to generate DNA fingerprints
+- better metrics for DNA distances, e.g. to cover complementary strings
+- rewrite string operations to C
+- look for cancerous mutations
+
 ## Storage
 
 The differences in DNA among humans are minimal. To efficiently store these variations for each individual,
@@ -44,6 +62,17 @@ The local storage serves as a cache. If the cache becomes outdated or storage fa
 re-downloaded from the Crust Network. This system ensures that an individual's genome remains securely stored,
 protecting it from any malicious attempts to alter its content.
 
+## Architecture
+
+![alt text](image-3.png)
+
+
+## Techstack
+
+- Python: Flask
+- Apillon (Crust and IPFS abstraction)
+- SQLite
+
 ## Development
 
 ### Get Biotechnology tools
@@ -53,7 +82,7 @@ Get them for data preparation at <https://www.htslib.org>.
 
 ### Get reference genome
 
-Most of our sequencing data are generated against hg38 reference genome. We need to download this one.
+Most of our sequencing data are generated against *hg38* reference genome. We need to download this one.
 
 ```bash
 wget ftp://ftp.ensembl.org/pub/release-104/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
@@ -112,9 +141,4 @@ chr_ref = read_ref_chromosome(`chr num`)`
 reconstruct_specific_chromosome(chr_ref, `chr num`, `vcf filepath`)
 ```
 
-## Future development
 
-- PCA to generate DNA fingerprints
-- better metrics for DNA distances, e.g. to cover complementary strings
-- rewrite string operations to C
-- look for cancerous mutations
