@@ -2,12 +2,12 @@
 Privacy-Preserving Mixer Protocol
 ![](./doc/logo.png)
 
-# Project Creation Date
+## Project Creation Date
 2024 August 24
 
 ## Table of Contents
 - [Sandglass](#sandglass)
-- [Project Creation Date](#project-creation-date)
+  - [Project Creation Date](#project-creation-date)
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Features Planned for the Hackathon](#features-planned-for-the-hackathon)
@@ -100,7 +100,7 @@ By integrating with Acala and Bifrost DeFi protocols, Sandglass also enables liq
 
 ## Material for Demo
 1. **Demo Video**: An overview of the mixer’s functionality and its usage.
-https://youtu.be/w7mhcaTBfps
+https://youtu.be/lelt2F3cL5E
 
 1. **Slideshow**: Presentation slides explaining the mixer’s architecture and features.
 https://docs.google.com/presentation/d/e/2PACX-1vTHtiw_EBvSKKdz5FoxUNz9Pb9uJosksXTO2eRjvwiN9x78L-GEMR36B0I3UcZaf2L9rxrFz5PbUTjn/pub?start=false&loop=false&delayms=3000
