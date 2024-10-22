@@ -1,26 +1,26 @@
 use crate::{
     error::Error,
     types::{
-        Args, Block, BlockNumber, BlockSyncState, PflixClient, Header, RaOption, RunningFlags,
+        Args, Block, BlockNumber, BlockSyncState, Header, PflixClient, RaOption, RunningFlags,
         SrSigner,
     },
 };
 use anyhow::{anyhow, Context, Result};
-use pfx_types::{AttestationProvider, WorkerEndpointPayload};
+use clap::Parser;
+use log::{debug, error, info, warn};
+use msg_sync::{Error as MsgSyncError, Receiver, Sender};
+use parity_scale_codec::Decode;
 use pfx_api::{
     blocks::{AuthoritySetChange, GenesisBlockInfo, HeaderToSync},
     crpc::{self, InitRuntimeResponse},
 };
+use pfx_types::{AttestationProvider, WorkerEndpointPayload};
 use pfx_xt::{
     connect as subxt_connect,
     dynamic::storage_key,
     sp_core::{crypto::Pair, sr25519},
     ChainApi,
 };
-use clap::Parser;
-use log::{debug, error, info, warn};
-use msg_sync::{Error as MsgSyncError, Receiver, Sender};
-use parity_scale_codec::Decode;
 use sp_consensus_grandpa::SetId;
 use sp_core::crypto::AccountId32;
 use std::str::FromStr;
@@ -524,9 +524,9 @@ async fn bridge(
                 flags.master_key_apply_sent = sent;
             }
 
-            if info.is_master_key_holded() && !info.is_external_server_running() {
-                start_external_server(&mut cc).await?;
-            }
+            // if info.is_master_key_holded() && !info.is_external_server_running() {
+            //     start_external_server(&mut cc).await?;
+            // }
 
             // Now we are idle. Let's try to sync the egress messages.
             if !args.no_msg_submit {
@@ -652,15 +652,6 @@ async fn handover_worker_key(server: &mut PflixClient, client: &mut PflixClient)
     let encrypted_key = server.handover_start(response).await?.into_inner();
     client.handover_receive(encrypted_key).await?;
     panic!("Worker key handover done, the new Pflix is ready to go");
-}
-
-async fn start_external_server(cc: &mut PflixClient) -> Result<()> {
-    use pfx_api::crpc::{ExternalServerCmd, ExternalServerOperation};
-    cc.operate_external_server(Request::new(ExternalServerOperation {
-        cmd: ExternalServerCmd::Start.into(),
-    }))
-    .await?;
-    Ok(())
 }
 
 const GRANDPA_ENGINE_ID: sp_runtime::ConsensusEngineId = *b"FRNK";
@@ -888,13 +879,17 @@ async fn schedule_updates_ra_report(
             longevity,
             tip,
         )
-        .await{
-            Ok(_) =>{
+        .await
+        {
+            Ok(_) => {
                 info!("Scheduled update pflix ra report successfully!")
-            },
+            }
             Err(error) => {
-                info!("can't update pflix ra report because :{:?}",error.to_string())
-            },
+                info!(
+                    "can't update pflix ra report because :{:?}",
+                    error.to_string()
+                )
+            }
         };
     }
 }

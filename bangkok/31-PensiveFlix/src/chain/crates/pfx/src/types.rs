@@ -1,8 +1,6 @@
 use crate::system::{PflixMasterKey, WorkerIdentityKey};
 use parity_scale_codec::{Decode, Encode, Error as CodecError};
-use std::{
-    fmt::{self, Debug},
-};
+use std::fmt::{self, Debug};
 use thiserror::Error;
 use tokio::sync::{mpsc, oneshot};
 
@@ -17,11 +15,7 @@ pub struct PflixProperties {
 
 impl fmt::Debug for PflixProperties {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(
-            f,
-            "PflixProperties {{ master_key: <omitted>, identity_key: <omitted>, cores: {} }}",
-            self.cores
-        )
+        write!(f, "PflixProperties {{ master_key: <omitted>, identity_key: <omitted>, cores: {} }}", self.cores)
     }
 }
 

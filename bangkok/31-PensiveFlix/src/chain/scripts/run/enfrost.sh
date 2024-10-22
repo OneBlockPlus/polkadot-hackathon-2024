@@ -7,7 +7,7 @@ export http_proxy=
 
 inst_seq=${INST_SEQ:-0}
 pflix_port=$((${PFLIX_PORT:-8000} + $inst_seq))
-pub_port=$((${PUB_PORT:-19999} + $inst_seq))
+pub_port=$((${PUB_PORT:-17777} + $inst_seq))
 mnemonic=${MNEMONIC:-//Ferdie}
 inject_key=$(printf %064d $(($inst_seq + 1)))
 snapshot="--take-checkpoint"
@@ -15,7 +15,8 @@ if [[ -z "${SNAPSHOT}" ]]; then
     snapshot=
 fi
 
-bin="../pflx/target/debug/enfrost"
+echo $PWD
+bin="./target/debug/enfrost"
 log_file="./target/enfrost-$inst_seq.log"
 
 if [[ -e $log_file ]]; then

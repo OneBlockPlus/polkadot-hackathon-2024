@@ -1,8 +1,14 @@
 use crate::{
-    system::System, types::Error, BlockDispatchContext, BlockNumber, Pflix, PflixLockError, PflixSafeBox,
-    ChainStorage, ExternalServerState, LightValidation, LogOnDrop, RuntimeState,
+    system::System, types::Error, BlockDispatchContext, BlockNumber, ChainStorage,
+    LightValidation, LogOnDrop, Pflix, PflixLockError, PflixSafeBox, RuntimeState,
 };
 use anyhow::anyhow;
+use parity_scale_codec::{Decode, Encode, Error as ScaleDecodeError};
+use pfx_api::{
+    blocks::{self, StorageState},
+    crpc::{self as pb, pflix_api_server::PflixApi},
+    storage_sync::{StorageSynchronizer, Synchronizer},
+};
 use pfx_crypto::{
     key_share,
     sr25519::{Persistence, KDF},
@@ -15,12 +21,6 @@ use pfx_types::{
     wrap_content_to_sign, AttestationProvider, AttestationReport, ChallengeHandlerInfo, EncryptedWorkerKey,
     HandoverChallenge, MasterKeyApplyPayload, SignedContentType, WorkerEndpointPayload, WorkerRegistrationInfo,
 };
-use pfx_api::{
-    blocks::{self, StorageState},
-    crpc::{self as pb, pflix_api_server::PflixApi},
-    storage_sync::{StorageSynchronizer, Synchronizer},
-};
-use parity_scale_codec::{Decode, Encode, Error as ScaleDecodeError};
 use serde::{de::DeserializeOwned, Serialize};
 use sp_core::{crypto::Pair, sr25519};
 use std::{
@@ -140,15 +140,15 @@ fn create_attestation_report_on<Platform: pal::Platform>(
                 let message = format!("Failed to create attestation report: {e:?}");
                 error!("{}", message);
                 if tried >= max_retries {
-                    return Err(from_display(message))
+                    return Err(from_display(message));
                 }
                 let sleep_secs = (1 << tried).min(8);
                 info!("Retrying after {} seconds...", sleep_secs);
                 std::thread::sleep(Duration::from_secs(sleep_secs));
                 tried += 1;
-                continue
+                continue;
             },
-        }
+        };
     };
     Ok(pb::Attestation {
         version: 1,
@@ -249,29 +249,6 @@ impl<Platform: pal::Platform + Serialize + DeserializeOwned> PflixApi for RpcSer
         Ok(Response::new(self.lock_pflix(true, false)?.get_master_key_apply()?))
     }
 
-    async fn operate_external_server(&self, request: Request<pb::ExternalServerOperation>) -> RpcResult<()> {
-        use pb::ExternalServerCmd::*;
-        let request = request.into_inner();
-        match request.cmd() {
-            Start => self
-                .lock_pflix(false, false)?
-                .start_external_server()
-                .map_err(|e| Error::Anyhow(e))?,
-            Shutdown => {
-                let stub = {
-                    let mut pflix = self.lock_pflix(false, false)?;
-                    let Some(stub) = pflix.external_server_stub.take() else {
-                        return Err(Error::ExternalServerAlreadyClosed.into())
-                    };
-                    stub
-                };
-                let _ = stub.shutdown_tx.send(());
-                let _ = stub.stopped_rx.await;
-            },
-        }
-        Ok(Response::new(()))
-    }
-
     /// A echo rpc to measure network RTT.
     async fn echo(&self, request: Request<pb::EchoMessage>) -> RpcResult<pb::EchoMessage> {
         let echo_msg = request.into_inner().echo_msg;
@@ -295,7 +272,8 @@ impl<Platform: pal::Platform + Serialize + DeserializeOwned> PflixApi for RpcSer
         let mut pfx = self.lock_pflix(false, true)?;
         let attestation_provider = pfx.attestation_provider;
         let dev_mode = pfx.dev_mode;
-        let in_sgx = attestation_provider == Some(AttestationProvider::Ias)||attestation_provider == Some(AttestationProvider::Dcap);
+        let in_sgx = attestation_provider == Some(AttestationProvider::Ias)
+            || attestation_provider == Some(AttestationProvider::Dcap);
         let (block_number, now_ms) = pfx.current_block()?;
 
         // 1. verify client RA report to ensure it's in sgx
@@ -322,7 +300,7 @@ impl<Platform: pal::Platform + Serialize + DeserializeOwned> PflixApi for RpcSer
         // 2. verify challenge validity to prevent replay attack
         let challenge = challenge_handler.challenge;
         if !pfx.verify_worker_key_challenge(&challenge) {
-            return Err(Status::invalid_argument("Invalid challenge"))
+            return Err(Status::invalid_argument("Invalid challenge"));
         }
         // 3. verify sgx local attestation report to ensure the handover pflixs are on the same machine
         if !dev_mode && in_sgx {
@@ -338,7 +316,7 @@ impl<Platform: pal::Platform + Serialize + DeserializeOwned> PflixApi for RpcSer
         // only challenge within 150 blocks (30 minutes) is accepted
         let challenge_height = challenge.block_number;
         if !(challenge_height <= block_number && block_number - challenge_height <= 150) {
-            return Err(Status::invalid_argument("Outdated challenge"))
+            return Err(Status::invalid_argument("Outdated challenge"));
         }
         // 5. verify pflix launch date, never handover to old pflix
         if !dev_mode && in_sgx {
@@ -374,8 +352,8 @@ impl<Platform: pal::Platform + Serialize + DeserializeOwned> PflixApi for RpcSer
                     sgx_fields.measurement_hash()
                 },
                 AttestationReport::SgxDcap { quote, collateral: _ } => {
-                    let (sgx_fields, _) =
-                        SgxFields::from_dcap_quote_report(&quote).map_err(|_| from_display("Invalid client RA report"))?;
+                    let (sgx_fields, _) = SgxFields::from_dcap_quote_report(&quote)
+                        .map_err(|_| from_display("Invalid client RA report"))?;
                     sgx_fields.measurement_hash()
                 },
             };
@@ -385,8 +363,8 @@ impl<Platform: pal::Platform + Serialize + DeserializeOwned> PflixApi for RpcSer
                 .get_pflix_bin_added_at(&runtime_hash)
                 .ok_or_else(|| from_display("Client pflix not allowed on chain"))?;
 
-                if my_runtime_timestamp >= req_runtime_timestamp {
-                return Err(Status::internal("Same pflix version or rollback ,No local handover provided"))
+            if my_runtime_timestamp >= req_runtime_timestamp {
+                return Err(Status::internal("Same pflix version or rollback ,No local handover provided"));
             }
         } else {
             info!("Skip pflix timestamp check in dev mode");
@@ -461,7 +439,7 @@ impl<Platform: pal::Platform + Serialize + DeserializeOwned> PflixApi for RpcSer
         let challenge_handler = ChallengeHandlerInfo { challenge, sgx_local_report, ecdh_pubkey };
         let handler_hash = sp_core::hashing::blake2_256(&challenge_handler.encode());
 
-        let attestation_provider = if let Some(r) = pfx.args.ra_type.clone(){
+        let attestation_provider = if let Some(r) = pfx.args.ra_type.clone() {
             if r == "dcap" {
                 Some(AttestationProvider::Dcap)
             } else {
@@ -521,17 +499,16 @@ impl<Platform: pal::Platform + Serialize + DeserializeOwned> PflixApi for RpcSer
         .map_err(from_debug)?;
 
         // only seal if the key is successfully updated
-        pfx
-            .save_runtime_data(
-                encrypted_worker_key.genesis_block_hash,
-                sr25519::Pair::restore_from_secret_key(&match secret {
-                    SecretKey::Sr25519(key) => key,
-                    _ => panic!("Expected sr25519 key, but got rsa key."),
-                }),
-                false, // we are not sure whether this key is injected
-                dev_mode,
-            )
-            .map_err(from_display)?;
+        pfx.save_runtime_data(
+            encrypted_worker_key.genesis_block_hash,
+            sr25519::Pair::restore_from_secret_key(&match secret {
+                SecretKey::Sr25519(key) => key,
+                _ => panic!("Expected sr25519 key, but got rsa key."),
+            }),
+            false, // we are not sure whether this key is injected
+            dev_mode,
+        )
+        .map_err(from_display)?;
 
         // clear cached RA report and handover ecdh key to prevent replay
         pfx.runtime_info = None;
@@ -616,13 +593,7 @@ impl<Platform: pal::Platform + Serialize + DeserializeOwned> Pflix<Platform> {
                 .unwrap_or_default(),
             _ => 0,
         };
-
-        let external_server_state = if self.external_server_stub.is_some() {
-            ExternalServerState::Serving
-        } else {
-            ExternalServerState::Closed
-        }
-        .into();
+        
         pb::PflixInfo {
             initialized,
             genesis_block_hash,
@@ -638,7 +609,6 @@ impl<Platform: pal::Platform + Serialize + DeserializeOwned> Pflix<Platform> {
             can_load_chain_state: self.can_load_chain_state(),
             safe_mode_level: self.args.safe_mode_level as _,
             current_block_time,
-            external_server_state,
         }
     }
 
@@ -696,7 +666,7 @@ impl<Platform: pal::Platform + Serialize + DeserializeOwned> Pflix<Platform> {
                     .map_err(from_display)?;
             }
             if safe_mode_level > 0 {
-                continue
+                continue;
             }
             trace!(block = block.block_header.number, "chain storage synced");
             state.purge_mq();
@@ -714,10 +684,10 @@ impl<Platform: pal::Platform + Serialize + DeserializeOwned> Pflix<Platform> {
     //Check whether checkpoint file is used and save it regularly
     fn maybe_take_checkpoint(&mut self) -> anyhow::Result<()> {
         if !self.args.enable_checkpoint {
-            return Ok(())
+            return Ok(());
         }
         if self.last_checkpoint.elapsed().as_secs() < self.args.checkpoint_interval {
-            return Ok(())
+            return Ok(());
         }
         self.take_checkpoint()?;
         Ok(())
@@ -734,7 +704,7 @@ impl<Platform: pal::Platform + Serialize + DeserializeOwned> Pflix<Platform> {
         grandpa_note_stalled: bool,
     ) -> PflixResult<pb::InitRuntimeResponse> {
         if self.system.is_some() {
-            return Err(from_display("Runtime already initialized"))
+            return Err(from_display("Runtime already initialized"));
         }
 
         info!("Initializing runtime");
@@ -766,7 +736,7 @@ impl<Platform: pal::Platform + Serialize + DeserializeOwned> Pflix<Platform> {
         info!("attestation_provider: {:?}", self.attestation_provider);
 
         if self.dev_mode && self.attestation_provider.is_some() {
-            return Err(from_display("RA is disallowed when debug_set_key is enabled"))
+            return Err(from_display("RA is disallowed when debug_set_key is enabled"));
         }
 
         self.platform.quote_test(self.attestation_provider).map_err(from_debug)?;
@@ -810,7 +780,7 @@ impl<Platform: pal::Platform + Serialize + DeserializeOwned> Pflix<Platform> {
                     "Genesis state root mismatch, required in header: {:?}, actual: {:?}",
                     genesis.block_header.state_root, this_root,
                 );
-                return Err(from_display("state root mismatch"))
+                return Err(from_display("state root mismatch"));
             }
         }
 
@@ -913,7 +883,10 @@ impl<Platform: pal::Platform + Serialize + DeserializeOwned> Pflix<Platform> {
                         AttestationReport::SgxIas { ra_report, .. } => {
                             match SgxFields::from_ias_report(&ra_report[..]) {
                                 Ok((sgx_fields, _)) => {
-                                    info!("EPID RA report measurement       :{}", hex::encode(sgx_fields.measurement()));
+                                    info!(
+                                        "EPID RA report measurement       :{}",
+                                        hex::encode(sgx_fields.measurement())
+                                    );
                                     info!("EPID RA report measurement hash  :{:?}", sgx_fields.measurement_hash());
                                 },
                                 Err(e) => {
@@ -921,7 +894,7 @@ impl<Platform: pal::Platform + Serialize + DeserializeOwned> Pflix<Platform> {
                                 },
                             }
                         },
-                        AttestationReport::SgxDcap { quote, collateral:_ } => {
+                        AttestationReport::SgxDcap { quote, collateral: _ } => {
                             match SgxFields::from_dcap_quote_report(&quote) {
                                 Ok((sgx_fields, _)) => {
                                     info!("DCAP measurement       :{}", hex::encode(sgx_fields.measurement()));
@@ -971,8 +944,7 @@ impl<Platform: pal::Platform + Serialize + DeserializeOwned> Pflix<Platform> {
 
         let chain_storage = state.chain_storage.read();
         // Dispatch events
-        let messages = chain_storage
-            .mq_messages();
+        let messages = chain_storage.mq_messages();
 
         state.recv_mq.reset_local_index();
 
@@ -1049,7 +1021,7 @@ impl<Platform: pal::Platform + Serialize + DeserializeOwned> Pflix<Platform> {
     fn get_endpoint_info(&mut self) -> PflixResult<pb::GetEndpointResponse> {
         if self.endpoint.is_none() {
             info!("Endpoint not found");
-            return Ok(pb::GetEndpointResponse::new(None, None))
+            return Ok(pb::GetEndpointResponse::new(None, None));
         }
         match &self.signed_endpoint {
             Some(response) => Ok(response.clone()),
@@ -1061,7 +1033,7 @@ impl<Platform: pal::Platform + Serialize + DeserializeOwned> Pflix<Platform> {
         const MAX_PAYLOAD_SIZE: usize = 512;
         let data_to_sign = payload.encode();
         if data_to_sign.len() > MAX_PAYLOAD_SIZE {
-            return Err(from_display("Endpoints too large"))
+            return Err(from_display("Endpoints too large"));
         }
         let wrapped_data = wrap_content_to_sign(&data_to_sign, SignedContentType::EndpointInfo);
         let signature = self.system()?.identity_key.clone().sign(&wrapped_data).encode();
@@ -1116,7 +1088,7 @@ impl<Platform: pal::Platform + Serialize + DeserializeOwned> Pflix<Platform> {
 
     fn load_storage_proof(&mut self, proof: Vec<Vec<u8>>) -> PflixResult<()> {
         if self.args.safe_mode_level < 2 {
-            return Err(from_display("Can not load storage proof when safe_mode_level < 2"))
+            return Err(from_display("Can not load storage proof when safe_mode_level < 2"));
         }
         let mut chain_storage = self.runtime_state()?.chain_storage.write();
         chain_storage.inner_mut().load_proof(proof);
@@ -1146,6 +1118,6 @@ impl<Platform: pal::Platform + Serialize + DeserializeOwned> Pflix<Platform> {
     }
 
     pub fn verify_worker_key_challenge(&mut self, challenge: &HandoverChallenge<chain::BlockNumber>) -> bool {
-        return self.handover_last_challenge.take().as_ref() == Some(challenge)
+        return self.handover_last_challenge.take().as_ref() == Some(challenge);
     }
 }

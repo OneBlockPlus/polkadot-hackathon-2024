@@ -94,7 +94,7 @@ impl From<Error> for ErrorObjectOwned {
     }
 }
 
-#[rpc(server, namespace = "ces")]
+#[rpc(server, namespace = "pfx")]
 pub trait NodeRpcExtApi<BlockHash> {
     /// Return the storage changes made by each block one by one from `from` to `to`(both
     /// inclusive). To get better performance, the client should limit the amount of requested block

@@ -62,8 +62,6 @@ service PflixApi {
   rpc TakeCheckpoint (google.protobuf.Empty) returns (SyncedTo) {}
 
   rpc GetMasterKeyApply(google.protobuf.Empty) returns (GetMasterKeyApplyResponse) {}
-
-  rpc OperateExternalServer(ExternalServerOperation) returns (google.protobuf.Empty) {}
 }
 
 // Basic information about a Pflix instance.
@@ -96,8 +94,6 @@ message PflixInfo {
   uint32 safe_mode_level = 14;
   // The timestamp of current block in milliseconds.
   uint64 current_block_time = 15;
-  // The External Server state
-  ExternalServerState external_server_state = 16;
 }
 
 // Basic information for the initialized runtime
@@ -314,9 +310,4 @@ enum ExternalServerCmd {
 
 message ExternalServerOperation {
   ExternalServerCmd cmd = 1;
-}
-
-enum ExternalServerState {
-  Closed = 0;
-  Serving = 1;
 }

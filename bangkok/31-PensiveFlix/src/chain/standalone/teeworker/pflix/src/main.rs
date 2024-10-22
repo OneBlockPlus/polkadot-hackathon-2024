@@ -1,12 +1,12 @@
 mod handover;
 mod pal_gramine;
 
-use anyhow::{bail, Result};
-use pfx_sanitized_logger as logger;
-use pfx::run_pflix_server;
-use pfx_api::ecall_args::InitArgs;
+use anyhow::Result;
 use clap::{crate_version, Parser, Subcommand};
 use pal_gramine::GraminePlatform;
+use pfx::run_pflix_server;
+use pfx_api::ecall_args::InitArgs;
+use pfx_sanitized_logger as logger;
 use std::{env, time::Duration};
 use tracing::info;
 
