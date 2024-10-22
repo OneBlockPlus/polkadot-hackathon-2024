@@ -9,7 +9,8 @@ use crate::verifier::CyferioDaVerifier;
 use anyhow::Error;
 use async_stream::try_stream;
 use async_trait::async_trait;
-use futures::stream::{BoxStream, Stream, StreamExt};
+use base64::{engine::general_purpose, Engine as _};
+use futures::stream::BoxStream;
 use parking_lot::Mutex;
 use sov_rollup_interface::da::{DaBlobHash, DaSpec, RelevantBlobs, RelevantProofs};
 use sov_rollup_interface::services::da::{DaService, MaybeRetryable};
@@ -70,7 +71,7 @@ impl DaProvider {
             .map_err(|e| MaybeRetryable::Transient(Error::from(e)))?;
         let rpc = LegacyRpcMethods::<StatemintConfig>::new(rpc_client.clone());
 
-        let mut provider = Self {
+        let provider = Self {
             rpc_client,
             client: Arc::new(client),
             rpc: Arc::new(rpc),
@@ -89,21 +90,115 @@ impl DaProvider {
         Ok(provider)
     }
 
+    // async fn wait_for_block(&self, height: u64) -> Result<CyferioBlock, MaybeRetryable<Error>> {
+    //     let polling_interval = Duration::from_secs(1);
+    //     let max_retries = 60;
+    //     let mut retries = 0;
+
+    //     let mut current_height = height;
+    //     loop {
+    //         let last_processed = self.last_processed_height.load(Ordering::SeqCst);
+    //         if current_height <= last_processed {
+    //             let latest_height = self
+    //             .rpc
+    //             .chain_get_header(None)
+    //             .await
+    //             .map_err(|e| MaybeRetryable::Transient(Error::from(e)))?
+    //             .map(|header| header.number as u64) // Convert to u64
+    //                 .unwrap_or(0);
+    //             current_height = latest_height;
+    //             println!("区块高度 {} 已经被处理，等待下一个区块", current_height);
+    //             sleep(polling_interval).await;
+    //             continue;
+    //         }
+
+    //         // 修改这里：将锁的范围限制在最小范围内
+    //         let block_already_processed = {
+    //             let processed_blocks = self.processed_blocks.lock();
+    //             processed_blocks.contains(&current_height)
+    //         };
+
+    //         if block_already_processed {
+    //             let latest_height = self
+    //             .rpc
+    //             .chain_get_header(None)
+    //             .await
+    //             .map_err(|e| MaybeRetryable::Transient(Error::from(e)))?
+    //             .map(|header| header.number as u64) // Convert to u64
+    //                 .unwrap_or(0);
+    //             current_height = latest_height;
+    //             println!("区块高度 {} 已经被处理，等待下一个区块", current_height);
+    //             sleep(polling_interval).await;
+    //             continue;
+    //         }
+
+    //         // 如果区块未被处理，尝试获取
+    //         match self.get_block_inner(current_height).await {
+    //             Ok(block) => return Ok(block),
+    //             Err(MaybeRetryable::Transient(e)) => {
+    //                 if retries >= max_retries {
+    //                     return Err(MaybeRetryable::Transient(Error::msg(
+    //                         "等待新区块时达到最大重试次数",
+    //                     )));
+    //                 }
+    //                 retries += 1;
+    //                 println!("获取区块 {} 时遇到暂时性错误: {:?}，重试中...", current_height, e);
+    //                 sleep(polling_interval).await;
+    //             }
+    //             Err(e) => return Err(e),
+    //         }
+    //     }
+    // }
+
     async fn wait_for_block(&self, height: u64) -> Result<CyferioBlock, MaybeRetryable<Error>> {
         let polling_interval = Duration::from_secs(1);
-        let max_retries = 60; // Adjust as needed
+        let max_retries = 60;
         let mut retries = 0;
 
         loop {
+            self.update_latest_height().await?;
+            let latest_height = self.latest_known_height.load(Ordering::SeqCst);
+
+            if height > latest_height {
+                println!(
+                    "wait block {} generate, current latest height {}",
+                    height, latest_height
+                );
+                sleep(polling_interval).await;
+                continue;
+            }
+
+            let block_already_processed = {
+                let processed_blocks = self.processed_blocks.lock();
+                processed_blocks.contains(&height)
+            };
+
+            if block_already_processed {
+                println!(
+                    "block height {} already processed, try get next block",
+                    height
+                );
+                return Err(MaybeRetryable::Transient(Error::msg(
+                    "Block already processed",
+                )));
+            }
+
             match self.get_block_inner(height).await {
-                Ok(block) => return Ok(block),
+                Ok(block) => {
+                    println!("success get and process block {}", height);
+                    return Ok(block);
+                }
                 Err(MaybeRetryable::Transient(e)) => {
                     if retries >= max_retries {
                         return Err(MaybeRetryable::Transient(Error::msg(
-                            "Max retries reached while waiting for new block",
+                            "wait new block reach max retry times",
                         )));
                     }
                     retries += 1;
+                    println!(
+                        "get block {} meet transient error: {:?}, retry...",
+                        height, e
+                    );
                     sleep(polling_interval).await;
                 }
                 Err(e) => return Err(e),
@@ -234,6 +329,7 @@ impl DaProvider {
                 }
             }
 
+            println!("1");
             match self.get_block_inner(current_height).await {
                 Ok(block) => {
                     println!("Successfully processed block at height: {}", current_height);
@@ -264,10 +360,11 @@ impl DaProvider {
         }
     }
 
-    // 添加一个新方法来清理旧的处理记录
     fn clean_old_processed_blocks(&self, current_height: u64) {
         let mut processed_blocks = self.processed_blocks.lock();
-        processed_blocks.retain(|&height| height > current_height - 100); // 保留最近100个块的记录
+        if current_height >= 1000 {
+            processed_blocks.retain(|&height| height > current_height - 1000);
+        }
     }
 
     // 在 update_latest_height 方法中添加清理逻辑
@@ -413,6 +510,9 @@ impl DaService for DaProvider {
     ) -> Result<DaBlobHash<Self::Spec>, Self::Error> {
         let alice_pair_signer = dev::alice();
 
+        let blob_base64 = general_purpose::STANDARD.encode(blob);
+        println!("blob_base64: {:?}", blob_base64);
+
         // Construct the offchainWorker submitTask call
         let da_height = self
             .client
@@ -423,9 +523,12 @@ impl DaService for DaProvider {
             .header()
             .number as u64;
 
+        // let submit_task_tx = substrate::tx()
+        //     .offchain_worker()
+        //     .submit_task(da_height, blob.to_vec());
         let submit_task_tx = substrate::tx()
             .offchain_worker()
-            .submit_task(da_height, blob.to_vec());
+            .submit_task(da_height, blob_base64.into_bytes());
 
         // Submit the transaction and wait for confirmation
         let tx_progress = self

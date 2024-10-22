@@ -179,3 +179,7 @@ For the transaction to be processed successfully, you have to ensure that the se
 To be able to execute most simple transactions, the transaction sender should have about `1_000_000_000` tokens on their account and the sequencer should have staked `100_000_000` tokens in the registry.
 
 More details can be found in the Sovereign book [available here](https://github.com/cyferio-labs/sovereign-book).
+
+
+info
+rm -r ~/.sov_cli_wallet
