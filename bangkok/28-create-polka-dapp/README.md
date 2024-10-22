@@ -6,7 +6,9 @@ Project approval date (month and year): September 2024
 
 Project Creation date: May, 2024
 
-[Demo Video (LOOM)](https://www.loom.com/share/a3b65bf8b5f34e9bb6dbf363dc590c68?sid=e1f71081-60cc-457a-addf-ed2beec2437a)
+[**Demo Video (LOOM)**](https://www.loom.com/share/a3b65bf8b5f34e9bb6dbf363dc590c68?sid=e1f71081-60cc-457a-addf-ed2beec2437a)
+
+[**Pitch Deck**](https://www.canva.com/design/DAGUOdbB_EQ/o0UUIAjv5j21Chb-jTGD8Q/edit?utm_content=DAGUOdbB_EQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 <img src="./docs/create-polka-dapp.png" height="180" width="180" />
 
@@ -126,9 +128,9 @@ This project is for the **Category 1: (Infrastructure) Polkadot ecological devel
 - [x] Scaffold options for contracts, frontend-only, or full-stack depending on developer needs.
 - [x] Provide developers who decide to generate contracts with simple tools (utilities) to perfom tasks like deploy and interact with their contracts. Though the Command Line or Through easy to write scripts.. Just like Hardhat for the Eth ecosystem
 
-<!-- - [Pitch Deck](https://github.com/OpeOginni/create-polka-dapp/tree/polkadot-2024-hackathon) -> will be updated -->
+[**Pitch Deck**](https://www.canva.com/design/DAGUOdbB_EQ/o0UUIAjv5j21Chb-jTGD8Q/edit?utm_content=DAGUOdbB_EQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
-- [Demo Video (LOOM)](https://www.loom.com/share/a3b65bf8b5f34e9bb6dbf363dc590c68?sid=e1f71081-60cc-457a-addf-ed2beec2437a)
+[**Demo Video (LOOM)**](https://www.loom.com/share/a3b65bf8b5f34e9bb6dbf363dc590c68?sid=e1f71081-60cc-457a-addf-ed2beec2437a)
 
 ## Member Information
 

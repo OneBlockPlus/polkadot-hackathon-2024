@@ -181,7 +181,7 @@ pub fn deserialize_public_inputs(
 	let inputs: Vec<&str> = match serde_json::from_slice(inputs) {
 		Ok(v) => v,
 		Err(e) => {
-			//println!("@@@ deserialize_public_inputs err: {:?} ", e);
+			log::info!("@@@ deserialize_public_inputs err: {:?} ", e);
 			return Err(PublicInputsDeserializationError::SerdeError)
 		},
 	};
@@ -190,7 +190,7 @@ pub fn deserialize_public_inputs(
 		match sp_core::U256::from_dec_str(&input) {
 			Ok(n) => parsed_inputs.push(n),
 			Err(e) => {
-				//println!("@@@ parse  inputs err: {:?} ", e);
+				log::info!("@@@ parse  inputs err: {:?} ", e);
 				return Err(PublicInputsDeserializationError::SerdeError)
 			},
 		}

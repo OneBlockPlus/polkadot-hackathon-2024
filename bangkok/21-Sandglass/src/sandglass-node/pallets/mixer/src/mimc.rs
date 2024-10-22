@@ -3,9 +3,8 @@ extern crate ark_ff;
 extern crate ark_std;
 extern crate rand;
 use ark_bn254::Fr;
-use ark_ff::{BigInteger256, Field, PrimeField, UniformRand};
+use ark_ff::Field;
 use ark_std::{str::FromStr, string::ToString, Zero};
-use num_bigint::BigUint;
 use sp_std::vec::Vec;
 
 extern crate num;
@@ -109,7 +108,18 @@ impl Mimc7 {
 }
 
 #[test]
+fn test_generate_constants() {
+	let constants = generate_constants(91);
+	assert_eq!(
+		"20888961410941983456478427210666206549300505294776164667214940546594746570981", /* 0x2e2ebbb178296b63d88ec198f0976ad98bc1d4eb0d921ddd2eb86cb7e70a98e5 */
+		constants.cts[1].to_string()
+	);
+}
+
+#[test]
 fn test_mimc() {
+	use num_bigint::BigUint;
+
 	let b1: Fr = Fr::from_str("1").unwrap();
 	let b2: Fr = Fr::from_str("2").unwrap();
 	let mimc7 = Mimc7::new(91);
@@ -117,7 +127,7 @@ fn test_mimc() {
 
 	let a = BigUint::parse_bytes(h1.to_string().as_bytes(), 10);
 	let b = BigUint::parse_bytes(
-		b"176c6eefc3fdf8d6136002d8e6f7a885bbd1c4e3957b93ddc1ec3ae7859f1a08",
+		b"176c6eefc3fdf8d6136002d8e6f7a885bbd1c4e3957b93ddc1ec3ae7859f1a08", /* 10594780656576967754230020536574539122676596303354946869887184401991294982664 */
 		16,
 	);
 	assert_eq!(a, b);
