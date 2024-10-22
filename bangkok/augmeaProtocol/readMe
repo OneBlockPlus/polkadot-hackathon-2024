@@ -29,7 +29,7 @@ Already had the idea and the overall architecture to implement it on rust/ink sm
 
 ## Architect
 -- Diagram of architect for the project:
-
+https://drive.google.com/file/d/1rcqS1xh1UScXTdDItyg8IIqJ9ThQJp7Q/view?usp=sharing
 
 -- Description for each components
 - liquidStaking contract interacts with the parachainRuntime to enable runtime api calls from contract.
