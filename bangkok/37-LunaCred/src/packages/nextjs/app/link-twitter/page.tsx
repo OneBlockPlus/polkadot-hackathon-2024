@@ -9,28 +9,6 @@ import { RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 
 // pages/link-twitter.js
 
-// pages/link-twitter.js
-
-// pages/link-twitter.js
-
-// pages/link-twitter.js
-
-// pages/link-twitter.js
-
-// pages/link-twitter.js
-
-// pages/link-twitter.js
-
-// pages/link-twitter.js
-
-// pages/link-twitter.js
-
-// pages/link-twitter.js
-
-// pages/link-twitter.js
-
-// pages/link-twitter.js
-
 const LinkTwitter = () => {
   const { address, isConnected } = useAccount(); // Wallet address
   const { connect, connectors } = useConnect(); // Wallet connect

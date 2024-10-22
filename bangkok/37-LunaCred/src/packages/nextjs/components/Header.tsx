@@ -25,18 +25,18 @@ export const menuLinks: HeaderMenuLink[] = [
   },
   {
     label: "Leaderboard",
-    href: "/link-twitter",
+    href: "/leaderboard",
   },
-  {
-    label: "airdrop",
-    href: "/dashboard",
-  },
+  // {
+  //   label: "airdrop",
+  //   href: "/dashboard",
+  // },
 
-  {
-    label: "Debug Contracts",
-    href: "/debug",
-    icon: <BugAntIcon className="h-4 w-4" />,
-  },
+  // {
+  //   label: "Debug Contracts",
+  //   href: "/debug",
+  //   icon: <BugAntIcon className="h-4 w-4" />,
+  // },
 ];
 
 export const HeaderMenuLinks = () => {

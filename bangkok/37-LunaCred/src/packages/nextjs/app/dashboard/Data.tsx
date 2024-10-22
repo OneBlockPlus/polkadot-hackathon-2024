@@ -11,6 +11,9 @@ import { PiCopySimpleBold } from "react-icons/pi";
 import ClipLoader from "react-spinners/ClipLoader";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { formatEther } from "viem";
+import { useAccount, useBalance } from "wagmi";
+import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
 // import { HydrationBoundary, QueryClient, dehydrate } from "@tanstack/react-query";
 // import { parseEther } from "viem";
@@ -34,30 +37,39 @@ const Dashboard: React.FC = () => {
   const [inputAmount, setInputAmount] = useState<string>("");
   const [loadingStakeTx, setLoadingStakeTx] = useState<boolean>(false);
   const [loadingUnstakeTx, setLoadingUnstakeTx] = useState<boolean>(false);
-  const [qdata, setData] = useState<{ credibilityUpdateds: any[]; deposits: any[] }>({
-    credibilityUpdateds: [],
-    deposits: [],
-  });
-  function convertWeiToEther(weiValue: string) {
-    return ethers.utils.formatEther(weiValue);
+  const { address } = useAccount();
+
+  function convertWeiToEther(weiValue: bigint) {
+    console.log("weiValue", weiValue);
+
+    if (!weiValue) {
+      return "Invalid address";
+    }
+    return Number(formatEther(weiValue)).toFixed(1);
   }
 
+  const getData = () => {
+    const { data, isError, isLoading } = useBalance({
+      address,
+    });
+    return Number(data?.formatted).toFixed(1);
+  };
+
+  console.log("data", getData());
   const query = gql`
-    {
-      credibilityUpdateds(first: 5) {
-        id
-        user
-        newCredibility
-        blockNumber
-      }
-      deposits(first: 5) {
-        id
-        from
-        recipient
-        value
-      }
+  {
+deposits(where: { from: ${address} }) {
+      id
+      from
+      recipient
+      value
+      credibilityAdded
+      blockNumber
+      blockTimestamp
+      transactionHash
     }
-  `;
+}
+`;
   const url = "https://api.studio.thegraph.com/query/92118/lunacred-subgraph/version/latest";
   // await queryClient.prefetchQuery({
 
@@ -68,21 +80,27 @@ const Dashboard: React.FC = () => {
     },
   });
   console.log(data);
+  const readUserStake = () => {
+    const {
+      data: balance,
+      isLoading,
+      error,
+      refetch,
+    } = useScaffoldReadContract({
+      contractName: "LunaCred", // Name of the contract as defined in deployedContracts.ts
+      functionName: "memberStakes", // Name of the function in the ABI
+      args: [address], // Arguments passed to the function (e.g., user address)
+    });
 
-  //   queryKey: ['data'],
-  //   async queryFn() {
-  //     return await request(url, query)
-  //   }
-  // })
+    return balance;
+  };
+  console.log("user stakes", readUserStake());
 
-  // const [userStakesData, setUserStakesData] = useState({});
-  const [userRank, setUserRank] = useState(0);
+  const [userRank, setUserRank] = useState(1);
 
   const [stakeForAddress, setStakeForAddress] = useState("");
   const [stakeAmount, setStakeAmount] = useState("");
   const [withdrawAddress, setWithdrawAddress] = useState("");
-  // const [loadingStakeTx, setLoadingStakeTx] = useState(false);
-  // const [loadingUnstakeTx, setLoadingUnstakeTx] = useState(false);
   const [loadingClaimTx, setLoadingClaimTx] = useState(false);
   const formatAddress = (address: string): string => {
     const maxLength = 18;
@@ -132,18 +150,7 @@ const Dashboard: React.FC = () => {
       // Implement unstaking logic here
       // Use inputAddress and inputAmount for the unstaking process
       console.log(`Unstaking ${inputAmount} from address ${inputAddress}`);
-
-      // Update userStakesData after successful unstaking
-      setUserStakesData(prevData => {
-        const updatedData = { ...prevData };
-        if (updatedData[inputAddress]) {
-          // Decrease the stake amount (this is a simplified example)
-          updatedData[inputAddress].stake = (
-            parseFloat(updatedData[inputAddress].stake) - parseFloat(inputAmount)
-          ).toString();
-        }
-        return updatedData;
-      });
+      useScaffoldWriteContract;
 
       toast.success("Unstaking successful!");
     } catch (error) {
@@ -180,7 +187,7 @@ const Dashboard: React.FC = () => {
                   Stake on Trust
                 </h1>
                 <p className="text-sm mb-4">
-                  Boost your credibility score and earn more rewards! Ask friends to stake their $GLMR (currently $DEV
+                  Boost your credibility score and earn more rewards! Ask friends to stake their $DEV (currently $DEV
                   for testnet) tokens on your address. The more stake you get, the better your credibility score. Use
                   this interface below to Stake on your friends and help them earn more credibility score too!
                 </p>
@@ -281,27 +288,28 @@ const Dashboard: React.FC = () => {
                       <div className="data-container flex-1 flex flex-col items-center justify-center max-md:pb-5">
                         <div className="title text-[#fff]">Rank</div>
                         <div className="data-value-container text-[24px] flex gap-[4px]">
-                          <img src={RankIcon}></img>
+                          {/* <img src={RankIcon}></img> */}
                           <div className="dark:text-white">{userRank}</div>
                         </div>
                       </div>
 
                       <div className="data-container flex flex-col flex-1 items-center justify-center max-md:pb-5 md:border-l-[1px] md:border-[#7071E8]/50">
-                        <div className="title text-[#fff]">Available $GLMR</div>
+                        <div className="title text-[#fff]">Available $DEV</div>
                         <div className="data-value-container text-[24px] flex gap-[4px]">
-                          <img src={""} alt="available coins"></img>
+                          {/* <img src={""} alt="available coins"></img> */}
                           <div className="dark:text-white">
                             {/* {mandBalance?.value ? truncateAmount(mandBalance.value) : 0} */}
+                            {getData()}
                           </div>
                         </div>
                       </div>
 
                       <div className="data-container flex flex-col items-center justify-center flex-1 md:border-l-[1px] md:border-[#7071E8]/50">
-                        <div className="title text-[#fff]">Locked $GLMR</div>
+                        <div className="title text-[#fff]">Locked $DEV</div>
                         <div className="data-value-container text-[24px] flex gap-[4px]">
-                          <img src={""} alt="locked coins"></img>
+                          {/* <img src={""} alt="locked coins"></img> */}
                           <div className="dark:text-white">
-                            {/* {stakedBalance?.result ? truncateAmount(stakedBalance.result) : 0} */}
+                            {readUserStake && convertWeiToEther(readUserStake() || BigInt(0))}
                           </div>
                         </div>
                       </div>
@@ -363,7 +371,7 @@ const Dashboard: React.FC = () => {
                             {/* {weeklyYield?.result
       ? truncateAmount(weeklyYield.result, 0, 14)
       : 0} */}
-                            % of CRED
+                            0.3 % of CRED
                           </div>
                         </div>
 
@@ -378,7 +386,7 @@ const Dashboard: React.FC = () => {
         ? ethers.utils.formatUnits(credScore.result, 2)
         : 0)) /
       100}{" "} */}
-                            MAND by Thursday 00:01 UTC
+                            DEV by Thursday 00:01 UTC
                           </div>
                         </div>
                       </div>
@@ -392,8 +400,7 @@ const Dashboard: React.FC = () => {
                       How is credibility calculated?
                     </div>
                     <div className="description">
-                      When your friend stakes 25 $GLMR tokens on your address you get √25 = 5 credibility points. This
-                      is{" "}
+                      When your friend stakes 25 $DEV tokens on your address you get √25 = 5 credibility points. This is{" "}
                       <a
                         target="_blank"
                         href="https://towardsdatascience.com/what-is-quadratic-voting-4f81805d5a06"
@@ -406,8 +413,8 @@ const Dashboard: React.FC = () => {
                     <br />
                     <div className="description flex flex-col gap-2">
                       Quadratic voting rewards more people supporting you over the number of tokens staked on you. For
-                      example, if one friend stakes 100 $GLMR tokens on your address, you get √100 = 10 credibility
-                      points. However, if 4 different friends each stake 25 $GLMR tokens, you get 4 * √25 = 20
+                      example, if one friend stakes 100 $DEV tokens on your address, you get √100 = 10 credibility
+                      points. However, if 4 different friends each stake 25 $DEV tokens, you get 4 * √25 = 20
                       credibility points.
                       <br />
                     </div>

@@ -40,7 +40,7 @@ const Home: NextPage = () => {
                 </div>
                 <div className="button flex ">
                   <Link
-                    href={"/staking"}
+                    href={"/dashboard"}
                     className={`button  text-pink-600 md:text-[28px] text-[15px] font-semibold dark:bg-hero-button border-[1px] px-2 border-[#70b7af] mt-8 flex justify-start  cursor-pointer shadow-[#07d3ba] shadow-md hover:shadow-[5px_5px_#07d3ba,_10px_10px_#07d3ba,_15px_15px_rgba(0,0,0,_0.0),_20px_20px_rgba(0,0,0,_0.0),_25px_25px_rgba(112,_113,_232,_0.05)]  `}
                   >
                     Start Staking
