@@ -39,11 +39,11 @@ As you can see, Michael Taylor has 2 DNA scans available. One on which is syncho
 
 ![Our Application (1)](image-1.png)
 
-You can use [ipfs scan](https://ipfs-scan.io) to verify that the file is stored on IPFS network. See the IPFS Scan image.
+You can use [ipfs scan](https://ipfs-scan.io) to verify that the file is stored on [IPFS network](https://https://ipfs.tech/). See the IPFS Scan image.
 
 ![IPFS Scan](image.png)
 
-**Security** is our priority. All DNA data that are stored on IPFS are encrypted (AES-GCM) to ensure that no sensitive data will be compromised.
+**Security** is our priority. All DNA data that are stored on IPFS are encrypted ([AES-GCM]([url](https://www.techtarget.com/searchsecurity/definition/Advanced-Encryption-Standard))) to ensure that no sensitive data will be compromised.
 
 ## Things planned to be done during the hackathon
 
