@@ -1,6 +1,6 @@
 # Dazhbog: Decentralized Perpetual Futures on Polkadot
 
-<img src="doc/images/dazhbog-logo.png" width="500" height="184" style="display: block; margin: 0 auto">
+<img src="doc/images/dazhbog-logo.png" width="500" height="184" style="display: block; margin: 0 auto 40px auto;">
 
 **Dazhbog** is a plug-and-play solution for a decentralized perpetual futures exchange that can be integrated into any parachain within the Polkadot ecosystem which supports ```contract-pallet```. It utilizes Ink! smart contracts to facilitate peer-to-peer margin trading of perpetual contracts. The platform  allows users to trade perpetual futures contracts in a decentralized manner, leveraging  the security, scalability, and interoperability of the Polkadot network. By integrating into  their parachains, builders aim to provide a seamless and efficient trading experience  without relying on centralized intermediaries. 
 
