@@ -47,7 +47,7 @@ We will participate Moonbeam bounty 1 and bounty 2:
 ## Features planned for the Hackathon
 
 - a ZK-Rollup Layer serving for multiple chains, including parachain( like moonbeam ), BTC, and Ethereum.
-- the Beacon cell, in form of smart contract and substrate pallet.
+- the Beacon cell, in form of smart contract and substrate pallet and Taproot script.
 - the Operation cell,  in form of smart contract and substrate pallet.
 
 ## Detailed Introduction
@@ -120,11 +120,11 @@ thus it can exert different effect to the omni-asset. The choice is free, it ult
     - [ZK-State-Prover for state(UTXO/Assets) transition(based on P2)](./src/zk-6358-state-prover/)
     - [ZK-Signature-Prover for tx-signatures verification(based on SP1)](./src/zk-6358-final-prover/circuit/sp1eip712/)
     - [ZK-Proof-Aggregator for final Plonk Proof(based on SP1)](./src/zk-6358-final-prover/circuit/)
-- Ledger Chain Cell
+- Beacon Cell
     - ZK-Verifier for Moonbeam(Moonbeam smart contract)
     - ZK-Verifier for Pallet
     - BTC Taproot script
-- Operation Chain Cell
+- Operation Cell
     - Substrate Parachain
     - Moonbeam smart contract
 
