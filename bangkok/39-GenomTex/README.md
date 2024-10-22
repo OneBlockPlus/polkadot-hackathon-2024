@@ -12,14 +12,6 @@ run flask web server for front-end access of our data
 
 `python run app.py`
 
-install node dependencies
-
-`npm i`
-
-run IPFS node for data <-> cache exchange
-
-`npm run start`
-    
 ## What we have for the presentation
 
   - cooperation with genome sequencing laboratory
@@ -27,6 +19,18 @@ run IPFS node for data <-> cache exchange
   - code to work with the blockchain storage
   - functional front-end and back-end
   - code to correctly calculate changes for the entire DNA reconstruction
+
+## Demo images
+
+As you can see, Michael Taylor has 2 DNA scans available. One on which is synchonized to IPFS via Crust (decentralized pinning service).
+
+![Our Application (1)](image-1.png)
+
+You can use [ipfs scan](https://ipfs-scan.io) to verify that the file is stored on IPFS network. See the IPFS Scan image.
+
+![IPFS Scan](image.png)
+
+**Security** is our priority. All DNA data that are stored on IPFS are encrypted (AES-GCM) to ensure that no sensitive data will be compromised.
 
 ## Storage
 
@@ -51,46 +55,62 @@ Get them for data preparation at <https://www.htslib.org>.
 
 Most of our sequencing data are generated against hg38 reference genome. We need to download this one.
 
-    wget ftp://ftp.ensembl.org/pub/release-104/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
+```bash
+wget ftp://ftp.ensembl.org/pub/release-104/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
+```
 
 Index it to make any subsequent operations faster.
 
-    samtools faidx Homo_sapiens.GRCh38.dna.primary_assembly.fa
+```bash
+samtools faidx Homo_sapiens.GRCh38.dna.primary_assembly.fa
+```
 
 ### Generate .bcf / .vcf file for diffs
 
 Generate .bcf file with all variants kept.
 
-    bcftools mpileup -Ou -f hg38.fa 8f0fd05f-3b35-422c-b5d4-bc9f2888225f.bam | \
-    bcftools call -mv -Ob -o variants.bcf
+```bash
+bcftools mpileup -Ou -f hg38.fa 8f0fd05f-3b35-422c-b5d4-bc9f2888225f.bam | \
+bcftools call -mv -Ob -o variants.bcf
+```
 
 Convert back to .vcf
 
-    bcftools view variants.bcf -Oz -o variants.vcf.gz
+```bash
+bcftools view variants.bcf -Oz -o variants.vcf.gz
+```
 
 Filter out low-quality data for even better compression
 
-    bcftools filter -s LOWQUAL -e '%QUAL<20 || DP<10' variants.vcf -o filtered_variants.vcf
+```bash
+bcftools filter -s LOWQUAL -e '%QUAL<20 || DP<10' variants.vcf -o filtered_variants.vcf
+```
 
 ### Create bcftools index
 
 Index is required if you don't want to process difference files (.vcf) sequentially.
 
-    bcftools index 8f0fd05f-variants-from-bcf.vcf.gz
+```bash
+bcftools index 8f0fd05f-variants-from-bcf.vcf.gz
+```
 
 ### Compute distance to reference genome
 
 Call in the following methods from `dna.py`:
 
-    align_all_chromosomes(`vcf filepath`)
-    compute_chromosomes_similarity_from_cache(`vcf filepath`)
+```python
+align_all_chromosomes(`vcf filepath`)
+compute_chromosomes_similarity_from_cache(`vcf filepath`)
+```
 
 ### Get the complete reading for a chromosome
 
 In `dna.py`:
 
-    chr_ref = read_ref_chromosome(`chr num`)
-    reconstruct_specific_chromosome(chr_ref, `chr num`, `vcf filepath`)
+```python
+chr_ref = read_ref_chromosome(`chr num`)`
+reconstruct_specific_chromosome(chr_ref, `chr num`, `vcf filepath`)
+```
 
 ## Future development
 
