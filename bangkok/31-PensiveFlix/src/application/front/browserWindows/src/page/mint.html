@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create your own NFT</title>
+    <link rel="stylesheet" href="../style/background.css">
+
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-top: 30px;
+        }
+
+        .subtitle {
+            color: #aaa;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #444;
+            background-color: #222;
+            color: #fff;
+            border-radius: 4px;
+        }
+
+        .hint {
+            font-size: 0.8em;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .return-icon {
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+        }
+
+        .encrypt-file-icon {
+            width: 25px;
+            height: 25px;
+            vertical-align: middle;
+        }
+
+        .encrypt-file {
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+            left: 80%;
+            color: white;
+        }
+
+        .encrypt-file:hover {
+            color: #3498db;
+        }
+
+        .encrypt-file-text {
+            text-decoration: underline
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            display: none;
+        }
+
+        .loading-spinner {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #3498db;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="../assets/return.png" alt="return" class="return-icon" onclick="window.location.href='./video.html'">
+        <input type="file" id="hidebtn" style="display:none" />
+        <div class="encrypt-file" id="encrypt-file" title="Encrypt your file" onclick="encryptFile()">
+            <img class="encrypt-file-icon" id="encrypt-file-icon" src="../assets/encrypt-file.png"
+                alt="Go encrypt your file">
+            <span class="encrypt-file-text">Click Me!</span>
+        </div>
+
+        <h1>Create your own NFT</h1>
+
+        <h2>Enter NFT Info</h2>
+        <p>Please provide the following information:</p>
+
+        <form id="nftForm">
+            <div class="form-group">
+                <label for="assetId">asset Id</label>
+                <input type="text" id="assetId" required placeholder="asset Id">
+            </div>
+
+            <div class="form-group">
+                <label for="nftName">File Name</label>
+                <input type="text" id="nftName" required placeholder="NFT Name">
+            </div>
+
+            <div class="form-group">
+                <label for="baseUri">File Url</label>
+                <input type="text" id="baseUri" placeholder="Link to your source file">
+            </div>
+
+            <div class="form-group">
+                <label for="coverImage">Cover Image</label>
+                <input type="text" id="coverImage" required placeholder="NFT Cover Image URL">
+            </div>
+
+            <div class="form-group">
+                <label for="nftNumber">NFT Number</label>
+                <input type="text" id="nftNumber" required placeholder="How many NFTs do you want to mint?">
+            </div>
+
+            <button type="submit">Mint</button>
+        </form>
+    </div>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <script>
+        const {
+            ipcRenderer
+        } = require('electron');
+        // const {
+        //     remote
+        // } = require('electron');
+        const fs = require('fs');
+        const path = require('path');
+        let sealed_file_id = null;
+
+        async function encryptFile() {
+            ipcRenderer.invoke('select-file').then(async (filePath) => {
+                if (!filePath) {
+                    console.error('No file selected.');
+                    return;
+                }
+
+                const originalDir = path.dirname(filePath);
+
+                try {
+                    //Encrypt file
+                    const fileBuffer = fs.readFileSync(filePath);
+                    const formData = new FormData();
+                    formData.append('filename', path.basename(filePath));
+                    formData.append('file', new File([fileBuffer], path.basename(filePath)));
+                    formData.append('account_id', localStorage.getItem('selectedAccount'));
+
+                    const assets_issues_response = await fetch(
+                        'http://127.0.0.1:5150/api/assets_issues', {
+                            method: 'POST',
+                            body: formData,
+                        });
+
+                    if (!assets_issues_response.ok) {
+                        throw new Error('Failed to encrypt file');
+                    }
+
+                    const assets_issues_result = await assets_issues_response.json();
+
+                    const loadingOverlay = document.getElementById('loadingOverlay');
+                    loadingOverlay.style.display = 'flex';
+
+                    //wait for sealed file to be generated
+                    let sealed = false;
+                    sealed_file_id = assets_issues_result.id;
+                    while (!sealed) {
+                        const statusResponse = await fetch(
+                            `http://127.0.0.1:5150/api/assets_issues/${sealed_file_id}`
+                        );
+                        if (!statusResponse.ok) {
+                            throw new Error('Failed to get file status');
+                        }
+                        const statusResult = await statusResponse.json();
+                        if (statusResult.state === 'Sealed') {
+                            sealed = true;
+                            document.getElementById('assetId').value = statusResult.assets_id;
+                        } else {
+                            await new Promise(resolve => setTimeout(resolve, 1000));
+                        }
+                    }
+
+                    //Get sealed file
+                    const sealedResponse = await fetch(
+                        `http://127.0.0.1:5150/api/sealed_files/${sealed_file_id}`);
+                    if (!sealedResponse.ok) {
+                        throw new Error('Failed to retrieve sealed file');
+                    }
+
+                    const sealedBlob = await sealedResponse.blob();
+                    const buffer = Buffer.from(await sealedBlob.arrayBuffer());
+
+                    loadingOverlay.style.display = 'none';
+
+                    const contentDisposition = sealedResponse.headers.get('Content-Disposition');
+                    const fileName = contentDisposition ? contentDisposition.split('filename=')[1]
+                        .split(';')[0].replace(/"/g, '').trim() : 'downloaded_file';
+                    const savePath = path.join(originalDir, fileName);
+                    fs.writeFileSync(savePath, buffer);
+                    console.log(`File saved to: ${savePath}`);
+
+                } catch (error) {
+                    console.error('Error encrypting file:', error);
+                }
+            });
+        }
+
+
+        document.getElementById('nftForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const assetId = document.getElementById('assetId').value;
+            const nftName = document.getElementById('nftName').value;
+            const baseUri = document.getElementById('baseUri').value;
+            const coverImage = document.getElementById('coverImage').value;
+            const nftNumber = document.getElementById('nftNumber').value;
+
+            try {
+                const publishAssetResponse = await fetch(
+                    `http://127.0.0.1:5150/api/assets_issues/${sealed_file_id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            name: nftName,
+                            mint_count: parseInt(nftNumber, 10),
+                            retrive_uri: baseUri,
+                            cover_image: coverImage
+                        })
+                    });
+
+                if (!publishAssetResponse.ok) {
+                    throw new Error('Failed to mint NFT');
+                }
+
+                const result = await publishAssetResponse.json();
+                alert('NFT minted successfully!');
+            } catch (error) {
+                console.error('Error minting NFT:', error);
+            }
+            window.location.reload();
+        });
+    </script>
+</body>
+
+</html>
