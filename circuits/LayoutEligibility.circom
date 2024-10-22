@@ -9,42 +9,16 @@ template LayoutEligibility(MAP_WIDTH, MAP_HEIGHT, MAX_HOUSE, MAX_HOUSE_WIDTH, MA
   var MAP_SIZE = MAP_WIDTH * MAP_HEIGHT;
   var MAX_HOUSE_SIZE = MAX_HOUSE_WIDTH * MAX_HOUSE_HEIGHT;
   var MAX_TYPE = 5;
+
   // witness
   signal input layoutPlacements[MAP_SIZE];
-  // signal input layoutRoadConnectedHint[MAP_SIZE]; // number is 4 directions: 1: up, 2: right, 3: down, 4: left
-  // signal input layoutRoads[MAP_SIZE];
-  // signal input layoutHouseIds[MAP_SIZE];
-  // signal input mapPlacementToHouse[MAX_HOUSE];
-  // signal input typeAccumulation[5];
+  // TODO number is 4 directions: 1: up, 2: right, 3: down, 4: left
+  // signal input layoutRoadConnectedHint[MAP_SIZE];
 
   // public output
   signal output rate;
   signal output storage;
 
-  // // validate that the placement is valid
-  // // by looking 4-way around the placement
-  // for (var i = 0; i < MAP_SIZE; i++) {
-  //   var x = i % MAP_WIDTH;
-  //   var y = i / MAP_WIDTH;
-  //   // signals
-  //   var up = (y > 0) ? layoutPlacements[i - MAP_WIDTH] : 0;
-  //   var right = (x < MAP_WIDTH - 1) ? layoutPlacements[i + 1] : 0;
-  //   var down = (y < MAP_HEIGHT - 1) ? layoutPlacements[i + MAP_WIDTH] : 0;
-  //   var left = (x > 0) ? layoutPlacements[i - 1] : 0;
-  //   var cur = layoutHouseIds[i];
-
-  //   // if cur == 10 then assert right == 11, down == 12
-  //   var d1 = (cur - 10);
-  //   var d2 = (right - 11) * (down - 12);
-  //   var t1 = d1 + d2 - d1 * d2;
-
-  //   // if cur == 12 then assert right == 13, up == 10
-  //   var d2 = (cur - 12);
-  //   var d3 = (right - 13) * (down - 10);
-  //   var t2 = d1 + d2 - d1 * d2;
-
-  //   // ...
-  // }
 
   signal typeAccumulation[MAX_TYPE][MAP_SIZE];
   signal typeZero[MAX_TYPE][MAP_SIZE];
@@ -145,37 +119,6 @@ template LayoutEligibility(MAP_WIDTH, MAP_HEIGHT, MAX_HOUSE, MAX_HOUSE_WIDTH, MA
 
   // storage
   storage <== type4num;
-
-
-
-  // validate that the house id is valid according to placement
-
-
-
-  // validate the road is all connected by hint
-
-
-  // count road number
-
-  // count hint number
-
-
-  // assert road number == hint number - 1
-
-
-
-  // validate that the mapping between placement and house id is correct
-
-
-  // validate that the type accumulation is valid according to mapping
-
-
-
-  // validate the rate is correct according to the type accumulation
-
-
-  // verify the storage is correct according to the type accumulation
-
 
 }
 
