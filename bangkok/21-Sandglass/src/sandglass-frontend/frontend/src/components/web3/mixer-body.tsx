@@ -55,20 +55,20 @@ export const MixerBody: FC = () => {
             className="mr-8 border-2 border-solid border-transparent p-4 data-[state=active]:border-b-primary"
             value="2fa"
           >
-            2 FA
+            Two Factor Authentication
           </Tabs.Trigger>
         </Tabs.List>
         <Tabs.Content value="deposit">
-          <DepositCard/>
+          <DepositCard />
         </Tabs.Content>
         <Tabs.Content value="withdraw">
-          <WithdrawCard/>
+          <WithdrawCard />
         </Tabs.Content>
         <Tabs.Content value="mixer-swap">
-          <MixerSwap/>
+          <MixerSwap />
         </Tabs.Content>
         <Tabs.Content value="2fa">
-          <FaCard/>
+          <FaCard />
         </Tabs.Content>
       </Tabs.Root>
     </>

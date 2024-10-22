@@ -20,17 +20,6 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-next-env.d.ts
-
-# production
-/build
-
 # local env files
 .env
 .env*.local
@@ -42,3 +31,13 @@ next-env.d.ts
 # typescript
 *.tsbuildinfo
 dist
+
+# turbo
+.turbo
+
+# coverage
+coverage
+coverage.json
+
+# VSCode
+.history/
