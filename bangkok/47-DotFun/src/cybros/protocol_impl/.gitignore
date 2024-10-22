@@ -1,0 +1,10 @@
+.DS_Store
+*.swp
+.vscode
+.idea
+
+/data
+/log
+/main.js
+**/tmp
+**/.env

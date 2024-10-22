@@ -1,0 +1,77 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "fonts/Exo2-Black.ttf",
+      "sha1": "389a4e8a98cae59080bea863de62c1dfb8d034ec"
+    },
+    {
+      "path": "fonts/Exo2-BlackItalic.ttf",
+      "sha1": "dd6f6b9581b6edbff1c3431fa9a47dfc8a6de7d2"
+    },
+    {
+      "path": "fonts/Exo2-Bold.ttf",
+      "sha1": "bdf8845fb7a6d1f4fb458a416674002669b82637"
+    },
+    {
+      "path": "fonts/Exo2-BoldItalic.ttf",
+      "sha1": "d8ccbf0ed056e4554d0d73c08990608a7d5dcacd"
+    },
+    {
+      "path": "fonts/Exo2-ExtraBold.ttf",
+      "sha1": "fe153ca12c139196adbf0b22058f97f276e90a2b"
+    },
+    {
+      "path": "fonts/Exo2-ExtraBoldItalic.ttf",
+      "sha1": "87dc74bd96944898e50438bc3c259db491cde37f"
+    },
+    {
+      "path": "fonts/Exo2-ExtraLight.ttf",
+      "sha1": "28ae7a75bc94fb12013cecdb94a568b0e359b69a"
+    },
+    {
+      "path": "fonts/Exo2-ExtraLightItalic.ttf",
+      "sha1": "8548977f4ea8342cf5b1dd2c0dce4383509c9301"
+    },
+    {
+      "path": "fonts/Exo2-Italic.ttf",
+      "sha1": "b523c1b5fc2a4becf7ce455acd4e94122624de8f"
+    },
+    {
+      "path": "fonts/Exo2-Light.ttf",
+      "sha1": "74a00d117e6b70284c4d6460f0bda41ade64bda1"
+    },
+    {
+      "path": "fonts/Exo2-LightItalic.ttf",
+      "sha1": "861979d3736f8651f43d8ed9977d2b03db792d2b"
+    },
+    {
+      "path": "fonts/Exo2-Medium.ttf",
+      "sha1": "a8859ed947386b2a4a0ab97d6ea7a5ce7c87e283"
+    },
+    {
+      "path": "fonts/Exo2-MediumItalic.ttf",
+      "sha1": "46ae34f12a2eb2a07e1bb92a4f570b63c6acc76d"
+    },
+    {
+      "path": "fonts/Exo2-Regular.ttf",
+      "sha1": "c40495e9f8fbad2377fe2b5be22c444586c1f8f8"
+    },
+    {
+      "path": "fonts/Exo2-SemiBold.ttf",
+      "sha1": "fd59432b3590b32f3ff0fe854092aad8a2ff32a1"
+    },
+    {
+      "path": "fonts/Exo2-SemiBoldItalic.ttf",
+      "sha1": "d93d65c067bd361dfa6ee88a6bdab18697743930"
+    },
+    {
+      "path": "fonts/Exo2-Thin.ttf",
+      "sha1": "88cc39b842a3f74a6b98f1690a578a77d3daaf1b"
+    },
+    {
+      "path": "fonts/Exo2-ThinItalic.ttf",
+      "sha1": "9cabeb0a28838659ee1997ae4e6bb5e2cef265a3"
+    }
+  ]
+}

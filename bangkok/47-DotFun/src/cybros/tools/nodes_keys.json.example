@@ -1,0 +1,62 @@
+[
+  {
+    "rpcUrl": "ws://127.0.0.1:9144",
+    "keys": [
+      {
+        "sUri": "nut hire energy drill planet book wreck post saddle lend barrel twin//validator//1//aura",
+        "keyType": "aura",
+        "keyringType": "sr25519"
+      },
+      {
+        "sUri": "nut hire energy drill planet book wreck post saddle lend barrel twin//validator//1//grandpa",
+        "keyType": "gran",
+        "keyringType": "ed25519"
+      }
+    ]
+  },
+  {
+    "rpcUrl": "ws://127.0.0.1:9244",
+    "keys": [
+      {
+        "sUri": "nut hire energy drill planet book wreck post saddle lend barrel twin//validator//2//aura",
+        "keyType": "aura",
+        "keyringType": "sr25519"
+      },
+      {
+        "sUri": "nut hire energy drill planet book wreck post saddle lend barrel twin//validator//2//grandpa",
+        "keyType": "gran",
+        "keyringType": "ed25519"
+      }
+    ]
+  },
+  {
+    "rpcUrl": "ws://127.0.0.1:9344",
+    "keys": [
+      {
+        "sUri": "nut hire energy drill planet book wreck post saddle lend barrel twin//validator//3//aura",
+        "keyType": "aura",
+        "keyringType": "sr25519"
+      },
+      {
+        "sUri": "nut hire energy drill planet book wreck post saddle lend barrel twin//validator//3//grandpa",
+        "keyType": "gran",
+        "keyringType": "ed25519"
+      }
+    ]
+  },
+  {
+    "rpcUrl": "ws://127.0.0.1:9444",
+    "keys": [
+      {
+        "sUri": "nut hire energy drill planet book wreck post saddle lend barrel twin//validator//4//aura",
+        "keyType": "aura",
+        "keyringType": "sr25519"
+      },
+      {
+        "sUri": "nut hire energy drill planet book wreck post saddle lend barrel twin//validator//4//grandpa",
+        "keyType": "gran",
+        "keyringType": "ed25519"
+      }
+    ]
+  }
+]
