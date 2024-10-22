@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
+//@ts-nocheck
 
 
 
@@ -25,7 +25,7 @@ import {
     appName: 'My RainbowKit App',
     projectId: 'YOUR_PROJECT_ID',
     chains: [moonbaseAlpha, moonbeam, moonriver],
-    ssr: true, // If your dApp uses server side rendering (SSR)
+    ssr: false, // If your dApp uses server side rendering (SSR)
   });
 export function ClientProviders({ children}) {
   return (

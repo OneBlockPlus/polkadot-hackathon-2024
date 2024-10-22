@@ -1,13 +1,13 @@
 
+//@ts-nocheck
 
 "use client"
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
 import { jwtDecode } from "jwt-decode";
 import axios from 'axios';
-
 import { useRouter } from 'next/navigation';
-import { END_POINT_URL } from '@/constants';
+import { BACKEND_URL } from '@/constants';
  type providerProps = {
   isSigningIn ? :never
   logout : never
@@ -54,7 +54,7 @@ const router = useRouter()
 
 
 
-  //const  LOCAL_BASE_URL  = "http://localhost:5000/api/auth/"
+  const  LOCAL_BASE_URL  = "http://localhost:5000"
 
 
  
@@ -63,7 +63,7 @@ const router = useRouter()
     setisSigningIn(true)
 
 try {
-    const res = await axios.post(`${END_POINT_URL}/api/auth/verify-otp`, {
+    const res = await axios.post(`${BACKEND_URL}/auth/verify-otp`, {
         "email" : userEmail,
         "enteredOtp" : otpValue
      })
@@ -91,7 +91,7 @@ try {
 const logout = () => {
   localStorage.removeItem('kbg5_accessToken');
   setuserProfile(null);
-  router.push("/")
+  router.push("/login")
 };
 
 

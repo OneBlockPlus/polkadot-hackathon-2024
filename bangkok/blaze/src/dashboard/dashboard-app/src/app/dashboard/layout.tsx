@@ -1,4 +1,7 @@
+
+
 import DashboardNav from '@/components/dashbord-nav';
+import DashboardProvider from '@/components/providers/dashboard-provider';
 import Sidebar from '@/components/sidebar/side-bar';
 import React from 'react'
 import { CiWarning } from 'react-icons/ci';
@@ -19,9 +22,11 @@ export default function layout({
       </div>
            
       <div className='min-h-screen'>
-        <div className=' hidden  md:flex md:w-[200px] border-r-2 h-screen fixed top-0 bg-gradient-to-tr from-[#d4e157] to-[#388e3c]'><Sidebar  /></div>
+        <div className=' hidden  md:flex md:w-[200px] border-r h-screen fixed top-0 bg-gradient-to-tr from-zinc-100 to-zinc-100'><Sidebar  /></div>
         <div  className='md:ml-[205px]'>
+        
          {children}
+       
          </div>
       </div>
         </div>

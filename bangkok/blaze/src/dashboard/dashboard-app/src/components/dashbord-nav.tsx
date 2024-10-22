@@ -20,21 +20,15 @@ export default function DashboardNav() {
     //bg-[#388e3c] hover:bg-[#d4e157]
   return (
     <div className='w-full flex items-center justify-between'>
-         <h1 className='font-medium text-xl'>Telegram communitis</h1>
+         <h1 className='text-muted-foreground '>TESTNET</h1>
        <div>
 
 
        <DropdownMenu>
-  <DropdownMenuTrigger>
+  <DropdownMenuTrigger >
   <AiOutlineUser className='w-8 h-8 border border-gray-500 rounded-full'   />
   </DropdownMenuTrigger>
   <DropdownMenuContent>
-    <DropdownMenuItem>
-    <Button className='' onClick={() => router.push("/connect-tg")} variant={"outline"}>
-        <Plus className='w-4 h-4 mr-2'   />
-        Add community
-      </Button>
-    </DropdownMenuItem>
     <DropdownMenuItem>
     <Button className='w-full' onClick={logout} variant={"outline"}>
         <Plus className='w-4 h-4 mr-2'   />

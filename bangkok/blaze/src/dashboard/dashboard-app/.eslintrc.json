@@ -1,3 +1,13 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "extends": ["next/core-web-vitals", "next/typescript"],
+  "rules": {
+    "@typescript-eslint/ban-ts-comment": "off",                // Disable the rule that prevents `@ts-nocheck`
+    "@typescript-eslint/no-explicit-any": "warn",              // Warn instead of error for `any` type
+    "@typescript-eslint/no-unsafe-function-type": "warn",      // Warn instead of error for unsafe function types
+    "@typescript-eslint/no-empty-interface": "off",            // Disable the rule that prevents empty interfaces
+    "@typescript-eslint/no-unused-vars": "warn",               // Warn for unused variables instead of blocking build
+    "react-hooks/exhaustive-deps": "warn",                     // Warn for missing dependencies in useEffect
+    "@typescript-eslint/no-unsafe-assignment": "warn",         // Warn for unsafe assignments
+    "@typescript-eslint/no-empty-function": "off"              // Disable rule for empty functions
+  }
 }

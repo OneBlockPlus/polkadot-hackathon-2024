@@ -15,7 +15,7 @@ export default function NavItem({route, item} : Props) {
    const isHome  = route === "/dashboard"
   return (
     <Link  href={item.link}
-    className={`dark:hover:bg-gray-700 hover:bg-gray-300 ${isActive && "  dark:bg-gray-800 bg-gray-300 text-blue-500"} ${isHome && item.link === "/play" ? "bg-gray-300 text-blue-500" : ""} flex  space-x-2  items-center my-4   py-2 px-2 rounded-md`}
+    className={` hover:bg-orange-300 ${isActive && "   bg-orange-500 text-white"} ${isHome && item.link === "/play" ? "bg-gray-300 text-blue-500" : ""} flex  space-x-2  items-center my-4   py-2 px-2 rounded-md`}
     >
  
       <item.icon className={`w-6 h-6 `} />

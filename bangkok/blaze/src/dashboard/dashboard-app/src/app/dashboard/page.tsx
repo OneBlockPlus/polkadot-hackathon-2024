@@ -1,13 +1,15 @@
-import TestComp from '@/components/test-comp'
-import { Button } from '@/components/ui/button'
+
+
+import withAuth from '@/components/middleware/auth-middleware'
+import Dashboard from '@/components/screens/dashboard/Dashboard'
 import React from 'react'
 
-export default function page() {
+const page = ()  => {
   return (
     <div>
-      dashboard page
-      <Button>Helllo button</Button>
-      <TestComp  />
+    <Dashboard   />
     </div>
   )
 }
+
+export  default page
