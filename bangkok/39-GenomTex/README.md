@@ -55,7 +55,7 @@ We seeked for decentralized storage solution for the DNA files of the users. Obs
 
 ## Project Explained
 
-As a demontration, we used "Michael Taylor".
+As a demontration client Michael Taylor is used.
 
 As you can see, Michael Taylor has 2 DNA scans available. One on which is synchonized to IPFS via Crust (decentralized pinning service).
 
