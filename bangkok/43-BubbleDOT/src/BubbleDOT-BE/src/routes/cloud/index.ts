@@ -1,10 +1,12 @@
 import express from "express";
-import testRouter from "./test";
-import cloudRouter from "./cloud";
-
+import { downloadFileFromS3 } from "../../controllers/DownloadCloud.controller";
+import { buildEndpoint } from "../../controllers/build.controller";
+import { deployEndpoint } from "../../controllers/deploy.controller";
+import { getAllDataController } from "../../controllers/getData.controller";
 const router = express.Router();
 
-router.use("/test", testRouter);
-router.use("/cloud", cloudRouter);
-
+router.post('/download-bucket', downloadFileFromS3);
+router.post('/build', buildEndpoint);
+//router.post('/deploy', deployEndpoint);
+router.get('/get-data', getAllDataController);
 export default router;
