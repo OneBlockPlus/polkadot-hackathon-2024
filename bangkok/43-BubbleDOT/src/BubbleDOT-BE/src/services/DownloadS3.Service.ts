@@ -2,7 +2,8 @@ import { S3Client, GetObjectCommand, ListObjectsV2Command } from '@aws-sdk/clien
 import fs from 'fs';
 import { Readable } from 'stream';
 import path from 'path';
-
+import dotenv from 'dotenv';
+dotenv.config();
 
 const s3Client = new S3Client({ region: 'ap-southeast-2' });
 
@@ -19,10 +20,12 @@ const listFilesInBucket = async (bucketName: string): Promise<string[]> => {
     }
 };
 
-const downloadFile = async (bucketName: string, key: string, downloadPath: string): Promise<void> => {
+const downloadFile = async (key: string, downloadPath: string): Promise<void> => {
     try {
-        console.log(`Starting download of ${key}...`);
-        const command = new GetObjectCommand({ Bucket: bucketName, Key: key });
+        const bucketName = process.env.BUCKET_NAME;
+        if (!bucketName) {
+            throw new Error('BUCKET_NAME is not defined');
+        } const command = new GetObjectCommand({ Bucket: bucketName, Key: key });
         const response = await s3Client.send(command);
         const stream = response.Body as Readable;
         const writableStream = fs.createWriteStream(downloadPath);
@@ -36,35 +39,30 @@ const downloadFile = async (bucketName: string, key: string, downloadPath: strin
     }
 };
 
-const downloadAllFilesFromBucket = async (bucketName: string): Promise<void> => {
+const downloadAllFilesFromBucket = async (): Promise<void> => {
+
     const files = await listFilesInBucket(bucketName);
-    // Tạo thư mục với tên là bucketName nếu chưa tồn tại
-    const bucketDir = path.join(process.cwd(), 'Downloads', bucketName);
+    const bucketName = process.env.BUCKET_NAME;
+    if (!bucketName) {
+        throw new Error('BUCKET_NAME is not defined');
+    } const bucketDir = path.join(process.cwd(), 'Downloads', bucketName);
+
     if (!fs.existsSync(bucketDir)) {
         console.log(`Creating directory: ${bucketDir}`);
         fs.mkdirSync(bucketDir, { recursive: true });
     }
+
     for (const fileKey of files) {
-        // Remove leading slashes from the file key
-        const cleanedFileKey = fileKey.replace(/^\//, ''); // Remove the leading slash if it exists
-        // Create a more organized path by removing the `/home/project/` part of the key
-        const fileName = path.basename(cleanedFileKey);
-        const downloadPath = path.join(bucketDir, fileName); // Save directly in the bucket directory
-        if (fileKey.endsWith('/')) {
-            // It's a directory
-            console.log(`Creating directory: ${downloadPath}`);
-            // Create a directory if the fileKey is a folder
-            if (!fs.existsSync(downloadPath)) {
-                fs.mkdirSync(downloadPath, { recursive: true });
-            }
-        } else {
-            // Ensure the parent directory exists before downloading the file
-            const dirName = path.dirname(downloadPath);
+        const cleanedFileKey = fileKey.replace(/^\//, '');
+        const downloadPath = path.join(bucketDir, cleanedFileKey);
+        const dirName = path.dirname(downloadPath);
+        if (!fs.existsSync(dirName)) {
             fs.mkdirSync(dirName, { recursive: true });
-            await downloadFile(bucketName, fileKey, downloadPath);
         }
+        await downloadFile(fileKey, downloadPath);
+
     }
-    console.log('All files have been processed.');
+    console.log('All files have been downloaded and saved with the correct structure.');
 };
 
 export { downloadAllFilesFromBucket };

@@ -22,26 +22,33 @@ const findCargoTomlDir = async (startDir: string): Promise<string | null> => {
   }
 };
 
-const buildProject = async (bucketName: string): Promise<void> => {
-  // Bắt đầu tìm kiếm từ thư mục tương ứng với bucketName
-  const cargoDir = await findCargoTomlDir(path.join(process.cwd(), 'src', bucketName));
+const buildProject = async (): Promise<void> => {
+  const bucketName = process.env.BUCKET_NAME;
+  if (!bucketName) {
+    throw new Error('BUCKET_NAME is not defined');
+  }
+
+  const startDir = path.join(process.cwd(), 'Downloads', bucketName, 'home', 'project');
+  console.log(`Starting search for Cargo.toml from: ${startDir}`);
+
+  const cargoDir = await findCargoTomlDir(startDir);
   if (!cargoDir) {
     throw new Error('Cargo.toml not found in any parent directory');
   }
   return new Promise((resolve, reject) => {
+    console.log(`Starting cargo build in: ${cargoDir}`);
     exec('cargo build', { cwd: cargoDir }, (error, stdout, stderr) => {
       if (error) {
         console.error(`Error executing cargo build: ${error.message}`);
+        return reject(error);
+
       }
       if (stdout) {
         console.log(`Build stdout: ${stdout}`);
       }
-      
+
       if (stderr) {
         console.warn(`Build stderr: ${stderr}`);
-      }
-      if (error) {
-        return reject(error);
       }
       resolve();
     });
