@@ -7,7 +7,7 @@ Cyborg Network is developing a DePIN-based marketplace for edge computing resour
 
 Since this is an existing project, we have been continuously developing the Cyborg parachain since early 2024. However, we have only included features/milestones achieved during the hacking period of this hackathon. Judges can check the main branch of all the repositories mentioned to verify the code timeline.
 
-For this hackathon, our team has focussed on building NeuroZK, a ZK based task verification system
+For this hackathon, our team has focussed on building NeuroZK, a ZK based task verification system, which was built on top of our existing prodcut line called cyberdock, which enabled users to deploy docker images into our network of edge servers.
 
 ## Features planned for the Hackathon ( July 11 2024 - Oct 23 2024)
 The planned milestone deliveries within the hacking period of this hackathon includes and is not limited to the following:
