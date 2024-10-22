@@ -174,7 +174,7 @@
                 drawCircleAndLabel(pos, radius -15, 'YOU', "#7AE7C7", distanceLabelText);
             } else {
                 const pos = positionCircle(i, distances.length+1, distances[i]*DIST_CONST);
-                drawCircleAndLabel(pos, radius - 15, `???`, "#89c2f8", (distances[i]).toExponential(3));
+                drawCircleAndLabel(pos, radius - 15, `user ${i+1}`, "#89c2f8", (distances[i]).toExponential(3));
             }
         }
     }).then(() => {
