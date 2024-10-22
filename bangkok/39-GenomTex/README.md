@@ -98,8 +98,7 @@ protecting it from any malicious attempts to alter its content.
 
 ## Architecture
 
-![alt text](image-3.png)
-
+![Architecture Diagram](showcase/image-3.png)
 
 ## Techstack
 
