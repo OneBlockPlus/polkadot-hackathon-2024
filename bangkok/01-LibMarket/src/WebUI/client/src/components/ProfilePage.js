@@ -146,15 +146,15 @@ function ProfilePage({ walletAddress, onItemListed }) {
             console.log('Attempting to toggle listing for item:', itemId);
             const response = await axios.put(`http://localhost:5000/api/items/${itemId}/toggle-listing`);
             console.log('Toggle listing response:', response.data);
-            fetchUserItems(); // 重新获取用户物品列表
-            alert(currentStatus ? '物品已成功下架' : '物品已成功上架');
+            fetchUserItems();
+            alert(currentStatus ? 'Item successfully delisted' : 'Item successfully listed');
         } catch (error) {
-            console.error('更新物品状态失败:', error);
+            console.error('Failed to update item status:', error);
             if (error.response) {
                 console.error('Error response:', error.response.data);
-                alert(`更新物品状态失败，请重试。错误: ${error.response.data.message || '未知错误'}`);
+                alert(`Failed to update item status. Please try again. Error: ${error.response.data.message || 'Unknown error'}`);
             } else {
-                alert(`更新物品状态失败，请重试。错误: ${error.message || '未知错误'}`);
+                alert(`Failed to update item status. Please try again. Error: ${error.message || 'Unknown error'}`);
             }
         }
     };
@@ -214,9 +214,9 @@ function ProfilePage({ walletAddress, onItemListed }) {
                                 type="text"
                                 value={inputMessage}
                                 onChange={(e) => setInputMessage(e.target.value)}
-                                placeholder="输入消息..."
+                                placeholder="Input Message..."
                             />
-                            <SendButton onClick={sendMessage}>发送</SendButton>
+                            <SendButton onClick={sendMessage}>Send</SendButton>
                         </ChatInputContainer>
                     </ChatInterfaceContainer>
                 )}
@@ -230,31 +230,31 @@ function ProfilePage({ walletAddress, onItemListed }) {
 
     return (
         <div className="profile-page">
-            <h2>个人中心</h2>
+            <h2>Profile</h2>
             <div className="profile-tabs">
                 <button 
                     className={activeTab === 'myItems' ? 'active' : ''} 
                     onClick={() => setActiveTab('myItems')}
                 >
-                    我的物品
+                    My Items
                 </button>
                 <button 
                     className={activeTab === 'myChats' ? 'active' : ''} 
                     onClick={() => setActiveTab('myChats')}
                 >
-                    聊天
+                    Chats
                 </button>
                 <button 
                     className={activeTab === 'completedDeals' ? 'active' : ''} 
                     onClick={() => setActiveTab('completedDeals')}
                 >
-                    已完成的交易
+                    Completed Deals
                 </button>
                 <button 
                     className={activeTab === 'sellForm' ? 'active' : ''} 
                     onClick={() => setActiveTab('sellForm')}
                 >
-                    发布新物品
+                    List New Item
                 </button>
             </div>
             <div className="profile-content">
@@ -263,9 +263,9 @@ function ProfilePage({ walletAddress, onItemListed }) {
                         {myItems.map(item => (
                             <div key={item._id} className="item-card">
                                 <h3>{item.name}</h3>
-                                <p>价格: DOT{item.price}</p>
+                                <p>Price: DOT{item.price}</p>
                                 <button onClick={() => handleToggleListing(item._id, item.isListed)}>
-                                    {item.isListed ? '下架' : '上架'}
+                                    {item.isListed ? 'Delist' : 'List'}
                                 </button>
                             </div>
                         ))}
@@ -274,15 +274,14 @@ function ProfilePage({ walletAddress, onItemListed }) {
                 {activeTab === 'myChats' && renderChatInterface()}
                 {activeTab === 'sellForm' && (
                     <div className="sell-form-container">
-                        <h3>发布新物品</h3>
+                        <h3>List New Item</h3>
                         <SellForm onItemListed={handleItemListed} walletAddress={walletAddress} />
                     </div>
                 )}
-                {/* 其他选项的内容 */}
+                {/* Other tab contents */}
             </div>
         </div>
     );
 }
 
 export default ProfilePage;
-

@@ -88,7 +88,7 @@ function App() {
             <div className="app-container">
                 <h1 className="app-title">LibMarket</h1>
                 <button onClick={() => setShowProfile(!showProfile)} className="profile-button">
-                    {showProfile ? '返回主页' : '个人页面'}
+                    {showProfile ? 'Back to Home' : 'Personal Page'}
                 </button>
                 {!showProfile ? (
                     <>

@@ -56,8 +56,8 @@ app.get('/api/items', async (req, res) => {
         const items = await Item.find(query);
         res.json(items);
     } catch (error) {
-        console.error('获取物品列表失败:', error);
-        res.status(500).json({ message: '获取物品列表失败', error: error.message });
+        console.error('Failed to get item list:', error);
+        res.status(500).json({ message: 'Failed to get item list', error: error.message });
     }
 });
 
@@ -78,8 +78,8 @@ app.post('/api/items', upload.single('image'), async (req, res) => {
         console.log('New item saved:', newItem);
         res.json(newItem);
     } catch (error) {
-        console.error('保存物品时出错:', error);
-        res.status(500).json({ message: '保存物品失败', error: error.message });
+        console.error('Error saving item:', error);
+        res.status(500).json({ message: 'Failed to save item', error: error.message });
     }
 });
 
@@ -95,11 +95,13 @@ app.get('/api/messages/:itemId', async (req, res) => {
 
 // 聊天功能
 io.on('connection', (socket) => {
-    console.log('用户已连接');
+    console.log('User connected');
+    console.log('User joined room: ', socket.id);
+    console.log('User disconnected');
 
     socket.on('joinRoom', (itemId) => {
         socket.join(itemId);
-        console.log(`用户加入房间: ${itemId}`);
+        console.log(`User joined room: ${itemId}`);
     });
 
     socket.on('sendMessage', async ({ itemId, sender, text, isBuyer }) => {
@@ -110,12 +112,13 @@ io.on('connection', (socket) => {
             console.log('消息已保存到数据库:', savedMessage);
             io.to(itemId).emit('receiveMessage', savedMessage);
         } catch (error) {
-            console.error('保存消息失败:', error);
+            console.error('Failed to save message:', error);
+            res.status(500).json({ message: 'Failed to save message', error: error.message });
         }
     });
 
     socket.on('disconnect', () => {
-        console.log('用户已断开连接');
+        console.log('User disconnected');
     });
 });
 
@@ -136,8 +139,8 @@ app.put('/api/items/:id/delist', async (req, res) => {
         }
         res.json(item);
     } catch (error) {
-        console.error('下架物品失败:', error);
-        res.status(500).json({ message: '下架物品失败', error: error.message });
+        console.error('Failed to delist item:', error);
+        res.status(500).json({ message: 'Failed to delist item', error: error.message });
     }
 });
 
@@ -156,8 +159,8 @@ app.put('/api/items/:id/toggle-listing', async (req, res) => {
         console.log('Item status updated:', item);
         res.json(item);
     } catch (error) {
-        console.error('更新物品状态失败:', error);
-        res.status(500).json({ message: '更新物品状态失败', error: error.message });
+        console.error('Failed to update item status:', error);
+        res.status(500).json({ message: 'Failed to update item status', error: error.message });
     }
 });
 
@@ -202,8 +205,8 @@ app.get('/api/user-chats/:userId', async (req, res) => {
         console.log('Grouped chat data:', chatData);
         res.json(chatData);
     } catch (error) {
-        console.error('获取用户聊天失败:', error);
-        res.status(500).json({ message: '获取用户聊天失败', error: error.message });
+        console.error('Failed to get user chats:', error);
+        res.status(500).json({ message: 'Failed to get user chats', error: error.message });
     }
 });
 
@@ -221,7 +224,7 @@ app.post('/api/messages', async (req, res) => {
         await newMessage.save();
         res.status(201).json(newMessage);
     } catch (error) {
-        console.error('保存消息失败:', error);
-        res.status(500).json({ message: '保存消息失败', error: error.message });
+        console.error('Failed to save message:', error);
+        res.status(500).json({ message: 'Failed to save message', error: error.message });
     }
 });

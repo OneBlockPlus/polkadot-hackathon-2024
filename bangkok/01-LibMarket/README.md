@@ -9,13 +9,13 @@ Relying on the shared security mechanism of Polkadot's relay chain, using homomo
 
 - [x] Use hash locks to ensure the time validity of transaction orders, and introduce a tree-like mapping relationship between a single seller and multiple buyers.
 
-- [ ] Added a market master switch to set the market's opening and closing trading hours. Make it more flexible
+- [x] Added a market master switch to set the market's opening and closing trading hours. Make it more flexible
 
 - [x] After the buyer requests the seller's consent, the buyer requests a signature, without the need for off-chain trust
 
 - [x] Adopt zk-proof-homomorphic encryption algorithm to ensure the security of signature confirmation between buyers and sellers
 
-- [ ] The economic model is introduced, and 100% of the transaction fees are paid to active buyers and sellers. A points system is also introduced, which can be used to exchange for physical objects.
+- [x] The economic model is introduced, and 100% of the transaction fees are paid to active buyers and sellers. A points system is also introduced, which can be used to exchange for physical objects.
 
 - [x] Introducing other ecosystems through Polkadot's parallel chain architecture, shopping cart and other functions are implemented using sui
 
@@ -29,7 +29,13 @@ Relying on the shared security mechanism of Polkadot's relay chain, using homomo
 
 #### Overall architecture
 
+![image-20241022180445164](img/1.png)
+
 #### Smart Contract Architecture
+
+![image-20241022182518117](img/image-20241022182518117.png)
+
+![image-20241022180205533](img/2.png)
 
 ```mermaid
 flowchart TD
@@ -108,9 +114,9 @@ flowchart TD
 
 ```
 
-![](./img/Smart_Contract_Architecture.jpg)
 
 
+#### The reserved interface plans to add other ecological model instances
 
 ```mermaid
 flowchart TD
