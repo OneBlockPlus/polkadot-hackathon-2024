@@ -7,6 +7,7 @@
   "scripts": {
     "build:layout": "bash ./scripts/compile.sh ./LayoutEligibility && bash ./scripts/cpcircuit.sh ./LayoutEligibility",
     "build:circuits": "npm run build:layout",
+    "dev": "nodemon --exec circom LayoutEligibility.circom  -e .circom",
     "setup:ptau": "wget -O pot_final.ptau https://hermez.s3-eu-west-1.amazonaws.com/powersOfTau28_hez_final_15.ptau",
     "build": "npm run build:circuits"
   },

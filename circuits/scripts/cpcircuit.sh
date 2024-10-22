@@ -6,7 +6,7 @@ CIRCUIT_NAME=${CIRCUIT_NAME:=test}
 
 set -e # stop for errors
 
-cp ${FULL_PATH}_obj/verifier.sol src/contracts/${CIRCUIT_NAME}Verifier.sol
+cp ${FULL_PATH}_obj/verifier.sol ../contracts/${CIRCUIT_NAME}Verifier.sol
 
 mkdir -p ../ui/public/circuits
 

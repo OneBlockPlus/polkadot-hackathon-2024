@@ -153,6 +153,12 @@ export function generateWitnessRaw(par: MapParameters): {
 
   witness['Production rate verification: (component type count)'] =
     JSON.stringify(machineTypeCount, null, 4);
+
+  witness['Witness'] = JSON.stringify(
+    new Array(par.mapRows * par.mapColumns)
+      .fill(0)
+      .map((_, i) => (occupied[i] == null ? 0 : occupied[i])),
+  );
   // == generate the 3rd layer: road connectivity layer
 
   // == generate the 4th layer: storage verification layer
