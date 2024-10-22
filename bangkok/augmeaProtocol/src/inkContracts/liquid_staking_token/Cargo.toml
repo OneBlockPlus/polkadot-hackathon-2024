@@ -1,0 +1,18 @@
+[package]
+name = "liquid_staking_token"
+version = "0.1.0"
+authors = ["Cardinal"]
+edition = "2021"
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+ink = { version = "4.2.0", default-features = false }
+
+[features]
+default = ["std"]
+std = [
+    "ink/std",
+]
+ink-as-dependency = []
