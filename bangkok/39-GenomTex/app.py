@@ -4,7 +4,7 @@ import src.api_storage.storage_management as storage
 from src.api_storage.file_utils import get_filepath
 
 app = Flask(__name__)
-model = DBModel("api_storage_module/genomtex.sqlite")
+model = DBModel("src/genomtex.sqlite")
 
 
 @app.teardown_appcontext
