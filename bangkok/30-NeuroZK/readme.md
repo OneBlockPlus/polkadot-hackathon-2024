@@ -42,8 +42,6 @@ The pallet performs a series of elliptic curve operations and field arithmetic (
 
 ![NueroZK-baseline](https://github.com/user-attachments/assets/d7d73cc1-a045-4fab-a7f1-b3affd32e692)
 
-## Schedule
-
 ## Team info
 | name         | role         | GitHub |
 | ----------- | ----------- | -----------  |
