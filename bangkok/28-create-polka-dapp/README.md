@@ -6,16 +6,21 @@ Project approval date (month and year): September 2024
 
 Project Creation date: May, 2024
 
+[**Demo Video (LOOM)**](https://www.loom.com/share/a3b65bf8b5f34e9bb6dbf363dc590c68?sid=e1f71081-60cc-457a-addf-ed2beec2437a)
+
+[**Pitch Deck**](https://www.canva.com/design/DAGUOdbB_EQ/o0UUIAjv5j21Chb-jTGD8Q/edit?utm_content=DAGUOdbB_EQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
+<img src="./docs/create-polka-dapp.png" height="180" width="180" />
+
 ### Project Background
 
-- [Repo](https://github.com/OpeOginni/create-polka-dapp)
-- Participated in the Polkadot Prodigy Hackathon where the project was initiated. Have received no extra funding or grants.
+- [Repo](https://github.com/OpeOginni/create-polka-dapp/tree/polkadot-2024-hackathon)
+- Participated in the Polkadot Prodigy Hackathon where the project was initiated.
+- Have received no extra funding or grants.
 
-## Project Overall Introduction
+### Introduction
 
-### Logo
-
-![image-20220622110833152](./docs/create-polka-dapp.png)
+**Create Polka Dapp** is a scaffolding CLI tool aimed at developers looking to quickly set up their Polkadot-based dApp. It currently focuses on frontend-only development but has a roadmap for expansion. The key features include:
 
 ### Problem Statement
 
@@ -23,24 +28,13 @@ Polkadot offers a highly scalable, interoperable network for building decentrali
 
 Despite its initial utility, the project currently supports only frontend creation, and there’s a strong need for more flexibility in terms of frameworks, contracts, and evm and substrate chains.
 
-### Introduction
+The complexities with wallets in the Polkadot ecosystem also makes many developers to rush to ship out only custodial wallet systems for their users, this makes some builders shy away from developing on polkadot.
 
-**Create Polka Dapp** is a scaffolding CLI tool aimed at developers looking to quickly set up their Polkadot-based dApp. It currently focuses on frontend-only development but has a roadmap for expansion. The key features include:
-
-- **Frontend Scaffolding**: Quickly set up React or Svelte-based frontends for Polkadot applications.
-- **Wallet Integration**: Out-of-the-box wallet connection functionality for Polkadot.
-- **Future Expansion**: Plans to support contracts, full-stack setups, and integration with various parachains.
+Create-Polka-Dapp solves this by providing simplified and customizable templates in different frontend frameworks that assist developers with setting up the wallet flow on their dapps, and now we also support contract side development providing users with ways to deploy and interact with their contracts, using simple scripts, with Javascript.
 
 The project's main code repository is available [here](https://github.com/OpeOginni/create-polka-dapp/tree/polkadot-2024-hackathon), and the NPM package can be found [here](https://www.npmjs.com/package/create-polka-dapp).
 
-### Details
-
-- [Pitch Deck](https://github.com/OpeOginni/create-polka-dapp/tree/polkadot-2024-hackathon) -> will be updated
-- [Demo Video](https://github.com/OpeOginni/create-polka-dapp/tree/polkadot-2024-hackathon) -> will be updated
-
 ## Things Planned to be Done During the Hackathon
-
-### CLI Tool
 
 - Runtime Module
   - [x] Scaffold contracts for different parachains.
@@ -63,7 +57,7 @@ As the project develops during the hackathon, this section will track the comple
   - Enhanced wallet functionality and flow.
   - Initial contract scaffolding support.
 
-## Commit Progress
+### Commit Progress
 
 - [Updated CLI dependencies (moved to more lightweight deps) & Setup templates into categories (frontend, contract, frontend + contract)](https://github.com/OpeOginni/create-polka-dapp/commit/13d0a79bab110845b73aec3310b9bb8c80ccf43a)
 
@@ -108,9 +102,35 @@ As the project develops during the hackathon, this section will track the comple
   - Made sure Uncompleted Templates show as disabled on the CLI
   - Update Package Readme
 
+- [Bug Fixes to Contract LifeCycle Commands](https://github.com/OpeOginni/create-polka-dapp/commit/6f21a19f6b70ca8f39dc8ead5e1bbb0b0613695d)
+
+  - Fixed CLI Bugs
+  - Completed Interact Command
+
+- [Merged Polkadot 2024 Hackahton Branch to Prod](https://github.com/OpeOginni/create-polka-dapp/pull/1)
+
+- [Released Version 0.1.0](https://www.npmjs.com/package/create-polka-dapp)
+
+- [Updated Pakcage Description and Added Fixes to reduce package size](https://github.com/OpeOginni/create-polka-dapp/commit/28d5915c54873af1032abcac8c80d87b9abe88db)
+
+- [Released Version 0.1.1 & 0.1.2](https://github.com/OpeOginni/create-polka-dapp/commit/3fb57a2a6b024db07f473aedcb2ddc3097931d98)
+
 ## Choosen Track
 
-This project is for the **(Infrastructure) Polkadot ecological developer tools** Track
+This project is for the **Category 1: (Infrastructure) Polkadot ecological developer tools** Track
+
+## Features Worked on and completed during the hackathon
+
+- [x] Scaffold for INK contracts.
+- [x] Integrate contract templates alongside frontend templates.
+- [x] Add Next.js as a frontend option (app router & pages router).
+- [x] Improved existing React Template.
+- [x] Scaffold options for contracts, frontend-only, or full-stack depending on developer needs.
+- [x] Provide developers who decide to generate contracts with simple tools (utilities) to perfom tasks like deploy and interact with their contracts. Though the Command Line or Through easy to write scripts.. Just like Hardhat for the Eth ecosystem
+
+[**Pitch Deck**](https://www.canva.com/design/DAGUOdbB_EQ/o0UUIAjv5j21Chb-jTGD8Q/edit?utm_content=DAGUOdbB_EQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
+[**Demo Video (LOOM)**](https://www.loom.com/share/a3b65bf8b5f34e9bb6dbf363dc590c68?sid=e1f71081-60cc-457a-addf-ed2beec2437a)
 
 ## Member Information
 
@@ -119,3 +139,15 @@ This project is for the **(Infrastructure) Polkadot ecological developer tools**
 - Over 2 years of software development experience, specializing in blockchain and decentralized applications.
 - Github: [OpeOginni](https://github.com/OpeOginni)
 - Discord: obo.baddest
+
+## Post Hackathon Features
+
+These are some extra features I would like to continue to work on, based on advice given from workshops and mentor sessions
+
+1. **Standalone Contract Development Library**: We're extracting our contract development utility to create a tool on its own making it a separate library for more flexibility and easier maintenance.
+
+2. **Modular Wallet Connection Component**: The wallet connection functionality will be available as a standalone, customizable component library, so developers can decide to use the component if they
+
+3. **Enhanced CLI Capabilities**: More commands and options to further streamline your development workflow.
+
+4. **Additional Framework Support**: We're planning to add support for more frontend frameworks and build tools.

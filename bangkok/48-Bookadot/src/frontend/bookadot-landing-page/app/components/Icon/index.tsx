@@ -1,0 +1,11 @@
+export { default as HomeTicket } from "./home-ticket.svg";
+export { default as Global } from "./global.svg";
+export { default as Road } from "./road.svg";
+export { default as NotFound } from "./not-found.svg";
+export { default as Chart } from "./chart.svg";
+export { default as CheckedTicket } from "./checked-ticket.svg";
+export { default as ArrowLeft } from "./arrow-left.svg";
+export { default as Logo } from "./logo.svg";
+export { default as Calendar } from "./calendar.svg";
+export { default as Film } from "./film.svg";
+export { default as Marker } from "./marker.svg";

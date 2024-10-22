@@ -6,7 +6,7 @@ import "context"
 type Client interface {
 	FetchTxInput(ctx context.Context, from Address, to Address) (TxInput, error)
 	FetchTxInfo(ctx context.Context, txHash TxHash) (TxInfo, error)
-	SubmitTx(ctx context.Context, tx Tx) error
+	SubmitTx(ctx context.Context, tx Tx) (TxHash, error)
 }
 
 type EstimateGasFunc func(native NativeAsset) (AmountBlockchain, error)

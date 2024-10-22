@@ -122,16 +122,16 @@ func (client *NativeClient) FetchTxInput(ctx context.Context, from xc.Address, t
 }
 
 // SubmitTx submits a Bitcoin tx
-func (client *NativeClient) SubmitTx(ctx context.Context, txInput xc.Tx) error {
+func (client *NativeClient) SubmitTx(ctx context.Context, txInput xc.Tx) (xc.TxHash, error) {
 	serial, err := txInput.Serialize()
 	if err != nil {
-		return fmt.Errorf("bad tx: %v", err)
+		return "", fmt.Errorf("bad tx: %v", err)
 	}
 	resp := ""
 	if err := client.send(ctx, &resp, "sendrawtransaction", hex.EncodeToString(serial)); err != nil {
-		return fmt.Errorf("bad \"sendrawtransaction\": %v", err)
+		return "", fmt.Errorf("bad \"sendrawtransaction\": %v", err)
 	}
-	return nil
+	return txInput.Hash(), nil
 }
 
 // FetchTxInfo returns tx info for a Bitcoin tx

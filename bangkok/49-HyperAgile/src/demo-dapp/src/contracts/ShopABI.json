@@ -1,0 +1,201 @@
+[
+    {
+        "inputs": [],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+    },
+    {
+        "inputs": [],
+        "name": "AccessDenied",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "NotAWarehouse",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "NotAnOwner",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "OrderAlreadyExists",
+        "type": "error"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "customer",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "string",
+                "name": "orderId",
+                "type": "string"
+            }
+        ],
+        "name": "PlaceOrder",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
+                "internalType": "string",
+                "name": "orderId",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "internalType": "enum Enums.OrderStatus",
+                "name": "status",
+                "type": "uint8"
+            }
+        ],
+        "name": "UpdateStatus",
+        "type": "event"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "orderId",
+                "type": "string"
+            }
+        ],
+        "name": "getOrderCustomer",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "orderId",
+                "type": "string"
+            }
+        ],
+        "name": "getOrderProductId",
+        "outputs": [
+            {
+                "internalType": "enum Enums.ProductId",
+                "name": "",
+                "type": "uint8"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "name": "orders",
+        "outputs": [
+            {
+                "internalType": "string",
+                "name": "orderId",
+                "type": "string"
+            },
+            {
+                "internalType": "enum Enums.OrderStatus",
+                "name": "status",
+                "type": "uint8"
+            },
+            {
+                "internalType": "address",
+                "name": "customer",
+                "type": "address"
+            },
+            {
+                "internalType": "enum Enums.ProductId",
+                "name": "productId",
+                "type": "uint8"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "orderId",
+                "type": "string"
+            },
+            {
+                "internalType": "enum Enums.ProductId",
+                "name": "productId",
+                "type": "uint8"
+            },
+            {
+                "internalType": "uint8",
+                "name": "v",
+                "type": "uint8"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "r",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "s",
+                "type": "bytes32"
+            }
+        ],
+        "name": "placeOrder",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "warehouse",
+                "type": "address"
+            }
+        ],
+        "name": "setWarehouse",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "orderId",
+                "type": "string"
+            },
+            {
+                "internalType": "enum Enums.OrderStatus",
+                "name": "newStatus",
+                "type": "uint8"
+            }
+        ],
+        "name": "updateOrderStatus",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }
+]

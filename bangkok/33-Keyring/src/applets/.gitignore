@@ -10,3 +10,4 @@
 /gradle.properties
 buildSrc/build
 buildSrc/.gradle
+.DS_Store

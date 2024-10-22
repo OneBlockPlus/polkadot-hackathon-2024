@@ -223,6 +223,13 @@ public class KeycardApplet extends Applet {
     register(bArray, (short) (bOffset + 1), bArray[bOffset]);
   }
 
+  public boolean select() {
+    if (!super.select()) {
+        return false;
+    }
+    return ed25519.select();
+}
+
   /**
    * This method is called on every incoming APDU. This method is just a dispatcher which invokes the correct method
    * depending on the INS of the APDU.

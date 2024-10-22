@@ -142,8 +142,8 @@ export function SwitchAccount(arg1) {
   return window['go']['main']['App']['SwitchAccount'](arg1);
 }
 
-export function Teleport(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9) {
-  return window['go']['main']['App']['Teleport'](arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
+export function Teleport(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10) {
+  return window['go']['main']['App']['Teleport'](arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);
 }
 
 export function Transfer(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9) {

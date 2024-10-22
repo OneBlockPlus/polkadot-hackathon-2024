@@ -22,6 +22,13 @@ export class WebSocketHandler {
     }
   }
 
+  public closeSocket() {
+    if (this.socket) {
+      this.socket.close()
+      this.socket = null
+    }
+  }
+
   public getNewUrl(): string {
     return this.url
   }
@@ -75,6 +82,10 @@ export class WebSocketHandler {
           } else if (parsedData?.event === 'end') {
             clearTimeout(timeoutHandle)
             //if (onComplete) onComplete()
+            resolve('')
+          } else if (parsedData?.event === 'error') {
+            clearTimeout(timeoutHandle)
+            reject(new Error(`Error: ${parsedData?.response?.error} Status: ${parsedData?.status}`))
             resolve('')
           } else {
             clearTimeout(timeoutHandle)

@@ -1,0 +1,13 @@
+<svg width="336" height="274" viewBox="0 0 336 274" fill="none" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="168" cy="213" rx="128" ry="61" fill="black"/>
+<ellipse cx="168" cy="113" rx="126" ry="61" fill="black"/>
+<rect x="26" y="62" width="284" height="204" rx="90" fill="black"/>
+<ellipse cx="16" cy="164" rx="16" ry="44" fill="black"/>
+<rect x="17" y="120" width="15" height="88" fill="black"/>
+<ellipse cx="16" cy="44" rx="16" ry="44" transform="matrix(-1 0 0 1 336 120)" fill="black"/>
+<rect width="15" height="88" transform="matrix(-1 0 0 1 319 120)" fill="black"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M89.2513 111.374C98.5687 103.671 130.295 98 168 98C204.41 98 235.245 103.288 245.71 110.587C260.252 117.127 271 140.265 271 167.806C271 197.579 258.438 222.207 242.102 226.281C236.901 229.23 230.302 230.224 223.07 229.392L223.061 229.527L167.861 225.658L112.661 229.527L112.65 229.379C104.856 230.478 97.7856 229.445 92.4218 226.105C76.8415 221.266 65 197.139 65 168.103C65 141.072 75.2631 118.295 89.2513 111.374Z" fill="white"/>
+<ellipse cx="206.975" cy="163.913" rx="19.975" ry="22.9125" fill="black"/>
+<ellipse cx="129.975" cy="164.088" rx="19.975" ry="22.9125" fill="black"/>
+<circle cx="168" cy="31" r="31" fill="black"/>
+</svg>

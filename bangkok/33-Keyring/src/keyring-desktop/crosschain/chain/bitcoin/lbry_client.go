@@ -239,16 +239,17 @@ func (client *LbryClient) FetchTxInfo(ctx context.Context, txHash xc.TxHash) (xc
 	panic("implement me")
 }
 
-func (client *LbryClient) SubmitTx(ctx context.Context, tx xc.Tx) error {
+func (client *LbryClient) SubmitTx(ctx context.Context, tx xc.Tx) (xc.TxHash, error) {
+	txId := tx.Hash()
 	serial, err := tx.Serialize()
 	if err != nil {
-		return fmt.Errorf("bad tx: %v", err)
+		return "", fmt.Errorf("bad tx: %v", err)
 	}
 	resp := ""
 	if err := client.send(ctx, &resp, "sendrawtransaction", hex.EncodeToString(serial)); err != nil {
-		return fmt.Errorf("bad \"sendrawtransaction\": %v", err)
+		return "", fmt.Errorf("bad \"sendrawtransaction\": %v", err)
 	}
-	return nil
+	return txId, nil
 }
 
 func (client *LbryClient) send(ctx context.Context, resp interface{}, method string, params ...interface{}) error {

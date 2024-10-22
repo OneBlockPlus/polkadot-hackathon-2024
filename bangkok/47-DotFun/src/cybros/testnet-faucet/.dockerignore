@@ -1,0 +1,9 @@
+# Exclude all:
+*
+
+# Include what is actually used:
+!package.json
+!yarn.lock
+!tsconfig.json
+!env.*.config.json
+!src

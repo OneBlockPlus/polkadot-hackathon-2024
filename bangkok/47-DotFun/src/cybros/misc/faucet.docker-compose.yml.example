@@ -1,0 +1,15 @@
+version: "3.2"
+
+services:
+  node:
+    container_name: faucet-backend
+    image: cybros-network/faucet-backend:latest
+    ports:
+      - "5555:5555"
+    environment:
+      - SMF_BACKEND_RPC_ENDPOINT=
+      - SMF_BACKEND_FAUCET_ACCOUNT_MNEMONIC=
+      - SMF_BACKEND_DRIP_AMOUNT="1000"
+      - SMF_BACKEND_FAUCET_BALANCE_CAP="10000"
+      - SMF_BACKEND_EXTERNAL_ACCESS=1
+      - SMF_BACKEND_RECAPTCHA_SECRET= "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe" # reCAPTCHA v2 server-side testing token, "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" for browser side
