@@ -7,6 +7,15 @@ extern crate pfx_pal as pal;
 extern crate runtime as chain;
 
 use anyhow::{anyhow, Result};
+use glob::PatternError;
+use light_validation::LightValidation;
+use parity_scale_codec::{Decode, Encode};
+use parking_lot::{RwLock, RwLockReadGuard};
+use pfx_api::{
+    crpc::{GetEndpointResponse, InitRuntimeResponse},
+    ecall_args::InitArgs,
+    storage_sync::Synchronizer,
+};
 use pfx_crypto::{
     aead,
     ecdh::EcdhKey,
@@ -15,15 +24,6 @@ use pfx_crypto::{
 use pfx_mq::{MessageDispatcher, MessageSendQueue};
 use pfx_serde_more as more;
 use pfx_types::{AttestationProvider, HandoverChallenge};
-use pfx_api::{
-    crpc::{ExternalServerState, GetEndpointResponse, InitRuntimeResponse},
-    ecall_args::InitArgs,
-    storage_sync::Synchronizer,
-};
-use glob::PatternError;
-use light_validation::LightValidation;
-use parity_scale_codec::{Decode, Encode};
-use parking_lot::{RwLock, RwLockReadGuard};
 use rand::*;
 use ring::rand::SecureRandom;
 use scale_info::TypeInfo;
@@ -47,23 +47,21 @@ use thiserror::Error;
 use tokio::sync::oneshot;
 use types::{Error, ExpertCmdSender};
 
-pub use pflix_service::RpcService;
 pub use chain::BlockNumber;
+pub use pflix_service::RpcService;
 pub use storage::ChainStorage;
 pub use types::{BlockDispatchContext, PflixProperties};
 pub type PflixLightValidation = LightValidation<chain::Runtime>;
 
 mod bootstrap;
-mod pflix_service;
 mod cryptography;
 pub mod expert;
 mod light_validation;
-mod greeting;
+mod pflix_service;
 mod secret_channel;
 mod storage;
 mod system;
-mod types;
-
+pub mod types;
 pub use bootstrap::run_pflix_server;
 
 mod arc_rwlock_serde {
@@ -175,13 +173,14 @@ fn glob_checkpoint_files_sorted(basedir: &str) -> Result<Vec<(chain::BlockNumber
 fn maybe_remove_checkpoints(basedir: &str) {
     match glob_checkpoint_files(basedir) {
         Err(err) => error!("Error globbing checkpoints: {:?}", err),
-        Ok(iter) =>
+        Ok(iter) => {
             for filename in iter {
                 info!("Removing {}", filename.display());
                 if let Err(e) = std::fs::remove_file(&filename) {
                     error!("Failed to remove {}: {}", filename.display(), e);
                 }
-            },
+            }
+        },
     }
 }
 
@@ -191,7 +190,7 @@ fn remove_outdated_checkpoints(basedir: &str, max_kept: u32, current_block: chai
         glob_checkpoint_files_sorted(basedir).map_err(|e| anyhow!("error in glob_checkpoint_files_sorted(): {e}"))?;
     for (block, filename) in checkpoints {
         if block > current_block {
-            continue
+            continue;
         }
         kept += 1;
         if kept > max_kept {
@@ -238,8 +237,7 @@ impl PersistentRuntimeData {
 enum RuntimeDataSeal {
     V1(PersistentRuntimeData),
 }
-
-struct ExternalServerStub {
+struct AssertServerStub {
     shutdown_tx: oneshot::Sender<()>,
     stopped_rx: oneshot::Receiver<()>,
 }
@@ -266,10 +264,6 @@ pub struct Pflix<Platform> {
 
     #[codec(skip)]
     #[serde(skip)]
-    external_server_stub: Option<ExternalServerStub>,
-
-    #[codec(skip)]
-    #[serde(skip)]
     expert_cmd_sender: Option<ExpertCmdSender>,
 
     // tmp key for WorkerKey handover encryption
@@ -285,7 +279,7 @@ pub struct Pflix<Platform> {
     #[serde(skip)]
     #[serde(default = "Instant::now")]
     last_checkpoint: Instant,
-    
+
     #[codec(skip)]
     #[serde(skip)]
     trusted_sk: bool,
@@ -323,7 +317,6 @@ impl<Platform: pal::Platform> Pflix<Platform> {
             runtime_info: None,
             runtime_state: None,
             system: None,
-            external_server_stub: None,
             expert_cmd_sender: None,
             endpoint: None,
             signed_endpoint: None,
@@ -362,10 +355,10 @@ impl<Platform: pal::Platform> Pflix<Platform> {
             if let Some(ref keyfariy) = system.keyfairy {
                 Ok(keyfariy.master_key().clone())
             } else {
-                return Err(types::Error::KeyfairyNotReady)
+                return Err(types::Error::KeyfairyNotReady);
             }
         } else {
-            return Err(types::Error::SystemNotReady)
+            return Err(types::Error::SystemNotReady);
         }
     }
 
@@ -447,24 +440,6 @@ impl<Platform: pal::Platform> Pflix<Platform> {
         match data {
             RuntimeDataSeal::V1(data) => Ok(data),
         }
-    }
-
-    fn start_external_server(&mut self) -> Result<()> {
-        if self.external_server_stub.is_some() {
-            anyhow::bail!("external server already started");
-        }
-        let Some(system) = self.system.as_ref() else { anyhow::bail!("pflix uninitialize") };
-        let Some(keyfairy) = system.keyfairy.as_ref() else { anyhow::bail!("master key uninitialize") };
-        let pflix_props = PflixProperties {
-            master_key: keyfairy.master_key().clone(),
-            identity_key: system.identity_key.clone(),
-            cores: self.args.cores,
-        };
-        let (shutdown_tx, shutdown_rx) = oneshot::channel();
-        let (stopped_tx, stopped_rx) = oneshot::channel();
-        bootstrap::spawn_external_server(self, pflix_props, shutdown_rx, stopped_tx)?;
-        self.external_server_stub = Some(ExternalServerStub { shutdown_tx, stopped_rx });
-        Ok(())
     }
 }
 
@@ -583,7 +558,7 @@ impl<Platform: pal::Platform + Serialize + DeserializeOwned> Pflix<Platform> {
         let files = glob_checkpoint_files_sorted(&args.storage_path)
             .map_err(|e| anyhow!("Glob checkpoint files failed: {e}"))?;
         if files.is_empty() {
-            return Ok(None)
+            return Ok(None);
         }
         let (_block, ckpt_filename) = &files[0];
 
@@ -665,11 +640,10 @@ impl<Platform: Serialize + DeserializeOwned> Pflix<Platform> {
                     .next_element()?
                     .ok_or_else(|| de::Error::custom("Checkpoint version missing"))?;
                 if version > CHECKPOINT_VERSION {
-                    return Err(de::Error::custom(format!("Checkpoint version {version} is not supported")))
+                    return Err(de::Error::custom(format!("Checkpoint version {version} is not supported")));
                 }
 
-                let mut factory: Self::Value =
-                    seq.next_element()?.ok_or_else(|| de::Error::custom("Missing Pflix"))?;
+                let mut factory: Self::Value = seq.next_element()?.ok_or_else(|| de::Error::custom("Missing Pflix"))?;
 
                 if self.safe_mode_level < 2 {
                     factory.system = {
@@ -784,10 +758,10 @@ impl<Platform: pal::Platform> PflixSafeBox<Platform> {
         let guard = self.0.lock().map_err(|e| PflixLockError::Poison(e.to_string()))?;
         trace!(target: "pfx::lock", "Locked pfx");
         if !allow_rcu && guard.rcu_dispatching {
-            return Err(PflixLockError::Rcu)
+            return Err(PflixLockError::Rcu);
         }
         if !allow_safemode && guard.args.safe_mode_level > 0 {
-            return Err(PflixLockError::SafeMode)
+            return Err(PflixLockError::SafeMode);
         }
         Ok(LogOnDrop { inner: guard, msg: "Unlocked pfx" })
     }

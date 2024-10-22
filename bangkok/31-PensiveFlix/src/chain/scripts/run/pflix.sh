@@ -2,7 +2,7 @@
 
 inst_seq=${INST_SEQ:-0}
 pflix_port=$((${PFLIX_PORT:-8000} + $inst_seq))
-pub_port=$((${PUB_PORT:-19999} + $inst_seq))
+pub_port=$((${PUB_PORT:-17777} + $inst_seq))
 work_dir="./standalone/teeworker/pflix/bin"
 
 export RUST_LOG=debug,pflix=trace,pfx=trace,h2=info,hyper=info,reqwest=info,tower=info

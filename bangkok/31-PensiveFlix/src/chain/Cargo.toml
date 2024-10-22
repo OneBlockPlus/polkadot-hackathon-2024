@@ -186,6 +186,8 @@ pallet-membership = { git = "https://github.com/paritytech/polkadot-sdk.git", br
 pallet-multisig = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "release-polkadot-v1.10.1", default-features = false }
 pallet-mmr = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "release-polkadot-v1.10.1", default-features = false }
 pallet-migrations = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "release-polkadot-v1.10.1", default-features = false }
+pallet-nfts = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "release-polkadot-v1.10.1", default-features = false }
+pallet-nfts-runtime-api = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "release-polkadot-v1.10.1", default-features = false }
 pallet-nomination-pools = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "release-polkadot-v1.10.1", default-features = false }
 pallet-nomination-pools-benchmarking = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "release-polkadot-v1.10.1", default-features = false }
 pallet-nomination-pools-runtime-api = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "release-polkadot-v1.10.1", default-features = false }
@@ -287,6 +289,7 @@ fc-storage = { git = "https://github.com/polkadot-evm/frontier", branch = "polka
 aead = { version = "0.4.3", default-features = false }
 aead-io = { version = "0.1.2" }
 anyhow = { version = "1", default-features = false }
+axum = { version = "0.7.7" }
 array-bytes = "6.1"
 assert_cmd = "2.0.2"
 assert_matches = "1.4.0"
@@ -328,6 +331,7 @@ hex_fmt = "0.3"
 hex-literal = "0.4.1"
 humantime = "2.1.0"
 h2 = { version = "0.4" }
+http = "1.0.0"
 im = { version = "15", default-features = false }
 impl-serde = "0.4.0"
 insta = "1"
@@ -349,12 +353,13 @@ parking_lot = "0.12"
 platforms = "3.0"
 primitive-types = { version = "0.12.2", default-features = false }
 proc-macro2 = "1.0"
-prost = { version = "0.11", default-features = false, features = [
+prost = { version = "0.13", default-features = false, features = [
     "prost-derive",
 ] }
-prost-build = "0.12"
-prost-types = "0.12"
+prost-build = "0.13"
+prost-types = "0.13"
 pink-json = { version = "0.4", default-features = false }
+pin-project = "1"
 pem = { version = "3", default-features = false }
 quote = "1.0"
 rand = "0.8.5"
@@ -393,10 +398,13 @@ tempfile = "3.10"
 thiserror = "1.0"
 tokio = { version = "1" }
 tokio-util = { version = "0.7", features = ["compat"] }
-tonic = { version = "0.9.2" }
-tonic-build = { version = "0.9.2", features = ["prost"] }
+tonic = { version = "0.12" }
+tonic-build = { version = "0.12", features = ["prost"] }
+tonic-middleware = { version = "0.2"}
 tokio-stream = { version = "0.1" }
 tower = { version = "0.4" }
+tower-http = { version = "0.6" }
+
 tracing = { version = "0.1", default-features = false }
 tracing-core = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
@@ -415,7 +423,7 @@ x509-cert = { version = "0.2.4", default-features = false }
 # webpki = { version = "0.102.0", package = "rustls-webpki", default-features = false, features = ["alloc", "ring"] }
 # ---- Generic crates end ----
 
-# ---- Cess workspace crates and pallets begin ----
+# ---- pflix workspace crates and pallets begin ----
 pfx-crypto = { path = "crates/pfx-crypto", default-features = false }
 pfx-mq = { path = "crates/pfx-mq", default-features = false }
 pfx-node-rpc-ext = { path = "crates/pfx-node-rpc-ext" }
@@ -430,6 +438,8 @@ pfx-types = { path = "crates/pfx-types", default-features = false }
 pfx-api = { path = "crates/pfx/api", default-features = false }
 pfx-pal = { path = "crates/pfx/pal", default-features = false }
 pfx-xt = { path = "crates/pfx-xt" }
+pfx-assets = { path = "crates/pfx-assets" }
+pfx = { path = "crates/pfx" }
 chain = { path = "standalone/chain/runtime", package = "pfx-node-runtime", default-features = false }
 node-executor = { path = "standalone/chain/executor" }
 node-rpc = { path = "standalone/chain/rpc" }
@@ -440,7 +450,7 @@ runtime = { path = "standalone/chain/runtime", package = "pfx-node-runtime", def
 sgx-api-lite = { path = "crates/sgx-api-lite" }
 sgx-attestation = { path = "crates/sgx-attestation", default-features = false }
 pfx-node-primitives ={ path = "standalone/chain/primitives", default-features = false }
-# ---- Cess workspace crates and pallets end ----
+# ---- pflix workspace crates and pallets end ----
 
 
 [patch.crates-io]

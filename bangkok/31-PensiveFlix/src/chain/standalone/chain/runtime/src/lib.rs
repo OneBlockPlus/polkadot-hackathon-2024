@@ -39,7 +39,7 @@ use frame_support::{
 	parameter_types,
 	traits::{
 		fungible::{HoldConsideration, NativeFromLeft, NativeOrWithId, UnionOf},
-		tokens::{imbalance::ResolveAssetTo, pay::PayAssetFromAccount},
+		tokens::{imbalance::ResolveAssetTo, nonfungibles_v2::Inspect, pay::PayAssetFromAccount},
 		AsEnsureOriginWithArg, ConstBool, ConstU128, ConstU32, Currency, EitherOfDiverse, EnsureOriginWithArg,
 		EqualPrivilegeOnly, Imbalance, InstanceFilter, KeyOwnerProofSystem, LinearStoragePrice, LockIdentifier, Nothing, OnFinalize,
 		OnUnbalanced,
@@ -60,6 +60,7 @@ use pallet_im_online::sr25519::AuthorityId as ImOnlineId;
 use pallet_session::historical as pallet_session_historical;
 pub use pallet_transaction_payment::{CurrencyAdapter, Multiplier, TargetedFeeAdjustment};
 use pallet_transaction_payment::{FeeDetails, RuntimeDispatchInfo};
+use pallet_nfts::PalletFeatures;
 use sp_api::impl_runtime_apis;
 use sp_authority_discovery::AuthorityId as AuthorityDiscoveryId;
 use sp_consensus_grandpa::AuthorityId as GrandpaId;
@@ -301,6 +302,7 @@ impl InstanceFilter<RuntimeCall> for ProxyType {
 				c,
 				RuntimeCall::Balances(..) |
 					RuntimeCall::Assets(..) |
+					RuntimeCall::Nfts(..) |
 					RuntimeCall::Indices(pallet_indices::Call::transfer { .. })
 			),
 			ProxyType::Governance =>
@@ -1155,6 +1157,49 @@ impl pallet_asset_conversion::Config for Runtime {
 }
 
 parameter_types! {
+	pub const CollectionDeposit: Balance = 100 * DOLLARS;
+	pub const ItemDeposit: Balance = 1 * DOLLARS;
+	pub const ApprovalsLimit: u32 = 20;
+	pub const ItemAttributesApprovalsLimit: u32 = 20;
+	pub const MaxTips: u32 = 10;
+	pub const MaxDeadlineDuration: BlockNumber = 12 * 30 * DAYS;
+}
+
+parameter_types! {
+	pub Features: PalletFeatures = PalletFeatures::all_enabled();
+	pub const MaxAttributesPerCall: u32 = 10;
+}
+
+impl pallet_nfts::Config for Runtime {
+	type RuntimeEvent = RuntimeEvent;
+	type CollectionId = u32;
+	type ItemId = u32;
+	type Currency = Balances;
+	type ForceOrigin = frame_system::EnsureRoot<AccountId>;
+	type CollectionDeposit = CollectionDeposit;
+	type ItemDeposit = ItemDeposit;
+	type MetadataDepositBase = MetadataDepositBase;
+	type AttributeDepositBase = MetadataDepositBase;
+	type DepositPerByte = MetadataDepositPerByte;
+	type StringLimit = ConstU32<256>;
+	type KeyLimit = ConstU32<64>;
+	type ValueLimit = ConstU32<256>;
+	type ApprovalsLimit = ApprovalsLimit;
+	type ItemAttributesApprovalsLimit = ItemAttributesApprovalsLimit;
+	type MaxTips = MaxTips;
+	type MaxDeadlineDuration = MaxDeadlineDuration;
+	type MaxAttributesPerCall = MaxAttributesPerCall;
+	type Features = Features;
+	type OffchainSignature = Signature;
+	type OffchainPublic = <Signature as traits::Verify>::Signer;
+	type WeightInfo = pallet_nfts::weights::SubstrateWeight<Runtime>;
+	#[cfg(feature = "runtime-benchmarks")]
+	type Helper = ();
+	type CreateOrigin = AsEnsureOriginWithArg<EnsureSigned<AccountId>>;
+	type Locker = ();
+}
+
+parameter_types! {
 	pub TreasuryAccount: AccountId = Treasury::account_id();
 }
 
@@ -1401,6 +1446,9 @@ mod runtime {
 	#[runtime::pallet_index(42)]
 	pub type Mmr = pallet_mmr;
 
+	#[runtime::pallet_index(47)]
+	pub type Nfts = pallet_nfts;
+
 	#[runtime::pallet_index(51)]
 	pub type TransactionStorage = pallet_transaction_storage;
 
@@ -1601,6 +1649,7 @@ mod benches {
 		[pallet_transaction_storage, TransactionStorage]
 		[pallet_treasury, Treasury]
 		[pallet_asset_rate, AssetRate]
+		[pallet_nfts, Nfts]
 		[pallet_utility, Utility]
 		[pallet_evm, EVM]
 	);
@@ -1886,6 +1935,50 @@ impl_runtime_apis! {
 
 		fn get_reserves(asset1: NativeOrWithId<u32>, asset2: NativeOrWithId<u32>) -> Option<(Balance, Balance)> {
 			AssetConversion::get_reserves(asset1, asset2).ok()
+		}
+	}
+
+	impl pallet_nfts_runtime_api::NftsApi<Block, AccountId, u32, u32> for Runtime {
+		fn owner(collection: u32, item: u32) -> Option<AccountId> {
+			<Nfts as Inspect<AccountId>>::owner(&collection, &item)
+		}
+
+		fn collection_owner(collection: u32) -> Option<AccountId> {
+			<Nfts as Inspect<AccountId>>::collection_owner(&collection)
+		}
+
+		fn attribute(
+			collection: u32,
+			item: u32,
+			key: Vec<u8>,
+		) -> Option<Vec<u8>> {
+			<Nfts as Inspect<AccountId>>::attribute(&collection, &item, &key)
+		}
+
+		fn custom_attribute(
+			account: AccountId,
+			collection: u32,
+			item: u32,
+			key: Vec<u8>,
+		) -> Option<Vec<u8>> {
+			<Nfts as Inspect<AccountId>>::custom_attribute(
+				&account,
+				&collection,
+				&item,
+				&key,
+			)
+		}
+
+		fn system_attribute(
+			collection: u32,
+			item: Option<u32>,
+			key: Vec<u8>,
+		) -> Option<Vec<u8>> {
+			<Nfts as Inspect<AccountId>>::system_attribute(&collection, item.as_ref(), &key)
+		}
+
+		fn collection_attribute(collection: u32, key: Vec<u8>) -> Option<Vec<u8>> {
+			<Nfts as Inspect<AccountId>>::collection_attribute(&collection, &key)
 		}
 	}
 

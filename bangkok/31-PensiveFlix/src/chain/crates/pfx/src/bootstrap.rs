@@ -1,9 +1,9 @@
-use super::{expert, expert::PflixExpertStub, greeting, types::PflixProperties, Pflix, PflixSafeBox, RpcService};
-use anyhow::{anyhow, Result};
+use super::{expert, Pflix, PflixSafeBox, RpcService};
+use anyhow::Result;
 use pfx_api::{crpc::pflix_api_server::PflixApiServer, ecall_args::InitArgs};
 use serde::{de::DeserializeOwned, Serialize};
 use std::net::SocketAddr;
-use tokio::sync::{mpsc, oneshot};
+use tokio::sync::mpsc;
 use tonic::transport::Server;
 
 pub async fn run_pflix_server<Platform>(
@@ -42,17 +42,17 @@ where
 
     pfx.lock(true, true).expect("Failed to lock Pflix").init(init_args);
     info!("Enclave init OK");
+    info!("Pflix internal server will listening on {}", inner_listener_addr);
 
     tokio::spawn(expert::run(pfx.clone(), expert_cmd_rx));
 
-    let pflix_service = RpcService::new_with(pfx);
-    info!("Pflix internal server will listening on {}", inner_listener_addr);
+    let pflix_service = PflixApiServer::new(RpcService::new_with(pfx))
+        .max_decoding_message_size(MAX_DECODED_MSG_SIZE)
+        .max_encoding_message_size(MAX_ENCODED_MSG_SIZE);
+    let pflix_service = tonic_middleware::MiddlewareFor::new(pflix_service, middleware::MetricsMiddleware::default());
+
     Server::builder()
-        .add_service(
-            PflixApiServer::new(pflix_service)
-                .max_decoding_message_size(MAX_DECODED_MSG_SIZE)
-                .max_encoding_message_size(MAX_ENCODED_MSG_SIZE),
-        )
+        .add_service(pflix_service)
         .serve(inner_listener_addr)
         .await
         .expect("Pflix server catch panic");
@@ -61,47 +61,36 @@ where
     Ok(())
 }
 
-pub(crate) fn spawn_external_server<Platform>(
-    pflix: &mut Pflix<Platform>,
-    pflix_props: PflixProperties,
-    shutdown_rx: oneshot::Receiver<()>,
-    stopped_tx: oneshot::Sender<()>,
-) -> Result<()> {
-    let listener_addr = {
-        let ip = pflix.args.ip_address.as_ref().map_or("0.0.0.0", String::as_str);
-        let port = pflix.args.public_port.unwrap_or(19999);
-        format!("{ip}:{port}").parse().unwrap()
+mod middleware {
+    use std::time::Instant;
+    use tonic::{
+        async_trait,
+        body::BoxBody,
+        codegen::http::{Request, Response},
     };
+    use tonic_middleware::{Middleware, ServiceBound};
 
-    let expert_cmd_sender = pflix
-        .expert_cmd_sender
-        .clone()
-        .ok_or(anyhow!("the pflix.expert_cmd_sender must be set"))?;
+    #[derive(Default, Clone)]
+    pub struct MetricsMiddleware;
 
+    #[async_trait]
+    impl<S> Middleware<S> for MetricsMiddleware
+    where
+        S: ServiceBound,
+        S::Future: Send,
     {
-        use rsa::pkcs1::EncodeRsaPublicKey;
-        debug!(
-            "Successfully load podr2 key public key is: {:?}",
-            hex::encode(&pflix_props.master_key.rsa_public_key().to_pkcs1_der().unwrap().as_bytes())
-        );
+        async fn call(&self, req: Request<BoxBody>, mut service: S) -> Result<Response<BoxBody>, S::Error> {
+            let start_time = Instant::now();
+            let req_uri = req.uri().clone();
+            let result = service.call(req).await?;
+            let elapsed_time = start_time.elapsed();
+            tracing::debug!(
+                "handle request: {:?} processed in {:?}, status: {:?}",
+                req_uri,
+                elapsed_time,
+                result.status()
+            );
+            Ok(result)
+        }
     }
-
-    tokio::spawn(async move {
-        let pflix_expert = PflixExpertStub::new(pflix_props, expert_cmd_sender);
-        let pubkeys = greeting::new_greeting_server(pflix_expert);
-
-        let mut server = Server::builder();
-        let router = server.add_service(pubkeys);
-        info!("the external server will listening on {}", listener_addr);
-        let result = router
-            .serve_with_shutdown(listener_addr, async {
-                shutdown_rx.await.ok();
-                info!("external server starts shutting down");
-            })
-            .await
-            .map_err(|e| anyhow!("start external server failed: {e}"))?;
-        stopped_tx.send(()).ok();
-        Ok::<(), anyhow::Error>(result)
-    });
-    Ok(())
 }

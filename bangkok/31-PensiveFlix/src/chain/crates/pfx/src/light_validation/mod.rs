@@ -23,11 +23,11 @@ pub mod storage_proof;
 mod types;
 
 use anyhow::{Context, Result};
-use pfx_serde_more as more;
 use error::JustificationError;
 #[cfg(not(test))]
 use im::OrdMap as BTreeMap;
-use justification::GrandpaJustification;
+use pfx_serde_more as more;
+// use justification::GrandpaJustification;
 use log::{error, trace};
 use serde::{Deserialize, Serialize};
 #[cfg(test)]
@@ -36,7 +36,7 @@ use std::collections::BTreeMap;
 use std::{fmt, marker::PhantomData};
 use storage_proof::{StorageProof, StorageProofChecker};
 
-use finality_grandpa::voter_set::VoterSet;
+// use finality_grandpa::voter_set::VoterSet;
 use num_traits::AsPrimitive;
 use parity_scale_codec::{Decode, Encode};
 use sp_consensus_grandpa::{AuthorityId, AuthorityWeight, SetId};
@@ -120,7 +120,7 @@ where
 
         self.num_bridges = new_bridge_id;
         self.grandpa_note_stalled = grandpa_note_stalled;
-        
+
         Ok(new_bridge_id)
     }
 
@@ -135,7 +135,7 @@ where
         bridge_id: BridgeId,
         header: BlockHeader,
         ancestry_proof: Vec<BlockHeader>,
-        grandpa_proof: EncodedJustification,
+        _grandpa_proof: EncodedJustification,
     ) -> Result<()> {
         let bridge = self
             .tracked_bridges
@@ -146,30 +146,9 @@ where
         let last_header = &bridge.last_finalized_block_header;
         verify_ancestry(ancestry_proof, last_header.hash(), &header)?;
 
-        let block_hash = header.hash();
-        let block_num = *header.number();
-
         // Check that the header has been finalized
         let voters = &bridge.current_set;
-        let voter_set = VoterSet::new(voters.list.clone()).unwrap();
         let voter_set_id = voters.id;
-
-        // We don't really care about the justification, as long as it's valid
-        match GrandpaJustification::<<T as frame_system::Config>::Block>::decode_and_verify_finalizes(
-            &grandpa_proof,
-            (block_hash, block_num.into()),
-            voter_set_id,
-            &voter_set,
-            self.grandpa_note_stalled,
-        ) {
-            Ok(_) => {},
-            Err(JustificationError::JustificationDecode) if self.grandpa_note_stalled => {
-                log::debug!("grandpa_note_stalled is true, ignore JustificationDecode error");
-            },
-            Err(e) => {
-                return Err(anyhow::Error::msg(e));
-            },
-        }
 
         match self.tracked_bridges.get_mut(&bridge_id) {
             Some(bridge_info) => {

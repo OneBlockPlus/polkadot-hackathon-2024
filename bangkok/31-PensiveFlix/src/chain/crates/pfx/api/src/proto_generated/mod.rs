@@ -7,8 +7,6 @@ mod tests;
 
 pub use pflix_rpc::*;
 
-pub const PROTO_DEF: &str = include_str!("../../proto/pflix_rpc.proto");
-
 /// Helper struct used to compat the output of `get_info` for logging.
 #[derive(Debug)]
 pub struct Info<'a> {
@@ -49,10 +47,6 @@ impl PflixInfo {
 
     pub fn public_key(&self) -> Option<&str> {
         self.system.as_ref().map(|s| s.public_key.as_str())
-    }
-
-    pub fn is_external_server_running(&self) -> bool {
-        self.external_server_state() == crate::crpc::ExternalServerState::Serving
     }
 
     pub fn is_master_key_holded(&self) -> bool {
