@@ -20,6 +20,9 @@ The planned milestone deliveries within the hacking period of this hackathon inc
 - [X] UI Updates for NeuroZK
 - [ ] ZK verfier pallet - substrate pallet logic to verify and approve recieved ZK proofs.
 
+## Schedule
+Please check main branch of all the listed repositories for code update timeline (All discussed features have been implemented in the hacking period)
+
 ## ZK Snark proof verification
 For this hackathon, we improvised our existing system with a decentralized proof verification system to incorporate an on-chain ZK Snark system for verifying AI inference models executed in an off-chain environment. The main components will include the Cyborg AppChain (Deployed on Tanssi's Dancebox testnet), Cyborg Worker node (A custom node implementation to manage running offchain tasks and streaming proofs into pallets for verification), TEE Oracle, and a testing suite.
 
