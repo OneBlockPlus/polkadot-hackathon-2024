@@ -182,6 +182,11 @@ def align_all_chromosomes(vcf_genome_filepath):
         align_chromosomes(chr_ref, chr_id, vcf_genome_filepath)
 
 
+def decode_hex_to_float(hex_string: str) -> np.ndarray:
+    b = bytes.fromhex(hex_string)
+    return np.frombuffer(b, np.float64)
+
+
 def make_chromosomal_fingerprint(chromosome: np.ndarray) -> np.ndarray:
     """
     Input is list of all human bases in a specific chromosome (n, chromosome).
