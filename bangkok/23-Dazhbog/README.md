@@ -1,5 +1,7 @@
 # Dazhbog: Decentralized Perpetual Futures on Polkadot
 
+![](doc/images/dazhbog-logo.png){ width="500" height="184" style="display: block; margin: 0 auto" }
+
 **Dazhbog** is a plug-and-play solution for a decentralized perpetual futures exchange that can be integrated into any parachain within the Polkadot ecosystem which supports ```contract-pallet```. It utilizes Ink! smart contracts to facilitate peer-to-peer margin trading of perpetual contracts. The platform  allows users to trade perpetual futures contracts in a decentralized manner, leveraging  the security, scalability, and interoperability of the Polkadot network. By integrating into  their parachains, builders aim to provide a seamless and efficient trading experience  without relying on centralized intermediaries. 
 
 We already have a smart contract repository set up on [link](https://github.com/Ceres-Blockchain-Solutions/dazhbog-contracts/tree/polkadot-hackathon-2024).
@@ -10,9 +12,10 @@ We already have a smart contract repository set up on [link](https://github.com/
 
 **Project creation date: 16.05.2024.**
 
-We developed Dazhbog for the [Polkadot Prodigy hackathon](https://x.com/PolkadotProdigy/status/1800506214658494794), using the same repository as in this current hackathon. Our project won first place in the DeFi category. Following this success, we applied for Level 2 funding through the Web3 Foundation (W3F) grants, but our proposal was rejected. Subsequently, we submitted it to [OpenGov](https://polkadot.polkassembly.io/referenda/1043) for community consideration. However, during the decision period, the proposal failed despite receiving 60% Ayes within the regular voting window.
+We developed Dazhbog for the [Polkadot Prodigy hackathon](https://www.polkadotprodigy.com/), using the same repository as in this current hackathon. Our project won first place in the DeFi category.
 
--- the problem the project try to resolve
+Here is the [link](https://x.com/PolkadotProdigy/status/1800506214658494794) of the Twitter post where the winner was announced. This achievement demonstrates the extensive research conducted and the project's potential. The recognition highlights the traction Dazhbog has gained within the Polkadot community, further motivating our team to pursue its development.
+
 
 ## Features planned for the Hackathon
 
@@ -35,7 +38,7 @@ Create backend in NestJS:
 - [x] Get and update price feed in Oracle contract
 
 
-## Architect
+## Architecture
 
 ![title](doc/images/architectureOverview.png)
 
