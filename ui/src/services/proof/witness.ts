@@ -15,13 +15,15 @@ export function generateWitnessRaw(par: MapParameters): {
       const t = par.placements[par.tiles[i]];
       if (t.name === 'road') {
         roads[i] = 1;
+        // occupied[i] = 1;
       }
-      for (let j = 0; j < t.tileWidth; j++) {
-        for (let k = 0; k < t.tileHeight; k++) {
-          occupied[i + k * par.mapColumns + j] =
-            par.tiles[i] * 10 + j + k * t.tileWidth;
-        }
-      }
+      occupied[i] = par.tiles[i] + 1;
+      // for (let j = 0; j < t.tileWidth; j++) {
+      //   for (let k = 0; k < t.tileHeight; k++) {
+      //     occupied[i + k * par.mapColumns + j] =
+      //       par.tiles[i] * 10 + j + k * t.tileWidth;
+      //   }
+      // }
     }
   }
 
