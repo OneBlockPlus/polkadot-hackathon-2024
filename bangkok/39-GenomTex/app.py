@@ -78,8 +78,10 @@ def dev_get_record(name: str):
 @app.route('/distance', methods=['GET'])
 def get_distances():
     
-    distances = [d['cos_dist']  for d in model.get_distances()]
+    distances = [d['cos_dist'] for d in model.get_distances()]
+    distances = list(set(distances))
     random.shuffle(distances)
+
     return jsonify(distances)
 
 
