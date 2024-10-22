@@ -24,6 +24,9 @@ Small business owners face significant barriers in adopting cryptocurrency payme
 
 2. [**Presentation** 📊](https://www.canva.com/design/DAGUUo3xttE/rfLqSz5kEDVIgn2BrrgZkg/edit?utm_content=DAGUUo3xttE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
+## Track and bounty
+- **Track:** Category 2: (Hot) Smart Contract, DeFi, AI, Layer2, DePIN, etc.
+- **Bounty:** Blockchain For Good
 
 ## 🛠️ Workflow
 ![Relay Workflow](https://relay-4.gitbook.io/~gitbook/image?url=https%3A%2F%2F3350247068-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FmKH6AuDh7t8iGaxe7Xsd%252Fuploads%252F7BK8IKJfEtF41wSfd8Wx%252FArchitecture%2520Overview.png%3Falt%3Dmedia%26token%3D3a36e80f-3ccd-4872-832d-2b96dcb0ad23&width=768&dpr=4&quality=100&sign=8c7ca175&sv=1)
