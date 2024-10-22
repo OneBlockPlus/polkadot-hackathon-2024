@@ -16,4 +16,16 @@
 defineOptions({
   name: 'MainLayout',
 });
+
+import { useMeta } from 'quasar';
+
+useMeta({
+  // JS tags
+  script: {
+    snarkjs: {
+      // type: 'application/javascript',
+      src: '/snarkjs.min.js',
+    },
+  },
+});
 </script>

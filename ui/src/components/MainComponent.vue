@@ -33,10 +33,22 @@
       <q-btn label="Save" @click="save()" color="secondary"></q-btn>
       <q-btn label="Load" @click="load()" color="secondary"></q-btn>
       <q-btn label="Generate" @click="generate()" color="primary"></q-btn>
+      <q-btn label="Prove" @click="prove()" color="secondary"></q-btn>
       <template v-for="(_layer, index) in layers" :key="index">
         <br />
         <q-input
           v-model="layers[index]"
+          type="textarea"
+          readonly
+          autogrow
+          style="font-family: monospace; min-width: 600px"
+        />
+      </template>
+      <template v-if="proofString">
+        <h6>Proof:</h6>
+        <br />
+        <q-input
+          v-model="proofString"
           type="textarea"
           readonly
           autogrow
@@ -54,6 +66,7 @@ import { MapParameters } from 'src/services/map/definitions';
 import { mountCanvas } from 'src/services/map/canvas';
 import { redrawMap } from 'src/services/map/drawMap';
 import { generateWitnessRaw } from 'src/services/proof/witness';
+import { getLayoutProof } from 'src/services/proof/gameProof';
 
 const myCanvas = useTemplateRef('myCanvas');
 
@@ -109,13 +122,40 @@ function load() {
   }
 }
 
+const witnessValues = ref([]);
 function generate() {
-  const { witness, rate } = generateWitnessRaw(par.value);
+  const { steps, rate, witness } = generateWitnessRaw(par.value);
   productionRate.value = rate;
 
-  layers.value = Object.entries(witness).map(
+  layers.value = Object.entries(steps).map(
     ([key, value]) => `${key}\n${value}`,
   );
+
+  witnessValues.value = witness;
+}
+
+const proof = ref({});
+const proofString = ref('');
+async function prove() {
+  $q.loading.show({
+    message: 'Getting proof...',
+  });
+
+  try {
+    proof.value = await getLayoutProof(witnessValues.value);
+    proofString.value = JSON.stringify(proof.value, null, 4);
+    $q.notify({
+      type: 'positive',
+      message: 'Proof generated successfully!',
+    });
+  } catch (error) {
+    $q.notify({
+      type: 'negative',
+      message: 'Failed to generate proof: ' + error,
+    });
+  } finally {
+    $q.loading.hide();
+  }
 }
 </script>
 

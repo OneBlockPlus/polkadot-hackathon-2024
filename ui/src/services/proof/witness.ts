@@ -1,10 +1,11 @@
 import { MapParameters } from '../map/definitions';
 
 export function generateWitnessRaw(par: MapParameters): {
-  witness: Record<string, string>;
+  steps: Record<string, string>;
   rate: number;
+  witness: number[];
 } {
-  const witness: Record<string, string> = {};
+  const steps: Record<string, string> = {};
   // == generate the 1st layer: placement verification layer
 
   const occupied: Record<number, number> = {};
@@ -124,7 +125,7 @@ export function generateWitnessRaw(par: MapParameters): {
   // calculate production rate of machines
   // find connected storage
 
-  witness['Placement verification: (occupied)'] = formatMatrix(
+  steps['Placement verification: (occupied)'] = formatMatrix(
     occupied,
     par.mapColumns,
     par.mapRows,
@@ -138,32 +139,28 @@ export function generateWitnessRaw(par: MapParameters): {
   //   2,
   // );
 
-  witness['Road connectivity verification: (components)'] = formatMatrix(
+  steps['Road connectivity verification: (components)'] = formatMatrix(
     components,
     par.mapColumns,
     par.mapRows,
     2,
   );
 
-  witness['Road connectivity verification: (components map)'] =
+  steps['Road connectivity verification: (components map)'] =
     JSON.stringify(componentMap);
 
-  witness['Road connectivity verification: (connected components)\n'] =
+  steps['Road connectivity verification: (connected components)\n'] =
     JSON.stringify(connectedUniqueMachineIds);
 
-  witness['Production rate verification: (component type count)'] =
+  steps['Production rate verification: (component type count)'] =
     JSON.stringify(machineTypeCount, null, 4);
 
-  witness['Witness'] = JSON.stringify(
-    new Array(par.mapRows * par.mapColumns)
-      .fill(0)
-      .map((_, i) => (occupied[i] == null ? 0 : occupied[i])),
-  );
-  // == generate the 3rd layer: road connectivity layer
+  const witness = new Array(par.mapRows * par.mapColumns)
+    .fill(0)
+    .map((_, i) => (occupied[i] == null ? 0 : occupied[i]));
+  steps['Witness'] = JSON.stringify(witness);
 
-  // == generate the 4th layer: storage verification layer
-
-  return { witness, rate };
+  return { steps, rate, witness };
 }
 
 function formatMatrix(

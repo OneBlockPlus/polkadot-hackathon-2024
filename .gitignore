@@ -37,3 +37,5 @@ pot_final.ptau
 *_obj/
 out/
 cache/
+ui/public/snarkjs.min.js
+ui/public/circuits/

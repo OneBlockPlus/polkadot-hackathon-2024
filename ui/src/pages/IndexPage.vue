@@ -1,11 +1,11 @@
 <template>
   <q-page class="row">
-    <example-component active></example-component>
+    <main-component active></main-component>
   </q-page>
 </template>
 
 <script setup lang="ts">
-import ExampleComponent from 'components/ExampleComponent.vue';
+import MainComponent from 'components/MainComponent.vue';
 
 defineOptions({
   name: 'IndexPage',
