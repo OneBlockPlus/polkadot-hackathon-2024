@@ -45,8 +45,7 @@ Small business owners face significant barriers in adopting cryptocurrency payme
 - NFC card details generation
 - Consumer device ordering interface
 - Transaction history and monitoring
-  
-[**Frontend Deployment** 💻](https://relay-console.vercel.app/)
+- [Frontend Deployment 💻](https://relay-console.vercel.app/)
 
 ### ⚙️ Relay-api Server
 - Secure handling of partial mnemonics/keys
