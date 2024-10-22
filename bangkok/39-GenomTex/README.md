@@ -4,13 +4,18 @@ The project aims to store an individual's DNA information indefinitely, tracking
 the DNA to detect potential cancerous gene variants. It also generates a DNA fingerprint to ensure
 the individual's identity remains unambiguous.
 
-## Installation
+## Background
 
-`pip install -r requirements.txt`
+A company specializing in DNA analysis.
 
-run flask web server for front-end access of our data
+## Problem to be solved
 
-`python run app.py`
+We seeked for decentralized storage solution for the DNA files of the users. Obsticles to solve:
+
+1. DNA files are LARGE (approx 65GB).
+2. Security of such sensitive files stored on a public decentralized storage.
+3. Problem of digital individuality and identity.
+4. Binding of the DNA files to users.
 
 ## What we have for the presentation
 
@@ -19,6 +24,14 @@ run flask web server for front-end access of our data
   - code to work with the blockchain storage
   - functional front-end and back-end
   - code to correctly calculate changes for the entire DNA reconstruction
+
+## Installation
+
+`pip install -r requirements.txt`
+
+Run flask web server for front-end access of our data.
+
+`python run app.py`
 
 ## Demo images
 
