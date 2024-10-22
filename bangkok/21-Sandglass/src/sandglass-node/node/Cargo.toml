@@ -66,6 +66,8 @@ node-template-runtime = { path = "../runtime" }
 # CLI-specific dependencies
 try-runtime-cli = { optional = true, git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0" }
 
+primitives = { path = "../primitives", default-features = false }
+
 [build-dependencies]
 substrate-build-script-utils = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0" }
 

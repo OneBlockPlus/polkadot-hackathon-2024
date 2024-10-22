@@ -164,7 +164,7 @@ impl pallet_assets::Config for Test {
 
 pub type AdaptedBasicCurrency = BasicCurrencyAdapter<Test, Balances, i64, u64>;
 parameter_types! {
-	pub const NativeCurrencyId: CurrencyId = CurrencyId::VToken(TokenSymbol::DOT);
+	pub const NativeCurrencyId: CurrencyId = CurrencyId::Token(TokenSymbol::DOT);
 }
 
 impl pallet_currencies::Config for Test {
@@ -230,6 +230,17 @@ impl ExtBuilder {
 		.assimilate_storage(&mut storage)
 		.ok();
 
+		orml_tokens::GenesisConfig::<Test> {
+			balances: vec![
+				(0, CurrencyId::VToken(TokenSymbol::BTC), 5_000),
+				(1, CurrencyId::VToken(TokenSymbol::BTC), 5_000),
+				(2, CurrencyId::VToken(TokenSymbol::BTC), 5_000),
+				(3, CurrencyId::VToken(TokenSymbol::BTC), 5_000),
+			],
+		}
+		.assimilate_storage(&mut storage)
+		.ok();
+
 		let mut ext = sp_io::TestExternalities::new(storage);
 		ext.execute_with(|| System::set_block_number(1));
 		ext
@@ -240,7 +251,7 @@ pub fn new_test_ext() -> sp_io::TestExternalities {
 	ExtBuilder::default().build()
 }
 
-pub fn zk_events() -> Vec<Event<Test>> {
+pub fn _zk_events() -> Vec<Event<Test>> {
 	System::events()
 		.into_iter()
 		.map(|r| r.event)
