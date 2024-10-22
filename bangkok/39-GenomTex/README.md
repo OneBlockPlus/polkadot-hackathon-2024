@@ -70,14 +70,18 @@ You can use [ipfs scan](https://ipfs-scan.io) to verify that the file is stored 
 Explanation of Dist to RED parameter in the Our Application Image above. Distance represents a difference from *hg38* reference genome data. This distance value is computed in a way so it is likely unique for the user and we can visualize the difference from hg38. See the 
 
 
-Where our project really shines is in DNA fingerprinting. Jakub, a machine learning and AI expert, developed a custom model that assigns a unique value known as a fingerprint. This fingerprint is unique to every user and can serve as a distinct identifier.
+Where our project really shines is in **DNA fingerprinting**. Jakub created a custom model that assigns a unique value that we call **DNA Fingerprint**. This fingerprint is unique to every user and can serve as a distinct identifier. *DNA Fingerprint* is a unique string.
 
-Unlike traditional biometric fingerprints used for verification on smartphones, DNA has the unique property of producing similar fingerprint values for geneticaly related individuals. This behavior unlocks new use cases.
+![DNA Fingerprinting Diagram](showcase/image-5.png)
 
-**Simplified Data:** We would like to point out that many of the values are simplified. The reason is simple: DNA data are very private, and we do not want to expose any sensitive information that we hold.
+Unlike traditional biometric fingerprints used for verification (e.g. on smartphones), DNA has the unique property of producing similar fingerprint values for geneticaly related individuals. This behavior unlocks new use cases. Behaviour of producing very distinct values for unrelated individuals stay, as you expect.
 
-- The fingerprint model was trained and tested on smaller samples than usual. (One sample of full genome data is 65 GB, making it expensive for us to train the model at this time, especially for the purpose of the hackathon). However, we believe that our data is completely suitable for demonstration purposes and more importantely algorithms and codebase overall is robust.
-- Records of dist_cos in database is simplified. No public link to complete users/DNA records. Complete record is available at Michael Taylor.
+**Simplified Data:** We would like to point out that some data are simplified/anonymized. The reason is simple: DNA data are very private, and we do not want to expose any sensitive information that we hold. We outlined what is modified bellow:
+
+- Michael Taylor is pseudonym of a real person. The data of Machael are real but his identity is anonymous.
+- The fingerprint model was trained and tested on smaller samples than usual (one sample of full genome data is 65 GB, making it expensive for us to train the model at this time, especially for the purpose of the hackathon). However, we believe that our data is completely suitable for demonstration purposes and more importantely algorithms and codebase overall is robust.
+- Records of `dist_cos` in database is simplified. No public link to complete users/DNA records. Complete record is available only at "Michael Taylor".
+
 
 
 ## Storage
