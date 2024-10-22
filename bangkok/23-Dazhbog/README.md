@@ -6,6 +6,7 @@
 
 We already have a smart contract repository set up on [link](https://github.com/Ceres-Blockchain-Solutions/dazhbog-contracts/tree/polkadot-hackathon-2024).
 
+
 ## Introduction
 
 **Dazhbog** - Decentralized Perpetual Futures Exchange
@@ -31,6 +32,8 @@ Create frontend in React:
 - [x] Chart for following the price
 - [x] Interface for open/close positions
 - [x] List all wallet positions
+
+Frontend dapp deployed on: https://dazhbog.netlify.app/
 
 Create backend in NestJS:
 - [x] Follow all user positions
@@ -76,6 +79,6 @@ Later, we built a Distributor contract that enables liquidity providers and the 
 ## Track and bounty
 **Track:** Category 2: (Hot) Smart Contract, DeFi, AI, Layer2, DePIN, etc.
 ### Material for Demo
-1. Demo Video [link to Youtube]
+1. [Demo Video](https://docsend.com/view/5zfxbc66spk7yvxn)
 2. [Dazhbog Pitch Deck](https://docsend.com/view/azxqmnarkhu8yxhh)
 3. [Dazhbog Whitepaper](https://docsend.com/view/iszpqea9f8fae3xy)
