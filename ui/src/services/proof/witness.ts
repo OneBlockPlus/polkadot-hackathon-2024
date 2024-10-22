@@ -143,11 +143,13 @@ export function generateWitnessRaw(par: MapParameters): {
     2,
   );
 
-  // layers.value[2] =
-  //   'Road connectivity verification: (component map)\n' +
-  //   JSON.stringify(componentMap, null, 4);
+  witness['Road connectivity verification: (components map)'] =
+    JSON.stringify(componentMap);
 
-  witness['Road connectivity verification: (component type count)'] =
+  witness['Road connectivity verification: (connected components)\n'] =
+    JSON.stringify(connectedUniqueMachineIds);
+
+  witness['Production rate verification: (component type count)'] =
     JSON.stringify(machineTypeCount, null, 4);
   // == generate the 3rd layer: road connectivity layer
 
