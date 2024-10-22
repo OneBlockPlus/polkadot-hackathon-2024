@@ -1,0 +1,15 @@
+{
+  "name": "dark-factory-contracts",
+  "version": "0.0.1",
+  "description": "",
+  "author": "icerdesign (liangshuang@sutu.tech)",
+  "license": "MIT",
+  "scripts": {
+    "build:contracts": "forge build && typechain --target ethers-v6 --out-dir ../ui/src/contracts out/**/*.json",
+    "deploy:contracts": "bash ./scripts/deploy.sh"
+  },
+  "devDependencies": {
+    "@typechain/ethers-v6": "^0.4.0",
+    "typechain": "^8.2.0"
+  }
+}

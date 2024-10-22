@@ -6,6 +6,8 @@
   "author": "Icer Liang <liangshuang@sutu.tech>",
   "private": true,
   "workspaces": [
+    "circuits",
+    "contracts",
     "ui"
   ]
 }
