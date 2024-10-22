@@ -20,26 +20,21 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: 'Sandglass',
-  description: 'Full-Stack DApp Boilerplate for ink! Smart Contracts',
+  description: 'Sandglass ',
   metadataBase: new URL(env.url),
   robots: env.isProduction ? 'all' : 'noindex,nofollow',
   openGraph: {
     type: 'website',
     locale: 'en',
     url: env.url,
-    siteName: 'ink!athon Boilerplate',
+    siteName: 'Sandglass',
     images: [
       {
-        url: '/images/inkathon-og-banner.jpg',
+        url: '/images/logo.png',
         width: 1280,
         height: 640,
       },
     ],
-  },
-  twitter: {
-    site: '@scio_xyz',
-    creator: '@scio_xyz',
-    card: 'summary_large_image',
   },
 }
 
