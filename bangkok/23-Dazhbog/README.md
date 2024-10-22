@@ -1,6 +1,6 @@
 # Dazhbog: Decentralized Perpetual Futures on Polkadot
 
-![](doc/images/dazhbog-logo.png){ width="500" height="184" style="display: block; margin: 0 auto" }
+<img src="doc/images/dazhbog-logo.png" width="500" height="184" style="display: block; margin: 0 auto">
 
 **Dazhbog** is a plug-and-play solution for a decentralized perpetual futures exchange that can be integrated into any parachain within the Polkadot ecosystem which supports ```contract-pallet```. It utilizes Ink! smart contracts to facilitate peer-to-peer margin trading of perpetual contracts. The platform  allows users to trade perpetual futures contracts in a decentralized manner, leveraging  the security, scalability, and interoperability of the Polkadot network. By integrating into  their parachains, builders aim to provide a seamless and efficient trading experience  without relying on centralized intermediaries. 
 
@@ -40,7 +40,7 @@ Create backend in NestJS:
 
 ## Architecture
 
-![title](doc/images/architectureOverview.png)
+<img src="doc/images/architectureOverview.png" style="display: block; margin: 0 auto">
 
 [Miro board](https://miro.com/welcomeonboard/MnFxVEpES3RFVFZkeHliUkM5eVBFNVVUdXExVzJsbXhncEE3YU1kMUlqZGdPT09nNjVvT2dPR25Hdnh3bWRPd3wzNDU4NzY0NjAwODM1MTIzNDA5fDI=?share_link_id=236558705108).
 
