@@ -94,7 +94,9 @@ The implementation prototype we showcase in the demo video is built using the Hy
 
 ![Frame 26 (3)](https://github.com/user-attachments/assets/8523eb1a-e9ba-424e-a745-2fa53ea6cf2e)
 
-Clients can order products from our store DApp, which are processed by our storefront smart contract and passed to the warehouse smart contract. The warehouse contract assigns a robot for each operation. There are three robots in the setup: a picking robot, a packing robot, and a delivery robot, each powered by its own individual smart contract. The Moonbeam randomness precompile is used to select one robot from the fleet for each operation, a process known as load balancing. We offload this process to a serverless function to prevent excessive depletion of our randomness request deposit. Notably, all complex operations happening behind the scenes are batched using the batch precompile for smoother interactions at the client layer. Additionally, the call permit precompile is used to sponsor the client’s gas fees through a dispatcher account we’ve prepared.
+> 👉 [Find all code implementations here - code submission breakdown](https://github.com/OneBlockPlus/polkadot-hackathon-2024/tree/main/bangkok/49-HyperAgile/doc#dapp-demo-folder-description)
+
+Clients can order products from our store DApp, which are processed by our storefront smart contract and passed to the warehouse smart contract. The warehouse contract assigns a robot for each operation. There are three robots in the setup: a picking robot, a packing robot, and a delivery robot, each powered by its own individual smart contract. The Moonbeam randomness precompile is used to select one robot from the fleet for each operation, a process known as load balancing. We offload this process to a serverless function to prevent excessive depletion of our randomness request deposit. Notably, all complex operations happening behind the scenes are batched using the Moonbeam batch precompile for smoother interactions at the client layer. Additionally, the Moonbeam call permit precompile is used to sponsor the client’s gas fees through a dispatcher account we’ve prepared.
 
 With HyperAgile Hub, industries can directly plug in and play various professional simulators to test entire operations with Polkadot integration. For our demo, we designed a warehouse operation flow that includes picking, packing, and delivering. We built a simulation using Webots to simulate real-world physical robot operations and embedded it into our demo for seamless interaction with Moonbeam. For example, when a client orders a green cube, the picking order is assigned to a picking robot on Moonbeam, and the picking robot in the simulation will perform the task. After each robot completes its assigned task, it logs the action on Moonbeam, and the warehouse contract triggers the next operation.
 
@@ -117,6 +119,8 @@ To simplify the demonstration, our team utilized ngrok to establish a secure com
 We also replicated this functionality using our Webots simulation (hosted locally in Webots software) to control the robotic fleet. By creating an intermediate connectivity layer (via a Flask server) and utilizing the ngrok tunnel, we successfully recreated the same results as with the physical robot. You can see the full demonstration in the video!
 
 ![Frame 30](https://github.com/user-attachments/assets/8c109716-bc22-4f27-97d1-324b4c049fdb)
+
+> 👉 [Find all code implementations here - code submission breakdown](https://github.com/OneBlockPlus/polkadot-hackathon-2024/tree/main/bangkok/49-HyperAgile/doc#robot-sim-folder-description)
 
 
 ## 📅 Timeline for all features planned (completed)
@@ -145,9 +149,9 @@ We also replicated this functionality using our Webots simulation (hosted locall
 1. [Demo Video](https://www.youtube.com/watch?v=-Otl40WUKOo)
 2. [Our Demo DApp](https://hyper-agile.vercel.app/)
 
-### Code Submission Breakdown
+### Note: Code Submission Breakdown 📃
 
-For the convenience of the technical judges, our team has organized the code submission by breaking down the structure and providing descriptions for each folder and important files. You can access the documentation folder [here](/HyperAgile/doc#code-submission-breakdown).
+For the convenience of the technical judges, our team has organized the code submission by breaking down the structure and providing descriptions for each folder and important files. You can access the documentation folder [here](https://github.com/OneBlockPlus/polkadot-hackathon-2024/tree/main/bangkok/49-HyperAgile/doc#code-submission-breakdown).
 
 ## 🏆 Track and Bounty
 
@@ -159,15 +163,15 @@ For the convenience of the technical judges, our team has organized the code sub
 
 HyperAgile uses three moonbeam precompile to facilitate operations in a robotic automation setup, exploring the feasibility to implement in real-world industries workflow:
 
-1. **Moonbeam Randomness Precompile**: Using an on-chain randomness on Moonbeam for load balancing in robotic fleet is an innovative approach in the space. On-chain randomness generated on Moonbeam can be combined with more approaches (e.g., Weighted Random Assignment) for more dynamic industry environments.
+1. **Moonbeam Randomness Precompile**: Using an on-chain randomness on Moonbeam for load balancing in robotic fleet is an innovative approach in the space. On-chain randomness generated on Moonbeam can be combined with more approaches (e.g., Weighted Random Assignment) for more dynamic industry environments. [Source 1](https://github.com/OneBlockPlus/polkadot-hackathon-2024/blob/main/bangkok/49-HyperAgile/src/demo-dapp/src/class/HyperAgileContracts.ts#L51) / [Source 2](https://github.com/OneBlockPlus/polkadot-hackathon-2024/blob/main/bangkok/49-HyperAgile/src/demo-dapp/hyperagile-contracts/contracts/Warehouse.sol#L15) / [Source 3](https://github.com/OneBlockPlus/polkadot-hackathon-2024/blob/main/bangkok/49-HyperAgile/src/demo-dapp/src/app/order/page.tsx) / [Source 4](https://github.com/OneBlockPlus/polkadot-hackathon-2024/blob/main/bangkok/49-HyperAgile/src/demo-dapp/src/app/api/order/random-number/route.ts) / [Source 5](https://github.com/OneBlockPlus/polkadot-hackathon-2024/tree/main/bangkok/49-HyperAgile/src/demo-dapp/hyperagile-contracts/contracts/lib) / [Source 6](https://github.com/OneBlockPlus/polkadot-hackathon-2024/blob/main/bangkok/49-HyperAgile/src/demo-dapp/src/utils/generateRandomNumber.ts)
  
-2. **Moonbeam Batch Precompile:** In a supply chain operation (for example, our ecommerce-warehouse demo), each of the layers consist of complex operations, which means we might have lots of transactions in one certain process. Batching all transaction into one able to increase user experience, as well as easier management.
+2. **Moonbeam Batch Precompile:** In a supply chain operation (for example, our ecommerce-warehouse demo), each of the layers consist of complex operations, which means we might have lots of transactions in one certain process. Batching all transaction into one able to increase user experience, as well as easier management. [Source 1](https://github.com/OneBlockPlus/polkadot-hackathon-2024/blob/main/bangkok/49-HyperAgile/src/demo-dapp/src/app/home/store/OrderForm.tsx#L74) / [Source 2](https://github.com/OneBlockPlus/polkadot-hackathon-2024/blob/main/bangkok/49-HyperAgile/src/demo-dapp/src/utils/functionEncoder.ts#L22)
     
-3. **Moonbeam Call Permit Precompile:** It is a good alternative to a paymaster implementation on Moonbeam. In our demo, we use a call permit in our client layer frontend (which is our store DApp) to sponsor the gas fee with a dispatcher EOA. Client just have to pay for their product. It is also a good idea to set up a call-and-dispatch mechanism in controlling our robotic fleet inside our warehouse setup.
+3. **Moonbeam Call Permit Precompile:** It is a good alternative to a paymaster implementation on Moonbeam. In our demo, we use a call permit in our client layer frontend (which is our store DApp) to sponsor the gas fee with a dispatcher EOA. Client just have to pay for their product. It is also a good idea to set up a call-and-dispatch mechanism in controlling our robotic fleet inside our warehouse setup. [Source 1](https://github.com/OneBlockPlus/polkadot-hackathon-2024/blob/main/bangkok/49-HyperAgile/src/demo-dapp/src/utils/permitPrecompile.ts) / [Source 2](https://github.com/OneBlockPlus/polkadot-hackathon-2024/blob/main/bangkok/49-HyperAgile/src/demo-dapp/src/app/home/store/OrderForm.tsx#L74) / [Source 3](https://github.com/OneBlockPlus/polkadot-hackathon-2024/blob/main/bangkok/49-HyperAgile/src/demo-dapp/src/utils/functionEncoder.ts#L32)
 
 #### CESS Network
 
-Our team introduce a new innovative application of CESS Network product in the industry supply chain sector. For a complete cycle in the supply chain or production line (for example, order fulfilment in an ecommerce warehouse), HyperAgile will generate a lifecycle report JSON file which act as a comprehensive record consisting the info of each operations on the blockchain. The lifecycle report will be uploaded and stored on the DeOSS - Decentralised Object Storage Service of CESS network. Hence, industry can easily retrieve lifecycle reports from DeOSS in the future, ensuring the availability of tamper-proof records in the supply chain.
+Our team introduce a new innovative application of CESS Network product in the industry supply chain sector. For a complete cycle in the supply chain or production line (for example, order fulfilment in an ecommerce warehouse), HyperAgile will generate a lifecycle report JSON file which act as a comprehensive record consisting the info of each operations on the blockchain. The lifecycle report will be uploaded and stored on the DeOSS - Decentralised Object Storage Service of CESS network. Hence, industry can easily retrieve lifecycle reports from DeOSS in the future, ensuring the availability of tamper-proof records in the supply chain. [Source 1](https://github.com/OneBlockPlus/polkadot-hackathon-2024/blob/main/bangkok/49-HyperAgile/src/demo-dapp/src/services/DeOSS.ts)
 
 #### Blockchain for Good - Security and Transparency
 
