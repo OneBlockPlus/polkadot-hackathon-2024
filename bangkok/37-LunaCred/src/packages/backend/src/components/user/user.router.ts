@@ -8,6 +8,7 @@ import {
   // twitterCallback,
   linkUserTwitter,
   queueTest,
+  twitterCallback,
 } from './user.controller';
 import linkUserTwitterValidation from './user.validation';
 
@@ -18,10 +19,11 @@ router.get('/user/:address', readUser);
 router.get('/twitter-login/', getUserOauthUrl);
 router.post(
   '/link-twitter/',
-  [protectedByApiKey, validation(linkUserTwitterValidation)],
+  // [protectedByApiKey, validation(linkUserTwitterValidation)],
   linkUserTwitter,
 );
 // router.get('/callback', twitterCallback);
 router.get('/queue-test', queueTest);
+router.get('/callback', twitterCallback);
 
 export default router;

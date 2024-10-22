@@ -8,6 +8,8 @@ import logger from '@core/utils/logger';
 const apiKey = (req: Request, res: Response, next: NextFunction) => {
   let xApiKey: string;
   const token: string = config.xApiKey;
+  console.log(token, 'token');
+
   if (req.header('x-api-key')) {
     xApiKey = req.header('x-api-key').trim();
   }

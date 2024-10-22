@@ -11,6 +11,8 @@ const selectedContractStorageKey = "scaffoldEth2.selectedContract";
 
 export function DebugContracts() {
   const contractsData = useAllContracts();
+  console.log(contractsData, "contractsData");
+
   const contractNames = useMemo(() => Object.keys(contractsData) as ContractName[], [contractsData]);
 
   const [selectedContract, setSelectedContract] = useLocalStorage<ContractName>(

@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import infoIcon from "../../public/infoIcon.svg";
 import RankIcon from "../../public/rankIcon.svg";
+import { HydrationBoundary, QueryClient, dehydrate } from "@tanstack/react-query";
 import { motion } from "framer-motion";
+import { gql, request } from "graphql-request";
 import { PiCopySimpleBold } from "react-icons/pi";
 import ClipLoader from "react-spinners/ClipLoader";
 import { ToastContainer, toast } from "react-toastify";
@@ -20,6 +22,26 @@ interface UserStakeData {
 //   // Define any props needed for the Dashboard component
 
 // }
+const query = gql`
+  {
+    credibilityUpdateds(first: 5) {
+      id
+      user
+      newCredibility
+      blockNumber
+    }
+    deposits(first: 5) {
+      id
+      from
+      recipient
+      value
+    }
+  }
+`;
+const url = "https://api.studio.thegraph.com/query/92118/lunacred-subgraph/version/latest";
+async function fetchSubgraphData() {
+  return await request(url, query);
+}
 
 const Dashboard: React.FC = () => {
   const [isStaking, setIsStaking] = useState<boolean>(true);
@@ -29,6 +51,13 @@ const Dashboard: React.FC = () => {
   const [loadingStakeTx, setLoadingStakeTx] = useState<boolean>(false);
   const [loadingUnstakeTx, setLoadingUnstakeTx] = useState<boolean>(false);
   // const [isStaking, setIsStaking] = useState(true);
+  const queryClient = new QueryClient();
+  // await queryClient.prefetchQuery({
+  //   queryKey: ['data'],
+  //   async queryFn() {
+  //     return await request(url, query)
+  //   }
+  // })
 
   // const [userStakesData, setUserStakesData] = useState({});
   const [userRank, setUserRank] = useState(0);

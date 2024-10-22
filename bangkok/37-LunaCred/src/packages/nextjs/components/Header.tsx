@@ -25,7 +25,7 @@ export const menuLinks: HeaderMenuLink[] = [
   },
   {
     label: "Leaderboard",
-    href: "/dashboard",
+    href: "/link-twitter",
   },
   {
     label: "airdrop",
