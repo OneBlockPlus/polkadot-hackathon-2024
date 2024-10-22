@@ -40,6 +40,7 @@ def get_record(name: str):
         "ipfs_cid": record["ipfs_cid"],
         "mutations": record["mutations"],
         "cos_dist": "{:.8f}".format(record["cos_dist"]),
+        "dna_fingerprint": record["dna_fingerprint"][:16],
     } for record in records]
 
     return render_template('record.html', name=name, client=client, records=records)
@@ -68,6 +69,7 @@ def dev_get_record(name: str):
         "ipfs_cid": record["ipfs_cid"],
         "mutations": record["mutations"],
         "cos_dist": "{:.8f}".format(record["cos_dist"]),
+        "dna_fingerprint": record["dna_fingerprint"][:16],
     } for record in records]
 
     return render_template('dev_record.html', name=name, client=client, records=records)
