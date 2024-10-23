@@ -60,7 +60,6 @@ Features:
 
 - **Comprehensive Project Generation:** Unlike other AI coding tools that focus on generating individual code snippets, BubbleDOT creates entire project structures, saving developers significant time and effort.
 - **Better visualization and Understanding:** Provides a visual representation of generated code for better understanding.
-- **Decentralized Code Management:** The web3 integration provides a secure, transparent, and tamper-proof environment for managing and sharing source code, addressing concerns related to data privacy and intellectual property.
 
 ---
 
@@ -110,7 +109,7 @@ Features:
   **Email**: ngdtlong@gmail.com  
 
 - Nguyễn Hải Hoài Trinh  
-  **Role**: Marketing/Business Plan  
+  **Role**: Marketing/Business Planner   
   **Github**: https://github.com/Htrinhngg  
   **Email**: trinhnguyen.23122005@gmail.com  
 ---
