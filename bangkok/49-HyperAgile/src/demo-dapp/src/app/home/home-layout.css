@@ -1,0 +1,67 @@
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+
+    width: 100%;
+    padding: 3rem 4.5rem;
+
+    display: flex;
+    align-items: center;
+
+    background-color: var(--background);
+}
+
+nav > img.logo {
+    width: 4rem;
+    height: auto;
+}
+
+main.home-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main.home-layout > div.selector {
+    margin-top: 9.75rem;
+    padding: 1rem;
+
+    display: flex;
+    gap: 1rem;
+
+    border: 1px solid var(--text);
+    border-radius: 10px;
+}
+
+main.home-layout > div.selector > button {
+    cursor: pointer;
+}
+
+nav > div.wallet {
+    padding: 0.5rem 1rem;
+
+    margin-left: auto;
+
+    display: grid;
+    grid-template-columns: 2.25rem auto;
+    grid-template-rows: repeat(2, 1fr);
+    align-items: center;
+    gap: 0 0.5rem;
+
+    border: 1px solid var(--secondary);
+    border-radius: 5px;
+}
+
+nav > div.wallet > img {
+    width: 2.25rem;
+    height: auto;
+
+    grid-row: 1 / 3;
+}
+
+nav > div.wallet > h4,
+nav > div.wallet > h6 {
+    cursor: pointer;
+}

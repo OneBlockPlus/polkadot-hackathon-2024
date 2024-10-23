@@ -1,0 +1,34 @@
+.message {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    justify-content: center;
+    width: 100%;
+
+    &__text,
+    p {
+        margin-bottom: 20px;
+        max-width: 644px;
+        text-align: center;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    a {
+        text-decoration: underline;
+        &:hover,
+        &:focus {
+            text-decoration: none;
+        }
+    }
+}
+
+.message_faded {
+    &__text,
+    p {
+        opacity: 0.64;
+    }
+}

@@ -1,0 +1,32 @@
+.header {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    padding: 18px 16px;
+
+    @media only screen and (max-width: 767px) {
+        justify-content: space-between;
+    }
+}
+
+
+.role-changer {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-right: 6px;
+}
+.role-changer button.active {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-right: 6px;
+    font-weight: 900;
+    opacity: 1;
+    pointer-events: none;
+}
+
+.role-changer button {
+    opacity: 0.5;
+}
+

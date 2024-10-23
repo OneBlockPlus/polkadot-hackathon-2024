@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "paths": {
+    "/data-pool": {
+      "name": "/data-pool",
+      "lambdaFunction": "cognidexDataPoolLambda",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read"
+        ]
+      }
+    }
+  }
+}

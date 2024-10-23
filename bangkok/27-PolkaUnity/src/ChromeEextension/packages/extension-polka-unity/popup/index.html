@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SubWallet</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="bookmark" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="./css/index.css" media="all" />
+    <link rel="stylesheet" href="./util/font-awesome-4.7.0/css/font-awesome.min.css" media="all" />
+</head>
+
+<body>
+    <div id="hader">
+        <com-header txt="SubWallet"></com-header>
+    </div>
+    <div id="main">
+        <com-main-mint></com-main-mint>
+    </div>
+    <div id="transfer">
+        <com-main-transfer></com-main-transfer>
+    </div>
+    <div id="nav">
+        <com-nav txt="SubWallet"></com-nav>
+    </div>
+    
+
+
+    <script src="./util/jquery-1.4.3.js" charset="utf-8"></script>
+    <script src="./components/com-header.js" charset="utf-8" type="module"></script>
+    <script src="./components/com-nav.js" charset="utf-8" type="module"></script>
+    <script src="./components/com-coin-list.js" charset="utf-8" type="module"></script>
+    <script src="./components/com-main-mint.js" charset="utf-8" type="module"></script>
+    <script src="./components/transfer.js" charset="utf-8" type="module"></script>
+    <script src="./js/index.js" charset="utf-8" type="module"></script>
+
+</body>
+
+</html>

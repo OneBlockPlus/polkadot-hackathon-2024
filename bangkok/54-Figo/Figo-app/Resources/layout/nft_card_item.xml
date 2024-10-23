@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:background="@drawable/card"
+              android:layout_margin="8dp"
+              >
+
+    <ImageView
+            android:id="@+id/nft_image"
+            android:layout_width="140dp"
+            android:layout_height="200dp"
+            android:layout_marginLeft="-5dp"
+            />
+
+    <TextView
+            android:id="@+id/nft_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:layout_marginTop="8dp" />
+
+    <TextView
+            android:id="@+id/nft_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textColor="#333"
+            android:layout_marginTop="4dp" />
+</LinearLayout>

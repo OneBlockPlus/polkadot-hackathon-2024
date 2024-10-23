@@ -1,0 +1,7 @@
+# Substrate filess
+target/
+
+# Zombienet files
+polkadot
+polkadot-execute-worker
+polkadot-prepare-worker

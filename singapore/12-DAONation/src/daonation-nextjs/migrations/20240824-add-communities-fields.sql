@@ -1,0 +1,5 @@
+ALTER TABLE communities
+ADD COLUMN name VARCHAR(255),
+ADD COLUMN brandingColor VARCHAR(8),
+ADD COLUMN description TEXT,
+ADD COLUMN imageUrl TEXT;

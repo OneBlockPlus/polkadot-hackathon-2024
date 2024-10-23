@@ -1,0 +1,4801 @@
+{
+  "source": {
+    "hash": "0xb0f0a6530e93c38716a4c8db2490ada0f5dc10e4a8e92024ce6d74edbeb079ff",
+    "language": "ink! 5.0.0",
+    "compiler": "rustc 1.82.0-nightly",
+    "build_info": {
+      "build_mode": "Release",
+      "cargo_contract_version": "4.1.1",
+      "rust_toolchain": "nightly-x86_64-unknown-linux-gnu",
+      "wasm_opt_settings": {
+        "keep_debug_symbols": false,
+        "optimization_passes": "Z"
+      }
+    }
+  },
+  "contract": {
+    "name": "wavedata",
+    "version": "0.1.0",
+    "authors": [
+      "Daryl"
+    ]
+  },
+  "image": null,
+  "spec": {
+    "constructors": [
+      {
+        "args": [],
+        "default": false,
+        "docs": [
+          "Constructor that initializes"
+        ],
+        "label": "new",
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink_primitives",
+            "ConstructorResult"
+          ],
+          "type": 47
+        },
+        "selector": "0x9bae9d5e"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [
+          "Constructors can delegate to other constructors."
+        ],
+        "label": "default",
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink_primitives",
+            "ConstructorResult"
+          ],
+          "type": 47
+        },
+        "selector": "0xed4b9d1b"
+      }
+    ],
+    "docs": [],
+    "environment": {
+      "accountId": {
+        "displayName": [
+          "AccountId"
+        ],
+        "type": 64
+      },
+      "balance": {
+        "displayName": [
+          "Balance"
+        ],
+        "type": 67
+      },
+      "blockNumber": {
+        "displayName": [
+          "BlockNumber"
+        ],
+        "type": 70
+      },
+      "chainExtension": {
+        "displayName": [
+          "ChainExtension"
+        ],
+        "type": 71
+      },
+      "hash": {
+        "displayName": [
+          "Hash"
+        ],
+        "type": 68
+      },
+      "maxEventTopics": 4,
+      "staticBufferSize": 16384,
+      "timestamp": {
+        "displayName": [
+          "Timestamp"
+        ],
+        "type": 69
+      }
+    },
+    "events": [],
+    "lang_error": {
+      "displayName": [
+        "ink",
+        "LangError"
+      ],
+      "type": 48
+    },
+    "messages": [
+      {
+        "args": [
+          {
+            "label": "full_name",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "email",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "password",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "accesstoken",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "walletaddress",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "CreateAccount",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 47
+        },
+        "selector": "0x4bf65581"
+      },
+      {
+        "args": [
+          {
+            "label": "email",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "CheckEmail",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 49
+        },
+        "selector": "0x36f73380"
+      },
+      {
+        "args": [
+          {
+            "label": "userid",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "privatekey",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "UpdatePrivatekey",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 47
+        },
+        "selector": "0x2a8781d8"
+      },
+      {
+        "args": [
+          {
+            "label": "userid",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "accesstoken",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "UpdateAccessToken",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 47
+        },
+        "selector": "0x17caf7c5"
+      },
+      {
+        "args": [
+          {
+            "label": "email",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "password",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "Login",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 49
+        },
+        "selector": "0x43744c4b"
+      },
+      {
+        "args": [
+          {
+            "label": "user_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "getUserDetails",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 50
+        },
+        "selector": "0x4aae464d"
+      },
+      {
+        "args": [
+          {
+            "label": "user_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "image",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "title",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "description",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "permission",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "contributors",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "audience",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "budget",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "CreateStudy",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 47
+        },
+        "selector": "0x337f3ec9"
+      },
+      {
+        "args": [
+          {
+            "label": "study_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "user_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "name",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "description",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "date",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "image",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "reward",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "CreateSurvey",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 47
+        },
+        "selector": "0x6e830c0b"
+      },
+      {
+        "args": [
+          {
+            "label": "study_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "subject_index_id",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "title",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "ages_ans",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "CreateSubject",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 47
+        },
+        "selector": "0x0d4ab394"
+      },
+      {
+        "args": [
+          {
+            "label": "subject_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "title",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "ages_ans",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "UpdateSubject",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 47
+        },
+        "selector": "0x587d4dc5"
+      },
+      {
+        "args": [
+          {
+            "label": "studyId",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "title_info",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "CreateOrSaveStudyTitle",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 47
+        },
+        "selector": "0xfb2acb2a"
+      },
+      {
+        "args": [
+          {
+            "label": "survey_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "metadata",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "CreateOrSaveSections",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 47
+        },
+        "selector": "0x70f010e1"
+      },
+      {
+        "args": [
+          {
+            "label": "name",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "image",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "CreateSurveyCategory",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 47
+        },
+        "selector": "0x5aebfd6f"
+      },
+      {
+        "args": [
+          {
+            "label": "study_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "getAllSurveysIDByStudy",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 52
+        },
+        "selector": "0x120a5148"
+      },
+      {
+        "args": [
+          {
+            "label": "study_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "image",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "title",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "description",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "budget",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "UpdateStudy",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 47
+        },
+        "selector": "0xe8c11d8a"
+      },
+      {
+        "args": [
+          {
+            "label": "study_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "ages",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "UpdateStudyAges",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 47
+        },
+        "selector": "0xb66b2d19"
+      },
+      {
+        "args": [
+          {
+            "label": "survey_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "name",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "description",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "image",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "reward",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "UpdateSurvey",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 47
+        },
+        "selector": "0x97309e72"
+      },
+      {
+        "args": [
+          {
+            "label": "study_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "reward_type",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "reward_price",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "total_spending_limit",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "UpdateReward",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 47
+        },
+        "selector": "0xd3d618ec"
+      },
+      {
+        "args": [
+          {
+            "label": "study_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "audience_info",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "UpdateAudience",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 47
+        },
+        "selector": "0xe91c8208"
+      },
+      {
+        "args": [
+          {
+            "label": "user_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "image",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "credits",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "UpdateUser",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 47
+        },
+        "selector": "0x22f9fea4"
+      },
+      {
+        "args": [
+          {
+            "label": "user_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "family_name",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "given_name",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "identifier",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "phone",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "gender",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "about",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "patient_id",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "UpdateFhir",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 47
+        },
+        "selector": "0xabbc8dc6"
+      },
+      {
+        "args": [
+          {
+            "label": "study_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "user_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "date",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "given_permission",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "CreateOngoingTrail",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 47
+        },
+        "selector": "0x19a8c5bc"
+      },
+      {
+        "args": [
+          {
+            "label": "user_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "GetOngoingStudy",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 49
+        },
+        "selector": "0xa7e08bd7"
+      },
+      {
+        "args": [
+          {
+            "label": "study_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "user_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "survey_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "section_id",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "question_id",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "answer",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "CreateQuestionAnswer",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 47
+        },
+        "selector": "0x1f17fb66"
+      },
+      {
+        "args": [
+          {
+            "label": "survey_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "user_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "date",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "study_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "CreateCompletedSurveys",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 47
+        },
+        "selector": "0x32ff6f2a"
+      },
+      {
+        "args": [
+          {
+            "label": "user_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "getAllCompletedSurveysIDByUser",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 52
+        },
+        "selector": "0x6bb07367"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "_UserIds",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 54
+        },
+        "selector": "0x86709cc0"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "_StudyIds",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 54
+        },
+        "selector": "0x12992188"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "_StudySubjectsIds",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 54
+        },
+        "selector": "0x120296a2"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "_SurveyIds",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 54
+        },
+        "selector": "0x87095cc2"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "_SurveyCategoryIds",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 54
+        },
+        "selector": "0xe9a9676c"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "_OngoingIds",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 54
+        },
+        "selector": "0x4494dfb5"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "_AnsweredIds",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 54
+        },
+        "selector": "0x4676b4a5"
+      },
+      {
+        "args": [
+          {
+            "label": "id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "_userMap",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 55
+        },
+        "selector": "0xe527b88c"
+      },
+      {
+        "args": [
+          {
+            "label": "id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "_studyMap",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 56
+        },
+        "selector": "0xca12e4fe"
+      },
+      {
+        "args": [
+          {
+            "label": "id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "_studySubjectMap",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 57
+        },
+        "selector": "0x44fcc547"
+      },
+      {
+        "args": [
+          {
+            "label": "id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "_studyAudienceMap",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 49
+        },
+        "selector": "0xd440ab17"
+      },
+      {
+        "args": [
+          {
+            "label": "id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "_surveyMap",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 58
+        },
+        "selector": "0x96c68520"
+      },
+      {
+        "args": [
+          {
+            "label": "id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "_categoryMap",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 59
+        },
+        "selector": "0x84f1ab87"
+      },
+      {
+        "args": [
+          {
+            "label": "id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "_sectionsMap",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 49
+        },
+        "selector": "0x230ab554"
+      },
+      {
+        "args": [
+          {
+            "label": "id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "_fhirMap",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 60
+        },
+        "selector": "0x379b1212"
+      },
+      {
+        "args": [
+          {
+            "label": "id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "_ongoingMap",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 61
+        },
+        "selector": "0xef2dbdcc"
+      },
+      {
+        "args": [
+          {
+            "label": "id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "_questionanswerdMap",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 62
+        },
+        "selector": "0xf49d3c5a"
+      },
+      {
+        "args": [
+          {
+            "label": "id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "_completedsurveyMap",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 63
+        },
+        "selector": "0x3d851b4e"
+      },
+      {
+        "args": [
+          {
+            "label": "study_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "delete_a_study",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 47
+        },
+        "selector": "0xf9cfa6d8"
+      },
+      {
+        "args": [
+          {
+            "label": "survey_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "delete_a_servey",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 47
+        },
+        "selector": "0xc5451298"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "reset_all",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 47
+        },
+        "selector": "0x0549858a"
+      },
+      {
+        "args": [
+          {
+            "label": "user_id",
+            "type": {
+              "displayName": [
+                "i32"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "reset_app",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 47
+        },
+        "selector": "0x1e06cda0"
+      }
+    ]
+  },
+  "storage": {
+    "root": {
+      "layout": {
+        "struct": {
+          "fields": [
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 0
+                }
+              },
+              "name": "_UserIds"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 0
+                }
+              },
+              "name": "_FhirIds"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 0
+                }
+              },
+              "name": "_StudyIds"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 0
+                }
+              },
+              "name": "_StudySubjectsIds"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 0
+                }
+              },
+              "name": "_SurveyIds"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 0
+                }
+              },
+              "name": "_SurveyCategoryIds"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 0
+                }
+              },
+              "name": "_OngoingIds"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 0
+                }
+              },
+              "name": "_AnsweredIds"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 0
+                }
+              },
+              "name": "_CompletedSurveyIds"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "struct": {
+                      "fields": [
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xfa282f3c",
+                              "ty": 0
+                            }
+                          },
+                          "name": "user_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xfa282f3c",
+                              "ty": 1
+                            }
+                          },
+                          "name": "name"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xfa282f3c",
+                              "ty": 1
+                            }
+                          },
+                          "name": "email"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xfa282f3c",
+                              "ty": 1
+                            }
+                          },
+                          "name": "password"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xfa282f3c",
+                              "ty": 1
+                            }
+                          },
+                          "name": "walletaddress"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xfa282f3c",
+                              "ty": 1
+                            }
+                          },
+                          "name": "privatekey"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xfa282f3c",
+                              "ty": 1
+                            }
+                          },
+                          "name": "image"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xfa282f3c",
+                              "ty": 0
+                            }
+                          },
+                          "name": "credits"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xfa282f3c",
+                              "ty": 1
+                            }
+                          },
+                          "name": "accesstoken"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xfa282f3c",
+                              "ty": 0
+                            }
+                          },
+                          "name": "fhirid"
+                        }
+                      ],
+                      "name": "user_struct"
+                    }
+                  },
+                  "root_key": "0xfa282f3c",
+                  "ty": 2
+                }
+              },
+              "name": "_userMap"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "struct": {
+                      "fields": [
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x8cc0150c",
+                              "ty": 0
+                            }
+                          },
+                          "name": "study_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x8cc0150c",
+                              "ty": 0
+                            }
+                          },
+                          "name": "user_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x8cc0150c",
+                              "ty": 1
+                            }
+                          },
+                          "name": "image"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x8cc0150c",
+                              "ty": 1
+                            }
+                          },
+                          "name": "title"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x8cc0150c",
+                              "ty": 1
+                            }
+                          },
+                          "name": "description"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x8cc0150c",
+                              "ty": 1
+                            }
+                          },
+                          "name": "permission"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x8cc0150c",
+                              "ty": 0
+                            }
+                          },
+                          "name": "contributors"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x8cc0150c",
+                              "ty": 0
+                            }
+                          },
+                          "name": "audience"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x8cc0150c",
+                              "ty": 0
+                            }
+                          },
+                          "name": "budget"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x8cc0150c",
+                              "ty": 1
+                            }
+                          },
+                          "name": "reward_type"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x8cc0150c",
+                              "ty": 0
+                            }
+                          },
+                          "name": "reward_price"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x8cc0150c",
+                              "ty": 0
+                            }
+                          },
+                          "name": "total_spending_limit"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x8cc0150c",
+                              "ty": 1
+                            }
+                          },
+                          "name": "ages"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x8cc0150c",
+                              "ty": 1
+                            }
+                          },
+                          "name": "titles"
+                        }
+                      ],
+                      "name": "study_struct"
+                    }
+                  },
+                  "root_key": "0x8cc0150c",
+                  "ty": 8
+                }
+              },
+              "name": "_studyMap"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "leaf": {
+                      "key": "0xb8df4f85",
+                      "ty": 1
+                    }
+                  },
+                  "root_key": "0xb8df4f85",
+                  "ty": 12
+                }
+              },
+              "name": "_studyAudienceMap"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "struct": {
+                      "fields": [
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x87b8c038",
+                              "ty": 0
+                            }
+                          },
+                          "name": "subject_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x87b8c038",
+                              "ty": 0
+                            }
+                          },
+                          "name": "study_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x87b8c038",
+                              "ty": 1
+                            }
+                          },
+                          "name": "subject_index_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x87b8c038",
+                              "ty": 1
+                            }
+                          },
+                          "name": "title"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x87b8c038",
+                              "ty": 1
+                            }
+                          },
+                          "name": "ages_ans"
+                        }
+                      ],
+                      "name": "study_subject_struct"
+                    }
+                  },
+                  "root_key": "0x87b8c038",
+                  "ty": 15
+                }
+              },
+              "name": "_studySubjectMap"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "struct": {
+                      "fields": [
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xfbbaa368",
+                              "ty": 0
+                            }
+                          },
+                          "name": "survey_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xfbbaa368",
+                              "ty": 0
+                            }
+                          },
+                          "name": "study_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xfbbaa368",
+                              "ty": 0
+                            }
+                          },
+                          "name": "user_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xfbbaa368",
+                              "ty": 1
+                            }
+                          },
+                          "name": "name"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xfbbaa368",
+                              "ty": 1
+                            }
+                          },
+                          "name": "description"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xfbbaa368",
+                              "ty": 1
+                            }
+                          },
+                          "name": "date"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xfbbaa368",
+                              "ty": 1
+                            }
+                          },
+                          "name": "image"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xfbbaa368",
+                              "ty": 0
+                            }
+                          },
+                          "name": "reward"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xfbbaa368",
+                              "ty": 0
+                            }
+                          },
+                          "name": "submission"
+                        }
+                      ],
+                      "name": "survey_struct"
+                    }
+                  },
+                  "root_key": "0xfbbaa368",
+                  "ty": 19
+                }
+              },
+              "name": "_surveyMap"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "struct": {
+                      "fields": [
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x804fad5f",
+                              "ty": 1
+                            }
+                          },
+                          "name": "name"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x804fad5f",
+                              "ty": 1
+                            }
+                          },
+                          "name": "image"
+                        }
+                      ],
+                      "name": "survey_category_struct"
+                    }
+                  },
+                  "root_key": "0x804fad5f",
+                  "ty": 23
+                }
+              },
+              "name": "_categoryMap"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "leaf": {
+                      "key": "0xbd139519",
+                      "ty": 1
+                    }
+                  },
+                  "root_key": "0xbd139519",
+                  "ty": 27
+                }
+              },
+              "name": "_sectionsMap"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "struct": {
+                      "fields": [
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x180a8fb3",
+                              "ty": 0
+                            }
+                          },
+                          "name": "user_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x180a8fb3",
+                              "ty": 1
+                            }
+                          },
+                          "name": "family_name"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x180a8fb3",
+                              "ty": 1
+                            }
+                          },
+                          "name": "given_name"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x180a8fb3",
+                              "ty": 1
+                            }
+                          },
+                          "name": "identifier"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x180a8fb3",
+                              "ty": 1
+                            }
+                          },
+                          "name": "phone"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x180a8fb3",
+                              "ty": 1
+                            }
+                          },
+                          "name": "gender"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x180a8fb3",
+                              "ty": 1
+                            }
+                          },
+                          "name": "about"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x180a8fb3",
+                              "ty": 1
+                            }
+                          },
+                          "name": "patient_id"
+                        }
+                      ],
+                      "name": "fhir_struct"
+                    }
+                  },
+                  "root_key": "0x180a8fb3",
+                  "ty": 30
+                }
+              },
+              "name": "_fhirMap"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "struct": {
+                      "fields": [
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x192ef68c",
+                              "ty": 0
+                            }
+                          },
+                          "name": "ongoing_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x192ef68c",
+                              "ty": 0
+                            }
+                          },
+                          "name": "study_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x192ef68c",
+                              "ty": 0
+                            }
+                          },
+                          "name": "user_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x192ef68c",
+                              "ty": 1
+                            }
+                          },
+                          "name": "date"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x192ef68c",
+                              "ty": 1
+                            }
+                          },
+                          "name": "given_permission"
+                        }
+                      ],
+                      "name": "ongoing_struct"
+                    }
+                  },
+                  "root_key": "0x192ef68c",
+                  "ty": 34
+                }
+              },
+              "name": "_ongoingMap"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "struct": {
+                      "fields": [
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x3bd56d62",
+                              "ty": 0
+                            }
+                          },
+                          "name": "answer_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x3bd56d62",
+                              "ty": 0
+                            }
+                          },
+                          "name": "study_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x3bd56d62",
+                              "ty": 0
+                            }
+                          },
+                          "name": "user_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x3bd56d62",
+                              "ty": 0
+                            }
+                          },
+                          "name": "survey_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x3bd56d62",
+                              "ty": 1
+                            }
+                          },
+                          "name": "section_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x3bd56d62",
+                              "ty": 1
+                            }
+                          },
+                          "name": "question_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x3bd56d62",
+                              "ty": 1
+                            }
+                          },
+                          "name": "answer"
+                        }
+                      ],
+                      "name": "survey_question_answer_struct"
+                    }
+                  },
+                  "root_key": "0x3bd56d62",
+                  "ty": 38
+                }
+              },
+              "name": "_questionanswerdMap"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "struct": {
+                      "fields": [
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x7443b758",
+                              "ty": 0
+                            }
+                          },
+                          "name": "completed_survey_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x7443b758",
+                              "ty": 0
+                            }
+                          },
+                          "name": "study_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x7443b758",
+                              "ty": 0
+                            }
+                          },
+                          "name": "user_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x7443b758",
+                              "ty": 0
+                            }
+                          },
+                          "name": "survey_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x7443b758",
+                              "ty": 1
+                            }
+                          },
+                          "name": "date"
+                        }
+                      ],
+                      "name": "completed_survey_struct"
+                    }
+                  },
+                  "root_key": "0x7443b758",
+                  "ty": 42
+                }
+              },
+              "name": "_completedsurveyMap"
+            }
+          ],
+          "name": "Wavedata"
+        }
+      },
+      "root_key": "0x00000000",
+      "ty": 46
+    }
+  },
+  "types": [
+    {
+      "id": 0,
+      "type": {
+        "def": {
+          "primitive": "i32"
+        }
+      }
+    },
+    {
+      "id": 1,
+      "type": {
+        "def": {
+          "primitive": "str"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "K",
+            "type": 0
+          },
+          {
+            "name": "V",
+            "type": 3
+          },
+          {
+            "name": "KeyType",
+            "type": 4
+          }
+        ],
+        "path": [
+          "ink_storage",
+          "lazy",
+          "mapping",
+          "Mapping"
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "user_id",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "name",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "email",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "password",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "walletaddress",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "privatekey",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "image",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "credits",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "accesstoken",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "fhirid",
+                "type": 0,
+                "typeName": "i32"
+              }
+            ]
+          }
+        },
+        "path": [
+          "wavedata",
+          "wavedata",
+          "user_struct"
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "L",
+            "type": 5
+          },
+          {
+            "name": "R",
+            "type": 6
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ResolverKey"
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "AutoKey"
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "ParentKey",
+            "type": 7
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ManualKey"
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "type": {
+        "def": {
+          "tuple": []
+        }
+      }
+    },
+    {
+      "id": 8,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "K",
+            "type": 0
+          },
+          {
+            "name": "V",
+            "type": 9
+          },
+          {
+            "name": "KeyType",
+            "type": 10
+          }
+        ],
+        "path": [
+          "ink_storage",
+          "lazy",
+          "mapping",
+          "Mapping"
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "study_id",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "user_id",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "image",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "title",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "description",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "permission",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "contributors",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "audience",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "budget",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "reward_type",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "reward_price",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "total_spending_limit",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "ages",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "titles",
+                "type": 1,
+                "typeName": "String"
+              }
+            ]
+          }
+        },
+        "path": [
+          "wavedata",
+          "wavedata",
+          "study_struct"
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "L",
+            "type": 5
+          },
+          {
+            "name": "R",
+            "type": 11
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ResolverKey"
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "ParentKey",
+            "type": 7
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ManualKey"
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "K",
+            "type": 0
+          },
+          {
+            "name": "V",
+            "type": 1
+          },
+          {
+            "name": "KeyType",
+            "type": 13
+          }
+        ],
+        "path": [
+          "ink_storage",
+          "lazy",
+          "mapping",
+          "Mapping"
+        ]
+      }
+    },
+    {
+      "id": 13,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "L",
+            "type": 5
+          },
+          {
+            "name": "R",
+            "type": 14
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ResolverKey"
+        ]
+      }
+    },
+    {
+      "id": 14,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "ParentKey",
+            "type": 7
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ManualKey"
+        ]
+      }
+    },
+    {
+      "id": 15,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "K",
+            "type": 0
+          },
+          {
+            "name": "V",
+            "type": 16
+          },
+          {
+            "name": "KeyType",
+            "type": 17
+          }
+        ],
+        "path": [
+          "ink_storage",
+          "lazy",
+          "mapping",
+          "Mapping"
+        ]
+      }
+    },
+    {
+      "id": 16,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "subject_id",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "study_id",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "subject_index_id",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "title",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "ages_ans",
+                "type": 1,
+                "typeName": "String"
+              }
+            ]
+          }
+        },
+        "path": [
+          "wavedata",
+          "wavedata",
+          "study_subject_struct"
+        ]
+      }
+    },
+    {
+      "id": 17,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "L",
+            "type": 5
+          },
+          {
+            "name": "R",
+            "type": 18
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ResolverKey"
+        ]
+      }
+    },
+    {
+      "id": 18,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "ParentKey",
+            "type": 7
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ManualKey"
+        ]
+      }
+    },
+    {
+      "id": 19,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "K",
+            "type": 0
+          },
+          {
+            "name": "V",
+            "type": 20
+          },
+          {
+            "name": "KeyType",
+            "type": 21
+          }
+        ],
+        "path": [
+          "ink_storage",
+          "lazy",
+          "mapping",
+          "Mapping"
+        ]
+      }
+    },
+    {
+      "id": 20,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "survey_id",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "study_id",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "user_id",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "name",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "description",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "date",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "image",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "reward",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "submission",
+                "type": 0,
+                "typeName": "i32"
+              }
+            ]
+          }
+        },
+        "path": [
+          "wavedata",
+          "wavedata",
+          "survey_struct"
+        ]
+      }
+    },
+    {
+      "id": 21,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "L",
+            "type": 5
+          },
+          {
+            "name": "R",
+            "type": 22
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ResolverKey"
+        ]
+      }
+    },
+    {
+      "id": 22,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "ParentKey",
+            "type": 7
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ManualKey"
+        ]
+      }
+    },
+    {
+      "id": 23,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "K",
+            "type": 0
+          },
+          {
+            "name": "V",
+            "type": 24
+          },
+          {
+            "name": "KeyType",
+            "type": 25
+          }
+        ],
+        "path": [
+          "ink_storage",
+          "lazy",
+          "mapping",
+          "Mapping"
+        ]
+      }
+    },
+    {
+      "id": 24,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "name",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "image",
+                "type": 1,
+                "typeName": "String"
+              }
+            ]
+          }
+        },
+        "path": [
+          "wavedata",
+          "wavedata",
+          "survey_category_struct"
+        ]
+      }
+    },
+    {
+      "id": 25,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "L",
+            "type": 5
+          },
+          {
+            "name": "R",
+            "type": 26
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ResolverKey"
+        ]
+      }
+    },
+    {
+      "id": 26,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "ParentKey",
+            "type": 7
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ManualKey"
+        ]
+      }
+    },
+    {
+      "id": 27,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "K",
+            "type": 0
+          },
+          {
+            "name": "V",
+            "type": 1
+          },
+          {
+            "name": "KeyType",
+            "type": 28
+          }
+        ],
+        "path": [
+          "ink_storage",
+          "lazy",
+          "mapping",
+          "Mapping"
+        ]
+      }
+    },
+    {
+      "id": 28,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "L",
+            "type": 5
+          },
+          {
+            "name": "R",
+            "type": 29
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ResolverKey"
+        ]
+      }
+    },
+    {
+      "id": 29,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "ParentKey",
+            "type": 7
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ManualKey"
+        ]
+      }
+    },
+    {
+      "id": 30,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "K",
+            "type": 0
+          },
+          {
+            "name": "V",
+            "type": 31
+          },
+          {
+            "name": "KeyType",
+            "type": 32
+          }
+        ],
+        "path": [
+          "ink_storage",
+          "lazy",
+          "mapping",
+          "Mapping"
+        ]
+      }
+    },
+    {
+      "id": 31,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "user_id",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "family_name",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "given_name",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "identifier",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "phone",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "gender",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "about",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "patient_id",
+                "type": 1,
+                "typeName": "String"
+              }
+            ]
+          }
+        },
+        "path": [
+          "wavedata",
+          "wavedata",
+          "fhir_struct"
+        ]
+      }
+    },
+    {
+      "id": 32,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "L",
+            "type": 5
+          },
+          {
+            "name": "R",
+            "type": 33
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ResolverKey"
+        ]
+      }
+    },
+    {
+      "id": 33,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "ParentKey",
+            "type": 7
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ManualKey"
+        ]
+      }
+    },
+    {
+      "id": 34,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "K",
+            "type": 0
+          },
+          {
+            "name": "V",
+            "type": 35
+          },
+          {
+            "name": "KeyType",
+            "type": 36
+          }
+        ],
+        "path": [
+          "ink_storage",
+          "lazy",
+          "mapping",
+          "Mapping"
+        ]
+      }
+    },
+    {
+      "id": 35,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "ongoing_id",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "study_id",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "user_id",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "date",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "given_permission",
+                "type": 1,
+                "typeName": "String"
+              }
+            ]
+          }
+        },
+        "path": [
+          "wavedata",
+          "wavedata",
+          "ongoing_struct"
+        ]
+      }
+    },
+    {
+      "id": 36,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "L",
+            "type": 5
+          },
+          {
+            "name": "R",
+            "type": 37
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ResolverKey"
+        ]
+      }
+    },
+    {
+      "id": 37,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "ParentKey",
+            "type": 7
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ManualKey"
+        ]
+      }
+    },
+    {
+      "id": 38,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "K",
+            "type": 0
+          },
+          {
+            "name": "V",
+            "type": 39
+          },
+          {
+            "name": "KeyType",
+            "type": 40
+          }
+        ],
+        "path": [
+          "ink_storage",
+          "lazy",
+          "mapping",
+          "Mapping"
+        ]
+      }
+    },
+    {
+      "id": 39,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "answer_id",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "study_id",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "user_id",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "survey_id",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "section_id",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "question_id",
+                "type": 1,
+                "typeName": "String"
+              },
+              {
+                "name": "answer",
+                "type": 1,
+                "typeName": "String"
+              }
+            ]
+          }
+        },
+        "path": [
+          "wavedata",
+          "wavedata",
+          "survey_question_answer_struct"
+        ]
+      }
+    },
+    {
+      "id": 40,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "L",
+            "type": 5
+          },
+          {
+            "name": "R",
+            "type": 41
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ResolverKey"
+        ]
+      }
+    },
+    {
+      "id": 41,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "ParentKey",
+            "type": 7
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ManualKey"
+        ]
+      }
+    },
+    {
+      "id": 42,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "K",
+            "type": 0
+          },
+          {
+            "name": "V",
+            "type": 43
+          },
+          {
+            "name": "KeyType",
+            "type": 44
+          }
+        ],
+        "path": [
+          "ink_storage",
+          "lazy",
+          "mapping",
+          "Mapping"
+        ]
+      }
+    },
+    {
+      "id": 43,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "completed_survey_id",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "study_id",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "user_id",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "survey_id",
+                "type": 0,
+                "typeName": "i32"
+              },
+              {
+                "name": "date",
+                "type": 1,
+                "typeName": "String"
+              }
+            ]
+          }
+        },
+        "path": [
+          "wavedata",
+          "wavedata",
+          "completed_survey_struct"
+        ]
+      }
+    },
+    {
+      "id": 44,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "L",
+            "type": 5
+          },
+          {
+            "name": "R",
+            "type": 45
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ResolverKey"
+        ]
+      }
+    },
+    {
+      "id": 45,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "ParentKey",
+            "type": 7
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ManualKey"
+        ]
+      }
+    },
+    {
+      "id": 46,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "_UserIds",
+                "type": 0,
+                "typeName": "<i32 as::ink::storage::traits::AutoStorableHint<::ink::storage\n::traits::ManualKey<1378087999u32, ()>,>>::Type"
+              },
+              {
+                "name": "_FhirIds",
+                "type": 0,
+                "typeName": "<i32 as::ink::storage::traits::AutoStorableHint<::ink::storage\n::traits::ManualKey<979677046u32, ()>,>>::Type"
+              },
+              {
+                "name": "_StudyIds",
+                "type": 0,
+                "typeName": "<i32 as::ink::storage::traits::AutoStorableHint<::ink::storage\n::traits::ManualKey<1211538326u32, ()>,>>::Type"
+              },
+              {
+                "name": "_StudySubjectsIds",
+                "type": 0,
+                "typeName": "<i32 as::ink::storage::traits::AutoStorableHint<::ink::storage\n::traits::ManualKey<2558938355u32, ()>,>>::Type"
+              },
+              {
+                "name": "_SurveyIds",
+                "type": 0,
+                "typeName": "<i32 as::ink::storage::traits::AutoStorableHint<::ink::storage\n::traits::ManualKey<1011615279u32, ()>,>>::Type"
+              },
+              {
+                "name": "_SurveyCategoryIds",
+                "type": 0,
+                "typeName": "<i32 as::ink::storage::traits::AutoStorableHint<::ink::storage\n::traits::ManualKey<904302141u32, ()>,>>::Type"
+              },
+              {
+                "name": "_OngoingIds",
+                "type": 0,
+                "typeName": "<i32 as::ink::storage::traits::AutoStorableHint<::ink::storage\n::traits::ManualKey<1114367086u32, ()>,>>::Type"
+              },
+              {
+                "name": "_AnsweredIds",
+                "type": 0,
+                "typeName": "<i32 as::ink::storage::traits::AutoStorableHint<::ink::storage\n::traits::ManualKey<838591146u32, ()>,>>::Type"
+              },
+              {
+                "name": "_CompletedSurveyIds",
+                "type": 0,
+                "typeName": "<i32 as::ink::storage::traits::AutoStorableHint<::ink::storage\n::traits::ManualKey<1675251087u32, ()>,>>::Type"
+              },
+              {
+                "name": "_userMap",
+                "type": 2,
+                "typeName": "<Mapping<i32, user_struct> as::ink::storage::traits::\nAutoStorableHint<::ink::storage::traits::ManualKey<1009723642u32,\n()>,>>::Type"
+              },
+              {
+                "name": "_studyMap",
+                "type": 8,
+                "typeName": "<Mapping<i32, study_struct> as::ink::storage::traits::\nAutoStorableHint<::ink::storage::traits::ManualKey<202752140u32, ()\n>,>>::Type"
+              },
+              {
+                "name": "_studyAudienceMap",
+                "type": 12,
+                "typeName": "<Mapping<i32, String> as::ink::storage::traits::AutoStorableHint<\n::ink::storage::traits::ManualKey<2236604344u32, ()>,>>::Type"
+              },
+              {
+                "name": "_studySubjectMap",
+                "type": 15,
+                "typeName": "<Mapping<i32, study_subject_struct> as::ink::storage::traits::\nAutoStorableHint<::ink::storage::traits::ManualKey<952154247u32, ()\n>,>>::Type"
+              },
+              {
+                "name": "_surveyMap",
+                "type": 19,
+                "typeName": "<Mapping<i32, survey_struct> as::ink::storage::traits::\nAutoStorableHint<::ink::storage::traits::ManualKey<1755560699u32,\n()>,>>::Type"
+              },
+              {
+                "name": "_categoryMap",
+                "type": 23,
+                "typeName": "<Mapping<i32, survey_category_struct> as::ink::storage::traits::\nAutoStorableHint<::ink::storage::traits::ManualKey<1605193600u32,\n()>,>>::Type"
+              },
+              {
+                "name": "_sectionsMap",
+                "type": 27,
+                "typeName": "<Mapping<i32, String> as::ink::storage::traits::AutoStorableHint<\n::ink::storage::traits::ManualKey<429200317u32, ()>,>>::Type"
+              },
+              {
+                "name": "_fhirMap",
+                "type": 30,
+                "typeName": "<Mapping<i32, fhir_struct> as::ink::storage::traits::\nAutoStorableHint<::ink::storage::traits::ManualKey<3012495896u32,\n()>,>>::Type"
+              },
+              {
+                "name": "_ongoingMap",
+                "type": 34,
+                "typeName": "<Mapping<i32, ongoing_struct> as::ink::storage::traits::\nAutoStorableHint<::ink::storage::traits::ManualKey<2364943897u32,\n()>,>>::Type"
+              },
+              {
+                "name": "_questionanswerdMap",
+                "type": 38,
+                "typeName": "<Mapping<i32, survey_question_answer_struct> as::ink::storage::\ntraits::AutoStorableHint<::ink::storage::traits::ManualKey<\n1651365179u32, ()>,>>::Type"
+              },
+              {
+                "name": "_completedsurveyMap",
+                "type": 42,
+                "typeName": "<Mapping<i32, completed_survey_struct> as::ink::storage::traits::\nAutoStorableHint<::ink::storage::traits::ManualKey<1488405364u32,\n()>,>>::Type"
+              }
+            ]
+          }
+        },
+        "path": [
+          "wavedata",
+          "wavedata",
+          "Wavedata"
+        ]
+      }
+    },
+    {
+      "id": 47,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 7
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 48
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 7
+          },
+          {
+            "name": "E",
+            "type": 48
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 48,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 1,
+                "name": "CouldNotReadInput"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "LangError"
+        ]
+      }
+    },
+    {
+      "id": 49,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 1
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 48
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 1
+          },
+          {
+            "name": "E",
+            "type": 48
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 50,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 51
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 48
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 51
+          },
+          {
+            "name": "E",
+            "type": 48
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 51,
+      "type": {
+        "def": {
+          "sequence": {
+            "type": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 52,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 53
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 48
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 53
+          },
+          {
+            "name": "E",
+            "type": 48
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 53,
+      "type": {
+        "def": {
+          "sequence": {
+            "type": 0
+          }
+        }
+      }
+    },
+    {
+      "id": 54,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 0
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 48
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 0
+          },
+          {
+            "name": "E",
+            "type": 48
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 55,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 3
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 48
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 3
+          },
+          {
+            "name": "E",
+            "type": 48
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 56,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 9
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 48
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 9
+          },
+          {
+            "name": "E",
+            "type": 48
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 57,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 16
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 48
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 16
+          },
+          {
+            "name": "E",
+            "type": 48
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 58,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 20
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 48
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 20
+          },
+          {
+            "name": "E",
+            "type": 48
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 59,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 24
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 48
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 24
+          },
+          {
+            "name": "E",
+            "type": 48
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 60,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 31
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 48
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 31
+          },
+          {
+            "name": "E",
+            "type": 48
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 61,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 35
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 48
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 35
+          },
+          {
+            "name": "E",
+            "type": 48
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 62,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 39
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 48
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 39
+          },
+          {
+            "name": "E",
+            "type": 48
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 63,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 43
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 48
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 43
+          },
+          {
+            "name": "E",
+            "type": 48
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 64,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "type": 65,
+                "typeName": "[u8; 32]"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "types",
+          "AccountId"
+        ]
+      }
+    },
+    {
+      "id": 65,
+      "type": {
+        "def": {
+          "array": {
+            "len": 32,
+            "type": 66
+          }
+        }
+      }
+    },
+    {
+      "id": 66,
+      "type": {
+        "def": {
+          "primitive": "u8"
+        }
+      }
+    },
+    {
+      "id": 67,
+      "type": {
+        "def": {
+          "primitive": "u128"
+        }
+      }
+    },
+    {
+      "id": 68,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "type": 65,
+                "typeName": "[u8; 32]"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "types",
+          "Hash"
+        ]
+      }
+    },
+    {
+      "id": 69,
+      "type": {
+        "def": {
+          "primitive": "u64"
+        }
+      }
+    },
+    {
+      "id": 70,
+      "type": {
+        "def": {
+          "primitive": "u32"
+        }
+      }
+    },
+    {
+      "id": 71,
+      "type": {
+        "def": {
+          "variant": {}
+        },
+        "path": [
+          "ink_env",
+          "types",
+          "NoChainExtension"
+        ]
+      }
+    }
+  ],
+  "version": 5
+}

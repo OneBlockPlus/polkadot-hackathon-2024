@@ -1,0 +1,83 @@
+[package]
+name = "pallet-mixer"
+version = "4.0.0-dev"
+description = "FRAME pallet template for defining custom runtime logic."
+authors = ["Substrate DevHub <https://github.com/substrate-developer-hub>"]
+homepage = "https://substrate.io"
+edition = "2021"
+license = "Unlicense"
+publish = false
+repository = "https://github.com/substrate-developer-hub/substrate-node-template/"
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+
+[dependencies]
+codec = { package = "parity-scale-codec", version = "3.6.1", default-features = false, features = [
+	"derive",
+] }
+scale-info = { version = "2.10.0", default-features = false, features = ["derive"] }
+frame-benchmarking = { default-features = false, optional = true, git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0" }
+frame-support = { default-features = false, git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0" }
+frame-system = { default-features = false, git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0" }
+sp-core = { default-features = false, git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0" }
+sp-io = { default-features = false, git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0" }
+sp-runtime = { default-features = false, git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0" }
+sp-std = { default-features = false, git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0" }
+pallet-balances = { default-features = false, git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0" }
+bls12_381 = "0.7.0"
+pairing = "0.22.0"
+group = "0.12.1"
+serde = { version = "1.0.149", default-features = false, features = ["derive", "alloc"] }
+serde_json = { version = "1.0.89", default-features = false, features = ["alloc"]}
+uint = { version = "0.8", default-features = false }
+
+rand = { version = "0.8.5", default-features = false }
+tiny-keccak = { version = "2.0", features = ["fips202"] }
+num = { version = "0.4.3", default-features = false }
+num-bigint = { version = "0.4.6", default-features = false }
+
+ark-ff = "0.4.2"
+ark-bn254 = "0.4.0"
+ark-std = { version = "0.4.0", default-features = false }
+log = { version = "0.4.20", default-features = false }
+
+primitives = { path = "../../primitives", default-features = false }
+
+[dev-dependencies]
+orml-traits = { workspace = true }
+orml-tokens = { workspace = true }
+
+pallet-assets = { default-features = false, git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0" }
+
+pallet-currencies = { default-features = false, path = "../currencies" }
+pallet-timestamp = { default-features = false, git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.9.0" }
+pallet-otp = { default-features = false, path = "../otp" }
+pallet-swap = { default-features = false, path = "../swap" }
+
+
+[features]
+default = ["std"]
+std = [
+	"codec/std",
+	"frame-benchmarking?/std",
+	"frame-support/std",
+	"frame-system/std",
+	"pallet-balances/std",
+	"pallet-assets/std",
+	"primitives/std",
+	"scale-info/std",
+	"serde_json/std",
+	"sp-core/std",
+	"sp-runtime/std",
+	"sp-std/std",
+	"sp-io/std",
+	"orml-traits/std",
+	"orml-tokens/std",
+	"pallet-currencies/std",
+	"pallet-timestamp/std",
+	"pallet-otp/std",
+	"pallet-swap/std",
+]
+runtime-benchmarks = ["frame-benchmarking/runtime-benchmarks"]
+try-runtime = ["frame-support/try-runtime"]

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600">
+  <defs>
+    <filter id="blur">
+      <feGaussianBlur stdDeviation="10" />
+    </filter>
+  </defs>
+
+  <!-- Black background -->
+  <rect width="100%" height="100%" fill="#000000"/>
+  
+  <!-- Subtle dot grid -->
+  <pattern id="dotGrid" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+    <circle cx="10" cy="10" r="1" fill="#222222"/>
+  </pattern>
+  <rect width="100%" height="100%" fill="url(#dotGrid)"/>
+  
+  <!-- White elements -->
+  <g fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.1">
+    <path d="M0,50 L1000,50" />
+    <path d="M0,150 L1000,150" />
+    <path d="M0,250 L1000,250" />
+    <path d="M0,350 L1000,350" />
+    <path d="M0,450 L1000,450" />
+    <path d="M0,550 L1000,550" />
+  </g>
+  
+  <!-- Abstract network lines -->
+  <g stroke="#1a1a1a" stroke-width="1">
+    <path d="M0,100 Q250,50 500,300 T1000,200" fill="none"/>
+    <path d="M0,300 Q250,250 500,500 T1000,400" fill="none"/>
+    <path d="M200,0 Q300,150 100,300 T300,600" fill="none"/>
+    <path d="M800,0 Q700,150 900,300 T700,600" fill="none"/>
+  </g>
+  
+  <!-- Moonbeam-inspired crescent -->
+  <path d="M800,450 A150,150 0 0,1 900,300 A100,100 0 0,0 830,420 Z" fill="#2c1a7e" opacity="0.1"/>
+  
+  <!-- Polkadot-inspired circles -->
+  <circle cx="100" cy="100" r="30" fill="#e6007a" opacity="0.3" filter="url(#blur)"/>
+  <circle cx="900" cy="500" r="40" fill="#e6007a" opacity="0.3" filter="url(#blur)"/>
+  
+  <!-- Transparent cards with blur -->
+  <!-- <g opacity="0.7" filter="url(#blur)">
+    <rect x="100" y="100" width="200" height="150" rx="10" fill="#ffffff" opacity="0.1"/>
+    <rect x="700" y="300" width="200" height="150" rx="10" fill="#ffffff" opacity="0.1"/>
+    <rect x="400" y="200" width="200" height="150" rx="10" fill="#ffffff" opacity="0.1"/>
+  </g> -->
+  
+  <!-- White glowing dots with blur effect -->
+  <g fill="#878684" filter="url(#blur)">
+    <circle cx="50" cy="50" r="60" opacity="0.9" />
+    <circle cx="950" cy="550" r="90" opacity="0.9" />
+    <circle cx="500" cy="100" r="30" opacity="0.8" />
+  </g>
+</svg>

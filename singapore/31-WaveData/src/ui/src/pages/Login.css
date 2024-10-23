@@ -1,0 +1,10 @@
+
+@media screen and (max-width: 800px) {
+    .img-panel {
+        display: none;
+    }
+    .container-panel{
+        padding: 2rem 2rem 2rem 2rem ;
+    }
+  }
+  

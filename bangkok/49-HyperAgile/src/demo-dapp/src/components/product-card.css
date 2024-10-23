@@ -1,0 +1,65 @@
+section.product-card {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.25rem;
+
+    text-align: center;
+}
+
+section.product-card > a {
+    color: var(--secondary);
+    text-decoration: underline;
+}
+
+section.product-card > .info {
+    min-width: fit-content;
+    width: 18.75rem;
+    padding: 2rem 1.25rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 1rem;
+
+    border: 1px solid var(--text);
+    border-radius: 10px;
+}
+
+section.product-card > .info > h2 > span > span {
+    height: 1.5rem;
+}
+
+section.product-card > .info > .details > div > h3 > span > span {
+    height: 1.25rem;
+}
+
+section.product-card > .info > div.image-skeleton {
+    width: 10rem;
+    height: 10rem;
+}
+section.product-card > .info > div.image-skeleton > span > span {
+    height: 100%;
+}
+
+section.product-card > .info > img {
+    width: 10rem;
+    height: auto;
+}
+
+section.product-card > .info > #black-button {
+    width: stretch;
+}
+
+section.product-card > .info > section.details {
+    display: flex;
+    column-gap: 2.5rem;
+}
+
+section.product-card > .info > section.details > div > * {
+    color: var(--secondary);
+}
+
+section.product-card > .info > section.details > div > h3 {
+    font-weight: 500;
+}

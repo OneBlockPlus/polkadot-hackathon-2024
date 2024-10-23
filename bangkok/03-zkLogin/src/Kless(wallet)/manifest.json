@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Kless Wallet",
+  "version": "1.0.0",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "permissions": ["storage", "tabs", "alarms", "unlimitedStorage", "identity"],
+  "content_scripts": [
+    {
+      "js": ["./src/content-script/index.ts"],
+      "matches": ["<all_urls>"],
+      "run_at": "document_start"
+    }
+  ],
+  "background": {
+    "service_worker": "src/background/index.ts",
+    "type": "module"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  }
+}

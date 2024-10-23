@@ -1,0 +1,33 @@
+.logo {
+    display: block;
+    width: 56px;
+    margin-right: 20px;
+
+    &__mob {
+        display: none;
+    }
+
+    @media only screen and (max-width: 767px) {
+        width: 56px;
+        margin-right: 0;
+
+        &__mob {
+            display: block;
+        }
+
+        &__desktop {
+            display: none;
+        }
+    }
+}
+
+.navbar-brand {
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    margin-right: 1rem;
+    line-height: 47px;
+    vertical-align: middle;
+    text-decoration: none;
+    white-space: nowrap;
+    font-size: 16px;
+}

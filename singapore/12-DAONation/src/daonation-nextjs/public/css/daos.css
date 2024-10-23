@@ -1,0 +1,167 @@
+#dao-container {
+  background: black;
+  color: white;
+  margin-top: -1.5rem;
+  min-height: 100vh;
+}
+
+#dao-container h2 {
+  color: var(--piccolo) !important;
+  text-align: center;
+  font-size: 32px;
+  padding-bottom: 24px;
+  padding-top: 40px;
+}
+
+#dao-container h3 {
+  color: var(--piccolo) !important;
+  text-align: center;
+  font-size: 24px;
+  line-height: 36px;
+  padding-bottom: 24px;
+  padding-top: 40px;
+}
+
+#dao-container p {
+  margin: 0 auto;
+  max-width: 720px;
+  width: 95%;
+  padding-bottom: 24px;
+}
+
+#dao-container .mission-statement {
+  background: #B3804A26;
+  color: white;
+  padding-bottom: 16px;
+}
+
+#dao-container .mission-statement img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+}
+
+#dao-container .impact-stories {
+  background: #e0ccb6;
+  color: black;
+}
+
+#dao-container .impact-stories .impact-story {
+  margin: 0 auto;
+  max-width: 720px;
+  display: flex;
+  gap: 24px;
+  padding-bottom: 60px;
+}
+
+#dao-container .impact-stories .impact-story p {
+  padding: 0;
+}
+
+#dao-container .impact-stories .impact-story:nth-child(3) {
+  flex-direction: row-reverse;
+}
+
+#dao-container .impact-stories .impact-story > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 200px;
+  justify-content: center;
+  align-items: center;
+}
+
+#dao-container .impact-stories .impact-story img {
+  max-height: 96px;
+  max-width: 96px;
+  width: 96px;
+  height: 96px;
+  border-radius: 96px;
+  object-fit: cover;
+}
+
+#dao-container .impact-stories .impact-story h3 {
+  color: var(--piccolo);
+  font-size: 24px;
+  line-height: 32px;
+  text-align: center;
+  padding: 0;
+}
+
+
+#dao-container .impact-stories .impact-story h4 {
+  font-weight: 700;
+  line-height: 24px;
+  font-size: 16px;
+  color: black;
+  text-align: center;
+}
+
+#dao-container .our-activities {
+  display: flex;
+  flex-direction: column;
+}
+
+#dao-container .our-activities .activity {
+  display: flex;
+  margin: 0 auto;
+  max-width: 720px;
+  padding-bottom: 60px;
+  gap: 40px;
+}
+
+#dao-container .our-activities .activity:nth-child(odd) {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 0 auto;
+  max-width: 720px;
+  justify-content: center;
+}
+
+#dao-container .our-activities .activity img {
+  min-width: 340px;
+  min-height: 300px;
+  width: 340px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+#dao-container .our-activities .activity h3 {
+  text-align: left;
+  color: var(--piccolo);
+}
+
+#dao-container .our-activities .activity h2 {
+  padding-bottom: 40px;
+}
+
+#dao-container .our-activities .activity p  {
+  margin: 0;
+}
+
+#dao-container .connect-with-us .social-media-icons  {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 40px 0;
+}
+
+#dao-container .connect-with-us .social-media-icon  {
+  display: flex;
+  justify-content: center;
+  height: 56px;
+  width: 56px;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+
+footer {
+  margin: 0 auto;
+  text-align: center;
+  background-color: black;
+  color: white;
+}

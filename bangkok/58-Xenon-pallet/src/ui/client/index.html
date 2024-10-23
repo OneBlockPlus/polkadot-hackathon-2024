@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xenon DID Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Xenon DID Dashboard</h1>
+            <p>Manage your decentralized identity across multiple chains</p>
+        </header>
+
+        <div class="grid">
+            <!-- DID Status Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>DID Status</h2>
+                </div>
+                <div class="card-content">
+                    <div class="alert">
+                        <p>DID: did:xenon:5GrwV...7dhw</p>
+                    </div>
+                    <div class="copy-btn">
+                        <button>Copy DID</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>Quick Actions</h2>
+                </div>
+                <div class="card-content quick-actions">
+                    <button class="action-btn link-chain">
+                        Link Chain
+                    </button>
+                    <button class="action-btn add-key">
+                        Add Key
+                    </button>
+                </div>
+            </div>
+
+            <!-- Linked Chains -->
+            <div class="card linked-chains">
+                <div class="card-header">
+                    <h2>Linked Chains</h2>
+                </div>
+                <div class="card-content">
+                    <div class="chain-item">
+                        <div>
+                            <h3>Ethereum</h3>
+                            <p>0x1234...5678</p>
+                        </div>
+                        <button class="unlink-btn">Unlink</button>
+                    </div>
+                    <div class="chain-item">
+                        <div>
+                            <h3>Polkadot</h3>
+                            <p>5GrwV...7dhw</p>
+                        </div>
+                        <button class="unlink-btn">Unlink</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Public Keys -->
+            <div class="card public-keys">
+                <div class="card-header">
+                    <h2>Public Keys</h2>
+                </div>
+                <div class="card-content">
+                    <div class="key-item">
+                        <div>
+                            <h3>Ed25519</h3>
+                            <p>ed25519-2023...</p>
+                        </div>
+                        <div class="key-actions">
+                            <button class="copy-key">Copy</button>
+                            <button class="remove-key">Remove</button>
+                        </div>
+                    </div>
+                    <div class="key-item">
+                        <div>
+                            <h3>Sr25519</h3>
+                            <p>sr25519-2023...</p>
+                        </div>
+                        <div class="key-actions">
+                            <button class="copy-key">Copy</button>
+                            <button class="remove-key">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<section id="network" class="network-section">
+  <br>
+  <div class="page-title">Network Architecture</div>
+  <pre class="mermaid">
+    graph LR
+    subgraph Gust_Blockchain
+      A(Gust Blockchain)
+      H(GustVM) --> A
+      I(Validators) --> A
+    end
+
+    subgraph Nodes
+      B(AuthNodes) --> C(Transaction Relayer)
+      C <--> A
+      L(Smart Contract Execution Scheduler) --> H
+      D(Runtime External Request Orchestrator) --> H
+      E(Gust Data Oracle) <--> H
+    end
+
+    subgraph DApps
+      F(DApps) --> B
+    end
+
+    subgraph Users
+      G(Users) --> F
+    end
+
+    subgraph Smart_Contracts
+      J(Gustavo)
+      K(GustByte Interpreter)
+      J --> K
+      K --> H
+    end
+  </pre>
+</section>
+

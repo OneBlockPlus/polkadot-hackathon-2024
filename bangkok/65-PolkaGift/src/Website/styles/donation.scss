@@ -1,0 +1,152 @@
+@media only screen and (max-width: 766px) {
+    .donation.row {
+        height: 181px;
+        margin: 12px;
+        background: white;
+        color: black;
+        position: relative;
+        overflow: hidden;
+        padding: 0px;
+    }
+
+    .donation.Datecount {
+        top: 10px;
+        left: 10px;
+        position: absolute;
+    }
+
+    .donation.DatecountT {
+        font-size: 0.8rem;
+    }
+
+    .donation-eventconatiner {
+        display: flex;
+        top: 41px;
+        position: absolute;
+        left: 10px;
+        right: 10px;
+    }
+
+    .donation.event-img {
+        aspect-ratio: 4;
+        max-width: 110px;
+        max-height: 110px;
+        height: 110px;
+        width: 110px;
+    }
+    .donation.event-details-container{
+        margin-left: 1px;
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        width: 100%;
+        row-gap: 10px;
+    }
+    .donation.event-details-title{
+        font-size: 0.8rem;
+    }
+    .donation.event-goal-price{
+        font-size: 0.7rem;
+    }
+    .donation.event-BTN{
+        color: white;
+        background: var( --btn-auction-bg);
+        text-align: center;
+        cursor: pointer;
+        height: 100%;
+        float: right;
+        margin: 0px;
+        width: 114px;
+    }
+    .donation.event-BTN-container{
+        display: flex;
+        gap: 5px;
+        position: absolute;
+        right: 10px;
+        bottom: -10px;
+        justify-content: flex-start;
+        align-items: flex-end;
+    }
+    .donation.event-btn-text{
+        height: 100%;
+        font-size: 15px;
+    }
+}
+
+@media only screen and (min-width: 766px) {
+    .donation.row {
+        height: calc(14vw*1.7);
+        background: white;
+        color: black;
+        position: relative;
+        overflow: hidden;
+        padding: 0;
+        margin: 30px 30px;
+        
+    }
+
+    .donation.Datecount {
+        top: 18px;
+        left: 25px;
+        position: absolute;
+    }
+
+    .donation.DatecountT {
+        font-size: calc(1vw *1.5);
+    }
+
+    .donation-eventconatiner {
+        display: flex;
+        top: calc(2vw*2.3);
+        position: absolute;
+        left: 25px;
+        right: 25px;
+        gap: 15px;
+    }
+
+    .donation.event-img {
+        aspect-ratio: 4 / 1;
+        width: calc(15vw* 1.2);
+        height: calc(15vw * 1.2);
+    }
+    .donation.event-details-container{
+        margin-left: 1px;
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        width: 100%;
+        row-gap: 10px;
+    }
+    .donation.event-details-title{
+        font-size: calc(1vw *2);
+    }
+    .donation.event-goal-price{
+        font-size: calc(1vw *1.5);
+    }
+    .donation.event-BTN{
+        color: white;
+        background: var( --btn-auction-bg);
+        text-align: center;
+        cursor: pointer;
+        height: 100%;
+        padding: 0;
+        padding-top: calc(3vw);
+        padding-bottom: 3vw;
+        float: right;
+        margin: 0px;
+        width: calc(10vw*2);
+    }
+    .donation.event-BTN-container{
+        display: flex;
+        gap: 5px;
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        justify-content: flex-start;
+        align-items: flex-end;
+    }
+    .donation.event-btn-text{
+        height: 100%;
+        font-size: calc(1vw * 2);
+    }
+}

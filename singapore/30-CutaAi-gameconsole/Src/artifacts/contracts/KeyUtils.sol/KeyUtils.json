@@ -1,0 +1,195 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "KeyUtils",
+  "sourceName": "contracts/KeyUtils.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "did",
+          "type": "string"
+        }
+      ],
+      "name": "genContextKey",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "ctx",
+          "type": "string"
+        }
+      ],
+      "name": "genContextSecondKey",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "did",
+          "type": "string"
+        }
+      ],
+      "name": "genControllerKey",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "controller",
+          "type": "string"
+        }
+      ],
+      "name": "genControllerSecondKey",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "did",
+          "type": "string"
+        }
+      ],
+      "name": "genPubKeyListKey",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "pubKey",
+          "type": "bytes"
+        }
+      ],
+      "name": "genPubKeyListSecondKey",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "did",
+          "type": "string"
+        }
+      ],
+      "name": "genServiceKey",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "serviceId",
+          "type": "string"
+        }
+      ],
+      "name": "genServiceSecondKey",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "did",
+          "type": "string"
+        }
+      ],
+      "name": "genUpdateTimeKey",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "genUpdateTimeSecondKey",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x610429610026600b82828239805160001a60731461001957fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600436106100a85760003560e01c80639eee0a89116100705780639eee0a891461011c578063b726099b146100fc578063e97b8b901461012f578063eb82484414610137578063f4d9407f146100fc576100a8565b8063170b9254146100ad5780631badc8de146100d65780631eae56fe146100e9578063229cbc87146100fc5780634acf2705146100fc575b600080fd5b6100c06100bb36600461026c565b61014a565b6040516100cd9190610390565b60405180910390f35b6100c06100e436600461026c565b610173565b6100c06100f736600461026c565b610186565b61010f61010a36600461026c565b610199565b6040516100cd9190610387565b6100c061012a36600461026c565b6101a4565b61010f6101b7565b6100c061014536600461026c565b6101db565b60608160405160200161015d919061032c565b6040516020818303038152906040529050919050565b60608160405160200161015d91906102a7565b60608160405160200161015d91906102d3565b805160209091012090565b60608160405160200161015d9190610359565b7fc82895c0c3ceabd782a01504a94c9aacea049cda0758a362503092064cb5015f90565b60608160405160200161015d9190610301565b600082601f8301126101fe578081fd5b813567ffffffffffffffff80821115610215578283fd5b604051601f8301601f191681016020018281118282101715610235578485fd5b60405282815292508284830160200186101561025057600080fd5b8260208601602083013760006020848301015250505092915050565b60006020828403121561027d578081fd5b813567ffffffffffffffff811115610293578182fd5b61029f848285016101ee565b949350505050565b600082516102b98184602087016103c3565b671018dbdb9d195e1d60c21b920191825250600801919050565b600082516102e58184602087016103c3565b6931b7b73a3937b63632b960b11b920191825250600a01919050565b600082516103138184602087016103c3565b667365727669636560c81b920191825250600701919050565b6000825161033e8184602087016103c3565b687075626c69634b657960b81b920191825250600901919050565b6000825161036b8184602087016103c3565b6975706461746554696d6560b01b920191825250600a01919050565b90815260200190565b60006020825282518060208401526103af8160408501602087016103c3565b601f01601f19169190910160400192915050565b60005b838110156103de5781810151838201526020016103c6565b838111156103ed576000848401525b5050505056fea264697066735822122094dd33d2139224f4f4726e09e903931080ec9548384e44cbbbfeb12bcb9d10a564736f6c634300060c0033",
+  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600436106100a85760003560e01c80639eee0a89116100705780639eee0a891461011c578063b726099b146100fc578063e97b8b901461012f578063eb82484414610137578063f4d9407f146100fc576100a8565b8063170b9254146100ad5780631badc8de146100d65780631eae56fe146100e9578063229cbc87146100fc5780634acf2705146100fc575b600080fd5b6100c06100bb36600461026c565b61014a565b6040516100cd9190610390565b60405180910390f35b6100c06100e436600461026c565b610173565b6100c06100f736600461026c565b610186565b61010f61010a36600461026c565b610199565b6040516100cd9190610387565b6100c061012a36600461026c565b6101a4565b61010f6101b7565b6100c061014536600461026c565b6101db565b60608160405160200161015d919061032c565b6040516020818303038152906040529050919050565b60608160405160200161015d91906102a7565b60608160405160200161015d91906102d3565b805160209091012090565b60608160405160200161015d9190610359565b7fc82895c0c3ceabd782a01504a94c9aacea049cda0758a362503092064cb5015f90565b60608160405160200161015d9190610301565b600082601f8301126101fe578081fd5b813567ffffffffffffffff80821115610215578283fd5b604051601f8301601f191681016020018281118282101715610235578485fd5b60405282815292508284830160200186101561025057600080fd5b8260208601602083013760006020848301015250505092915050565b60006020828403121561027d578081fd5b813567ffffffffffffffff811115610293578182fd5b61029f848285016101ee565b949350505050565b600082516102b98184602087016103c3565b671018dbdb9d195e1d60c21b920191825250600801919050565b600082516102e58184602087016103c3565b6931b7b73a3937b63632b960b11b920191825250600a01919050565b600082516103138184602087016103c3565b667365727669636560c81b920191825250600701919050565b6000825161033e8184602087016103c3565b687075626c69634b657960b81b920191825250600901919050565b6000825161036b8184602087016103c3565b6975706461746554696d6560b01b920191825250600a01919050565b90815260200190565b60006020825282518060208401526103af8160408501602087016103c3565b601f01601f19169190910160400192915050565b60005b838110156103de5781810151838201526020016103c6565b838111156103ed576000848401525b5050505056fea264697066735822122094dd33d2139224f4f4726e09e903931080ec9548384e44cbbbfeb12bcb9d10a564736f6c634300060c0033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

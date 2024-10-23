@@ -1,0 +1,8 @@
+# Basic
+edition = "2021"
+max_width = 120
+# Imports
+imports_granularity = "Crate"
+reorder_imports = true
+# Consistency
+newline_style = "Unix"

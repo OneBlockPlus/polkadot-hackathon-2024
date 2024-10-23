@@ -1,0 +1,39 @@
+- name: get initial sync-state to obtain to_height
+  command: celestia header sync-state --node.store /mnt/da
+  register: initial_sync_state
+  become: true
+  become_user: sovereign
+  changed_when: false
+  until: >
+    (initial_sync_state.stdout | from_json).result.to_height is defined and 
+    (initial_sync_state.stdout | from_json).result.to_height | int is not none
+  retries: 120
+  delay: 60
+
+#- name: debug sync-state
+#  debug:
+#    var: initial_sync_state
+
+- name: set `sync_state.to_height` as a fact
+  set_fact:
+    to_height: "{{ (initial_sync_state.stdout | from_json).result.to_height }}"
+
+
+- name: debug initial to_height value
+  debug:
+    msg: "Initial to_height is {{ to_height }}"
+
+- name: loop until height is greater than to_height
+  command: celestia header sync-state --node.store /mnt/da
+  register: current_sync_state
+  become: true
+  become_user: sovereign
+  changed_when: false
+  until: (current_sync_state.stdout | from_json).result.height|int > to_height|int
+  retries: 120
+  delay: 60
+  ignore_errors: true
+
+- name: debug final height value
+  debug:
+    msg: "height: {{ (current_sync_state.stdout | from_json).result.height }} is greater than to_height: {{ to_height }}"

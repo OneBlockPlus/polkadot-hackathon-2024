@@ -1,0 +1,83 @@
+[da]
+# Connection string for SQL database to have stored blocks, for example"
+#  - "sqlite://demo_data/da.sqlite?mode=rwc"
+#  - "sqlite::memory:"
+#  - "postgresql://root:hunter2@aws.amazon.com/mock-da"
+#node_client_url = "https://fullnode.testnet.sui.io:443"
+node_url = "ws://127.0.0.1:9944"
+
+connection_string = "sqlite://mock_da.sqlite?mode=rwc"
+# String representation of sequencer address.
+# For initial full node should match genesis of sequencer-registry.
+# It is going to be a DA address that blobs from this node will be associated.
+sender_address = [
+    118,
+    208,
+    52,
+    255,
+    215,
+    55,
+    21,
+    88,
+    199,
+    73,
+    99,
+    222,
+    94,
+    112,
+    174,
+    108,
+    11,
+    205,
+    213,
+    13,
+    211,
+    49,
+    121,
+    24,
+    225,
+    166,
+    14,
+    181,
+    61,
+    27,
+    207,
+    136,
+]
+# Defines how new blocks should be produced.
+# Can be 2 options:
+#  - periodic: new blocks produced periodically every `block_time_ms`.
+#              Empty blocks can be produced with this option.
+#  - on_submit: new blocks are produced on submission of batch/blob.
+#              `block_time_ms` defines maximum waiting time for a new block
+block_producing = "periodic"
+# block_producing = "on_submit"
+
+# Block time depends on `block_producing`:
+# For `periodic` it defines how often new blocks will be produced, approximately.
+# For `on_submit` it defines max time service will wait for a new block.
+block_time_ms = 90_000 
+
+[storage]
+# The path to the rollup's data directory. Paths that do not begin with `/` are interpreted as relative paths.
+path = "../../rollup-starter-data"
+
+# We define the rollup's genesis to occur at block number `start_height`. The rollup will ignore
+# any blocks before this height
+[runner]
+genesis_height = 1
+da_polling_interval_ms = 90_000
+
+[runner.rpc_config]
+bind_host = "127.0.0.1"
+bind_port = 12345
+[runner.axum_config]
+bind_host = "127.0.0.1"
+bind_port = 12346
+
+[proof_manager]
+aggregated_proof_block_jump = 1
+prover_address = "sov1pv9skzctpv9skzctpv9skzctpv9skzctpv9skzctpv9skzctpv9stup8tx"
+
+[runner.sync_config]
+max_blocks_per_second = 1

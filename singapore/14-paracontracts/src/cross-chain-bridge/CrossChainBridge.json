@@ -1,0 +1,72 @@
+[
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "currentContractAddress",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "address[]",
+                "name": "contractAddresses",
+                "type": "address[]"
+            },
+            {
+                "indexed": false,
+                "internalType": "string[]",
+                "name": "rpcUrls",
+                "type": "string[]"
+            },
+            {
+                "indexed": false,
+                "internalType": "string",
+                "name": "variableName",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "internalType": "string",
+                "name": "functionName",
+                "type": "string"
+            }
+        ],
+        "name": "ReadValuesRequested",
+        "type": "event"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "currentContractAddress",
+                "type": "address"
+            },
+            {
+                "internalType": "address[]",
+                "name": "contractAddresses",
+                "type": "address[]"
+            },
+            {
+                "internalType": "string[]",
+                "name": "rpcUrls",
+                "type": "string[]"
+            },
+            {
+                "internalType": "string",
+                "name": "variableName",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "functionName",
+                "type": "string"
+            }
+        ],
+        "name": "readValues",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }
+]

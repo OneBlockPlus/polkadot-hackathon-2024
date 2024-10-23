@@ -1,0 +1,75 @@
+[package]
+name = "fhe"
+description = "Fully Homomorphic Encryption in Rust"
+authors.workspace = true
+documentation.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+version.workspace = true
+rust-version.workspace = true
+
+[lib]
+bench = false # Disable default bench (we use criterion)
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+
+[features]
+default = []
+std = []
+concrete-ntt = ["fhe-math/concrete-ntt"]
+concrete-ntt-nightly = ["fhe-math/concrete-ntt-nightly"]
+
+[dependencies]
+fhe-math = { version = "^0.1.0-beta.8", path = "../fhe-math" }
+fhe-traits = { version = "^0.1.0-beta.8", path = "../fhe-traits" }
+fhe-util = { version = "^0.1.0-beta.8", path = "../fhe-util" }
+
+doc-comment.workspace = true
+itertools.workspace = true
+num-bigint.workspace = true
+num-traits.workspace = true
+prost.workspace = true
+rand.workspace = true
+rand_chacha.workspace = true
+zeroize.workspace = true
+zeroize_derive.workspace = true
+ndarray.workspace = true
+thiserror-no-std.workspace = true
+hashbrown.workspace = true
+
+[build-dependencies]
+prost-build.workspace = true
+
+[dev-dependencies]
+clap.workspace = true
+console.workspace = true
+criterion.workspace = true
+env_logger.workspace = true
+indicatif.workspace = true
+itertools.workspace = true
+log.workspace = true
+ndarray.workspace = true
+rand = {workspace = true, features = ["std"]}
+
+[[bench]]
+name = "bfv"
+harness = false
+
+[[bench]]
+name = "bfv_optimized_ops"
+harness = false
+
+[[bench]]
+name = "bfv_rgsw"
+harness = false
+
+[[example]]
+name = "mulpir"
+
+[[example]]
+name = "sealpir"
+
+[[example]]
+name = "voting"

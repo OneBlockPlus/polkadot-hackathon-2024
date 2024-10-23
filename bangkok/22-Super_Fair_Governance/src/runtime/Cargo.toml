@@ -1,0 +1,187 @@
+[package]
+name = "solochain-template-runtime"
+description = "A solochain runtime template built with Substrate, part of Polkadot Sdk. (polkadot v1.15.0)"
+version = "0.1.0"
+license = "Unlicense"
+authors.workspace = true
+homepage.workspace = true
+repository.workspace = true
+edition.workspace = true
+publish = false
+
+[lints]
+workspace = true
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+
+[dependencies]
+codec = { package = "parity-scale-codec", version = "3.6.1", default-features = false, features = [
+	"derive",
+] }
+scale-info = { version = "2.10.0", default-features = false, features = [
+	"derive",
+	"serde",
+] }
+
+# frame
+frame-support = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false, features = ["experimental"] }
+frame-system = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false }
+frame-try-runtime = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false, optional = true }
+frame-executive = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false }
+
+# frame pallets
+pallet-aura = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false }
+pallet-balances = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false }
+pallet-grandpa = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false }
+pallet-sudo = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false }
+pallet-timestamp = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false }
+pallet-transaction-payment = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false }
+
+# primitives
+sp-api = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false }
+sp-block-builder = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false }
+sp-consensus-aura = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false, features = [
+	"serde",
+] }
+sp-consensus-grandpa = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false, features = [
+	"serde",
+] }
+sp-core = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false, features = [
+	"serde",
+] }
+sp-inherents = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false }
+sp-offchain = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false }
+sp-runtime = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false, features = [
+	"serde",
+] }
+sp-session = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false }
+sp-std = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false }
+sp-storage = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false }
+sp-transaction-pool = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false }
+sp-version = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false, features = [
+	"serde",
+] }
+sp-genesis-builder = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false }
+
+# RPC related
+frame-system-rpc-runtime-api = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false }
+pallet-transaction-payment-rpc-runtime-api = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false }
+
+# Used for runtime benchmarking
+frame-benchmarking = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false, optional = true }
+frame-system-benchmarking = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false, optional = true }
+pallet-insecure-randomness-collective-flip = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = false }
+
+# The pallet in this template.
+pallet-template = { path = "../pallets/template", default-features = false }  
+pallet-cdao-ballot  = { path = "../pallets/cdao_ballot", default-features = false }
+pallet-cdao-collective = { path = "../pallets/cdao_collective", default-features = false }
+pallet-cdao-membership = { path = "../pallets/cdao_membership", default-features = false }
+pallet-cdao-motions = { path = "../pallets/cdao_motions", default-features = false }
+pallet-cdao-decentralized-desion  = { path = "../pallets/cdao_decentralized_desion", default-features = false }
+pallet-cdao-voting = { path = "../pallets/cdao_voting", default-features = false }
+pallet-cdao-motions-exec   = { path = "../pallets/cdao_motions_exec", default-features = false }
+pallet-cdao-society = { path = "../pallets/cdao_society", default-features = false }
+pallet-cdao-alliance = { path = "../pallets/cdao_alliance", default-features = false }
+
+[build-dependencies]
+substrate-wasm-builder = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", optional = true }
+
+[features]
+default = ["std"]
+std = [
+	"codec/std",
+	"scale-info/std",
+
+	"frame-executive/std",
+	"frame-support/std",
+	"frame-system-benchmarking?/std",
+	"frame-system-rpc-runtime-api/std",
+	"frame-system/std",
+
+	"frame-benchmarking?/std",
+	"frame-try-runtime?/std",
+
+	"pallet-aura/std",
+	"pallet-balances/std", 	
+	"pallet-cdao-ballot/std",
+	"pallet-cdao-collective/std", 
+ 	"pallet-cdao-membership/std", 
+ 	"pallet-cdao-motions/std", 
+ 	"pallet-cdao-decentralized-desion/std",  
+ 	"pallet-cdao-voting/std",  
+ 	"pallet-cdao-motions-exec/std",  
+ 	"pallet-cdao-society/std", 
+ 	"pallet-cdao-alliance/std",  
+
+	"pallet-grandpa/std",
+	"pallet-sudo/std",
+	"pallet-template/std",
+	"pallet-timestamp/std",
+	"pallet-transaction-payment-rpc-runtime-api/std",
+	"pallet-transaction-payment/std",
+
+	"sp-api/std",
+	"sp-block-builder/std",
+	"sp-consensus-aura/std",
+	"sp-consensus-grandpa/std",
+	"sp-core/std",
+	"sp-genesis-builder/std",
+	"sp-inherents/std",
+	"sp-offchain/std",
+	"sp-runtime/std",
+	"sp-session/std",
+	"sp-std/std",
+	"sp-storage/std",
+	"sp-transaction-pool/std",
+	"sp-version/std",
+
+	"substrate-wasm-builder",
+]
+
+runtime-benchmarks = [
+	"frame-benchmarking/runtime-benchmarks",
+	"frame-support/runtime-benchmarks",
+	"frame-system-benchmarking/runtime-benchmarks",
+	"frame-system/runtime-benchmarks",
+	"pallet-balances/runtime-benchmarks",
+	"pallet-grandpa/runtime-benchmarks",
+	"pallet-sudo/runtime-benchmarks",
+	"pallet-template/runtime-benchmarks",
+	"pallet-cdao-ballot/runtime-benchmarks",
+	"pallet-cdao-collective/runtime-benchmarks",
+	"pallet-cdao-membership/runtime-benchmarks",
+	"pallet-cdao-motions/runtime-benchmarks",
+	"pallet-cdao-decentralized-desion/runtime-benchmarks",
+	"pallet-cdao-voting/runtime-benchmarks",
+	"pallet-cdao-motions-exec/runtime-benchmarks",
+	"pallet-cdao-society/runtime-benchmarks",
+	"pallet-cdao-alliance/runtime-benchmarks",
+	"pallet-timestamp/runtime-benchmarks",
+	"sp-runtime/runtime-benchmarks",
+]
+
+try-runtime = [
+	"frame-executive/try-runtime",
+	"frame-support/try-runtime",
+	"frame-system/try-runtime",
+	"frame-try-runtime/try-runtime",
+	"pallet-aura/try-runtime",
+	"pallet-balances/try-runtime",
+	"pallet-grandpa/try-runtime",
+	"pallet-sudo/try-runtime",
+	"pallet-template/try-runtime",	
+	"pallet-cdao-ballot/try-runtime",	
+ 	"pallet-cdao-collective/try-runtime",
+ 	"pallet-cdao-membership/try-runtime",
+ 	"pallet-cdao-motions/try-runtime",
+ 	"pallet-cdao-decentralized-desion/try-runtime", 
+ 	"pallet-cdao-voting/try-runtime",
+ 	"pallet-cdao-motions-exec/try-runtime", 
+ 	"pallet-cdao-society/try-runtime",
+ 	"pallet-cdao-alliance/try-runtime",
+	"pallet-timestamp/try-runtime",
+	"pallet-transaction-payment/try-runtime",
+	"sp-runtime/try-runtime",
+]

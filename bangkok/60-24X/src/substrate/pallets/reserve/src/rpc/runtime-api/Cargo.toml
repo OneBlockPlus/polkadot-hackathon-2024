@@ -1,0 +1,27 @@
+[package]
+name = "pallet-reserve-runtime-api"
+version = "0.1.0"
+edition = "2021"
+license = "MIT-0"
+description = "Runtime API for the risk manager pallet"
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+
+[dependencies]
+sp-api = { version = "34.0.0", default-features = false, workspace = true }
+sp-std = { version = "14.0.0", default-features = false, workspace = true }
+sp-runtime = { version = "39.0.0", default-features = false, workspace = true }
+codec = { package = "parity-scale-codec", version = "3.6.12", default-features = false, features = ["derive"], workspace = true }
+scale-info = { version = "2.11.1", default-features = false, features = ["derive"], workspace = true }
+common = { workspace = true }
+
+[features]
+default = ["std"]
+std = [
+    "sp-api/std",
+    "sp-std/std",
+    "sp-runtime/std",
+    "codec/std",
+    "scale-info/std",
+]

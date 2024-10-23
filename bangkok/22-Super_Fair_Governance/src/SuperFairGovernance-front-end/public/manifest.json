@@ -1,0 +1,15 @@
+{
+  "short_name": "Proposal and Vote",
+  "name": "Proposal and Vote",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 48x48 32x32 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

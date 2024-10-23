@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "SubWallet",
+  "short_name": "SubWallet",
+  "version": "0.0.1",
+  "description": "SubWallet",
+  "action": {
+    "default_icon": "ico.png",
+    "default_title": "SubWallet",
+    "default_popup": "popup/index.html"
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "tabs",
+    "scripting",
+    "webRequest",
+    "notifications"
+  ],  
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "store.js",
+        "content.js",
+        "jquery.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "externally_connectable": {
+    "matches": [
+      "<all_urls>"
+    ]
+  },
+  "background": {
+    "type": "module",
+    "service_worker": "background.js"
+  }
+}

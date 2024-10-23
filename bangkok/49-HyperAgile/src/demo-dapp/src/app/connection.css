@@ -1,0 +1,98 @@
+main.connection {
+    padding: 6.625rem 5rem;
+
+    width: 100dvw;
+    height: 100dvh;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+}
+
+main.connection > h1 {
+    font-size: 4rem;
+    font-weight: 500;
+}
+
+main.connection > div.powered {
+    display: flex;
+    align-items: center;
+    column-gap: 0.25rem;
+}
+
+main.connection > button#black-button {
+    padding: 2rem 3.5rem;
+
+    justify-self: start;
+    align-self: flex-end;
+
+    font-size: 1.5rem;
+}
+
+main.connection > img:last-of-type {
+    height: 90%;
+    width: auto;
+
+    grid-column: 2 / 3;
+    grid-row: 1 / 5;
+    justify-self: center;
+    align-self: flex-end;
+}
+
+main.connection > div.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100dvh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(1, 1, 1, 0.5);
+
+    animation: form-appear 600ms ease-out forwards;
+}
+
+main.connection > div.background > section.connectors {
+    position: relative;
+    padding: 3.5rem 5rem;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.25rem;
+    align-items: center;
+    justify-content: center;
+
+    background-color: white;
+    border-radius: 10px;
+}
+
+main.connection > div.background > section.connectors > div {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 0.5rem;
+}
+
+main.connection > div.background > section.connectors > div > img {
+    width: 3.5rem;
+    height: auto;
+
+    border-radius: 10px;
+}
+
+main.connection > div.background > section.connectors > img {
+    position: absolute;
+    top: 1.75rem;
+    right: 1.75rem;
+
+    width: 1.2rem;
+    height: auto;
+
+    cursor: pointer;
+}

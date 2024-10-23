@@ -1,0 +1,30 @@
+[package]
+name = "hp-system"
+version = "0.3.0"
+authors = ["Alex Wang"]
+description = "System trait and type."
+license = "Apache-2.0"
+repository.workspace = true
+edition.workspace = true
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+
+[dependencies]
+
+# Substrate
+sp-core = { workspace = true, default-features = false}
+sp-runtime = { workspace = true, default-features = false}
+sp-std = { workspace = true, default-features = false}
+frame-support = { workspace = true, default-features = false}
+frame-system = { workspace = true, default-features = false}
+
+[features]
+default = [ "std" ]
+std = [
+	"sp-core/std",
+	"sp-std/std",
+	"sp-runtime/std",
+	"frame-support/std",
+	"frame-system/std",
+]

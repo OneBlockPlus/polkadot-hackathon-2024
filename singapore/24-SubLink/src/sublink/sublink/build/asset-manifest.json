@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.2bc02212.css",
+    "main.js": "/static/js/main.2089e7ac.js",
+    "static/media/Unbounded-Black.ttf": "/static/media/Unbounded-Black.7649d210000a49112018.ttf",
+    "static/media/Unbounded-Regular.ttf": "/static/media/Unbounded-Regular.29479ac97777a463b92f.ttf",
+    "static/media/Unbounded-ExtraLight.ttf": "/static/media/Unbounded-ExtraLight.421186a6580982a223c0.ttf",
+    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/index.html",
+    "main.2bc02212.css.map": "/static/css/main.2bc02212.css.map",
+    "main.2089e7ac.js.map": "/static/js/main.2089e7ac.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2bc02212.css",
+    "static/js/main.2089e7ac.js"
+  ]
+}

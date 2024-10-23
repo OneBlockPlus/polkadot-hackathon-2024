@@ -1,0 +1,28 @@
+.container-Survey-Template {  display: grid;
+    grid-template-columns: max-content 5fr min-content;
+    grid-template-rows: 0.6fr 1.4fr;
+    gap: 0px 0px;
+    grid-auto-flow: column;
+    grid-template-areas:
+      "Image-Box Title-Template Next-Button"
+      "description-Template description-Template description-Template";
+                             padding: 1rem;
+                             zoom: 0.7;
+  }
+  
+  .Title-Template { padding:10px; grid-area: Title-Template; }
+  
+  .description-Template {  display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      ".";
+    grid-area: description-Template;
+  }
+  
+  .Image-Box { grid-area: Image-Box; }
+  
+  .Next-Button { grid-area: Next-Button; }
+  

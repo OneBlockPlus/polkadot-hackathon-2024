@@ -1,0 +1,39 @@
+.ide {
+  height: 18.75rem;
+  /* min-width: 100%; */
+  min-width: 80rem;
+}
+.ide-out {
+  border: solid 1px #ccc;
+  background-color: #141414;
+  color: white;
+  height: 18.75rem;
+  /* min-width: 100%; */
+  min-width: 80rem;
+
+}
+button {
+  border-radius: 25px;
+  color:#fffdf8;
+  background-color: black;
+  padding: 15px;
+  width: 100px;
+}
+.ide-out pre {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.green-text {
+  color: green;
+}
+.red-text {
+  color: red;
+}
