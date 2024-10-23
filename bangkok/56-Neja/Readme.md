@@ -8,6 +8,9 @@ Neja.js is a Substrate-based tool that enables developers to easily build cross 
 
 Neja is based on the idea of leveraging Substrate's pallet design to create a more suitable programmable layer than smart contracts.
 
+## Category
+Tooling: (Infrastructure) Polkadot ecological developer tools
+
 ## Problem
 
 The current blockchain development landscape within the Polkadot ecosystem presents several challenges:
