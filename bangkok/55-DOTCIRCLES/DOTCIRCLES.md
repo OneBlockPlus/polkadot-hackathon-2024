@@ -149,6 +149,6 @@ By combining staking with security deposits, **DOTCIRCLES** could provide additi
 These features would add significant value to **DOTCIRCLES**, turning it into a comprehensive DeFi platform for savings, loans, and decentralized identity. While these features are beyond the scope of the current hackathon, they represent exciting future directions for the project.
 
 [Youtube Walkthrough](https://www.youtube.com/watch?v=pjcfylZXKfo)
-
+[PowerPoint Presentation](https://docs.google.com/presentation/d/1GM-xSkp3CEHVuftlu3vNgHG6raEl8-CvfaZGzBPYH6s/edit?usp=sharing)
 
 
