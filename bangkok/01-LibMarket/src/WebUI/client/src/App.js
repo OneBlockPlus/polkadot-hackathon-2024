@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { initWeb3 } from './utils/contractInteraction';
 import SearchBar from './components/SearchBar';
 import ItemList from './components/ItemList';
@@ -18,19 +18,26 @@ const darkTheme = {
 
 const ChatContainer = styled.div`
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%; // 增加宽度
-  max-width: 400px; // 设置最大宽度
-  height: 80vh; // 使用视口高度
-  max-height: 600px; // 设置最大高度
+  top: ${props => props.position.y}px;
+  left: ${props => props.position.x}px;
+  width: 90%;
+  max-width: 400px;
+  height: 80vh;
+  max-height: 600px;
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 10px;
-  overflow: hidden; // 隐藏溢出内容
+  overflow: hidden;
   box-shadow: 0 0 20px rgba(0,0,0,0.2);
   z-index: 1000;
+  cursor: move; // 添加这行，使整个容器显示为可移动状态
+`;
+
+const ChatHeader = styled.div`
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  user-select: none;
 `;
 
 function App() {
@@ -44,6 +51,10 @@ function App() {
     const [theme, setTheme] = useState(lightTheme);
     const [forceUpdate, setForceUpdate] = useState(0);
     const [chatKey, setChatKey] = useState(0); // 新增状态
+    const [chatPosition, setChatPosition] = useState({ x: 100, y: 100 });
+    const [isDragging, setIsDragging] = useState(false);
+    const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+    const chatContainerRef = useRef(null);
 
     useEffect(() => {
         const initializeWeb3 = async () => {
@@ -63,11 +74,9 @@ function App() {
     };
 
     const handleChatClick = (item) => {
-        console.log('handleChatClick called with item:', item);
         setSelectedItem(item);
         setShowChat(true);
-        setChatKey(prevKey => prevKey + 1); // 每次打开聊天时更新 key
-        // 强制重新渲染
+        setChatKey(prevKey => prevKey + 1);
         setForceUpdate(prev => prev + 1);
     };
 
@@ -82,6 +91,46 @@ function App() {
     const handleItemListed = () => {
         setRefreshItemList(prev => !prev);
     };
+
+    const handleMouseDown = useCallback((e) => {
+        // 检查是否点击了输入框或按钮
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON') {
+            return;
+        }
+        setIsDragging(true);
+        const rect = chatContainerRef.current.getBoundingClientRect();
+        setDragOffset({
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top
+        });
+    }, []);
+
+    const handleMouseMove = useCallback((e) => {
+        if (isDragging) {
+            e.preventDefault(); // 防止选中文本
+            const newX = e.clientX - dragOffset.x;
+            const newY = e.clientY - dragOffset.y;
+            setChatPosition({ x: newX, y: newY });
+        }
+    }, [isDragging, dragOffset]);
+
+    const handleMouseUp = useCallback(() => {
+        setIsDragging(false);
+    }, []);
+
+    useEffect(() => {
+        if (isDragging) {
+            document.addEventListener('mousemove', handleMouseMove);
+            document.addEventListener('mouseup', handleMouseUp);
+        } else {
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', handleMouseUp);
+        }
+        return () => {
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', handleMouseUp);
+        };
+    }, [isDragging, handleMouseMove, handleMouseUp]);
 
     return (
         <ThemeProvider theme={theme}>
@@ -99,28 +148,31 @@ function App() {
                                 onChatClick={handleChatClick}
                                 searchQuery={searchQuery}
                                 refresh={refreshItemList}
-                                currentUser={currentUser}  // 添加这一行
+                                currentUser={currentUser}
                             />
                         </div>
                     </>
                 ) : (
                     <ProfilePage walletAddress={currentUser} onItemListed={handleItemListed} />
                 )}
-                {/* 调试信息 */}
-                <div style={{position: 'fixed', bottom: 0, left: 0, background: 'white', padding: '10px', zIndex: 1001}}>
-                    Debug: showChat: {showChat.toString()}, selectedItem: {selectedItem ? JSON.stringify(selectedItem) : 'null'}
-                </div>
+                {showChat && selectedItem && (
+                    <ChatContainer 
+                        position={chatPosition}
+                        ref={chatContainerRef}
+                        onMouseDown={handleMouseDown}
+                    >
+                        <ChatHeader>
+                            Chat - Drag anywhere
+                        </ChatHeader>
+                        <ChatPage 
+                            key={chatKey}
+                            item={selectedItem} 
+                            onClose={handleCloseChat} 
+                            currentUser={currentUser}
+                        />
+                    </ChatContainer>
+                )}
             </div>
-            {/* ChatContainer 移到这里 */}
-            {showChat && selectedItem && (
-                <ChatContainer key={chatKey}>
-                    <ChatPage 
-                        item={selectedItem} 
-                        onClose={handleCloseChat} 
-                        currentUser={currentUser}
-                    />
-                </ChatContainer>
-            )}
         </ThemeProvider>
     );
 }

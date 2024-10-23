@@ -198,14 +198,14 @@ function ProfilePage({ walletAddress, onItemListed }) {
                 {selectedChat && (
                     <ChatInterfaceContainer>
                         <ChatHeader>
-                            <h3>聊天记录 - 物品ID: {selectedChat}</h3>
+                            <h3>Chat History - itemID: {selectedChat}</h3>
                         </ChatHeader>
                         <ChatMessages>
                             {myChats[selectedChat] && myChats[selectedChat].map((message, index) => (
                                 <div key={index} className={`message ${message.sender === walletAddress ? 'sent' : 'received'}`}>
                                     <p>{message.text}</p>
                                     <span>{new Date(message.timestamp).toLocaleString()}</span>
-                                    <span className="sender">{message.sender === walletAddress ? '我' : '买家'}</span>
+                                    <span className="sender">{message.sender === walletAddress ? 'Me' : 'buyer'}</span>
                                 </div>
                             ))}
                         </ChatMessages>
@@ -216,7 +216,7 @@ function ProfilePage({ walletAddress, onItemListed }) {
                                 onChange={(e) => setInputMessage(e.target.value)}
                                 placeholder="Input Message..."
                             />
-                            <SendButton onClick={sendMessage}>Send</SendButton>
+                            <SendButton onClick={sendMessage}>Sen</SendButton>
                         </ChatInputContainer>
                     </ChatInterfaceContainer>
                 )}

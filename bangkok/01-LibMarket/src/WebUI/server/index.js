@@ -89,7 +89,7 @@ app.get('/api/messages/:itemId', async (req, res) => {
         const messages = await Message.find({ itemId: req.params.itemId }).sort('timestamp');
         res.json(messages);
     } catch (error) {
-        res.status(500).json({ message: '获取消息失败', error: error.message });
+        res.status(500).json({ message: 'Failed to get message', error: error.message });
     }
 });
 
@@ -105,7 +105,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('sendMessage', async ({ itemId, sender, text, isBuyer }) => {
-        console.log('收到消息:', { itemId, sender, text, isBuyer });
+        console.log('Receive message:', { itemId, sender, text, isBuyer });
         const message = new Message({ itemId, sender, text, isBuyer });
         try {
             const savedMessage = await message.save();
@@ -135,7 +135,7 @@ app.put('/api/items/:id/delist', async (req, res) => {
     try {
         const item = await Item.findByIdAndUpdate(req.params.id, { isListed: false }, { new: true });
         if (!item) {
-            return res.status(404).json({ message: '物品不存在' });
+            return res.status(404).json({ message: 'Item does not exist' });
         }
         res.json(item);
     } catch (error) {
@@ -151,7 +151,7 @@ app.put('/api/items/:id/toggle-listing', async (req, res) => {
         const item = await Item.findById(req.params.id);
         if (!item) {
             console.log('Item not found:', req.params.id);
-            return res.status(404).json({ message: '物品不存在' });
+            return res.status(404).json({ message: 'Item does not exist' });
         }
         console.log('Current item status:', item.isListed);
         item.isListed = !item.isListed;

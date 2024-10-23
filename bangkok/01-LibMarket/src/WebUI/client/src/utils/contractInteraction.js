@@ -1,5 +1,5 @@
 import Web3 from 'web3';
-//import LibMarketMainABI from 'https://d.cess.network/870781361.json'; // Make sure this path is correct  //LibMarket_Main.sol ABI
+
 let LibMarketMainABI;
 
 async function loadABI() {
@@ -7,9 +7,9 @@ async function loadABI() {
   LibMarketMainABI = await response.json();
 }
 
-
 loadABI();
-const contractAddress = '0x796e32495172a142e934a3e0fcd5f08471ff37e4';
+
+const contractAddress = '0x7e2955a538d2b396cdfd172fd150c24b46d70cee';
 const moonbaseAlphaRPC = 'https://moonbase-rpc.dwellir.com';
 
 let web3;
