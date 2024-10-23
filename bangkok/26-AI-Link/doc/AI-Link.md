@@ -1,69 +1,87 @@
 # AI-Link
 
+![logo](logo.png)
+
 ### **Introduction:**
-AI-LINK is a Byzantine-Robust Circuit designed to ensure privacy and data sovereignty. It leverages smart contracts to connect Polkadot's storage and computing resources, enabling secure AI training and applications while safeguarding the user's original data from exposure.
+AI-LINK is a Byzantine-Robust Circuit designed to ensure privacy and data sovereignty. It leverages smart contracts to connect decentralized storage and computing resources, enabling secure AI training and applications while safeguarding the user's original data from exposure.
+
+### **Motivation:**
+In federated learning environments, ensuring the integrity of model updates is critical, malicious actors can launch poison attacks by submitting tampered models. These attacks can degrade the performance of the global model and compromise the privacy of users data. The challenge lies in creating a robust framework that can detect and mitigate such attacks while preserving the benefits of decentralized data training.
 
 ### **Components:**
-1. **Clients**: Represent different devices (e.g., phones, tablets, computers) that train models locally on their data.
+1. **Clients**: Represent different devices (e.g., phones, tablets, computers, etc) that train models locally on their data.
 2. **Server**: Acts as the central node for aggregating local models into a global model.
-3. **Trusted Execution Environment (TEE)**: A secure area within the server that ensures confidentiality and integrity of code and data.
+3. **Validation Proxy**: A data integrity checkpoint server that ensures confidentiality and integrity of model exchange. (Replace with TEE in the future.)
 4. **Blockchain & Smart Contract**: Provides a decentralized and transparent ledger to store and verify the integrity of model updates.
+5. **CESS Storage**: A decentralized storage to securely store trained models.
 
 ### **Architecture:**
-![Architecture](AI-LINK_Architecture_Hackathon.png)
+![Architecture](AI-Link_Hackathon.png)
+
+### **Explanation:**
+The AI-Link architecture combines federated learning and blockchain technology to securely train AI models while protecting data privacy. Clients, such as smartphones and computers, train their models locally, ensuring that sensitive data remains on their devices.
+
+After training, each model is hashed to create a unique identifier that helps validate its integrity. Clients encrypt their models before sending them to the Validation Proxy, which safeguards the data during transmission. These models are then stored in CESS Storage Nodes for backup and decentralized access.
+
+The Validation Proxy verifies model hashes through the blockchain, preventing tampering and ensuring integrity. It also checks compatibility by calculating cosine similarity with previous models. Once validated, the encrypted models are sent to a central Server, which aggregates them into a global model.
+
+This global model is hashed and recorded on the blockchain to track its integrity. The validated global model is then rolled out to the clients via the Validation Proxy, ensuring it meets quality standards. The architecture allows ongoing verification of model hashes, promoting trust and consistency while effectively addressing data privacy concerns in a decentralized setup.
+
+### **Advantages:**
+- **Enhanced Privacy:** By allowing clients to train models locally, sensitive data never leaves the device, ensuring user privacy and data sovereignty.
+
+- **Data Security:** The use of encryption and decentralized storage protects models during transmission and storage, minimizing the risk of data breaches.
+
+- **Integrity Verification:** Hashing models and utilizing blockchain technology ensures that model updates are tamper-proof and can be verified for integrity at any time.
+  
+- **Control Over Training Schedule:** The administrator have the flexibility to determine when the training cycle begins, allowing for better alignment with data availability and resource constraints.
+
+- **Robust Against Attacks:** The architecture incorporates mechanisms to detect and mitigate poison attacks, safeguarding the performance of the global model.
+
+- **Decentralization:** The system eliminates reliance on a single data repository, distributing data storage and processing across multiple nodes, which enhances reliability.
+
+- **Scalability:** The architecture can efficiently handle an increasing number of clients and models, making it suitable for large-scale deployments.
+
+- **Real-Time Updates:** The ability to quickly validate and aggregate models allows for timely updates to the global model, keeping it relevant and effective.
+
+- **Collaboration:** Clients can contribute to a shared model without exposing their data, fostering collaboration while maintaining individual data privacy.
+
+- **Cost-Effectiveness:** Reducing the need for centralized data storage and processing can lead to lower operational costs and resource utilization.
+
 
 ### **Process Overview:**
-1. **Step 1: TEE Provides Public Key**  
-   The TEE generates and shares a public key with the server and clients, which will be used to encrypt local and global models.
+**1. Train Local Models** 
+- Clients (such as computers, smartphones, or other devices) train models locally using their private data.
+- This ensures that raw data remains on the client side, which enhances privacy and security.
 
-2. **Step 2: Local Model Training**  
-   Each client device trains a local model using its own data. The local model weights are then prepared for submission.
+**2. Hash Local Models**
+- Once the local models are trained, each model is hashed (i.e., a unique hash value is generated based on the model’s data).
+- The hash helps in tracking and validating the models integrity.
 
-3. **Step 3: Submit Hashed Model Data**  
-   After local training, each client hashes its local model and submits the hash to the smart contract on the blockchain. This ensures that the integrity of the local model can be verified later.
+**3.1. Submit Encrypted Model**
+- Clients encrypt their local models and submit them to the Validation Proxy.
 
-4. **Step 4: Submit Encrypted Model Data using TEE Public Key**  
-   The client encrypts its local model using the TEE’s public key and submits the encrypted model to the server. This step ensures that the server cannot view the raw model data but can pass it to the TEE for processing.
+**3.2. Store Local Models**
+- Local models are stored in CESS Storage Nodes for backup and decentralized access.
 
-5. **Step 5: Submit Encrypted Local Model and Encrypted Global Model to TEE**  
-   The server receives the encrypted local model and an encrypted global model (from a previous aggregation round) and forwards both to the TEE for secure validation.
+**4.1.; 4.2. Query and Verify Model Hash**
+- The Validation Proxy communicates with the Blockchain to query the model hashes to ensure integrity and prevent tampering.
+- Additionally, the proxy verifies the hash values and calculate cosine similarity to compare the new model with previous versions ensure compatibility and performance.
 
-6. **Step 6: Decrypt and Verify Local Model Hash**  
-   The TEE decrypts the local model and verifies it against the hash submitted to the blockchain. This verification step ensures the model’s integrity.
+**5. Forward Encrypted Model**
+- After validation, the encrypted model is forwarded to the Server.
 
-7. **Step 7: Perform Cosine Similarity Check**  
-   The TEE performs a cosine similarity check between the local model and the global model. This check ensures that the local model update is not significantly different or malicious (Byzantine-Robust).
+**6. Aggregate Model**
+- The server aggregates the received models from different clients into a global model.
 
-8. **Step 8: Respond Valid/Invalid to Point 5**  
-   The TEE responds to the server, indicating whether the local model is valid or not based on the similarity check
+**7. Hash Global Model**
+- The aggregated global model is hashed, and the hash is recorded in the Blockchain to maintain integrity and track the version.
 
-9. **Step 9: Aggregate all Local Models into Global Model**  
-   If the local model is validated, the TEE aggregates all received local models into a new global model, combining updates from multiple clients.
+**8. Roll Out Global Model**
+- The server rolls out the global model to the Validation Proxy, which ensures that it is properly validated before distributing it back to the clients.
 
-10. **Step 10: Submit Hashed Global Model**  
-    The TEE hashes the new global model and submits the hash to the smart contract on the blockchain. This step ensures that the integrity of the global model can be verified by any party.
+**9. Store Global Model** 
+- The global model is stored in CESS Storage Nodes for distributed access and backup.
 
-11. **Step 11: Distribute Global Model to Clients**  
-    The server distributes the new encrypted global model to all clients, which is encrypted using the TEE’s public key.
-
-12. **Step 12: Submit Encrypted Global Model**  
-    The server submits the encrypted global model to the TEE for verification and distribution.
-
-13. **Step 13: Decrypt and Verify Global Model Hash**  
-    The TEE decrypts the global model and verifies its integrity using the hash stored on the blockchain.
-
-14. **Step 14: Respond Valid/Invalid to Point 12**  
-    The TEE sends a response back to the clients indicating whether the global model is valid or not.
-
-### **Summary of Key Features:**
-- **Blockchain Integration**: Ensures transparency and immutability of model hashes, facilitating secure verification.
-- **TEE Usage**: Provides a secure environment for sensitive computations like model aggregation and similarity checks.
-- **Server Role**: Acts as an intermediary for communication and data transfer, but without access to the raw models due to encryption.
-- **Client Contribution**: Clients train models locally and submit updates, participating in a privacy-preserving learning process.
-
-## Team info
-Kwuaint Lee, Chunshu Dai, Mark Liu
-
-## Material for Demo
-1. Demo Video [link to Youtube]
-2. PPT [link to google doc]
+**10. Query Model Hash**
+- The Blockchain can be queried again by the Validation Proxy or other entities to verify the model hash for future operations, ensuring the model's integrity and consistency over time.
