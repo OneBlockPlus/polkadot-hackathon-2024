@@ -122,7 +122,7 @@ thus it can exert different effect to the omni-asset. The choice is free, it ult
     - [ZK-Proof-Aggregator for final Plonk Proof(based on SP1)](./src/zk-6358-final-prover/circuit/)
 - Beacon Cell
     - [ZK-Verifier for Moonbeam(Moonbeam smart contract)](./src/contracts/omni-zk-verifier/)
-    - BTC Taproot script
+    - [BTC Taproot script](./src/bitcoin-taproot-script-proof-chain/)
 - Operation Cell
     - [Substrate Parachain](./src/pallet-omniverse-operation/)
     - [Moonbeam smart contract](./src/contracts/omniveres-beacon/)
