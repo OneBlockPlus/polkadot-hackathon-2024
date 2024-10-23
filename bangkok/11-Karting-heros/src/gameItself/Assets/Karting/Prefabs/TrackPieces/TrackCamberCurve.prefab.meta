@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e5173aaa61cc2574392f31de57e2dad6
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Prefabs/TrackPieces/TrackCamberCurve.prefab
+  uploadId: 613807

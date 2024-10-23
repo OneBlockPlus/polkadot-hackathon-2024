@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="rootContainer" style="flex-grow: 1;">
+        <ui:VisualElement name="ItemContainer" style="background-color: rgba(197, 197, 197, 0); height: 265px; width: 240px; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/shopitem.png?fileID=2800000&amp;guid=03477809e6231444b9e91fd39d9f483c&amp;type=3#shopitem&apos;); overflow: visible; padding-top: 0; margin-top: 50px; flex-shrink: 0; top: -13px; position: absolute; left: 14px;">
+            <ui:Label text="Item Name" name="ItemName" style="font-size: 33.2px; color: rgb(64, 188, 255); -unity-text-align: upper-center; top: 36px; margin-left: 4px; width: 150px; align-self: center; white-space: normal; position: absolute;" />
+            <ui:VisualElement name="itemIcon" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/head.png?fileID=2800000&amp;guid=88245a26e238e124abccd6cdae865a8f&amp;type=3#head&apos;); background-color: rgba(255, 255, 255, 0); overflow: visible; bottom: 10px; width: 202px; height: 174px; align-self: center; flex-shrink: 0; position: absolute; left: 21px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="selectedOverlay" style="flex-grow: 1; flex-shrink: 0; width: 243px; height: 271px; position: absolute; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/selected.png?fileID=2800000&amp;guid=e76f4773ee1e5d343b7436004e03fa1e&amp;type=3#selected&apos;); top: 29px; left: 15px; display: none;" />
+        <ui:VisualElement name="priceContainer" style="flex-grow: 0; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/pricerect.png?fileID=2800000&amp;guid=bcc7993eb3695c34d93fc681a8beb870&amp;type=3#pricerect&apos;); align-items: center; justify-content: flex-start; flex-shrink: 0; width: 200px; height: 40px; align-self: center; translate: 0 -20px; position: absolute; top: 30px; left: 37px;">
+            <ui:VisualElement name="priceIconPairContainer" style="flex-grow: 1; flex-direction: row; flex-shrink: 0; align-items: center; width: 200px; height: 40px; justify-content: center;">
+                <ui:VisualElement name="coinIcon" style="flex-grow: 0; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/coin-small.png?fileID=2800000&amp;guid=ac16aac5f95c5e040ad347089a5b4666&amp;type=3#coin-small&apos;); width: 27px; height: 27px; overflow: visible; flex-shrink: 0;" />
+                <ui:Label text="Price" name="ItemPrice" style="font-size: 16px; color: rgb(252, 209, 19); -unity-text-align: upper-center; align-self: auto;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

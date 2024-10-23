@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0b4fa3eb165fa044c89f540d8b738a4f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 31900000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Animations/KartFrontWheelsMask.mask
+  uploadId: 613807

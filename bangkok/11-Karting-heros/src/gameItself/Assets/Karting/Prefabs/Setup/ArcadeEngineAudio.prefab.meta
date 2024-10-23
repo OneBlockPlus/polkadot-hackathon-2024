@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 129aa9342650245cbadf61f8391f3878
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Prefabs/Setup/ArcadeEngineAudio.prefab
+  uploadId: 613807

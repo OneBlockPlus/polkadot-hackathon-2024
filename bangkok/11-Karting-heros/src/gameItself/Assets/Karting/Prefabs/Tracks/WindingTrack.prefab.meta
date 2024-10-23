@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: fb0875b1cc43b99419d4a6cd704d6172
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Prefabs/Tracks/WindingTrack.prefab
+  uploadId: 613807

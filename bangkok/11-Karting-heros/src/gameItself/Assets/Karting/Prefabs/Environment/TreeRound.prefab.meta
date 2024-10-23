@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f825600eaf118ef48b19d55e234266b1
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Prefabs/Environment/TreeRound.prefab
+  uploadId: 613807

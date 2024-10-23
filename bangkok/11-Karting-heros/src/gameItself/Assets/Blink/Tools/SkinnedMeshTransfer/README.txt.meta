@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ca84bee85e63e9c4291778e371921011
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 219764
+  packageName: Skinned Mesh Transfer
+  packageVersion: 1.0
+  assetPath: Assets/Blink/Tools/SkinnedMeshTransfer/README.txt
+  uploadId: 493812

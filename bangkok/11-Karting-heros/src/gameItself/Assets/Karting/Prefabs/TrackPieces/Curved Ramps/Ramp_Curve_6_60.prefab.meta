@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 4102206a84e5fd140b4487286a1e81c3
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Prefabs/TrackPieces/Curved Ramps/Ramp_Curve_6_60.prefab
+  uploadId: 613807

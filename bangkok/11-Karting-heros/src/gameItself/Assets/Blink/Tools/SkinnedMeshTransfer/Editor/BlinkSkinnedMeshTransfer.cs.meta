@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 0a3641abb0e35d54d994c6c6b252e2da
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 219764
+  packageName: Skinned Mesh Transfer
+  packageVersion: 1.0
+  assetPath: Assets/Blink/Tools/SkinnedMeshTransfer/Editor/BlinkSkinnedMeshTransfer.cs
+  uploadId: 493812

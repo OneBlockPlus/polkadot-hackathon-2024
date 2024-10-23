@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 6fb0be89f0d0b38469396506a9e54beb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Scripts/UI/LoadSceneButton.cs
+  uploadId: 613807

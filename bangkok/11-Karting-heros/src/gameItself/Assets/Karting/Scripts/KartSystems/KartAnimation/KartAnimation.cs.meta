@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 28e237446f589d9458c806d922e78789
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Scripts/KartSystems/KartAnimation/KartAnimation.cs
+  uploadId: 613807

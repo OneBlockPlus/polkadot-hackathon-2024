@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8c93b051c3701e419b45a7cd3c7369b, type: 3}
+  m_Name: GameSettings
+  m_EditorClassIdentifier: 
+  _heroPrefab: {fileID: 2653285170629453368, guid: 7c17ce09d5c2cec4c9754117114d6886,
+    type: 3}
+  _carsPrefabs:
+  - {fileID: 4582958973516044098, guid: fa1cba75b6c59644facb5461ae21532c, type: 3}
+  _networkCarsPrefabs:
+  - {fileID: 4582958973516044098, guid: e70962fe08b7e964eb6ab0eab9be839d, type: 3}

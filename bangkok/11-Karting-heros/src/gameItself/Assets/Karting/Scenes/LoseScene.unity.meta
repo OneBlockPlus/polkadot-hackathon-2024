@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9c449e01147824b419cda406398fb2e7
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Scenes/LoseScene.unity
+  uploadId: 613807

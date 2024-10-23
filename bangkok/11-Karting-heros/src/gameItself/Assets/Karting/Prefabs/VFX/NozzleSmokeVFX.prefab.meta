@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e89850b0c6c7e9f4591f70aa405a18a7
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Prefabs/VFX/NozzleSmokeVFX.prefab
+  uploadId: 613807
