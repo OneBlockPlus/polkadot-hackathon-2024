@@ -40,6 +40,12 @@ Create backend in NestJS:
 - [x] Save all position in MongoDB database
 - [x] Get and update price feed in Oracle contract
 
+Links for our repos:
+
+Contracts - https://github.com/Ceres-Blockchain-Solutions/dazhbog-contracts
+Frontend - https://github.com/Ceres-Blockchain-Solutions/dazhbog-backend
+Backend - https://github.com/Ceres-Blockchain-Solutions/dazhbog-frontend
+
 
 ## Architecture
 
