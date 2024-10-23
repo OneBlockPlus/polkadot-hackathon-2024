@@ -121,13 +121,11 @@ thus it can exert different effect to the omni-asset. The choice is free, it ult
     - [ZK-Signature-Prover for tx-signatures verification(based on SP1)](./src/zk-6358-final-prover/circuit/sp1eip712/)
     - [ZK-Proof-Aggregator for final Plonk Proof(based on SP1)](./src/zk-6358-final-prover/circuit/)
 - Beacon Cell
-    - ZK-Verifier for Moonbeam(Moonbeam smart contract)
-    - ZK-Verifier for Pallet
+    - [ZK-Verifier for Moonbeam(Moonbeam smart contract)](./src/contracts/omni-zk-verifier/)
     - BTC Taproot script
 - Operation Cell
-    - Substrate Parachain
-    - Moonbeam smart contract
-
+    - [Substrate Parachain](./src/pallet-omniverse-operation/)
+    - [Moonbeam smart contract](./src/contracts/omniveres-beacon/)
 
 
 ## Team info
@@ -139,5 +137,5 @@ thus it can exert different effect to the omni-asset. The choice is free, it ult
 
 ## Material for Demo
 
-1. Demo Video [link to Youtube]
+1. [Demo Video](https://omniverse-dev.s3.us-east-1.amazonaws.com/hackathon/Hackathon+Demo.mp4)
 2. PPT [link to google doc]
