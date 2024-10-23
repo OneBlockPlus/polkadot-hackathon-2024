@@ -15,10 +15,10 @@ function SearchBar({ onSearch }) {
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="搜索物品"
+                placeholder="Search Items"
                 className="search-input"
             />
-            <button type="submit" className="search-button">搜索</button>
+            <button type="submit" className="search-button">Search</button>
         </form>
     );
 }

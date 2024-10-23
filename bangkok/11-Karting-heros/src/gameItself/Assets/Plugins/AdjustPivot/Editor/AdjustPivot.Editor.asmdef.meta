@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0e48c19c61ecc9e4d95b3177131dec57
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 112883
+  packageName: Adjust Pivot
+  packageVersion: 1.0.6
+  assetPath: Assets/Plugins/AdjustPivot/Editor/AdjustPivot.Editor.asmdef
+  uploadId: 495243

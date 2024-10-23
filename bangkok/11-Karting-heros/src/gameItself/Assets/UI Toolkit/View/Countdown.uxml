@@ -1,0 +1,3 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Label text="3" name="countdown" style="flex-shrink: 1; flex-grow: 1; font-size: 75px; -unity-font-style: bold-and-italic; -unity-text-align: middle-center; color: rgb(255, 255, 255);" />
+</ui:UXML>

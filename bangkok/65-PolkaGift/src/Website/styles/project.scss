@@ -1,0 +1,49 @@
+.Project-Image-Container{
+    width: 100%;
+    display: inline-grid;
+    background: white;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    align-content: center;
+    cursor: pointer;
+    user-select: none;
+    height: 100%;
+    justify-items: center;
+}
+.Project-Image-Container-disabled{
+    width: 100%;
+    display: inline-grid;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    align-content: center;
+    cursor: default;
+    user-select: none;
+    height: 100%;
+    justify-items: center;
+    background: #e1d6d6;
+}
+
+
+.Project-Image-Container:hover {
+    background: #ffffffb0;
+}
+
+.Project-Project-Container {
+    height: 110px;
+    width: 110px;
+}
+
+.Project-Project-Container-disabled {
+    height: 110px;
+    width: 110px;
+}
+
+.Project-ALL-project-Container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    max-height: 60%;
+    gap: 10px;
+}

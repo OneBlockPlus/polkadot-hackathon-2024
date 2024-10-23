@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 9266a736ad4804e8aa383ea677bf51fc
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Scripts/GameModes/ObjectiveReachTargets.cs
+  uploadId: 613807

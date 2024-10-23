@@ -1,4 +1,6 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
+
+import { getCurrentUser } from 'aws-amplify/auth';
 
 // Create the AuthContext
 const AuthContext = createContext();
@@ -7,7 +9,24 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [signinModalOpen, setSigninModalOpen] = useState(false);
     const [signupModalOpen, setSignupModalOpen] = useState(false);
+    const [user, setUser] = useState(null);
 
+    const checkUserAuth = async () => {
+        try {
+            const user = await getCurrentUser();
+            if (user) {
+                setUser(user);
+            } else {
+                return
+            }
+        } catch (error) {
+            return
+        }
+    }
+
+    useEffect(() => {
+        checkUserAuth();
+    }, []);
 
     const openSigninModal = () => {
         setSigninModalOpen(true);
@@ -26,7 +45,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider value={{ signinModalOpen, signupModalOpen, openSigninModal, closeSigninModal, openSignupModal, closeSignupModal }}>
+        <AuthContext.Provider value={{ user, signinModalOpen, signupModalOpen, openSigninModal, closeSigninModal, openSignupModal, closeSignupModal, checkUserAuth }}>
             {children}
         </AuthContext.Provider>
     );

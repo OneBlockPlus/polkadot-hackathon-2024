@@ -149,7 +149,7 @@ One potential issue is that MEV attackers can still manipulate transaction order
 | Name     | Role          | GitHub / X Handle           |
 |----------|---------------|-----------------------------|
 | Treap| Product Manager  | https://github.com/TreapGoGo  |
-| Artist Zhou | Financial Mathematical Modeler | https://github.com/artistzhou    |
+| Artist Zhou | Financial Mathematical Modeler | https://github.com/artistzxt    |
 | Jawk| Contract Developer      | https://github.com/jawkjiang   |
 | Fox（Qian Zhang） | Full Stack Engineer     | https://github.com/HappyFox001    |
 | SegmentOverflow| Architect      | https://github.com/whusjj   |

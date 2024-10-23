@@ -3,9 +3,17 @@
 
 NFT Search is an AI-driven cross-modal search engine based on semantic understanding. As a fundamental infrastructure for Web3.0, it allows users to perform token-level searches across hundreds of millions of NFTs using just textual descriptions or image prompts. Leveraging this powerful engine, we also offer personalized NFT recommendations and counterfeit NFT detection, enhancing user experience and security in the digital asset space.
 
-![NFT Search logo](./doc/assets/NFT Search_banner_v3.png)
+![NFT Search logo](./doc/assets/NFT_Search_banner_v3.png)
 
 ## Features planned for the Hackathon
+
+
+
+### NFT Search work scope
+
+NFT Search is a project that is constantly evolving. It uses dynamic updates to gradually support NFT projects on multiple chains. Currently, it mainly supports the retrieval of NFT projects on Ethereum and Polkadot.
+
+![NFT Search work scope](./doc/assets/NFTSearch_work_area.png)
 
 ### Image-text retrieval
 
@@ -34,9 +42,12 @@ Specify the search space for fine-grained retrieval based on the known target to
 
 ## Architect
 
-![NFT Search logo](./doc/assets/pipeline.png)
+![NFT Search logo](./doc/assets/pipeline2.png)
 
-![NFT Search logo](./doc/assets/Confidence Accumulation.png)
+### NFT Search System Demo
+![NFT Search logo](./doc/assets/NFTScan_demo.png)
+
+
 
 ## Schedule
 
@@ -51,11 +62,14 @@ Specify the search space for fine-grained retrieval based on the known target to
 
 ## Team info
 
-+ Shuxun Wang：Team leader, model training, algorithm design, backend；
-  + ![NFT Search logo](./doc/assets/shuxun.jpg)
++ [Shuxun Wang](https://github.com/ShuxunoO)：Master student at [Institute of Automation, Chinese Academy of Sciences](http://english.ia.cas.cn/),Team leader, model training, algorithm design, backend；
+  + <img src="./doc/assets/shuxun.jpg" alt="NFT Search logo" style="zoom:15%;" />
 + Eric：Front-end, UI design
-  + ![NFT Search logo](./doc/assets/ydl.jpg)
+  + <img src="./doc/assets/ydl.jpg" alt="NFT Search logo" style="zoom:13%;" />
 
-## Material for Demo
-1. Demo Video [https://youtu.be/BmxmYxwuMtM?si=Yn7yowIbonCqCnBo]
-2. PPT [https://drive.google.com/file/d/1Xu1kw5oOeSCr51v791iqr7cR-3NrICX4/view?usp=drive_link]
+
+
+## Material for Demo（Always updating）
+
+1. [Demo Video](https://youtu.be/BmxmYxwuMtM?si=Yn7yowIbonCqCnBo) 
+2. [PPT](https://drive.google.com/file/d/1Xu1kw5oOeSCr51v791iqr7cR-3NrICX4/view?usp=drive_link)

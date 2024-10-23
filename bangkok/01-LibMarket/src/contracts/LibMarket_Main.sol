@@ -9,8 +9,7 @@
 //  | $$     \| $$| $$    $$| $$  \$ | $$ \$$    $$| $$      | $$  \$$\ \$$     \  \$$  $$
 //   \$$$$$$$$ \$$ \$$$$$$$  \$$      \$$  \$$$$$$$ \$$       \$$   \$$  \$$$$$$$   \$$$$ 
 //
-//                                                           PowerBy: Polkadot Hackathon 2024     
-
+//                                                           PowerBy: Polkadot Hackathon 2024       
 
 
 // SPDX-License-Identifier: LibMarket

@@ -1,0 +1,19 @@
+{
+  "name": "beancon",
+  "scripts": {
+    "prettier-format": "npx prettier --write --config .prettierrc.json .",
+    "test": "hardhat test"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.2",
+    "@openzeppelin/contracts-upgradeable": "^5.0.2",
+    "solady": "^0.0.237"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/hardhat-upgrades": "^3.2.0",
+    "@types/node": "^20.14.9",
+    "hardhat": "^2.22.5",
+    "hardhat-contract-sizer": "^2.10.0"
+  }
+}

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 70eca728758bb754b9f80a18e9e7f18a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Scenes/IntroMenuSettings.lighting
+  uploadId: 613807

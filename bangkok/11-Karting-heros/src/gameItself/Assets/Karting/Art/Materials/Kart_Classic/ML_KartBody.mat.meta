@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 92461c21480194ccfa4491e9bb4421c3
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Art/Materials/Kart_Classic/ML_KartBody.mat
+  uploadId: 613807

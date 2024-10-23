@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a719f7b95b5dc424aad6939e559317a0
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Scenes/MLTraining/KartClassic_TrainingSettings.lighting
+  uploadId: 613807

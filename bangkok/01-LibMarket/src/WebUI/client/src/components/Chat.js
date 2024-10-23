@@ -26,7 +26,7 @@ function Chat({ item }) {
 
     return (
         <div>
-            <h3>与卖家聊天</h3>
+            <h3>Chat with sellers</h3>
             <div>
                 {messages.map((msg, index) => (
                     <p key={index}>{msg}</p>
@@ -37,7 +37,7 @@ function Chat({ item }) {
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
             />
-            <button onClick={sendMessage}>发送</button>
+            <button onClick={sendMessage}>Send</button>
         </div>
     );
 }

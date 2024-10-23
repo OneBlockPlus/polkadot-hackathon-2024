@@ -1,0 +1,21 @@
+[package]
+name = "pallet-risk-manager-rpc"
+version = "0.1.0"
+authors = ["Parity Technologies <admin@parity.io>"]
+edition = "2021"
+license = "MIT-0"
+homepage = "https://paritytech.github.io/polkadot-sdk/"
+repository = "https://github.com/paritytech/polkadot-sdk-parachain-template.git"
+description = "RPC interface for the risk manager pallet"
+
+[dependencies]
+codec = { package = "parity-scale-codec", version = "3.6.12", default-features = false, features = ["derive"], workspace = true }
+jsonrpsee = { version = "0.24.0", features = ["server", "macros"], workspace = true }
+pallet-risk-manager-runtime-api = { version = "0.1.0", path = "./runtime-api" }
+sp-api = { version = "34.0.0", default-features = false, workspace = true }
+sp-blockchain = { version = "37.0.0", default-features = false, workspace = true }
+sp-runtime = { version = "39.0.0", default-features = false, workspace = true }
+sp-core = { version = "34.0.0", default-features = false, workspace = true }
+common = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }

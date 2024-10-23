@@ -1,0 +1,9 @@
+.tab {
+    background-image: url('project://database/Assets/UI%20Toolkit/Assets/tab-background.png?fileID=2800000&guid=344dae8e6a850724ea03e40c161986bf&type=3#tab-background');
+    background-color: rgba(188, 188, 188, 0);
+    color: rgb(255, 255, 255);
+    font-size: 19.2px;
+    width: 235px;
+    height: 84px;
+    margin-top: 20px;
+}

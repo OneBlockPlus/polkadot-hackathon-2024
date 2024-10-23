@@ -23,17 +23,51 @@
   "aws_cognito_verification_mechanisms": [
     "EMAIL"
   ],
+  "aws_user_files_s3_bucket": "cognidex-unverified-s370e21-dev",
+  "aws_user_files_s3_bucket_region": "ap-southeast-1",
   "aws_dynamodb_all_tables_region": "ap-southeast-1",
   "aws_dynamodb_table_schemas": [
     {
-      "tableName": "cognidexUserDynamo-dev",
+      "tableName": "cognidexFileUploadDynamo-dev",
+      "region": "ap-southeast-1"
+    },
+    {
+      "tableName": "cognidexMerkleTreeDynamo-dev",
+      "region": "ap-southeast-1"
+    },
+    {
+      "tableName": "cognidexDataPoolDynamo-dev",
+      "region": "ap-southeast-1"
+    },
+    {
+      "tableName": "cognidexTransactionsDynamo-dev",
       "region": "ap-southeast-1"
     }
   ],
   "aws_cloud_logic_custom": [
     {
-      "name": "cognidexUserApi",
-      "endpoint": "https://279q086g0h.execute-api.ap-southeast-1.amazonaws.com/dev",
+      "name": "cognidexFileUploadApi",
+      "endpoint": "https://smy6m5k63b.execute-api.ap-southeast-1.amazonaws.com/dev",
+      "region": "ap-southeast-1"
+    },
+    {
+      "name": "cognidexMerkleTreeApi",
+      "endpoint": "https://y4c64ui00l.execute-api.ap-southeast-1.amazonaws.com/dev",
+      "region": "ap-southeast-1"
+    },
+    {
+      "name": "cognidexSmartContractApi",
+      "endpoint": "https://f969o7nj5e.execute-api.ap-southeast-1.amazonaws.com/dev",
+      "region": "ap-southeast-1"
+    },
+    {
+      "name": "cognidexDataPoolApi",
+      "endpoint": "https://s3pcujbsx7.execute-api.ap-southeast-1.amazonaws.com/dev",
+      "region": "ap-southeast-1"
+    },
+    {
+      "name": "cognidexTransactionsApi",
+      "endpoint": "https://1x4lr9c1ch.execute-api.ap-southeast-1.amazonaws.com/dev",
       "region": "ap-southeast-1"
     }
   ]

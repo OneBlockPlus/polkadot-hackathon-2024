@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 6d9796d84c9e5a54fb4e014484945a46
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Prefabs/Props/Checkpoint.prefab
+  uploadId: 613807

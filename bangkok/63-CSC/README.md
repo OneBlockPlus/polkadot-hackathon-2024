@@ -10,7 +10,6 @@ CSC is a blockchain-based credit scoring system that aims to provide a fair and 
 ### Background
 The balance and points recharge in the service industry are generally hard to guarantee value. For example, after some beauty salons or gyms collect annual fees from customers, due to various reasons, when customers revisit after a long time, they find that the business has changed completely. The points in the customers' hands are no longer recognized by the new business, which believes that the points have nothing to do with them. Customers can only choose to give up the points or resort to legal action, leading to unfairness and lack of transparency in the service industry.
 
-
 ### Insights
 It is designed to be a public good that can be used by anyone, anywhere, and at any time.
 

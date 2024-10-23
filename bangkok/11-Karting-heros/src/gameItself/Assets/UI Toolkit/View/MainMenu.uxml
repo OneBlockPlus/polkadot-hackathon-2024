@@ -1,0 +1,108 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/View/MainMenu.uss?fileID=7433441132597879392&amp;guid=1a179fb27c3cdd24898cd8ab2e6857bc&amp;type=3#MainMenu" />
+    <ui:VisualElement name="rootContainer" style="flex-grow: 1; background-color: rgb(4, 97, 188);">
+        <ui:VisualElement name="header" class="header" style="flex-grow: 0; height: 119px;">
+            <ui:VisualElement name="info" style="flex-grow: 1; flex-direction: row; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/Rectangle%204.png?fileID=2800000&amp;guid=920a2ac64bd510f469b1e948757433d9&amp;type=3#Rectangle 4&apos;);">
+                <ui:VisualElement name="profilePicture" class="profile-picture" style="margin-left: 100px; margin-top: 10px;" />
+                <ui:VisualElement name="playerInfo" style="flex-grow: 0; flex-direction: row; flex-shrink: 0;">
+                    <ui:VisualElement name="playerMoreInfoContainer" style="flex-grow: 0; flex-direction: column; width: 415px; flex-shrink: 0; margin-left: 40px;">
+                        <ui:VisualElement name="nameAndCupContainer" style="flex-grow: 0; flex-direction: row; flex-shrink: 0; justify-content: space-between; margin-top: 20px;">
+                            <ui:Label text="Player name" name="playerName" style="color: rgb(255, 255, 255); font-size: 27.65px; -unity-font-style: bold;" />
+                            <ui:VisualElement name="cupsContainer" style="flex-grow: 0; flex-shrink: 0; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/Rectangle%2042.png?fileID=2800000&amp;guid=bf67112252bd418438da25a33a494f0f&amp;type=3#Rectangle 42&apos;); width: 164px; height: 52px;">
+                                <ui:VisualElement name="cupIcon" style="flex-grow: 0; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/Icon%20cup.png?fileID=2800000&amp;guid=1d9e11eed32f3d348b782ca4de2caa53&amp;type=3#Icon cup&apos;); width: 62px; height: 50px; flex-shrink: 0; position: absolute; top: -4px; left: -20px;" />
+                                <ui:Label text="100" name="cups" style="color: rgb(255, 255, 255); padding-left: 2px; flex-grow: 1; align-self: center; -unity-text-align: middle-right; flex-shrink: 1; -unity-font-style: bold; padding-bottom: 10px; font-size: 27.65px;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="xpContainer" style="flex-grow: 0; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/xp-container.png?fileID=2800000&amp;guid=08b37310aadac1440867709580d9051a&amp;type=3#xp-container&apos;); flex-shrink: 0; width: 390px; height: 11px; margin-top: 19.44px; margin-left: 5px; justify-content: center;">
+                            <ui:VisualElement name="progress" style="flex-grow: 0; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/xp-container-fill.png?fileID=2800000&amp;guid=6109621ff6da6314fb82a1f5243e380e&amp;type=3#xp-container-fill&apos;); flex-shrink: 0; height: 7px; width: 20%; -unity-slice-right: 10; justify-content: flex-start;" />
+                            <ui:VisualElement name="part01" style="flex-grow: 0; position: absolute; flex-shrink: 0; width: 27px; height: 27px; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/Icon%20level%20up%20cup.png?fileID=2800000&amp;guid=e4f26ac7c4e27bc419f397172736da1f&amp;type=3#Icon level up cup&apos;); left: -13px;" />
+                            <ui:VisualElement name="part02" style="flex-grow: 0; position: absolute; flex-shrink: 0; width: 27px; height: 27px; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/Icon%20level%20up%20cup.png?fileID=2800000&amp;guid=e4f26ac7c4e27bc419f397172736da1f&amp;type=3#Icon level up cup&apos;); left: 50px;" />
+                            <ui:VisualElement name="part03" style="flex-grow: 0; position: absolute; flex-shrink: 0; width: 27px; height: 27px; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/Icon%20level%20up%20cup%20(1).png?fileID=2800000&amp;guid=7d3805d145a1ee64ab92484de01dad43&amp;type=3#Icon level up cup (1)&apos;); left: 113px;" />
+                            <ui:VisualElement name="part04" style="flex-grow: 0; position: absolute; flex-shrink: 0; width: 27px; height: 27px; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/Icon%20level%20up%20cup%20(1).png?fileID=2800000&amp;guid=7d3805d145a1ee64ab92484de01dad43&amp;type=3#Icon level up cup (1)&apos;); left: 176px;" />
+                            <ui:VisualElement name="part05" style="flex-grow: 0; position: absolute; flex-shrink: 0; width: 27px; height: 27px; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/Icon%20level%20up%20cup%20(1).png?fileID=2800000&amp;guid=7d3805d145a1ee64ab92484de01dad43&amp;type=3#Icon level up cup (1)&apos;); left: 239px;" />
+                            <ui:VisualElement name="part06" style="flex-grow: 0; position: absolute; flex-shrink: 0; width: 27px; height: 27px; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/Icon%20level%20up%20cup%20(1).png?fileID=2800000&amp;guid=7d3805d145a1ee64ab92484de01dad43&amp;type=3#Icon level up cup (1)&apos;); left: 302px;" />
+                            <ui:VisualElement name="part07" style="flex-grow: 0; position: absolute; flex-shrink: 0; width: 27px; height: 27px; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/Icon%20level%20up%20cup%20(1).png?fileID=2800000&amp;guid=7d3805d145a1ee64ab92484de01dad43&amp;type=3#Icon level up cup (1)&apos;); left: 370px;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="ranking" class="header-item" style="background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/Rectangle%205.png?fileID=2800000&amp;guid=46f235192e88f194ab6d9433fffdddd5&amp;type=3#Rectangle 5&apos;);">
+                <ui:VisualElement name="icon" class="icon" />
+                <ui:Label text="Ranking" name="text" class="text" />
+            </ui:VisualElement>
+            <ui:VisualElement name="profile" class="header-item" style="background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/Rectangle%206.png?fileID=2800000&amp;guid=c6b1262fe866b6f4bb1449ecb205ca66&amp;type=3#Rectangle 6&apos;);">
+                <ui:VisualElement name="icon" class="icon" style="background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/profile.png?fileID=2800000&amp;guid=42a167ba310dcfb4fab72f55cb0bd74f&amp;type=3#profile&apos;); width: 27px; height: 43px;" />
+                <ui:Label text="Profile" name="text" class="text" />
+            </ui:VisualElement>
+            <ui:VisualElement name="settings" class="header-item" style="background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/Rectangle%207.png?fileID=2800000&amp;guid=a5d4b18a48eec27478348167da4fd024&amp;type=3#Rectangle 7&apos;);">
+                <ui:VisualElement name="icon" class="icon" style="background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/settings.png?fileID=2800000&amp;guid=1c91695b316618441abaac226047fbc2&amp;type=3#settings&apos;); width: 56px; height: 56px;" />
+                <ui:Label text="Settings" name="text" class="text" />
+            </ui:VisualElement>
+            <ui:VisualElement name="coins" style="flex-grow: 1; justify-content: center; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/Rectangle%208.png?fileID=2800000&amp;guid=4a23c9a0a6bc7df4f89b5c39a4896801&amp;type=3#Rectangle 8&apos;);">
+                <ui:VisualElement name="coinContainer" style="flex-grow: 0; flex-direction: row; align-items: center; justify-content: flex-end; margin-right: 40px; flex-shrink: 0;">
+                    <ui:VisualElement name="coinBox" style="flex-grow: 0; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/Rectangle%2011.png?fileID=2800000&amp;guid=a93317a19d48de2408f7b84f769e48f4&amp;type=3#Rectangle 11&apos;); width: 202px; height: 52px; flex-shrink: 0;">
+                        <ui:Label text="0" style="color: rgb(255, 255, 255); margin-left: 0; flex-shrink: 1; flex-grow: 1; padding-left: 55px; flex-direction: row; -unity-text-align: middle-center; font-size: 33.18px; -unity-font-style: bold;" />
+                        <ui:VisualElement name="coin" style="flex-grow: 0; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/coin-large.png?fileID=2800000&amp;guid=549fc903d96fdc04b95f2152618e82b2&amp;type=3#coin-large&apos;); flex-shrink: 0; width: 65px; height: 64px; position: absolute; top: -6px; left: -22px;">
+                            <ui:VisualElement name="plus" style="flex-grow: 0; flex-shrink: 0; width: 34px; height: 34px; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/Icon%20plus.png?fileID=2800000&amp;guid=13464ed3b57678c4cbf64afec598eabc&amp;type=3#Icon plus&apos;); position: absolute; top: 38px; left: 32px;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="content" style="flex-grow: 1; flex-direction: row;">
+            <ui:VisualElement name="buttonsContainer" style="flex-grow: 0; justify-content: space-between; padding-left: 90px; padding-top: 200px; margin-bottom: 200px; padding-right: 90px; flex-shrink: 1;">
+                <ui:Button text="STORE" name="store" class="main-button">
+                    <ui:VisualElement name="icon" class="main-button" style="flex-grow: 0; flex-shrink: 0; width: 54px; height: 45px; position: absolute; top: 31px; left: 38px; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/Icon%20Store%20(1).png?fileID=2800000&amp;guid=bae2924bbe4fd7547b795b9e0d6adc92&amp;type=3#Icon Store (1)&apos;); -unity-background-image-tint-color: rgb(85, 47, 46);" />
+                </ui:Button>
+                <ui:Button text="SKIN" name="skin" class="main-button">
+                    <ui:VisualElement name="icon" class="main-button" style="flex-grow: 0; flex-shrink: 0; width: 58px; height: 64px; position: absolute; top: 12px; left: 30px; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/Icon%20Skin.png?fileID=2800000&amp;guid=564b38353237b644abee635cbce1e709&amp;type=3#Icon Skin&apos;); -unity-background-image-tint-color: rgb(85, 47, 46);" />
+                </ui:Button>
+                <ui:Button text="CAR" name="car" class="main-button">
+                    <ui:VisualElement name="icon" class="main-button" style="flex-grow: 0; flex-shrink: 0; width: 88px; height: 34px; position: absolute; top: 40px; left: 17px; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/Icon%20Car.png?fileID=2800000&amp;guid=ec5413c235c4d6c468ec31158452fe07&amp;type=3#Icon Car&apos;); -unity-background-image-tint-color: rgb(85, 47, 46);" />
+                </ui:Button>
+            </ui:VisualElement>
+            <ui:VisualElement name="carPreview" style="flex-grow: 1; padding-top: 50px; padding-right: 50px; padding-bottom: 50px; padding-left: 50px; background-color: rgba(0, 0, 0, 0);">
+                <ui:VisualElement name="image" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Render/CarPreviewRenderTexture.renderTexture?fileID=8400000&amp;guid=4589855eb61d3da4a8201dc41e54e193&amp;type=2#CarPreviewRenderTexture&apos;); -unity-background-image-tint-color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0);" />
+            </ui:VisualElement>
+            <ui:VisualElement name="opponentsAndRaceButtonContainer" style="flex-grow: 0; width: 677px; flex-shrink: 1;">
+                <ui:VisualElement name="opponentsContainer" style="flex-grow: 1; flex-shrink: 1; flex-direction: row; flex-wrap: wrap; justify-content: center; margin-top: 60px; align-items: flex-start;">
+                    <ui:VisualElement name="opponent01" style="flex-grow: 1;">
+                        <ui:VisualElement name="playerInfoContainer" style="flex-grow: 0; flex-direction: row; flex-shrink: 0; align-items: center;">
+                            <ui:VisualElement name="checkmark" style="flex-grow: 0; flex-shrink: 0; width: 36px; height: 27px; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/ready.png?fileID=2800000&amp;guid=af5783a518b02864d89aaf4f2a4ca4ae&amp;type=3#ready&apos;); margin-right: 10px;" />
+                            <ui:VisualElement name="profile" style="flex-grow: 0; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/profile-small.png?fileID=2800000&amp;guid=91bbbcb15b4362d4f832132bd887d3ca&amp;type=3#profile-small&apos;); flex-shrink: 0; width: 64px; height: 64px;" />
+                            <ui:Label text="PLAYER NAME" name="playerName" style="font-size: 27.65px; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="preview" style="flex-grow: 0; background-image: url(&apos;project://database/Assets/Render/Opponent01RT.renderTexture?fileID=8400000&amp;guid=5b6922a26cb79b346a832b0127c940dc&amp;type=2#Opponent01RT&apos;); flex-shrink: 0; min-width: auto; min-height: auto; width: 300px; height: 300px;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="opponent02" style="flex-grow: 1;">
+                        <ui:VisualElement name="playerInfoContainer" style="flex-grow: 0; flex-direction: row; flex-shrink: 0; align-items: center;">
+                            <ui:VisualElement name="checkmark" style="flex-grow: 0; flex-shrink: 0; width: 36px; height: 27px; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/ready.png?fileID=2800000&amp;guid=af5783a518b02864d89aaf4f2a4ca4ae&amp;type=3#ready&apos;); margin-right: 10px;" />
+                            <ui:VisualElement name="profile" style="flex-grow: 0; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/profile-small.png?fileID=2800000&amp;guid=91bbbcb15b4362d4f832132bd887d3ca&amp;type=3#profile-small&apos;); flex-shrink: 0; width: 64px; height: 64px;" />
+                            <ui:Label text="PLAYER NAME" name="playerName" style="font-size: 27.65px; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="preview" style="flex-grow: 0; background-image: url(&apos;project://database/Assets/Render/Opponent02RT.renderTexture?fileID=8400000&amp;guid=a923801a88ac8f548a4bab7bbedebe3f&amp;type=2#Opponent02RT&apos;); flex-shrink: 0; min-width: auto; min-height: auto; width: 300px; height: 300px;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="opponent03" style="flex-grow: 1;">
+                        <ui:VisualElement name="playerInfoContainer" style="flex-grow: 0; flex-direction: row; flex-shrink: 0; align-items: center;">
+                            <ui:VisualElement name="checkmark" style="flex-grow: 0; flex-shrink: 0; width: 36px; height: 27px; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/ready.png?fileID=2800000&amp;guid=af5783a518b02864d89aaf4f2a4ca4ae&amp;type=3#ready&apos;); margin-right: 10px;" />
+                            <ui:VisualElement name="profile" style="flex-grow: 0; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/profile-small.png?fileID=2800000&amp;guid=91bbbcb15b4362d4f832132bd887d3ca&amp;type=3#profile-small&apos;); flex-shrink: 0; width: 64px; height: 64px;" />
+                            <ui:Label text="PLAYER NAME" name="playerName" style="font-size: 27.65px; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="preview" style="flex-grow: 0; background-image: url(&apos;project://database/Assets/Render/Opponent03RT.renderTexture?fileID=8400000&amp;guid=3f292fa8d2198494dbccb417fad095cd&amp;type=2#Opponent03RT&apos;); flex-shrink: 0; min-width: auto; min-height: auto; width: 300px; height: 300px;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="opponent04" style="flex-grow: 1;">
+                        <ui:VisualElement name="playerInfoContainer" style="flex-grow: 0; flex-direction: row; flex-shrink: 0; align-items: center;">
+                            <ui:VisualElement name="checkmark" style="flex-grow: 0; flex-shrink: 0; width: 36px; height: 27px; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/ready.png?fileID=2800000&amp;guid=af5783a518b02864d89aaf4f2a4ca4ae&amp;type=3#ready&apos;); margin-right: 10px;" />
+                            <ui:VisualElement name="profile" style="flex-grow: 0; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/profile-small.png?fileID=2800000&amp;guid=91bbbcb15b4362d4f832132bd887d3ca&amp;type=3#profile-small&apos;); flex-shrink: 0; width: 64px; height: 64px;" />
+                            <ui:Label text="PLAYER NAME" name="playerName" style="font-size: 27.65px; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="preview" style="flex-grow: 0; background-image: url(&apos;project://database/Assets/Render/Opponent04RT.renderTexture?fileID=8400000&amp;guid=d143e9d623b19a84cb7262582301dd95&amp;type=2#Opponent04RT&apos;); flex-shrink: 0; min-width: auto; min-height: auto; width: 300px; height: 300px;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="raceButtonContainer" style="flex-grow: 1; justify-content: center; align-self: center;">
+                    <ui:Button text="FIND RACE" name="raceButton" class="main-button" style="background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/Find%20Race%20Botun.png?fileID=2800000&amp;guid=497edec5ff6e20c448685648943996f5&amp;type=3#Find Race Botun&apos;); background-color: rgba(255, 255, 255, 0); width: 398px; height: 127px; -unity-text-align: middle-center; font-size: 40px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
