@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@angular/cli": "^16.2.16",
-    "helmet": "^8.0.0"
-  }
-}

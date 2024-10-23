@@ -1,8 +1,0 @@
-repositories {
-  mavenCentral()
-  maven { url 'https://jitpack.io' }
-}
-
-dependencies {
-  compile 'com.github.status-im.status-keycard-java:desktop:3.1.2'
-}

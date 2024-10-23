@@ -1,4 +1,0 @@
-{
-    "endpoint": "wss://acala-rpc-2.aca-api.network/ws",
-    "extrinsic": "0x1234"
-}
