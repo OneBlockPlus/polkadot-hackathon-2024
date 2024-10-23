@@ -1,8 +1,0 @@
-.idea
-target/
-script/data
-script/config
-script/diora
-script/polkadot
-script/keystores
-.DS_Store

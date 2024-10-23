@@ -1,2 +1,0 @@
-# PolkaUnity
-PolkaUnity is a wallet project that allows you to interact with the Polkadot network. It allows you to view the balances of your accounts, send and receive DOTs, and view the transaction history of your accounts.

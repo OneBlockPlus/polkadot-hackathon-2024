@@ -1,8 +1,0 @@
-.terraform
-dev.tfvars
-stg.tfvars
-prod.tfvars
-*.tfstate
-*.tfstate.backup
-.DS_Store
-

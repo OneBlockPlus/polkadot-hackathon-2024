@@ -1,4 +1,0 @@
-Cybros protocol spec
-====
-
-TODO

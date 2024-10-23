@@ -1,4 +1,0 @@
-src/contract/target
-src/contracts/**/target/
-src/contracts/**/Cargo.lock
-src/frontend/dist

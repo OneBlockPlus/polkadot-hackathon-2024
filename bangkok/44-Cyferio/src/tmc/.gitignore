@@ -1,9 +1,0 @@
-.idea
-**/target/*
-/rollup-starter-data/
-/crates/provers/risc0/guest-mock/target
-docker/credentials/*
-!docker/credentials/bridge-0.addr
-!docker/credentials/bridge-0.key
-.keys
-crates/rollup/mock_da.sqlite
