@@ -1,11 +1,7 @@
 use ark_bn254::Fr;
-use core::mem::size_of;
 use sp_std::{vec, vec::Vec};
 
-use num_bigint::{BigInt, Sign};
-use tiny_keccak::{Hasher, Keccak};
-
-use ark_std::{str::FromStr, string::ToString, Zero};
+use ark_std::{str::FromStr, string::ToString};
 use mimc::Mimc7;
 use sp_core::U256;
 
@@ -15,7 +11,7 @@ use super::*;
 static TREE_DEPTH: usize = 8;
 
 // 1<<20 leaves
-const MAX_LEAF_COUNT: usize = 256;
+// const MAX_LEAF_COUNT: usize = 256;
 
 #[derive(Clone, Debug)]
 pub struct MerkleTree {
@@ -158,7 +154,7 @@ impl MerkleTree {
 	pub fn get_unique_leaf(mut leaf: U256, depth: usize) -> U256 {
 		if leaf.is_zero() {
 			let mimc7 = Mimc7::new(91);
-			for depth in 0..depth {
+			for _depth in 0..depth {
 				let l = Fr::from_str(&leaf.to_string()).unwrap();
 				leaf = U256::from_dec_str(&mimc7.hash(&l, &l).to_string()).unwrap();
 			}

@@ -1,0 +1,33 @@
+{
+    "name": "Xenon-pallet",
+    "private": true,
+    "version": "1.0.0",
+    "homepage": "https://[ni8crawler18.github.io/Xenon-pallet",  
+    "scripts": {
+      "deploy": "gh-pages -d client"  
+    },
+    "dependencies": {
+      "@polkadot/api": "^10.9.1",
+      "@polkadot/extension-dapp": "^0.46.5",
+      "@radix-ui/react-dialog": "^1.0.4",
+      "@radix-ui/react-slot": "^1.0.2",
+      "class-variance-authority": "^0.7.0",
+      "clsx": "^2.0.0",
+      "lucide-react": "^0.263.1",
+      "react": "^18.2.0",
+      "react-dom": "^18.2.0",
+      "tailwind-merge": "^1.14.0",
+      "tailwindcss-animate": "^1.0.7"
+    },
+    "devDependencies": {
+      "@types/node": "^20.5.9",
+      "@types/react": "^18.2.21",
+      "@types/react-dom": "^18.2.7",
+      "autoprefixer": "^10.4.15",
+      "gh-pages": "^6.0.0", 
+      "postcss": "^8.4.29",
+      "tailwindcss": "^3.3.3",
+      "typescript": "^5.2.2"
+    }
+  }
+  

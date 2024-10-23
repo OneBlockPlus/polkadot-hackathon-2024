@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useEffect } from 'react'
 
 import { useInkathon } from '@scio-labs/use-inkathon'
@@ -19,8 +20,17 @@ export default function HomePage() {
     <>
       <div className="container relative flex grow flex-col py-10">
         {/* Title */}
-        <div className='flex justify-between items-center'>
-          <h2 className=''>sandglass</h2>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center">
+            <Image
+              className="mr-4 rounded"
+              width={48}
+              height={48}
+              src="/images/logo.png"
+              alt="Logo"
+            />
+            <h2 className="text-4xl font-extralight">sandglass</h2>
+          </div>
           {/* Connect Wallet Button */}
           <ConnectButton />
         </div>

@@ -1,0 +1,10 @@
+# DOTConsole
+
+## Development
+
+To run the project, execute the following commands
+
+```sh
+yarn
+yarn dev
+```
