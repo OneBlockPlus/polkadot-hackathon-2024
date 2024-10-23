@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package pflix.greeting;
+
+service Greeting {
+    rpc say_hello(HelloRequest) returns (HelloResponse) {}
+}
+
+message HelloRequest {
+    string name = 1;
+}
+
+message HelloResponse {
+    string words = 1;    
+}

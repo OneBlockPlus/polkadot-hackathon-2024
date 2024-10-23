@@ -1,0 +1,47 @@
+[package]
+name = "pfx-types"
+version = "0.3.0"
+authors = ["PFLX Network"]
+edition = "2021"
+
+[dependencies]
+chrono = { workspace = true }
+hex = { workspace = true, features = ["alloc"] }
+log ={ workspace = true }
+parity-scale-codec = { workspace = true, features = ["full"] }
+scale-info = { workspace = true, features = ["derive"] }
+serde = { workspace = true, optional = true }
+serde_json = { workspace = true, features = ["alloc"] }
+sp-core = { workspace = true }
+sp-std = { workspace = true }
+sp-crypto-hashing = { workspace = true }
+
+pfx-mq = { workspace = true  }
+sgx-attestation = { workspace = true, features = ["verify"] }
+
+
+[dev-dependencies]
+frame-support = { workspace = true, features = ["std"] }
+
+
+[features]
+default = ["std", "enable_serde"]
+std = [
+	"chrono/std",
+	"serde/std",
+	"scale-info/std",
+	"parity-scale-codec/std",
+	"full_crypto",
+	"sp-core/std",
+	"sp-std/std",
+	"pfx-mq/std",
+	"sgx-attestation/std",
+]
+enable_serde = [
+	"serde/derive",
+	"serde/alloc",
+	"scale-info/serde",
+]
+full_crypto = [
+	"sp-core/full_crypto",
+]
