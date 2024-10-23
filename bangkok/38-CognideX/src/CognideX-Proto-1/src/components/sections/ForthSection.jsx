@@ -56,7 +56,31 @@ const Container = styled.div`
                 transform: rotate(20deg);
             }
         }
+
+        @media (max-width: 1000px) {
+            display: none;
+        }
     }
+
+    .card-slider {
+        display: none;
+        
+        @media (max-width: 1000px) {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            height: 400px;
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+            padding: 0 5vw;
+            margin: 0 0 100px 0;
+        }
+    }
+
+
 `;
 
 const ForthSection = ({ children }) => {

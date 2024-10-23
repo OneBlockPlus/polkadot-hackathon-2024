@@ -13,18 +13,15 @@ const Container = styled.div`
     h1 {
         text-align: center;
         color: black;
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 
         span {
             color: var(--primary-color);
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
         }
     }
 
     h4 {
         text-align: center;
         color: black;
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
     }
 
     .card-collection {
@@ -36,8 +33,15 @@ const Container = styled.div`
         width: 100vw;
         height: auto;
         padding: 20px 5vw;
-        // background: white;
-        // box-shadow: 0 0 10px var(--primary-color);
+
+        @media (max-width: 1000px) {
+            width: 90vw;
+        }
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            gap: 12px;
+        }
     }
 `;
 

@@ -1,6 +1,15 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
+const slideInBg = keyframes`
+  from {
+    transform: translateX(-100vw);
+  }
+  to {
+    transform: translateX(0);
+  }
+`;
+
 const Background = styled.div`
     position: fixed;
     top: 0;
@@ -9,6 +18,7 @@ const Background = styled.div`
     width: 100%;
     height: 100%;
     overflow: hidden;
+    animation: ${slideInBg} 1s ease-out;  
 `;
 
 const moveLine = angle => keyframes`
@@ -41,23 +51,23 @@ const ChildrenContainer = styled.div`
 
 
 const DataPoolContributeBg = ({ children }) => {
-    const lines = Array.from({ length: 50 }, (_, i) => {
-        const left = Math.random() * 100;
-        const duration = 10 + Math.random() * 20;
-        const angle = -30 + Math.random() * 60; // Random angle between -30 and +30 degrees
-        return <Line left={left} duration={duration} angle={angle} key={i} />;
-    });
+  const lines = Array.from({ length: 50 }, (_, i) => {
+    const left = Math.random() * 100;
+    const duration = 10 + Math.random() * 20;
+    const angle = -30 + Math.random() * 60; // Random angle between -30 and +30 degrees
+    return <Line left={left} duration={duration} angle={angle} key={i} />;
+  });
 
-    return (
-        <div>
-            <Background>
-                {lines}
-            </Background>
-            <ChildrenContainer>
-                {children}
-            </ChildrenContainer>
-        </div>
-    );
+  return (
+    <div>
+      <Background>
+        {lines}
+      </Background>
+      <ChildrenContainer>
+        {children}
+      </ChildrenContainer>
+    </div>
+  );
 };
 
 export default DataPoolContributeBg;

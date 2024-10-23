@@ -19,6 +19,11 @@ const Container = styled.div`
         text-align: right;
     }
 
+    @media (max-width: 1000px) {
+        width: 80vw;
+        padding: 0 5vw 0 15vw;
+    }
+
     .card-collection {
         display: flex;
         flex-direction: row;
@@ -26,6 +31,11 @@ const Container = styled.div`
         align-items: center;
         gap: 10px;
         width: 100%;
+
+        @media (max-width: 600px) {
+            flex-direction: column;
+            gap: 12px;
+        }
     }
 `;
 

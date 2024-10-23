@@ -31,6 +31,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   flex: 1 1 0;
+  min-width: 300px;
   background-color: black;
   border-radius: 10px;
   border: 2px solid white;
@@ -86,49 +87,63 @@ const Container = styled.div`
     cursor: pointer;
   }
 
-    .file-info {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        margin-top: 10px;
-        border: 2px solid var(--primary-color);
-        padding: 5px;
-        border-radius: 5px;
-    }
+  .file-info {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-top: 10px;
+      border: 2px solid var(--primary-color);
+      padding: 5px;
+      border-radius: 5px;
+  }
 
-    .process-info {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        margin-top: 10px;
-        border-radius: 5px;
-    }
+  .process-info {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-top: 10px;
+      border-radius: 5px;
+  }
 
-    .score-info {
-        display: flex;
-        flex-direction: row;
-        gap: 5px;
-        margin-top: 10px;
-        border: 2px solid var(--primary-color);
-        padding: 5px;
-        border-radius: 5px;
-    }
+  .score-info {
+      display: flex;
+      flex-direction: row;
+      gap: 5px;
+      margin-top: 10px;
+      border: 2px solid var(--primary-color);
+      padding: 5px;
+      border-radius: 5px;
+  }
 
+  @media (max-width: 1000px) {
+  
+    height: auto;
+  }
+`;
+
+const Panel = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px);
 `;
 
 const UploadCard = ({ icon, title, description, active, children }) => (
-    <Container $active={active}>
-        {icon &&
-            <LogoContainer>
-                <FontAwesomeIcon icon={icon} color='white' size='2x' />
-            </LogoContainer>
-        }
-        <Content>
-            <h2>{title}</h2>
-            <p>{description}</p>
-            {children}
-        </Content>
-    </Container>
+  <Container>
+    {!active && <Panel />}
+    {icon &&
+      <LogoContainer>
+        <FontAwesomeIcon icon={icon} color='white' size='2x' />
+      </LogoContainer>
+    }
+    <Content>
+      <h2>{title}</h2>
+      <p>{description}</p>
+      {children}
+    </Content>
+  </Container>
 );
 
 export default UploadCard;

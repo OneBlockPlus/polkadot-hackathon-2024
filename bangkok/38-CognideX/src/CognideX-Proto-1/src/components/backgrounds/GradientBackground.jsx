@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Footer from '../footer/Footer';
 import styled from 'styled-components';
 
 const GradientContainer = styled.div`
@@ -35,20 +36,21 @@ const GradientBg = ({ children }) => {
     const targetSM = document.getElementById('smart-assistant');
     const targetDP = document.getElementById('data-pool');
     const targetCGDX = document.getElementById('cgdx');
+    const targetFooter = document.getElementById('footer');
 
-    const targets = [targetSM, targetDP, targetCGDX].filter(Boolean);
+    const targets = [targetSM, targetDP, targetCGDX, targetFooter].filter(Boolean);
     if (targets.length === 0) return;
 
     const observerOptions = {
       root: null, // Use the viewport as the container
       rootMargin: '0px',
-      threshold: 0.5, // Trigger when at least 40% of the element is visible
+      threshold: 0.6, // Trigger when at least 40% of the element is visible
     };
 
-    // Variables to track the intersection status of each element
     let isDataPoolIntersecting = false;
     let isSmartAssistantIntersecting = false;
     let isCGDXIntersecting = false;
+    let isFooterIntersecting = false;
 
     const observerCallback = (entries) => {
       entries.forEach((entry) => {
@@ -60,30 +62,40 @@ const GradientBg = ({ children }) => {
           isSmartAssistantIntersecting = isIntersecting;
         } else if (entry.target.id === 'cgdx') {
           isCGDXIntersecting = isIntersecting;
+        } else if (entry.target.id === 'footer') {
+          isFooterIntersecting = isIntersecting;
+          if (isFooterIntersecting) {
+            window.addEventListener('scroll', handleFooterScroll);
+          } else {
+            window.removeEventListener('scroll', handleFooterScroll);
+          }
         }
 
-        // Update gradient position based on which element is intersecting
         if (isDataPoolIntersecting) {
-          // If 'data-pool' is intersecting, move gradient to the middle
           setGradientPosition({ x: -25, y: -25 });
         } else if (isSmartAssistantIntersecting) {
-          // If 'smart-assistant' is intersecting, move gradient to another position
           setGradientPosition({ x: -50, y: -25 });
         } else if (isCGDXIntersecting) {
-          // If 'cgdx' is intersecting, move gradient to another position
-          setGradientPosition({ x: -25, y: 5 });
+          setGradientPosition({ x: -25, y: -10 });
+        } else if (isFooterIntersecting) {
+          setGradientPosition({ x: -25, y: -25 });
         } else {
-          // If neither is intersecting, reset gradient position
           setGradientPosition({ x: 0, y: -50 });
         }
       });
     };
+
     const observer = new IntersectionObserver(observerCallback, observerOptions);
     targets.forEach((target) => observer.observe(target));
 
-    // Cleanup on component unmount
+    const handleFooterScroll = () => {
+      console.log('Footer is in view, handling custom logic...');
+      // Add any custom logic you want to handle when the footer is in view.
+    };
+
     return () => {
       observer.disconnect();
+      window.removeEventListener('scroll', handleFooterScroll);
     };
   }, []);
 
@@ -93,6 +105,7 @@ const GradientBg = ({ children }) => {
         <GradientCircle x={gradientPosition.x} y={gradientPosition.y} />
       </GradientContainer>
       <ChildrenContainer>{children}</ChildrenContainer>
+      <Footer id="footer" />
     </>
   );
 };

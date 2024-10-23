@@ -68,6 +68,37 @@ const Container = styled.div`
         box-shadow: 0 0 10px rgba(255, 255, 255, 1);
         cursor: pointer;
     }
+    
+    /* Active state */
+    ${({ $active }) => $active && `
+        border: 2px solid var(--primary-color);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+
+        /*Switch the colors of the pseudo-elements*/
+        &::before {
+            content: '1';
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        &::after {
+            content: '2';
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        &:hover {
+            border: 2px solid black;
+            box-shadow: 0 0 0 rgba(0, 0, 0, 1);
+            cursor: pointer;
+        }
+    `}
+
+    /* Media query for smaller screens */
+    @media (max-width: 1000px) {
+        width: 160px;
+        height: auto;
+    }
 `;
 
 const ButtonInner = styled.div`
@@ -80,9 +111,10 @@ const ButtonInner = styled.div`
     width: auto;
     padding: 10px;
 
-    h4 {
+    h5 {
         color: black;
         margin: 0;
+        font-size: 1.2rem;
     }
 
     p {
@@ -91,13 +123,13 @@ const ButtonInner = styled.div`
     }
 `;
 
-const MainButtonInvert = ({ header, subheader, onClick }) => {
+const MainButtonInvert = ({ header, subheader, onClick, active }) => {
     return (
-        <Container onClick={onClick}>
+        <Container onClick={onClick} $active={active}>
             <ButtonInner>
-                <h4>
+                <h5>
                     {header}
-                </h4>
+                </h5>
                 <p>
                     {subheader}
                 </p>
