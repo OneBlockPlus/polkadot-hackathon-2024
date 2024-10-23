@@ -1,0 +1,68 @@
+[package]
+name = "sov-cyferio-hub"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+borsh = { workspace = true, features = ["bytes"] }
+sov-rollup-interface = { workspace = true }
+bytes = { version = "1.2.1", features = ["serde"] }
+primitive-types = { version = "0.12.2", features = ["serde"] }
+sp-core-hashing = "16.0.0"
+subxt = { version = "0.37.0", optional = true }
+codec = { package = "parity-scale-codec", version = "3.0.0", default-features = false, features = [
+    "derive",
+    "full",
+    "bit-vec",
+], optional = true }
+derive_more = "0.99.17"
+sha2 = "0.10.6"
+parking_lot = "0.12.1"
+base64 = "0.22.1"
+
+# Convenience
+tokio = { version = "1.35", features = [
+    "macros",
+    "time",
+    "rt-multi-thread",
+], optional = true }
+# tokio = { workspace = true, optional = true }
+futures = { workspace = true, optional = true }
+async-stream = "0.3.5"
+
+tracing = { workspace = true }
+tracing-subscriber = { version = "0.3.17", features = ["fmt"] }
+async-trait = { workspace = true }
+anyhow = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+reqwest = { workspace = true, features = [
+    "rustls-tls",
+    "json",
+], default-features = false, optional = true }
+thiserror = { workspace = true }
+sp-keyring = { version = "24", optional = true }
+sp-core = { version = "21", optional = true }
+hex = { workspace = true }
+subxt-signer = { version = "0.37.0" }
+subxt-core = { version = "0.37.0" }
+# subxt-macro = { version = "0.29.0", path = "macro" }
+# proc-macro-error2 = "2.0.0"
+# proc-macro2 = "1.0.86"
+
+[[bin]]
+name = "test"
+path = "src/main.rs"
+
+[features]
+default = ["native"]
+native = [
+    "dep:codec",
+    "dep:futures",
+    "dep:reqwest",
+    "dep:sp-core",
+    "dep:sp-keyring",
+    "dep:subxt",
+    "dep:tokio",
+    "sov-rollup-interface/native",
+]

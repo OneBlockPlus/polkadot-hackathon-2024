@@ -1,8 +1,13 @@
 # Sandglass
 Privacy-Preserving Mixer Protocol
+![](./doc/logo.png)
+
+## Project Creation Date
+2024 August 24
 
 ## Table of Contents
 - [Sandglass](#sandglass)
+  - [Project Creation Date](#project-creation-date)
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Features Planned for the Hackathon](#features-planned-for-the-hackathon)
@@ -36,7 +41,10 @@ Additionally, we have created unique functional points within the protocol:
 - **Develop Mixer Pallet**:
   - `setup_verification`: Verifies zk-SNARK proof inputs.
   - `deposit`: Enables users to deposit tokens while committing to a zk-SNARK proof.
+  - `deposit_with_naive_otp`: Enables users to deposit tokens while committing to a zk-SNARK proof with Time-based one-time password.
   - `withdraw`: Enables users to withdraw tokens while proving ownership without disclosing their identity.
+  - `swap`: Enables users to swap tokens while proving ownership without disclosing their identity.
+  - `add_black_list`: administrator can add accountId to block list.
 - **OTP Pallet**:
   - `naive_approval`: Only checks that time in the proof is larger than lastUsedTime, i.e. behaves like HOTP
   - `block_time_approval`: Uses block timestamp to validate time, TOTP.
@@ -47,9 +55,11 @@ Additionally, we have created unique functional points within the protocol:
 - **Develop Mixer Frontend**:
   - **Deposit**: Frontend interface that interacts with the blockchain for depositing tokens.
   - **Withdraw**: Frontend interface for users to anonymously withdraw tokens.
+  - **Swap**: Frontend interface for users to anonymously swap tokens use zero knowledge commitment note.
+  - **Two Factor Authentication**: Frontend interface for users to set up 2fa key.
 
 ## Architecture
-
+![](./doc/architecture.png)
 ### Zero-Knowledge Proof (zk-SNARK)
 The core of the mixer’s privacy lies in zk-SNARK technology, which ensures that users can prove ownership of tokens (via commitments) without revealing any private information. A proof is generated based on a secret input and verified on-chain without disclosing the input itself.
 
@@ -93,8 +103,11 @@ By integrating with Acala and Bifrost DeFi protocols, Sandglass also enables liq
 
 ## Material for Demo
 1. **Demo Video**: An overview of the mixer’s functionality and its usage.
-2. **Slideshow**: Presentation slides explaining the mixer’s architecture and features.
-3. **Live Demo**: Ideally, a live demonstration of the mixer, showcasing the deposit and withdrawal features in action.
+https://youtu.be/lelt2F3cL5E
+
+1. **Slideshow**: Presentation slides explaining the mixer’s architecture and features.
+https://docs.google.com/presentation/d/e/2PACX-1vTHtiw_EBvSKKdz5FoxUNz9Pb9uJosksXTO2eRjvwiN9x78L-GEMR36B0I3UcZaf2L9rxrFz5PbUTjn/pub?start=false&loop=false&delayms=3000
+1. **Live Demo**: Ideally, a live demonstration of the mixer, showcasing the deposit and withdrawal features in action.
 
 ## How to Run the Project
 

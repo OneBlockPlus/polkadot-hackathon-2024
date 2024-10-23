@@ -1,0 +1,17 @@
+[Unit]
+Description=Prometheus Server
+After=network.target
+
+[Service]
+User=root
+Group=root
+Restart=always
+RestartSec=30
+Type=simple
+ExecStart=/opt/prometheus-2.33.0.linux-amd64/prometheus \
+--config.file=/opt/prometheus-2.33.0.linux-amd64/prometheus.yml \
+--web.listen-address=localhost:9090 \
+--enable-feature=agent
+
+[Install]
+WantedBy=multi-user.target

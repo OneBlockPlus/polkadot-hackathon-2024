@@ -1,0 +1,56 @@
+[
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "warehouse",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+    },
+    {
+        "inputs": [],
+        "name": "NotAMutliSigner",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "NotAnOwner",
+        "type": "error"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "orderId",
+                "type": "string"
+            },
+            {
+                "internalType": "address",
+                "name": "verifier",
+                "type": "address"
+            },
+            {
+                "internalType": "uint8",
+                "name": "v",
+                "type": "uint8"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "r",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "s",
+                "type": "bytes32"
+            }
+        ],
+        "name": "deliverOrder",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }
+]

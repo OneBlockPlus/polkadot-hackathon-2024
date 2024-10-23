@@ -1,0 +1,30 @@
+---
+# GitHub tag or commit
+da_version: "tags/v0.14.0"
+# `core_ip` to pass for celestia light client
+core_ip: "full.consensus.mocha-4.celestia-mocha.com"
+# Celestia testnet to connect to
+p2p_network: "mocha"
+
+# Key information. Refer to the `Key Generation` section of the README
+key_name: "devnet-ec2"
+key_address_filename: "62423a23c849bae9348f84c72b71f43b307eef9b.address"
+
+key_filename: "{{key_name}}.info"
+
+# Local path to celestia keys
+key_info_path: "../.keys/{{ key_name }}/{{ key_filename }}"
+key_address_path: "../.keys/{{ key_name }}/{{ key_address_filename }}"
+
+# Remote path. Does not need to be changed unless key management is different
+keyring_path: "{{ da_store }}/keys/keyring-test"
+# Define this variable to prevent celestia from syncing from genesis
+da_start_from: 2475850
+
+# RPC url to fetch the trusted blockhash from, since syncing from a specific height requires setting the start hash
+celestia_rpc_url: "https://rpc.celestia-mocha.com"
+
+### The variables below are used in the rollup
+# Define this variable to let the rollup start from a certain DA height
+da_rollup_start_from: 2475860
+da_rollup_address: "celestia1htg5dypcqqq5msdgjrd3e0djw2xldekmgzl3x6"

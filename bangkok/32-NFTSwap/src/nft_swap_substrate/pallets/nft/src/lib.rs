@@ -3,11 +3,17 @@
 /// A module for NFT
 pub use pallet::*;
 
+pub mod weights;
+pub use weights::*;
+
 #[cfg(test)]
 mod mock;
 
 #[cfg(test)]
 mod tests;
+
+#[cfg(feature = "runtime-benchmarks")]
+mod benchmarking;
 
 #[frame_support::pallet]
 pub mod pallet {
@@ -18,7 +24,7 @@ pub mod pallet {
         use frame_support::pallet_prelude::*;
         type MaxSubNftsLength = ConstU32<10>;
         type MaxNftOwners = ConstU32<10>;
-        type MaxMetadataLength = ConstU32<64>;
+        type MaxMetadataLength = ConstU32<256>;
         type MaxCollectionsLength = ConstU32<100>;
         type MaxNftsLength = ConstU32<10000>;
         type NftItem = (H256, u32);
@@ -27,6 +33,8 @@ pub mod pallet {
         #[pallet::config]
         pub trait Config: frame_system::Config {
             type RuntimeEvent: From<Event<Self>> + IsType<<Self as frame_system::Config>::RuntimeEvent>;
+		    /// Weights required by the dispatchables
+		    type WeightInfo: WeightInfo;
         }
 
         #[pallet::pallet]
@@ -138,7 +146,7 @@ pub mod pallet {
             ///
             /// Emits `NFTCollectionCreated` event when successful.
             #[pallet::call_index(0)]
-            #[pallet::weight({0})]
+            #[pallet::weight(T::WeightInfo::create_collection())]
             pub fn create_collection(origin: OriginFor<T>, max_items: u32, metadata: BoundedVec<u8, MaxMetadataLength>) -> DispatchResult {
                 let sender = ensure_signed(origin)?;
                 let collection_id_array = blake2_256(&metadata);
@@ -170,7 +178,7 @@ pub mod pallet {
             ///
             /// Emits `NFTMinted` event when successful.
             #[pallet::call_index(1)]
-            #[pallet::weight({0})]
+            #[pallet::weight(T::WeightInfo::mint_nft())]
             pub fn mint_nft(origin: OriginFor<T>, collection_id: H256, metadata: BoundedVec<u8, MaxMetadataLength>) -> DispatchResult {
                 let sender = ensure_signed(origin)?;
 
@@ -217,10 +225,11 @@ pub mod pallet {
             /// Parameters:
             /// - `to`: The target account id for the transfer.
             /// - `nft_item`: The NFT to transfer.
+            /// - `share`: The NFT share to transfer.
             ///
             /// Emits `NFTTransferred` event when successful.
             #[pallet::call_index(2)]
-            #[pallet::weight({0})]
+            #[pallet::weight(T::WeightInfo::transfer_nft())]
             pub fn transfer_nft(origin: OriginFor<T>, to: T::AccountId, nft_item: NftItem, share: u8) -> DispatchResult {
                 let sender = ensure_signed(origin)?;
 
@@ -275,8 +284,16 @@ pub mod pallet {
                 Ok(())
             }
 
+            /// Merge NFTs.
+            ///
+            /// The origin must be signed.
+            ///
+            /// Parameters:
+            /// - `nft_items`: The NFTs to be merged.
+            ///
+            /// Emits `NFTMerged` event when successful.
             #[pallet::call_index(3)]
-            #[pallet::weight({0})]
+            #[pallet::weight(T::WeightInfo::merge_nfts())]
             pub fn merge_nfts(origin: OriginFor<T>, nft_items: BoundedVec::<NftItem, MaxSubNftsLength>) -> DispatchResult {
                 let sender = ensure_signed(origin)?;
                 let mut sub_nfts: BoundedVec::<NftItem, MaxSubNftsLength> = BoundedVec::<NftItem, MaxSubNftsLength>::default();
@@ -312,8 +329,16 @@ pub mod pallet {
                 Ok(())
             }
 
+            /// Split the merged NFT.
+            ///
+            /// The origin must be signed.
+            ///
+            /// Parameters:
+            /// - `nft_item`: The merged NFT to be splited.
+            ///
+            /// Emits `NFTSplited` event when successful.
             #[pallet::call_index(4)]
-            #[pallet::weight({0})]
+            #[pallet::weight(T::WeightInfo::split_nft())]
             pub fn split_nft(origin: OriginFor<T>, nft_item: NftItem) -> DispatchResult {
                 let sender = ensure_signed(origin)?;
                 let nft_details = NFTDetails::<T>::get(nft_item).ok_or(Error::<T>::NFTNotFound)?;

@@ -1,0 +1,57 @@
+- name: install mdadm
+  become: true
+  become_user: root
+  apt:
+    update_cache: yes
+    pkg:
+      - mdadm
+
+- name: check raid already exists
+  become: true
+  become_user: root
+  shell: fdisk -l | grep -e 'md0' -e 'md127'
+  register: raid_exists
+  ignore_errors: yes
+  failed_when: false
+
+- name: wipe disks
+  become: true
+  become_user: root
+  shell: sfdisk --delete {{ item }}
+  with_items:
+    - "{{ raw_disk_list }}"
+  ignore_errors: yes
+  failed_when: false
+  when: raid_exists.rc != 0
+
+- name: raid raw disks
+  become: true
+  become_user: root
+  shell: echo y | mdadm --create /dev/md0 --level=0 --raid-devices={{ raw_disk_list|length }} {{ raw_disk_list | join(' ') }}
+  when: raid_exists.rc != 0
+
+- name: get raid device name
+  become: true
+  become_user: root
+  shell: cat /proc/mdstat | grep md | awk '{print $1}'
+  register: raid_name
+
+- name: check mount
+  become: true
+  become_user: root
+  shell: df -h | grep mnt
+  register: mount_mnt
+  ignore_errors: yes
+  failed_when: false
+
+- name: format disks with ext4
+  become: true
+  become_user: root
+  shell: mkfs.ext4 /dev/{{ raid_name.stdout }}
+  when: raid_name.rc == 0 and mount_mnt.rc != 0
+
+- name: mount disks
+  become: true
+  become_user: root
+  shell: mount /dev/{{ raid_name.stdout }} /mnt
+  when: mount_mnt.rc != 0
