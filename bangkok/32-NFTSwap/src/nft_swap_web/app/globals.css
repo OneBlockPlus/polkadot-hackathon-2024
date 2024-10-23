@@ -28,6 +28,9 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
+    --warning: 45 85% 47%; /* HSL */
+    --warning-foreground: 0 0% 10%;
+
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
     --ring: 240 10% 3.9%;
@@ -96,6 +99,33 @@
 
   .rotating {
     animation: rotate 1s linear infinite; /* 调整1s为你想要的旋转速度 */
+  }
+
+  @keyframes rotate1 {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(-180deg);
+    }
+  }
+
+  @keyframes scale {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0.7);
+    }
+  
+  }
+
+  .rotate-animation {
+    animation: rotate1 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .scale-animation {
+    animation: scale 0.6s;
   }
 }
 

@@ -1,11 +1,3 @@
-/*
- * @Descripttion:
- * @version: 1.0
- * @Author: Hesin
- * @Date: 2024-10-05 11:38:06
- * @LastEditors: Hesin
- * @LastEditTime: 2024-10-08 11:20:35
- */
 // api/SubstrateProvider.tsx
 "use client";
 
@@ -15,6 +7,7 @@ import {
   InjectedExtension,
   InjectedAccount,
 } from "@polkadot/extension-inject/types";
+
 const RPC_URL = "ws://127.0.0.1:9944";
 
 interface SubstrateContextProps {
@@ -35,8 +28,8 @@ interface SubstrateContextProps {
   issuedOffer: any[];
   setIssuedOffer: React.Dispatch<React.SetStateAction<any[]>>;
   initConnection: () => Promise<ApiPromise>;
-  pending: boolean; 
-  setPending: React.Dispatch<React.SetStateAction<boolean>>; 
+  pending: boolean;
+  setPending: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SubstrateContext = createContext<SubstrateContextProps | undefined>(
@@ -67,7 +60,14 @@ export const SubstrateProvider: React.FC<SubstrateProviderProps> = ({
     setApi(_api);
     return _api;
   };
-
+  useEffect(() => {
+    const connectedAccount = localStorage.getItem("connectedAccount");
+    if (connectedAccount && !api) {
+      initConnection(); // 如果有账户信息，初始化连接
+      const allCs: any = localStorage.getItem("allAccounts");
+      setAllAccounts(JSON.parse(allCs));
+    }
+  }, [api]);
   const value = {
     api,
     setApi,
