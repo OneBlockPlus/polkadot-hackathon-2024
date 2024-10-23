@@ -49,7 +49,7 @@ This project was created on 2024/10/13, adjusted to the demand of Polkadot Hacka
 
 We have developed No Sandwich Swap, an MEV-resistant DEX that uses a **Hyperbolic Call Auction** (HCA) mechanism. This mechanism aggregates multiple transactions over a certain period and then infinitely subdivides and uniformly interleaves them, thereby smoothing out the price impact of individual transactions and dispersing the trades of MEV attackers throughout the entire cycle, significantly reducing their arbitrage profits. Based on this approach, we have proven that the upper bound of asset price volatility within each phase is  $O(\sqrt{n})$ , where n is the absolute value of the difference between the amounts of funds sold and bought over a certain period. Our protocol operates on an order placement and settlement model, collecting orders over a certain period before entering the settlement phase, which repeats cyclically.
 
-![](/doc/figure.png)
+![](/bangkok/57-NoSandwichSwap/doc/figure.png)
 
 ### Mathematical Proof
 
@@ -116,11 +116,11 @@ In each settlement period, a trader may send multiple actual transactions. For t
 
 This method of trading is similar to the call auction process on the A-share market, where trades are not settled in real-time within the settlement period but instead a price is determined at the end of the period and all transactions are settled at this uniform price. Since the final settlement is still based on the constant product AMM (Automated Market Maker), any trader who successfully submits a transaction on-chain will secure a trade. We refer to this trading method as **Hyperbolic Call Auction**.
 
-![alt text](/doc/Comparison.png)
+![](/bangkok/57-NoSandwichSwap/doc/Comparison.png)
 
 ### Description of Components
 
-![](/doc/figure.png)
+![](/bangkok/57-NoSandwichSwap/doc/figure.png)
 
 ### Tokenomics
 
