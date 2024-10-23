@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -25,6 +25,10 @@ export const Tabs = ({
 }) => {
   const [active, setActive] = useState<Tab>(propTabs[0]);
   const [tabs, setTabs] = useState<Tab[]>(propTabs);
+  useEffect(() => {
+    setTabs(propTabs);
+    setActive(propTabs[0]); // 更新当前选中的 tab
+  }, [propTabs]);
 
   const moveSelectedTabToTop = (idx: number) => {
     const newTabs = [...propTabs];
@@ -110,7 +114,7 @@ export const GridIn = ({
       {tabs.map((tab, idx) => (
         <motion.div
           key={tab.value}
-          className={cn("w-full h-full absolute top-0 left-0", className)}
+          className={cn("w-full h-full relative top-0 left-0", className)}
           initial={{ opacity: 0, y: -20 }} // 初始状态为透明并向下偏移
           animate={{
             opacity: isActive(tab) ? 1 : 0, // 仅活动选项卡显示
@@ -153,7 +157,7 @@ export const FadeInDiv = ({
           animate={{
             y: isActive(tab) ? [0, 40, 0] : 0,
           }}
-          className={cn("w-full h-full absolute top-0 left-0", className)}
+          className={cn("w-full h-full", className)}
         >
           {tab.content}
         </motion.div>
