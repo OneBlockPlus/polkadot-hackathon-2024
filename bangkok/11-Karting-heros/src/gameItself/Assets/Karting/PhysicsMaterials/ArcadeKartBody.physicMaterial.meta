@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d95b5e49839d84ee191c3c6961b60124
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 13400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/PhysicsMaterials/ArcadeKartBody.physicMaterial
+  uploadId: 613807

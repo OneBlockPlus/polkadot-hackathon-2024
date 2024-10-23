@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 062a7a7fce93ca5408e45ee378f58759
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Scripts/AI/Editor/KartGame.AI.Editor.asmdef
+  uploadId: 613807

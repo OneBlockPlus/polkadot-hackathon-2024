@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 5dbe1bc8a2e754a37bd391b8506ff1d8
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Prefabs/UI/LoseGameMessage.prefab
+  uploadId: 613807

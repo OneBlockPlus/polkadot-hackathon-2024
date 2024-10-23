@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: cf135591008cd4358b09a85e59fcfc1e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Prefabs/UI/InGameMenu.prefab
+  uploadId: 613807

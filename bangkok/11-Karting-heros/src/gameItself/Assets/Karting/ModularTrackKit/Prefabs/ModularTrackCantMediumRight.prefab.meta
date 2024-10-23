@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 877fc6ef080ba4ecd8a8651303bb0d66
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/ModularTrackKit/Prefabs/ModularTrackCantMediumRight.prefab
+  uploadId: 613807

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 89547b15363d64495b3ff832130f0a8e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/ModularTrackKit/Prefabs/ModularTrackSpiralLeft.prefab
+  uploadId: 613807

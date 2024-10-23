@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 070d4c0e5ff8bf049a18ae57f752abf6
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Scenes/MLTraining/KartClassic_TrainingDemo.unity
+  uploadId: 613807

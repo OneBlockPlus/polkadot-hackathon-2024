@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e15cca6e92bc8ab4c9fa5d92ef927584
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Prefabs/TrainingTracks/MountainTrack_Training.prefab
+  uploadId: 613807

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: db0af21853ba047fda7b6e30b74ffedf
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Prefabs/Props/JumpRamp.prefab
+  uploadId: 613807

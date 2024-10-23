@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 7c6e4892ff5a9764d898d94d45107513
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/KartingMicrogame_README.txt
+  uploadId: 613807
