@@ -70,7 +70,7 @@ Features:
 
 ---
 
-***How Bubble DOT work?*** 
+### How Bubble DOT work? 
 
 - ***User Input:*** The user provides a text prompt or description of the desired project.
 - ***AI Processing & Code Generation:*** BubbleDOT's AI models analyze the prompt to understand the project's requirements. Then it will generates a comprehensive project folder containing all the necessary files and code. The generated code is structured, well-formatted, and adheres to best practices
