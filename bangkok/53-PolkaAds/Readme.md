@@ -25,21 +25,24 @@ What project does
 Polka Ads offers a streamlined shopping experience that allows users to buy products directly from advertisements. With a few steps, users can watch a video, see a product, and make a purchase without leaving the platform. Purchases are secured through the Polkadot blockchain, making it both a seamless and safe transaction.
 
 ## Things planned to be done during the hackathon
-1. **Backend**:
-    - Mongodb 
-    - Api making
+1. [**Backend**](./src/backend):    
+    - [Mongodb](./src/backend/models/Video.js):    
+    - [Api making](./src/backend/server.js):    
     
-2. **Frontend**
-    - Making conection with Backend
-    - Calling Smart Contract
-    -Reading Smart contract
-    - Withdraw 
-    - Checkout
+2. [**Frontend**](./src/frontend/src/)
+    - [Making conection with Backend](./src/frontend/src/)
+    - [Calling Smart Contract And Reading Smart contract](./src/frontend/src/context/PolkadotContext.js)
+    - [Withdraw](./src/frontend/src/components/Withdraw.js)
+    - [Checkout](./src/frontend/src/components/Checkout.js)
 
-3. **Blockchain:**
+3. [**Blockchain:**](./src/frontend/src/ink_contracts/) 
+    - [Ink Smart Contract](./src/frontend/src/ink_contracts/lib.rs)
     - Purchase and save logs
-    - Show logs 
-    - Withdraw
+    - Show logs
+
+4. [**Chrome Extension**](./src/chrome-extension/content.js)
+    - [Purchase] (./src/chrome-extension/content.js)
+    - [Popup] (./src/chrome-extension/popup.html)
 
 
 # User flow for ad clients:
