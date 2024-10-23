@@ -4,7 +4,7 @@
 
 # Introduction
 
-- Project Name: According.Work
+- Project Name: [According.Work](https://according-work-beta.netlify.app/projects)
 - Creation Date: July 2024
 - Problem Being Solved:
 
@@ -78,5 +78,6 @@ And our ultimate goal is to create an environment where developers are free to u
 
 **Mandatory Requirements Before OfflineDemo:**
 
-- [Demo Video](https://www.youtube.com/watch?v=1QD6yHpmvmo)
+- [Live Demo](https://according-work-beta.netlify.app/projects)
+- [Demo Video](https://youtu.be/EvAnz4V2N9E)
 - [Deck](https://docs.google.com/document/d/1xhI1QrZj2h0STt3sHG5OGsY0IO6WYML-Law4O3h_j80/edit?tab=t.0#heading=h.ekvl858vgvv5)

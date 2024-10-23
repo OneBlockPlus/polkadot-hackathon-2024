@@ -59,16 +59,16 @@ const SellerChatList = ({ sellerId, onChatSelect }) => {
 
   return (
     <ChatListWrapper>
-      <ChatListTitle>我的聊天</ChatListTitle>
+      <ChatListTitle>My Chats</ChatListTitle>
       {chats.length === 0 ? (
-        <ChatItem>暂无聊天记录</ChatItem>
+        <ChatItem>No chat history</ChatItem>
       ) : (
         chats.map(({ itemId, itemName, messages }) => (
           <ChatItem key={itemId} onClick={() => onChatSelect(itemId, messages)}>
             <ItemName>{itemName}</ItemName>
             <LastMessage>{messages[messages.length - 1].text}</LastMessage>
             <Sender>
-              {messages[messages.length - 1].sender === sellerId ? '我' : '买家'}
+              {messages[messages.length - 1].sender === sellerId ? 'Me' : 'Buyer'}
             </Sender>
           </ChatItem>
         ))

@@ -1,0 +1,45 @@
+[workspace]
+
+[package]
+name = "guest-mock-starter"
+version = "0.3.0"
+edition = "2021"
+resolver = "2"
+
+[dependencies]
+anyhow = "1.0.86"
+
+risc0-zkvm = { version = "1.0.5", default-features = false, features = ["std"] }
+risc0-zkvm-platform = "1.0.5"
+
+serde = { version = "1.0.188", features = ["derive", "rc"] }
+
+
+sov-rollup-interface = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-mock-da = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-modules-stf-blueprint = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-modules-api = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-risc0-adapter = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-state = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-mock-zkvm = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+sov-kernels = { git = "ssh://git@github.com/cyferio-labs/sovereign-sdk-wip.git", rev = "8cf5b279d5f35806a787e4862ae9745d470f38c9" }
+
+stf-starter = { path = "../../../stf" }
+
+[patch.crates-io]
+sha2 = { git = "https://github.com/risc0/RustCrypto-hashes", tag = "sha2-v0.10.8-risczero.0" }
+ed25519-dalek = { git = "https://github.com/risc0/curve25519-dalek", tag = "curve25519-4.1.0-risczero.1" }
+crypto-bigint = { git = "https://github.com/risc0/RustCrypto-crypto-bigint", tag = "v0.5.2-risc0" }
+
+[profile.dev]
+opt-level = 3
+
+[profile.dev.build-override]
+opt-level = 3
+
+[profile.release]
+debug = 1
+lto = true
+
+[profile.release.build-override]
+opt-level = 3

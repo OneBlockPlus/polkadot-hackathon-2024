@@ -1,0 +1,11 @@
+{
+  "proving_penalty": 10,
+  "minimum_bond": 10,
+  "commitment_of_allowed_verifier_method": [
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0
+  ],
+  "initial_provers": [
+    ["sov1l6n2cku82yfqld30lanm2nfw43n2auc8clw7r5u5m6s7p8jrm4zqrr8r94", 10]
+  ]
+}

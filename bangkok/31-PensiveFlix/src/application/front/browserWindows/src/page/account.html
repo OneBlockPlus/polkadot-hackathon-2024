@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Selector</title>
+    <link rel="stylesheet" href="../style/background.css">
+    <style>
+        .container {
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            max-width: 100%;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        /* .close-btn {
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 24px;
+            cursor: pointer;
+        } */
+
+        .search-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 10px;
+            padding-right: 40px;
+            border: none;
+            border-radius: 5px;
+            background-color: #3a3a3a;
+            color: #fff;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        .account-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .account-item {
+            background-color: #3a3a3a;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .account-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .account-name {
+            flex-grow: 1;
+            width: 50px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .account-id {
+            margin-left: 15px;
+            width: 170px;
+            text-align: right;
+            color: #999;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .badge {
+            background-color: #4a4a4a;
+            border-radius: 10px;
+            padding: 2px 6px;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+
+        .create-account {
+            background-color: #3a3a3a;
+            border: none;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Select account</h2>
+            <!-- <button class="close-btn" aria-label="Close">&times;</button> -->
+        </div>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Account name" aria-label="Search accounts">
+            <span class="search-icon">&#128269;</span>
+        </div>
+        <ul class="account-list" id="accountList">
+            <hr style="border: 1px solid gray;">
+            <!-- Account items will be dynamically added here -->
+        </ul>
+        <button class="create-account">+ Create a new account</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const accountList = document.getElementById('accountList');
+            const searchInput = document.querySelector('.search-input');
+
+            // Fetch accounts from the API
+            fetch('http://127.0.0.1:5150/api/wallets')
+                .then(response => response.json())
+                .then(accounts => {
+                    renderAccounts(accounts);
+                    setupSearch(accounts);
+                })
+                .catch(error => console.error('Error fetching accounts:', error));
+
+            function renderAccounts(accounts) {
+
+                for (let i = 0; i < accounts.length; i++) {
+                    let account = accounts[i];
+                    const li = document.createElement('li');
+                    li.className = 'account-item';
+                    li.innerHTML = `
+                        <div style="display: flex; align-items: center;">
+                            <div class="account-icon" style="background-color: ${color16(account.account_id)};"></div>
+                            <span class="account-name" title="${account.name}">${truncateAccountName(account.name)}</span>
+                            <span class="account-id" title="${account.account_id}">${truncateAccountId(account.account_id)}</span>
+                        </div>
+                    `;
+                    li.addEventListener('click', function () {
+                        selectAccount(account.account_id, account.name);
+                    });
+                    accountList.appendChild(li);
+                }
+            }
+
+            function truncateAccountId(account_id) {
+                return account_id.length > 20 ? account_id.substring(0, 20) + '...' : account_id;
+            }
+
+            function truncateAccountName(AccountName) {
+                return AccountName.length > 5 ? AccountName.substring(0, 5) + '...' : AccountName;
+            }
+            name
+
+            function selectAccount(account_id, accountName) {
+                localStorage.setItem('selectedAccount', account_id);
+                localStorage.setItem('selectedAccountName', accountName);
+
+                window.location.href = './video.html';
+            }
+
+            function setupSearch(accounts) {
+                searchInput.addEventListener('input', function () {
+                    const searchTerm = this.value.toLowerCase();
+                    const filteredAccounts = accounts.filter(account =>
+                        account.name.toLowerCase().includes(searchTerm)
+                    );
+                    accountList.innerHTML = ''; // Clear the list
+                    renderAccounts(filteredAccounts);
+                });
+            }
+
+            const {
+                ipcRenderer
+            } = require('electron');
+
+            // Create new account button functionality
+            document.querySelector('.create-account').addEventListener('click', function () {
+                fetch('http://127.0.0.1:5150/api/wallets', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data) {
+                            const modal = document.createElement('div');
+                            modal.style.position = 'fixed';
+                            modal.style.top = '50%';
+                            modal.style.left = '50%';
+                            modal.style.transform = 'translate(-50%, -50%)';
+                            modal.style.backgroundColor = '#2a2a2a';
+                            modal.style.padding = '20px';
+                            modal.style.borderRadius = '10px';
+                            modal.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+                            modal.style.color = '#fff';
+                            modal.innerHTML = `
+                            <p>Name: ${data.name}</p>
+                            <p>Mnemonic: ${data.phrase}</p>
+                            <p>AccountId: ${data.account_id}</p>
+                            <button id="confirmBtn" style="margin-top: 10px; padding: 5px 10px; border: none; background-color: #3a3a3a; color: #fff; border-radius: 5px; cursor: pointer;">I have memorized the mnemonic!</button>
+                        `;
+                            document.body.appendChild(modal);
+
+                            document.getElementById('confirmBtn').addEventListener('click',
+                                function () {
+                                    document.body.removeChild(modal);
+                                    location.reload();
+                                });
+                        } else {
+                            alert('Failed to generate wallet');
+                        }
+                    })
+                    .catch(error => {
+                        alert('Network error: Failed to generate wallet');
+                        console.error('Error generating wallet:', error);
+                    });
+            });
+
+            function color16(str) {
+                let hash = 0;
+                for (let i = 0; i < str.length; i++) {
+                    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+                }
+
+                let color = '#';
+                for (let i = 0; i < 3; i++) {
+                    let value = (hash >> (i * 8)) & 0xFF;
+                    color += ('00' + value.toString(16)).substr(-2);
+                }
+                return color;
+            }
+
+        });
+    </script>
+</body>
+
+</html>

@@ -104,6 +104,7 @@ std = [
 	"pallet-template/std",
 	"pallet-poe/std",
 	"pallet-nft/std",
+	"pallet-nft-market/std",
 	"pallet-timestamp/std",
 	"pallet-transaction-payment-rpc-runtime-api/std",
 	"pallet-transaction-payment/std",
@@ -136,6 +137,8 @@ runtime-benchmarks = [
 	"pallet-sudo/runtime-benchmarks",
 	"pallet-template/runtime-benchmarks",
 	"pallet-poe/runtime-benchmarks",
+	"pallet-nft/runtime-benchmarks",
+	"pallet-nft-market/runtime-benchmarks",
 	"pallet-timestamp/runtime-benchmarks",
 	"sp-runtime/runtime-benchmarks",
 ]
