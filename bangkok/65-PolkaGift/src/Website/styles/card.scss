@@ -1,0 +1,50 @@
+.card {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
+    margin: 0 auto;
+    padding: 32px 40px;
+    width: 100%;
+
+    &--small {
+        padding: 32px;
+    }
+
+    &--flat {
+        border-radius: 0;
+    }
+
+    &__header {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        margin: 64px 0 32px;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+        padding: 15px 5px 17px;
+
+        &__header {
+            margin-bottom: 32px;
+            margin-top: 48px;
+        }
+    }
+}
+
+.card-title {
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 0.25px;
+    line-height: 36px;
+    margin: 0;
+
+    @media only screen and (max-width: 767px) {
+        font-size: 24px;
+        letter-spacing: 0;
+        line-height: 32px;
+    }
+}

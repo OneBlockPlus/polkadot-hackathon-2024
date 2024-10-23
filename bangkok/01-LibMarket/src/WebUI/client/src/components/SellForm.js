@@ -36,7 +36,7 @@ function SellForm({ onItemListed, walletAddress }) {
     return (
         <form onSubmit={handleSubmit} className="sell-form">
             <div className="form-group">
-                <label htmlFor="name">物品名称</label>
+                <label htmlFor="name">Item Name</label>
                 <input
                     type="text"
                     id="name"
@@ -46,7 +46,7 @@ function SellForm({ onItemListed, walletAddress }) {
                 />
             </div>
             <div className="form-group">
-                <label htmlFor="description">描述</label>
+                <label htmlFor="description">Description</label>
                 <textarea
                     id="description"
                     value={description}
@@ -55,7 +55,7 @@ function SellForm({ onItemListed, walletAddress }) {
                 />
             </div>
             <div className="form-group">
-                <label htmlFor="price">价格 (DOT)</label>
+                <label htmlFor="price">Price (DOT)</label>
                 <input
                     type="number"
                     id="price"
@@ -65,7 +65,7 @@ function SellForm({ onItemListed, walletAddress }) {
                 />
             </div>
             <div className="form-group">
-                <label htmlFor="image">图片</label>
+                <label htmlFor="image">Image</label>
                 <input
                     type="file"
                     id="image"
@@ -73,7 +73,7 @@ function SellForm({ onItemListed, walletAddress }) {
                     accept="image/*"
                 />
             </div>
-            <button type="submit" className="submit-button">发布物品</button>
+            <button type="submit" className="submit-button">List Item</button>
         </form>
     );
 }

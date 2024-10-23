@@ -1,0 +1,7 @@
+- name: stop rollup service if it exists
+  ansible.builtin.systemd:
+    name: rollup
+    state: stopped
+  become: true
+  ignore_errors: true
+  failed_when: false

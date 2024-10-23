@@ -1,0 +1,42 @@
+- name: download prometheus agent
+  get_url:
+    url: "https://github.com/prometheus/prometheus/releases/download/v2.33.0/prometheus-2.33.0.linux-amd64.tar.gz"
+    dest: "/tmp/prometheus-2.33.0.linux-amd64.tar.gz"
+
+- name: extract prometheus agent
+  unarchive:
+    src: "/tmp/prometheus-2.33.0.linux-amd64.tar.gz"
+    dest: "/opt"
+    remote_src: yes
+    creates: "/opt/prometheus-2.33.0.linux-amd64"
+  become: true
+
+- name: copy rollup shell file to remote server
+  ansible.builtin.template:
+    src: prometheus.yml.j2
+    dest: "/opt/prometheus-2.33.0.linux-amd64/prometheus.yml"
+    owner: root
+    group: root
+    mode: '0755'
+  become: true
+
+- name: copy systemd unit file for Prometheus agent
+  ansible.builtin.copy:
+    src: prometheus.service
+    dest: "/etc/systemd/system/prometheus.service"
+    owner: root
+    group: root
+    mode: '0644'
+  become: true
+
+- name: Reload systemd to apply new unit file
+  systemd:
+    daemon_reload: yes
+  become: true
+
+- name: Start and enable Prometheus service
+  systemd:
+    name: prometheus
+    state: started
+    enabled: yes
+  become: true

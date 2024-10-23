@@ -5,3 +5,5 @@
 node_modules
 target
 out
+/doc/assets/*.pptx
+/doc/assets/*.psd

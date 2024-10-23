@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "paths": {
+    "/smart-contract": {
+      "name": "/smart-contract",
+      "lambdaFunction": "cognidexSmartContractLambda",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create"
+        ]
+      }
+    }
+  }
+}

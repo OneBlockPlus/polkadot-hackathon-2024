@@ -31,6 +31,11 @@ const Container = styled.div`
         gap: 10px;
         width: auto;
         height: auto;
+
+        @media (max-width: 1000px) {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
     }
 
     .inner-container {

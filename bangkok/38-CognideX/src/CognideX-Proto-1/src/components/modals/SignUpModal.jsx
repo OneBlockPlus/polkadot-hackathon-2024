@@ -7,6 +7,7 @@ import MainButtonInvert from '../buttons/MainButtonInvert';
 
 import { signUp, confirmSignUp } from 'aws-amplify/auth';
 
+
 // Keyframes for animations
 const fadeIn = keyframes`
   from {
@@ -108,9 +109,24 @@ const ModalHeader = styled.div`
 
   p {
     font-size: 20px;
+    font-weight: 600;
     font-family: 'Modernist', sans-serif;
     color: black;
     margin: 0;
+  }
+
+  span {
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'Modernist', sans-serif;
+    color: black;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-decoration: underline;
+
+    &:hover {
+      color: var(--primary-color);
+    }
   }
 `;
 
@@ -156,7 +172,7 @@ const ModalEnd = styled.div`
 `;
 
 const SignUpModal = () => {
-  const { signupModalOpen, closeSignupModal } = useAuth();
+  const { signupModalOpen, closeSignupModal, openSigninModal, checkUserAuth } = useAuth();
 
   const [userInfo, setUserInfo] = useState({
     email: '',
@@ -246,10 +262,15 @@ const SignUpModal = () => {
       alert('User created successfully');
       setIsSigningUp(false);
       closeSignupModal();
-
+      checkUserAuth();
     } catch (e) {
       alert(e.message);
     }
+  }
+
+  const handleSignIn = () => {
+    handleClose();
+    openSigninModal();
   }
 
   return (
@@ -268,7 +289,7 @@ const SignUpModal = () => {
             </ModalHeader>
             <ModalBody>
               <ModalHeader>
-                <p>Sign Up to start your Data Journey</p>
+                <p>Have an account? <span onClick={handleSignIn}>Sign In</span></p>
               </ModalHeader>
               <MainInput
                 label="Email"

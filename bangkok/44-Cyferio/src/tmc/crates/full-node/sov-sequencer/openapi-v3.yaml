@@ -1,0 +1,206 @@
+openapi: "3.0.2"
+info:
+  title: Sovereign SDK sequencer API
+  version: 0.1.0
+  description: |
+    This is the JSON API for the Sovereign SDK sequencer.
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  contact:
+    name: Sovereign Labs
+    url: https://github.com/Sovereign-Labs/sov-sdk
+    email: info@sovereign.xyz
+servers:
+  - url: http://localhost:12346
+    description: Localhost
+paths:
+  /batches:
+    post:
+      summary: Submit a batch to the rollup
+      operationId: publish_batch
+      tags:
+        - sequencer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                transactions:
+                  type: array
+                  items:
+                    type: string
+                    format: base64
+                  minItems: 1
+                  description: The transactions to be included in the batch, encoded as Base64.
+              required:
+                - transactions
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/SubmittedBatchInfo"
+                  meta:
+                    type: object
+                  errors:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Error"
+                required:
+                  - meta
+        "409":
+          description: Can't publish batch
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                  meta:
+                    type: object
+                  errors:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Error"
+                required:
+                  - meta
+
+  /txs:
+    post:
+      summary: Submit a transaction to the rollup
+      description: Submit a transaction to the rollup
+      operationId: acceptTx
+      tags:
+        - sequencer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                body:
+                  type: string
+                  format: base64
+              required:
+                - body
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/TxInfo"
+                  meta:
+                    type: object
+                required:
+                  - data
+                  - meta
+
+  /txs/:txHash:
+    get:
+      summary: Get a transaction status by hash
+      operationId: get_tx_status
+      tags:
+        - sequencer
+      parameters:
+        - $ref: "#/components/parameters/txHash"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/TxInfo"
+                  meta:
+                    type: object
+                required:
+                  - data
+                  - meta
+
+components:
+  parameters:
+    txHash:
+      name: txHash
+      in: path
+      required: true
+      schema:
+        $ref: "#/components/schemas/TxHash"
+  schemas:
+    TxHash:
+      type: string
+      # Variable length hex string, prefix with "0x"
+      pattern: "^0x[a-fA-F0-9]+$"
+      description: The hash of a transaction
+    TxBody:
+      type: string
+      format: byte
+      description: The body of a transaction, encoded as a Base64 string
+    TxInfo:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/TxHash"
+        status:
+          $ref: "#/components/schemas/TxStatus"
+      required:
+        - id
+        - status
+    Tx:
+      type: object
+      properties:
+        hash:
+          $ref: "#/components/schemas/TxHash"
+        body:
+          $ref: "#/components/schemas/TxBody"
+        status:
+          $ref: "#/components/schemas/TxStatus"
+      required:
+        - hash
+        - status
+    TxStatus:
+      type: string
+      enum:
+        - unknown
+        - dropped
+        - submitted
+        - published
+        - finalized
+    SubmittedBatchInfo:
+      type: object
+      properties:
+        daHeight:
+          type: integer
+        numTxs:
+          type: integer
+          format: int32
+      required:
+        - daHeight
+        - numTxs
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+          description: HTTP status code related to this error
+        title:
+          type: string
+        details:
+          type: object
+      required:
+        - status
+        - title
+        - details

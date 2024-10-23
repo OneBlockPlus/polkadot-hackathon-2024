@@ -1,0 +1,2 @@
+# See <https://github.com/cyferio-labs/sovereign-sdk-wip/issues/1196>.
+build.incremental = false

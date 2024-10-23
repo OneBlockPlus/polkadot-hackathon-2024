@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import Footer from '../footer/Footer';
+
 const GradientContainer = styled.div`
     position: fixed;
     top: 0;
     left: 0;
     z-index: -1;
-    width: 100%;
+    width: 100vw;
     height: 100%;
     overflow: hidden;
 `;
@@ -94,6 +96,7 @@ const DataPoolBackground = ({ children }) => {
             <ChildrenContainer>
                 {children}
             </ChildrenContainer>
+            <Footer />
         </div>
     );
 };

@@ -1,0 +1,347 @@
+@media only screen and (max-width: 600px) {
+    .auction.NFTs-container {
+        padding: 2%;
+        height: 100%;
+    }
+
+    .auction.ElementsContainer {
+        height: 33vw;
+    }
+
+    .auction.NFt-contain {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+    }
+
+    .auction.AuctionBidImage {
+        border-radius: 20px;
+        background: white;
+        width: 30vw;
+        height: 30vw;
+        aspect-ratio: 4;
+    }
+
+    .Auction.NFT-title {
+        margin: 0px;
+        font-size: 0.8rem;
+    }
+
+    .Auction.NFT-Description {
+        font-size: 0.7rem;
+    }
+
+    .Auction.EventContainer {
+        overflow: hidden;
+        padding: 0;
+        width: 100%;
+        height: 40vw;
+        color: white;
+    }
+
+    .Auction.Event-Image {
+        border-radius: 14px;
+        background: white;
+        width: 25vw;
+        height: 100%;
+        padding: 6px;
+    }
+    .Auction.Event-Title{
+        font-size: 0.8rem;
+    }
+}
+
+
+@media only screen and (min-width: 600px) {
+    .auction.NFTs-container {
+        padding: 0 5%;
+        height: 100%;
+    }
+
+    .auction.ElementsContainer {
+        height: 21vw;
+    }
+
+    .auction.NFt-contain {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        padding: 2%;
+        align-items: center;
+    }
+
+    .auction.AuctionBidImage {
+        border-radius: 20px;
+        background: white;
+        height: 100%;
+        width: 18vw;
+        aspect-ratio: 4;
+    }
+
+    .Auction.NFT-title {
+        margin: 0px;
+        font-size: calc(1vw * 2.5);
+    }
+
+    .Auction.NFT-Description {
+        font-size: calc(1.8vw);
+    }
+
+    .Auction.Grey-text {
+        font-size: 1.4vw;
+    }
+
+    .Auction.priceText {
+        font-size: 1.8vw;
+    }
+
+    .Auction.EventContainer {
+        overflow: inherit;
+        padding: 0 4%;
+        width: 100%;
+        height: 22vw;
+        color: white;
+    }
+
+    .Auction.Event-Image {
+        border-radius: 14px;
+        background: white;
+        width: 17vw;
+        height: 15vw;
+        aspect-ratio: 4;
+        padding: 6px;
+    }
+    .Auction.Event-Title{
+        font-size: calc(2.6vw);
+    }
+    .Auction.Event-small-Text{
+        font-size: 1.4vw;
+    }
+    .Auction.Event-goal-price{
+        font-size: 1.4vw;
+    }
+}
+
+
+
+.p-campaign {
+    margin: 1rem 5rem;
+    grid-template-columns: 4fr 4fr .5fr 4.5fr;
+    grid-template-areas:
+        "partner-banner partner-banner partner-banner partner-banner"
+        "header header header header"
+        "collage collage collage sidebar"
+        "description description . sidebar"
+        "content content . sidebar"
+        "reportbutton reportbutton . sidebar"
+        "valueprops valueprops valueprops valueprops";
+    display: grid;
+    grid-template-rows: auto;
+}
+
+.p-campaign-collage.color-background-blue {
+    grid-area: collage;
+}
+
+.image-16by9.m-collage-image {
+    border: 0.5px solid #c8c8c8;
+    border-radius: 0.75rem;
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    background: white;
+    padding-top: 56.25% !important;
+    align-content: center;
+    justify-content: center;
+}
+
+header.p-campaign-header {
+    grid-area: header;
+}
+
+.p-campaign-sidebar {
+    grid-area: sidebar;
+    position: relative;
+    margin-left: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+aside.o-campaign-sidebar {
+    background: #fff;
+    border-radius: .75rem;
+    color: black;
+    box-shadow: 0 .3125rem 1rem -.1875rem rgba(0,0,0,.2);
+    padding-bottom: 1.5rem;
+    padding-top: 1.5rem;
+    position: sticky;
+    top: 1rem;
+}
+
+.o-campaign-sidebar-wrapper {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.o-campaign-sidebar-progress-meter.m-progress-meter {
+    display: grid;
+    margin-bottom: .75rem;
+}
+
+progress.a-progress-bar.a-progress-bar--green {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #e6f6ef;
+    border: none;
+    border-radius: .125rem;
+    color: #02a95c;
+    display: block;
+    height: .25rem;
+    width: 100%;
+    grid-row: 2/3;
+    margin-bottom: 0;
+}
+
+.o-campaign-sidebar-progress-meter .m-progress-meter-heading {
+    font-size: 1.5rem;
+    grid-row: 1/2;
+}
+.o-campaign-sidebar-progress-meter, .o-campaign-sidebar-progress-meter .m-progress-meter-heading {
+    margin-bottom: .75rem;
+}
+.m-progress-meter-heading {
+    line-height: .8;
+    margin-bottom: .25rem;
+    margin-top: .25rem;
+}
+
+.text-stat {
+    font-size: .875rem!important;
+    line-height: 1.21!important;
+}
+
+.text-stat-title {
+    color: #767676!important;
+    font-weight: 400!important;
+}
+
+.hide-for-large {
+    display: none!important;
+}
+
+
+.mb2x {
+    margin-bottom: 1rem!important;
+}
+
+.hrt-base-button {
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: -webkit-inline-flex;
+    display: -moz-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+}
+
+.hrt-base-button, .hrt-base-button:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+.hrt-gradient-button {
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    cursor: pointer;
+    display: -webkit-inline-flex;
+    display: -moz-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    font-size: 1rem;
+    font-weight: 900;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    letter-spacing: .02em;
+    line-height: 1.5;
+    min-height: 3rem;
+    padding: .5rem 1.5rem;
+    position: relative;
+    text-align: center;
+}
+
+.hrt-gradient-button,  .hrt-gradient-button {
+    color:white!important;
+    text-decoration: none;
+}
+.hrt-gradient-button--shadow {
+    -webkit-box-shadow: 0 6px 14px rgba(0,0,0,.1);
+    -moz-box-shadow: 0 6px 14px rgba(0,0,0,.1);
+    box-shadow: 0 6px 14px rgba(0,0,0,.1);
+}
+
+.hrt-gradient-button--gradient-orange {
+    background: linear-gradient(180deg,rgb(230 0 122) 35.42%,#f58131 139.58%);
+}
+
+.hrt-gradient-button--full {
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+}
+
+a.p-campaign-donate-button-exp, a.p-campaign-share-button-exp {
+    border: none;
+}
+
+.hrt-gradient-button:hover, .hrt-gradient-button.sb-hover, .hrt-gradient-button:hover {
+    color: #ffffffd3 !important;
+    text-decoration: none;
+}
+.hrt-gradient-button-text {
+    -webkit-flex-grow: 1;
+    -moz-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+}
+
+
+.m-collage-image .a-image--background {
+    position: absolute;
+    top: 0;
+}
+
+.a-image--background {
+    background-position: 50%;
+    background-repeat: no-repeat;
+    -moz-background-size: cover;
+    background-size: cover;
+}
+
+.a-image {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.hrt-rule--horizontal {
+    border-top: 1px solid #c8c8c8;
+}

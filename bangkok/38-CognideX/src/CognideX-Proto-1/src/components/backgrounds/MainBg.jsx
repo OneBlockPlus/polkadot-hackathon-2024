@@ -16,6 +16,8 @@ const AnimatedChar = styled.div`
     color: white;
     font-size: 20px;
     animation: ${moveUpwards} ${(props) => props.duration}s linear infinite;
+    font-family: 'Modernist', sans-serif;
+    font-weight: 600;
 `;
 
 const BgContainer = styled.div`

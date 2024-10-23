@@ -1,0 +1,15 @@
+- name: render sequencer config with address
+  become: true
+  become_user: sovereign
+  ansible.builtin.template:
+    src: "genesis/sequencer_registry.json.j2"
+    dest: "{{genesis_folder}}/sequencer_registry.json"
+  vars:
+    sequencer_da_address: "{{ sequencer_genesis_address }}"
+
+- name: render config with auth
+  become: true
+  become_user: sovereign
+  ansible.builtin.template:
+    src: "{{ data_availability_role }}/rollup_config.toml.j2"
+    dest: "/home/sovereign/rollup_config.toml"

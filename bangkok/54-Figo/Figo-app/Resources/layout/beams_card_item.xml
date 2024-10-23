@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:layout_margin="8dp"
+              android:background="@android:color/white"
+>
+    <ImageView
+            android:id="@+id/beams_image_card"
+            android:layout_width="140dp"
+            android:layout_height="200dp"
+            android:layout_marginLeft="-5dp"
+    />
+
+    <TextView android:layout_width="match_parent"
+              android:layout_height="29dp"
+              android:textColor="@android:color/black"
+              android:textFontWeight="400"
+              android:gravity="center"
+              android:background="@android:color/transparent"
+              android:id="@+id/beams_name"
+              />
+    
+</LinearLayout>

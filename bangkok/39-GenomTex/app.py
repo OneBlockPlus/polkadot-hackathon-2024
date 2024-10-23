@@ -2,9 +2,10 @@ from flask import Flask, render_template, jsonify, request
 from db_model import DBModel
 import src.api_storage.storage_management as storage
 from src.api_storage.file_utils import get_filepath
+import random
 
 app = Flask(__name__)
-model = DBModel("api_storage_module/genomtex.sqlite")
+model = DBModel("src/genomtex.sqlite")
 
 
 @app.teardown_appcontext
@@ -40,6 +41,7 @@ def get_record(name: str):
         "ipfs_cid": record["ipfs_cid"],
         "mutations": record["mutations"],
         "cos_dist": "{:.8f}".format(record["cos_dist"]),
+        "dna_fingerprint": record["dna_fingerprint"][:16],
     } for record in records]
 
     return render_template('record.html', name=name, client=client, records=records)
@@ -68,9 +70,19 @@ def dev_get_record(name: str):
         "ipfs_cid": record["ipfs_cid"],
         "mutations": record["mutations"],
         "cos_dist": "{:.8f}".format(record["cos_dist"]),
+        "dna_fingerprint": record["dna_fingerprint"][:16],
     } for record in records]
 
     return render_template('dev_record.html', name=name, client=client, records=records)
+
+@app.route('/distance', methods=['GET'])
+def get_distances():
+    
+    distances = [d['cos_dist'] for d in model.get_distances()]
+    distances = list(set(distances))
+    random.shuffle(distances)
+
+    return jsonify(distances)
 
 
 @app.route('/upload', methods=['POST'])

@@ -1,0 +1,26 @@
+- include_vars: "../defaults/{{ cluster }}/variables.yaml"
+- include_vars: "../../data-availability/{{ data_availability_role }}/defaults/{{ cluster }}/variables.yaml"
+
+- name: git update
+  import_tasks: git.yaml
+
+- name: genesis
+  import_tasks: genesis.yaml
+
+- name: data availability adapter setup
+  include_tasks: "{{ data_availability_role }}/da_adapter.yaml"
+
+- name: namespace setup
+  include_tasks: namespace.yaml
+
+- name: rollup service
+  include_tasks: service_stop.yaml
+
+- name: build rollup binary
+  include_tasks: build.yaml
+
+- name: rollup service
+  include_tasks: service.yaml
+
+- name: install and setup nginx
+  include_tasks: nginx.yaml

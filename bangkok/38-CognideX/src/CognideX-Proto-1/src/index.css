@@ -21,18 +21,40 @@ body {
 }
 
 h1 {
-  font-size: 5rem;
+  font-size: 6rem;
   color: white;
   text-align: left;
   margin: 0;
-  line-height: 1;
+  line-height: 1.1;
+  letter-spacing: 2px;
+
+  @media (max-width: 1024px) {
+    font-size: 4.5rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 3.5rem;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 3rem;
+  }
 }
 
 h2 {
   font-size: 1.8rem;
   color: white;
   text-align: left;
+  line-height: 1.2;
   margin: 0;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.2rem;
+  }
 }
 
 .italic {
@@ -60,6 +82,10 @@ h4 {
   color: white;
   text-align: left;
   margin: 0;
+
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+  }
 }
 
 
