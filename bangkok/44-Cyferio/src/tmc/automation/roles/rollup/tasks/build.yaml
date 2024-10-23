@@ -1,0 +1,26 @@
+# For faster iteration loop, rollup binary can be built in debug mode.
+# Uncomment both bottom lines and comment those which were on top.
+- name: build sovereign rollup binary
+  become: true
+  become_user: ubuntu
+  shell: source /home/ubuntu/.cargo/env && cargo build --release --bin {{ rollup_bin }} --no-default-features --features {{ da_feature }}
+#  shell: source /home/ubuntu/.cargo/env && cargo build --bin {{ rollup_bin }} --no-default-features --features {{ da_feature }}
+  args:
+    chdir: /home/ubuntu/{{ rollup_repo_dir }}
+    executable: /bin/bash
+
+- name: copy node binary to sovereign's home directory on remote
+  ansible.builtin.shell:
+     cmd: cp /home/ubuntu/{{ rollup_repo_dir }}/target/release/node /home/sovereign/node
+#    cmd: cp /home/ubuntu/{{ rollup_repo_dir }}/target/debug/node /home/sovereign/node
+  become: true
+  become_user: root
+
+- name: set owner, group, and permissions on the node binary
+  ansible.builtin.file:
+    path: /home/sovereign/node
+    owner: sovereign
+    group: sovereign
+    mode: '0755'
+  become: true
+  become_user: root

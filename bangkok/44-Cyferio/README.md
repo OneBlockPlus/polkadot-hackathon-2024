@@ -38,12 +38,12 @@ We had only 7 days between signing up for the contest and completing the code. O
 |-------|------------------------|--------------------------------------|
 | Moven | ZK & FHE Cryptography  | https://github.com/moven0831         |
 | Henry | TMC Engineer           | https://github.com/Zombieliu         |
-| Frenk | Blockchain Developer   | https://github.com/vladilen11        |
+| Frank | Blockchain Developer   | https://github.com/vladilen11        |
 | Bob   | Blockchain Developer   | https://github.com/web3olalala       |
 
 ## Demo Materials
 
 1. Documentation
 2. Demo Video: [YouTube Link]
-3. Presentation: [Google Docs Link]
-
+3. Presentation: [[Google Docs Link](https://drive.google.com/file/d/1iYn4hvYgg0PIAZBplALvOdO8ZJQ_Ftt-/view?usp=sharing)]
+4. Website: [[HomePage](https://cyferio.com/)]

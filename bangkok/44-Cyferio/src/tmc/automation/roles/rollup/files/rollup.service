@@ -1,0 +1,17 @@
+[Unit]
+Description=Rollup
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=3
+User=sovereign
+LimitNOFILE=1000000
+LogRateLimitIntervalSec=0
+Environment="PATH=/home/sovereign/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/snap/bin:/home/sovereign/.local/bin/:/home/sovereign/.local/bin/:/home/sovereign/.local/bin/"
+ExecStart=/home/sovereign/rollup.sh
+
+[Install]
+WantedBy=multi-user.target

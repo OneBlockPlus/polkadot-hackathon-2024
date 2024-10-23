@@ -1,0 +1,1 @@
+import{G as i}from"./Message-BmumhDZC.js";var u=i(function(r){return function(){r(this),this.name="EmptyError",this.message="no elements in sequence"}});function l(r,o){return new Promise(function(s,e){var n=!1,t;r.subscribe({next:function(a){t=a,n=!0},error:e,complete:function(){n?s(t):e(new u)}})})}export{u as E,l};

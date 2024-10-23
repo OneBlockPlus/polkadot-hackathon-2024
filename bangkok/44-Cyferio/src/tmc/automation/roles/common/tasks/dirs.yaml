@@ -1,0 +1,36 @@
+- name: sovereign storage
+  file:
+    path: /mnt/rollup
+    state: directory
+    owner: sovereign
+    group: sovereign
+  become: true
+  become_user: root
+
+- name: data availability storage
+  file:
+    path: /mnt/da
+    state: directory
+    owner: sovereign
+    group: sovereign
+  become: true
+  become_user: root
+
+- name: sovereign logs
+  become: true
+  become_user: root
+  file:
+    path: /mnt/logs
+    state: directory
+    owner: sovereign
+    group: sovereign
+
+- name: keys storage
+  become: true
+  become_user: root
+  file:
+    path: /home/sovereign/.keys
+    state: directory
+    owner: sovereign
+    group: sovereign
+

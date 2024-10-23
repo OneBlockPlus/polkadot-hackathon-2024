@@ -1,0 +1,21 @@
+---
+- name: "Playbook Runner"
+  hosts: all
+  vars:
+    switches: ""
+    wipe: false
+  pre_tasks:
+    - name: check data_availability_role is defined
+      assert:
+        that: data_availability_role is defined
+        fail_msg: "Please specify 'data_availability_role' with the sub-role under data-availability (celestia, mock)."
+    - name: import preconditions for Celestia
+      import_tasks: preconditions.yaml
+      when: data_availability_role == 'celestia'
+  roles:
+    - role: "./roles/common"
+      when: "'c' in switches"
+    - role: "./roles/data-availability/{{ data_availability_role }}"
+      when: "'d' in switches"
+    - role: "./roles/rollup"
+      when: "'r' in switches"
