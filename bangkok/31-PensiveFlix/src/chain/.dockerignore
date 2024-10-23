@@ -1,0 +1,10 @@
+DS_Store
+Dockerfile
+**/target
+**/pflix/bin/*
+.github
+.maintain
+.vscode
+docs
+LICENSE
+README.md

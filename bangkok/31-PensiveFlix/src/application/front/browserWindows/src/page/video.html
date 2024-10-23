@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #1a1a2e, #2c2c2c);
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .video-player {
+            width: 75%;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            /* 16:9 Aspect Ratio */
+        }
+
+        #videoPlayer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+        }
+
+        .controls {
+            margin-top: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 5px;
+            background-color: #333;
+            margin-bottom: 10px;
+        }
+
+        #progress {
+            width: 0;
+            height: 100%;
+            background-color: #3498db;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .video-list {
+            width: 25%;
+            padding: 20px;
+            background-color: #2c2c2c;
+            overflow-y: auto;
+        }
+
+        .video-item {
+            padding: 10px;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+
+        .video-item:hover,
+        .video-item.active {
+            background-color: #3498db;
+        }
+
+        .writer-img {
+            width: 25px;
+            height: 25px;
+            vertical-align: middle;
+        }
+
+        .writer-page {
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+            left: 73%;
+            color: white;
+        }
+
+        .writer-page:hover {
+            color: #3498db;
+        }
+
+        .return-icon {
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #3498db;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #1a1a2e;
+        }
+
+        tr:nth-child(even) {
+            background-color: #2c2c2c;
+        }
+
+        tr:hover {
+            background-color: #3a3a5e;
+        }
+
+        .assetListTitle {
+            text-align: center;
+            font-size: 1.8em;
+            color: #f39c12;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-top: 30px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="video-player">
+
+            <img src="../assets/return.png" alt="return" class="return-icon"
+                onclick="window.location.href='./account.html'">
+            <a class="writer-page" href="./mint.html">
+                <img class="writer-img" id="writer-img" src="../assets/forward.png" alt="I want to be a writer">Go
+                publish...
+            </a>
+
+            <div class="video-container">
+                <video id="videoPlayer">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="controls">
+                <div class="progress-bar">
+                    <div id="progress"></div>
+                </div>
+                <div class="buttons">
+                    <button id="playPauseBtn">Play</button>
+                    <button id="muteBtn">Mute</button>
+                    <button id="selectFolderBtn">Select Video Folder</button>
+                </div>
+            </div>
+
+            <div class="assetListContainer">
+                <h2 class="assetListTitle" id="assetListTitle">
+                </h2>
+                <div class="asset-list" id="assetList">
+                    <!-- Display asset list fetched from API -->
+                </div>
+            </div>
+        </div>
+        <div class="video-list" id="videoList">
+            <!-- Video list items will be dynamically added here -->
+        </div>
+    </div>
+
+    <script>
+        const {
+            ipcRenderer
+        } = require('electron');
+
+        const videoPlayer = document.getElementById('videoPlayer');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const muteBtn = document.getElementById('muteBtn');
+        const progress = document.getElementById('progress');
+        const videoList = document.getElementById('videoList');
+        const selectFolderBtn = document.getElementById('selectFolderBtn');
+        const assetList = document.getElementById('assetList');
+        const assetListTitle = document.getElementById('assetListTitle');
+
+        let videos = [];
+        let currentVideoIndex = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const accountName = localStorage.getItem('selectedAccountName');
+            if (accountName) {
+                assetListTitle.textContent = `🗃️ ${accountName}'s asset 🗃️`;
+            }
+        });
+
+        const fs = require('fs');
+        const path = require('path');
+
+        async function checkVideoPermission(filePath) {
+            try {
+                let pathname = new URL(filePath).pathname;
+                const fileBuffer = fs.readFileSync(pathname);
+                const formData = new FormData();
+                formData.append('file', new File([fileBuffer], path.basename(pathname)));
+
+                const sealed_files_response = await fetch(
+                    'http://127.0.0.1:5150/api/sealed_files', {
+                        method: 'PUT',
+                        body: formData,
+                    });
+
+                if (!sealed_files_response.ok) {
+                    throw new Error('Failed to encrypt file');
+                }
+
+                const sealed_files_result = await sealed_files_response.json();
+                return sealed_files_result.assets_id;
+            } catch (error) {
+                console.error('check file permission failed:', error);
+                return "";
+            }
+        }
+
+
+        async function loadVideo(index) {
+            const video = videos[index];
+            const assetId = await checkVideoPermission(video.src);
+            // Load video
+
+            const assetIssuesResponse = await fetch('http://127.0.0.1:5150/api/assets_issues', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!assetIssuesResponse.ok) {
+                console.error('Failed to load asset issues');
+                alert('Failed to load asset issues');
+                return;
+            }
+            const assetIssues = await assetIssuesResponse.json();
+            const assetExists = assetIssues.some(asset => asset.assets_id === assetId);
+
+            if (!assetExists) {
+                console.error('Asset ID not found');
+                alert('This file is not authorized to be played!');
+                return;
+            }
+
+            const assetsNftsResponse = await fetch('http://127.0.0.1:5150/api/assets_nfts', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const assetsNftsList = await assetsNftsResponse.json();
+            console.log("assetsNftsList[0].token:", assetsNftsList[0].token);
+
+
+            const accountId = localStorage.getItem('selectedAccount');
+            const response = await fetch(
+                `http://127.0.0.1:5150/api/play_assets?nft_token=${assetsNftsList[0].token}&account_id=${accountId}`, {
+                    method: 'GET',
+                });
+
+            if (!response.ok) {
+                console.error('Failed to load video stream');
+                return;
+            }
+            const videoBlob = await response.blob();
+            const videoUrl = URL.createObjectURL(videoBlob);
+            videoPlayer.src = videoUrl;
+            videoPlayer.play();
+            currentVideoIndex = index;
+            updateVideoList();
+
+        }
+
+        function updateVideoList() {
+            videoList.innerHTML = '';
+            videos.forEach((video, index) => {
+                const item = document.createElement('div');
+                item.classList.add('video-item');
+                if (index === currentVideoIndex) {
+                    item.classList.add('active');
+                }
+                item.textContent = video.title;
+                item.addEventListener('click', async () => {
+                    loadVideo(index);
+                });
+                videoList.appendChild(item);
+            });
+        }
+
+        playPauseBtn.addEventListener('click', () => {
+            if (videoPlayer.paused) {
+                videoPlayer.play();
+                playPauseBtn.textContent = 'Pause';
+            } else {
+                videoPlayer.pause();
+                playPauseBtn.textContent = 'Play';
+            }
+        });
+
+        muteBtn.addEventListener('click', () => {
+            videoPlayer.muted = !videoPlayer.muted;
+            muteBtn.textContent = videoPlayer.muted ? 'Unmute' : 'Mute';
+        });
+
+        videoPlayer.addEventListener('timeupdate', () => {
+            const progressPercentage = (videoPlayer.currentTime / videoPlayer.duration) * 100;
+            progress.style.width = `${progressPercentage}%`;
+        });
+
+        videoPlayer.addEventListener('ended', () => {
+            playPauseBtn.textContent = 'Play';
+        });
+
+        selectFolderBtn.addEventListener('click', () => {
+            ipcRenderer.send('select-folder');
+        });
+
+        ipcRenderer.on('selected-videos', (event, files) => {
+            videos = files.map((file, index) => {
+                return {
+                    id: index,
+                    title: file.name,
+                    src: file.path
+                };
+            });
+            currentVideoIndex = null;
+            videoPlayer.src = '';
+            updateVideoList();
+        });
+
+        async function loadAssetList() {
+            try {
+
+                const response = await fetch('http://127.0.0.1:5150/api/assets_issues', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    params: {
+                        accountId: localStorage.getItem('selectedAccount')
+                    }
+                });
+
+                const data = await response.json();
+
+                assetList.innerHTML = '';
+                const table = document.createElement('table');
+                const headerRow = document.createElement('tr');
+                const headers = ['Name', 'Author', 'Resource URL'];
+
+                headers.forEach(headerText => {
+                    const header = document.createElement('th');
+                    header.textContent = headerText;
+                    headerRow.appendChild(header);
+                });
+                table.appendChild(headerRow);
+
+                data.forEach(data => {
+                    const row = document.createElement('tr');
+
+                    const nameCell = document.createElement('td');
+                    nameCell.textContent = truncateFileName(data.filename);
+                    row.appendChild(nameCell);
+
+                    const ownerCell = document.createElement('td');
+                    ownerCell.textContent = truncateAccountName(data.account_id);
+                    row.appendChild(ownerCell);
+
+                    const urlCell = document.createElement('td');
+                    urlCell.textContent = data.retrive_uri;
+                    row.appendChild(urlCell);
+
+                    row.title = JSON.stringify(data, null, 2);
+                    table.appendChild(row);
+                });
+
+                assetList.appendChild(table);
+            } catch (error) {
+                console.log(error);
+
+                alert('Failed to load asset list');
+            }
+        }
+
+        function truncateFileName(FileName) {
+            return FileName.length > 10 ? FileName.substring(0, 10) + '...' : FileName;
+        }
+
+        function truncateAccountName(AccountName) {
+            return AccountName.length > 5 ? AccountName.substring(0, 5) + '...' : AccountName;
+        }
+
+        // Initial load
+        if (videos.length > 0) {
+            updateVideoList();
+        }
+        loadAssetList();
+    </script>
+</body>
+
+</html>
