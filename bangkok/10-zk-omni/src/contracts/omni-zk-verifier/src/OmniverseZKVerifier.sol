@@ -32,8 +32,16 @@ struct BatchState {
     bytes32 assetRootHash;
 }
 
+struct Multilocation {
+    uint8 parents;
+    bytes[] interior;
+}
+
 uint256 constant BLOCK_START_INDEX = 1;
 uint256 constant TRANSACTION_START_INDEX = 1;
+
+address constant XCM_UTILITIES_PRECOMPILE = 0x000000000000000000000000000000000000080C;
+bytes4 constant XCM_SEND_SELECTOR = 0x98600e64;
 
 /// @title Omniverse ZK Verifier.
 /// @author Omnize Labs
@@ -46,6 +54,7 @@ contract OmniverseZKVerifier is
     /// @notice The verification key for the omniverse program.
     bytes32 public any_vkey_hash;
     uint128 public nextBatchId;
+    bytes[] public interiors;
     mapping(uint128 => BatchState) batchStateList;
     mapping(uint256 => uint256) blockHeightToBatchId;
 
@@ -82,6 +91,8 @@ contract OmniverseZKVerifier is
         TxLocation end
     );
 
+    error XCMSendFailed();
+
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
         _disableInitializers();
@@ -91,10 +102,29 @@ contract OmniverseZKVerifier is
         address newImplementation
     ) internal override onlyOwner {}
 
-    function initialize(bytes32 _any_vkey_hash) public initializer {
+    function initialize(bytes32 _any_vkey_hash, bytes[] memory _interiors) public initializer {
         __Ownable_init(msg.sender);
         __UUPSUpgradeable_init();
         any_vkey_hash = _any_vkey_hash;
+        for (uint i = 0; i < _interiors.length; i++) {
+            interiors.push(_interiors[i]);
+        }
+    }
+
+    /**
+     * @notice Send verification result to other parachains
+     * @param encodedXCMData SCALE encoded versioned XCM data
+     */
+    function verifyResultToOtherParachains(bytes memory encodedXCMData) internal {
+        Multilocation memory dest = Multilocation(
+            1,
+            interiors
+        );
+
+        (bool success, ) = XCM_UTILITIES_PRECOMPILE.delegatecall(abi.encodeWithSelector(XCM_SEND_SELECTOR, dest, encodedXCMData));
+        if (!success) {
+            revert XCMSendFailed();
+        }
     }
 
     /**
