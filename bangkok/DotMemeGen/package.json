@@ -1,0 +1,49 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "dev": "next dev",
+    "lint:fix": "next lint --fix"
+  },
+  "dependencies": {
+    "@ant-design/nextjs-registry": "^1.0.1",
+    "@polkadot/extension-dapp": "^0.54.1",
+    "@polkadot/extension-inject": "^0.54.1",
+    "@polkadot/react-identicon": "^3.10.1",
+    "@uiw/react-markdown-editor": "^6.1.2",
+    "antd": "^5.12.3",
+    "bn.js": "^5.2.1",
+    "classnames": "^2.5.1",
+    "dayjs": "^1.11.13",
+    "eslint-plugin-prettier": "^5.2.1",
+    "firebase-admin": "^12.0.0",
+    "framer-motion": "^11.11.9",
+    "next": "^14.0.3",
+    "npm": "^10.9.0",
+    "prettier": "^3.3.3",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-markdown": "^9.0.1",
+    "styled-components": "^6.1.13",
+    "yarn": "^1.22.22"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.9",
+    "@babel/eslint-parser": "^7.25.9",
+    "@babel/preset-react": "^7.25.9",
+    "@babel/preset-typescript": "^7.25.9",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "^14.2.16",
+    "eslint-config-prettier": "^9.1.0",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}
