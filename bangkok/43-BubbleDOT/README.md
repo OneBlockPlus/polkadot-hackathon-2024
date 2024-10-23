@@ -31,7 +31,7 @@ BubbleDOT is an AI-powered coding assistant that can generate entire project fol
 ---
 ### **Project Logo**
 
-<img src="./src/BubbleDOT-FE/public/Asset_1_1.png" alt="BubbleDOT Logo" />
+<img src="./src/BubbleDOT-FE/public/Logo_BubbleDOT.png" alt="BubbleDOT Logo" />
 
 
 
