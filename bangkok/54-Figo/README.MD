@@ -1,6 +1,6 @@
-![Group 31](https://github.com/user-attachments/assets/8d3c4a1f-0629-4131-8ada-5cd015f047bd)
+![Group 31](https://github.com/user-attachments/assets/b13729c8-3b84-42ff-9c14-5e5adb246ebc)
 
-![Frame 2 (15)](https://github.com/user-attachments/assets/9e22f7bc-0f17-4973-b858-94861fcb8d32)
+![Frame 2 (15)](https://github.com/user-attachments/assets/e7164a5e-fa18-46e0-9a15-285ec902b775)
 
 ### Figo - Pop Toys, on Polkadot, for Games 🕹️
 
@@ -73,7 +73,11 @@ Figo addresses the limitations of physical collectible figures by combining NFC-
 
 The implementation prototype that we presenting in our demo video is built using C# .NET MAUI as our mobile app development and using API calls to interact with the backend in Node.js which able to showcase and proving the feasibility of Figo. Below diagram is a high-level architecture design of our Figo project.
 
-![Frame 14](https://github.com/user-attachments/assets/f27b8e1c-3112-40d2-9e9a-f5a66176422c)
+![Frame 14](https://github.com/user-attachments/assets/54191936-5433-4c45-b15d-2a4d86fe24aa)
+
+![Scan Page](https://github.com/user-attachments/assets/8f796b37-68ef-4c9f-a32e-187619f7bb75)
+![Home Page](https://github.com/user-attachments/assets/c59b6b07-8a27-401a-9101-1257627a02ea)
+
 
 ### **📅 Timeline for all features planned**
 
