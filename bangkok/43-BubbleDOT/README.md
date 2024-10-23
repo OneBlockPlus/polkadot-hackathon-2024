@@ -116,7 +116,7 @@ Features:
 # **Material for Demo**
 **Details**
 
-- Demo video: 
+- Demo video: https://www.veed.io/view/8808e5a6-ffb4-408e-b289-a9cb91fbfbed?panel=share
 - Pitch deck: https://drive.google.com/file/d/1gzRvNrlzBlQLHexluhcTexbPht64A9xc/view?usp=sharing
 
 ---
