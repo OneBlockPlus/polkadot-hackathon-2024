@@ -1,5 +1,3 @@
-Here's a polished description for your 24X Chain project:
-
 # 24X Chain: 24/7 Decentralized Derivatives Trading Platform
 
 ## Introduction 
@@ -41,27 +39,32 @@ Traditional derivative markets are restricted by trading hours, geographical bou
    - Enables permissionless pool creation
    - Manages liquidity provision
    - Handles pool parameters and trading pairs
+   - [Link](/bangkok/60-24X/src/substrate/pallets/pools/)
 
 3. **Reserves Pallet**
    - Manages user deposits and collateral
    - Handles reserve requirements for synthetic tokens
    - Processes withdrawals and reserve adjustments
+   - [Link](/bangkok/60-24X/src/substrate/pallets/reserves/)
 
 4. **Risk Management System**
    - Real-time position monitoring
    - Automated risk assessment
    - Liquidation mechanism implementation
    - System health indicators
+   - [Link](/bangkok/60-24X/src/substrate/pallets/risk-manager/)
 
 5. **Oracle Pallet**
    - External price feed integration
    - Price data validation and aggregation
    - Failsafe mechanisms for price updates
+   - [Link](/bangkok/60-24X/src/substrate/pallets/oracle/)
 
 6. **UI and Frontend**
    - User-friendly interface for asset creation
    - Deposit and withdrawal management
    - Real-time data
+   - [Link](/bangkok/60-24X/src/ui/)
 
 🚧 Under Development:
 - Orderbook Pallet
@@ -86,14 +89,16 @@ Traditional derivative markets are restricted by trading hours, geographical bou
 
 ### Key Milestones
 - Initial Submit: October 15, 2024
-- Pre-demo Testing: October 25, 2024
+- Pre-demo Testing: October 27, 2024
 - Testnet Launch: November 1, 2024
 
 ### Deliverable Status
 ✅ Completed:
+- Polkadot.js wallet connection
 - Basic parachain functionality
 - Core pallet implementation
-- Initial UI components
+- Custom RPCs for UI Data
+- Initial UI components for viewing pools, minting/burning synths and adding/removing liquidity
 
 🚧 In Progress:
 - Integration testing
@@ -107,27 +112,27 @@ Traditional derivative markets are restricted by trading hours, geographical bou
 
 ## Track & Bounty
 
-**Selected Track:** Build a Blockchain using Polkadot SDK
+**Selected Track:** Custom Blockchain using Polkadot SDK
 
 **Target Bounties:** None
 
 ### Demo Materials (To Be Submitted)
 1. Demonstration 
 
-Pools Dashboard
-![alt text](image.png)
-
 Connect Wallet
 ![alt text](image-1.png)
+
+Pools Dashboard
+![alt text](image.png)
 
 Pool 
 ![alt text](image-2.png)
 
-2. Technical Presentation: https://docs.google.com/presentation/d/1TC-HxZVwHvjwxBOIZFrUUqxd8ecAiQzXsmLautC5uI8/edit?usp=sharing
+2. Technical Presentation: [Docs](https://docs.google.com/presentation/d/1TC-HxZVwHvjwxBOIZFrUUqxd8ecAiQzXsmLautC5uI8/edit?usp=sharing)
 
 ### Future Development
-- Advanced trading features
-- Cross-chain integration
+- Trading features
+- XCM integration
 - Market maker incentives
 - Community governance implementation
 
