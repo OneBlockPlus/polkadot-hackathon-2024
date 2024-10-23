@@ -41,8 +41,8 @@
 
 <img src="./doc/PensiveFlixStructure.png" alt="PensiveFlixArchitect"/>
 
-* **PensiveFlix**: A TEE-protected program
-* **Bridge Program**: The bridge program is a backend service that helps PensiveFlix synchronize data such as pallets from the Gringotts chain.
+* **[PensiveFlix](./src/chain/standalone/teeworker/pflix/src/main.rs)**: A TEE-protected program
+* **[Bridge Program](./src/chain/standalone/teeworker/enfrost/src/main.rs)**: The bridge program is a backend service that helps PensiveFlix synchronize data such as pallets from the Gringotts chain.
 * **Chain RPC (optional)**: Provides on-chain data; it is not necessary to run locally, as other Chain RPC nodes can be used.
 
 ​	Taking a typical NFT marketplace built on PensiveFlix as an example, the system and business processes are shown in the following diagram:
@@ -57,19 +57,26 @@
 
 * **System Workflow**:
 
-  ​	PensiveFlix has a globally unique Masterkey, randomly generated within a TEE environment. This key is used as part of the encryption mechanism for users' content and is stored within each instance of PensiveFlix. The Masterkey is protected locally by TEE’s Measure encryption. Measure is a hash calculated by the TEE for the protected program, and because each version of PensiveFlix has different code, the Measure value will vary, ensuring that only PensiveFlix can use the Masterkey. No other entity can access or use the Masterkey. During version updates, the new version inherits operational data securely from the old version using ***"Trusted Channel"*** technology. Additionally, PensiveFlix instances can synchronize Masterkey information with each other using this ***"Trusted Channel"***.
+  ​	PensiveFlix has a globally unique Masterkey, randomly generated within a TEE environment. This key is used as part of the encryption mechanism for users' content and is stored within each instance of PensiveFlix. The Masterkey is [protected locally by TEE’s Measure encryption](./src/chain/standalone/teeworker/pflix/gramine-build/ceseal.manifest.template#L48). Measure is a hash calculated by the TEE for the protected program, and because each version of PensiveFlix has different code, the Measure value will vary, ensuring that only PensiveFlix can use the Masterkey. No other entity can access or use the Masterkey. During version updates, the new version [inherits operational data securely](./src/chain/standalone/teeworker/handover/src/main.rs#L90) from the old version using ***"Trusted Channel"*** technology. Additionally, PensiveFlix instances can [synchronize Masterkey](./src/chain/pallets/tee-worker/src/lib.rs#L609) information with each other using this ***"Trusted Channel"***.
 
   Developers will publicly release version information by posting the corresponding PensiveFlix Measure on the Gringotts chain's pallet during each version release. A newly launched instance of PensiveFlix can interact securely with the chain using the ***"Trusted Off-chain Message Synchronization Mechanism"***.
   
   When users play content via PensiveFlix, audio and video streams are rendered to the user's playback devices using ***Protected Audio Video Path (PAVP)*** technology. This prevents unauthorized devices from hijacking the audio and video stream content.
 
-### Trusted Off-chain Message Synchronization Mechanism:
+### [Trusted Off-chain Message Synchronization Mechanism](./src/chain/crates/pfx/src/pflix_service.rs#L636):
 
+**Motivation:**
+
+In general, when using architectures that combine TEE (Trusted Execution Environment) and blockchain, the TEE is typically used as an off-chain worker. This is because off-chain workers are outside the security consensus of the blockchain, requiring a separate trusted security mechanism. Among these mechanisms, using TEE technology is a relatively feasible solution. However, in the process of design and practical application, ensuring that the input to the TEE is secure, trustworthy, and simple to handle remains a significant challenge.
 <img src="./doc/OffChainMq.png" alt="PensiveFlixArchitect"/>
 
-​	
+**​How:**
 
-### Trusted Channel:
+We have participated in some industry designs, adopting a solution in the TEE similar to a blockchain light client. In the current design, PensiveFlix does not interact directly with the blockchain within the TEE environment. Instead, it uses a bridge to synchronize block data to it. In this way, PensiveFlix does not rely directly on external inputs but uses a bridge running internally on the same machine. However, the astute reader might ask: Does this ensure security and trustworthiness? If that were the case, it would be akin to "covering one's ears while stealing a bell." In reality, for PensiveFlix to function, it inevitably has to interact with external sources. Ensuring security and trustworthiness cannot rely on specific inputs but must depend on secure and trustworthy algorithms.
+
+Specifically, PensiveFlix uses Polkadot's GRANDPA algorithm [internally to verify and synchronize blocks](./src/chain/crates/pfx/src/light_validation/mod.rs). On top of that, it has designed a mechanism for interaction between PensiveFlix blockchain nodes and PensiveFlix TEE nodes, referred to as [PFLX-MQ](./src/chain/pallets/mq/src/lib.rs). PFLX-MQ can be roughly divided into two parts: an on-chain message-handling pallet and an off-chain message processor. Physically, PFLX-MQ does not require an additional connection, instead utilizing the connection established for block data synchronization. Logically, PFLX-MQ uses a customized topic messaging mechanism to [publish](./src/chain/pallets/mq/src/lib.rs#L166) and [subscribe](./src/chain/pallets/mq/src/lib.rs#L155) to messages.
+
+### [Trusted Channel](./src/chain/standalone/teeworker/pflix/src/handover.rs#L10):
 
 ​	The Trusted Channel is a secure communication bridge between two PensiveFlix programs, enhanced by the attestation algorithms provided by TEE. This communication method, combined with the Trusted Off-chain Message Synchronization Mechanism, helps both parties verify each other's identity. Once both sides confirm the legitimacy of each other’s identity, they will agree on a symmetric key and use TLS to encrypt the communication content, ensuring that the information is not leaked. Below is the data handover process during a user's version update.
 
@@ -116,8 +123,8 @@ PensiveFlix addresses the following critical pain points in the NFT space:
 | ----------- | ---------------------------- |
 | DemosChiang | Product Manager&Full Stack   |
 | Billw       | Full Stack                   |
-| Liheng Chen | PhD,Privacy computing expert |
-| Bolun Zhang | PhD,AI experts               |
+| Liheng Chen | PhD,Privacy Computing Expert |
+| Bolun Zhang | PhD,AI Experts               |
 
 
 
