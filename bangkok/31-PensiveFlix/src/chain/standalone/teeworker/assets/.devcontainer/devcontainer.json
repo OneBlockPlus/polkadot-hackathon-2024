@@ -1,0 +1,9 @@
+{
+    "name": "Loco",
+    "dockerComposeFile": "compose.yaml",
+    "service": "app",
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "forwardPorts": [
+        5150
+    ]
+}

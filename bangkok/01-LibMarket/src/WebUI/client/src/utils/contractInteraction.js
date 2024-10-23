@@ -1,8 +1,16 @@
 import Web3 from 'web3';
-import LibMarketMainABI from '../contracts/LibMarket_Main.json'; // 确保这个路径正确
 
-const contractAddress = '0x796e32495172a142e934a3e0fcd5f08471ff37e4';
-const infuraUrl = 'https://sepolia.infura.io/v3/YOUR_INFURA_PROJECT_ID'; // 替换为您的 Infura 项目 ID
+let LibMarketMainABI;
+
+async function loadABI() {
+  const response = await fetch('https://d.cess.network/870781361.json');
+  LibMarketMainABI = await response.json();
+}
+
+loadABI();
+
+const contractAddress = '0x7e2955a538d2b396cdfd172fd150c24b46d70cee';
+const moonbaseAlphaRPC = 'https://moonbase-rpc.dwellir.com';
 
 let web3;
 let libMarketContract;
@@ -12,17 +20,27 @@ export const initWeb3 = async () => {
         web3 = new Web3(window.ethereum);
         try {
             await window.ethereum.request({ method: 'eth_requestAccounts' });
-            // 确保 MetaMask 连接到 Sepolia 测试网
+            // Ensure MetaMask is connected to the Moonbase Alpha testnet
             await window.ethereum.request({
-                method: 'wallet_switchEthereumChain',
-                params: [{ chainId: '0xaa36a7' }], // Sepolia 的 chainId
+                method: 'wallet_addEthereumChain',
+                params: [{
+                    chainId: '0x507', // 1287 in hexadecimal
+                    chainName: 'Moonbase Alpha',
+                    nativeCurrency: {
+                        name: 'DEV',
+                        symbol: 'DEV',
+                        decimals: 18
+                    },
+                    rpcUrls: [moonbaseAlphaRPC],
+                    blockExplorerUrls: ['https://moonbase.moonscan.io/']
+                }]
             });
         } catch (error) {
             console.error("User denied account access or failed to switch network", error);
         }
     } else {
-        // 如果没有检测到 MetaMask，使用 Infura 提供的 Web3 提供者
-        web3 = new Web3(new Web3.providers.HttpProvider(infuraUrl));
+        // If MetaMask is not detected, use the Moonbase Alpha RPC provider
+        web3 = new Web3(new Web3.providers.HttpProvider(moonbaseAlphaRPC));
     }
 
     libMarketContract = new web3.eth.Contract(LibMarketMainABI, contractAddress);
@@ -30,13 +48,13 @@ export const initWeb3 = async () => {
     return { web3, libMarketContract };
 };
 
-// 根据 LibMarket_Main.sol 中的函数调整这些方法
+// Adjust these methods according to your LibMarket_Main.sol contract
 export const listItem = async (name, description, price) => {
     try {
         const accounts = await web3.eth.getAccounts();
         console.log('Current account:', accounts[0]);
         console.log('Listing item:', { name, description, price });
-        // 将 'createItem' 替换为您合约中实际的函数名
+        // Replace 'YOUR_ACTUAL_FUNCTION_NAME' with the actual function name in your contract
         const result = await libMarketContract.methods.YOUR_ACTUAL_FUNCTION_NAME(name, description, web3.utils.toWei(price, 'ether'))
             .send({ from: accounts[0] });
         console.log('Transaction result:', result);
@@ -49,7 +67,7 @@ export const listItem = async (name, description, price) => {
 
 export const buyItem = async (itemId, price) => {
     const accounts = await web3.eth.getAccounts();
-    // 调用合约中的购买物品函数，函数名和参数可能需要根据实际合约调整
+    // Call the contract's purchaseItem function, function name and parameters may need to be adjusted according to the actual contract
     await libMarketContract.methods.purchaseItem(itemId).send({ from: accounts[0], value: web3.utils.toWei(price, 'ether') });
 };
 
