@@ -1,0 +1,28 @@
+- name: Celestia authenticate
+  become: true
+  become_user: sovereign
+  ansible.builtin.command:
+    cmd: "celestia light auth admin --node.store /mnt/da --p2p.network {{ p2p_network }}"
+  register: command_output
+
+- name: get key address from JSON output
+  become: true
+  become_user: sovereign
+  ansible.builtin.command:
+    cmd: "cel-key list --keyring-dir /mnt/da/keys/ --output json"
+  register: key_list_output
+  changed_when: false
+
+- name: parse JSON and extract address
+  ansible.builtin.set_fact:
+    key_address: "{{ (key_list_output.stdout | from_json)[0].address }}"
+
+- name: render config with authentication
+  become: true
+  become_user: sovereign
+  ansible.builtin.template:
+    src: "{{ data_availability_role }}/rollup_config.toml.j2"
+    dest: "/home/sovereign/rollup_config.toml"
+  vars:
+    celestia_auth_token: "{{ command_output.stdout }}"
+    sequencer_self_address: "{{ key_address }}"
