@@ -137,5 +137,6 @@ thus it can exert different effect to the omni-asset. The choice is free, it ult
 
 ## Material for Demo
 
-1. [Demo Video](https://omniverse-dev.s3.us-east-1.amazonaws.com/hackathon/Hackathon+Demo.mp4)
-2. PPT [link to google doc]
+1. [Try It Yourself](https://hackathon.omnicoins.net/)
+2. [Demo Video](https://omniverse-dev.s3.us-east-1.amazonaws.com/hackathon/Hackathon+Demo.mp4)
+3. PPT [link to google doc]
