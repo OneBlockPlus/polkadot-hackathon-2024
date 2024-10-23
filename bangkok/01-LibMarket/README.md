@@ -7,21 +7,21 @@ Relying on the shared security mechanism of Polkadot's relay chain, using homomo
 
 ## Features planned for the Hackathon
 
-- [ ] Use hash locks to ensure the time validity of transaction orders, and introduce a tree-like mapping relationship between a single seller and multiple buyers.
+- [x] Use hash locks to ensure the time validity of transaction orders, and introduce a tree-like mapping relationship between a single seller and multiple buyers.
 
-- [ ] Added a market master switch to set the market's opening and closing trading hours. Make it more flexible
+- [x] Added a market master switch to set the market's opening and closing trading hours. Make it more flexible
 
-- [ ] After the buyer requests the seller's consent, the buyer requests a signature, without the need for off-chain trust
+- [x] After the buyer requests the seller's consent, the buyer requests a signature, without the need for off-chain trust
 
-- [ ] Adopt zk-proof-homomorphic encryption algorithm to ensure the security of signature confirmation between buyers and sellers
+- [x] Adopt zk-proof-homomorphic encryption algorithm to ensure the security of signature confirmation between buyers and sellers
 
-- [ ] The economic model is introduced, and 100% of the transaction fees are paid to active buyers and sellers. A points system is also introduced, which can be used to exchange for physical objects.
+- [x] The economic model is introduced, and 100% of the transaction fees are paid to active buyers and sellers. A points system is also introduced, which can be used to exchange for physical objects.
 
-- [ ] Introducing other ecosystems through Polkadot's parallel chain architecture, shopping cart and other functions are implemented using sui
+- [x] Introducing other ecosystems through Polkadot's parallel chain architecture, shopping cart and other functions are implemented using sui
 
-- [ ] Implement the product listing/removal function, and the on-chain status relationship after the transaction is completed to make it logical and prevent abuse
+- [x] Implement the product listing/removal function, and the on-chain status relationship after the transaction is completed to make it logical and prevent abuse
 
-- [ ] Item reviews, buyers rate sellers on the chain and introduce a points model
+- [x] Item reviews, buyers rate sellers on the chain and introduce a points model
 
 
 
@@ -29,9 +29,131 @@ Relying on the shared security mechanism of Polkadot's relay chain, using homomo
 
 #### Overall architecture
 
+![image-20241022180445164](img/1.png)
+
 #### Smart Contract Architecture
 
-![](./img/Smart_Contract_Architecture.jpg)
+![image-20241022182518117](img/image-20241022182518117.png)
+
+![image-20241022180205533](img/2.png)
+
+```mermaid
+flowchart TD
+    %% Users interacting with the system
+    Buyer((Buyer)) -->|Create Trade| C2CPlatform
+    Seller((Seller)) -->|Lock Funds| C2CPlatform
+
+    %% Core contract logic
+    C2CPlatform -->|Pending| TradeStatePending{{Pending State}}
+    C2CPlatform -->|Locked| TradeStateLocked{{Locked State}}
+    C2CPlatform -->|Shipment Confirmed| TradeInProgress{{In Progress}}
+    C2CPlatform -->|Complete| TradeComplete{{Complete State}}
+    C2CPlatform -->|Cancelled| TradeCancelled{{Cancelled State}}
+
+    %% Functions associated with the contract
+    subgraph Contract Functions
+        C2CPlatform --> CreateTrade
+        C2CPlatform --> LockFunds
+        C2CPlatform --> ConfirmShipment
+        C2CPlatform --> ConfirmReceipt
+        C2CPlatform --> CancelTrade
+        C2CPlatform --> DistributeWeeklyRewards
+    end
+
+    %% Events associated with functions
+    CreateTrade -->|Event| TradeCreatedEvent((TradeCreated))
+    LockFunds -->|Event| TradeLockedEvent((TradeLocked))
+    ConfirmShipment -->|Event| TradeConfirmedEvent((TradeConfirmed))
+    ConfirmReceipt -->|Event| TradeConfirmedEvent
+    CancelTrade -->|Event| TradeCancelledEvent((TradeCancelled))
+    DistributeWeeklyRewards -->|Event| RewardDistributedEvent((RewardDistributed))
+
+    %% Pausable mechanism
+    subgraph Pausable Mechanism
+        PausableControl --> PauseContract((Pause Contract))
+        PausableControl --> UnpauseContract((Unpause Contract))
+        C2CPlatform --> PausableControl
+    end
+
+    %% HashLock mechanism
+    subgraph HashLock Mechanism
+        HashLock --> LockFundsProcess((Lock Funds))
+        HashLock --> WithdrawFundsProcess((Withdraw Funds))
+        HashLock --> RefundProcess((Refund))
+    end
+
+    %% Ownership and Pause Control
+    subgraph Inherited Contracts
+        Ownable2Step --> C2CPlatform
+        Pausable --> C2CPlatform
+    end
+
+    %% Economic Model
+    subgraph Economic Model
+        EconomyLib --> CalculateFee((Calculate Fee))
+        EconomyLib --> AddToRewardPool((Add to Reward Pool))
+        EconomyLib --> DistributeRewards((Distribute Rewards))
+        EconomyLib --> TradeCounter((Trade Counter Management))
+    end
+    
+    %% Economy workflow
+    CreateTrade -->|Collect Fee| CalculateFee
+    CalculateFee --> AddToRewardPool
+    AddToRewardPool --> DistributeRewards
+    DistributeRewards -->|Reward Seller and Buyer| TradeComplete
+
+    %% Create2Factory Contract
+    subgraph Create2Factory Mechanism
+        Create2Factory --> DeployContract((Deploy Contract))
+        Create2Factory --> GetAddress((Get Address))
+        Create2Factory --> GetBytecode((Get Bytecode))
+    end
+    
+    %% Link Create2Factory to Main Contract
+    DeployContract --> C2CPlatform
+
+```
+
+
+
+#### The reserved interface plans to add other ecological model instances
+
+```mermaid
+flowchart TD
+    %% 用户交互
+    Buyer((Buyer)) -->|Add to Cart| ShoppingCart
+    Buyer -->|Remove from Cart| ShoppingCart
+    Buyer -->|View Total Price| ShoppingCart
+
+    %% 购物车功能
+    ShoppingCart((Shopping Cart)) -->|Initialize Cart| InitCart
+    ShoppingCart -->|Add Item| CreateItem
+    ShoppingCart -->|Remove Item| RemoveItem
+    ShoppingCart -->|Get Total Price| GetTotalPrice
+
+    %% 商品管理
+    Seller((Seller)) -->|Create Goods| Listings
+    Seller -->|Add Goods| Listings
+    Seller -->|View Goods| Listings
+
+    %% 商品和卖家
+    Listings((Listings)) -->|Create Goods| CreateGoods
+    Listings -->|Get Goods Name| GetGoodsName
+    Listings -->|Get Goods Information| GetGoodsInformation
+    Listings -->|Get Goods Price| GetGoodsPrice
+
+    %% 结构和对象
+    subgraph ShoppingCart Module
+        Cart((Cart)) -->|Items| ItemsVector
+    end
+
+    subgraph Listings Module
+        Goods((Goods)) -->|Name| NameField
+        Goods -->|Information| InformationField
+        Goods -->|Price| PriceField
+    end
+
+```
 
 
 

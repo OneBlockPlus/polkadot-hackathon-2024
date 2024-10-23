@@ -1,0 +1,49 @@
+<div class="overlay" *ngIf="isVisible">
+  <div class="overlay-card form-card">
+    <button class="close-button" (click)="closeOverlay()">&#10005;</button>
+
+    <form (ngSubmit)="onSubmit(senderForm)" #senderForm="ngForm">
+      <div *ngIf="currentStep === 1">
+        <div class="form-title">Sender</div>
+
+        <label for="senderAccount">WhatsApp Number</label>
+        <input
+          type="text"
+          id="senderAccount"
+          name="senderAccount"
+          [(ngModel)]="senderAccount"
+          required
+        />
+
+        <button type="button" (click)="nextStep(senderForm)" [disabled]="!senderForm.form.valid">
+          Next
+        </button>
+      </div>
+
+      <div *ngIf="currentStep === 2 && !isOtpVerified">
+        <div class="form-subtitle">Verify OTP</div>
+
+        <label for="otp">Enter OTP</label>
+        <input
+          type="text"
+          id="otp"
+          name="otp"
+          [(ngModel)]="otp"
+          required
+        />
+
+        <button type="button" (click)="prevStep()">Previous</button>
+        <button type="submit" [disabled]="!senderForm.form.valid">Submit</button>
+      </div>
+
+      <div *ngIf="isOtpVerified">
+        <p>OTP has been successfully verified!</p>
+      </div>
+    </form>
+
+    <div style="text-align:center;margin-top:40px;">
+      <span class="step" (click)="setActiveTab(1)" [ngClass]="{'active': currentStep === 1}"></span>
+      <span class="step" (click)="setActiveTab(2)" [ngClass]="{'active': currentStep === 2}"></span>
+    </div>
+  </div>
+</div>

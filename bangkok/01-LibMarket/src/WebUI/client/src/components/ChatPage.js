@@ -172,9 +172,9 @@ const ChatPage = ({ item, onClose, currentUser, initialMessages = [] }) => {
                 <MessageInput 
                     value={inputMessage}
                     onChange={(e) => setInputMessage(e.target.value)}
-                    placeholder="输入消息..."
+                    placeholder="Input Message..."
                 />
-                <SendButton onClick={sendMessage}>发送</SendButton>
+                <SendButton onClick={sendMessage}>Send</SendButton>
             </ChatInputContainer>
         </ChatPageContainer>
     );

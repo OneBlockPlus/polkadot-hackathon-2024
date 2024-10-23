@@ -19,7 +19,7 @@ function ItemList({ onItemSelect, onChatClick, searchQuery, refresh, currentUser
             setItems(response.data.filter(item => item.isListed));
             setLoading(false);
         } catch (err) {
-            setError('获取物品列表失败');
+            setError('Failed to fetch item list');
             setLoading(false);
         }
     };
@@ -32,12 +32,12 @@ function ItemList({ onItemSelect, onChatClick, searchQuery, refresh, currentUser
         return address ? `${address.slice(0, 6)}...${address.slice(-4)}` : 'Unknown';
     };
 
-    if (loading) return <div>加载中...</div>;
+    if (loading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
 
     return (
         <div className="item-list">
-            <h2>物品列表</h2>
+            <h2>Item List</h2>
             <div className="item-grid">
                 {items.map((item) => (
                     <div key={item._id} className="item-card" onClick={() => handleItemClick(item)}>
@@ -54,14 +54,14 @@ function ItemList({ onItemSelect, onChatClick, searchQuery, refresh, currentUser
                                     }}
                                 />
                             ) : (
-                                <div className="image-placeholder">暂无图片</div>
+                                <div className="image-placeholder">No image</div>
                             )}
-                            <div className="image-error" style={{display: 'none'}}>图片加载失败</div>
+                            <div className="image-error" style={{display: 'none'}}>Image load failed</div>
                         </div>
                         <h3>{item.name}</h3>
                         <p className="item-price">{item.price} DOT</p>
                         <div className="item-seller-container">
-                            <span className="item-seller-label">卖家:</span>
+                            <span className="item-seller-label">Seller:</span>
                             <span className="item-seller-address">{formatAddress(item.seller)}</span>
                         </div>
                         {selectedItem && selectedItem._id === item._id && (
@@ -73,9 +73,9 @@ function ItemList({ onItemSelect, onChatClick, searchQuery, refresh, currentUser
                                             e.stopPropagation();
                                             console.log('Chat button clicked for item:', item);
                                             onChatClick(item);
-                                        }} className="chat-button">聊天</button>
+                                        }} className="chat-button">Chat</button>
                                     )}
-                                    <button onClick={(e) => {e.stopPropagation(); onItemSelect(item);}} className="details-button">详情</button>
+                                    <button onClick={(e) => {e.stopPropagation(); onItemSelect(item);}} className="details-button">Details</button>
                                 </div>
                             </div>
                         )}
