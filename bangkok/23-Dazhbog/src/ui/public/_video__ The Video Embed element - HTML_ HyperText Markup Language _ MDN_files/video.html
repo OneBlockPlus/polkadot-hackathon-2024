@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)https://interactive-examples.mdn.mozilla.net/pages/tabbed/video.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>.ͼ1.cm-focused {outline: 1px dotted #212121;}
+.ͼ1 {position: relative !important; box-sizing: border-box; display: flex !important; flex-direction: column;}
+.ͼ1 .cm-scroller {display: flex !important; align-items: flex-start !important; font-family: monospace; line-height: 1.4; height: 100%; overflow-x: auto; position: relative; z-index: 0;}
+.ͼ1 .cm-content[contenteditable=true] {-webkit-user-modify: read-write-plaintext-only;}
+.ͼ1 .cm-content {margin: 0; flex-grow: 2; flex-shrink: 0; display: block; white-space: pre; word-wrap: normal; box-sizing: border-box; min-height: 100%; padding: 4px 0; outline: none;}
+.ͼ1 .cm-lineWrapping {white-space: pre-wrap; white-space: break-spaces; word-break: break-word; overflow-wrap: anywhere; flex-shrink: 1;}
+.ͼ2 .cm-content {caret-color: black;}
+.ͼ3 .cm-content {caret-color: white;}
+.ͼ1 .cm-line {display: block; padding: 0 2px 0 6px;}
+.ͼ1 .cm-layer > * {position: absolute;}
+.ͼ1 .cm-layer {position: absolute; left: 0; top: 0; contain: size style;}
+.ͼ2 .cm-selectionBackground {background: #d9d9d9;}
+.ͼ3 .cm-selectionBackground {background: #222;}
+.ͼ2.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground {background: #d7d4f0;}
+.ͼ3.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground {background: #233;}
+.ͼ1 .cm-cursorLayer {pointer-events: none;}
+.ͼ1.cm-focused > .cm-scroller > .cm-cursorLayer {animation: steps(1) cm-blink 1.2s infinite;}
+@keyframes cm-blink {50% {opacity: 0;}}
+@keyframes cm-blink2 {50% {opacity: 0;}}
+.ͼ1 .cm-cursor, .ͼ1 .cm-dropCursor {border-left: 1.2px solid black; margin-left: -0.6px; pointer-events: none;}
+.ͼ1 .cm-cursor {display: none;}
+.ͼ3 .cm-cursor {border-left-color: #444;}
+.ͼ1 .cm-dropCursor {position: absolute;}
+.ͼ1.cm-focused > .cm-scroller > .cm-cursorLayer .cm-cursor {display: block;}
+.ͼ1 .cm-iso {unicode-bidi: isolate;}
+.ͼ1 .cm-announced {position: fixed; top: -10000px;}
+@media print {.ͼ1 .cm-announced {display: none;}}
+.ͼ2 .cm-activeLine {background-color: #cceeff44;}
+.ͼ3 .cm-activeLine {background-color: #99eeff33;}
+.ͼ2 .cm-specialChar {color: red;}
+.ͼ3 .cm-specialChar {color: #f78;}
+.ͼ1 .cm-gutters {flex-shrink: 0; display: flex; height: 100%; box-sizing: border-box; inset-inline-start: 0; z-index: 200;}
+.ͼ2 .cm-gutters {background-color: #f5f5f5; color: #6c6c6c; border-right: 1px solid #ddd;}
+.ͼ3 .cm-gutters {background-color: #333338; color: #ccc;}
+.ͼ1 .cm-gutter {display: flex !important; flex-direction: column; flex-shrink: 0; box-sizing: border-box; min-height: 100%; overflow: hidden;}
+.ͼ1 .cm-gutterElement {box-sizing: border-box;}
+.ͼ1 .cm-lineNumbers .cm-gutterElement {padding: 0 3px 0 5px; min-width: 20px; text-align: right; white-space: nowrap;}
+.ͼ2 .cm-activeLineGutter {background-color: #e2f2ff;}
+.ͼ3 .cm-activeLineGutter {background-color: #222227;}
+.ͼ1 .cm-panels {box-sizing: border-box; position: sticky; left: 0; right: 0;}
+.ͼ2 .cm-panels {background-color: #f5f5f5; color: black;}
+.ͼ2 .cm-panels-top {border-bottom: 1px solid #ddd;}
+.ͼ2 .cm-panels-bottom {border-top: 1px solid #ddd;}
+.ͼ3 .cm-panels {background-color: #333338; color: white;}
+.ͼ1 .cm-tab {display: inline-block; overflow: hidden; vertical-align: bottom;}
+.ͼ1 .cm-widgetBuffer {vertical-align: text-top; height: 1em; width: 0; display: inline;}
+.ͼ1 .cm-placeholder {color: #888; display: inline-block; vertical-align: top;}
+.ͼ1 .cm-highlightSpace:before {content: attr(data-display); position: absolute; pointer-events: none; color: #888;}
+.ͼ1 .cm-highlightTab {background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="20"><path stroke="%23888" stroke-width="1" fill="none" d="M1 10H196L190 5M190 15L196 10M197 4L197 16"/></svg>'); background-size: auto 100%; background-position: right 90%; background-repeat: no-repeat;}
+.ͼ1 .cm-trailingSpace {background-color: #ff332255;}
+.ͼ1 .cm-button {vertical-align: middle; color: inherit; font-size: 70%; padding: .2em 1em; border-radius: 1px;}
+.ͼ2 .cm-button:active {background-image: linear-gradient(#b4b4b4, #d0d3d6);}
+.ͼ2 .cm-button {background-image: linear-gradient(#eff1f5, #d9d9df); border: 1px solid #888;}
+.ͼ3 .cm-button:active {background-image: linear-gradient(#111, #333);}
+.ͼ3 .cm-button {background-image: linear-gradient(#393939, #111); border: 1px solid #888;}
+.ͼ1 .cm-textfield {vertical-align: middle; color: inherit; font-size: 70%; border: 1px solid silver; padding: .2em .5em;}
+.ͼ2 .cm-textfield {background-color: white;}
+.ͼ3 .cm-textfield {border: 1px solid #555; background-color: inherit;}
+.ͼ1.cm-focused .cm-matchingBracket {background-color: #328c8252;}
+.ͼ1.cm-focused .cm-nonmatchingBracket {background-color: #bb555544;}
+.ͼh {class: ;}
+.ͼi {class: ;}
+.ͼj {class: ;}
+.ͼk {class: ;}
+.ͼl {class: ;}
+.ͼm {class: ;}
+.ͼn {class: ;}
+.ͼf {class: ;}
+.ͼg {class: ;}
+.ͼc {class: ;}
+.ͼd {class: ;}
+.ͼe {class: ;}
+.ͼ5 {class: ;}
+.ͼ6 {class: ;}
+.ͼ7 {class: ;}
+.ͼ8 {class: ;}
+.ͼ9 {class: ;}
+.ͼa {class: ;}
+.ͼb {class: ;}
+.ͼ4 .cm-line ::selection {background-color: transparent !important;}
+.ͼ4 .cm-line::selection {background-color: transparent !important;}
+.ͼ4 .cm-line {caret-color: transparent !important;}
+.ͼ4 .cm-content {caret-color: transparent !important;}
+</style>
+    
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>HTML Demo: &lt;video&gt;</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./codemirror.css" rel="stylesheet">
+    <link href="./editor-tabbed.css" rel="stylesheet">
+  </head>
+
+  <body data-new-gr-c-s-check-loaded="14.1201.0" data-gr-ext-installed="" data-new-gr-c-s-loaded="14.1201.0">
+    <header class="output-header border-rounded-top">
+      <h4 class="output-heading">HTML Demo: &lt;video&gt;</h4>
+      <button id="reset" class="reset" type="button">Reset</button>
+    </header>
+    <noscript>
+      <div id="warning-no-script" class="warning-container">
+        <div class="warning">
+          The interactive example cannot be shown because JavaScript is
+          disabled.
+        </div>
+      </div>
+    </noscript>
+    <div id="warning-mathml-not-supported" class="warning-container hidden">
+      <div class="warning">
+        The interactive example cannot be shown because MathML is not supported
+        by your browser.
+      </div>
+    </div>
+    <div id="editor-container" class="editor-container tabbed-standard border-rounded-bottom" data-editor-type="tabbed">
+      <section id="tab-container" class="tabs">
+        <div class="tab-list" id="tablist" role="tablist">
+          <button role="tab" aria-selected="true" aria-controls="html-panel" id="html" class="">
+            HTML
+          </button>
+          <button role="tab" aria-selected="false" aria-controls="css-panel" id="css" class="" tabindex="-1">
+            CSS
+          </button>
+          <button role="tab" aria-selected="false" aria-controls="js-panel" id="js" class="hidden" tabindex="-1">
+            JavaScript
+          </button>
+        </div>
+        <section id="html-panel" tabindex="0" role="tabpanel" aria-labelledby="html" class="" aria-hidden="false">
+          <div id="html-editor">
+            <pre class="hidden"><code>&lt;video controls width="250"&gt;
+  &lt;source src="/media/cc0-videos/flower.webm" type="video/webm" /&gt;
+
+  &lt;source src="/media/cc0-videos/flower.mp4" type="video/mp4" /&gt;
+
+  Download the
+  &lt;a href="/media/cc0-videos/flower.webm"&gt;WEBM&lt;/a&gt;
+  or
+  &lt;a href="/media/cc0-videos/flower.mp4"&gt;MP4&lt;/a&gt;
+  video.
+&lt;/video&gt;
+</code></pre>
+          <div class="cm-editor cm-focused ͼ1 ͼ2 ͼ4"><div class="cm-announced" aria-live="polite"><div>Selection deleted</div></div><div tabindex="-1" class="cm-scroller"><div class="cm-gutters" aria-hidden="true" style="min-height: 196.031px; position: sticky;"><div class="cm-gutter cm-lineNumbers"><div class="cm-gutterElement" style="height: 0px; visibility: hidden; pointer-events: none;">9</div><div class="cm-gutterElement" style="height: 17.0938px; margin-top: 4px;">1</div><div class="cm-gutterElement" style="height: 34.1875px;">2</div><div class="cm-gutterElement" style="height: 17.0938px;">3</div><div class="cm-gutterElement" style="height: 17.0938px;">4</div><div class="cm-gutterElement" style="height: 34.1875px;">5</div><div class="cm-gutterElement" style="height: 17.0938px;">6</div><div class="cm-gutterElement" style="height: 17.0938px;">7</div><div class="cm-gutterElement" style="height: 17.0938px;">8</div><div class="cm-gutterElement" style="height: 17.0938px;">9</div></div><div class="cm-gutter"></div></div><div spellcheck="false" autocorrect="off" autocapitalize="off" translate="no" contenteditable="true" style="tab-size: 4;" class="cm-content cm-lineWrapping" role="textbox" aria-multiline="true"><div class="cm-line"><span class="cm-bracket">&lt;</span><span class="cm-tag">video</span> <span class="cm-attribute">autoplay</span> <span class="cm-attribute">width</span><span class="ͼg">=</span><span class="cm-string">"250"</span> <span class="cm-bracket">&gt;</span></div><div class="cm-line"><span class="ͼf">  </span><span class="cm-bracket">&lt;</span><span class="cm-tag">source</span> <span class="cm-attribute">src</span><span class="ͼg">=</span><span class="cm-string">"/home/cviks/Downloads/Telegram Desktop/tap.mov"</span> <span class="cm-attribute">type</span><span class="ͼg">=</span><span class="cm-string">"video/webm"</span> <span class="cm-bracket">/&gt;</span></div><div class="cm-line"><br></div><div class="cm-line"><span class="ͼf">  Download the</span></div><div class="cm-line"><span class="ͼf">  </span><span class="cm-bracket">&lt;</span><span class="cm-tag">a</span> <span class="cm-attribute">href</span><span class="ͼg">=</span><span class="cm-string">"/media/cc0-videos/flower.webm"</span><span class="cm-bracket">&gt;</span><span class="ͼf">WEBM</span><span class="cm-bracket">&lt;/</span><span class="cm-tag">a</span><span class="cm-bracket">&gt;</span></div><div class="cm-line"><span class="ͼf">  or</span></div><div class="cm-line"><span class="ͼf"> </span></div><div class="cm-line"><span class="cm-bracket">&lt;/</span><span class="cm-tag">video</span><span class="cm-bracket">&gt;</span></div><div class="cm-line"><br></div></div><div class="cm-layer cm-layer-above cm-cursorLayer" aria-hidden="true" style="z-index: 150; animation-duration: 1200ms; animation-name: cm-blink;"><div class="cm-cursor cm-cursor-primary" style="left: 166.531px; top: 38.1875px; height: 16px;"></div></div><div class="cm-layer cm-selectionLayer" aria-hidden="true" style="z-index: -2;"></div></div></div></div>
+        </section>
+        <section id="css-panel" tabindex="0" role="tabpanel" aria-labelledby="css" class="hidden" aria-hidden="true">
+          <div id="css-editor">
+            <pre class="hidden"><code></code></pre>
+          <div class="cm-editor ͼ1 ͼ2 ͼ4"><div class="cm-announced" aria-live="polite"></div><div tabindex="-1" class="cm-scroller"><div class="cm-gutters" aria-hidden="true" style="min-height: 14px; position: sticky;"><div class="cm-gutter cm-lineNumbers"><div class="cm-gutterElement" style="height: 0px; visibility: hidden; pointer-events: none;">9</div><div class="cm-gutterElement" style="height: 14px;">1</div></div><div class="cm-gutter"></div></div><div spellcheck="false" autocorrect="off" autocapitalize="off" translate="no" contenteditable="true" class="cm-content" role="textbox" aria-multiline="true" data-language="css" style="tab-size: 4;"><div class="cm-line"><br></div></div><div class="cm-layer cm-layer-above cm-cursorLayer" aria-hidden="true" style="z-index: 150; animation-duration: 1200ms;"></div><div class="cm-layer cm-selectionLayer" aria-hidden="true" style="z-index: -2;"></div></div></div></div>
+        </section>
+        <section id="js-panel" tabindex="0" role="tabpanel" aria-labelledby="js" class="hidden" aria-hidden="true">
+          <div id="js-editor">
+            <pre class="hidden"><code></code></pre>
+          </div>
+        </section>
+      </section>
+      <div id="output" class="output-container">
+        <h4 class="output-label">Output</h4>
+        <iframe id="output-iframe" src="./saved_resource.html"></iframe>
+      </div>
+    </div>
+
+    <section class="console-container hidden" aria-hidden="true">
+      <h4 class="console-label">Console Output</h4>
+      <button type="button" id="clear" class="clear">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 877.714 1024" class="icon-clear">
+          <path class="path0" fill="currentColor" d="M749.714 510.286c0-62.286-18.286-120-49.714-168.571L269.143 772.001c49.143 32 107.429 50.857 169.714 50.857 171.429 0 310.857-140 310.857-312.571zM178.857 681.143l431.429-430.857c-49.143-33.143-108-52-171.429-52-171.429 0-310.857 140-310.857 312 0 63.429 18.857 121.714 50.857 170.857zm698.857-170.857c0 243.429-196.571 440.571-438.857 440.571S0 753.714 0 510.286c0-242.857 196.571-440 438.857-440s438.857 197.143 438.857 440z"></path>
+        </svg>
+        clear console
+      </button>
+      <div id="console" class="console"><code></code></div>
+    </section>
+
+    <template id="output-head"></template>
+    <template id="output-body"></template>
+    <script src="./codemirror.js"></script>
+    <script src="./editor-tabbed.js"></script>
+  
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>
