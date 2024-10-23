@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7e3a3870612ef7e4c86d053538dd9494
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Rendering/UniversalRenderPipelineGlobalSettings.asset
+  uploadId: 613807

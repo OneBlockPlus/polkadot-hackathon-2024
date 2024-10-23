@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: f467b749fe1b74c2f9afa040e490fa0f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Scripts/UI/PoolObjectDef.cs
+  uploadId: 613807

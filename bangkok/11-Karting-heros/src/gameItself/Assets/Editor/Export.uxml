@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="rootContainer" style="flex-grow: 1; background-color: rgb(43, 43, 43); min-width: auto; min-height: auto;">
+        <ui:Button text="Export" name="exportButton" style="margin-left: 10px; margin-right: 10px; padding-top: 10px; margin-top: 50px;" />
+        <ui:Label text="This tool export everything from map navmesh to checkpoints for server authorization." name="Description" style="color: rgb(255, 255, 255); white-space: normal; padding-left: 10px; padding-right: 10px; padding-top: 10px;" />
+    </ui:VisualElement>
+</ui:UXML>

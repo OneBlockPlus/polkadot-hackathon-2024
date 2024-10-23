@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/View/SettingsDialog.uss?fileID=7433441132597879392&amp;guid=a6054a3bd0fe05e47ba0db4d30a8f688&amp;type=3#SettingsDialog" />
+    <ui:VisualElement name="rootContainer" style="flex-grow: 1;">
+        <ui:VisualElement name="content" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/dialog-background.png?fileID=2800000&amp;guid=dbe9c301abd233647a89759cd2356d4d&amp;type=3#dialog-background&apos;); -unity-slice-left: 60; -unity-slice-top: 52; -unity-slice-right: 52; -unity-slice-bottom: 30; margin-top: 30px;">
+            <ui:VisualElement name="tabsAndContentContainer" style="flex-grow: 1; flex-direction: row; margin-left: 40px; margin-right: 40px; margin-bottom: 30px; margin-top: 60px;">
+                <ui:VisualElement name="tabs" style="flex-grow: 0;">
+                    <ui:Button text="ACCOUNT" name="account" class="tab" />
+                    <ui:Button text="VISUAL" name="visual" class="tab" style="background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/tab-background.png?fileID=2800000&amp;guid=344dae8e6a850724ea03e40c161986bf&amp;type=3#tab-background&apos;); background-color: rgba(188, 188, 188, 0); color: rgb(255, 255, 255); font-size: 19.2px; width: 235px; height: 84px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="tabContent" style="flex-grow: 1; background-color: rgb(0, 89, 161); margin-left: 20px; padding-left: 20px; padding-bottom: 20px; padding-right: 20px; padding-top: 20px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="header" style="flex-grow: 0; flex-shrink: 0; align-self: center; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/dialog-title-background.png?fileID=2800000&amp;guid=ca1670b7513017f438922240b190cb9f&amp;type=3#dialog-title-background&apos;); -unity-slice-left: 36; -unity-slice-right: 31; padding-left: 40px; padding-right: 40px; height: 77px; min-width: 300px; -unity-text-align: upper-center; position: absolute;">
+                <ui:Label text="Setting" name="title" style="-unity-font-style: bold; color: rgb(255, 255, 255); font-size: 39.81px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 0511a19aa4a23374180039b212baa206
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Scripts/UI/ObjectiveToast.cs
+  uploadId: 613807

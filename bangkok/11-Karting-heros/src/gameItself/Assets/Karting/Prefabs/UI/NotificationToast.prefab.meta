@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 791e30b832d8b814c82d519317a16e6d
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Prefabs/UI/NotificationToast.prefab
+  uploadId: 613807

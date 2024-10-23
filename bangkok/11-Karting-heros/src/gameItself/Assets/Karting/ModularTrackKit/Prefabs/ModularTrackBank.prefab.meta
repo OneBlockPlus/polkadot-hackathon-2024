@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 40edbcc1d6247412ea82349e34d5add5
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/ModularTrackKit/Prefabs/ModularTrackBank.prefab
+  uploadId: 613807

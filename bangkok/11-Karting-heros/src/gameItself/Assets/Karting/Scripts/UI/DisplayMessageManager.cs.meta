@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: f05022e63392c3c499c70ac5ae3b5d4d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Scripts/UI/DisplayMessageManager.cs
+  uploadId: 613807

@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/View/ShopStyle.uss?fileID=7433441132597879392&amp;guid=b5757b6d7a576724d8a3bd644f050615&amp;type=3#ShopStyle" />
+    <ui:VisualElement name="rootContainer" style="flex-grow: 1; background-color: rgb(4, 73, 130); flex-direction: column;">
+        <ui:VisualElement name="headerContainer" style="flex-grow: 0; height: 101px; flex-shrink: 1; flex-direction: row; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/Rectangle%202.png?fileID=2800000&amp;guid=e443877b3fcf11441ad7e870fcfde91f&amp;type=3#Rectangle 2&apos;); -unity-background-image-tint-color: rgb(255, 255, 255);">
+            <ui:Button name="backButton" style="background-image: url(&apos;project://database/Assets/UI%20Toolkit/Assets/Back%20Button.png?fileID=2800000&amp;guid=d0f3d44c97581ba448294c9a472c7c9e&amp;type=3#Back Button&apos;); width: 215px; height: 106px; top: 20px; overflow: visible; background-color: rgba(255, 255, 255, 0); padding-left: 0; margin-left: 0;" />
+            <ui:Label text="SKIN" name="title" style="-unity-text-align: middle-left; color: rgb(255, 255, 255); font-size: 47px; -unity-font-style: bold; margin-left: 36px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="contentContainer" style="flex-grow: 1; flex-direction: row;" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,50 @@
+.header {
+    flex-direction: row;
+}
+
+.profile-picture {
+    background-image: url('project://database/Assets/UI%20Toolkit/Assets/Profile%20Botun.png?fileID=2800000&guid=94a18f72ab7a8354c9a9ee8d31fbb2b3&type=3#Profile Botun');
+    flex-shrink: 0;
+    width: 115px;
+    height: 115px;
+    flex-basis: auto;
+}
+
+.header-item {
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 126px;
+    height: 119px;
+    justify-content: flex-end;
+}
+
+.header-item > .icon {
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 46px;
+    height: 50px;
+    background-image: url('project://database/Assets/UI%20Toolkit/Assets/Icon%20Ranking.png?fileID=2800000&guid=c0ded790c348ef140b248f4956de77d5&type=3#Icon Ranking');
+    align-self: center;
+}
+
+.header-item > .text {
+    color: rgb(255, 255, 255);
+    -unity-text-align: upper-center;
+    padding-bottom: 8px;
+    padding-top: 8px;
+}
+
+.main-button {
+    width: 128px;
+    height: 128px;
+    background-image: url('project://database/Assets/UI%20Toolkit/Assets/Store%20Bottun.png?fileID=2800000&guid=6acbf84d347a31540b9dd1452c581e97&type=3#Store Bottun');
+    background-color: rgba(255, 255, 255, 0);
+    color: rgb(85, 47, 46);
+    font-size: 20px;
+    -unity-font-style: bold;
+    -unity-text-align: lower-center;
+    padding-bottom: 20px;
+}
+
+.main-button > .icon {
+}

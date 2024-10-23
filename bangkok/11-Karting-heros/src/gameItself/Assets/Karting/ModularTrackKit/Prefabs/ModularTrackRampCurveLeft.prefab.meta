@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 634c4192803244032a1b1c99cff02eff
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/ModularTrackKit/Prefabs/ModularTrackRampCurveLeft.prefab
+  uploadId: 613807

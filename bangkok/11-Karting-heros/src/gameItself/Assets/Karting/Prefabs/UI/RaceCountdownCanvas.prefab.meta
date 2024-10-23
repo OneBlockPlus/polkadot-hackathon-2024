@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f29c8f9af0e64ab48a6c306b16e4a8fd
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Prefabs/UI/RaceCountdownCanvas.prefab
+  uploadId: 613807

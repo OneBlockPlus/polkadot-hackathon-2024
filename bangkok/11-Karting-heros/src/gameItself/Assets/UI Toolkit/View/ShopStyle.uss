@@ -1,0 +1,20 @@
+.item {
+    width: 240px;
+    height: 265px;
+    background-image: url('project://database/Assets/UI%20Toolkit/Assets/shopitem.png?fileID=2800000&guid=03477809e6231444b9e91fd39d9f483c&type=3#shopitem');
+    font-size: 33px;
+    color: rgb(64, 188, 255);
+    background-color: rgba(255, 255, 255, 0);
+    -unity-text-align: upper-center;
+    padding-top: 20px;
+    margin-top: 10px;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+}
+
+.item {
+}
+
+.item {
+}

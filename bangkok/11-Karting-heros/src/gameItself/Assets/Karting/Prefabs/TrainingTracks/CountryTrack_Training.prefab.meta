@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ca9b8cb628757af4fbb9f00728cb1711
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Prefabs/TrainingTracks/CountryTrack_Training.prefab
+  uploadId: 613807

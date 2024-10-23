@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ea52713838edf4cab911e165322b4a1c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/ScriptableObjects/WinGameMessage.asset
+  uploadId: 613807

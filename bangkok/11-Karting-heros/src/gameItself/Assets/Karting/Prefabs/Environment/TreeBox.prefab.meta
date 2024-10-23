@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 08421f76a47df7249a20d39e885964b3
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150956
+  packageName: Karting Microgame | URP
+  packageVersion: 4.1.0
+  assetPath: Assets/Karting/Prefabs/Environment/TreeBox.prefab
+  uploadId: 613807
