@@ -147,9 +147,10 @@ Provide a report on the degree of decentralized decision of voting results for u
 
 # Material for Demo
 
-1. Demo Video [link to Youtube]
+1. Demo Video  [https://www.youtube.com/watch?v=auZT-yo5C0c]
    
-2. PPT [link to google doc]
-   
+2. PPT [https://docs.google.com/document/d/e/2PACX-1vTO9dK8Ejv-fqn3mxOIrnKJ-nWnbFLx8GutLOJwOcDd2UemnyD8Jbpk87s3pNy-2obEfx6kdR8Rd-VP/pub]
+
+
 
 
