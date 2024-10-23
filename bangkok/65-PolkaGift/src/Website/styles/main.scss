@@ -1,0 +1,138 @@
+@media only screen and (max-width: 650px) {
+ .Login.row{
+    width: 100%;
+ }
+ .Login.col{
+    width: 90%;
+ }
+ .Login.eventManagerButton{
+    width: 50%;
+    font-size: 5vw;
+ }
+ .Login.userButton{
+    width: 50%;
+    font-size: 5vw;
+ }
+
+}
+
+@media only screen and (max-width: 1200px) and (min-width: 650px) {
+   .LoginContainer{
+      min-width: 485px;
+   }
+}
+@media only screen and (min-width: 1200px) {
+    .Login.row{
+        width: 100%;
+     }
+     .Login.col{
+        width: 40%;
+     }
+     .Login.eventManagerButton{
+        width: 50%;
+        font-size: 1.5rem;
+     }
+     .Login.userButton{
+        width: 50%;
+        font-size: 1.5rem;
+     }
+    
+}
+
+.LoginContainer{
+   background: transparent;
+   padding: 19px;
+   border-radius: 4px;
+   height: 100%;
+   border: var(--btn-top-primary-bg) solid;
+   max-width: 560px;
+}
+
+
+  
+.eventManagerButton{
+    background: #5959e9;
+    height: 150px;
+    cursor: pointer;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    color: yellow;
+    width: 50%;
+    position: relative;
+}
+
+.eventManagerButton.active::after{
+   content:"";
+   width:0.5rem;
+   height:1rem;
+   border:2px solid white;
+   position:absolute;
+   right:1.4rem;
+   top:1rem;
+   z-index:1;
+   rotate:45deg;
+   border-left:none;    
+   border-top:none;
+}
+.userButton.active::after{
+   content:"";
+   width:0.5rem;
+   height:1rem;
+   border:2px solid white;
+   position:absolute;
+   right:1.4rem;
+   top:1rem;
+   z-index:1;
+   rotate:45deg;
+   border-left:none;    
+   border-top:none;
+}
+.userButton{
+    background: var(--btn-home-bg);
+    color: var(--btn-fg);
+    height: 150px;
+    cursor: pointer;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    width: 50%;
+    position: relative;
+}
+
+.WalletBtn {
+   height: 150px;
+   padding: 0.5rem;
+   width: 50%;
+   position:relative;
+}
+.WalletBtn.active::after {
+   content:"";
+   width:0.5rem;
+   height:1rem;
+   border:2px solid green;
+   position:absolute;
+   right:1.4rem;
+   top:1rem;
+   z-index:1;
+   rotate:45deg;
+   border-left:none;    
+   border-top:none;
+   
+}
+
+.WalletBtn img{
+   height: 100%;
+   background: white;
+   padding: 1rem;
+   border-radius: 1rem;
+   cursor: pointer;
+   width: 100%;
+   object-fit: contain;
+}

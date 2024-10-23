@@ -1,0 +1,41 @@
+.tabs {
+    align-items: center;
+    column-gap: 20px;
+    display: flex;
+    justify-content: flex-end;
+
+    > li {
+        position: relative;
+
+        a {
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 0.25px;
+            line-height: 20px;
+            opacity: 0.48;
+            text-decoration: none;
+
+            &:hover {
+                color: #ffffff;
+                opacity: 1;
+            }
+        }
+
+        &.active {
+            a { opacity: 1; }
+
+            &::after {
+                background-color: #ffffff;
+                bottom: -10px;
+                content: '';
+                display: block;
+                height: 1px;
+                left: 0;
+                position: absolute;
+                width: 100%;
+            }
+        }
+    }
+}

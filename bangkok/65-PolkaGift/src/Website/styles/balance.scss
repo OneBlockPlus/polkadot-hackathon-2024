@@ -1,0 +1,65 @@
+.balance {
+    &__title {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 24px;
+        margin: 0 0 16px;
+    }
+
+    &__token {
+        display: flex;
+        column-gap: 7px;
+        align-items: center;
+
+        & + & {
+            margin-top: 4px;
+        }
+    }
+
+    &-amount {
+        display: flex;
+        column-gap: 12px;
+        font-size: 24px;
+        line-height: 28px;
+        font-weight: 700;
+        word-break: break-all;
+    }
+
+    &-section {
+        &__title {
+            margin: 0 0 4px;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 16px;
+            color: rgba(255,255,255,0.48)
+        }
+
+        &__content {
+            font-size: 16px;
+            line-height: 20px;
+        }
+    }
+
+    &-rows {
+        display: flex;
+        flex-direction: column;
+        row-gap: 24px;
+    }
+
+    &-cols {
+        display: flex;
+        flex-direction: row;
+        column-gap: 24px;
+    }
+
+    &-buttons {
+        display: flex;
+        flex-direction: column;
+        row-gap: 8px;
+
+        &_inline {
+            flex-direction: row;
+            column-gap: 8px;
+        }
+    }
+}

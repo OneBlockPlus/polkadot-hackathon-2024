@@ -1,0 +1,57 @@
+@media only screen and (max-width: 500px) {
+ .welcome.img{
+    width: 35vw;
+ }
+ .welcome.title{
+    font-size: 6vw
+ }
+ .welcome.description{
+    font-size: 3.5vw;
+ }
+ .Welcome.DonateBTN{
+    width: 9rem
+}
+}
+@media only screen and (min-width: 500px) and (max-width: 1000px) {
+    .welcome.img{
+        width: 20rem
+     }
+     .welcome.title{
+        font-size: 2em
+     }
+     .welcome.description{
+        font-size: 1em
+     }
+     .EventBTN.welcome{
+        width: 10rem;
+        height: 3rem;
+    }
+    .Welcome.DonateBTN{
+        width: 10rem;
+    }
+}
+
+@media only screen and (min-width: 1000px)  {
+    .welcome.img{
+        width: 20rem
+     }
+     .welcome.title{
+        font-size: 2em
+     }
+     .welcome.description{
+        font-size: 1em
+     }
+     .Welcome.DonateBTN{
+        width: 12rem
+    }
+     .EventBTN.welcome{
+        width: 15rem;
+        font-size: 1.5rem;
+        height: 4rem;
+    }
+
+}
+
+.Event.row {
+    margin-bottom: 0;
+}

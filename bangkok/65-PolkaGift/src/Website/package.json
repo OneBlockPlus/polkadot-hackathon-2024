@@ -1,0 +1,51 @@
+{
+  "name": "PolkaGift",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "deploy": "cd contract && hardhat deploy --network moonbeam"
+  },
+  "dependencies": {
+    "@astar-network/astar-api": "^0.1.19",
+    "@nomiclabs/hardhat-etherscan": "^3.1.7",
+    "@nomiclabs/hardhat-waffle": "^2.0.6",
+    "@openzeppelin/contracts": "^4.9.0",
+    "@polkadot/api-contract": "^14.1.1",
+    "@polkadot/extension-dapp": "^0.44.9",
+    "@polkadot/ui-keyring": "^3.10.1",
+    "@truffle/hdwallet-provider": "^2.1.15",
+    "assert": "^2.0.0",
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.0",
+    "dotenv": "^16.0.1",
+    "ethers": "^5.7.2",
+    "hardhat": "^2.9.7",
+    "hardhat-deploy": "^0.11.10",
+    "https-browserify": "^1.0.0",
+    "next": "12.1.6",
+    "normalize.css": "^8.0.1",
+    "notistack": "^3.0.1",
+    "os-browserify": "^0.3.0",
+    "pinata": "^1.5.0",
+    "react": "^18.1.0",
+    "react-bootstrap": "^2.4.0",
+    "react-dom": "18.1.0",
+    "react-select": "^5.8.1",
+    "react-slideshow-image": "^3.7.5",
+    "react-toastify": "^10.0.6",
+    "sass": "^1.56.1",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "web3": "^1.7.5"
+  },
+  "devDependencies": {
+    "eslint": "8.16.0",
+    "eslint-config-next": "12.1.6",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.2"
+  }
+}
