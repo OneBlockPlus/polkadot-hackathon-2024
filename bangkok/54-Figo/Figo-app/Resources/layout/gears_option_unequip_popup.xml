@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="360dp"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="295dp"
+              android:background="@drawable/gears_unequip_option_popup">
+
+
+    <Button android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="310dp"
+            android:background="@android:color/transparent"
+            android:id="@+id/close_button_gears_unequip"
+    />
+    
+    <ImageView android:layout_width="114dp"
+               android:layout_height="107dp"
+               android:layout_centerHorizontal="true"
+               android:layout_marginTop="80dp"
+               android:id="@+id/gears_image_placeholder_unequip"/>
+
+
+    <TextView android:layout_alignBottom="@+id/gears_image_placeholder_unequip" 
+              android:layout_marginBottom="-34dp"
+              android:layout_width="100dp"
+              android:layout_height="20dp"
+              android:layout_centerHorizontal="true"
+              android:textAlignment="center"
+              android:id="@+id/gears_text_placeholder_unequip"
+    />
+
+    <Button android:layout_width="200dp" android:layout_height="40dp"
+            android:layout_marginBottom="-153dp"
+            android:layout_marginLeft="80dp"
+            android:layout_alignBottom="@+id/gears_text_placeholder_unequip"
+            android:id="@+id/unequip_button"
+            android:background="@android:color/transparent"
+    />
+
+</RelativeLayout>

@@ -1,0 +1,15 @@
+.network-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+.page-title {
+  position: relative;
+  top: 3%;
+}
+.mermaid {
+  width: 60%;
+  font-size: 1rem;
+}

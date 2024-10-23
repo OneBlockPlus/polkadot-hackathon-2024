@@ -1,0 +1,28 @@
+---
+
+- name: create user
+  include_tasks: user.yaml
+
+- name: install dependencies
+  include_tasks: deps.yaml
+
+- name: chrony
+  include_tasks: chrony.yaml
+
+- name: tune host
+  include_tasks: tuner.yaml
+
+- name: setup disks
+  include_tasks: disks.yaml
+
+- name: folders
+  include_tasks: dirs.yaml
+
+- name: swap
+  include_tasks: swap.yaml
+
+- name: prometheus agent for monitoring
+  include_tasks: prometheus_agent.yaml
+
+- name: node exporter
+  include_tasks: node_exporter.yaml

@@ -1,4 +1,19 @@
+/*
+ * @Descripttion: 
+ * @version: 1.0
+ * @Author: Hesin
+ * @Date: 2024-10-15 00:02:40
+ * @LastEditors: Hesin
+ * @LastEditTime: 2024-10-22 12:48:09
+ */
+import { toast } from "@/hooks/use-toast";
+
 export async function sendAndWait(api, tx, signer, extensionEnabled, injector) {
+  console.log("sendAndWait", tx);
+  console.log("sendAndWait", signer);
+  console.log("sendAndWait", extensionEnabled);
+  console.log("sendAndWait", injector);
+
   return new Promise((resolve, reject) => {
     const process = ({ status, events, dispatchError }) => {
       if (dispatchError) {
@@ -19,18 +34,22 @@ export async function sendAndWait(api, tx, signer, extensionEnabled, injector) {
 
     const signAndSend = async () => {
       if (extensionEnabled && injector) {
-        return await tx.signAndSend(
-          signer.address,
-          {
-            signer: injector.signer,
-          },
-          process
-        );
+        try {
+          return await tx.signAndSend(
+            signer.address,
+            {
+              signer: injector.signer,
+            },
+            process
+          );
+        } catch (e: any) {
+          console.log("error", e.message);
+          reject(e.message);
+        }
       } else {
         return await tx.signAndSend(signer, process);
       }
     };
-
     signAndSend();
   });
 }

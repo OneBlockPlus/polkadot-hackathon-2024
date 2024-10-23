@@ -68,6 +68,7 @@ impl pallet_nft::Config for Test {
 impl pallet_nft_market::Config for Test {
     type RuntimeEvent = RuntimeEvent;
     type Currency = Balances;
+    type WeightInfo = ();
 }
 
 // Build genesis storage according to the mock runtime.

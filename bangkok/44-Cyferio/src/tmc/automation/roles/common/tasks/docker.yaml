@@ -1,0 +1,27 @@
+- name: add docker GPG apt key
+  become: true
+  become_user: root
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: add docker repository
+  become: true
+  become_user: root
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu focal stable
+    state: present
+
+- name: update apt and install docker-ce
+  become: true
+  become_user: root
+  apt:
+    name: docker-ce
+    state: latest
+    update_cache: true
+
+- name: install Docker module for python
+  become: true
+  become_user: root
+  pip:
+    name: docker

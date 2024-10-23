@@ -8,6 +8,11 @@ With the thriving development of blockchain technology and the widespread popula
 
 NFT Swap is a revolutionary NFT asset trading platform aimed at igniting the vibrancy of the NFT market and delivering an unprecedented trading experience. Beyond standard NFT buying and selling, it innovatively allows users to exchange NFTs for other NFTs, merge multiple NFTs for trading, and trade partial ownership shares of NFTs. NFT Swap is dedicated to maximizing the liquidity and composability of NFT assets, unlocking novel possibilities for NFT trading and fostering the continued prosperity of the NFT ecosystem.
 
+- Other Hackathons: No
+- Web3 Foundation Grant: No
+- Funding: No
+- Github: https://github.com/web3nftswap/nft_swap
+
 ## Core Features
 
 - NFT-to-NFT Trading:
@@ -27,8 +32,8 @@ NFT Swap is a revolutionary NFT asset trading platform aimed at igniting the vib
 - [X] Support for creating NFT collections and MINTing NFTs
 - [X] Implementation of basic NFT trading functionality
 - [X] Enable trading NFTs using one or multiple NFTs combined with FTs
-- [ ] Implement the merging of multiple NFTs and splitting of merged NFTs
-- [ ] Introduce NFT fractional ownership trading
+- [X] Implement the merging of multiple NFTs and splitting of merged NFTs
+- [X] Introduce NFT fractional ownership trading
 
 ## Architect
 
@@ -77,5 +82,6 @@ NFT Swap is a revolutionary NFT asset trading platform aimed at igniting the vib
 
 ## Material for Demo
 
-1. Demo Video [link to Youtube]
-2. PPT [link to google doc]
+1. Demo Video: https://www.youtube.com/watch?v=_iQqasOrfDc
+2. PPT: https://docs.google.com/presentation/d/1djzLdxAcPn67J68Go_TRxZ462fho1uCUvnDJkJm_mGE
+3. Demo Website: https://www.nftswap.top/

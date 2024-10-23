@@ -260,11 +260,13 @@ impl pallet_poe::Config for Runtime {
 
 impl pallet_nft::Config for Runtime {
     type RuntimeEvent = RuntimeEvent;
+    type WeightInfo = pallet_nft::weights::SubstrateWeight<Runtime>;
 }
 
 impl pallet_nft_market::Config for Runtime {
     type RuntimeEvent = RuntimeEvent;
     type Currency = Balances;
+    type WeightInfo = pallet_nft_market::weights::SubstrateWeight<Runtime>;
 }
 
 // Create the runtime by composing the FRAME pallets that were previously configured.
@@ -368,6 +370,8 @@ mod benches {
         [pallet_sudo, Sudo]
         [pallet_template, TemplateModule]
         [pallet_poe, PoeModule]
+        [pallet_nft, NftModule]
+        [pallet_nft_market, NftMarketModule]
     );
 }
 

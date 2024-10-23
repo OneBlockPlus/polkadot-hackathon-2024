@@ -1,0 +1,41 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: LunaCred
+    network: mbase
+    source:
+      address: "0x91695a2B145c1e15b1e51b52d555aD0d763275fD"
+      abi: LunaCred
+      startBlock: 9100188
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - CredibilityUpdated
+        - Deposit
+        - RoleAdminChanged
+        - RoleGranted
+        - RoleRevoked
+        - withdrawal
+      abis:
+        - name: LunaCred
+          file: ./abis/LunaCred.json
+      eventHandlers:
+        - event: CredibilityUpdated(indexed address,uint256)
+          handler: handleCredibilityUpdated
+        - event: Deposit(indexed address,indexed address,uint256,uint256)
+          handler: handleDeposit
+        - event: RoleAdminChanged(indexed bytes32,indexed bytes32,indexed bytes32)
+          handler: handleRoleAdminChanged
+        - event: RoleGranted(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleGranted
+        - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleRevoked
+        - event: withdrawal(indexed address,indexed address,uint256)
+          handler: handlewithdrawal
+      file: ./src/luna-cred.ts

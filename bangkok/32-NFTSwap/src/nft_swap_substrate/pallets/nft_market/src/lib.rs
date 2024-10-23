@@ -3,11 +3,17 @@
 /// A module for NFT Market
 pub use pallet::*;
 
+pub mod weights;
+pub use weights::*;
+
 #[cfg(test)]
 mod mock;
 
 #[cfg(test)]
 mod tests;
+
+#[cfg(feature = "runtime-benchmarks")]
+mod benchmarking;
 
 #[frame_support::pallet]
 pub mod pallet {
@@ -32,6 +38,8 @@ pub mod pallet {
         pub trait Config: frame_system::Config + pallet_nft::Config + TypeInfo + fmt::Debug {
             type RuntimeEvent: From<Event<Self>> + IsType<<Self as frame_system::Config>::RuntimeEvent>;
             type Currency: frame_support::traits::Currency<Self::AccountId>;
+		    /// Weights required by the dispatchables
+		    type WeightInfo: WeightInfo;
         }
 
         #[pallet::pallet]
@@ -50,7 +58,7 @@ pub mod pallet {
             pub price: BalanceOf<T>,
         }
 
-        /// The listed NFTs and their owners
+        /// The listed NFTs, account and the list infos
         #[pallet::storage]
         pub type Listings<T: Config> = StorageDoubleMap<
             _,
@@ -61,7 +69,7 @@ pub mod pallet {
             ListInfo<T>,
         >;
 
-        /// Offer for listed NFTs
+        /// Offers for listed NFTs
         #[pallet::storage]
         pub type Offers<T: Config> = StorageDoubleMap<
             _,
@@ -116,11 +124,12 @@ pub mod pallet {
             /// The origin must be signed.
             ///
             /// Parameters:
-            /// - `nft_item`: The NFT to be listed.
+            /// - `nft_item_with_share`: The NFT to be listed.
+            /// - `price`: Price of the NFT.
             ///
             /// Emits `NftListed` event when successful.
             #[pallet::call_index(0)]
-            #[pallet::weight({0})]
+            #[pallet::weight(<T as pallet::Config>::WeightInfo::list_nft())]
             pub fn list_nft(origin: OriginFor<T>, nft_item_with_share: NftItemWithShare, price: BalanceOf<T>) -> DispatchResult {
                 let sender = ensure_signed(origin)?;
                 let nft_item = (nft_item_with_share.0, nft_item_with_share.1);
@@ -148,11 +157,11 @@ pub mod pallet {
             /// The origin must be signed.
             ///
             /// Parameters:
-            /// - `nft_item`: The NFT to be unlisted.
+            /// - `nft_item_with_share`: The NFT to be unlisted.
             ///
             /// Emits `NftUnlisted` event when successful.
             #[pallet::call_index(1)]
-            #[pallet::weight({0})]
+            #[pallet::weight({10_000})]
             pub fn unlist_nft(origin: OriginFor<T>, nft_item_with_share: NftItemWithShare) -> DispatchResult {
                 let sender = ensure_signed(origin)?;
                 let nft_item = (nft_item_with_share.0, nft_item_with_share.1);
@@ -171,11 +180,12 @@ pub mod pallet {
             /// The origin must be signed.
             ///
             /// Parameters:
-            /// - `nft_item`: The NFT to buy.
+            /// - `nft_item_with_share`: The NFT to buy.
+            /// - `seller`: Seller of the NFT.
             ///
             /// Emits `BuySucess` event when successful.
             #[pallet::call_index(2)]
-            #[pallet::weight({0})]
+            #[pallet::weight({10_000})]
             pub fn buy_nft(origin: OriginFor<T>, nft_item_with_share: NftItemWithShare, seller: T::AccountId) -> DispatchResult {
                 let buyer = ensure_signed(origin.clone())?;
                 let nft_item = (nft_item_with_share.0, nft_item_with_share.1);
@@ -199,13 +209,14 @@ pub mod pallet {
             /// The origin must be signed.
             ///
             /// Parameters:
-            /// - `nft_item`: The NFT to be purchased.
-            /// - `offer_nfts`: The NFTs that needs to be used as an offer.
+            /// - `nft_item_with_share`: The NFT to be purchased.
+            /// - `offered_nfts`: The NFTs that needs to be used as an offer.
             /// - `token_amount`: The token amount that needs to be used as an offer.
+            /// - `seller`: Seller of the NFT.
             ///
             /// Emits `OfferPlaced` event when successful.
             #[pallet::call_index(3)]
-            #[pallet::weight({0})]
+            #[pallet::weight({10_000})]
             pub fn place_offer(origin: OriginFor<T>,
                                nft_item_with_share: NftItemWithShare,
                                offered_nfts: BoundedVec<NftItemWithShare, MaxOfferNftsLength>,
@@ -250,13 +261,14 @@ pub mod pallet {
             /// The origin must be signed.
             ///
             /// Parameters:
-            /// - `nft_item`: The NFT to be purchased.
-            /// - `offer_nfts`: The NFTs that needs to be used as an offer.
+            /// - `nft_item_with_share`: The NFT to be purchased.
+            /// - `offered_nfts`: The NFTs that needs to be used as an offer.
             /// - `token_amount`: The token amount that needs to be used as an offer.
+            /// - `seller`: Seller of the NFT.
             ///
             /// Emits `OfferCanceled` event when successful.
             #[pallet::call_index(4)]
-            #[pallet::weight({0})]
+            #[pallet::weight({10_000})]
             pub fn cancel_offer(origin: OriginFor<T>,
                                 nft_item_with_share: NftItemWithShare,
                                 offered_nfts: BoundedVec<NftItemWithShare, MaxOfferNftsLength>,
@@ -303,13 +315,14 @@ pub mod pallet {
             /// The origin must be signed.
             ///
             /// Parameters:
-            /// - `nft_item`: The NFT for sale.
+            /// - `nft_item_with_share`: The NFT for sale.
             /// - `offered_nfts`: The NFTs that needs to be used as an offer.
             /// - `offered_token_amount`: The token amount that needs to be used as an offer.
+            /// - `buyer`: Buyer of the NFT.
             ///
             /// Emits `OfferAccepted` event when successful.
             #[pallet::call_index(5)]
-            #[pallet::weight({0})]
+            #[pallet::weight({10_000})]
             pub fn accept_offer(origin: OriginFor<T>,
                                 nft_item_with_share: NftItemWithShare,
                                 offered_nfts: BoundedVec<NftItemWithShare, MaxOfferNftsLength>,
@@ -344,13 +357,14 @@ pub mod pallet {
             /// The origin must be signed.
             ///
             /// Parameters:
-            /// - `nft_item`: The NFT for sale.
+            /// - `nft_item_with_share`: The NFT for sale.
             /// - `offered_nfts`: The NFTs that needs to be used as an offer.
             /// - `offered_token_amount`: The token amount that needs to be used as an offer.
+            /// - `buyer`: Buyer of the NFT.
             ///
             /// Emits `OfferRejected` event when successful.
             #[pallet::call_index(6)]
-            #[pallet::weight({0})]
+            #[pallet::weight({10_000})]
             pub fn reject_offer(origin: OriginFor<T>,
                                 nft_item_with_share: NftItemWithShare,
                                 offered_nfts: BoundedVec<NftItemWithShare, MaxOfferNftsLength>,
