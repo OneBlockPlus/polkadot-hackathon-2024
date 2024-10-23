@@ -1,6 +1,4 @@
 CSC(Credit-Score-Chain)
 
-Demo Website: 
-Demo Video: 
-PPT: 
+PPT: https://credit-score-topaz.vercel.app/
 
