@@ -20,14 +20,14 @@ public class Ed25519 {
     private BigNat transformC, transformA3, transformX, transformY, eight;
     private ECPoint point;
 
-    private final byte[] prefix = new byte[32];
-    private final byte[] publicKey = new byte[32];
-    private final byte[] publicNonce = new byte[32];
+    private byte[] prefix = new byte[32];
+    private byte[] publicKey = new byte[32];
+    private byte[] publicNonce = new byte[32];
 
     private MessageDigest hasher;
 
-    private final byte[] ramArray = JCSystem.makeTransientByteArray((short) Wei25519.G.length, JCSystem.CLEAR_ON_DESELECT);
-    private final RandomData random = RandomData.getInstance(RandomData.ALG_SECURE_RANDOM);
+    private byte[] ramArray = JCSystem.makeTransientByteArray((short) Wei25519.G.length, JCSystem.CLEAR_ON_DESELECT);
+    private RandomData random = RandomData.getInstance(RandomData.ALG_SECURE_RANDOM);
 
     public Ed25519() {
         OperationSupport.getInstance().setCard(CARD);

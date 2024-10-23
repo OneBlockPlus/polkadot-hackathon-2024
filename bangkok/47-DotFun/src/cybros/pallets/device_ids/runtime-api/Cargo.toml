@@ -1,0 +1,29 @@
+[package]
+name = "pallet-device_id-runtime-api"
+version = "0.0.1-dev"
+description = "Substrate pallet for device identity."
+readme = "README.md"
+authors.workspace = true
+repository.workspace = true
+license.workspace = true
+edition = "2021"
+publish = false
+
+[lints]
+workspace = true
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+
+[dependencies]
+scale_codec = { package = "parity-scale-codec", version = "3.6.1", default-features = false, features = ["derive"] }
+pallet-device_id = { path = "..", default-features = false }
+sp-api = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master", default-features = false }
+
+[features]
+default = ["std"]
+std = [
+    "codec/std",
+    "pallet-device_id/std",
+    "sp-api/std",
+]

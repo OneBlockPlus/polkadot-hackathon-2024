@@ -127,7 +127,7 @@ replace (
 	filippo.io/edwards25519 => filippo.io/edwards25519 v1.0.0-beta.3
 	github.com/CosmWasm/wasmd => github.com/terra-money/wasmd v0.27.0-terra.1
 
-	github.com/centrifuge/go-substrate-rpc-client/v4 => github.com/keyring-so/go-substrate-rpc-client/v4 v4.3.5
+	github.com/centrifuge/go-substrate-rpc-client/v4 => github.com/keyring-so/go-substrate-rpc-client/v4 v4.3.6
 	github.com/fynelabs/selfupdate => github.com/kaichaosun/selfupdate v0.1.0
 
 	github.com/gagliardetto/solana-go => github.com/conorpp/solana-go v1.0.0

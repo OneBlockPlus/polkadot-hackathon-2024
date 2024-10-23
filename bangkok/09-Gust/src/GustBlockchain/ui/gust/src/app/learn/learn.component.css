@@ -1,0 +1,94 @@
+strong {
+  font-weight: 700;
+}
+.about-section {
+  /* scroll-snap-align: start; */
+  /* height: 100vh; */
+  /* padding: 2rem; */
+
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.the-core {
+  position: absolute;
+  width: 30%;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.top-right, .bottom-right, .top-left, .bottom-left {
+  position: absolute;
+  text-align: center;
+  width: 30%;
+}
+
+.top-right {
+  top: 20%;
+  right: 5%;
+}
+
+.bottom-right {
+  bottom: 20%;
+  right: 0;
+}
+
+.top-left {
+  top: 15%;
+  left: 0;
+}
+
+.bottom-left {
+  bottom: 20%;
+  left: 5%;
+}
+
+.page-title {
+  position: absolute;
+  top: 3%;
+}
+
+.arrow1 {
+  position: absolute;
+  top: 16%;
+  left: 27%;
+  width: 13%;
+
+}
+.arrow1 {
+  transform: rotate(45deg);
+}
+.arrow2 {
+  position: absolute;
+  top: 45%;
+  left: 24%;
+  width: 13%;
+}
+.arrow2 {
+  transform: rotate(-10deg);
+  /* transform: scaleY(-1); */
+}
+
+.arrow3 {
+  position: absolute;
+  top: 53%;
+  right: 27%;
+  width: 13%;
+}
+.arrow3 {
+  transform: rotate(-125deg);
+}
+.arrow4 {
+  position: absolute;
+  top: 23%;
+  right: 23%;
+  width: 13%;
+}
+.arrow4 {
+  transform: rotate(-196deg);
+  /* transform: scaleX(-1); */
+}

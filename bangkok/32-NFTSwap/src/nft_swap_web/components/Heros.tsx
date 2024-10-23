@@ -4,7 +4,7 @@
  * @Author: Hesin
  * @Date: 2024-09-30 16:34:40
  * @LastEditors: Hesin
- * @LastEditTime: 2024-10-01 11:24:29
+ * @LastEditTime: 2024-10-21 00:01:03
  */
 import React from "react";
 import { Spotlight } from "./ui/spotlight";
@@ -52,7 +52,7 @@ const Heros = () => {
               words="Everything can be reimagined within"
             />
             <h2 className="uppercase tracking-widest text-xs text-center text-blue-100 max-w-80">
-              Professional NFT Marketplace
+            an innovative NFT marketplace
             </h2>
             <MagicButton
               title={"Explore"}

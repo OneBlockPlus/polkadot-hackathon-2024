@@ -1,0 +1,82 @@
+- name: install a list of dev-packages
+  become: true
+  become_user: root
+  apt:
+    update_cache: yes
+    pkg:
+      - build-essential
+      - pkg-config
+      - libudev-dev
+      - cmake
+      - libclang-dev
+      - libssl-dev
+      - gparted
+      - nload
+      - python3-pip
+      - net-tools
+      - logind
+      - curl
+      - git
+      - chrony
+      - htop
+      - acl
+      - tar
+      - wget
+      - aria2
+      - clang
+      - jq
+      - make
+      - ncdu
+      - protobuf-compiler
+      - ninja-build
+      - tmux
+      - httpie
+
+- name: check if cargo is installed
+  become: true
+  become_user: ubuntu
+  become_method: sudo
+  shell: test -f /home/ubuntu/.cargo/env && source /home/ubuntu/.cargo/env && command -v cargo
+  args:
+    executable: /bin/bash
+  register: cargo_exists
+  ignore_errors: yes
+  failed_when: false
+
+- name: download rustup installer
+  when: cargo_exists.rc != 0
+  become: true
+  become_user: ubuntu
+  become_method: sudo
+  get_url:
+    url: https://sh.rustup.rs
+    dest: /tmp/sh.rustup.rs
+    mode: "0755"
+    force: "yes"
+
+- name: install rust/cargo
+  become: true
+  become_user: ubuntu
+  become_method: sudo
+  when: cargo_exists.rc != 0
+  shell: /tmp/sh.rustup.rs -y
+  args:
+    executable: /bin/bash
+
+- name: install cargo tools and risc0
+  block:
+    - name: install cargo risc0
+      become: true
+      become_user: ubuntu
+      become_method: sudo
+      shell: /home/ubuntu/.cargo/bin/cargo install cargo-risczero
+      args:
+        executable: /bin/bash
+
+    - name: install cargo risc0
+      become: true
+      become_user: ubuntu
+      become_method: sudo
+      shell: /home/ubuntu/.cargo/bin/cargo risczero install --version r0.1.79.0
+      args:
+        executable: /bin/bash

@@ -1,0 +1,83 @@
+version: "3"
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: statescan_mongo
+    restart: always
+    volumes:
+      - ./data/mongo:/data/db
+#    ports:
+#      - "${MONGO_SERVER_PORT}:27017"
+    environment:
+      - "MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}"
+      - "MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASS}"
+#  # Debug only
+#  mongo-express:
+#    image: mongo-express:latest
+#    container_name: statescan_mongo-express
+#    restart: always
+#    ports:
+#      - "8081:8081"
+#    environment:
+#      - "ME_CONFIG_MONGODB_ADMINUSERNAME=admin"
+#      - "ME_CONFIG_MONGODB_ADMINPASSWORD=pass"
+#      - "ME_CONFIG_MONGODB_URL=mongodb://${MONGO_USER}:${MONGO_PASS}@statescan_mongo:${MONGO_SERVER_PORT}/"
+  archiver:
+    image: "${ARCHIVER_DOCKER_IMAGE}"
+    build:
+      context: archiver
+      dockerfile: Dockerfile
+      args:
+        - "STATE_SCAN_META_GIT_REPO=${STATE_SCAN_META_GIT_REPO}"
+        - "STATE_SCAN_META_GIT_TAG=${STATE_SCAN_META_GIT_TAG}"
+    depends_on:
+      - mongo
+    container_name: statescan_archiver
+    restart: always
+    environment:
+      - "MONGO_CONNECTION_STRING=mongodb://${MONGO_USER}:${MONGO_PASS}@statescan_mongo:${MONGO_SERVER_PORT}/"
+      - "SUB_WS_RPC_ENDPOINT=${SUB_WS_RPC_ENDPOINT}"
+      - "SUB_CHAIN_NAME=${SUB_CHAIN_NAME}"
+      - "SCAN_STEP=${ARCHIVER_SCAN_STEP}"
+      - "SCAN_FROM_LATEST=${ARCHIVER_SCAN_FROM_LATEST}"
+      - "SAVE_VALIDATOR=${ARCHIVER_SAVE_VALIDATOR}"
+  backend:
+    image: "${BACKEND_DOCKER_IMAGE}"
+    build:
+      context: backend
+      dockerfile: Dockerfile
+      args:
+        - "STATE_SCAN_GIT_REPO=${STATE_SCAN_GIT_REPO}"
+        - "STATE_SCAN_GIT_TAG=${STATE_SCAN_GIT_TAG}"
+    depends_on:
+      - mongo
+      - archiver
+    container_name: statescan_backend
+    restart: always
+    ports:
+      - "${BACKEND_SERVER_PORT}:5010"
+    environment:
+      - "MONGO_CONNECTION_STRING=mongodb://${MONGO_USER}:${MONGO_PASS}@statescan_mongo:${MONGO_SERVER_PORT}/"
+      - "SUB_WS_RPC_ENDPOINT=${SUB_WS_RPC_ENDPOINT}"
+      - "SUB_CHAIN_NAME=${SUB_CHAIN_NAME}"
+      - "SCAN_STEP=${BACKEND_SCAN_STEP}"
+      - "USE_META=1"
+  website:
+    image: "${WEBSITE_DOCKER_IMAGE}"
+    build:
+      context: website
+      dockerfile: Dockerfile
+      args:
+        - "STATE_SCAN_GIT_REPO=${STATE_SCAN_GIT_REPO}"
+        - "STATE_SCAN_GIT_TAG=${STATE_SCAN_GIT_TAG}"
+        - "REACT_APP_PUBLIC_API_END_POINT=${PUBLIC_BACKEND_API_ENDPOINT}"
+        - "REACT_APP_PUBLIC_IDENTITY_API_END_POINT=${PUBLIC_IDENTITY_API_ENDPOINT}"
+        - "REACT_APP_PUBLIC_IDENTITY_SERVER_HOST=${PUBLIC_IDENTITY_SERVER_HOST}"
+        - "REACT_APP_PUBLIC_CHAIN=${SUB_CHAIN_NAME}"
+    depends_on:
+      - backend
+    container_name: statescan_website
+    restart: always
+    ports:
+      - "${WEBSITE_SERVER_PORT}:80"

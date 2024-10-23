@@ -1,0 +1,13 @@
+{
+  "lock": "deno.lock",
+  "compilerOptions": {
+    "allowJs": true,
+    "lib": ["deno.window"],
+    "strict": true
+  },
+  "rules": {
+    "tags": ["recommended"],
+    "include": [],
+    "exclude": ["no-unused-vars", "no-explicit-any"]
+  }
+}

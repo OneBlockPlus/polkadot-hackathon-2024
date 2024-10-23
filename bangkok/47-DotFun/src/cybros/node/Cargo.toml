@@ -1,0 +1,119 @@
+[package]
+name = "cybros-node"
+version = "0.0.1-dev"
+description = "Web3 Job Scheduler connecting everything."
+authors.workspace = true
+homepage.workspace = true
+repository.workspace = true
+license.workspace = true
+edition = "2021"
+publish = false
+
+build = "build.rs"
+
+[lints]
+workspace = true
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+
+[[bin]]
+name = "cybros-node"
+path = "bin/main.rs"
+required-features = ["cli"]
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+# Third-party dependencies
+clap = { version = "4.4.10", features = ["derive"], optional = true }
+futures = { version = "0.3.29", features = ["thread-pool"]}
+serde = { version = "1.0.193", features = ["derive"] }
+serde_json = "1.0.108"
+jsonrpsee = { version = "0.20.3", features = ["server"] }
+
+# Primitives
+sp-api = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sp-blockchain = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sp-block-builder = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sp-core = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sp-consensus = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sp-consensus-aura = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sp-consensus-grandpa = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sp-runtime = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sp-io = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sp-timestamp = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sp-inherents = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sp-keyring = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+
+# Client dependencies
+sc-executor = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sc-network = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sc-service = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master", default-features = false }
+sc-telemetry = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sc-transaction-pool = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sc-transaction-pool-api = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sc-offchain = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sc-consensus-aura = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sc-consensus = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sc-consensus-grandpa = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sc-consensus-grandpa-rpc = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sc-client-api = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sc-chain-spec = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sc-rpc = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sc-rpc-api = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sc-rpc-spec-v2 = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sc-sync-state-rpc = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+sc-basic-authorship = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+
+# CLI-specific dependencies
+sc-cli = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master", optional = true }
+frame-benchmarking-cli = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master", optional = true }
+substrate-frame-cli = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master", optional = true }
+node-inspect = { path = "../vendors/node-inspect", optional = true }
+
+# Frame dependencies
+frame-system = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+frame-system-rpc-runtime-api = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+frame-benchmarking = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+frame-support = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+pallet-transaction-payment = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+pallet-skip-feeless-payment = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+
+# Frame RPC dependencies
+substrate-frame-rpc-system = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+pallet-transaction-payment-rpc = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master" }
+
+# Local Dependencies
+runtime-primitives = { package = "cybros-runtime-primitives", path = "../runtime-primitives" }
+origin-runtime = { package = "cybros-origin-runtime", path = "../runtimes/origin" }
+
+[build-dependencies]
+substrate-build-script-utils = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master", optional = true }
+clap_complete = { version = "4.4.4", optional = true }
+
+[features]
+default = ["cli"]
+cli = [
+	"clap",
+	"clap_complete",
+	"frame-benchmarking-cli",
+	"node-inspect",
+	"sc-cli",
+	"sc-service/rocksdb",
+	"substrate-build-script-utils",
+	"substrate-frame-cli",
+]
+# Dependencies that are only required if runtime benchmarking should be built.
+runtime-benchmarks = [
+	"frame-benchmarking-cli/runtime-benchmarks",
+	"frame-benchmarking/runtime-benchmarks",
+	"frame-support/runtime-benchmarks",
+	"frame-system/runtime-benchmarks",
+	"sc-service/runtime-benchmarks",
+	"sp-runtime/runtime-benchmarks",
+	"node-inspect?/runtime-benchmarks",
+	"pallet-skip-feeless-payment/runtime-benchmarks",
+	"origin-runtime/runtime-benchmarks",
+]

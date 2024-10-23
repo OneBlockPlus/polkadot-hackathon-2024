@@ -1,6 +1,7 @@
 pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "./OATContract.sol";
 import {IERC20Metadata} from "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 import {Context} from "@openzeppelin/contracts/utils/Context.sol";
 import {IERC20Errors} from "@openzeppelin/contracts/interfaces/draft-IERC6093.sol";
@@ -17,15 +18,42 @@ contract SBTContractis is Context, IERC20, IERC20Metadata, IERC20Errors {
     string private _name;
     string private _symbol;
 
+    address public oatPeerId;
+
     /**
      * @dev Sets the values for {name} and {symbol}.
      *
      * All two of these values are immutable: they can only be set once during
      * construction.
      */
-    constructor(string memory name_, string memory symbol_) {
+    constructor(string memory name_, string memory symbol_, address oatPeerId_) {
         _name = name_;
         _symbol = symbol_;
+        oatPeerId = oatPeerId_;
+    }
+
+    function mintSBT() public returns (uint128) {
+        uint256 stakingTokenId = OATContract(oatPeerId).HoldingList(msg.sender, 0);
+        uint256 createTokenId = OATContract(oatPeerId).HoldingList(msg.sender, 0);
+        uint256 transferTokenId = OATContract(oatPeerId).HoldingList(msg.sender, 0);
+
+        uint128 sbtScore = 0;
+
+        if (stakingTokenId != 0) {
+            sbtScore += OATContract(oatPeerId).getScore(stakingTokenId);
+        }
+
+        if (createTokenId != 0) {
+            sbtScore += OATContract(oatPeerId).getScore(createTokenId);
+        }
+
+        if (transferTokenId != 0) {
+            sbtScore += OATContract(oatPeerId).getScore(transferTokenId);
+        }
+
+        _update(msg.sender, sbtScore);
+
+        return sbtScore;
     }
 
     /**

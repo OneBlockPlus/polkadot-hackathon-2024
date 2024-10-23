@@ -78,20 +78,21 @@ func (client *Client) FetchTxInput(ctx context.Context, from xc.Address, to xc.A
 	return nil, nil
 }
 
-func (client *Client) SubmitTx(ctx context.Context, tx xc.Tx) error {
+func (client *Client) SubmitTx(ctx context.Context, tx xc.Tx) (xc.TxHash, error) {
 	ext := *tx.(Tx).ext
 	encodedExt, err := codec.EncodeToHex(ext)
+	if err != nil {
+		fmt.Println("Error submitting extrinsic", err)
+		return "", err
+	}
 
 	fmt.Printf("Ext - %s\n", encodedExt)
 
-	sub, err := client.api.RPC.Author.SubmitAndWatchDynamicExtrinsic(ext)
-
+	hash, err := client.api.RPC.Author.SubmitDynamicExtrinsic(ext)
 	if err != nil {
 		fmt.Println("Error submitting extrinsic", err)
-		return err
+		return "", err
 	}
-
-	defer sub.Unsubscribe()
 
 	// go func() {
 	// 	for {
@@ -105,5 +106,5 @@ func (client *Client) SubmitTx(ctx context.Context, tx xc.Tx) error {
 	// 	}
 	// }()
 
-	return nil
+	return xc.TxHash(hash.Hex()), nil
 }

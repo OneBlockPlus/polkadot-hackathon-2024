@@ -1,10 +1,26 @@
 # Project Keyring
 
-Secure and handy hardware wallet solution for Web3 citizens. 
+**Name:** Keyring
 
-## Introduction
+**Creation Date:** 2024-Jan
+
+**Background:**
+
+- Website: https://keyring.so/
+- Github: https://github.com/keyring-so
+- Web3 Grants / other hackathons: No
+
+**Logo:**
+
+![Keyring Logo](./doc/keyring_logo.png)
+
+## Project Overview
+
+Secure and handy hardware wallet solution for Web3 Citizens. 
 
 Keyring hardware wallet brings the financial card experience to blockchain. It allows users to transfer or teleport assets, staking the native token, interact with DApps, etc.
+
+By improving the user experience and providing affordable hardware wallets, Keyring aims to bring more users to the blockchain world. More people can gain the confidence to enjoy the benefits of self-custodianship in a secure, user-friendly manner.
 
 The main features of Keyring including,
 - High Security with EAL5+
@@ -14,22 +30,30 @@ The main features of Keyring including,
 
 ![Keyring Features](./doc/keyring_features.png)
 
-## Implemented Functionalities in Hackathon
+## Planed and Implemented Features in Hackathon
 
-- ED25519 implementation on secure element
-- SLIP-0010 implementation for Javacard
-- Support features for Polkadot/Substrate based blockchain, including:
-  - transfer native token
-  - teleport assets
-  - staking via nomination pool
-- Substrate based EVM compatible blockchain integration
+- [x] ED25519 implementation for Javacard
+- [x] SLIP-0010 implementation for Javacard
+- [x] Implement Go SDK for XCM v4 
+- [x] Support native functionalities of Polkadot/Substrate based blockchain, including:
+  - [x] transfer native token
+  - [x] teleport assets between relay chain and system parachain
+  - [x] staking via nomination pool
+- [x] Substrate based EVM compatible blockchain integration
+  - [x] send and receive assets
+  - [x] interact with DApp with WalletConnect
 
-## Source code
+## Demonstration Resources
 
-- Javacard applets: https://github.com/keyring-so/applets
-- Desktop wallet app: https://github.com/keyring-so/keyring-desktop
+1. Website: https://keyring.so/
+2. Demo Video: https://youtu.be/Yg6R3WulmMU
+3. Slides: https://docs.google.com/presentation/d/1XWeGgnagaEGo-I1CV0H-20eLT2fUjre4RUOYco3xO24/edit?usp=sharing
+4. Source code:
+   - Javacard applets: https://github.com/keyring-so/applets
+   - Desktop wallet app: https://github.com/keyring-so/keyring-desktop
+   - XCM v4 Go SDK: https://github.com/keyring-so/go-substrate-rpc-client/commit/5475676bf00a8f84751c1bd08385ff36394ca4da
 
-## Architect
+## Technical Architecture
 
 Using Javacard 3.0.4 to build firmware for secure element, and implement the ED25519 and SLIP-0010 on it. 
 
@@ -40,14 +64,12 @@ Tech stack used,
 - Golang Wails framework
 - React and React Native
 
-## Resources
-1. Website: https://keyring.so/
-2. Demo Video (TODO)
-3. Slides: https://docs.google.com/presentation/d/1XWeGgnagaEGo-I1CV0H-20eLT2fUjre4RUOYco3xO24/edit?usp=sharing
 
+## Team Introduction
 
-## Team info
+- Kaichao, researcher and developer, 10 years software development and 5 years blockchain development.
+- Echo, product design and hardware engineer, 8 years hardware development, 2 years blockchain research
 
-- Kaichao, research and development
-- Echo, product and UX design
+## Bounty
 
+Moonbeam

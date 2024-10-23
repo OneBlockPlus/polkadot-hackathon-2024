@@ -1,0 +1,19 @@
+- include_vars: "../defaults/{{ da_cluster }}/variables.yaml"
+
+- name: check if celestia-lightd service is running
+  ansible.builtin.systemd:
+    name: celestia-lightd
+  register: celestia_service
+  ignore_errors: true
+  become: true
+
+- name: install golang
+  import_tasks: go.yaml
+  when: celestia_service.status.ActiveState != "active"
+
+- name: build Celestia
+  import_tasks: celestia.yaml
+  when: celestia_service.status.ActiveState != "active"
+
+- name: catching up
+  import_tasks: catchup.yaml

@@ -1,0 +1,55 @@
+- name: create swap file
+  become: true
+  become_user: root
+  command:
+    dd if=/dev/zero of=/mnt/swapfile bs=1024 count={{ swap_mb }}k
+    creates="/mnt/swapfile"
+
+- name: Change swap file permissions
+  become: true
+  become_user: root
+  file: 
+    path=/mnt/swapfile
+    owner=root
+    group=root
+    mode=0600
+
+- name: check swap file type
+  become: true
+  become_user: root
+  command: file /mnt/swapfile
+  register: swapfile
+
+- name: make swap file
+  become: true
+  become_user: root
+  command: "sudo mkswap /mnt/swapfile"
+  when: swapfile.stdout.find('swap file') == -1
+
+- name: write swap entry in fstab
+  become: true
+  become_user: root
+  mount:
+    name=none
+    src=/mnt/swapfile
+    fstype=swap
+    opts=sw
+    passno=0
+    dump=0
+    state=present
+
+- name: swap check
+  become: true
+  become_user: root
+  shell: swapon --show | grep /mnt/swapfile
+  register: swap_check
+  # ensures that the task is never considered failed, so no error message is printed.
+  failed_when: false
+  # ensures that even if the task encounters an error, it will not halt the playbook execution.
+  ignore_errors: yes
+
+- name: mount swap
+  become: true
+  become_user: root
+  command: "swapon /mnt/swapfile"
+  when: swap_check.rc != 0

@@ -6,6 +6,7 @@ import { EIP155_SIGNING_METHODS } from "@/data/wallet-connect";
 import { chainConfigsAtom, ledgerAddressAtom } from "@/store/state";
 import { createWeb3Wallet, web3wallet } from "@/utils/WalletConnectUtil";
 import { SessionTypes, SignClientTypes } from "@walletconnect/types";
+import { WalletKit, WalletKitTypes } from '@reown/walletkit'
 import { buildApprovedNamespaces, getSdkError } from "@walletconnect/utils";
 import { useAtomValue } from "jotai";
 import { Loader2 } from "lucide-react";
@@ -49,7 +50,7 @@ const WalletConnect = ({
   const [initialized, setInitialized] = useState(false);
   const [requestData, setRequestData] = useState<ReqeustData>();
   const [proposal, setProposal] =
-    useState<SignClientTypes.EventArguments["session_proposal"]>();
+    useState<WalletKitTypes.SessionProposal>();
 
   const { toast } = useToast();
 
@@ -82,7 +83,7 @@ const WalletConnect = ({
   }, []);
 
   const onSessionProposal = (
-    proposal: SignClientTypes.EventArguments["session_proposal"]
+    proposal: WalletKitTypes.SessionProposal
   ) => {
     setProposal(proposal);
   };
@@ -143,7 +144,6 @@ const WalletConnect = ({
         setLoading(true);
         await web3wallet.approveSession({
           id: proposal.id,
-          relayProtocol: proposal.params.relays[0].protocol,
           namespaces,
         });
         toast({
