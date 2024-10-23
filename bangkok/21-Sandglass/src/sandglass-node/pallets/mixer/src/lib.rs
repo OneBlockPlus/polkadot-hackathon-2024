@@ -71,7 +71,6 @@ use frame_support::{
 	storage::bounded_vec::BoundedVec,
 	traits::{Currency, ExistenceRequirement::AllowDeath, ReservableCurrency},
 };
-pub use pallet::*;
 use sp_std::vec::Vec;
 
 type PublicInputsDef<T> = BoundedVec<u8, <T as Config>::MaxPublicInputsLength>;
@@ -87,7 +86,7 @@ pub mod pallet {
 	use super::*;
 	use crate::{
 		common::prepare_verification_key,
-		deserialization::{deserialize_public_inputs, Proof, VKey},
+		deserialization::{Proof, VKey},
 		merkle_tree::MerkleTree,
 		verify::{
 			prepare_public_inputs, verify, G1UncompressedBytes, G2UncompressedBytes, GProof,
@@ -100,7 +99,7 @@ pub mod pallet {
 	use sp_runtime::traits::AccountIdConversion;
 	use sp_std::vec;
 
-	const STORAGE_VERSION: StorageVersion = StorageVersion::new(1);
+	//const STORAGE_VERSION: StorageVersion = StorageVersion::new(1);
 
 	// The `Pallet` struct serves as a placeholder to implement traits, methods and dispatchables
 	// (`Call`s) in this pallet.
@@ -186,6 +185,11 @@ pub mod pallet {
 	#[pallet::generate_deposit(pub(super) fn deposit_event)]
 	pub enum Event<T: Config> {
 		VerificationSetupCompleted,
+		Deposited { commitment: Vec<u8>, commit_h256: U256, root: U256 },
+		Withdrawed { receiver: T::AccountId },
+		Swaped { receiver: T::AccountId },
+		BlackListAdded,
+		PassOtpCheck,
 	}
 
 	/// Errors that can be returned by this pallet.
@@ -245,7 +249,7 @@ pub mod pallet {
 		/// Blacklist rejected
 		BlacklistRejected,
 		/// Amount must be equ
-		AmountMustBeEqu,
+		SwapAmountMustBeEqu,
 	}
 
 	/// The pallet's dispatchable functions ([`Call`]s).
@@ -265,11 +269,9 @@ pub mod pallet {
 		#[pallet::call_index(0)]
 		#[pallet::weight(0)]
 		pub fn setup_verification(origin: OriginFor<T>, vec_vk: Vec<u8>) -> DispatchResult {
-			let who = ensure_signed(origin)?;
+			let _who = ensure_signed(origin)?;
 
-			let vk = store_verification_key::<T>(vec_vk)?;
-			//ensure!(vk.public_inputs_len == inputs.len() as u8,
-			// Error::<T>::PublicInputsMismatch);
+			let _vk = store_verification_key::<T>(vec_vk)?;
 			Self::deposit_event(Event::<T>::VerificationSetupCompleted);
 			Ok(())
 		}
@@ -292,20 +294,20 @@ pub mod pallet {
 			})?;
 
 			let merkle_vec = MerkleVec::<T>::get();
-			let len = merkle_vec.len();
-
-			for x in &merkle_vec {
-				Commitments::<T>::insert(x, true);
-			}
+			let _len = merkle_vec.len();
 
 			Commitments::<T>::insert(c, true);
 			let mut mt = MerkleTree::default();
-			let (leaf, index) = mt.insert(U256::from_big_endian(&commitment)).unwrap();
+			for x in &merkle_vec {
+				let (_leaf, _index) = mt.insert(*x).unwrap();
+			}
 
 			let root = mt.get_root();
 			Roots::<T>::insert(root, true);
 
 			T::Currency::transfer(&who, &account_id::<T>(), T::MixerBalance::get(), AllowDeath)?;
+
+			Self::deposit_event(Event::<T>::Deposited { commitment, commit_h256: c, root });
 
 			Ok(())
 		}
@@ -325,6 +327,7 @@ pub mod pallet {
 			ensure!(!BlackList::<T>::contains_key(who.clone()), Error::<T>::BlacklistRejected);
 
 			T::OtpApi::naive_approval(who.clone(), otp_proof, otp_root, timestamp)?;
+			Self::deposit_event(Event::<T>::PassOtpCheck);
 
 			let c = U256::from_big_endian(&commitment);
 
@@ -336,7 +339,7 @@ pub mod pallet {
 			})?;
 
 			let merkle_vec = MerkleVec::<T>::get();
-			let len = merkle_vec.len();
+			let _len = merkle_vec.len();
 
 			for x in &merkle_vec {
 				Commitments::<T>::insert(x, true);
@@ -344,12 +347,14 @@ pub mod pallet {
 
 			Commitments::<T>::insert(c, true);
 			let mut mt = MerkleTree::default();
-			let (leaf, index) = mt.insert(U256::from_big_endian(&commitment)).unwrap();
+			let (_leaf, _index) = mt.insert(U256::from_big_endian(&commitment)).unwrap();
 
 			let root = mt.get_root();
 			Roots::<T>::insert(root, true);
 
 			T::Currency::transfer(&who, &account_id::<T>(), T::MixerBalance::get(), AllowDeath)?;
+
+			Self::deposit_event(Event::<T>::Deposited { commitment, commit_h256: c, root });
 
 			Ok(())
 		}
@@ -380,7 +385,7 @@ pub mod pallet {
 			})?;
 
 			let merkle_vec = MerkleVec::<T>::get();
-			let len = merkle_vec.len();
+			let _len = merkle_vec.len();
 
 			for x in &merkle_vec {
 				Commitments::<T>::insert(x, true);
@@ -388,12 +393,14 @@ pub mod pallet {
 
 			Commitments::<T>::insert(c, true);
 			let mut mt = MerkleTree::default();
-			let (leaf, index) = mt.insert(U256::from_big_endian(&commitment)).unwrap();
+			let (_leaf, _index) = mt.insert(U256::from_big_endian(&commitment)).unwrap();
 
 			let root = mt.get_root();
 			Roots::<T>::insert(root, true);
 
 			T::Currency::transfer(&who, &account_id::<T>(), T::MixerBalance::get(), AllowDeath)?;
+
+			Self::deposit_event(Event::<T>::Deposited { commitment, commit_h256: c, root });
 
 			Ok(())
 		}
@@ -408,24 +415,30 @@ pub mod pallet {
 			receiver: T::AccountId,
 		) -> DispatchResult {
 			let sender = ensure_signed(origin)?;
+			log::info!("before check in withdraw");
 
 			ensure!(!BlackList::<T>::contains_key(sender.clone()), Error::<T>::BlacklistRejected);
 			ensure!(!BlackList::<T>::contains_key(receiver.clone()), Error::<T>::BlacklistRejected);
 
 			let nullifier_hash = U256::from_big_endian(&nullifier_hash);
+			log::info!("before check NoteHasBeanSpent");
 			ensure!(
 				!NullifierHashes::<T>::contains_key(nullifier_hash),
 				Error::<T>::NoteHasBeanSpent
 			);
 
+			log::info!("before U256::from_big_endian(&root);");
 			let root = U256::from_big_endian(&root);
-			ensure!(Roots::<T>::contains_key(root), Error::<T>::CanNotFindMerkelRoot);
 
+			log::info!("before proof");
 			let proof = parse_proof::<T>(proof)?;
+			log::info!("before get_verification_key");
 			let vk = get_verification_key::<T>()?;
 			let public_inputs = vec![root, nullifier_hash];
+			log::info!("before public_inputs");
 			let public_inputs = prepare_public_inputs(public_inputs);
 
+			log::info!("before verify");
 			match verify(vk, proof, public_inputs) {
 				Ok(true) => {
 					//Self::deposit_event(Event::<T>::VerificationSuccess { who: sender });
@@ -436,13 +449,22 @@ pub mod pallet {
 						T::MixerBalance::get(),
 						AllowDeath,
 					)?;
+
+					Self::deposit_event(Event::<T>::Withdrawed { receiver });
+					log::info!("withdraw ok");
+
 					//Ok(())
 				},
 				Ok(false) => {
 					//Self::deposit_event(Event::<T>::VerificationFailed);
+					log::info!("before verify fail");
+
 					return Err(Error::<T>::ProofVerificationFalse.into())
 				},
-				Err(e) => return Err(Error::<T>::ProofVerificationError.into()),
+				Err(e) => {
+					log::info!("before verify error {:?}", e);
+					return Err(Error::<T>::ProofVerificationError.into())
+				},
 			};
 
 			Ok(())
@@ -470,21 +492,20 @@ pub mod pallet {
 			);
 
 			let root = U256::from_big_endian(&root);
-			ensure!(Roots::<T>::contains_key(root), Error::<T>::CanNotFindMerkelRoot);
 
 			let proof = parse_proof::<T>(proof)?;
 			let vk = get_verification_key::<T>()?;
-			let inputs = get_public_inputs::<T>()?;
-
-			let inputs = prepare_public_inputs(inputs);
-			match verify(vk, proof, inputs) {
+			let public_inputs = vec![root, nullifier_hash];
+			log::info!("before public_inputs");
+			let public_inputs = prepare_public_inputs(public_inputs);
+			match verify(vk, proof, public_inputs) {
 				Ok(true) => {
 					//Self::deposit_event(Event::<T>::VerificationSuccess { who: sender });
 					NullifierHashes::<T>::insert(nullifier_hash, true);
 
 					let amount = T::SwapApi::get_target_amount(order_id);
 
-					ensure!(amount == T::MixerBalance::get(), Error::<T>::AmountMustBeEqu);
+					ensure!(amount == T::MixerBalance::get(), Error::<T>::SwapAmountMustBeEqu);
 
 					T::SwapApi::inter_take_order(account_id::<T>(), order_id, receiver)?;
 				},
@@ -492,7 +513,10 @@ pub mod pallet {
 					//Self::deposit_event(Event::<T>::VerificationFailed);
 					return Err(Error::<T>::ProofVerificationFalse.into())
 				},
-				Err(e) => return Err(Error::<T>::ProofVerificationError.into()),
+				Err(e) => {
+					log::info!("verify error {:?}", e);
+					return Err(Error::<T>::ProofVerificationError.into())
+				},
 			};
 
 			Ok(())
@@ -501,32 +525,13 @@ pub mod pallet {
 		#[pallet::call_index(6)]
 		#[pallet::weight(0)]
 		pub fn add_black_list(origin: OriginFor<T>, acc: T::AccountId) -> DispatchResult {
-			let who = ensure_signed(origin)?;
+			let _who = ensure_signed(origin)?;
 
 			BlackList::<T>::insert(acc, true);
 
-			Self::deposit_event(Event::<T>::VerificationSetupCompleted);
+			Self::deposit_event(Event::<T>::BlackListAdded);
 			Ok(())
 		}
-	}
-
-	fn get_public_inputs<T: Config>() -> Result<Vec<sp_core::U256>, sp_runtime::DispatchError> {
-		let public_inputs = PublicInputStorage::<T>::get();
-		let deserialized_public_inputs = deserialize_public_inputs(public_inputs.as_slice())
-			.map_err(|_| Error::<T>::MalformedPublicInputs)?;
-		Ok(deserialized_public_inputs)
-	}
-
-	fn store_public_inputs<T: Config>(
-		pub_input: Vec<u8>,
-	) -> Result<Vec<U256>, sp_runtime::DispatchError> {
-		let public_inputs: PublicInputsDef<T> =
-			pub_input.try_into().map_err(|_| Error::<T>::TooLongPublicInputs)?;
-		let deserialized_public_inputs = deserialize_public_inputs(public_inputs.as_slice())
-			.map_err(|_| Error::<T>::MalformedPublicInputs)?;
-
-		PublicInputStorage::<T>::put(public_inputs);
-		Ok(deserialized_public_inputs)
 	}
 
 	fn get_verification_key<T: Config>() -> Result<VerificationKey, sp_runtime::DispatchError> {
@@ -544,7 +549,7 @@ pub mod pallet {
 		vec_vk: Vec<u8>,
 	) -> Result<VKey, sp_runtime::DispatchError> {
 		let vk: VerificationKeyDef<T> = vec_vk.try_into().map_err(|e| {
-			//println!("@@@ store_verification_key err: {:?}", e);
+			log::info!("@@@ store_verification_key err: {:?}", e);
 			Error::<T>::TooLongVerificationKey
 		})?;
 		let deserialized_vk = VKey::from_json_u8_slice(vk.as_slice())

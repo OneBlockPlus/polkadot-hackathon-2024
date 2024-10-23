@@ -20,7 +20,7 @@ export const Menu = ({
   return (
     <nav
       onMouseLeave={() => setDropdownVisible(false)} // resets the state
-      className="relativeflex justify-center space-x-4 px-8 py-6 "
+      className="relative flex justify-center space-x-4 px-4 py-6 "
     >
       {children}
     </nav>

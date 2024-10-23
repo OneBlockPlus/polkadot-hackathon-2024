@@ -1,0 +1,17 @@
+[relaychain]
+chain = "rococo-local"
+
+[[relaychain.nodes]]
+name = "alice"
+validator = true
+
+[[relaychain.nodes]]
+name = "bob"
+validator = true
+
+[[parachains]]
+id = 2000
+default_command = "./target/release/polkattest-node"
+
+[[parachains.collators]]
+name = "collator-01"

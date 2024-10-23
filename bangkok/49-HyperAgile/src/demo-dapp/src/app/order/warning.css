@@ -1,0 +1,31 @@
+div.warning {
+    padding: 4rem 3.5rem;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    column-gap: 2rem;
+}
+
+div.warning > div.shop {
+    padding: 0.75rem;
+    border: 1px solid var(--text);
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+div.warning > div.message {
+    padding: 0.8rem;
+
+    display: flex;
+    column-gap: 0.7rem;
+
+    background-color: var(--secondary-background);
+    border-radius: 10px;
+}
+
+div.warning > div.message > img {
+    width: 1.25rem;
+    height: auto;
+}
