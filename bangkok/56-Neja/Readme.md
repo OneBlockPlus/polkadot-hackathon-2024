@@ -77,17 +77,20 @@ Neja is ideal for cross-chain applications, creating standards for high interope
 ### Important Links
 
 - **Neja Pallet**: https://github.com/sheetalojha/neja-pallet
+
   Neja Pallet is the implmentation of Cloud Functions on Substrate Chain. It's a simple design yet provides huge value in terms of possiblities of apps that can be built on top of it.
 
 - **Neja CLI**: https://github.com/sheetalojha/neja-cli
+
   Neja CLI is an internal library that makes it easier for devs to work, compile & build wasm without ever leaving the VS Code. 
 
 - **Neja Template**: https://github.com/sheetalojha/neja-template
+
   Neja Template is a simple Next.js template that has pre-integrated Neja CLI, and basic project's boilerplate initiated in it. The project can be used to directly to build apps. It's the starting point for app devs.
 
 
 ### Team
 
 **Sheetal Ojha**
-Founder, Portalx 
+Founder, [Portalx](https://portalx.sh) 
 Polkadot Blockchain Academy, Singapore Graduate
