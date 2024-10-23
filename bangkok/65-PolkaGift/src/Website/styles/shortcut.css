@@ -1,0 +1,20 @@
+.div-center{
+    display: flex;
+    justify-content: center;
+}
+
+.yellowbutton{
+    background: rgb(234 199 0) !important;
+    cursor: pointer;
+    color: #fffcef;
+    width: 100% !important;
+    display: flex;
+    font-weight: 500;
+    height: 100%;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+h7 {
+    font-size: 0.7rem;
+}
