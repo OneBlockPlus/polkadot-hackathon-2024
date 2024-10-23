@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-image     : url('/background.jpeg');
+  background-repeat    : no-repeat;
+  background-size      : cover;
+  background-attachment: fixed;
+  background-position  : center;
+  min-height           : 100vh;
+}
+
+@layer components {
+  .debug {
+    @apply border border-red-500;
+  }
+
+  .horizontal {
+    @apply flex flex-row;
+  }
+
+  .vertical {
+    @apply flex flex-col;
+  }
+
+  .center-v {
+    @apply justify-center;
+  }
+
+  .center-h {
+    @apply items-center;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
