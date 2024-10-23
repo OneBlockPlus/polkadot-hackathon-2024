@@ -4,11 +4,12 @@ import Home from '../pages/Home.jsx';
 import DGPT from '../pages/DGPT.jsx';
 import Account from '../pages/Account.jsx';
 import DataPool from '../pages/DataPool.jsx';
-import NavigationBar from '../components/navigation/NavigationBar.jsx';
 import ContributeDataPool from '../pages/ContributeDataPool.jsx';
+import BuyDataPool from '../pages/BuyDataPool.jsx';
+
+import NavigationBar from '../components/navigation/NavigationBar.jsx';
 
 const AppRouter = () => {
-
     return (
         <Router>
             <Routes>
@@ -18,6 +19,7 @@ const AppRouter = () => {
                     <Route path="/account" element={<Account />} />
                     <Route path="/datapool" element={<DataPool />} />
                     <Route path="/datapool/contribute/:name" element={<ContributeDataPool />} />
+                    <Route path="/datapool/buy/:name" element={<BuyDataPool />} />
                 </Route>
             </Routes>
         </Router>

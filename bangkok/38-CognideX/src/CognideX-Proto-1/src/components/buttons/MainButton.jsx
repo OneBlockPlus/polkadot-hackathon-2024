@@ -9,10 +9,7 @@ const Container = styled.div`
     height: auto;
     background-color: black;
     border-radius: 10px;
-    border-left: 2px solid white;
-    border-bottom: 2px solid white;
-    border-right: 2px solid white;
-    border-top: 2px solid white;
+    border: 2px solid white;
     position: relative;
     font-size: 20px;
     font-family: 'Modernist', sans-serif;
@@ -35,6 +32,7 @@ const Container = styled.div`
         transition: all 0.3s ease-in-out;
         font-size: 20px;
         font-family: 'Modernist', sans-serif;
+        font-weight: 600;
     }
 
     /* Initial state for ::before (shows '0') */
@@ -68,6 +66,37 @@ const Container = styled.div`
         box-shadow: 0 0 10px rgba(255, 255, 255, 1);
         cursor: pointer;
     }
+
+    /* Active state */
+    ${({ $active }) => $active && `
+        border: 2px solid var(--primary-color);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 1);
+
+        /*Switch the colors of the pseudo-elements*/
+        &::before {
+            content: '1';
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        &::after {
+            content: '2';
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        &:hover {
+            border: 2px solid white;
+            box-shadow: 0 0 0 rgba(255, 255, 255, 1);
+            cursor: pointer;
+        }
+    `}
+
+    /* Media query for smaller screens */
+    @media (max-width: 1000px) {
+        width: 160px;
+        height: auto;
+    }
 `;
 
 const ButtonInner = styled.div`
@@ -80,8 +109,9 @@ const ButtonInner = styled.div`
     width: auto;
     padding: 10px;
 
-    h4 {
+    h5 {
         margin: 0;
+        font-size: 1.2rem;
     }
 
     p {
@@ -90,13 +120,13 @@ const ButtonInner = styled.div`
     }
 `;
 
-const MainButton = ({ header, subheader, onClick }) => {
+const MainButton = ({ header, subheader, onClick, active }) => {
     return (
-        <Container onClick={onClick}>
+        <Container onClick={onClick} $active={active}>
             <ButtonInner>
-                <h4>
+                <h5>
                     {header}
-                </h4>
+                </h5>
                 <p>
                     {subheader}
                 </p>

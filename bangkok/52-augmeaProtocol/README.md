@@ -192,9 +192,9 @@ None
 
 ** Mandatory before offline demo, submit aterial for Demo
 
-| Materiial    | Link                                                                                                 |
+| Material     | Link                                                                                                 |
 | ------------ | ---------------------------------------------------------------------------------------------------- |
-| Video        |                                                                                                      |
+| Video        | https://youtu.be/n30R0Vmq10w                                                                         |
 | Presentation | https://drive.google.com/file/d/1cUFQYWzzS0RW2pYS8A55ATlg1PY-tf4-/view?usp=sharing                   |
 
 

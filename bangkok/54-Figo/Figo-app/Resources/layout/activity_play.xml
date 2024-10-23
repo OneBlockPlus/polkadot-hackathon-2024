@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   tools:context=".PlayActivity">
+
+    <!-- Create Room and Join Room Layout -->
+    <LinearLayout
+            android:id="@+id/createJoinLayout"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        <Button
+                android:id="@+id/createRoomButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Create Room" />
+
+        <EditText
+                android:id="@+id/roomCodeEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Room Code"
+                android:layout_marginTop="16dp"
+                android:inputType="text" />
+
+        <Button
+                android:id="@+id/joinRoomButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Join Room" />
+    </LinearLayout>
+
+    <!-- Waiting for Players Layout -->
+    <LinearLayout
+            android:id="@+id/waitingLayout"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+                android:id="@+id/roomCodeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Room Code: "
+                android:textSize="18sp" />
+
+        <TextView
+                android:id="@+id/playersListTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Waiting for players..."
+                android:textSize="16sp" />
+
+        <!-- ImageViews for Players -->
+        <ImageView
+                android:id="@+id/player1ImageView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="8dp" />
+        <ImageView
+                android:id="@+id/player2ImageView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="8dp" />
+        <ImageView
+                android:id="@+id/player3ImageView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="8dp" />
+        <ImageView
+                android:id="@+id/player4ImageView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="8dp" />
+    </LinearLayout>
+
+    <!-- Clicker Game Layout -->
+    <LinearLayout
+            android:id="@+id/clickerGameLayout"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        <Button
+                android:id="@+id/voteButton"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:text="Click!" />
+
+        <TextView
+                android:id="@+id/timerTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="60"
+                android:textSize="24sp" />
+    </LinearLayout>
+
+    <!-- Leaderboard Layout -->
+    <LinearLayout
+            android:id="@+id/leaderboardLayout"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+                android:id="@+id/winnerTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Winner: "
+                android:textSize="20sp" />
+
+        <!-- Winner's ImageView -->
+        <ImageView
+                android:id="@+id/winnerImageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="16dp"
+         />
+
+        <TextView
+                android:id="@+id/playersListTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Leaderboard:\n"
+                android:textSize="16sp" />
+
+        <Button
+                android:id="@+id/backToMenuButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Back to Menu" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

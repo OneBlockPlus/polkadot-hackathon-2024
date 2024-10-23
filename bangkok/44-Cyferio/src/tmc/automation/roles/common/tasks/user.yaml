@@ -1,0 +1,31 @@
+- name: create sovereign group
+  become: true
+  become_user: root
+  group:
+    name: sovereign
+    state: present
+
+- name: create sovereign user
+  become: true
+  become_user: root
+  user:
+    name: sovereign
+    create_home: yes
+    groups: sovereign
+    shell: /bin/bash
+
+- name: add ubuntu user to sovereign group
+  become: true
+  ansible.builtin.user:
+    name: ubuntu
+    groups: sovereign
+    append: yes
+
+- name: ensure the /home/sovereign directory has sovereign group ownership
+  become: true
+  ansible.builtin.file:
+    path: /home/sovereign
+    owner: sovereign
+    group: sovereign
+    state: directory
+    recurse: yes

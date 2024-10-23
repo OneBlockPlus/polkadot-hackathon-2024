@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+  <!-- Required permissions -->
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.NFC_TRANSACTION_EVENT" />
+  <uses-permission android:name="android.permission.NFC"/>
+  <uses-feature android:name="android.hardware.nfc" android:required="true"/>
+
+  <!-- Application configuration -->
+  <application
+          android:allowBackup="true"
+          android:icon="@mipmap/appicon"
+          android:label="@string/app_name"
+          android:roundIcon="@mipmap/appicon_round"
+          android:supportsRtl="true">
+
+    <!-- Declare LoadingActivity as the main entry point -->
+    <activity android:name="FigoApp.LoadingActivity"
+              android:theme="@style/Theme.AppCompat.NoActionBar.Fullscreen"
+              android:exported="false">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+    
+    <activity android:name="FigoApp.MainActivity"
+              android:theme="@style/Theme.AppCompat.NoActionBar.Fullscreen"
+              android:exported="false">
+    </activity>
+
+    <activity android:name="FigoApp.ScanActivity"
+              android:theme="@style/Theme.AppCompat.NoActionBar.Fullscreen"
+              android:exported="false">
+    </activity>
+
+    <activity android:name="FigoApp.StoreActivity"
+              android:theme="@style/Theme.AppCompat.NoActionBar.Fullscreen"
+              android:exported="false">
+    </activity>
+
+    <activity android:name="FigoApp.PlayActivity"
+              android:theme="@style/Theme.AppCompat.NoActionBar.Fullscreen"
+              android:exported="false">
+    </activity>
+    
+  </application>
+
+</manifest>

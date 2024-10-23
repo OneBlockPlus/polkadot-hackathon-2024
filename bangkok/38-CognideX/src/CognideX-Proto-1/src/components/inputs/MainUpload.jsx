@@ -75,6 +75,7 @@ const StyledButton = styled.div`
     position: relative;
     width: calc(100% - 20px);
     height: calc(100% - 40px);
+    min-height: 100px;
     background: black;
     padding: 10px;
     border-radius: 8px;

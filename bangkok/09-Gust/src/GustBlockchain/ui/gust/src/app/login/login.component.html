@@ -1,0 +1,72 @@
+<section id="login" class="login-section">
+  <div class="form-card">
+    <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+      <div *ngIf="currentStep === 1">
+        <div class="form-title">Login</div>
+
+        <!-- <div class="check">
+          <label>
+            <input type="checkbox" [(ngModel)]="isEmail" name="isEmail" />
+            Signup with Email
+          </label>
+        </div> -->
+
+        <!-- <div *ngIf="isEmail">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            [(ngModel)]="emailOrphone_number"
+            required
+          />
+        </div> -->
+        <!-- <div *ngIf="!isEmail">
+          <label for="phone_number">Phone Number</label>
+          <input
+            type="text"
+            id="phone_number"
+            name="phone_number"
+            [(ngModel)]="emailOrphone_number"
+            required
+          />
+        </div> -->
+        <label for="phone_number">WhatsApp Number</label>
+          <input
+            type="text"
+            id="phone_number"
+            name="phone_number"
+            [(ngModel)]="phone_number"
+            required
+          />
+
+        <button type="button" (click)="nextStep(loginForm)" [disabled]="!loginForm.form.valid">
+          Next
+        </button>
+      </div>
+
+      <div *ngIf="currentStep === 2">
+        <div class="form-subtitle">Verify OTP</div>
+        <label for="otp">Enter your OTP</label>
+        <input
+          type="text"
+          id="otp"
+          name="otp"
+          [(ngModel)]="otp"
+          required
+        />
+
+        <button type="button" (click)="prevStep()">Previous</button>
+        <button type="submit" [disabled]="!loginForm.form.valid">Submit</button>
+      </div>
+    </form>
+    <div class="newUser">
+      <span>Don't have an Account?</span>
+      <a href="/register">Sign Up</a>
+    </div>
+    <div style="text-align:center;margin-top:40px;">
+      <span class="step" (click)="setActiveTab(1)" [ngClass]="{'active': currentStep === 1}"></span>
+      <span class="step" (click)="setActiveTab(1)" [ngClass]="{'active': currentStep === 2}"></span>
+    </div>
+  </div>
+</section>

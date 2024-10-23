@@ -1,0 +1,10 @@
+{
+  "resourceName": "cognidexDataPoolDynamo",
+  "tableName": "cognidexDataPoolDynamo",
+  "partitionKey": {
+    "fieldName": "dataPoolId",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

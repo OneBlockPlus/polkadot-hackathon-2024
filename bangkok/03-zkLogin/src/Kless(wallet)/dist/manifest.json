@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "Kless Wallet",
+  "version": "1.0.0",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "permissions": [
+    "storage",
+    "tabs",
+    "alarms",
+    "unlimitedStorage",
+    "identity"
+  ],
+  "content_scripts": [
+    {
+      "js": [
+        "assets/index.ts-loader-DB425EEd.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "background": {
+    "service_worker": "service-worker-loader.js",
+    "type": "module"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  },
+  "web_accessible_resources": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "resources": [
+        "assets/PortStream-DB5rsuAT.js",
+        "assets/WindowMessageStream-BhNzlv8e.js",
+        "assets/Message-BmumhDZC.js",
+        "assets/mergeMap-CRZcgDlV.js",
+        "assets/index.ts-OlX_apVk.js",
+        "assets/lastValueFrom-DQrRdIu3.js",
+        "assets/index.ts-tgCHJVKI.js"
+      ],
+      "use_dynamic_url": true
+    }
+  ],
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAye2BLBrnPGLrpzJc4VONA1hpcPVe8ZP022lld02a+thAe2I56CH5WXNvkfKCZDk9ZmcKNX1Ey3S8ewCIALjjbFOS+5cEqBeyFmQRIiQEufcRDoVaXwfc35ZbTKYV0cNbhzLycCZKmou4FUclgnuCH0M083JoQ6QMh5zJiTxJLr0JcG345tRKECB6ZEASu9irP2AO+duT+8z6FJvdJxUGxmsOkQaQ7EqC/WHxzksG92xc0bu/NzSGLjriE26HQcVJnsVybNtiBgDbDwJyH7GwjwqMpBfwtjR4mLmx6U22cAxMHlnsb+VtUrhcWb4pVY/19fZi0BqHaYMsmqehxP3FYQIDAQAB"
+}

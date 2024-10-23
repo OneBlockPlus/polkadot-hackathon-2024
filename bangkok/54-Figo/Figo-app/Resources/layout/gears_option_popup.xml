@@ -1,0 +1,47 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content" xmlns:tools="http://schemas.android.com/tools"
+                android:layout_marginTop="225dp"
+                android:background="@drawable/gears_equip_popup">
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Equip your Gears"
+              android:textSize="30dp"
+              android:layout_marginLeft="75dp"
+              android:layout_marginTop="50dp"
+              android:textColor="@android:color/black"
+              android:textFontWeight="500" android:id="@+id/textView"/>
+
+    <Button android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:id="@+id/equip_button_gears_option"
+            android:layout_marginTop="425dp"
+            android:layout_marginLeft="100dp"
+            android:background="@android:color/transparent"
+            />
+    
+    <Button android:layout_width="32dp" android:layout_height="32dp"
+            android:layout_marginBottom="25dp"
+            android:layout_marginLeft="320dp"
+            android:layout_alignBottom="@+id/textView"
+            android:id="@+id/close_button_gears_option_popup"
+            android:background="@android:color/transparent"
+    />
+
+    
+            
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/gears_option_recycler_view"
+            android:layout_width="235dp"
+            android:layout_height="325dp"
+            android:layout_marginTop="110dp"
+            android:layout_marginLeft="38dp"
+            android:padding="4dp"
+            android:visibility="visible"
+            android:clipToPadding="false"
+            android:scrollbars="vertical"
+            android:orientation="vertical"
+            tools:listitem="@layout/unlocked_gear_item"
+    />
+</RelativeLayout>

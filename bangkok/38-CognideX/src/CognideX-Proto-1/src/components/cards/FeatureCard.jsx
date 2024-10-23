@@ -37,11 +37,20 @@ const LogoContainer = styled.div`
   left: 10px;
   width: 80px;
   height: 80px;
+
+  @media (max-width: 768px) {
+    width: 60px;
+    height: 60px;
+  }
 `;
 
 const Content = styled.div`
   padding: 70px 10px 10px 10px; /* Adjusted to make space for the logo */
   color: white;
+
+  @media (max-width: 768px) {
+    padding: 40px 10px 10px 10px; /* Adjusted to make space for the logo */
+  }
 
   h2 {
     text-align: ${(props) => (props.$direction === 'left' ? 'left' : 'right')};
@@ -74,6 +83,13 @@ const Container = styled.div`
   min-height: 250px;
   max-height: 300px;
 
+  @media (max-width: 768px) {
+    height: auto;
+    min-height: 200px;
+    width: 100%;
+    max-width: 100%;
+  }
+
   &::before,
   &::after {
     position: absolute;
@@ -89,6 +105,7 @@ const Container = styled.div`
     color: white;
     transition: all 0.3s ease-in-out;
     font-size: 20px;
+    font-family: 'Modernist', sans-serif;
   }
 
   &::before {

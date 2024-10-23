@@ -1,0 +1,31 @@
+{
+    "manifest_version": 3,
+    "name": "Polka Ads",
+    "version": "1.6",
+    "description": "Displays product purchase action on registered YouTube videos.",
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.youtube.com/watch*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ],
+    "host_permissions": [
+        "https://polka-ads.vercel.app/*",
+        "https://www.youtube.com/*"
+    ],
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'; connect-src https://youtube-purchase.vercel.app/checkout"
+    },
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "icons/icon16.png",
+            "48": "icons/icon48.png",
+            "128": "icons/icon128.png"
+        }
+    }
+}

@@ -2,9 +2,11 @@ import logging
 import os.path
 import random
 from time import time
+from typing import List
 
 import numpy as np
 from pysam import VariantFile
+from sklearn.decomposition import PCA
 
 from similarity import dna_to_vector, cosine_distance
 from strings import fill_to_len
@@ -16,6 +18,7 @@ REF_FILENAME = "Homo_sapiens.GRCh38.dna.primary_assembly.fa"
 BASE_CHROMOSOMES = [str(x) for x in range(1, 23)]
 BASE_CHROMOSOMES.extend(["X", "Y", "MT"])
 COMPUTATIONS_DIR = "computations/"
+PCA_COMPONENTS = 16
 
 
 def split_ref_genome_to_chr_files(filepath: str):
@@ -41,6 +44,29 @@ def split_ref_genome_to_chr_files(filepath: str):
         fwrite.close()
 
 
+def read_chromosomes(fa_filepath: str):
+    ref_chr = []
+    alt_chr = []
+    start = time()
+    with open(fa_filepath, 'r') as fread:
+        current_pointer = "ref"
+        for i, line in enumerate(fread):
+            if line.startswith('>'):
+                current_pointer = line.split("_")[0][1:]
+                continue
+
+            if current_pointer == "ref":
+                ref_chr.append(line.strip())
+            if current_pointer == "alt":
+                alt_chr.append(line.strip())
+
+    ref_chr = "".join(ref_chr)
+    alt_chr = "".join(alt_chr)
+
+    print(f"File {fa_filepath} loaded in {time() - start} seconds")
+    return ref_chr, alt_chr
+
+
 def compute_chromosomes_similarity_from_cache(vcf_genome_filepath: str):
     basename = vcf_genome_filepath.split(".")[0]
 
@@ -53,25 +79,8 @@ def compute_chromosomes_similarity_from_cache(vcf_genome_filepath: str):
         if not os.path.exists(fa_filepath):
             raise FileNotFoundError(f"File {fa_filepath} not found. Run align_chromosomes() first.")
 
-        ref_chr = []
-        alt_chr = []
-        start = time()
-        with open(fa_filepath, 'r') as fread:
-            current_pointer = "ref"
-            for i, line in enumerate(fread):
-                if line.startswith('>'):
-                    current_pointer = line.split("_")[0][1:]
-                    continue
+        ref_chr, alt_chr = read_chromosomes(fa_filepath)
 
-                if current_pointer == "ref":
-                    ref_chr.append(line.strip())
-                if current_pointer == "alt":
-                    alt_chr.append(line.strip())
-
-        ref_chr = "".join(ref_chr)
-        alt_chr = "".join(alt_chr)
-
-        print(f"File {fa_filepath} loaded in {time() - start} seconds")
         start = time()
         vec1 = dna_to_vector(ref_chr)
         vec2 = dna_to_vector(alt_chr)
@@ -171,6 +180,38 @@ def align_all_chromosomes(vcf_genome_filepath):
     for chr_id in BASE_CHROMOSOMES:
         chr_ref = read_ref_chromosome(chr_id)
         align_chromosomes(chr_ref, chr_id, vcf_genome_filepath)
+
+
+def decode_hex_to_float(hex_string: str) -> np.ndarray:
+    b = bytes.fromhex(hex_string)
+    return np.frombuffer(b, np.float64)
+
+
+def make_chromosomal_fingerprint(chromosome: np.ndarray) -> np.ndarray:
+    """
+    Input is list of all human bases in a specific chromosome (n, chromosome).
+    Output is location of one specific DNA in the entire DNA space, so it can be used in similarity calculations.
+    """
+
+    pca = PCA(n_components=PCA_COMPONENTS)
+    components = pca.fit_transform(chromosome)
+    return components
+
+
+def make_dna_fingerprint(chr_reducts: List[np.ndarray], output_index) -> str:
+    """
+    Input is list of all DNAs as List of 23 PCA-reduced chromosomes each of shape (n, 16).
+    Output is location of every chromosome of a given human in their chromosomal spaces,
+        so it can be used in similarity calculations.
+    """
+
+    components = np.array([])
+    for chromosome in chr_reducts:
+        components = np.append(components, chromosome[output_index])
+    assert components.shape[0] == 24 * PCA_COMPONENTS  # either send X+Y, or X twice
+
+    b_fp = components.tobytes()
+    return ''.join('{:02x}'.format(x) for x in b_fp)
 
 
 if __name__ == '__main__':

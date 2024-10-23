@@ -1,0 +1,26 @@
+{
+  "resourceName": "cognidexMerkleTreeDynamo",
+  "tableName": "cognidexMerkleTreeDynamo",
+  "partitionKey": {
+    "fieldName": "treeName",
+    "fieldType": "string"
+  },
+  "sortKey": {
+    "fieldName": "treeInfo",
+    "fieldType": "string"
+  },
+  "gsi": [
+    {
+      "name": "merkleRootIndex",
+      "partitionKey": {
+        "fieldName": "treeRoot",
+        "fieldType": "string"
+      },
+      "sortKey": {
+        "fieldName": "treeInfo",
+        "fieldType": "string"
+      }
+    }
+  ],
+  "triggerFunctions": []
+}

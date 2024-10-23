@@ -307,6 +307,7 @@ fn split_nft() {
         assert_eq!(NFTDetails::<Test>::get((collection_id, 0)), Some(splited_nft_info.clone()));
         assert_eq!(NFTDetails::<Test>::get((collection_id, 1)), Some(splited_nft_info.clone()));
         assert_eq!(NFTDetails::<Test>::get((collection_id, 2)), Some(splited_nft_info.clone()));
+        assert!(NFTDetails::<Test>::get((collection_id, 0)).unwrap().merged_nft.is_none());
     })
 }
 

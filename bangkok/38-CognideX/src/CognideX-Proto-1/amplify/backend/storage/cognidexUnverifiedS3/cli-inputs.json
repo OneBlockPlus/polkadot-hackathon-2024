@@ -1,0 +1,12 @@
+{
+  "resourceName": "cognidexUnverifiedS3",
+  "policyUUID": "ced988f8",
+  "bucketName": "cognidex-unverified-s3",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ"
+  ],
+  "groupAccess": {}
+}
