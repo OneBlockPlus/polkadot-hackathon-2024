@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 
 import FirstSection from '../components/sections/FirstSection';
@@ -7,46 +7,76 @@ import DataPoolBackground from '../components/backgrounds/DataPoolBackground';
 import CognideXLogo from '../assets/logo/cognidex-logo-black-gif.gif';
 import MainButton from '../components/buttons/MainButton';
 import FeatureCard from '../components/cards/FeatureCard';
+import FeatureCardInvert from '../components/cards/FeatureCardInvert';
 
 import { faLinkedin, faTiktok, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faDigitalTachograph } from '@fortawesome/free-solid-svg-icons/faDigitalTachograph';
+
+import { getDataPoolList } from '../apis/DataPoolInfo';
 
 const DataPool = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const navigate = useNavigate();
-    const roleParam = searchParams.get('role') || 'buy';
+    const roleParam = searchParams.get('role') || '';
     const role = roleParam;
+    const [dataPoolInfo, setDataPoolInfo] = useState(null);
 
     const changeRole = (newRole) => {
-        // Update the URL with the new role
         setSearchParams({ role: newRole });
 
-        // Scroll to the appropriate section
-        let element;
-        if (newRole === 'buy') {
-            element = document.getElementById('buy-data-pool');
-        } else {
-            element = document.getElementById('contribute-data-pool');
-        }
-
+        const element = document.getElementById(newRole === 'buy' ? 'buy-data-pool' : 'contribute-data-pool');
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
         }
     };
 
     useEffect(() => {
-        if (!role) return;
-        // Scroll to the appropriate section when the role changes (e.g., via browser navigation)
-        let element;
-        if (role === 'buy') {
-            element = document.getElementById('buy-data-pool');
-        } else {
-            element = document.getElementById('contribute-data-pool');
-        }
+        if (!roleParam) return;
 
+        const element = document.getElementById(roleParam === 'buy' ? 'buy-data-pool' : 'contribute-data-pool');
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
         }
-    }, [role]);
+    }, [roleParam]);
+
+    // Debounced scroll handler to prevent frequent state changes
+    const handleScroll = useCallback(() => {
+        if (role) return;
+
+        if (window.scrollY > 100) {
+            setSearchParams({ role: 'buy' });
+        }
+    }, [role, setSearchParams]);
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            // Clean up the event listener on unmount
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [handleScroll]);
+
+    const fetchDataPoolInfo = useCallback(async () => {
+        const data = await getDataPoolList();
+        setDataPoolInfo(data);
+    }, []);
+
+    const idConverter = (id) => {
+        switch (id) {
+            case 'linkedin':
+                return faLinkedin;
+            case 'tiktok':
+                return faTiktok;
+            case 'youtube':
+                return faYoutube;
+            default:
+                return faDigitalTachograph;
+        }
+    }
+
+    useEffect(() => {
+        fetchDataPoolInfo();
+    }, [fetchDataPoolInfo]);
 
     return (
         <DataPoolBackground>
@@ -83,7 +113,18 @@ const DataPool = () => {
                 >
                     <h1>Buy</h1>
                     <h4>Individual Contributions or Entire DataPools</h4>
-                    <div className='card-collection'></div>
+                    <div className='card-collection'>
+                        {dataPoolInfo?.map((dataPool, index) => (
+                            <FeatureCardInvert
+                                key={index}
+                                icon={idConverter(dataPool.dataPoolId)}
+                                title={dataPool.dataPoolName}
+                                description={<>Max Price per Upload:<br></br> {dataPool.maxIncentive} CGDX</>}
+                                direction='left'
+                                onClick={() => navigate(`/datapool/buy/${dataPool.dataPoolName}`)}
+                            />
+                        ))}
+                    </div>
                 </div>
                 <div
                     id='contribute-data-pool'
@@ -93,9 +134,16 @@ const DataPool = () => {
                     <h1>Contribute</h1>
                     <h4>Monetize your Data by uploading into the various DataPools</h4>
                     <div className='card-collection'>
-                        <FeatureCard title='LinkedIn' description={<>Upload your LinkedIn data <br></br> Earn up to 100 CGDX</>} direction='left' icon={faLinkedin} onClick={() => navigate('/datapool/contribute/LinkedIn')} />
-                        <FeatureCard title='TikTok' description={<>Upload your TikTok data <br></br> Earn up to 80 CGDX</>} direction='left' icon={faTiktok} onClick={() => navigate('/datapool/contribute/TikTok')} />
-                        <FeatureCard title='YouTube' description={<>Upload your YouTube data <br></br> Earn up to 60 CGDX</>} direction='left' icon={faYoutube} onClick={() => navigate('/datapool/contribute/YouTube')} />
+                        {dataPoolInfo?.map((dataPool, index) => (
+                            <FeatureCard
+                                key={index}
+                                icon={idConverter(dataPool.dataPoolId)}
+                                title={dataPool.dataPoolName}
+                                description={<>Upload your {dataPool.dataPoolName} data <br></br> Earn up to {dataPool.maxIncentive} CGDX</>}
+                                direction='left'
+                                onClick={() => navigate(`/datapool/contribute/${dataPool.dataPoolName}`)}
+                            />
+                        ))}
                     </div>
                 </div>
             </DataPoolSection>

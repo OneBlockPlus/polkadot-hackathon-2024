@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "paths": {
+    "/transactions": {
+      "name": "/transactions",
+      "lambdaFunction": "cognidexTransactionsLambda",
+      "permissions": {
+        "setting": "protected",
+        "auth": [
+          "create",
+          "read"
+        ],
+        "guest": [
+          "create",
+          "read"
+        ]
+      }
+    }
+  }
+}

@@ -16,17 +16,41 @@
       "auth": {
         "cognidexproto1fd4d481d": {}
       },
+      "storage": {
+        "cognidexUnverifiedS3": {},
+        "cognidexFileUploadDynamo": {},
+        "cognidexMerkleTreeDynamo": {},
+        "cognidexDataPoolDynamo": {},
+        "cognidexTransactionsDynamo": {}
+      },
       "function": {
-        "cognidexUserLambda": {
+        "cognidexFileUploadLambda": {
           "deploymentBucketName": "amplify-cognidexproto1-dev-70e21-deployment",
-          "s3Key": "amplify-builds/cognidexUserLambda-45624c30343350797a45-build.zip"
+          "s3Key": "amplify-builds/cognidexFileUploadLambda-45532f72517139567032-build.zip"
+        },
+        "cognidexMerkleTreeLambda": {
+          "deploymentBucketName": "amplify-cognidexproto1-dev-70e21-deployment",
+          "s3Key": "amplify-builds/cognidexMerkleTreeLambda-67426d53616756655847-build.zip"
+        },
+        "cognidexSmartContractLambda": {
+          "deploymentBucketName": "amplify-cognidexproto1-dev-70e21-deployment",
+          "s3Key": "amplify-builds/cognidexSmartContractLambda-4b46592b4d5455416b34-build.zip"
+        },
+        "cognidexDataPoolLambda": {
+          "deploymentBucketName": "amplify-cognidexproto1-dev-70e21-deployment",
+          "s3Key": "amplify-builds/cognidexDataPoolLambda-70772f4b5a3568534659-build.zip"
+        },
+        "cognidexTransactionsLambda": {
+          "deploymentBucketName": "amplify-cognidexproto1-dev-70e21-deployment",
+          "s3Key": "amplify-builds/cognidexTransactionsLambda-6e686978594533695059-build.zip"
         }
       },
-      "storage": {
-        "cognidexUserDynamo": {}
-      },
       "api": {
-        "cognidexUserApi": {}
+        "cognidexFileUploadApi": {},
+        "cognidexMerkleTreeApi": {},
+        "cognidexSmartContractApi": {},
+        "cognidexDataPoolApi": {},
+        "cognidexTransactionsApi": {}
       }
     }
   }

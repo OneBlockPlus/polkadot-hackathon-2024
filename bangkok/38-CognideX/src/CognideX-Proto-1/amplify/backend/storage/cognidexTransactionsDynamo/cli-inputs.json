@@ -1,0 +1,18 @@
+{
+  "resourceName": "cognidexTransactionsDynamo",
+  "tableName": "cognidexTransactionsDynamo",
+  "partitionKey": {
+    "fieldName": "transactionHash",
+    "fieldType": "string"
+  },
+  "gsi": [
+    {
+      "name": "clientAccountAddressIndex",
+      "partitionKey": {
+        "fieldName": "clientAccountAddress",
+        "fieldType": "string"
+      }
+    }
+  ],
+  "triggerFunctions": []
+}

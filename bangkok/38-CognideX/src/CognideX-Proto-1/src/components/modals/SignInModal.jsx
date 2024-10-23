@@ -108,9 +108,25 @@ const ModalHeader = styled.div`
 
   p {
     font-size: 20px;
+    font-weight: 600;
     font-family: 'Modernist', sans-serif;
     color: black;
     margin: 0;
+  }
+
+  span {
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'Modernist', sans-serif;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-decoration: underline;
+
+
+    &:hover {
+      color: var(--secondary-color);
+    }
   }
 `;
 
@@ -156,7 +172,7 @@ const ModalEnd = styled.div`
 `;
 
 const SignInModal = () => {
-  const { signinModalOpen, closeSigninModal } = useAuth();
+  const { signinModalOpen, closeSigninModal, openSignupModal, checkUserAuth } = useAuth();
 
   const [userInfo, setUserInfo] = useState({
     email: '',
@@ -190,19 +206,14 @@ const SignInModal = () => {
     }, 300); // Match the animation duration
   };
 
-  const handleSignIn = async () => {
-    if (userInfo.password !== userInfo.confirmPassword) {
-      alert('Passwords do not match');
-      return;
-    }
+  const handleSignUp = () => {
+    handleClose()
+    openSignupModal()
+  }
 
+  const handleSignIn = async () => {
     if (userInfo.password.length < 8) {
       alert('Password must be at least 8 characters');
-      return;
-    }
-
-    if (userInfo.phoneNumber.length !== 10) {
-      alert('Phone number must be 10 digits');
       return;
     }
 
@@ -210,10 +221,9 @@ const SignInModal = () => {
       await signIn({
         username: userInfo.email,
         password: userInfo.password,
-        attributes: {
-          email: userInfo.email,
-        },
       });
+      handleClose();
+      checkUserAuth();
     } catch (e) {
       alert(e.message);
     }
@@ -223,7 +233,7 @@ const SignInModal = () => {
     <Background animationType={animationType}>
       <Modal animationType={animationType}>
         <ModalHeader>
-          <h3>Sign Up</h3>
+          <h3>Sign In</h3>
           <CloseButton onClick={handleClose}>
             {/* SVG for close icon */}
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -233,7 +243,7 @@ const SignInModal = () => {
         </ModalHeader>
         <ModalBody>
           <ModalHeader>
-            <p>Sign Up to start your Data Journey</p>
+            <p>Don't have an account? <span onClick={handleSignUp}>Sign Up</span></p>
           </ModalHeader>
           <MainInput
             label="Email"

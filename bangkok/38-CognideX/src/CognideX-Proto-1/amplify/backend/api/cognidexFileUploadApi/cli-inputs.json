@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "paths": {
+    "/upload": {
+      "name": "/upload",
+      "lambdaFunction": "cognidexFileUploadLambda",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read"
+        ]
+      }
+    }
+  }
+}
