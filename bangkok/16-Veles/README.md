@@ -1,4 +1,6 @@
-# Project Veles
+# Veles: Modular Carbon Credit Marketplace on Polkadot
+
+<img src="doc/veles-logo.png" width=500 height=184 style="display: block; margin: 0 auto 40px>
 
 ## Introduction
 
