@@ -18,7 +18,7 @@ The planned milestone deliveries within the hacking period of this hackathon inc
 - [X] Payments Pallet - Custom logic for enabling on-chain payments for customers to buy compute hours
 - [X] ZK Worker - Offchain SNARK proof generator that generates a ZK proof to verify integrity of the executed ZK Algorithm
 - [X] UI Updates for NeuroZK
-- [ ] ZK verfier pallet - substrate pallet logic to verify and approve recieved ZK proofs.
+- [X] ZK verfier pallet - substrate pallet logic to verify and approve recieved ZK proofs.
 
 ## Schedule
 Please check main branch of all the listed repositories for code update timeline (All discussed features have been implemented in the hacking period)
@@ -60,16 +60,15 @@ Approved and completed https://grants.web3.foundation/applications/Cyborg
  - [Blockchain for good](https://dorahacks.io/hackathon/polkadot-2024-singapore/bounties-details#blockchain-for-good)
 
 ## Material for Demo
-1. Demo Video - [Youtube]()
-2. PPT google doc - 
-3. Devloper Docs - https://github.com/Cyborg-Network/cyborg-parachain/blob/master/INSTRUCTIONS.md
-4. Code repository
+1. Demo Video - [Link](https://drive.google.com/file/d/1hOpoc9bZ6kaQOYS-RzO7bV-CbsKl5eqQ/view?usp=sharing)
+2. Code repository
 - https://github.com/Cyborg-Network/cyborg-parachain
+- https://github.com/Cyborg-Network/Cyborg-worker-node
 - https://github.com/Cyborg-Network/cyborg-connect
 - https://github.com/Cyborg-Network/cyborg-proxy
 - https://github.com/Cyborg-Network/zk-verifier-circom
     
-5. Live Demo - [Live App](https://www.demo.cyborgnetwork.io/) 
+3. Live Demo - [Live App](https://www.demo.cyborgnetwork.io/) 
 
 ##  Additional Information
 
