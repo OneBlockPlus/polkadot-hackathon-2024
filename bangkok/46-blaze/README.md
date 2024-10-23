@@ -32,7 +32,8 @@ Cryptocurrency payments have multiple upsides over traditional rails including n
 
    - [Video Project demo](https://drive.google.com/file/d/1-uEbxGCpy-AHlNNnnvox50GXkq_5ay2d/view?usp=sharing)
    - [Testnet website demo](https://devnet.munapay.xyz/)
-   - [payment link example](https://devnet.munapay.xyz/payment/checkout-session/34af2b39-c971-4f1c-8703-89f9a9b5ef8e)
+   - [payment link example](https://devnet.munapay.xyz/payment/payment-link/67190e5a93772d7b53a5942e)
+   - [payment session example](https://devnet.munapay.xyz/payment/checkout-session/34af2b39-c971-4f1c-8703-89f9a9b5ef8e)
 
 
 
