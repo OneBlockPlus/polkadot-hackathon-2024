@@ -19,7 +19,7 @@ Our game draws inspiration from _Factorio's_ intricate systems but introduces a 
 _Dark Forest_ relies heavily on random data generation for its planetary systems, which limits player agency. In _Dark Factory_, we address this by encouraging players to be more involved in the design and layout of their plants(we call islands in our game).
 Players will be rewarded for their creativity and strategy in resource management, providing a more engaging experience with greater control over outcomes. Our system incentivizes thoughtful planning, offering a layer of depth missing in _Dark Forest_.
 
-![](ui2.jpg)
+![](darkfactory.gif)
 
 ## Features planned for the Hackathon
 
@@ -70,6 +70,8 @@ flowchart LR
 5. Recompile the strongly typed files when the contracts change: `build:contracts`
 6. Deploy the contracts: `deploy:contracts` (Not finished in this hackathon)
 7. Fire up the UI: `yarn dev`
+
+![](ui2.png)
 
 ## Credits
 
