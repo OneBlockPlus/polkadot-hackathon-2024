@@ -7,9 +7,7 @@ Signore is a pallet developed based on the substrate framework, dedicated to low
 
 - [x] Realize the main function of proxy signing to exempt users from gas fees.
 
-- [ ] Ensure the security of the proxy signing process and no risk of being attacked.
-
-- [ ] Add nonce field and tip field to construct transactions in a more reasonable way.
+- [x] Complete demo.
 
 ## Architect
 
