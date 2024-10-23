@@ -42,9 +42,9 @@ Create backend in NestJS:
 
 Links for our repos:
 
-Contracts - https://github.com/Ceres-Blockchain-Solutions/dazhbog-contracts
-Frontend - https://github.com/Ceres-Blockchain-Solutions/dazhbog-backend
-Backend - https://github.com/Ceres-Blockchain-Solutions/dazhbog-frontend
+- Contracts - https://github.com/Ceres-Blockchain-Solutions/dazhbog-contracts
+- Frontend - https://github.com/Ceres-Blockchain-Solutions/dazhbog-backend
+- Backend - https://github.com/Ceres-Blockchain-Solutions/dazhbog-frontend
 
 
 ## Architecture
