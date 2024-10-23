@@ -12,6 +12,9 @@ import { InjectedAccount } from "@polkadot/extension-inject/types";
 import { ApiPromise, WsProvider, Keyring } from "@polkadot/api";
 import { TbReload } from "react-icons/tb";
 import Image from "next/image";
+import Link from "next/link";
+import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
+
 const RPC_URL = "ws://127.0.0.1:9944";
 
 const ConnectButton = () => {
@@ -36,12 +39,22 @@ const ConnectButton = () => {
 
   // 在组件加载时检查
   useEffect(() => {
-    const savedAccount = localStorage.getItem("connectedAccount");
-    if (savedAccount) {
-      setAccountAddr(savedAccount);
-      setButtonText("Disconnect");
-      setIsConnect(true);
-    }
+    const init = async () => {
+      const savedAccount = localStorage.getItem("connectedAccount");
+      if (savedAccount) {
+        setAccountAddr(savedAccount);
+        setButtonText("Disconnect");
+        setIsConnect(true);
+
+        const _api = await initConnection();
+        const extensions = await web3Enable("nft swap");
+        const _injector = await web3FromAddress(savedAccount);
+        setInjector(_injector);
+        setExtensionEnabled(true);
+        console.log("injector!!!");
+      }
+    };
+    init();
   }, []);
 
   // Handle account retrieval
@@ -61,7 +74,7 @@ const ConnectButton = () => {
   // Handle account balance retrieval
   const fetchBalance = async (account: string): Promise<string> => {
     if (!api) return "";
-    const accountInfo = await api.query.system.account(account);
+    const accountInfo: any = await api.query.system.account(account);
     return accountInfo.data.free.toString();
   };
 
@@ -92,30 +105,33 @@ const ConnectButton = () => {
       setExtensionEnabled(true);
 
       localStorage.setItem("connectedAccount", curAllAccounts[0].address);
-    } else if (buttonText === "Disconnect") {
-      setAllAccounts([]);
-      setApi(undefined);
-      setButtonText("Connect");
-      setIsConnect(false);
-      setAccountBal("");
-      setAccountAddr("");
-      setDropdownVisible(false);
-      // 删除连接的账户信息
-      localStorage.removeItem("connectedAccount");
+      localStorage.setItem("allAccounts", JSON.stringify(curAllAccounts));
     }
   };
-
+  const handleDisConnect = () => {
+    setAllAccounts([]);
+    setApi(undefined);
+    setButtonText("Connect");
+    setIsConnect(false);
+    setAccountBal("");
+    setAccountAddr("");
+    setDropdownVisible(false);
+    // 删除连接的账户信息
+    localStorage.removeItem("connectedAccount");
+    localStorage.removeItem("allAccounts");
+  };
   // Shorten account address
   const displayAddress = (address: string) => {
     return address ? (
       <>
-        <span className="text-purple-200">Add:</span>
+        {/* <span className="text-purple-200">Add:</span> */}
         {address.slice(0, 6)}...{address.slice(-4)}
       </>
     ) : (
       ""
     );
   };
+  useEffect(() => {}, [pending]);
 
   return (
     <div>
@@ -134,27 +150,42 @@ const ConnectButton = () => {
           Pending
         </div>
       ) : (
-        <Menu setActive={setActive} setDropdownVisible={setDropdownVisible}>
-          <MenuItem
-            setActive={setActive}
-            active={active}
-            isConnect={isConnect}
-            dropdownVisible={dropdownVisible}
-            setDropdownVisible={setDropdownVisible}
-            item="Connect"
-            title={!isConnect ? "Connect" : displayAddress(accountAddr)}
-            handleConnect={handleConnect}
-          >
-            <div className="flex flex-col space-y-4 text-sm">
-              <HoveredLi>Switch Account</HoveredLi>
-              <HoveredLi onClick={() => handleConnect()}>
-                <span className="text-red-400 hover:font-semibold ">
-                  Disconnect
-                </span>{" "}
-              </HoveredLi>
+        <div className="flex justify-center items-center">
+          <div className="relative group hover:scale-110 transition-transform duration-300 cursor-pointer">
+            <Image
+              src={`/images/faucet.png`}
+              alt="faucet"
+              width="30"
+              height="30"
+            />
+            <div className="absolute left-1/2 transform -translate-x-1/2 mt-2  text-white text-center text-sm rounded p-2 bg-black/80 shadow-inner opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+              faucet
             </div>
-          </MenuItem>
-        </Menu>
+          </div>
+          <Menu setActive={setActive} setDropdownVisible={setDropdownVisible}>
+            <MenuItem
+              setActive={setActive}
+              active={active}
+              isConnect={isConnect}
+              dropdownVisible={dropdownVisible}
+              setDropdownVisible={setDropdownVisible}
+              item="Connect"
+              title={!isConnect ? "Connect" : displayAddress(accountAddr)}
+              handleConnect={handleConnect}
+            >
+              <div className="flex flex-col space-y-4 text-sm">
+                <HoveredLi>
+                  <Link href="/userCenter">User Center</Link>
+                </HoveredLi>
+                <HoveredLi onClick={() => handleDisConnect()}>
+                  <span className="text-red-400 hover:font-semibold ">
+                    Disconnect
+                  </span>{" "}
+                </HoveredLi>
+              </div>
+            </MenuItem>
+          </Menu>
+        </div>
       )}
     </div>
   );

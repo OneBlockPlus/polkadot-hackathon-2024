@@ -1,0 +1,32 @@
+---
+- name: disable conflicting services
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: stopped
+    enabled: false
+  register: disable_service_result
+  failed_when: (disable_service_result is failed)
+               and ('Could not find the requested service' not in disable_service_result.msg)
+  loop:
+    - ntp
+    - ntpd
+    - ntpsec
+    - openntpd
+    - systemd-timesyncd
+
+- name: make sure chronyd is installed
+  become: true
+  become_user: root
+  ansible.builtin.apt:
+    update_cache: yes
+    state: latest
+    pkg:
+    - chrony
+
+- name: restart chronyd
+  become: true
+  become_user: root
+  ansible.builtin.systemd:
+    name: chrony
+    state: started
+    enabled: yes

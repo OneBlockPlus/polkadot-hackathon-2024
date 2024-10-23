@@ -1,0 +1,51 @@
+- name: download node exporter
+  get_url:
+    url: "https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz"
+    dest: "/tmp/node_exporter-1.3.1.linux-amd64.tar.gz"
+  become: true
+
+- name: Extract Node Exporter
+  unarchive:
+    src: "/tmp/node_exporter-1.3.1.linux-amd64.tar.gz"
+    dest: "/opt"
+    remote_src: yes
+    creates: "/opt/node_exporter-1.3.1.linux-amd64"
+  become: true
+
+- name: Create Node Exporter user
+  user:
+    name: node_exporter
+    system: yes
+    shell: /usr/sbin/nologin
+  become: true
+
+- name: Copy Node Exporter binary to /usr/local/bin
+  copy:
+    src: "/opt/node_exporter-1.3.1.linux-amd64/node_exporter"
+    dest: "/usr/local/bin/node_exporter"
+    owner: node_exporter
+    group: node_exporter
+    mode: '0755'
+    remote_src: yes
+  become: true
+
+- name: Copy systemd unit file for node exporter
+  ansible.builtin.copy:
+    src: node_exporter.service
+    dest: "/etc/systemd/system/node_exporter.service"
+    owner: root
+    group: root
+    mode: '0644'
+  become: true
+
+- name: Reload systemd to recognize node exporter service
+  ansible.builtin.systemd:
+    daemon_reload: yes
+  become: true
+
+- name: Start node exporter service
+  ansible.builtin.systemd:
+    name: node_exporter
+    state: started
+    enabled: yes
+  become: true

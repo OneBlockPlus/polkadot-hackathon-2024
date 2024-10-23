@@ -1,25 +1,6 @@
-# Bring Mass Adoption for the Polkadot Ecosystem —— zkLogin
+# zkLogin Tech Spec
 
-## 1. Status Quo
-### Background
-
-Polkadot's Account Abstraction (AA) is an innovative concept introduced to address the challenges associated with managing cryptographic keys on a blockchain. Representing entities from individual identities to institutions, accounts on blockchains play a crucial role in the Web3 era, where users digitally sign transactions using private keys, and data is recorded on a public ledger.
-
-The loss of private keys, however, poses significant risks, leading to the inaccessibility of digital assets and fragmentation of digital identity. Creating a new account with a new set of keys becomes a necessity, presenting obstacles for both users and developers concerning security and adoption. 
-
-Initially mentioned in Ethereum's [EIP-4337](https://eips.ethereum.org/EIPS/eip-4337), the concept of account abstraction aims to provide users with flexibility in programming enhanced security and improved user experiences into their accounts. This separation of user experience from private keys enables code to dictate account behavior, increasing the flexibility of initially rigid accounts and reducing the chances of key mismanagement.
-
-### Account Abstraction Status
-All current Web3 ecosystems share a common goal: achieving mass adoption from Web2. Account Abstraction (AA) is key to unlocking this potential. AA aims to simplify the user experience (UX) in Web3 applications, allowing users to interact with the system without needing to worry about complexities like custody, wallets, or blockchain intricacies. Instead, they are presented with a familiar and user-friendly interface.
-
-Chains like `TON` and `STARKNET` have already integrated AA natively at the architectural level, providing seamless support. However, the development of AA in the Polkadot ecosystem is still lagging behind. In contrast, the `Ethereum` ecosystem has explored various approaches to improve account management, including `Social Logins`, `Passkeys`, and `Email Logins`. These efforts have yielded significant results, with millions of users onboarded and substantial progress in AA implementation. 
-![AA-related statistics](https://hackmd.io/_uploads/S1Uhpvm1Jg.png)
-The adoption is now showing exponential growth in both transaction volume and user base, demonstrating the potential of AA in driving Web3's next phase of expansion.
-> For more statistics about AA, please check [here](https://dune.com/sixdegree/account-abstraction-overview)
-> 
-![Growth of the user base](https://hackmd.io/_uploads/BkDX0w7yJe.png)
-
-## 2. What is zkLogin? -- bring simpler & safer AA to Polkadot
+## 1. What is zkLogin? -- bring simpler & safer AA to Polkadot
 
 The `zkLogin`  is built on `WebAuthn` technology and exists as a **Runtime Pallet**, eliminating the need for any modifications to Polkadot's existing architecture. Any project can integrate `zkLogin` by simply adding the Runtime Pallet.
 > `WebAuthn` is a modern authentication standard offering robust identity verification. Integrating such identity verification features within the Polkadot ecosystem would enhance security and provide users with more authentication options. 
@@ -65,54 +46,6 @@ Once on the blockchain, the `zkLogin` Runtime Pallet thoroughly verifies the `zk
 
 
 The integration of zkLogin could be a promising direction for the future development of the Polkadot ecosystem, which helps elevate the security and convenience of users' digital identities, eliminating reliance on passwords reduces the risks of phishing, brute force attacks, and replay attacks, providing a simpler and faster login process for both Web2 & Web3 Users.
-
-
-
-
-###  Performance Comparison With EOAs
-
-
-| Comparative Angle | zkLogin | EOAs |
-| -------- | -------- | -------- |
-| Privacy Protection | Utilizes **zero-knowledge proofs** to authenticate users **without revealing any sensitive information**, such as passwords or private keys. This ensures that users’ identities and personal data remain private during the authentication process. | Relies on public/private key pairs for identity verification. While the public key is visible on the blockchain, the private key must be kept secret. If a user's private key is exposed, their account and assets can be compromised. |
-| Security Against Attacks | Designed to be resilient **against replay attacks** and **social engineering** attempts. Since it does not require sensitive information to be shared, attackers cannot easily exploit user credentials, even if they intercept authentication data. | Vulnerable to various attacks, including phishing and key exposure. If an attacker gains access to a user's private key, they can fully control the associated account and assets. Users must manage their private keys carefully to mitigate risks. |
-| Under what circumstances will the account be compromised | Before the `expiration time`, the user **simultaneously** loses the `temporary private key`, `JWT Token`, and `salt` | Loss of private key or mnemonic phrase |
-| User Experience | Offers a **passwordless login** experience, simplifying the authentication process. Users do not need to remember complex passwords, which enhances convenience and reduces the risk of password-related security breaches. | Users are responsible for managing their private keys and recovery phrases, which can be cumbersome. Mismanagement or loss of these keys can lead to irreversible loss of access to funds. |
-| Scalability | Facilitates shared authentication **across multiple applications**. This means users can authenticate with various services without repeatedly entering sensitive information, streamlining the overall user experience. | Typically requires separate authentication for each service, increasing management complexity. Users must handle multiple keys, which can be challenging to maintain securely. |
-
-
-
-
-## 3. How can zkLogin benefits Polkadot Ecosystem?
-
-
-### 1. Seamless integration of Relaychains & Parachains
-
-`zkLogin` works as a runtime pallet, allowing any relaychain or parachain to directly interact with `zkLogin` by simply adding this runtime pallet.
-Polkadot and all its parachains share a unified codebase, providing a distinctive advantage for the introduction of the zkLogin solution. 
-
-### 2. Fully compatible with polkadot{.js}
-
-The construction of `zkLogin` transaction bodies is identical to that of native Polkadot transaction bodies. By simply adding the `zkLogin` pallet, users can utilize it without disrupting Polkadot's on-chain transaction architecture. 
-This is very friendly to existing tools, as any current tools for constructing or initiating transactions in Polkadot (such as `polkadot{.js}`) do not require any modifications, making it extremely developer-friendly.
-
-
-### 3. Enhance Privacy and Security in the Polkadot Ecosystem
-
-The zkLogin solution, built upon zero-knowledge proofs, offers users a heightened level of privacy and security. User authentication information is not required to be stored in plaintext on the blockchain, effectively safeguarding user privacy.
-
-### 4. Bring Mass Adoption For Polkadot Ecosystem
-
-The introduction of zkLogin significantly enhances the accessibility and lowers the entry barriers for users engaging with Polkadot and its parachains. Users can effortlessly and securely manage their authentication information, enhancing the overall user experience.
-
-This reduces the development complexity for DApp developers, allowing any project to quickly integrate `zkLogin` and attract a large number of Web2 users.
-
-
-### 5. Address the lack of 'zero-knowledge technology' and 'account abstraction' applications
-
-Currently, the Polkadot ecosystem lacks specific and compelling use cases that leverage "zero-knowledge technology" and "account abstraction (AA) technology," resulting in a relative lag in innovation and user experience improvement. 
-- **Zero-knowledge technology**, which is crucial for protecting user privacy and enhancing transaction efficiency, has demonstrated significant potential in other blockchain ecosystems, yet Polkadot has not fully explored its practical applications.
-- **Account abstraction**, can significantly simplify the interaction process between users and the blockchain, improving user experience. This is especially important for onboarding new users and Web2 users.
 
 
 ## 2. Details of zkLogin Solution 

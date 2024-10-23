@@ -1,0 +1,6 @@
+#!/bin/bash
+/home/sovereign/{{ rollup_bin }} \
+  --rollup-config-path /home/sovereign/rollup_config.toml \
+  --genesis-paths {{ genesis_folder }} \
+  --kernel-genesis-paths {{ genesis_folder }}/chain_state.json \
+  --log-dir {{ rollup_log_dir }}

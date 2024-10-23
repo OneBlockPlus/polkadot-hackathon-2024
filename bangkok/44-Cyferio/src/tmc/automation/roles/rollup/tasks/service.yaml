@@ -1,0 +1,50 @@
+- name: copy service file to remote server
+  ansible.builtin.copy:
+    src: rollup.service
+    dest: /etc/systemd/system/rollup.service
+    owner: root
+    group: root
+    mode: '0644'
+  become: true
+
+- name: copy rollup shell file to remote server
+  ansible.builtin.template:
+    src: rollup.sh.j2
+    dest: /home/sovereign/rollup.sh
+    owner: sovereign
+    group: sovereign
+    mode: '0755'
+  become: true
+
+- name: stop rollup service
+  ansible.builtin.systemd:
+    name: rollup
+    state: stopped
+  become: true
+
+- name: find files and directories in specified directory to wipe
+  ansible.builtin.find:
+    paths: "/mnt/rollup"
+    file_type: any
+  register: files_to_wipe
+  when: wipe | bool
+
+- name: remove all files and directories in specified directory
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: absent
+  loop: "{{ files_to_wipe.files }}"
+  when: wipe | bool and files_to_wipe.matched > 0
+  become: true
+
+- name: reload systemd to recognize rollup service
+  ansible.builtin.systemd:
+    daemon_reload: yes
+  become: true
+
+- name: start rollup service
+  ansible.builtin.systemd:
+    name: rollup
+    state: started
+    enabled: yes
+  become: true
