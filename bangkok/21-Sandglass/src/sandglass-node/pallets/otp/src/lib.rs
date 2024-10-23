@@ -65,10 +65,7 @@ pub mod common;
 pub mod deserialization;
 pub mod verify;
 
-use frame_support::{
-	storage::bounded_vec::BoundedVec,
-	traits::{Currency, ExistenceRequirement::AllowDeath, ReservableCurrency},
-};
+use frame_support::storage::bounded_vec::BoundedVec;
 pub use pallet::*;
 use sp_std::vec::Vec;
 
@@ -83,20 +80,19 @@ pub mod pallet {
 	use super::*;
 	use crate::{
 		common::prepare_verification_key,
-		deserialization::{deserialize_public_inputs, Proof, VKey},
+		deserialization::{Proof, VKey},
 		verify::{
 			prepare_public_inputs, verify, G1UncompressedBytes, G2UncompressedBytes, GProof,
 			VerificationKey, SUPPORTED_CURVE, SUPPORTED_PROTOCOL,
 		},
 	};
-	use frame_support::{pallet_prelude::*, traits::UnixTime, PalletId};
+	use frame_support::{pallet_prelude::*, traits::UnixTime};
 	use frame_system::pallet_prelude::*;
 	use primitives::Otp;
-	use sp_io::offchain::timestamp;
-	use sp_runtime::traits::AccountIdConversion;
+	use scale_info::prelude::string::String;
 	use sp_std::vec;
 
-	const STORAGE_VERSION: StorageVersion = StorageVersion::new(1);
+	//const STORAGE_VERSION: StorageVersion = StorageVersion::new(1);
 
 	// The `Pallet` struct serves as a placeholder to implement traits, methods and dispatchables
 	// (`Call`s) in this pallet.
@@ -168,6 +164,7 @@ pub mod pallet {
 	#[pallet::generate_deposit(pub(super) fn deposit_event)]
 	pub enum Event<T: Config> {
 		VerificationSetupCompleted,
+		OtpCommitmentSeted,
 	}
 
 	/// Errors that can be returned by this pallet.
@@ -247,7 +244,7 @@ pub mod pallet {
 		#[pallet::call_index(0)]
 		#[pallet::weight(0)]
 		pub fn setup_verification(_origin: OriginFor<T>, vec_vk: Vec<u8>) -> DispatchResult {
-			let vk = store_verification_key::<T>(vec_vk)?;
+			let _vk = store_verification_key::<T>(vec_vk)?;
 			Self::deposit_event(Event::<T>::VerificationSetupCompleted);
 			Ok(())
 		}
@@ -258,35 +255,16 @@ pub mod pallet {
 			// Check that the extrinsic was signed and get the signer.
 			let who = ensure_signed(origin)?;
 
-			let r = U256::from_big_endian(&root);
+			let r = U256::from_dec_str(&String::from_utf8(root).unwrap()).unwrap();
 
 			ensure!(!Roots::<T>::contains_key(r), Error::<T>::CommitmentHasBeanSubmitted);
 
-			Roots::<T>::insert(r, true);
-
 			UserRoots::<T>::insert(who.clone(), r);
+
+			Self::deposit_event(Event::<T>::OtpCommitmentSeted);
 
 			Ok(())
 		}
-	}
-
-	fn get_public_inputs<T: Config>() -> Result<Vec<sp_core::U256>, sp_runtime::DispatchError> {
-		let public_inputs = PublicInputStorage::<T>::get();
-		let deserialized_public_inputs = deserialize_public_inputs(public_inputs.as_slice())
-			.map_err(|_| Error::<T>::MalformedPublicInputs)?;
-		Ok(deserialized_public_inputs)
-	}
-
-	fn store_public_inputs<T: Config>(
-		pub_input: Vec<u8>,
-	) -> Result<Vec<U256>, sp_runtime::DispatchError> {
-		let public_inputs: PublicInputsDef<T> =
-			pub_input.try_into().map_err(|_| Error::<T>::TooLongPublicInputs)?;
-		let deserialized_public_inputs = deserialize_public_inputs(public_inputs.as_slice())
-			.map_err(|_| Error::<T>::MalformedPublicInputs)?;
-
-		PublicInputStorage::<T>::put(public_inputs);
-		Ok(deserialized_public_inputs)
 	}
 
 	fn get_verification_key<T: Config>() -> Result<VerificationKey, sp_runtime::DispatchError> {
@@ -304,7 +282,7 @@ pub mod pallet {
 		vec_vk: Vec<u8>,
 	) -> Result<VKey, sp_runtime::DispatchError> {
 		let vk: VerificationKeyDef<T> = vec_vk.try_into().map_err(|e| {
-			//println!("@@@ store_verification_key err: {:?}", e);
+			log::info!("@@@ store_verification_key err: {:?}", e);
 			Error::<T>::TooLongVerificationKey
 		})?;
 		let deserialized_vk = VKey::from_json_u8_slice(vk.as_slice())
@@ -320,7 +298,10 @@ pub mod pallet {
 	}
 
 	fn parse_proof<T: Config>(vec_proof: Vec<u8>) -> Result<GProof, sp_runtime::DispatchError> {
+		log::info!("before check in parse_proof try_into");
 		let proof: ProofDef<T> = vec_proof.try_into().map_err(|_| Error::<T>::TooLongProof)?;
+
+		log::info!("before check in parse_proof deserialized_proof MalformedProof");
 		let deserialized_proof =
 			Proof::from_json_u8_slice(proof.as_slice()).map_err(|_| Error::<T>::MalformedProof)?;
 		ensure!(
@@ -332,6 +313,7 @@ pub mod pallet {
 			Error::<T>::NotSupportedProtocol
 		);
 
+		log::info!("before check in from_uncompressed");
 		let proof = GProof::from_uncompressed(
 			&G1UncompressedBytes::new(deserialized_proof.a[0], deserialized_proof.a[1]),
 			&G2UncompressedBytes::new(
@@ -355,33 +337,40 @@ pub mod pallet {
 			root: Vec<u8>,
 			timestamp: u128,
 		) -> DispatchResult {
+			log::info!("before check in get_verification_key");
 			let vk = get_verification_key::<T>()?;
+
+			log::info!("before check in parse_proof");
 			let proof = parse_proof::<T>(proof)?;
 
-			let root = U256::from_big_endian(&root);
-			ensure!(Roots::<T>::contains_key(root), Error::<T>::CanNotFindMerkelRoot);
+			log::info!("before U256::from_dec_str(&root);");
+			let root = U256::from_dec_str(&String::from_utf8(root).unwrap()).unwrap();
 
-			ensure!(
-				UserRoots::<T>::get(owner.clone()) == Some(root),
-				Error::<T>::NotMerkelRootOwner
-			);
-
+			log::info!("before UserLastTimestamp::<T>::get(owner);;");
 			let user_last_timestamp = UserLastTimestamp::<T>::get(owner);
+			log::info!("before timestamp > user_last_timestamp");
 			ensure!(timestamp > user_last_timestamp, Error::<T>::TimestampMustBeLargerThanLast);
 
 			let timestamp = U256::from(timestamp);
 			let public_inputs = vec![root, timestamp];
+			log::info!("before public_inputs {:?}", public_inputs);
 			let public_inputs = prepare_public_inputs(public_inputs);
 
+			log::info!("before verify");
 			match verify(vk, proof, public_inputs) {
 				Ok(true) => {
+					log::info!("verify OK");
 					//Ok(())
 				},
 				Ok(false) => {
+					log::info!("verify false");
 					//Self::deposit_event(Event::<T>::VerificationFailed);
 					return Err(Error::<T>::ProofVerificationFalse.into())
 				},
-				Err(e) => return Err(Error::<T>::ProofVerificationError.into()),
+				Err(e) => {
+					log::info!("verify error {:?}", e);
+					return Err(Error::<T>::ProofVerificationError.into())
+				},
 			};
 
 			Ok(())
@@ -397,13 +386,7 @@ pub mod pallet {
 			let vk = get_verification_key::<T>()?;
 			let proof = parse_proof::<T>(proof)?;
 
-			let root = U256::from_big_endian(&root);
-			ensure!(Roots::<T>::contains_key(root), Error::<T>::CanNotFindMerkelRoot);
-
-			ensure!(
-				UserRoots::<T>::get(owner.clone()) == Some(root),
-				Error::<T>::NotMerkelRootOwner
-			);
+			let root = U256::from_dec_str(&String::from_utf8(root).unwrap()).unwrap();
 
 			let user_last_timestamp = UserLastTimestamp::<T>::get(owner);
 			ensure!(timestamp > user_last_timestamp, Error::<T>::TimestampMustBeLargerThanLast);
@@ -424,7 +407,11 @@ pub mod pallet {
 					//Self::deposit_event(Event::<T>::VerificationFailed);
 					return Err(Error::<T>::ProofVerificationFalse.into())
 				},
-				Err(e) => return Err(Error::<T>::ProofVerificationError.into()),
+				Err(e) => {
+					log::info!("verify error {:?}", e);
+
+					return Err(Error::<T>::ProofVerificationError.into())
+				},
 			};
 
 			Ok(())

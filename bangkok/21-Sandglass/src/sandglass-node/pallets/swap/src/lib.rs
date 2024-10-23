@@ -68,11 +68,11 @@ pub mod pallet {
 	use codec::MaxEncodedLen;
 	use frame_support::{pallet_prelude::*, traits::BalanceStatus};
 	use frame_system::pallet_prelude::*;
-	use orml_traits::{arithmetic::Bounded, MultiCurrency, MultiReservableCurrency};
+	use orml_traits::{MultiCurrency, MultiReservableCurrency};
 	use orml_utilities::with_transaction_result;
 	use primitives::Swap;
 	use scale_info::TypeInfo;
-	use sp_runtime::traits::{AtLeast32BitUnsigned, One, Zero};
+	use sp_runtime::traits::{One, Zero};
 
 	#[derive(Encode, Decode, Clone, RuntimeDebug, Eq, PartialEq, TypeInfo, MaxEncodedLen)]
 	pub struct Order<CurrencyId, Balance, AccountId> {
@@ -192,61 +192,7 @@ pub mod pallet {
 	/// The [`weight`] macro is used to assign a weight to each call.
 	#[pallet::call]
 	impl<T: Config> Pallet<T> {
-		/// An example dispatchable that takes a single u32 value as a parameter, writes the value
-		/// to storage and emits an event.
-		///
-		/// It checks that the _origin_ for this call is _Signed_ and returns a dispatch
-		/// error if it isn't. Learn more about origins here: <https://docs.substrate.io/build/origins/>
 		#[pallet::call_index(0)]
-		#[pallet::weight(T::WeightInfo::do_something())]
-		pub fn do_something(origin: OriginFor<T>, something: u32) -> DispatchResult {
-			// Check that the extrinsic was signed and get the signer.
-			let who = ensure_signed(origin)?;
-
-			// Update storage.
-			Something::<T>::put(something);
-
-			// Emit an event.
-			Self::deposit_event(Event::SomethingStored { something, who });
-
-			// Return a successful `DispatchResult`
-			Ok(())
-		}
-
-		/// An example dispatchable that may throw a custom error.
-		///
-		/// It checks that the caller is a signed origin and reads the current value from the
-		/// `Something` storage item. If a current value exists, it is incremented by 1 and then
-		/// written back to storage.
-		///
-		/// ## Errors
-		///
-		/// The function will return an error under the following conditions:
-		///
-		/// - If no value has been set ([`Error::NoneValue`])
-		/// - If incrementing the value in storage causes an arithmetic overflow
-		///   ([`Error::StorageOverflow`])
-		#[pallet::call_index(1)]
-		#[pallet::weight(T::WeightInfo::cause_error())]
-		pub fn cause_error(origin: OriginFor<T>) -> DispatchResult {
-			let _who = ensure_signed(origin)?;
-
-			// Read a value from storage.
-			match Something::<T>::get() {
-				// Return an error if the value has not been set.
-				None => Err(Error::<T>::NoneValue.into()),
-				Some(old) => {
-					// Increment the value read from storage. This will cause an error in the event
-					// of overflow.
-					let new = old.checked_add(1).ok_or(Error::<T>::StorageOverflow)?;
-					// Update the value in storage with the incremented result.
-					Something::<T>::put(new);
-					Ok(())
-				},
-			}
-		}
-
-		#[pallet::call_index(2)]
 		#[pallet::weight(0)]
 		pub fn submit_order(
 			origin: OriginFor<T>,
@@ -279,7 +225,7 @@ pub mod pallet {
 			Ok(())
 		}
 
-		#[pallet::call_index(3)]
+		#[pallet::call_index(1)]
 		#[pallet::weight(0)]
 		pub fn take_order(origin: OriginFor<T>, order_id: u32) -> DispatchResult {
 			let who = ensure_signed(origin)?;
@@ -311,7 +257,7 @@ pub mod pallet {
 			Ok(())
 		}
 
-		#[pallet::call_index(4)]
+		#[pallet::call_index(2)]
 		#[pallet::weight(0)]
 		pub fn cancel_order(origin: OriginFor<T>, order_id: u32) -> DispatchResult {
 			let who = ensure_signed(origin)?;

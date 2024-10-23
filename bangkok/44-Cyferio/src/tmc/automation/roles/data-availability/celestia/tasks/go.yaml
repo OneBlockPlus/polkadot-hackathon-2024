@@ -1,0 +1,59 @@
+- name: set golang version variable
+  set_fact:
+    go_version: "1.21.1"
+
+- name: check if golang is installed
+  become: true
+  shell: go version
+  environment:
+    PATH: "/usr/local/go/bin:{{ ansible_env.PATH }}"
+  register: go_exists
+  ignore_errors: yes
+  failed_when: false
+
+- name: download go tarball
+  become: true
+  get_url:
+    url: "https://golang.org/dl/go{{ go_version }}.linux-amd64.tar.gz"
+    dest: "/tmp/go{{ go_version }}.linux-amd64.tar.gz"
+    mode: '0755'
+  when: go_exists.rc != 0
+
+- name: remove existing golang installation
+  become: true
+  file:
+    path: /usr/local/go
+    state: absent
+  when: go_exists.rc != 0
+
+- name: extract golang tarball
+  become: true
+  unarchive:
+    src: "/tmp/go{{ go_version }}.linux-amd64.tar.gz"
+    dest: /usr/local
+    creates: "/usr/local/go/bin/go"
+    remote_src: yes
+  when: go_exists.rc != 0
+
+- name: remove golang tarball
+  become: true
+  file:
+    path: "/tmp/go{{ go_version }}.linux-amd64.tar.gz"
+    state: absent
+  when: go_exists.rc != 0
+
+- name: create remote_tmp directory with correct permissions
+  file:
+    path: /home/sovereign/.ansible/tmp
+    state: directory
+    mode: '0700'
+  become: true
+  become_user: sovereign
+
+- name: ensure golang is available for the sovereign user
+  lineinfile:
+    path: /home/sovereign/.bashrc
+    line: 'export PATH=$PATH:/usr/local/go/bin'
+    create: yes
+  become: true
+  become_user: sovereign

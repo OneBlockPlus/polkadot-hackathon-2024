@@ -31,6 +31,7 @@
           <th>File name</th>
           <th>Mutations</th>
           <th>Dist to REF</th>
+          <th>Fingerprint</th>
           <th>Sequenced At</th>
           <th>UUID</th>
           <th>CID</th>
@@ -47,6 +48,9 @@
               </td>
               <td>
                   <p class="fw-normal mb-1">{{ record["cos_dist"] }}</p>
+              </td>
+              <td>
+                  <p class="fw-normal mb-1">{{ record["dna_fingerprint"] }}</p>
               </td>
               <td>
                   <p class="fw-normal mb-1">{{ record["sequenced_at"] }}</p>

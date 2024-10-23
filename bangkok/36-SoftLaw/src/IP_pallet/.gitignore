@@ -1,0 +1,15 @@
+# Rust directories
+**/target
+
+# MacOS
+**/.DS_Store
+
+# Node
+**/node_modules
+
+# Code Editors / IDEs
+.vscode
+.idea
+
+# Binaries
+**/bin/

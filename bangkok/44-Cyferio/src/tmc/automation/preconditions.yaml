@@ -1,0 +1,26 @@
+- include_vars: "roles/data-availability/{{ data_availability_role }}/defaults/main.yaml"
+- include_vars: "roles/data-availability/{{ data_availability_role }}/defaults/{{ cluster }}/variables.yaml"
+
+- name: Validate da_start_from is optional and skip subsequent tasks if not defined
+  debug:
+    msg: "'da_start_from' is not defined, skipping hash retrieval."
+  when: da_start_from is not defined or da_start_from == ""
+  delegate_to: localhost
+
+- name: set da_trusted_hash based on da_start_from
+  command: "python3 scripts/python/da_rpc_queries.py get_hash {{ celestia_rpc_url }} {{ da_start_from }}"
+  register: hash_output
+  when: da_start_from is defined
+  delegate_to: localhost
+
+- name: update da_trusted_hash with script output
+  set_fact:
+    da_trusted_hash: "{{ hash_output.stdout }}"
+  when: hash_output is defined and da_start_from is defined
+  delegate_to: localhost
+
+- name: print the da_trusted_hash
+  debug:
+    msg: "The da_trusted_hash is: {{ da_trusted_hash }}"
+  when: da_trusted_hash is defined and da_start_from is defined
+  delegate_to: localhost
