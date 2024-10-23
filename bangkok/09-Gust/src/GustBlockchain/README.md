@@ -1,16 +1,3 @@
-# Project Gust
-## Introduction
-
-Gust is a gasless general purpose Substrate based blockchain with smart contracts which is focused on simplifying onboarding of consumers into the Web3 ecosystem. Gust will have native keyless account support which allows for user to use their email addresses as accounts instead of the current public/private key account system in existing blockchains.
-
-## Features planned for the Hackathon
-
-- Gust Substrate Blockchain
-- GustVM
-- Gustavo (Smart Contract Language)
-- Gasless
-- Identity service
-
 # Gust Blockchain 🌬️
 
 > Making blockchain accessible to everyone through email-based transactions and gasless operations.
@@ -155,11 +142,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 Built with ❤️ by the Gust Team
-
-## Team info
-
-Issa Kalonji
-
-## Material for Demo
-1. Demo Video [link to Loom](https://www.loom.com/share/9ef2df4341b14ca0a011f91a1b0bbd32?sid=aedd4aac-8bc2-4fbe-8d53-c751300c4bbb)
-2. PPT [link to google doc](https://docs.google.com/document/d/196c1bmuFqbv7RssO_Pqo2OZgZ0Ir1cKO06pFvXBA5Qw/edit?usp=sharing)
