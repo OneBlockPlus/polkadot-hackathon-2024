@@ -31,7 +31,7 @@ BubbleDOT is an AI-powered coding assistant that can generate entire project fol
 ---
 ### **Project Logo**
 
-<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDYuNjUgOTkuNzkiPjxkZWZzPjxzdHlsZS4uLXN2Zy1jb250ZW50Li4uIjwvZGVmcz48dGl0bGUgLi4uYXR0cj48ZyBkYXRhLW5hbWUuLi48dGV4dCBjbGFzcz0iY2xzLTEiIHRyYW5zZm9ybS4uPi4uPC9nPjwvc3ZnPg==" alt="BubbleDOT Logo" />
+<img src="./src/BubbleDOT-FE/public/Asset_1_1.png" alt="BubbleDOT Logo" />
 
 
 
@@ -58,13 +58,15 @@ BubbleDOT can generate entire project folders; simplify the process of creating,
 
 Features:
 
-1. **Comprehensive Project Generation:** Unlike other AI coding tools that focus on generating individual code snippets, BubbleDOT creates entire project structures, saving developers significant time and effort.
+- **Comprehensive Project Generation:** Unlike other AI coding tools that focus on generating individual code snippets, BubbleDOT creates entire project structures, saving developers significant time and effort.
 - **Better visualization and Understanding:** Provides a visual representation of generated code for better understanding.
 - **Decentralized Code Management:** The web3 integration provides a secure, transparent, and tamper-proof environment for managing and sharing source code, addressing concerns related to data privacy and intellectual property.
 
 ---
 
 ## **Technical Architecture**
+
+<img src="./src/BubbleDOT-FE/public/Technical_Arhitecture.png" alt="Architecture BubbleDOT" />
 
 ---
 
@@ -115,8 +117,8 @@ Features:
 # **Material for Demo**
 **Details**
 
-- Demo video: [LINK]
-- Pitch deck: [LINK]
+- Demo video: 
+- Pitch deck: https://drive.google.com/file/d/1gzRvNrlzBlQLHexluhcTexbPht64A9xc/view?usp=sharing
 
 ---
 
