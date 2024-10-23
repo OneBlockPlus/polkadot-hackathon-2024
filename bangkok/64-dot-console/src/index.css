@@ -1,8 +1,0 @@
-@layer reset, base, tokens, recipes, utilities;
-
-:root {
-  --dc-primary-color: var(--colors-accent-default);
-  --dc-on-primary-color: var(--colors-accent-fg);
-  --dc-surface-color: var(--colors-bg-default);
-  --dc-on-surface-color: var(--colors-fg-default);
-}

@@ -1,3 +1,0 @@
-[submodule "app/utils/bookadot-sdk"]
-	path = app/utils/bookadot-sdk
-	url = https://github.com/thecosmicblocks/bookadot-sdk

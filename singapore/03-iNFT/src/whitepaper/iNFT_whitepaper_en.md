@@ -1,1 +1,0 @@
-# iNFT White Paper

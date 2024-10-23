@@ -1,8 +1,0 @@
-.idea
-.env
-.next
-.vscode
-node_modules
-target
-out
-.DS_Store
