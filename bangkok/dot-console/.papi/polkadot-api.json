@@ -1,0 +1,62 @@
+{
+  "version": 0,
+  "descriptorPath": ".papi/descriptors",
+  "entries": {
+    "polkadot": {
+      "chain": "polkadot",
+      "metadata": ".papi/metadata/polkadot.scale"
+    },
+    "polkadot_asset_hub": {
+      "chain": "polkadot_asset_hub",
+      "metadata": ".papi/metadata/polkadot_asset_hub.scale"
+    },
+    "polkadot_collectives": {
+      "chain": "polkadot_collectives",
+      "metadata": ".papi/metadata/polkadot_collectives.scale"
+    },
+    "polkadot_people": {
+      "chain": "polkadot_people",
+      "metadata": ".papi/metadata/polkadot_people.scale"
+    },
+    "hydration": {
+      "wsUrl": "wss://rpc.hydradx.cloud",
+      "metadata": ".papi/metadata/hydration.scale"
+    },
+    "kusama": {
+      "chain": "ksmcc3",
+      "metadata": ".papi/metadata/kusama.scale"
+    },
+    "kusama_asset_hub": {
+      "chain": "ksmcc3_asset_hub",
+      "metadata": ".papi/metadata/kusama_asset_hub.scale"
+    },
+    "kusama_people": {
+      "wsUrl": "wss://kusama-people-rpc.polkadot.io",
+      "metadata": ".papi/metadata/kusama_people.scale"
+    },
+    "tinkernet": {
+      "wsUrl": "wss://tinkernet-rpc.dwellir.com",
+      "metadata": ".papi/metadata/tinkernet.scale"
+    },
+    "paseo": {
+      "chain": "paseo",
+      "metadata": ".papi/metadata/paseo.scale"
+    },
+    "westend": {
+      "chain": "westend2",
+      "metadata": ".papi/metadata/westend.scale"
+    },
+    "westend_asset_hub": {
+      "chain": "westend2_asset_hub",
+      "metadata": ".papi/metadata/westend_asset_hub.scale"
+    },
+    "westend_collectives": {
+      "chain": "westend2_collectives",
+      "metadata": ".papi/metadata/westend_collectives.scale"
+    },
+    "westend_people": {
+      "wsUrl": "wss://westend-people-rpc.polkadot.io",
+      "metadata": ".papi/metadata/westend_people.scale"
+    }
+  }
+}
