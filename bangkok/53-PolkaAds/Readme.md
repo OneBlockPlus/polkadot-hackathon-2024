@@ -41,8 +41,8 @@ Polka Ads offers a streamlined shopping experience that allows users to buy prod
     - Show logs
 
 4. [**Chrome Extension**](./src/chrome-extension/content.js)
-    - [Purchase] (./src/chrome-extension/content.js)
-    - [Popup] (./src/chrome-extension/popup.html)
+    - [Purchase](./src/chrome-extension/content.js)
+    - [Popup](./src/chrome-extension/popup.html)
 
 
 # User flow for ad clients:
