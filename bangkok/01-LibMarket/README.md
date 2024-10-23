@@ -19,9 +19,9 @@ Relying on the shared security mechanism of Polkadot's relay chain, using homomo
 
 - [x] Introducing other ecosystems through Polkadot's parallel chain architecture, shopping cart and other functions are implemented using sui
 
-- [ ] Implement the product listing/removal function, and the on-chain status relationship after the transaction is completed to make it logical and prevent abuse
+- [x] Implement the product listing/removal function, and the on-chain status relationship after the transaction is completed to make it logical and prevent abuse
 
-- [ ] Item reviews, buyers rate sellers on the chain and introduce a points model
+- [x] Item reviews, buyers rate sellers on the chain and introduce a points model
 
 
 
