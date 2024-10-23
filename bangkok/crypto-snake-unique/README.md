@@ -14,8 +14,8 @@ The status of project before participate the Hackathon: we fork a opensource sna
 
 ## Architect
 
-- Frontend code: This project
-  - Forked from https://github.com/ekinkaradag/snake-vue3, added Unique SDK implementation
+- Frontend code: https://github.com/LuckyFT-com/crypto-snake
+  - Forked from ekinkaradag/snake-vue3, added Unique SDK implementation
 - Contract code: https://github.com/LuckyFT-com/unique-contracts
   - Forked from Unique's official contract code repository, added `/recipes/CryptoSnake.sol` for implementation
 
@@ -31,6 +31,8 @@ bounty: unique network
 
 - Online: https://crypto-snake.vercel.app/
 - Video demo: https://www.loom.com/share/5bfc5d3e6eb34d07ba7f780949f6cb1b?sid=5ee7b853-b0a6-410d-9be1-1a098028fc5f
+- FE code: https://github.com/LuckyFT-com/crypto-snake
+- Contract code: https://github.com/LuckyFT-com/unique-contracts
 
 
 ## Track: Unique Network
