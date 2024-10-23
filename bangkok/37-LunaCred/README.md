@@ -78,6 +78,8 @@ LunaCred follows a typical DApp architecture, consisting of:
 ### 📊 [View Presentation](https://drive.google.com/file/d/1IM00LeviusqMytLnfKTJ5RFr3pDzyUdZ/view?usp=sharing)
 
 ### 🌐 [Try Live Demo](https://lunacred.vercel.app/)
+![Sample website](./doc/lunacred_demo.png)
+![Sample website](./doc/lunacred_demo2.png)
 
 ## Future Scope
 
