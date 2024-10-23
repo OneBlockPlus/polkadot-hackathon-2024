@@ -78,6 +78,10 @@ The implementation prototype that we presenting in our demo video is built using
 ![Scan Page](https://github.com/user-attachments/assets/8f796b37-68ef-4c9f-a32e-187619f7bb75)
 ![Home Page](https://github.com/user-attachments/assets/c59b6b07-8a27-401a-9101-1257627a02ea)
 
+### Contracts link to the explorer (Moonbeam):
+
+- https://moonbase.moonscan.io/address/0x81f438DaCd0544976c0c9B6F1E01975aec1dfA8d (Equippable NFT Contract)
+- https://moonbase.moonscan.io/address/0x5bde166437720ee2156f02fe0977dba2d94b0944 (NFT Catalog Contract)
 
 ### **📅 Timeline for all features planned**
 
@@ -111,7 +115,7 @@ The implementation prototype that we presenting in our demo video is built using
 
 ---
 
-Demo Video
+[Demo Video](https://www.youtube.com/watch?v=v6DnYxcS-7c&feature=youtu.be)
 
 ### 🏅 **Track and Bounty**
 
