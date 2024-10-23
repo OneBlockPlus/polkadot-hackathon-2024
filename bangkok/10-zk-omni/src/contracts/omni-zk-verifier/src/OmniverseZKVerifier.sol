@@ -131,8 +131,9 @@ contract OmniverseZKVerifier is
      * @notice Submit batch proof
      * @dev The proof MUST be submitted in order
      * @param batchProof Proof data of a batch of transactions
+     * @param encodedData SCALE encoded versioned data
      */
-    function submitBatchProof(BatchProof calldata batchProof) public {
+    function submitBatchProof(BatchProof calldata batchProof, bytes memory encodedData) public {
         uint128 _nextBatchId = nextBatchId;
         if (batchProof.batchId != _nextBatchId) {
             revert BatchIDNotMatch(batchProof.batchId, _nextBatchId);
@@ -223,6 +224,7 @@ contract OmniverseZKVerifier is
             batchProof.proof.proof
         );
         nextBatchId = batchProof.batchId + 1;
+        verifyResultToOtherParachains(encodedData);
     }
 
     function decodePublicValue(
