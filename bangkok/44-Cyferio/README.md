@@ -18,11 +18,10 @@ Cyferio Hub provides an AVS (Autonomous Validation System) ecosystem for the TMC
 
 ## Features Planned for the Hackathon
 
-- [ ] TMC Integration with Cache Layer
-- [ ] Cache Message Queue Pallet
-- [ ] Off-chain Worker Integration with TMC Relay Message Cluster
-- [ ] TMC Relay Message Cluster Integration with Walrus Storage
-- [ ] Web Page: Example for full process demonstration
+- [x] TMC Integration with Cache Layer
+- [x] Cache Message Queue Pallet
+- [x] Off-chain Worker Integration with TMC Relay Message Cluster
+- [x] TMC Relay Message Cluster Integration with Walrus Storage
 
 ## Schedule
 
@@ -34,16 +33,17 @@ We had only 7 days between signing up for the contest and completing the code. O
 
 ## Team Information
 
-| Name  | Role                   | GitHub                               |
-|-------|------------------------|--------------------------------------|
-| Moven | ZK & FHE Cryptography  | https://github.com/moven0831         |
-| Henry | TMC Engineer           | https://github.com/Zombieliu         |
-| Frank | Blockchain Developer   | https://github.com/vladilen11        |
-| Bob   | Blockchain Developer   | https://github.com/web3olalala       |
+| Name  | Role                  | GitHub                         |
+| ----- | --------------------- | ------------------------------ |
+| Moven | ZK & FHE Cryptography | https://github.com/moven0831   |
+| Henry | TMC Engineer          | https://github.com/Zombieliu   |
+| Frank | Blockchain Developer  | https://github.com/vladilen11  |
+| Bob   | Blockchain Developer  | https://github.com/web3olalala |
 
 ## Demo Materials
 
 1. Documentation
-2. Demo Video: [YouTube Link]
+2. Demo Video: [[YouTube Link](https://youtu.be/Ueoh7FZERfk)]
 3. Presentation: [[Google Docs Link](https://drive.google.com/file/d/1iYn4hvYgg0PIAZBplALvOdO8ZJQ_Ftt-/view?usp=sharing)]
-4. Website: [[HomePage](https://cyferio.com/)]
+4. Presentation Video: [[YouTube Link](https://www.youtube.com/watch?v=3XpvtB-0sUQ)]
+5. Website: [[HomePage](https://cyferio.com/)]
