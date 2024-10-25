@@ -10,6 +10,12 @@ Project name:
 "./augmeaProtocol"
 
 
+Project logo:
+
+
+<img width="635" alt="image" src="https://github.com/user-attachments/assets/cd7fdadd-7792-446b-9765-401a171968b0">
+
+
 Project creation date:
 
 Coding for the project started the 10/11/24.
@@ -119,7 +125,8 @@ Features are planed for the Hackathon:
 
 Diagram of architect for the project:
 
-https://drive.google.com/file/d/1rcqS1xh1UScXTdDItyg8IIqJ9ThQJp7Q/view?usp=sharing
+<img width="1418" alt="image" src="https://github.com/user-attachments/assets/4991e76e-b622-42bb-a74f-e720fea76de8">
+
 
 
 Description for each component:
@@ -192,7 +199,7 @@ None
 
 ** Mandatory before offline demo, submit aterial for Demo
 
-| Material     | Link                                                                                                 |
+| Materiial    | Link                                                                                                 |
 | ------------ | ---------------------------------------------------------------------------------------------------- |
 | Video        | https://youtu.be/n30R0Vmq10w                                                                         |
 | Presentation | https://drive.google.com/file/d/1cUFQYWzzS0RW2pYS8A55ATlg1PY-tf4-/view?usp=sharing                   |
