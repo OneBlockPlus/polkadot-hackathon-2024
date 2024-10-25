@@ -1,0 +1,1014 @@
+{
+  "source": {
+    "hash": "0x728b35856482424eca085f1f8b74fba972efd67aa2e2b92275bf0f36a2cb58ba",
+    "language": "ink! 4.3.0",
+    "compiler": "rustc 1.76.0",
+    "build_info": {
+      "build_mode": "Release",
+      "cargo_contract_version": "3.2.0",
+      "rust_toolchain": "stable-aarch64-apple-darwin",
+      "wasm_opt_settings": {
+        "keep_debug_symbols": false,
+        "optimization_passes": "Z"
+      }
+    }
+  },
+  "contract": {
+    "name": "augmea_lending_protocol",
+    "version": "0.1.0",
+    "authors": [
+      "[your_name] <[your_email]>"
+    ]
+  },
+  "spec": {
+    "constructors": [
+      {
+        "args": [
+          {
+            "label": "param_oracle_address",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "param_augmea_stablecoin_address",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "param_wrapped_dot_address",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 1
+            }
+          },
+          {
+            "label": "param_dot_pair_str",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 5
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "new",
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink_primitives",
+            "ConstructorResult"
+          ],
+          "type": 6
+        },
+        "selector": "0x9bae9d5e"
+      }
+    ],
+    "docs": [],
+    "environment": {
+      "accountId": {
+        "displayName": [
+          "AccountId"
+        ],
+        "type": 1
+      },
+      "balance": {
+        "displayName": [
+          "Balance"
+        ],
+        "type": 0
+      },
+      "blockNumber": {
+        "displayName": [
+          "BlockNumber"
+        ],
+        "type": 15
+      },
+      "chainExtension": {
+        "displayName": [
+          "ChainExtension"
+        ],
+        "type": 16
+      },
+      "hash": {
+        "displayName": [
+          "Hash"
+        ],
+        "type": 13
+      },
+      "maxEventTopics": 4,
+      "timestamp": {
+        "displayName": [
+          "Timestamp"
+        ],
+        "type": 14
+      }
+    },
+    "events": [],
+    "lang_error": {
+      "displayName": [
+        "ink",
+        "LangError"
+      ],
+      "type": 8
+    },
+    "messages": [
+      {
+        "args": [
+          {
+            "label": "param_initial_liquidity",
+            "type": {
+              "displayName": [
+                "u128"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "deposit_initial_liquidity",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 6
+        },
+        "selector": "0x2aa0b813"
+      },
+      {
+        "args": [
+          {
+            "label": "param_amount_to_deposit",
+            "type": {
+              "displayName": [
+                "u128"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "deposit",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 6
+        },
+        "selector": "0x2d10c9bd"
+      },
+      {
+        "args": [
+          {
+            "label": "param_amount_to_redeem",
+            "type": {
+              "displayName": [
+                "u128"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "redeem",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 6
+        },
+        "selector": "0xec3e9290"
+      },
+      {
+        "args": [
+          {
+            "label": "param_amount_dot_collateral",
+            "type": {
+              "displayName": [
+                "u128"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "borrow",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 6
+        },
+        "selector": "0x7acb5e2e"
+      },
+      {
+        "args": [
+          {
+            "label": "position_to_repay_id",
+            "type": {
+              "displayName": [
+                "u128"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "param_amount_to_repay",
+            "type": {
+              "displayName": [
+                "u128"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "repay",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 6
+        },
+        "selector": "0xa9f4b044"
+      },
+      {
+        "args": [
+          {
+            "label": "param_dot_amount_to_use",
+            "type": {
+              "displayName": [
+                "u128"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "calculate_borrow_amount_approximately",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 9
+        },
+        "selector": "0x5aa915c7"
+      },
+      {
+        "args": [
+          {
+            "label": "param_borrow_position_id",
+            "type": {
+              "displayName": [
+                "u128"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "liquidate",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 6
+        },
+        "selector": "0x4e3c6966"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "get_actual_augmea_reserves",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 9
+        },
+        "selector": "0xab385a7b"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "get_number_of_borrowing_positions",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 9
+        },
+        "selector": "0xe4b9a7a2"
+      },
+      {
+        "args": [
+          {
+            "label": "param_borrowing_position_id",
+            "type": {
+              "displayName": [
+                "u128"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "get_borrowing_position_data",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 10
+        },
+        "selector": "0x5cd1106b"
+      },
+      {
+        "args": [
+          {
+            "label": "param_borrowing_position_id",
+            "type": {
+              "displayName": [
+                "u128"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "is_liquidated",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 12
+        },
+        "selector": "0xdfb6054e"
+      },
+      {
+        "args": [
+          {
+            "label": "param_borrowing_position_id",
+            "type": {
+              "displayName": [
+                "u128"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "ready_to_be_liquidated",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 12
+        },
+        "selector": "0x11b554b6"
+      }
+    ]
+  },
+  "storage": {
+    "root": {
+      "layout": {
+        "struct": {
+          "fields": [
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "struct": {
+                      "fields": [
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x11117fec",
+                              "ty": 0
+                            }
+                          },
+                          "name": "position_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x11117fec",
+                              "ty": 1
+                            }
+                          },
+                          "name": "borrower"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x11117fec",
+                              "ty": 0
+                            }
+                          },
+                          "name": "collateral_dot_used"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x11117fec",
+                              "ty": 0
+                            }
+                          },
+                          "name": "dot_value_at_borrowing_time"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x11117fec",
+                              "ty": 0
+                            }
+                          },
+                          "name": "liquidation_price"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x11117fec",
+                              "ty": 0
+                            }
+                          },
+                          "name": "borrowed_amount"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x11117fec",
+                              "ty": 0
+                            }
+                          },
+                          "name": "timestamp"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x11117fec",
+                              "ty": 0
+                            }
+                          },
+                          "name": "pending_debt_without_interests"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x11117fec",
+                              "ty": 0
+                            }
+                          },
+                          "name": "pending_collateral_dot"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x11117fec",
+                              "ty": 4
+                            }
+                          },
+                          "name": "liquidated"
+                        }
+                      ],
+                      "name": "position_data"
+                    }
+                  },
+                  "root_key": "0x11117fec"
+                }
+              },
+              "name": "borrow_positions"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "leaf": {
+                      "key": "0x30901e68",
+                      "ty": 0
+                    }
+                  },
+                  "root_key": "0x30901e68"
+                }
+              },
+              "name": "lender_deposited_augmea"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "leaf": {
+                      "key": "0xeaa0791a",
+                      "ty": 0
+                    }
+                  },
+                  "root_key": "0xeaa0791a"
+                }
+              },
+              "name": "borrower_collateral"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 1
+                }
+              },
+              "name": "oracle_address"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 1
+                }
+              },
+              "name": "augmea_stablecoin_address"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 1
+                }
+              },
+              "name": "wrapped_dot_address"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 5
+                }
+              },
+              "name": "dot_str_pair"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 0
+                }
+              },
+              "name": "total_augmea_deposited"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 0
+                }
+              },
+              "name": "available_augmea_liquidity_reserve"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 0
+                }
+              },
+              "name": "next_position_id"
+            }
+          ],
+          "name": "AugmeaLendingProtocol"
+        }
+      },
+      "root_key": "0x00000000"
+    }
+  },
+  "types": [
+    {
+      "id": 0,
+      "type": {
+        "def": {
+          "primitive": "u128"
+        }
+      }
+    },
+    {
+      "id": 1,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "type": 2,
+                "typeName": "[u8; 32]"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "types",
+          "AccountId"
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "type": {
+        "def": {
+          "array": {
+            "len": 32,
+            "type": 3
+          }
+        }
+      }
+    },
+    {
+      "id": 3,
+      "type": {
+        "def": {
+          "primitive": "u8"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "type": {
+        "def": {
+          "primitive": "bool"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "type": {
+        "def": {
+          "primitive": "str"
+        }
+      }
+    },
+    {
+      "id": 6,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 7
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 8
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 7
+          },
+          {
+            "name": "E",
+            "type": 8
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "type": {
+        "def": {
+          "tuple": []
+        }
+      }
+    },
+    {
+      "id": 8,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 1,
+                "name": "CouldNotReadInput"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "LangError"
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 0
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 8
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 0
+          },
+          {
+            "name": "E",
+            "type": 8
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 11
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 8
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 11
+          },
+          {
+            "name": "E",
+            "type": 8
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "position_id",
+                "type": 0,
+                "typeName": "u128"
+              },
+              {
+                "name": "borrower",
+                "type": 1,
+                "typeName": "AccountId"
+              },
+              {
+                "name": "collateral_dot_used",
+                "type": 0,
+                "typeName": "u128"
+              },
+              {
+                "name": "dot_value_at_borrowing_time",
+                "type": 0,
+                "typeName": "u128"
+              },
+              {
+                "name": "liquidation_price",
+                "type": 0,
+                "typeName": "u128"
+              },
+              {
+                "name": "borrowed_amount",
+                "type": 0,
+                "typeName": "u128"
+              },
+              {
+                "name": "timestamp",
+                "type": 0,
+                "typeName": "u128"
+              },
+              {
+                "name": "pending_debt_without_interests",
+                "type": 0,
+                "typeName": "u128"
+              },
+              {
+                "name": "pending_collateral_dot",
+                "type": 0,
+                "typeName": "u128"
+              },
+              {
+                "name": "liquidated",
+                "type": 4,
+                "typeName": "bool"
+              }
+            ]
+          }
+        },
+        "path": [
+          "augmea_lending_protocol",
+          "augmea_lending_protocol",
+          "position_data"
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 4
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 8
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 4
+          },
+          {
+            "name": "E",
+            "type": 8
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 13,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "type": 2,
+                "typeName": "[u8; 32]"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "types",
+          "Hash"
+        ]
+      }
+    },
+    {
+      "id": 14,
+      "type": {
+        "def": {
+          "primitive": "u64"
+        }
+      }
+    },
+    {
+      "id": 15,
+      "type": {
+        "def": {
+          "primitive": "u32"
+        }
+      }
+    },
+    {
+      "id": 16,
+      "type": {
+        "def": {
+          "variant": {}
+        },
+        "path": [
+          "ink_env",
+          "types",
+          "NoChainExtension"
+        ]
+      }
+    }
+  ],
+  "version": "4"
+}
