@@ -9,6 +9,8 @@ Project Creation Date: 5 Oct.
 
 Project Background: New Project.
 
+Github: https://github.com/0xshikhar/play-network 
+
 ## Project Details
 
 ### Introducing PlayVerse
