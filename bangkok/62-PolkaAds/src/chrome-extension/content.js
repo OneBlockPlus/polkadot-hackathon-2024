@@ -1,5 +1,6 @@
 const API_URL = 'https://polka-ads-1f3f9a46211d.herokuapp.com/api';
 const CHECKOUT_URL = 'https://polka-ads.vercel.app/checkout';
+// const CHECKOUT_URL = 'http://localhost:3000/checkout';
 
 let youtubeVideoId = null;
 let videoId = null;
@@ -17,7 +18,7 @@ function openCheckoutModal(videoId, adId) {
         checkoutWindow = window.open(
             `${CHECKOUT_URL}?videoId=${videoId}&adId=${adId}&videoTitle=${videoTitle}`,
             'popup',
-            'width=555,height=600'
+            'width=800,height=650'
         );
     } else {
         // Focus the existing window and update its URL
@@ -104,7 +105,7 @@ const createPopup = (ad, index) => {
     popup.style.width = '300px';
     popup.style.maxHeight = `${maxHeight}px`; // Limit the popup height
     popup.style.padding = '10px';
-    popup.style.backgroundColor = '#ea4172bf';
+    popup.style.backgroundColor = '#2A183E';
     popup.style.color = '#fff';
     popup.style.borderRadius = '8px';
     popup.style.zIndex = '9999';
@@ -153,8 +154,8 @@ const createPopup = (ad, index) => {
     const button = document.createElement('button');
     button.textContent = 'Purchase';
     button.style.padding = '10px 20px';
-    button.style.backgroundColor = '#87fbb9';
-    button.style.color = '#000';
+    button.style.backgroundColor = 'rgb(255, 60, 127)';
+    button.style.color = 'white';
     button.style.border = 'none';
     button.style.borderRadius = '5px';
     button.style.cursor = 'pointer';
@@ -168,9 +169,11 @@ const createPopup = (ad, index) => {
     // Hover effect for button
     button.onmouseover = () => {
         button.style.backgroundColor = '#e64a19';
+        button.style.color = 'black';
     };
     button.onmouseout = () => {
         button.style.backgroundColor = '#87fbb9';
+        button.style.color = 'black';
     };
 
     button.onclick = () => {

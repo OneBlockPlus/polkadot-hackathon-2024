@@ -28,10 +28,8 @@ const App = () => {
               <Route path="/" element={<Landing/>}/>
               <Route path="/manager" element={
                 <WalletLoading>
-                  <div>
                     <AddVideo onVideoAdded={handleVideoAdded}/>
                     <VideoList videos={videos} setVideos={setVideos}/>
-                  </div>
                 </WalletLoading>
               }/>
               <Route path="/checkout" element={
@@ -54,14 +52,12 @@ const App = () => {
 
 const styles = {
   container: {
-    maxWidth: '1000px',
     margin: '0 auto',
-    padding: '20px',
-    fontFamily: "'Poppins', sans-serif",
+    fontFamily: "'Nunito', sans-serif",
+
   },
   background: {
-    backgroundColor: '#E7E6E3',
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+    background: '#2A183E'
   }
 };
 

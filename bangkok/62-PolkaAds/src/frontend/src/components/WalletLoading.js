@@ -19,7 +19,8 @@ const styles = {
     container: {
         padding: '18%',
         fontSize: '3rem',
-        textAlign: 'center'
+        textAlign: 'center',
+        color:'white'
     },
 };
 

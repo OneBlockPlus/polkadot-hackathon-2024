@@ -3,8 +3,7 @@
 .submit-area {
 	padding: 20px; /* Adjusted padding to match VideoList */
 	border-radius: 10px; /* Keep the rounded corners */
-	box-shadow: 5px 5px gray; /* Keep the shadow */
-	background-color: #6C91C2; /* Use color from VideoList create ad button */
+	background-color: rgb(255, 60, 127); /* Use color from VideoList create ad button */
 	color: #fff; /* White text for contrast */
 }
 
@@ -16,7 +15,6 @@
 	background-color: #fff; /* Make background more neutral to match the VideoList */
 	border: 1px solid #ddd;
 	border-radius: 10px;
-	box-shadow: 5px 5px lightgray;
 }
 
 .balance {
@@ -24,7 +22,6 @@
 	border: 1px solid #ccc;
 	padding: 20px;
 	border-radius: 10px;
-	box-shadow: 3px 3px lightgray; /* Lighter shadow */
 }
 
 .status {
@@ -33,5 +30,4 @@
 	border-radius: 10px;
 	background-color: #f9f9f9;
 	border: 1px solid #ccc;
-	box-shadow: 3px 3px lightgray;
 }

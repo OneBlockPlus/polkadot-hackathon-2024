@@ -1,123 +1,327 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Landing = () => {
     return (
+
         <div style={styles.container}>
-            {/* What is Polka Ads */}
-            <section style={styles.section}>
-                <h1 style={styles.heading}>What is Polka Ads?</h1>
-                <p style={styles.text}>
-                    Polka Ads is a cutting-edge web3 platform, powered by a Chrome extension, that seamlessly integrates
-                    product advertisements into social media platforms. Viewers can purchase items directly from the
-                    video without leaving the website, leveraging Polkadot’s blockchain for secure, on-chain
-                    transactions. This makes Polkadot more accessible as part of everyday digital interactions and
-                    bringing web3 innovation into mainstream content consumption
-                </p>
+            <section
+                style={styles.section1}
+            >
+                <div
+                    style={styles.headContainer}
+                >
+                    <img src="/favicon.svg" height={350} style={{ borderRadius: "50%" }} />
+                    <h2
+                        style={styles.headText}
+                    >
+                        Instant shopping with Polkadot smart contracts
+                    </h2>
+                    <h5 style={{ fontSize: "1em", lineHeight: "1.6" }}>
+                        Polka Ads is a web3 platform that embeds product ads into social media
+                        platforms, allowing viewers to make purchases directly via a Chrome
+                        extension, all secured by Polkadot’s blockchain.
+                    </h5>
+                </div>
+                <img
+                    src="ad-example.png"
+                    style={styles.headImg2}
+                />
             </section>
 
-            {/* How it works for the Users */}
-            <section style={styles.section}>
-                <h2 style={styles.subheading}>How it works for the Users</h2>
-                <p style={styles.text}>
-                    Getting started with Polka Ads is easy! Just follow these simple steps to enjoy a seamless shopping
-                    experience while watching your favorite YouTube videos:
-                </p>
-                <ol style={styles.stepsList}>
-                    <li>First, install the Polka Ads and the Polkadot JS extensions. These will help you
-                        connect and manage your purchases.
-                    </li>
-                    <li>
-                        Create or log into your Polkadot account using the extension.
-                    </li>
-                    <li>Now, visit any supported website (currently, we support YouTube). As you watch videos, a small
-                        ad will pop up at specific times, showing you cool products that you might like.
-                        <img src="ad-example.png" style={styles.stepImage}/>
-                    </li>
-                    <li>See something you love? Simply click the "Purchase" button on the ad. A checkout form will
-                        appear, where you can quickly fill in your name and email.
-                        <img src="purchase-example.png" style={styles.stepImage}/>
-                    </li>
-                    <li>After clicking "Purchase", you'll be prompted to confirm the payment using the Polkadot JS
-                        extension. Just sign the contract, and you're all set!
-                        <img src="sign-example.png" style={styles.stepImage}/>
-                    </li>
-                    <li>Once your purchase is complete, you'll see a success message, and we'll follow up with you
-                        shortly. It's that simple!
-                        <img src="success-example.png" style={styles.stepImage}/>
-                    </li>
-                </ol>
+            <section
+                style={styles.section2}
+            >
+                <div
+                    style={styles.section_cotainer}
+                >
+                    <div
+                        style={styles.section_head_container}
+                    >
+                        <div>
+                            <h3 style={styles.font700}>How it works for the Users</h3>
+                            <p
+                                style={styles.sectionSubHeading}
+                            >
+                                Getting started with Polka Ads is easy! Just follow these simple steps
+                                to enjoy a seamless shopping experience while watching your favorite
+                                YouTube videos:
+                            </p>
+                            <ol
+                                style={styles.sectionOl}
+                            >
+                                <li>
+                                    First, install the Polka Ads and the Polkadot JS extensions. These
+                                    will help you connect and manage your purchases.
+                                </li>
+                                <li>Create or log into your Polkadot account using the extension.</li>
+                                <li>
+                                    Now, visit any supported website (currently, we support YouTube). As
+                                    you watch videos, a small ad will pop up at specific times, showing
+                                    you cool products that you might like.
+                                </li>
+                            </ol>
+                        </div>
+                        <div style={styles.dflexcenter}>
+                            <img
+                                alt=""
+                                loading="lazy"
+                                width={360}
+                                decoding="async"
+                                data-nimg={1}
+                                classname="shrink-0"
+                                src="ad-example.png"
+                                style={{border: '1px solid white'}}
+                            />
+                        </div>
+                    </div>
+                    <div
+                        style={styles.section_head_container}
+                    >
+                        <div style={styles.dflexcenter}>
+                            <img
+                                alt=""
+                                loading="lazy"
+                                width={360}
+                                decoding="async"
+                                data-nimg={1}
+                                classname="shrink-0"
+                                src="purchase-example.png"
+                                style={{border: '1px solid white'}}
+                            />
+                        </div>
+                        <div>
+                            <h3 style={styles.font700}>Checkout</h3>
+                            <ol
+                                style={styles.sectionOl}
+                            >
+                                <li>
+                                    Just click on"Purchase" button on the ad. A checkout form will
+                                    appear, where you can quickly fill in your name and email.
+                                </li>
+                                <li>
+                                    After clicking "Purchase", you'll be prompted to confirm the payment
+                                    using the Polkadot JS extension. Just sign the contract, and you're
+                                    all set!
+                                </li>
+                                <li>
+                                    Once your purchase is complete, you'll see a success message, and
+                                    we'll follow up with you shortly. It's that simple!
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
             </section>
 
-            {/* How it works for the Ad Managers */}
-            <section style={styles.section}>
-                <h2 style={styles.subheading}>How it works for the Ad Managers</h2>
-                <p style={styles.text}>
-                    Ad managers can upload ads and link them to specific videos. The platform provides purchase logs,
-                    ensuring that managers can withdraw the money and contact customers effectively.
-                </p>
+
+            <section
+                style={styles.section3}
+            >
+                <div
+                    style={styles.section_cotainer}
+                >
+                    <div
+                        style={styles.section3Container}
+                    >
+                        <div style={{ width: "100%" }}>
+                            <h3 style={styles.font700white}>Advertiser Flow</h3>
+                            <p
+                                style={styles.section3P}
+                            >
+                                Step 1: Open Polka Ads Manager and connect the wallet
+                            </p>
+                            <p
+                                style={styles.section3P}
+                            >
+                             Step 2: Add a video
+                            </p>
+                        </div>
+                        <div style={styles.dflexcenter}>
+                            <img
+                                alt=""
+                                loading="lazy"
+                                width={360}
+                                decoding="async"
+                                data-nimg={1}
+                                classname="shrink-0"
+                                src="manager-connect-wallet.png"
+                                style={{border: '1px solid white'}}
+                            />
+                        </div>
+                    </div>
+                    <div
+                        style={styles.section3imgContainer}
+                    >
+                        <div style={styles.dflexcenter}>
+                            <img
+                                alt=""
+                                loading="lazy"
+                                width={360}
+                                decoding="async"
+                                data-nimg={1}
+                                classname="shrink-0"
+                                src="manager-assign-ads.png"
+                                style={{border: '1px solid white'}}
+                            />
+                        </div>
+                        <div>
+                            <h3 style={styles.font700white}>Advertiser Flow</h3>
+                            <p style={styles.section3P}>Step 3: Assign ads</p>
+                            <p style={styles.section3P}>
+                                Step 4: Wait for the purchases and contact the customers!
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </section>
 
-            {/* Useful Links */}
-            <section style={styles.section}>
-                <h2 style={styles.subheading}>Useful Links</h2>
-                <ul style={styles.linkList}>
-                    <li><Link to="/manager">Ad Manager Dashboard</Link></li>
-                    <li><Link to="/withdraw">Withdraw Earnings</Link></li>
-                </ul>
+
+
+            <section style={styles.section4}>
+                <div
+                    style={styles.section4Container}
+                >
+                    <div
+                        style={styles.section4SubContainer}
+                    >
+                        <div>
+                            <h3 style={styles.font700white}>Advertiser Flow</h3>
+                            <p
+                                style={styles.section3P}
+                            >
+                                After receiving the first purchases you are able to find customers
+                                info and withdraw the money on Withdraw page.
+                            </p>
+                        </div>
+                        <div style={{}}>
+                            <img
+                                alt=""
+                                loading="lazy"
+                                decoding="async"
+                                data-nimg={1}
+                                classname="shrink-0"
+                                src="withdraw-page.png"
+                                style={{ width: "100%" }}
+                            />
+                        </div>
+                    </div>
+                </div>
             </section>
+
         </div>
     );
 };
 
 const styles = {
-    container: {
-        padding: '20px',
-        maxWidth: '800px',
-        margin: '0 auto',
-        fontFamily: "'Poppins', sans-serif",
+    headImg: {
+        borderRadius: '50%'
     },
-    stepImage: {
-        display: 'block',
-        width: '70%',
-        borderRadius: '10px',
-        marginTop: '10px',
-        marginBottom: '20px',
-        marginLeft: 'auto',
-        marginRight: 'auto',
+    headImg2: {
+        display: "block",
+        width: "70%",
+        borderRadius: 10,
+        margin: "10px auto 20px"
     },
-    section: {
-        marginBottom: '40px',
+    headText: {
+        fontSize: '2.5rem',
+        lineHeight: '3.5rem',
+        letterSpacing: '-.0625rem'
     },
-    heading: {
-        fontSize: '2.5em',
+    headContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        alignItems: 'center',
         textAlign: 'center',
-        color: '#333',
+        maxWidth: '900px'
     },
-    subheading: {
-        fontSize: '2em',
-        color: '#555',
+    section1: {
+        background: '#2A183E',
+        color: 'white',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        alignItems: 'center',
+        padding: '2rem'
     },
-    text: {
-        fontSize: '1.2em',
-        lineHeight: '1.6',
-        color: '#666',
-        textAlign: 'justify',
+
+    section2: {
+        display: "flex",
+        paddingTop: "4rem",
+        paddingBottom: "4rem",
+        flexDirection: "column",
+        gap: "5rem"
     },
-    stepsList: {
-        fontSize: '1.2em',
-        color: '#666',
-        lineHeight: '1.8',
-        paddingLeft: '20px',
+    section_cotainer: {
+        display: "flex", flexDirection: "column", alignItems: "center"
     },
-    linkList: {
-        listStyle: 'none',
-        padding: 0,
+    section_head_container: {
+        display: "flex",
+        paddingTop: "2.5rem",
+        flexDirection: "row",
+        gap: "2rem",
+        maxWidth: 900
     },
-    linkItem: {
-        fontSize: '1.2em',
-        marginBottom: '10px',
-    }
+    font700: { fontWeight: '700' },
+
+    sectionSubHeading: {
+        fontSize: "1.2em",
+        lineHeight: "1.6",
+        color: "rgb(102, 102, 102)",
+        textAlign: "justify"
+    },
+    sectionOl: {
+        fontSize: "1.2em",
+        color: "rgb(102, 102, 102)",
+        lineHeight: "1.8",
+        paddingLeft: 20
+    },
+    dflexcenter: { display: "flex", alignItems: "center" },
+    section3: {
+        display: "flex",
+        paddingTop: "4rem",
+        paddingBottom: "4rem",
+        flexDirection: "column",
+        gap: "5rem",
+        background: "#2a183e"
+    },
+    section3Container: {
+        display: "flex",
+        paddingTop: "2.5rem",
+        flexDirection: "row",
+        gap: "2rem",
+        width: 900
+    },
+    font700white: { fontWeight: 700, color: "white" },
+    section3P: { lineHeight: "1.6", color: "#dddddd", textAlign: "justify",fontSize: '1.2em' },
+    section3imgContainer: {
+        display: "flex",
+        paddingTop: "2.5rem",
+        flexDirection: "row",
+        gap: "5rem",
+        width: 900
+    },
+    section4: { display: "flex", flexDirection: "column", gap: "5rem" },
+    section4Container: {
+        display: "flex",
+        alignItems: "center",
+        flexDirection: "column",
+        background: "#1f1f1f",
+        padding: "6rem"
+    },
+    section4SubContainer: {
+        display: "flex",
+        flexDirection: "column",
+        gap: "2rem",
+        maxWidth: 900
+    },
+    container: {
+        margin: '0 auto',
+        fontFamily: "'Nunito', sans-serif",
+        backgroundColor:'white'
+    },
+
 };
 
 export default Landing;

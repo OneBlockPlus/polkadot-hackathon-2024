@@ -72,6 +72,8 @@ const Withdraw = () => {
         fetchData();
         setPrice("")
         setWalletAddress("")
+        document.querySelector("#withdraw-amount").value = ("")
+        document.querySelector("#withdraw-address").value =("")
     }
 
 
@@ -82,10 +84,39 @@ const Withdraw = () => {
     const ValidWithdraw = () => {
         return walletAddress.length != 0 && Number(price) > 0 && Number(TotalCredits) > 0 && !processing;
     }
+    
+const styles2 = {
+    section: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: '3rem',
+        color:'white'
+    },
+    container: {
+        minWidth: '900px'
+    },
+  
+    button: {
+        backgroundColor: 'rgb(255, 60, 127)',
+        color: 'rgb(255, 255, 255)',
+        border: 'white 2px solid',
+        padding: '8px 12px',
+        borderRadius: '5px',
+        cursor: 'pointer',
+        fontSize: '0.9em',
+        transition: 'background-color 0.3s',
+        marginTop: '10px'
+    },
+    accountarea:{
+        marginBottom:'40px'
+    }
+};
     return (
-        <div>
+        <section style={styles2.section}>
+            <div style={styles2.container}>
             <div id="account-area" className={styles['account-area']}>
-                <div className={styles['container']}>
+                <div style={styles['container']}>
                     <div className="row">
                         <div className="col-lg-4 mb-3">
                             <div className={styles['withdraw'] + " " + styles['status']}>
@@ -123,7 +154,7 @@ const Withdraw = () => {
                                 />
                                 <br/>
                                 <button id="withdraw-btn" onClick={Withdraw} disabled={!ValidWithdraw()}
-                                        className="btn btn-success">
+                                        style={styles2.button}>
                                     Withdraw
                                 </button>
                             </div>
@@ -139,7 +170,7 @@ const Withdraw = () => {
             </div>
 
 
-            <table className='table table-stripped'>
+            <table className='table table-secondary'>
                 <thead>
                 <th>Video URL</th>
                 <th>Ad</th>
@@ -160,14 +191,16 @@ const Withdraw = () => {
                     <td>{item.meta.email}</td>
                     <td>{item.price} SBY</td>
                     <td>{item.date}</td>
-                    <td>{item.wallet.toString()}</td>
+                    <td>{item.wallet?.substring(0, 5)}...{item.wallet?.substring(item.wallet?.length - 5, item.wallet?.length)}</td>
                 </tr>)}
 
 
                 </tbody>
             </table>
 
-        </div>
+            </div>
+          
+        </section>
     );
 };
 

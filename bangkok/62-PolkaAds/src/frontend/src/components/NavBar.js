@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import {usePolkadotContext} from '../context/PolkadotContext';
+import { usePolkadotContext } from '../context/PolkadotContext';
 
 function CheckoutPage() {
     if (typeof window.location == 'undefined') return false;
@@ -10,7 +10,7 @@ function CheckoutPage() {
 }
 
 const NavBar = () => {
-    const {signerAddress, loadingContract} = usePolkadotContext();
+    const { signerAddress, loadingContract } = usePolkadotContext();
 
     const [isCheckoutPage] = useState(CheckoutPage());
 
@@ -65,56 +65,68 @@ const NavBar = () => {
     </svg>
 
     return (
-        <nav
-            style={styles.nav}
-        >
-            {!isCheckoutPage && <ul style={styles.leftUl}>
-                <li>
-                    {signerAddress && <a style={styles.a} href='/'>Home</a>}
-                </li>
-                <li>
-                    {signerAddress && <a style={styles.a} href='/manager'>Ad Manager</a>}
-                </li>
-                <li>
-                    {signerAddress && <a style={styles.a} href='/withdraw'>Withdraw</a>}
-                </li>
-            </ul>}
-            <ul
-                className="nav justify-content-end"
-                style={styles.ul}
-            >
-                <li className="nav-item">
-                    {!signerAddress && <button disabled={loadingContract} style={styles.button} onClick={ConnectWallet}>
-                        {loadingContract ? 'Loading...' : 'Connect Wallet'}
-                    </button>}
-                </li>
-                <li>
-                    {signerAddress && <div style={styles.connected}>{signerAddress} {logoutIcon()}</div>}
-                </li>
-                <li>
-                    {signerAddress && <div></div>}
-                </li>
-            </ul>
-        </nav>
+
+        <header style={styles.header}>
+            <a href='/'>
+                <img src='/favicon.svg' height={80} />
+
+            </a>
+            <nav style={styles.nav}>
+
+                {!isCheckoutPage && <ul style={styles.leftUl}>
+                    <li>
+                        {signerAddress && <a style={styles.a} href='/'>Home</a>}
+                    </li>
+                    <li>
+                        {signerAddress && <a style={styles.a} href='/manager'>Ad Manager</a>}
+                    </li>
+                    <li>
+                        {signerAddress && <a style={styles.a} href='/withdraw'>Withdraw</a>}
+                    </li>
+                </ul>}
+                <ul
+                    className="nav justify-content-end"
+                    style={styles.ul}
+                >
+                    <li className="nav-item">
+                        {!signerAddress && <button disabled={loadingContract} style={styles.button} onClick={ConnectWallet}>
+                            {loadingContract ? 'Loading...' : 'Connect Wallet'}
+                        </button>}
+                    </li>
+                    <li>
+                        {signerAddress && <div style={styles.connected}>{signerAddress} {logoutIcon()}</div>}
+                    </li>
+                    <li>
+                        {signerAddress && <div></div>}
+                    </li>
+                </ul>
+            </nav>
+        </header>
 
     );
 };
 
 const styles = {
-    nav: {
-        backgroundColor: '#373F47',
-        padding: '20px',
+    header: {
         display: 'flex',
+        padding: '1rem 2rem',
+        gap: '1rem',
         justifyContent: 'space-between',
         alignItems: 'center',
-        fontFamily: "'Poppins', sans-serif",
+        width: '100%',
+        position: 'relative',
+        background: '#A299BE',
+        color: 'var(--fg-header)',
+        boxShadow: 'rgba(0, 0, 0, 0.16) 0px 12px 12px -6px'
+
     },
     leftUl: {
         float: 'left',
         listStyle: 'none',
         marginTop: '1rem',
         display: 'flex',
-        gap: '1rem'
+        gap: '1rem',
+        color: 'black'
     },
     ul: {
         display: 'flex',
@@ -124,10 +136,11 @@ const styles = {
         marginTop: '0',
         listStyle: 'none',
         justifyContent: 'flex-end',
-        float: "right"
+        float: "right",
+        width:"100%"
     },
     connected: {
-        background: '#354860',
+        background: 'rgb(42 24 62)',
         padding: '1rem',
         color: 'white',
         display: 'flex',
@@ -141,26 +154,61 @@ const styles = {
         cursor: 'pointer'
     },
 
-    header: {
-        marginBottom: '15px',
-        color: '#333',
-        textAlign: 'center'
+    nav: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        width: "100%"
     },
     button: {
-        backgroundColor: '#354860',
-        color: '#fff',
-        border: 'none',
-        padding: '10px 20px',
-        borderRadius: '6px',
+        position: 'relative',
+        alignItems: 'center',
+        boxSizing: 'border-box',
+        display: 'flex',
+        height: '40px',
+        justifyContent: 'center',
+        margin: '0px',
+        overflow: 'hidden',
+        padding: '8px 16px',
+        zIndex: '0',
+        color: 'white',
+        backgroundColor: 'rgb(42 24 62)',
+        backgroundImage: 'none',
+        border: "none",
+        boxShadow: 'rgb(255, 255, 255) 0px 0px 0px 0px inset, rgb(153, 156, 160) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px',
         cursor: 'pointer',
-        transition: 'background-color 0.3s ease',
+        transitionDuration: '0.2s',
+        transitionProperty: 'all',
+        transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+        appearance: 'button',
+        textRendering: 'auto',
+        WebkitFontSmoothing: 'antialiased',
+        borderRadius: '8px',
+        gap: '8px',
+        listStyle: 'outside none none',
+        paddingBlock: '8px',
+        paddingInline: '16px',
+        userSelect: 'none'
     },
     a: {
-        color: '#fff',
+        display: 'flex',
+        overflow: 'hidden',
+        position: 'relative',
+        zIndex: '0',
+        padding: '0.5rem 1rem',
+        gap: '0.5rem',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '2.5rem',
+        fontWeight: '600',
         textDecoration: 'none',
-        margin: '0 15px',
-        fontWeight: '500',
-        fontSize: '1.1rem',
+        whiteSpace: 'nowrap',
+        transitionProperty: 'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform',
+        transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+        transitionDuration: '300ms, 200ms',
+        userSelect: 'none',
+        color: '#000000',
+        fontSize: '1.1rem'
     },
 };
 

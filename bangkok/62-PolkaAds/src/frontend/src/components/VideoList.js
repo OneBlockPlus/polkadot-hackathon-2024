@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import AddAd from './AddAd';
 
-const VideoList = ({videos, setVideos}) => {
+const VideoList = ({ videos, setVideos }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [showAdForm, setShowAdForm] = useState({});
@@ -43,7 +43,7 @@ const VideoList = ({videos, setVideos}) => {
             setVideos(prev =>
                 prev.map(video =>
                     video._id === videoId
-                        ? {...video, productAds: video.productAds.filter(ad => ad._id !== adId)}
+                        ? { ...video, productAds: video.productAds.filter(ad => ad._id !== adId) }
                         : video
                 )
             );
@@ -57,7 +57,7 @@ const VideoList = ({videos, setVideos}) => {
         setVideos(prev =>
             prev.map(video =>
                 video._id === videoId
-                    ? {...video, productAds: [...video.productAds, newAd]}
+                    ? { ...video, productAds: [...video.productAds, newAd] }
                     : video
             )
         );
@@ -84,72 +84,37 @@ const VideoList = ({videos, setVideos}) => {
         return `${front}...${back}`;
     };
 
-    if (loading) return <p>Loading videos...</p>;
-    if (error) return <p>{error}</p>;
+    if (loading) return<section style={styles.section}> <p>Loading videos...</p></section>;
+    if (error) return <section style={styles.section}><p>{error}</p></section>;
 
     return (
-        <div>
-            <h2 style={styles.header}>YouTube Videos</h2>
-            {videos.map(video => (
-                <div key={video._id} style={styles.videoContainer}>
-                    <iframe
-                        src={`https://www.youtube.com/embed/${extractYouTubeID(video.youtubeUrl)}`}
-                        frameBorder="0"
-                        allowFullScreen
-                        title={video.youtubeUrl}
-                        style={styles.iframe}
-                    ></iframe>
+        <section style={styles.section}>
+            <div style={styles.container}>
+                <h2 style={styles.header}>YouTube Videos</h2>
+                {videos.map(video => (
+                    <div key={video._id} style={styles.videoContainer}>
+                        <iframe
+                            src={`https://www.youtube.com/embed/${extractYouTubeID(video.youtubeUrl)}`}
+                            frameBorder="0"
+                            allowFullScreen
+                            title={video.youtubeUrl}
+                            style={styles.iframe}
+                        ></iframe>
 
-                    <button
-                        onClick={() => handleDeleteVideo(video._id)}
-                        style={styles.removeVideoButton}
-                    >
-                        Remove Video
-                    </button>
+                        <button
+                            onClick={() => handleDeleteVideo(video._id)}
+                            style={styles.removeVideoButton}
+                        >
+                            Remove Video
+                        </button>
 
-                    <h3 style={styles.subheader}>Product Ads</h3>
-                    {video.productAds.length === 0 ? (
-                        <div>
-                            <p>No ads for this video.</p>
-                            {showAdForm[video._id] ? (
-                                <>
-                                    <AddAd videoId={video._id} onAdAdded={handleAdAdded}/>
-                                    <button onClick={() => handleCancelAd(video._id)} style={styles.cancelButton}>
-                                        Cancel
-                                    </button>
-                                </>
-                            ) : (
-                                <button onClick={() => toggleAdForm(video._id)} style={styles.createAdButton}>
-                                    Create Ad
-                                </button>
-                            )}
-                        </div>
-                    ) : (
-                        <ul style={styles.adList}>
-                            {video.productAds.map(ad => (
-                                <li key={ad._id} style={styles.adItem}>
-                                    <img src={ad.image} alt={ad.title} style={styles.adImage}/>
-                                    <div style={styles.adContent}>
-                                        <p style={styles.adContentParagraph}><strong>Title:</strong> {ad.title}</p>
-                                        <p style={styles.adContentParagraph}><strong>Price:</strong> {ad.price} SBY
-                                        </p>
-                                        <p style={styles.adContentParagraph}><strong>Timing:</strong> {ad.timingStart}s
-                                            - {ad.timingEnd}s</p>
-                                        <p style={styles.adContentParagraph}>
-                                            <strong>Wallet:</strong> {truncateMiddle(ad.walletAddress, 10, 10)}</p>
-                                    </div>
-                                    <button
-                                        onClick={() => handleDeleteAd(video._id, ad._id)}
-                                        style={styles.removeAdButton}
-                                    >
-                                        Remove Ad
-                                    </button>
-                                </li>
-                            ))}
-                            <div style={styles.centeredContainer}>
+                        <h3 style={styles.subheader}>Product Ads</h3>
+                        {video.productAds.length === 0 ? (
+                            <div>
+                                <p>No ads for this video.</p>
                                 {showAdForm[video._id] ? (
                                     <>
-                                        <AddAd videoId={video._id} onAdAdded={handleAdAdded}/>
+                                        <AddAd videoId={video._id} onAdAdded={handleAdAdded} />
                                         <button onClick={() => handleCancelAd(video._id)} style={styles.cancelButton}>
                                             Cancel
                                         </button>
@@ -160,11 +125,48 @@ const VideoList = ({videos, setVideos}) => {
                                     </button>
                                 )}
                             </div>
-                        </ul>
-                    )}
-                </div>
-            ))}
-        </div>
+                        ) : (
+                            <ul style={styles.adList}>
+                                {video.productAds.map(ad => (
+                                    <li key={ad._id} style={styles.adItem}>
+                                        <img src={ad.image} alt={ad.title} style={styles.adImage} />
+                                        <div style={styles.adContent}>
+                                            <p style={styles.adContentParagraph}><strong>Title:</strong> {ad.title}</p>
+                                            <p style={styles.adContentParagraph}><strong>Price:</strong> {ad.price} SBY
+                                            </p>
+                                            <p style={styles.adContentParagraph}><strong>Timing:</strong> {ad.timingStart}s
+                                                - {ad.timingEnd}s</p>
+                                            <p style={styles.adContentParagraph}>
+                                                <strong>Wallet:</strong> {truncateMiddle(ad.walletAddress, 10, 10)}</p>
+                                        </div>
+                                        <button
+                                            onClick={() => handleDeleteAd(video._id, ad._id)}
+                                            style={styles.removeAdButton}
+                                        >
+                                            Remove Ad
+                                        </button>
+                                    </li>
+                                ))}
+                                <div style={styles.centeredContainer}>
+                                    {showAdForm[video._id] ? (
+                                        <>
+                                            <AddAd videoId={video._id} onAdAdded={handleAdAdded} />
+                                            <button onClick={() => handleCancelAd(video._id)} style={styles.cancelButton}>
+                                                Cancel
+                                            </button>
+                                        </>
+                                    ) : (
+                                        <button onClick={() => toggleAdForm(video._id)} style={styles.createAdButton}>
+                                            Create Ad
+                                        </button>
+                                    )}
+                                </div>
+                            </ul>
+                        )}
+                    </div>
+                ))}
+            </div>
+        </section>
     );
 };
 
@@ -175,9 +177,18 @@ const extractYouTubeID = url => {
 };
 
 const styles = {
+    section: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        
+    },
+    container: {
+        width: '900px'
+    },
     header: {
         textAlign: 'center',
-        color: '#333',
+        color: 'white',
         marginTop: '20px',
         marginBottom: '20px'
     },
@@ -192,8 +203,9 @@ const styles = {
         borderRadius: '10px',
         position: 'relative',
         backgroundColor: '#f9f9f9',
-        boxShadow: '5px 5px gray',
-        textAlign: 'center'
+        
+        textAlign: 'center',
+        width:'100%'
     },
     iframe: {
         width: '100%', // Make the video responsive
@@ -242,7 +254,7 @@ const styles = {
         textAlign: 'left'  // Keep the text aligned left
     },
     removeVideoButton: {
-        backgroundColor: '#D85555',
+        backgroundColor: 'rgb(255 60 127)',
         color: '#fff',
         border: 'none',
         padding: '8px 12px',
@@ -254,7 +266,7 @@ const styles = {
     },
     removeAdButton: {
         marginTop: '10px',
-        backgroundColor: '#D85555',
+        backgroundColor: 'rgb(255 60 127)',
         color: '#fff',
         border: 'none',
         padding: '8px 12px',
@@ -270,7 +282,7 @@ const styles = {
         height: '100%',
     },
     createAdButton: {
-        backgroundColor: '#6C91C2',
+        backgroundColor: 'rgb(255, 60, 127)',
         color: '#fff',
         border: 'none',
         padding: '8px 12px',

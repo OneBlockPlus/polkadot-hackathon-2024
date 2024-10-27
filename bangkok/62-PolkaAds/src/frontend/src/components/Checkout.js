@@ -77,9 +77,9 @@ const Checkout = () => {
             <h1 style={styles.header}>Checkout</h1>
             {adData ? (
                 <>
-                    <p style={styles.text}>Video Title: {urlData.videoTitle}</p>
-                    <p style={styles.text}>Product: {adData.title}</p>
-                    <p style={styles.text}>Price: {adData.price} SBY</p>
+                    <p style={styles.textblack}>Video Title: {urlData.videoTitle}</p>
+                    <p style={styles.textblack}>Product: {adData.title}</p>
+                    <p style={styles.textblack}>Price: {adData.price} SBY</p>
                 </>
             ) : (
                 <p style={styles.text}>Loading ad data...</p>
@@ -121,7 +121,7 @@ const Checkout = () => {
                 <span style={styles.successTickContainer}>
                     <i style={styles.successTick}>&nbsp;</i>
                 </span>
-                <span style={{color: 'green'}}>Your payment is successful</span>
+                <span style={{color: '#26ff26'}}>Your payment is successful</span>
             </div>
             <div style={styles.text}>
                 <div>The manager will contact you via email.</div>
@@ -140,7 +140,7 @@ const styles = {
         padding: '20px',
         backgroundColor: '#f9f9f9',
         borderRadius: '10px',
-        boxShadow: '5px 5px gray',
+
         marginTop: '40px',
         width: '100%',
         maxWidth: '600px',
@@ -153,7 +153,13 @@ const styles = {
     },
     text: {
         fontSize: '1.2em',
-        color: '#555',
+        color: 'white',
+        marginBottom: '10px',
+        textAlign: 'center',
+    },
+    textblack: {
+        fontSize: '1.2em',
+        color: 'black',
         marginBottom: '10px',
         textAlign: 'center',
     },
