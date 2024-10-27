@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
 
-import erc721 from '../../contracts/contract/deployments/moonbeam/PolkaGift.json';
+import erc721 from '../../../contracts/contract/deployments/moonbeam/PolkaGift.json';
 
 export default function ERC721Singleton(signer) {
 	if (!ERC721Singleton._instance) {

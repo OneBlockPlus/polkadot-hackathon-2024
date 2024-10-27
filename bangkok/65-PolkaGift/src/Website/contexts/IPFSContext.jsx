@@ -2,7 +2,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { createContext } from 'react';
 import { toast } from 'react-toastify';
-import { PinataSDK } from "pinata";
+import { PinataSDK } from "pinata-web3";
 
 
 const Gateway = "aqua-dull-locust-679.mypinata.cloud";
@@ -28,7 +28,7 @@ export function IPFSProvider({ children }) {
   }
   async function UploadBlob(file,makeShort = false) {
     const upload = await pinata.upload.file(file);
-    let url = MakeFileUrl(upload.cid);
+    let url = MakeFileUrl(upload.IpfsHash);
     if (makeShort) {
 
       return await MakeShortUrl(url);

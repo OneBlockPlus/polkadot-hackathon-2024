@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 import UseFormInput from '../UseFormInput';
+import { useMixedContext } from '../../../contexts/MixedContext';
 import { useUtilsContext } from '../../../contexts/UtilsContext';
 import { toast } from 'react-toastify';
 
@@ -14,13 +15,15 @@ export default function DirectDonateModal({
 	contract,
 	senderAddress,
 	sendTransaction,
-	EventWallet,
+	toAddress,
+	toAddress2,
 
 }) {
 	const [Alert, setAlert] = useState('');
 
-    const { BatchMoonbeam } = useUtilsContext();
-    const {EasyToast} = useUtilsContext();
+	const { BatchMoonbeam } = useUtilsContext();
+	const { LoggedType,ReadContractByQuery ,getQuery,polka_SendMoney,CurrentToken,GetEventRaised } = useMixedContext();
+
 
 	const sleep = (milliseconds) => {
 		return new Promise(resolve => setTimeout(resolve, milliseconds))
@@ -49,7 +52,7 @@ export default function DirectDonateModal({
 		} else if (type == "error") {
 			alertELM.style.display = 'flex';
 		}
-		
+
 	}
 
 	async function DonateCoin() {
@@ -58,30 +61,47 @@ export default function DirectDonateModal({
 		DonateBTN.disabled = true;
 
 		try {
-			let to = [];
-			let value = [];
-			let callData = [];
-			
-			
-			//Adding Sending amount to Batch paramaters:
-			
-			to.push(EventWallet);
-			value.push(`${Number(Amount) * 1e18}`)
-			callData.push("0x");
+			if (LoggedType === "metamask") {
+				let newToAddress = (eventId.toString().startsWith("p_"))? toAddress2:toAddress
+				let to = [];
+				let value = [];
+				let callData = [];
 
 
-			//Adding Set Event Raised Batch paramaters:
-			const Raised = Number(await contract.getEventRaised(eventId).call()) + Number(Amount);
-			const txData = contract._setEventRaised(eventId, Raised.toString()).encodeABI();
+				//Adding Sending amount to Batch paramaters:
 
-			to.push(window.PolkaGiftAddress);
-			value.push(0);
-			callData.push(txData)
+				to.push(newToAddress);
+				value.push(`${Number(Amount) * 1e18}`)
+				callData.push("0x");
 
-			
-			ShowAlert("pending", `Please confirm Batch Transaction`);
 
-			await BatchMoonbeam(to,value,callData)
+				//Adding Set Event Raised Batch paramaters:
+				const Raised = Number(await GetEventRaised(eventId)) + Number(Amount);
+				const txData = contract._setEventRaised(eventId, Raised.toString()).encodeABI();
+
+				to.push(window.PolkaGiftAddress);
+				value.push(0);
+				callData.push(txData)
+
+
+				ShowAlert("pending", `Please confirm Batch Transaction`);
+
+				await BatchMoonbeam(to, value, callData)
+
+			}else{
+				ShowAlert("pending",`Transferring ${Number(Amount)} to event wallet`);
+				let newToAddress = (eventId.toString().startsWith("m_"))? toAddress2:toAddress
+				await polka_SendMoney(newToAddress,`${Number(Amount) * 1e18}`);
+				
+				ShowAlert("pending", `Saving information...`);
+
+				let event_raised = await GetEventRaised(eventId)
+				const Raised = Number(event_raised) + Number(Amount);
+
+				const result = await sendTransaction('_setEventRaised',[eventId, Raised.toString()]);
+
+
+			}
 
 
 			ShowAlert("success", `Success!`);
@@ -125,7 +145,7 @@ export default function DirectDonateModal({
 
 
 					<Form.Group className="mb-3" controlId="formGroupName">
-						<Form.Label>Amount in DEV</Form.Label>
+						<Form.Label>Amount in {CurrentToken}</Form.Label>
 						{AmountInput}
 
 					</Form.Group>

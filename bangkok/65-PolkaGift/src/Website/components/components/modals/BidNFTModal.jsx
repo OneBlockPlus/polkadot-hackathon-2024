@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 
 import UseFormInput from '../UseFormInput';
 import { useUtilsContext } from '../../../contexts/UtilsContext';
+import { useMixedContext } from '../../../contexts/MixedContext';
 
 export default function BidNFTModal({
 	show,
@@ -15,12 +16,14 @@ export default function BidNFTModal({
 	tokenId,
 	eventId,
 	toAddress,
+	toAddress2,
 	type,
 	Highestbid
 
 }) {
-    const { BatchMoonbeam } = useUtilsContext();
-    
+	const { BatchMoonbeam } = useUtilsContext();
+	const { GetTokenInfo,GetEventRaised, polka_SendMoney,LoggedType, ReadContractByQuery, getQuery, CurrentToken } = useMixedContext()
+
 	const [Alert, setAlert] = useState('');
 
 	const sleep = (milliseconds) => {
@@ -50,35 +53,17 @@ export default function BidNFTModal({
 		var BidNFTBTN = document.getElementById("bidNFTBTN")
 		BidNFTBTN.disabled = true;
 		if (Number(Amount) < Number(Highestbid)) {
-			activateWarningModal(`Amount cannot be under ${Highestbid} DEV`);
+			activateWarningModal(`Amount cannot be under ${Highestbid} ${CurrentToken}`);
 			return;
 		} else {
 			var alertELM = document.getElementById("alert");
 			alertELM.style.display = 'none';
 		}
 		try {
-			let to = [];
-			let value = [];
-			let callData = [];
-			
-			
-			//Adding Sending amount to Batch paramaters:
-			
-			to.push(toAddress);
-			value.push(`${Number(Amount) * 1e18}`)
-			callData.push("0x");
-
-
 
 			// Adding creating bid information:
-			
-			const tokenUri = await contract.tokenURI(tokenId).call();
-			var parsed = await JSON.parse(tokenUri);
-			if (Number(parsed['properties']['price']['description']) < Number(Amount)) {
-				parsed['properties']['price']['description'] = Amount;
-				parsed['properties']['higherbidadd']['description'] = senderAddress;
 
-			}
+
 			let currentDate = new Date();
 			const createdObject = {
 				title: 'Asset Metadata Bids',
@@ -98,20 +83,57 @@ export default function BidNFTModal({
 					}
 				}
 			};
-			const totalraised = await contract.getEventRaised(Number(eventId)).call();
-			let Raised = 0;
-			Raised = Number(totalraised) + Number(Amount);
-			
-			to.push(window.PolkaGiftAddress);
-			value.push(0);
-			callData.push(contract.createBid(tokenId, JSON.stringify(createdObject), JSON.stringify(parsed), eventId, Raised.toString()).encodeABI())
-
-
-			//Sending Moonbeam Batch Transaction:
-			activateWorkingModal("Please confirm Batch Transaction")
-			await BatchMoonbeam(to,value,callData)
 
 			
+			if (LoggedType === "metamask") {
+				let newToAddress = (eventId.toString().startsWith("p_"))? toAddress2:toAddress
+				
+				let to = [];
+				let value = [];
+				let callData = [];
+
+
+				//Adding Sending amount to Batch paramaters:
+
+				to.push(newToAddress);
+				value.push(`${Number(Amount) * 1e18}`)
+				callData.push("0x");
+
+
+
+				let totalraised = Number(await GetEventRaised(eventId));
+				let Raised = 0;
+				if (totalraised > 0) totalraised -= Number(Highestbid);
+				Raised = (totalraised) + Number(Amount);
+
+				to.push(window.PolkaGiftAddress);
+				value.push(0);
+				callData.push(contract.createBid(tokenId, JSON.stringify(createdObject), eventId, Raised.toString(), (Amount).toString()).encodeABI())
+
+
+				//Sending Moonbeam Batch Transaction:
+				activateWorkingModal("Please confirm Batch Transaction")
+				await BatchMoonbeam(to, value, callData)
+			} else {
+				
+				activateWorkingModal(`Transferring ${Number(Amount)} to event wallet`);
+				let newToAddress = (eventId.toString().startsWith("m_"))? toAddress2:toAddress
+				await polka_SendMoney(newToAddress,`${Number(Amount) * 1e18}`);
+
+				activateWorkingModal(`Please sign transaction`);
+				let event_raised = await GetEventRaised(eventId);
+				
+				if (event_raised > 0) event_raised -= Number(Highestbid);
+				const Raised = Number(event_raised) + Number(Amount);
+
+				const result = await sendTransaction('createBid', [tokenId, JSON.stringify(createdObject), eventId, Raised.toString(), (Amount).toString()]);
+
+
+			}
+
+
+
+
 			activateWorkingModal("Success!")
 			window.document.getElementsByClassName("btn-close")[0].click();
 			BidNFTBTN.disabled = false;
@@ -149,7 +171,7 @@ export default function BidNFTModal({
 						{Alert}
 					</div>
 					<Form.Group className="mb-3" controlId="formGroupName">
-						<Form.Label>Bid Amount in DEV</Form.Label>
+						<Form.Label>Bid Amount in {CurrentToken}</Form.Label>
 						{AmountInput}
 					</Form.Group>
 					<div className="d-grid">

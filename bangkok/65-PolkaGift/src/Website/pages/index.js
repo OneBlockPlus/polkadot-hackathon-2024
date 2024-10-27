@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import { Header } from '../components/layout/Header'
 import Head from 'next/head';
 
-declare let window: any;
 export default function Welcome() {
 	const router = useRouter();
 	function donateCLICK() {

@@ -6,13 +6,13 @@ import useContract from '../../services/useContract';
 import DonateNFTModal from '../../components/components/modals/DonateNFTModal';
 import { Header } from '../../components/layout/Header'
 import isServer from '../..//components/isServer';
-import { useUtilsContext } from '../../contexts/UtilsContext';
+import { useMixedContext } from '../../contexts/MixedContext';
 
 
 export default function Donation() {
 
     const [CreatemodalShow, setModalShow] = useState(false);
-    const { contract, signerAddress, sendTransaction } = useContract();
+    const { signerAddress, sendTransaction } = useContract();
     const [list, setList] = useState([]);
     const [selectid, setselectid] = useState('');
     const [selectedtype, setselectedtype] = useState('');
@@ -20,12 +20,13 @@ export default function Donation() {
     const [SelectedTitle, setSelectedTitle] = useState('');
     const [SelectedendDate, setSelectedendDate] = useState('');
 
+    const { GetAllEvents, contract,contract2, CurrentToken } = useMixedContext();
 
     useEffect(() => {
         fetchContractData();
 
 
-    }, [contract]);
+    }, [contract,contract2]);
     setInterval(function () {
         calculateTimeLeft();
     }, 1000);
@@ -53,44 +54,10 @@ export default function Donation() {
 
     async function fetchContractData() {
         try {
-            if (contract) {
+            if (contract){
 
-
-                const totalEvent = await contract.totalEvent().call();
-                const arr = [];
-
-                for (let i = 0; i < Number(totalEvent); i++) {
-                    const valueAll = await contract.eventURI(i).call();
-                    const value = valueAll[1];
-
-                    console.log(value);
-                    if (value) {
-                        const object = JSON.parse(value);
-                        var c = new Date(object.properties.Date.description).getTime();
-                        var n = new Date().getTime();
-                        var d = c - n;
-                        var s = Math.floor((d % (1000 * 60)) / 1000);
-                        if (s.toString().includes("-")) {
-                            continue;
-                        }
-
-                        var pricedes1 = 0;
-                        try { pricedes1 = Number(object.properties.Goal.description * 1.10) } catch (ex) { }
-
-                        arr.push({
-                            eventId: i,
-                            Title: object.properties.Title.description,
-                            Date: object.properties.Date.description,
-                            Goalusd: formatter.format(pricedes1),
-                            Goal: object.properties.Goal.description,
-                            wallet: object.properties.wallet.description,
-                            logo: object.properties.logo.description.url,
-                        });
-                    }
-                    console.log(value);
-                }
-
-                setList(arr);
+                let arr = await GetAllEvents();
+                setList(arr.reverse());
                 document.getElementById("Loading").style = "display:none";
             }
         } catch (error) {
@@ -131,17 +98,17 @@ export default function Donation() {
             </Head>
 
             <div className='DonationBar row'>
-                <NavLink href='?q=All'>
+                <NavLink href='?q=All' legacyBehavior>
                     <a className='DonationBarLink active'>
                         All
                     </a>
                 </NavLink>
-                <NavLink href='?q=Today'>
+                <NavLink href='?q=Today' legacyBehavior>
                     <a className='DonationBarLink'>
                         Today
                     </a>
                 </NavLink>
-                <NavLink href='?q=This Month'>
+                <NavLink href='?q=This Month' legacyBehavior>
                     <a className='DonationBarLink'>
                         This Month
                     </a>
@@ -159,10 +126,14 @@ export default function Donation() {
                         <div className='donation-eventconatiner' >
                             <img className='donation event-img' src={listItem.logo} />
                             <div className='donation event-details-container' >
-                                <h6 className='donation event-details-title'>{listItem.Title}</h6>
+                                <h6 className='donation event-details-title'>{listItem.Title}</h6> 
+                                
+                                <div style={{ display: "flex", "whiteSpace": "pre-wrap" }}>
+                                    <h6 className={`donation event-goal-price ${listItem.ended?'text-danger':'text-primary'}`} >{listItem.ended? 'Auction Ended':'Auction Started' }</h6>
+                                </div>
                                 <div style={{ display: "flex", "whiteSpace": "pre-wrap" }}>
                                     <h6 className='donation event-goal-price' >Goal:  </h6>
-                                    <h6 className='donation event-goal-price' >{listItem.Goal} DEV</h6>
+                                    <h6 className='donation event-goal-price' >{listItem.Goal} {CurrentToken}</h6>
                                 </div>
                                 <div style={{ display: "flex", "whiteSpace": "pre-wrap" }}>
                                     <h6 className='donation event-goal-price' >Owner:  </h6>
@@ -179,11 +150,14 @@ export default function Donation() {
                                         </div>
                                     </NavLink >
                                 </>) : (window.localStorage.getItem('Type') == "Donator" ? (<>
+                                   {!listItem.ended?<>
                                     <div className='donation event-BTN card' eventid={listItem.eventId} date={listItem.Date} eventtitle={listItem.Title} wallet={listItem.wallet} onClick={activateCreateNFTModal} >
                                         <div eventid={listItem.eventId} date={listItem.Date} eventtitle={listItem.Title} wallet={listItem.wallet} className="donation event-btn-text card-body" style={{ height: "100%" }}>
                                             Donate NFT
                                         </div>
                                     </div>
+                                   </>:<></>}
+                                  
                                     <NavLink href={`/donation/auction?[${listItem.eventId}]`}>
                                         <div className='donation event-BTN card'>
                                             <div className="donation event-btn-text card-body" style={{ height: "100%" }}>

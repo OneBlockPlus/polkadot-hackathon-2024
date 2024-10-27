@@ -17,18 +17,11 @@ mod polkagift {
     pub struct highest_bidder_struct {
         token_id: String,
         event_id: String,
-        wallet: AccountId
+        wallet: AccountId,
+        price: String
     }
 
-    #[derive(Debug, PartialEq, Eq, Encode, Decode)]
-    #[cfg_attr(feature = "std", derive(ink::storage::traits::StorageLayout, scale_info::TypeInfo))]
-    pub struct event_endtime_struct {
-        event_id: String,
-        end_time: String,
-        ended: bool,
-    }
-
- 
+  
 
     // endregion: All stucts
 
@@ -44,7 +37,7 @@ mod polkagift {
         _TokenHighestBidIds: i32,
         _EventTokenSearchIds: i32,
         //Variables Multiples
-        AllEventEndTime: Mapping<String, event_endtime_struct>,
+        AllEventEnded: Mapping<String, bool>,
         AllEventTokens: Mapping<i32, Vec<String>>,
         AllTokensBids:  Mapping<i32, Vec<String>>,
         TokenHighestBidders: Mapping<i32, highest_bidder_struct>,
@@ -70,7 +63,7 @@ mod polkagift {
                 _EventTokenSearchIds: 0,
 
                 //Variables Multiples
-                AllEventEndTime: Mapping::new(),
+                AllEventEnded: Mapping::new(),
                 AllEventTokens: Mapping::new(),
                 AllTokensBids: Mapping::new(),
                 TokenHighestBidders: Mapping::new(),
@@ -121,15 +114,9 @@ mod polkagift {
             self._eventURIs.insert(new_event_id.clone() ,&result);
 
             self._setEventRaised(new_event_id.clone(), format!("{}", 0) );
-                           
-            let stuff = event_endtime_struct {
-                event_id:  new_event_id.clone(),
-                end_time: endtime,
-                ended: false
-            };
+                      
 
-
-            self.AllEventEndTime.insert(new_event_id, &stuff);
+            self.AllEventEnded.insert(new_event_id, &false);
             
             self._eventIds += 1;
         }
@@ -138,30 +125,30 @@ mod polkagift {
         #[ink(message)]
         pub fn distribute_event(&mut self, eventID: String) {
 
-            for i in 0..(self._TokenHighestBidIds) {
-                let v = self.TokenHighestBidders.get(i).unwrap();
-                if format!("{}", v.event_id) == format!("{}", eventID.clone()) {
-                   
-                    let mut stuff = self.AllEventEndTime.get(eventID.clone()).unwrap();
-                    stuff.ended = true;
-
-                    self.AllEventEndTime.insert(eventID.clone(), &stuff);
-                }
-            }
+            self.AllEventEnded.insert(eventID.clone(), &false);
 
         }
 
 
-        pub fn _setTokenHighestBid(&mut self, token_id:String,event_id:String, wallet:AccountId){
+        pub fn _setTokenHighestBid(&mut self, token_id:String,event_id:String, wallet:AccountId,bid_price:String){
            let stuff = highest_bidder_struct{
-            token_id: token_id,
-            event_id: event_id,
-            wallet: wallet
+            token_id: token_id.clone(),
+            event_id: event_id.clone(),
+            wallet: wallet.clone(),
+            price: bid_price
            };
 
+           let old_id = self.getTokenHighestBid(token_id.clone());
+           if (old_id != "-1"){
+            let int_id: i32 = old_id.parse().unwrap();
+
+            self.TokenHighestBidders.insert(int_id.clone(),&stuff);              
+           }else{
             self.TokenHighestBidders.insert(self._TokenHighestBidIds,&stuff);
-            
             self._TokenHighestBidIds += 1;
+           }
+
+            
         }
 
         #[ink(message)]
@@ -179,17 +166,14 @@ mod polkagift {
         }
 
          #[ink(message)]
-        pub fn createBid(&mut self, _tokenId: String, _bidURI: String, _updatedURI: String, _eventid: String, _raised: String) {
+        pub fn createBid(&mut self, _tokenId: String, _bidURI: String,  _eventid: String, _raised: String, _bid_price: String) {
 
             
-            let _EventTokenId:i32 = self.getGetEventsTokenID(_eventid.clone(),self._tokenURIs.get(_tokenId.clone()).unwrap());
+       
+           
+            self._setTokenHighestBid(_tokenId.clone(),_eventid.clone(),self.env().caller(),_bid_price.clone());
 
-            self._tokenURIs.insert(_tokenId.clone(),&_updatedURI);
-
-            self._setTokenHighestBid(_tokenId.clone(),_eventid.clone(),self.env().caller());
-
-
-            self._setTokenEvent(_EventTokenId,_eventid.clone(),_updatedURI);
+;
             self._setEventRaised(_eventid.clone(), _raised);
             
             
@@ -212,7 +196,18 @@ mod polkagift {
             }
             return format!("{}", "0");
         }
+     
 
+        #[ink(message)]
+        pub fn getTokenHighestBid(&mut self, token_id: String) -> String {
+            for i in 0..(self._TokenHighestBidIds) {
+                let v = self.TokenHighestBidders.get(i).unwrap();
+                if (v.token_id == token_id){
+                    return format!("{}", i);
+                }
+            }
+            return format!("{}", "-1");
+        }
         #[ink(message)]
         pub fn getEventIdByURI(&mut self, _eventURI: String) -> String {
             for i in 0..(self._eventIds) {
@@ -316,18 +311,45 @@ mod polkagift {
        
 
         #[ink(message)]
-        pub fn _AllEventEndTime(&mut self, id: String) -> event_endtime_struct {
-            return self.AllEventEndTime.get(id).unwrap();
+        pub fn _AllEventEnded(&mut self, id: String) -> bool {
+            return self.AllEventEnded.get(id).unwrap();
         }
       
+        #[ink(message)]
+        pub fn _bidURI(&mut self, id: String) -> String {
+            return self._bidURIs.get(id).unwrap();
+        }
 
+        #[ink(message)]
+        pub fn _tokenURI(&mut self, id: String) -> String {
+            return self._tokenURIs.get(id).unwrap();
+        }
+   
+        #[ink(message)]
+        pub fn _eventURI(&mut self, id: String) -> Vec<String> {
+            return self._eventURIs.get(id).unwrap();
+        }
+   
+        #[ink(message)]
+        pub fn TokenHighestBidder(&mut self, id: i32) -> highest_bidder_struct {
+            return self.TokenHighestBidders.get(id).unwrap();
+        }
+   
+   
+        #[ink(message)]
+        pub fn _eventRaised(&mut self, id: String) -> String{
+            return self._eventRaised.get(id).unwrap();
+        }
+   
+   
+   
         // endregion: GetAllVariables
 
         // region: Delete
      
         #[ink(message)]
         pub fn reset_all(&mut self) {
-          Self::new();
+           *self =  PolkaGift::new();
         }
 
         // endregion: Delete

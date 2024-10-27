@@ -1,4 +1,4 @@
-@import '_mix';
+@use '_mix';
 
 
 .btn {
@@ -86,7 +86,7 @@
 }
 
 .btn-primary {
-    @include btn-reset;
+    @include mix.btn-reset;
 
     background-color: var(--btn-bg);
     color: #fafbff;
@@ -112,7 +112,7 @@
 }
 
 .btn-secondary {
-    @include btn-reset;
+    @include mix.btn-reset;
 
     background-color: var(--btn-top-primary-bg);
     color: var(--btn-top-primary-fg);
@@ -130,7 +130,7 @@
 }
 
 .btn-tertiary {
-    @include btn-reset;
+    @include mix.btn-reset;
 
     background-color: rgba(197, 228, 243, 0.16);
     color: #c5e4f3;
@@ -152,7 +152,7 @@
 }
 
 .btn-danger {
-    @include btn-reset;
+    @include mix.btn-reset;
 
     background-color: #eb4361;
     color: #ffffff;
@@ -169,7 +169,7 @@
 }
 
 .btn--empty {
-    @include btn-reset;
+    @include mix.btn-reset;
 
     border: 1px solid rgba(255, 255, 255, 0.48);
     color: #c5e4f3;

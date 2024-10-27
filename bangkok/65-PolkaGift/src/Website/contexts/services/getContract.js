@@ -9,11 +9,11 @@ const CONTRACT_ADDRESS = config.AstarSmartContract //smart contract deployed add
 export default async function getContract(api) {
 
 
-    // const abi = new Abi(abiData, api.registry.getChainProperties())
+    const abi = new Abi(abiData, api.registry.getChainProperties())
 
-    // const contract = new ContractPromise(api, abi, CONTRACT_ADDRESS)
+    const contract = new ContractPromise(api, abi, CONTRACT_ADDRESS)
 
-	// return contract
-  return null
+	return contract
+  // return null
   }
   

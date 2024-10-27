@@ -82,6 +82,13 @@ export default function Login() {
     async function onClickConnectPolkadot(){
         
         const polkadot = await import("@polkadot/extension-dapp");
+       if (!polkadot.isWeb3Injected){
+        window.open(
+            "https://chromewebstore.google.com/detail/onhogfjeacnfoofkfgppdlbmlmnplgbn",
+            "_blank"
+        );
+        return;
+       }
 
         await polkadot.web3Enable("YT Purchase");
         const allAccounts = await polkadot.web3Accounts();

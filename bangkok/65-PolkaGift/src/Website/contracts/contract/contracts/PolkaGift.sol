@@ -1,28 +1,33 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/utils/Strings.sol";
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-
-contract PolkaGift is ERC721 {
+contract PolkaGift {
 
     /// Highest bidder struct
     struct highest_bidder_struct {
         ///Token Id
-        uint256 token_id;
+        string token_id;
         ///Event Id
-        uint256 event_id;
+        string event_id;
         ///Highest Bidder
         address wallet;
+        ///Highest Bid price
+        string price;
     }
 
-    /// Highest bidder struct
-    struct event_endtime_struct {
+
+    struct event_token_struct{
         ///Event Id
-        uint256 event_id;
-        ///End Time
-        uint256 end_time;
-        ///Ended?
-        bool ended;
+        string event_id;
+        ///Token Uri
+        string token_uri;
+    }
+    struct token_bid_struct{
+        ///Token Id
+        string token_id;
+        ///Bid URI
+        string bid_uri;
+
     }
 
     uint256 private _tokenIds;
@@ -32,25 +37,24 @@ contract PolkaGift is ERC721 {
     uint256 private _TokenBidIds;
     uint256 private _TokenHighestBidIds;
     uint256 public _EventTokenSearchIds;
-    mapping(uint256 => event_endtime_struct) public AllEventEndTime; //Event ID => event_endtime_struct
-    mapping(uint256 => string[2]) private AllEventTokens;
-    mapping(uint256 => string[2]) private AllTokensBids;
-    mapping(uint256 => highest_bidder_struct) private TokenHighestBidders; //_TokenHighestBidIds => highest bidder struct
-    mapping(uint256 => string[2]) public _SearchedStore;
-    mapping(uint256 => string) private _bidURIs;
-    mapping(uint256 => string) private _tokenURIs;
-    mapping(uint256 => string[2]) private _eventURIs;
-    mapping(uint256 => string) private _eventRaised;
-    constructor() public ERC721("PolkaGift", "PCOIN") {}
+    mapping(string => bool) public AllEventEndTime; //Event ID => bool
+    mapping(uint256 => event_token_struct) private AllEventTokens;
+    mapping(uint256 => token_bid_struct) private AllTokensBids;
+    mapping(uint256 => highest_bidder_struct) public TokenHighestBidders; //_TokenHighestBidIds => highest bidder struct
+    mapping(string => string[2]) public _SearchedStore;
+    mapping(string => string) private _bidURIs;
+    mapping(string => string) private _tokenURIs; //_tokenIds => Token URI
+    mapping(string => string[2]) private _eventURIs;
+    mapping(string => string) private _eventRaised;
 
     function claimToken(
         address _claimer,
         string memory _tokenURI,
-        uint256 _eventid
+        string memory _eventid
     ) public returns (uint256) {
-        _mint(_claimer, _tokenIds);
-        _setTokenURI(_tokenIds, _tokenURI);
+        _setTokenURI(string.concat("m_" , Strings.toString(_tokenIds)), _tokenURI);
         _setTokenEvent(_EventTokenIds, _eventid, _tokenURI);
+
         _tokenIds++;
         _EventTokenIds++;
         return _tokenIds;
@@ -58,13 +62,13 @@ contract PolkaGift is ERC721 {
 
     function _setTokenEvent(
         uint256 EventTokenId,
-        uint256 EventId,
+        string memory EventId,
         string memory _tokenURI
     ) public virtual {
-        AllEventTokens[EventTokenId] = [
-            Strings.toString(EventId),
+        AllEventTokens[EventTokenId] = event_token_struct(
+            string(EventId),
             string(_tokenURI)
-        ];
+        );
     }
 
     function createEvent(
@@ -72,37 +76,20 @@ contract PolkaGift is ERC721 {
         string memory _eventURI,
         uint256 endtime
     ) public returns (uint256) {
-        _setEventURI(_eventIds, _eventWallet, _eventURI);
-        _setEventRaised(_eventIds, "0");
-        AllEventEndTime[_eventIds] = event_endtime_struct({
-            event_id:_eventIds,
-            end_time:endtime,
-            ended:false
-        });
+        string memory new_event_id = string.concat("m_" , Strings.toString(_eventIds));
+
+        _setEventURI(new_event_id, _eventWallet, _eventURI);
+        _setEventRaised(new_event_id, "0");
+        AllEventEndTime[new_event_id] = false;
         _eventIds++;
 
         return _eventIds;
     }
-    function distributeFull() public  {
-        for (uint256 i = 0; i < _eventIds; i++) {
-            event_endtime_struct memory endInfo = AllEventEndTime[i];
-            bool Distribute = endInfo.end_time < block.timestamp ;
-            if (Distribute == true && endInfo.ended == false) {
-                distribute_event(i);
-            }
-        }
-    }
 
-    function distribute_event(uint256 eventID) public{ 
-        for (uint256 i = 0; i < _TokenHighestBidIds; i++) {
-           highest_bidder_struct memory hbidder = TokenHighestBidders[i];
-            if (
-               TokenHighestBidders[i].event_id == eventID
-            ) {               
-               _transfer(ownerOf(hbidder.token_id),hbidder.wallet,hbidder.token_id);
-                AllEventEndTime[eventID].ended = true;
-            }
-        }
+
+    function distribute_event(string memory eventID) public{ 
+      
+    AllEventEndTime[eventID] = true;
 
     }
     function gettokenIdByUri(string memory _tokenURI)
@@ -113,7 +100,7 @@ contract PolkaGift is ERC721 {
     {
         for (uint256 i = 0; i < _tokenIds; i++) {
             if (
-                keccak256(bytes(_tokenURIs[i])) == keccak256(bytes(_tokenURI))
+                keccak256(bytes(_tokenURIs[string.concat("m_", Strings.toString(i))])) == keccak256(bytes(_tokenURI))
             ) {
                 return i;
             }
@@ -130,7 +117,7 @@ contract PolkaGift is ERC721 {
     {
         for (uint256 i = 0; i < _eventIds; i++) {
             if (
-                keccak256(bytes(_eventURIs[i][1])) ==
+                keccak256(bytes(_eventURIs[string.concat("m_", Strings.toString(i))][1])) ==
                 keccak256(bytes(_eventURI))
             ) {
                 return i;
@@ -147,7 +134,7 @@ contract PolkaGift is ERC721 {
         returns (uint256)
     {
         for (uint256 i = 0; i < _bidIds; i++) {
-            if (keccak256(bytes(_bidURIs[i])) == keccak256(bytes(_bidURI))) {
+            if (keccak256(bytes(_bidURIs[string.concat("m_", Strings.toString(i))])) == keccak256(bytes(_bidURI))) {
                 return i;
             }
         }
@@ -155,7 +142,7 @@ contract PolkaGift is ERC721 {
         return 0;
     }
 
-    function gettokenSearchEventTotal(uint256 EventID)
+    function gettokenSearchEventTotal(string memory EventID)
         public
         view
         virtual
@@ -167,12 +154,10 @@ contract PolkaGift is ERC721 {
 
         for (uint256 i = 0; i < _EventTokenIds; i++) {
             if (
-                keccak256(bytes(AllEventTokens[i][0])) ==
-                keccak256(bytes(Strings.toString(EventID)))
+                keccak256(bytes(AllEventTokens[i].event_id)) ==
+                keccak256(bytes(string(EventID)))
             ) {
-                _SearchedStoreToken[_EventTokenSearchIds2] = AllEventTokens[i][
-                    1
-                ];
+                _SearchedStoreToken[_EventTokenSearchIds2] = AllEventTokens[i].token_uri;
                 _EventTokenSearchIds2++;
             }
         }
@@ -191,7 +176,7 @@ contract PolkaGift is ERC721 {
 
         for (uint256 i = 0; i < _eventIds; i++) {
             if (
-                keccak256(bytes(_eventURIs[i][0])) == keccak256(bytes(Wallet))
+                keccak256(bytes(_eventURIs[string.concat("m_", Strings.toString(i))][0])) == keccak256(bytes(Wallet))
             ) {
                 _TemporarySearch++;
             }
@@ -199,9 +184,9 @@ contract PolkaGift is ERC721 {
         string[] memory _SearchedStoreEvents = new string[](_TemporarySearch);
         for (uint256 i = 0; i < _eventIds; i++) {
             if (
-                keccak256(bytes(_eventURIs[i][0])) == keccak256(bytes(Wallet))
+                keccak256(bytes(_eventURIs[string.concat("m_", Strings.toString(i))][0])) == keccak256(bytes(Wallet))
             ) {
-                _SearchedStoreEvents[_SearchIds] = _eventURIs[i][1];
+                _SearchedStoreEvents[_SearchIds] = _eventURIs[string.concat("m_", Strings.toString(i))][1];
                 _SearchIds++;
             }
         }
@@ -209,7 +194,7 @@ contract PolkaGift is ERC721 {
         return _SearchedStoreEvents;
     }
 
-    function getGetEventsTokenID(uint256 EventId, string memory _tokenURI)
+    function getGetEventsTokenID(string memory EventId, string memory _tokenURI)
         public
         view
         virtual
@@ -217,9 +202,9 @@ contract PolkaGift is ERC721 {
     {
         for (uint256 i = 0; i < _EventTokenIds; i++) {
             if (
-                keccak256(bytes(AllEventTokens[i][0])) ==
-                keccak256(bytes(Strings.toString(EventId))) &&
-                keccak256(bytes(AllEventTokens[i][1])) ==
+                keccak256(bytes(AllEventTokens[i].event_id)) ==
+                keccak256(bytes(string(EventId))) &&
+                keccak256(bytes(AllEventTokens[i].token_uri)) ==
                 keccak256(bytes(_tokenURI))
             ) {
                 return i;
@@ -229,7 +214,7 @@ contract PolkaGift is ERC721 {
         return 0;
     }
 
-    function _getSearchedTokenURI(uint256 _tokenId)
+    function _getSearchedTokenURI(string memory _tokenId)
         public
         view
         virtual
@@ -239,14 +224,14 @@ contract PolkaGift is ERC721 {
     }
 
     function _setEventURI(
-        uint256 eventId,
+        string memory eventId,
         string memory _eventWallet,
         string memory _eventURI
     ) public virtual {
         _eventURIs[eventId] = [_eventWallet, _eventURI];
     }
 
-    function _setTokenURI(uint256 tokenId, string memory _tokenURI)
+    function _setTokenURI(string memory tokenId, string memory _tokenURI)
         public
         virtual
     {
@@ -254,15 +239,14 @@ contract PolkaGift is ERC721 {
                 
     }
 
-    function eventURI(uint256 eventId) public view returns (string[2] memory) {
+    function eventURI(string memory eventId) public view returns (string[2] memory) {
         return _eventURIs[eventId];
     }
 
-    function tokenURI(uint256 tokenId)
+    function tokenURI(string memory tokenId)
         public
         view
         virtual
-        override 
         returns (string memory)
     {
         return _tokenURIs[tokenId];
@@ -276,15 +260,15 @@ contract PolkaGift is ERC721 {
         return _eventIds;
     }
 
-    function _setBidURI(uint256 bidId, string memory _bidURI) public virtual {
+    function _setBidURI(string memory bidId, string memory _bidURI) public virtual {
         _bidURIs[bidId] = _bidURI;
     }
 
-    function BidURI(uint256 BidId) public view returns (string memory) {
+    function BidURI(string memory BidId) public view returns (string memory) {
         return _bidURIs[BidId];
     }
 
-    function getTotalBid(uint256 TokenID)
+    function getTotalBid(string memory TokenID)
         public
         view
         virtual
@@ -296,10 +280,10 @@ contract PolkaGift is ERC721 {
 
         for (uint256 i = 0; i < _TokenBidIds; i++) {
             if (
-                keccak256(bytes(AllTokensBids[i][0])) ==
-                keccak256(bytes(Strings.toString(TokenID)))
+                keccak256(bytes(AllTokensBids[i].token_id)) ==
+                keccak256(bytes(string(TokenID)))
             ) {
-                _SearchedStoreBid[_TokenBidSearchIds2] = AllTokensBids[i][1];
+                _SearchedStoreBid[_TokenBidSearchIds2] = AllTokensBids[i].bid_uri;
                 _TokenBidSearchIds2++;
             }
         }
@@ -307,7 +291,7 @@ contract PolkaGift is ERC721 {
         return _SearchedStoreBid;
     }
 
-    function getBidsSearchToken(uint256 TokenID)
+    function getBidsSearchToken(string memory TokenID)
         public
         view
         virtual
@@ -319,10 +303,10 @@ contract PolkaGift is ERC721 {
 
         for (uint256 i = 0; i < _TokenBidIds; i++) {
             if (
-                keccak256(bytes(AllTokensBids[i][0])) ==
-                keccak256(bytes(Strings.toString(TokenID)))
+                keccak256(bytes(AllTokensBids[i].token_id)) ==
+                keccak256(bytes(string(TokenID)))
             ) {
-                _SearchedStoreBid[_TokenBidSearchIds2] = AllTokensBids[i][1];
+                _SearchedStoreBid[_TokenBidSearchIds2] = AllTokensBids[i].bid_uri;
                 _TokenBidSearchIds2++;
             }
         }
@@ -332,29 +316,72 @@ contract PolkaGift is ERC721 {
 
     function _setTokenBid(
         uint256 TokenBidId,
-        uint256 TokenId,
+        string memory TokenId,
         string memory _BidURI
     ) public virtual {
-        AllTokensBids[TokenBidId] = [
-            Strings.toString(TokenId),
+        AllTokensBids[TokenBidId] = token_bid_struct(
+            string(TokenId),
             string(_BidURI)
-        ];
+        );
     }
 
 
     function _setTokenHighestBid(
-        uint256 token_id,
-        uint256 event_id,
-        address wallet
+        string memory token_id,
+        string memory event_id,
+        address wallet,
+        string memory price
     ) public virtual {
-        TokenHighestBidders[_TokenHighestBidIds] = highest_bidder_struct({
-            token_id: token_id,
-            event_id: event_id,
-            wallet: wallet
-        });
-        _TokenHighestBidIds++;
+
+        string memory old_id = getTokenHighestBid(token_id);
+        if ( keccak256(bytes(old_id)) != keccak256(bytes(string("-1")))){
+
+            TokenHighestBidders[strToUint(old_id)]= highest_bidder_struct({
+                token_id: token_id,
+                event_id: event_id,
+                wallet: wallet,
+                price: price
+            });
+        }else{
+            TokenHighestBidders[_TokenHighestBidIds] = highest_bidder_struct({
+                token_id: token_id,
+                event_id: event_id,
+                wallet: wallet,
+                price: price
+            });
+            _TokenHighestBidIds++;
+        }
+
     }
-    function getEventRaised(uint256 _eventId)
+    function strToUint(string memory _str) public pure returns(uint256 res) {
+        
+        for (uint256 i = 0; i < bytes(_str).length; i++) {
+            if ((uint8(bytes(_str)[i]) - 48) < 0 || (uint8(bytes(_str)[i]) - 48) > 9) {
+                return (0);
+            }
+            res += (uint8(bytes(_str)[i]) - 48) * 10**(bytes(_str).length - i - 1);
+        }
+        
+        return (res);
+    }
+    function getTokenHighestBid(string memory token_id)   
+        public
+        view
+        virtual
+        returns (string memory){
+            for (uint256 i = 0; i < _TokenHighestBidIds; i++) {
+            if (
+                    keccak256(bytes(TokenHighestBidders[i].token_id)) ==
+                    keccak256(bytes(string(token_id)))
+                ) {
+                    return Strings.toString(i);
+                }
+            }
+            return "-1";
+
+        }
+
+    function getEventRaised(string memory _eventId)
         public
         view
         virtual
@@ -363,25 +390,25 @@ contract PolkaGift is ERC721 {
         return _eventRaised[_eventId];
     }
 
-    function _setEventRaised(uint256 _eventId, string memory _raised) public {
+    function _setEventRaised(string memory _eventId, string memory _raised) public {
         _eventRaised[_eventId] = _raised;
     }
 
     function createBid(
-        uint256 _tokenId,
+        string memory _tokenId,
         string memory _bidURI,
-        string memory _updatedURI,
-        uint256 _eventid,
-        string memory _raised
+        string memory _eventid,
+        string memory _raised,
+        string memory _bid_price
+
     ) public {
         uint256 _EventTokenId = getGetEventsTokenID(
             _eventid,
             _tokenURIs[_tokenId]
         );
-        _tokenURIs[_tokenId] = _updatedURI;
-        _setTokenHighestBid(_tokenId,_eventid,msg.sender);
+
+        _setTokenHighestBid(_tokenId,_eventid,msg.sender,_bid_price);
         
-        _setTokenEvent(_EventTokenId, _eventid, _updatedURI);
         _setEventRaised(_eventid, _raised);
 
         _setTokenBid(_TokenBidIds, _tokenId, _bidURI);

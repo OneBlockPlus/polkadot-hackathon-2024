@@ -6,6 +6,8 @@ import Button from 'react-bootstrap/Button';
 import UseFormInput from '../UseFormInput';
 import { useRouter } from 'next/router';
 import { useUtilsContext } from '../../../contexts/UtilsContext';
+import { useMixedContext } from '../../../contexts/MixedContext';
+
 import { toast } from 'react-toastify';
 
 
@@ -21,9 +23,9 @@ export default function DonateNFTModal({
 	SelectedTitle,
 	enddate
 }) {
-
 	const router = useRouter();
     const {EasyToast} = useUtilsContext();
+    const {CurrentToken} = useMixedContext();
 
 	const [name, nameInput] = UseFormInput({
 		type: 'text',
@@ -97,7 +99,8 @@ export default function DonateNFTModal({
 			},
 			bids: []
 		};
-		const result = await sendTransaction(contract.claimToken(senderAddress,JSON.stringify(createdObject),EventID));
+		const result = await sendTransaction('claimToken',[senderAddress,JSON.stringify(createdObject),EventID]);
+
 		await window.document.getElementsByClassName("btn-close")[0].click();
 	
 		await EasyToast('Donated Successfully!','success',true,ToastId)
@@ -133,7 +136,7 @@ export default function DonateNFTModal({
 						{descriptionInput}
 					</Form.Group>
 					<Form.Group className="mb-3" controlId="formGroupName">
-						<Form.Label>Opening price in DEV</Form.Label>
+						<Form.Label>Opening price in {CurrentToken}</Form.Label>
 						{priceInput}
 
 					</Form.Group>

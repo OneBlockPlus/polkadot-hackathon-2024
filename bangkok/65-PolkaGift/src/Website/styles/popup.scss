@@ -1,4 +1,4 @@
-@import '_mix';
+@use '_mix';
 
 .popup {
     height: 100%;
@@ -52,7 +52,7 @@
 }
 
 button.popup-close {
-    @include btn-reset;
+    @include mix.btn-reset;
 
     color: #ffffff;
     height: 40px;

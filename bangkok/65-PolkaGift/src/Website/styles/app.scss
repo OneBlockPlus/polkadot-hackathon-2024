@@ -1,3 +1,4 @@
+@use "sass:color";
 :root {
     --background-color: #121F29;
     --header-bg-color: #012033;
@@ -12,7 +13,7 @@
   }
 
   @function toRGB ($color) {
-    @return "rgb(" + red($color) + ", " + green($color) + ", " + blue($color)+ ")";
+    @return "rgb(" + color.red($color) + ", " + color.green($color) + ", " + color.blue($color)+ ")";
 }
 @keyframes checking {
     from {

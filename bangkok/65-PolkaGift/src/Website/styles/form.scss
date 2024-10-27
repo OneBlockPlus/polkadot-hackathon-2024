@@ -1,4 +1,4 @@
-@import '_mix';
+@use '_mix';
 
 .form-row {
     align-items: center;
@@ -15,7 +15,7 @@
     }
 
     &__btn {
-        @include btn-reset;
+        @include mix.btn-reset;
 
         display: inline-block;
         height: 24px;
@@ -116,7 +116,7 @@
 }
 
 .form-input {
-    @include input-reset;
+    @include mix.input-reset;
 
     color: #ffffff;
     cursor: text;
@@ -159,7 +159,7 @@
 
 .form-select {
     &.btn {
-        @include btn-reset;
+        @include mix.btn-reset;
 
         align-items: center;
         background-color: rgba(197, 228, 243, 0.08);
@@ -245,7 +245,7 @@ button.form-submit {
 
 .form-drop {
     &.btn {
-        @include btn-reset;
+        @include mix.btn-reset;
 
         align-items: center;
         display: flex;

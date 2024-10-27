@@ -2,8 +2,7 @@
 import Modal from 'react-bootstrap/Modal';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import useContract from '../../../services/useContract';
-import { useUtilsContext } from '../../../contexts/UtilsContext';
+import { useMixedContext } from '../../../contexts/MixedContext';
 
 export default function ViewmodalShow({
 	show,
@@ -11,46 +10,16 @@ export default function ViewmodalShow({
 	id,
 	title
 }) {
-	const { contract, signerAddress } = useContract();
+	const { contract,contract2, signerAddress, GetNftBidsByTokenId,CurrentToken } = useMixedContext();
 	const router = useRouter();
 	const [list, setList] = useState([]);
 
-	function addZero(num) {
-		return num < 10 ? `0${num}` : num;
-	}
-	function AmPM(num) {
-		return num < 12 ? 'AM' : 'PM';
-	}
-	const formatter = new Intl.NumberFormat('en-US', {
-		minimumFractionDigits: 2,
-		maximumFractionDigits: 2,
-	});
+
 
 	async function fetchContractData() {
 		try {
 			if (contract && id) {
-				const arr = [];
-				const totalBids = await contract.getBidsSearchToken(id).call();
-				for (let i = 0; i < Number(10); i++) {
-					const obj = await totalBids[i];
-					let object = {};
-					try { object = await JSON.parse(obj) } catch { }
-					if (object.title) {
-						var pricedes1 = 0;
-						try { pricedes1 = formatter.format(Number(object.properties.bid.description * 1.10)) } catch (ex) { }
-						const BidId = Number(await contract.getBidIdByUri(obj).call());
-						const Datetime = new Date(object.properties.time.description);
-
-						let currentdate = `${addZero(Datetime.getDate())}/${addZero(Datetime.getMonth() + 1)}/${addZero(Datetime.getFullYear())} ${addZero(Datetime.getHours())}:${addZero(Datetime.getMinutes())}:${addZero(Datetime.getSeconds())} ${AmPM(Datetime.getHours())}`
-						arr.push({
-							Id: BidId,
-							name: object.properties.username.description.toString(),
-							time: currentdate,
-							bidprice: object.properties.bid.description,
-							bidpriceusd: pricedes1
-						});
-					}
-				}
+				const arr = await GetNftBidsByTokenId(id);
 				setList(arr.reverse());
 				if (document.getElementById("Loading"))
 					document.getElementById("Loading").style = "display:none";
@@ -68,7 +37,7 @@ export default function ViewmodalShow({
 	useEffect(() => {
 		fetchContractData();
 
-	}, [contract]);
+	}, [contract,contract2]);
 
 	return (
 		<Modal
@@ -110,7 +79,7 @@ export default function ViewmodalShow({
 										<h7 className="cell">{listItem.name}</h7>
 									</div>
 									<div className="tableRowCellBidContainer">
-										<h7 className="cell">{listItem.bidprice} DEV</h7>
+										<h7 className="cell">{listItem.bidprice} {CurrentToken}</h7>
 									</div>
 								</div>
 							</div>

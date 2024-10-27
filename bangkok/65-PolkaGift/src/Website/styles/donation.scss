@@ -33,6 +33,7 @@
         max-height: 110px;
         height: 110px;
         width: 110px;
+        object-fit: cover;
     }
     .donation.event-details-container{
         margin-left: 1px;
@@ -108,6 +109,7 @@
         aspect-ratio: 4 / 1;
         width: calc(15vw* 1.2);
         height: calc(15vw * 1.2);
+        object-fit: cover;
     }
     .donation.event-details-container{
         margin-left: 1px;

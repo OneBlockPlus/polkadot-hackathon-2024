@@ -3,25 +3,31 @@ import Head from 'next/head';
 import Button from 'react-bootstrap/Button';
 import UseFormInput from '../../components/components/UseFormInput';
 import UseFormTextArea from '../../components/components/UseFormTextArea';
-import useContract from '../../services/useContract';
 import { Header } from '../../components/layout/Header'
 import NavLink from 'next/link';
 import isServer from '../../components/isServer';
 import { useIPFSContext } from '../../contexts/IPFSContext';
 import { toast } from 'react-toastify';
 import { useUtilsContext } from '../../contexts/UtilsContext';
+import { useMixedContext } from '../../contexts/MixedContext';
 
 
 export default function CreateEvents() {
-    const { contract, signerAddress,sendTransaction } = useContract();
     const {EasyToast} = useUtilsContext();
     const [EventImage, setEventImage] = useState([]);
-    const {UploadBlob} = useIPFSContext();
+    const {UploadBlob} = useIPFSContext(); 
+    const {GetTotalEvents,contract,sendTransaction,signerAddress,CurrentToken, FormatOtherType} = useMixedContext();
 
     const [EventTitle, EventTitleInput] = UseFormInput({
         defaultValue: "",
         type: 'text',
         placeholder: 'Event Title',
+        id: ''
+    });
+    const [EventReceiveWallet, EventReceiveWalletInput] = UseFormInput({
+        defaultValue: "",
+        type: 'text',
+        placeholder: `Event Receive Wallet (${FormatOtherType})`,
         id: ''
     });
     const [EventDescription, EventDescriptionInput] = UseFormTextArea({
@@ -39,7 +45,7 @@ export default function CreateEvents() {
     const [EventGoal, EventGoalInput] = UseFormInput({
         defaultValue: "",
         type: 'text',
-        placeholder: 'Event Goal in DEV',
+        placeholder: `Event Goal in ${CurrentToken}`,
         id: 'goal',
     });
 
@@ -103,7 +109,11 @@ export default function CreateEvents() {
                 },
                 wallet: {
                     type: 'string',
-                    description: window.ethereum.selectedAddress
+                    description: signerAddress
+                },
+                wallet2: {
+                    type: 'string',
+                    description: EventReceiveWallet
                 },
                 typeimg: {
                     type: 'string',
@@ -117,10 +127,9 @@ export default function CreateEvents() {
     
 
         try {
-            let eventid = await contract.totalEvent().call();
-            const result = await sendTransaction(contract.createEvent(window.ethereum.selectedAddress,JSON.stringify(createdObject),Number((Date.now()/1000).toFixed(0))));
+            let eventid = await GetTotalEvents();
+            const result = await sendTransaction('createEvent',[signerAddress,JSON.stringify(createdObject),(((new Date).valueOf()/1000).toFixed(0))]);
 
-            console.log(result);
             if (document.getElementById("plugin").checked) {
                 await CreatePlugin(`http://${window.location.host}/donation/auction?[${eventid}]`);
             }
@@ -136,7 +145,7 @@ export default function CreateEvents() {
 
 
     function CreateEventBTN() {
-        if (window.localStorage.getItem("Type") != "manager" && typeof window.tronLink !== 'undefined') {
+        if (window.localStorage.getItem("Type") != "manager" ) {
             return (<>
                 <NavLink href="/login?[/CreateEvents]">
                     <Button style={{ margin: "17px 0 0px 0px", width: "100%" }}>
@@ -217,6 +226,10 @@ export default function CreateEvents() {
                             {EventDateInput}
                         </div>
                         <div style={{ margin: "18px 0" }}>
+                            <h6>Event Receive Wallet ({FormatOtherType})</h6>
+                            {EventReceiveWalletInput}
+                        </div>
+                        <div style={{ margin: "18px 0" }}>
                             <h6>Event Goal</h6>
                             {EventGoalInput}
                         </div>
@@ -225,19 +238,17 @@ export default function CreateEvents() {
                                 <input className="file-input" hidden onChange={FilehandleChange} id="EventImage" name="EventImage" type="file" multiple="multiple" />
                                 <div className='Event-UploadedFileContainer'>
                                     {EventImage.map((item, i) => {
-                                        return (<>
-                                            <div className='Event-Images'>
-                                                <button onClick={DeleteSelectedImages} name='deleteBTN' id={i}>X</button>
-                                                {(item.type.includes("image")) ? (<img className='Event-Images-imagebox' src={URL.createObjectURL(item)} />) : (<>
-                                                    <div className='Event-Uploaded-File-Container'>
-                                                        <img className='Event-Uploaded-File-clip-icon' src='https://cdn1.iconfinder.com/data/icons/web-page-and-iternet/90/Web_page_and_internet_icons-10-512.png' />
-                                                        <span className='Event-Uploaded-File-name'>{item.name.substring(0, 10)}...</span>
-                                                    </div>
-                                                </>
-                                                )}
+                                        return ( <div key={i} className='Event-Images'>
+                                            <button onClick={DeleteSelectedImages} name='deleteBTN' id={i}>X</button>
+                                            {(item.type.includes("image")) ? (<img className='Event-Images-imagebox' src={URL.createObjectURL(item)} />) : (<>
+                                                <div className='Event-Uploaded-File-Container'>
+                                                    <img className='Event-Uploaded-File-clip-icon' src='https://cdn1.iconfinder.com/data/icons/web-page-and-iternet/90/Web_page_and_internet_icons-10-512.png' />
+                                                    <span className='Event-Uploaded-File-name'>{item.name.substring(0, 10)}...</span>
+                                                </div>
+                                            </>
+                                            )}
 
-                                            </div>
-                                        </>)
+                                        </div>)
 
                                     })}
                                     <div className='Event-ImageAdd'>

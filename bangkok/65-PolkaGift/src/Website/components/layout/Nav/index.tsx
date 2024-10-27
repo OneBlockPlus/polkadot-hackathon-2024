@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import NavLink from 'next/link';
 import isServer from "../../../components/isServer";
 
+import { useMixedContext } from '../../../contexts/MixedContext';
 declare let window: any;
 let running = false;
 
@@ -10,36 +11,27 @@ export function Nav(): JSX.Element {
     const [Balance, setBalance] = useState('');
     const [count, setCount] = useState(0);
     const [role, setRole] = useState("");
+    const {CurrentToken,signerAddress,api,ParseBigNum } = useMixedContext();
 
     const [isSigned, setSigned] = useState(false);
     async function fetchInfo() {
         setRole(window.localStorage.getItem("Type"));
-        if (typeof window.ethereum === "undefined") {
-            window.document.getElementById("withoutSign").style.display = "none";
-            window.document.getElementById("withSign").style.display = "none";
-            window.document.getElementById("installMetamask").style.display = "";
-            running = false;
-            return;
-        } else {
-            window.document.getElementById("withoutSign").style.display = "";
-            window.document.getElementById("withSign").style.display = "none";
-            window.document.getElementById("installMetamask").style.display = "none";
-        }
+      
         if (window.localStorage.getItem("login-type") === "metamask") {
-            if (window.ethereum.selectedAddress != null) {
+            if (signerAddress != null) {
                 try {
                     const Web3 = require("web3")
                     const web3 = new Web3(window.ethereum)
-                    let Balance = await web3.eth.getBalance(window.ethereum.selectedAddress);
+                    let Balance = await web3.eth.getBalance(signerAddress);
                     let subbing = 10;
 
                     if (window.innerWidth > 500) {
                         subbing = 20;
                     }
-                    let token = " DEV" 
+                    let token = ` ${CurrentToken}` 
 
-                    setAcc(window.ethereum.selectedAddress.toString().substring(0, subbing) + "...");
-                    setBalance(Balance / 1e18 + token);
+                    setAcc((signerAddress as string)?.toString().substring(0, subbing) + "...");
+                    setBalance(ParseBigNum(Balance) + token);
                     if (!isSigned)
                         setSigned(true);
 
@@ -58,10 +50,40 @@ export function Nav(): JSX.Element {
                 running = false;
                 return;
             }
-        } else {
-            setSigned(false);
-            window.document.getElementById("withoutSign").style.display = "";
-            window.document.getElementById("withSign").style.display = "none";
+        } else if (window.localStorage.getItem("login-type") === "polkadot"){
+            if (signerAddress  && api) {
+                try {
+                    const { nonce, data: balance } = await (api as any).query.system.account(signerAddress);
+
+                    let Balance = ParseBigNum(Number(balance.free.toString()));
+
+                    let subbing = 10;
+
+                    if (window.innerWidth > 500) {
+                        subbing = 20;
+                    }
+                    let token = ` ${CurrentToken}` 
+
+                    setAcc((signerAddress as string)?.toString().substring(0, subbing) + "...");
+                    setBalance(Balance + token);
+                    if (!isSigned)
+                        setSigned(true);
+
+
+                    window.document.getElementById("withoutSign").style.display = "none";
+                    window.document.getElementById("withSign").style.display = "";
+                    running = false;
+                    return;
+                } catch (error) {
+                    console.error(error);
+                    running = false;
+                    return;
+                }
+
+            } else {
+                running = false;
+                return;
+            }
         }
     }
     useEffect(() => {
@@ -138,7 +160,7 @@ export function Nav(): JSX.Element {
 
                         <div className="wallet">
                             <button type="button" onClick={() => { window.open("https://chrome.google.com/webstore/detail/metamask/ibnejdfjmmkpcnlpebklmnkoeoihofec", "_blank") }} className="btn btn-secondary" aria-disabled="false">
-                                Install Metamask
+                                Install Metamask Or Polkadot
                             </button>
                         </div>
                     </div>

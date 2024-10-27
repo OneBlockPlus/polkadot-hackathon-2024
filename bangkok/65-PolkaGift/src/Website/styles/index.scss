@@ -1,30 +1,31 @@
+@use "sass:meta";
 @import '~normalize.css';
 
-@import 'bootstrap';
+@include meta.load-css('bootstrap');
 
-@import 'base';
-@import 'button';
-@import 'card';
-@import 'form';
-@import 'list';
-@import 'popup';
-@import 'tabs';
-@import 'balance';
-@import 'message';
+@include meta.load-css('base');
+@include meta.load-css('button');
+@include meta.load-css('card');
+@include meta.load-css('form');
+@include meta.load-css('list');
+@include meta.load-css('popup');
+@include meta.load-css('tabs');
+@include meta.load-css('balance');
+@include meta.load-css('message');
 
-@import 'app';
-@import 'shortcut';
+@include meta.load-css('app');
+@include meta.load-css('shortcut');
 
 
-@import '_mix';
-@import 'auction';
-@import 'createevents';
-@import 'donation';
-@import 'Footer';
-@import 'Header';
-@import 'Logo';
-@import 'main';
-@import 'Nav';
-@import 'welcome';
-@import 'project';
-@import 'GrantEvent'
+@include meta.load-css('_mix');
+@include meta.load-css('auction');
+@include meta.load-css('createevents');
+@include meta.load-css('donation');
+@include meta.load-css('Footer');
+@include meta.load-css('Header');
+@include meta.load-css('Logo');
+@include meta.load-css('main');
+@include meta.load-css('Nav');
+@include meta.load-css('welcome');
+@include meta.load-css('project');
+@include meta.load-css('GrantEvent')
