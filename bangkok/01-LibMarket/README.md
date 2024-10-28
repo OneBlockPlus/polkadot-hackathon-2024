@@ -184,6 +184,6 @@ flowchart TD
 
 
 ## Material for Demo
-1. Demo Video [link to Youtube]
-2. PPT [link to google doc]
+1. Demo Video [https://www.youtube.com/watch?v=YRkwQeVI5s4]
+2. PPT [https://docs.google.com/presentation/d/1TE26abneyNOtibg2hX1YxBoXjEQmDEhN1WVo1wryTYA/edit?usp=sharing]
 
