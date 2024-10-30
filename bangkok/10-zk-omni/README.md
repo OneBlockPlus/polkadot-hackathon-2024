@@ -107,6 +107,14 @@ The multi-chain availability is guaranteed by the Ledger chain and the Beacon ch
 
 In general, who can be the Beacon chain or the Ledger chain and who can be the Opeartion chain is not mandatory. We choose the BTC and Ethereum to be the templet of the Beacon chain, and we suggest the Application chain built with Substrate to be the Operation chain, but that’s not always this case.
 
+### ZK-6358-Prover in Particular
+
+The State-Prover is built based on `Plonky2` and the details can be found [here](./src/zk-6358-state-prover/README.md). Then the `p2-state-proof` is aggregated into a compressed `SP1` proof, say, `sp1-aggregated-state-proof`. Details can be found [here](./src/zk-6358-final-prover/circuit/p2agg/).  
+
+On the other hand, the verification of the signatures of the batched transactions are proved by [zk-6358-eip712-sign-prover](./src/zk-6358-final-prover/circuit/sp1eip712/). Another `SP1 compressed proof` is generated.  
+
+Both the above proofs are `STARKy` proofs, which are costly being verified on-chain. And the connection between the `state proof` and `sig proof` has not been proved yet. As a result, a `final-prover` is built to generate an aggregated `SNARK` proof, the details can be found [here](./src/zk-6358-final-prover/README.md).  
+
 ### Conclusion
 We provide both the Beacon cell and the Operation cell for public,  you can choose the role for your chain by integrated different cell.
 
