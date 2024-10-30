@@ -109,6 +109,9 @@ In general, who can be the Beacon chain or the Ledger chain and who can be the O
 
 ### ZK-6358-Prover in Particular
 
+![image](https://github.com/user-attachments/assets/349aec22-2ae0-4820-b13b-1317d1d1961d)
+
+
 The State-Prover is built based on `Plonky2` and the details can be found [here](./src/zk-6358-state-prover/README.md). Then the `p2-state-proof` is aggregated into a compressed `SP1` proof, say, `sp1-aggregated-state-proof`. Details can be found [here](./src/zk-6358-final-prover/circuit/p2agg/).  
 
 On the other hand, the verification of the signatures of the batched transactions are proved by [zk-6358-eip712-sign-prover](./src/zk-6358-final-prover/circuit/sp1eip712/). Another `SP1 compressed proof` is generated.  
