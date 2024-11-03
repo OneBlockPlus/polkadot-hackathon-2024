@@ -148,5 +148,12 @@ thus it can exert different effect to the omni-asset. The choice is free, it ult
 ## Material for Demo
 
 1. [Try It Yourself](https://hackathon.omnicoins.net/)
+    - [faucet](https://yourfaucet.hackathon.omnicoins.net)
+    - `OMNI`(**gas token**)
+        - erc-20 address on `Moonbase alpha`: `0x94A930781066D811DBDEFD4B7A0250D4a346786e`, which can be used for check the balance in `Metamask`
+        - [substrate asset](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fpallet.hackathon.omnicoins.net#/assets)
+    - `AWSOME`(cuscom deployed token)
+        - erc-20 address on `Moonbase alpha`: `0xF76463B43AEc7F2E7a198dc684DFb214fE31f58C`
+        - [substrate asset](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fpallet.hackathon.omnicoins.net#/assets)
 2. [Demo Video](https://omniverse-dev.s3.us-east-1.amazonaws.com/hackathon/Hackathon+Demo.mp4)
 3. PPT [link to google doc]
