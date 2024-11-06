@@ -119,7 +119,7 @@ As the O-DLT protocol in UTXO model edition, you can refer to the link below:
 
 https://github.com/Omniverse-Web3-Labs/bitcoin-proposals/blob/main/omni-utxo-proposal.md
 
-We have implement it in this hackathon project.
+We have implement it in this hackathon project. You can some examples of the `UTXO` in this hackathon [here](./src/zk-6358-state-prover/src/mock/mock_utils.rs#L273)
 
 ### ZK-6358-Prover in Particular
 
