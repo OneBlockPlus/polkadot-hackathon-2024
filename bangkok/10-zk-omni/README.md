@@ -49,7 +49,7 @@ We will participate Moonbeam bounty 1 and bounty 2:
 - a ZK-Rollup Layer serving for multiple chains, including parachain( like moonbeam ), BTC, and Ethereum.
 - the Beacon cell, in form of smart contract and substrate pallet and Taproot script.
 - the Operation cell,  in form of smart contract and substrate pallet.
-- the updated omniverse DLT protocol of UTXO model edition.
+- the updated omniverse DLT protocol in UTXO model edition.
 
 ## Detailed Introduction
 ### Problem Analysis
