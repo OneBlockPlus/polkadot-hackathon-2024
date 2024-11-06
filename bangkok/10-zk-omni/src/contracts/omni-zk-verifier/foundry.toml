@@ -12,5 +12,6 @@ evm_version = "cancun"
 remappings = [
     "@sp1-contracts/=lib/sp1-contracts/contracts/src/v2.0.0",
     "@openzeppelin/contracts/=lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/",
-    "@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/"
+    "@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/",
+    "@moonbeam/contracts/xcm-transactor/=lib/moonbeam/precompiles/xcm-transactor/src/v3/"
 ]
