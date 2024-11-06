@@ -121,6 +121,31 @@ https://github.com/Omniverse-Web3-Labs/bitcoin-proposals/blob/main/omni-utxo-pro
 
 We have implement it in this hackathon project. You can some examples of the `UTXO` in this hackathon [here](./src/zk-6358-state-prover/src/mock/mock_utils.rs#L273)
 
+### Extensible function: Paymaster
+For the better user experience in the future, there is still something pending.
+
+It’s the related to the gas issue, but not the expense, it’s related to the convenience of paying the gas for multiple chains for each synchronization. 
+
+Luckily, we have the ZK-Rollup execution layer, besides the fundamental duty mentioned above, it can also act as the paymaster in EIP-4337.
+
+There are many ways for it to charge users for synchronization in one kind of token, the paymaster will exchange this kind of token into gas token needed for other chains, like BTC for Bitcoin, ETH for Ethereum and so on, And then pay the gas fee for each chain for users.
+
+Like the ZK-Rollup execution layer can issue their native token, just as arb of Arbtrium and op of Optimism, and users can pay the gas in this native token.
+
+Besides, it can also charge in the form of some existed token, like USDT, ETH or BTC, It's the same principle.
+
+The key components for this paymaster function is the deposit vault module, the payment vault module, the Oracle module and the exchange module.
+
+- the deposit vault module: user need to deposit the single kind of token to this vault for the paymaster
+- the deposit vault module: this vault is consist of multiple kind of tokens, using for paying for the actual gas fee of each chain.
+- the Oracle module: using for importing the real price of related token, and the gas price of each chain.
+- the exchange module: calculate the exchange ratio of these tokens, thus can charge fees to users in one kind of token appropriately.
+
+![Paymaster](https://github.com/user-attachments/assets/8659bbf5-67e5-420a-bc59-e2b3ac6cffd0)
+
+Users even needn’t to know this process, they just pay one token everytime they initiating an omni-transaction, and the ZK-Rollup execution layer will do the rest thing for them.
+
+This is already on the agenda, we will finish that later.
 ### ZK-6358-Prover in Particular
 
 ![image](https://github.com/user-attachments/assets/6562253f-bce8-48b5-bbfc-63c0547b2ba2)
