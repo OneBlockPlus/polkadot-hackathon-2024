@@ -49,6 +49,7 @@ We will participate Moonbeam bounty 1 and bounty 2:
 - a ZK-Rollup Layer serving for multiple chains, including parachain( like moonbeam ), BTC, and Ethereum.
 - the Beacon cell, in form of smart contract and substrate pallet and Taproot script.
 - the Operation cell,  in form of smart contract and substrate pallet.
+- the updated omniverse DLT protocol of UTXO model edition.
 
 ## Detailed Introduction
 ### Problem Analysis
@@ -106,6 +107,19 @@ These four parts play different roles in the system and can cooperate with each 
 The multi-chain availability is guaranteed by the Ledger chain and the Beacon chain, and the multi-chain usability is guaranteed by the Operation chain, the ZK-Rollup is the underlying service layer for the Ledger chain and the Operation chain.
 
 In general, who can be the Beacon chain or the Ledger chain and who can be the Opeartion chain is not mandatory. We choose the BTC and Ethereum to be the templet of the Beacon chain, and we suggest the Application chain built with Substrate to be the Operation chain, but that’s not always this case.
+
+### Additional update in protocol
+The last but not least, we have made some updates to the O-DLT protocol, we replace the account-balance model to the UTXO model ,like BTC, thus can bring some new benefits for the omni-asset.
+
+- First is the concurrency, one can initiate multiple transactions on multiple chains simultaneously by using different UTXO separately.
+- Second is self-preservation, which means you can store you UTXO by yourself, this further makes you asset perpetual.
+- Third is privacy, UTXO is easier for implement privacy, this is a generally acknowledged truth.
+
+As the O-DLT protocol in UTXO model edition, you can refer to the link below:
+
+https://github.com/Omniverse-Web3-Labs/bitcoin-proposals/blob/main/omni-utxo-proposal.md
+
+We have implement it in this hackathon project.
 
 ### ZK-6358-Prover in Particular
 
