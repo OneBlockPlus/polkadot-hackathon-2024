@@ -141,7 +141,7 @@ The key components for this paymaster function is the deposit vault module, the 
 - the Oracle module: using for importing the real price of related token, and the gas price of each chain.
 - the exchange module: calculate the exchange ratio of these tokens, thus can charge fees to users in one kind of token appropriately.
 
-![Paymaster](https://github.com/user-attachments/assets/8659bbf5-67e5-420a-bc59-e2b3ac6cffd0)
+![Paymaster](https://github.com/user-attachments/assets/d6586bf8-f411-41be-9575-9eb2a1d0c280)
 
 Users even needn’t to know this process, they just pay one token everytime they initiating an omni-transaction, and the ZK-Rollup execution layer will do the rest thing for them.
 
