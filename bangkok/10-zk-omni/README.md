@@ -148,7 +148,7 @@ Users even needn’t to know this process, they just pay one token everytime the
 This is already on the agenda, we will finish that later.
 ### ZK-6358-Prover in Particular
 
-![image](https://github.com/user-attachments/assets/6562253f-bce8-48b5-bbfc-63c0547b2ba2)
+![image](https://github.com/user-attachments/assets/811e8348-d3f6-42ef-8fda-7151ba692dbb)
 
 The State-Prover is built based on `Plonky2` and the details can be found [here](./src/zk-6358-state-prover/README.md). Then the `p2-state-proof` is aggregated into a compressed `SP1` proof, say, `sp1-aggregated-state-proof`. Details can be found [here](./src/zk-6358-final-prover/circuit/p2agg/).  
 
