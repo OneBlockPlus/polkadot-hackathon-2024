@@ -1,19 +1,20 @@
 "use client";
+
 import React from "react";
 import { TextSpan } from "@/components/TextSpan";
 import Link from "next/link";
-// import { WalletConnectButton } from "./WalletConnect";
+import WalletConnect from "./WalletConnect";
+
 
 export default function NavBar() {
-  const innovation = "Proof Of Innovation".split("");
-  const registry = "Registries".split("");
-  const ricardian = "Ricardian Contracts".split("");
+  const dashboard = "Dashboard".split("");
+  const legaltech = "Proof of Innovation".split("");
+  const licensing = "Licensing".split("");
 
   return (
-    <header className="self-stretch flex py-4 min-[2000px]:px-[320px] px-[200px] items-center bg-[#1C1A11] text-white sticky top-0 z-[100] h-[24] w-full border-b border-[#E5E7EB] backdrop:filter[8px]">
-      {/* Desktop View - Full Menu  */}
-      <div className="flex justify-between items-start w-full min-[2000px]:py-[25px] py-[16px]">
-        <Link href={"/"} className="">
+    <header className="sticky top-0 z-[100] w-full px-[10px] self-stretch border-b border-[#E5E7EB] bg-[#1C1A11] py-4 text-white backdrop-filter md:px-[120px] min-[2000px]:w-[3000px] min-[2000px]:px-[320px]">
+      <div className="flex w-full justify-between items-start py-[16px] min-[2000px]:py-[25px]">
+        <Link href="/" prefetch={false}  className="flex items-center">
           <img
             src="/images/Logo.svg"
             className="shrink-0 min-[2000px]:w-[300px]"
@@ -22,41 +23,33 @@ export default function NavBar() {
           />
         </Link>
 
-        <div className="flex items-end justify-between space-x-5">
+        <div className="flex items-center justify-between space-x-5">
           <Link
-            href={"/Innovation"}
-            className="text-white font-normal hover:text-[#facc15] min-[2000px]:text-3xl hidden md:flex focus:text-white"
+            href="/dashboard"
+            prefetch={false} 
+            className="hidden font-normal text-white hover:text-[#facc15] focus:text-white md:flex min-[2000px]:text-3xl"
           >
-            {innovation.map((letter, index) => (
-              <TextSpan key={index}>
-                {letter === " " ? "\u00A0" : letter}
-              </TextSpan>
-            ))}
-          </Link>
-          <Link
-            href={"/IpSearch"}
-            className="text-white font-normal hover:text-[#facc15] min-[2000px]:text-3xl hidden md:flex focus:text-white"
-          >
-            {registry.map((letter, index) => (
-              <TextSpan key={index}>
-                {letter === " " ? "\u00A0" : letter}
-              </TextSpan>
-            ))}
-          </Link>
-          <Link
-            href={"/RicardianContracts"}
-            className="text-white font-normal hover:text-[#facc15] min-[2000px]:text-3xl hidden md:flex focus:text-white"
-          >
-            {ricardian.map((letter, index) => (
+            {dashboard.map((letter, index) => (
               <TextSpan key={index}>
                 {letter === " " ? "\u00A0" : letter}
               </TextSpan>
             ))}
           </Link>
 
-     
+          <Link
+            href="/innovation"
+            prefetch={false} 
+            className="hidden font-normal text-white hover:text-[#facc15] focus:text-white md:flex min-[2000px]:text-3xl"
+          >
+            {legaltech.map((letter, index) => (
+              <TextSpan key={index}>
+                {letter === " " ? "\u00A0" : letter}
+              </TextSpan>
+            ))}
+          </Link>
+
+          <WalletConnect />
         </div>
-
       </div>
     </header>
   );

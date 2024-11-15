@@ -1,7 +1,8 @@
 import React, { useState, ChangeEvent, useCallback } from 'react';
 import { useToast } from '@/hooks/use-toast';
-import { useIpfs } from '../context/ipfs';
+
 import uploadFilePinata from '../utils/pinataPin';
+import { useInnovationContext } from '@/context/innovation';
 
 interface FileUploadResult {
   IpfsHash?: string;
@@ -12,7 +13,7 @@ const UploadMultipleFilesToIPFS: React.FC<FileUploadResult> = ({className, IpfsH
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const { toast } = useToast();
 
-  const { ipfsHashes, setIpfsHashes, setImageHash, setImagesLinks } = useIpfs();
+  const { ipfsHashes, setIpfsHashes, setImageHash, setImagesLinks, imagesLinks } = useInnovationContext();
 
   const handleIpfsHashes = useCallback(() => {
     const hashesArray = ipfsHashes ? ipfsHashes.split(',') : [];
@@ -37,11 +38,22 @@ const UploadMultipleFilesToIPFS: React.FC<FileUploadResult> = ({className, IpfsH
     setSelectedFiles(files);
 
     if (files.length === 0) {
-      // toast.info("No files selected");
+      toast({
+        title: "No Files",
+        description: "No Files Selected",
+        variant: "destructive",
+      });
     } else {
-      // toast.info(`${files.length} file(s) selected`);
+      toast({
+        title: "Files Selected",
+        description: "`${files.length} file(s) selected`",
+        className: "bg-[#252525] text-white border-[#373737]",
+      });
     }
-  };
+
+    
+  }
+  
 
   const uploadImagesToIPFS = async (files: File[]): Promise<string[]> => {
     try {
@@ -57,7 +69,10 @@ const UploadMultipleFilesToIPFS: React.FC<FileUploadResult> = ({className, IpfsH
         const validImageHashes = imageHashes.filter((hash): hash is string => hash !== undefined);
 
         // Create url for images
-        const imageUrls = validImageHashes.map(hash => `https://harlequin-quiet-smelt-978.mypinata.cloud/ipfs/${hash}`);
+        // const imageUrls = validImageHashes.map(hash => `https://harlequin-quiet-smelt-978.mypinata.cloud/ipfs/${hash}`);
+        const imageUrls = validImageHashes.map(hash => `${process.env.NEXT_PUBLIC_GATEWAY} ${hash}`);
+        
+        // https://salmon-urgent-sawfish-507.mypinata.cloud/ipfs/QmQXLqaZQQML2tdqsx236n1mEszz7kjApPqckS62dBexQD
 
         // Json with all the urls
         const imagesMetadata = { imageUrls };
@@ -70,7 +85,7 @@ const UploadMultipleFilesToIPFS: React.FC<FileUploadResult> = ({className, IpfsH
 
         // get hash from json
         const metadataCid = ipfsMetadata.IpfsHash;
-        const metadataUrl = `https://harlequin-quiet-smelt-978.mypinata.cloud/ipfs/${metadataCid}`;
+        const metadataUrl = (`${process.env.NEXT_PUBLIC_GATEWAY} ${metadataCid}`)
         console.log("CID del JSON con todos los enlaces de imágenes:", metadataUrl);
 
         // save json of hash
@@ -88,7 +103,11 @@ const UploadMultipleFilesToIPFS: React.FC<FileUploadResult> = ({className, IpfsH
 };
 
   const handleUpload = async () => {
-    // toast.info("Uploading your files");
+    toast({
+      title: "Uploading your files",
+      description: "`Uploading ${files.length} file(s) selected`",
+      className: "bg-[#252525] text-white border-[#373737]",
+    });
 
     try {
       const newImageHashes = await uploadImagesToIPFS(selectedFiles);
@@ -97,7 +116,11 @@ const UploadMultipleFilesToIPFS: React.FC<FileUploadResult> = ({className, IpfsH
 
     } catch (error) {
       console.error("Error uploading files:", error);
-      // toast.error("Error uploading files");
+      toast({
+        title: "Error Uploading",
+        description: `Error uploading files ${error}`,
+        variant: 'destructive'
+      });
     }
   };
 
@@ -118,7 +141,7 @@ const UploadMultipleFilesToIPFS: React.FC<FileUploadResult> = ({className, IpfsH
       </label>
       {selectedFiles.length === 0 && (
         <div>
-          <p className="text-center min-[2000px]:text-3xl">No Files Selected</p>
+          <p className="text-center min-[2000px]:text-3xl pt-5">No Files Selected</p>
         </div>
       )}
       {selectedFiles.length > 0 && (
@@ -133,6 +156,10 @@ const UploadMultipleFilesToIPFS: React.FC<FileUploadResult> = ({className, IpfsH
       >
         Upload to IPFS
       </button>
+
+      {imagesLinks?.map((value)=>(
+        <img src={value}/>
+      ))}
     </div>
   );
 };

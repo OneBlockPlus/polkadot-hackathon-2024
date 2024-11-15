@@ -9,7 +9,7 @@ const uploadFilePinata = async (fileToUpload: File): Promise<any> => {
       const uploadOptions: RequestInit = {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_PINATA_TOKEN_JWT}`,
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_PINATA_JWT}`,
         },
         body: formData,
       };

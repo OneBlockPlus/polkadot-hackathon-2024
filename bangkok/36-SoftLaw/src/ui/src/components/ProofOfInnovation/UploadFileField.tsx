@@ -1,7 +1,7 @@
 
 'use client';
 import React, { useRef } from "react";
-import TypesComponent from "./TypesProps";
+import TypesComponent from "../TypesProps";
 import UploadMultipleFilesToIPFS from "../UploadFiles";
 
 interface UploadFilesFieldPrompts {

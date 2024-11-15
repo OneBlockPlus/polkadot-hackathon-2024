@@ -1,16 +1,7 @@
 # SOFTLAW - The Intellectual Property Chain Secured by Polkadot
 ![Alt text](https://harlequin-quiet-smelt-978.mypinata.cloud/ipfs/QmdWWR5frGwGDYBdJWagXhP3QpxFEoRz9Xmk5CNQnPjs1s)
 
-## Problem To Be Solved
-Intellectual Property (IP) is a critical asset for creators, scientists, and innovators. However, protecting these assets faces several challenges:
-- **Lack of Transparency**: Traditional IP registration systems often lack transparency, making it difficult to prove the originality of an idea or creation.
-- **High Costs and Delays**: Registering IP rights and enforcing them through legal means can be time-consuming and costly, especially for individual creators and small businesses.
-- **Complex Licensing Management**: Managing IP licenses, ensuring compliance with contract terms, and handling payments or revocations are complex processes that require significant legal resources.
-- **Risk of Misappropriation**: Without a secure and decentralized system, creators face risks of their ideas being copied or misused without their consent.
-- **Global Accessibility**: Traditional IP management systems can be inaccessible to global users due to geographic limitations and differing local regulations.
-
-
-## Solution
+## Description
 Softlaw is an Intellectual Property (IP) AppChain designed to empower scientists, builders, and creators to secure their intellectual creations through **Proof of Innovation** and manage their IP licenses using **Smart Legal Contracts aka Ricardian Contracts**. Built on the Polkadot ecosystem, Softlaw ensures security and decentralization to IP rights and licensing.
 
 ## What We Built for the Hackathon
@@ -33,21 +24,20 @@ Using NFTs, we create a secure database of Intellectual Property NFTs that safeg
 Combining legal principles with blockchain technology, we offer a Smart IP License Contract Factory that ensures the automated execution of intellectual property contracts. The terms and conditions of these license contracts are encoded directly into the blockchain runtime, ensuring security and decentralization. Features include automated payments, license revocations, rewards, and escrow management. Once you have a digital representation of your IP as an NFT digital twin, you can issue licenses to manage your intellectual property rights seamlessly.
 
 ## Team
-- **Mario Andrade**: CEO & Developer.
-- **Luke Barush**: Tech Lead & Polkadot Developer
+- **Mario Andrade**: CEO
+- **Baruch(Luke) Fishman**: Tech Lead & Polkadot Developer
 - **Favour Chiksze**: Front-End Developer
 - **Pat Sinma**: Product Designer
-- **Ganesh**: Polkadot Developer
 
 ## Installation Guide
 
 ### Setting Up Softlaw Chain
 
 1. Clone the repository and navigate to the project directory.
-2. Install the required dependencies.
+2. Install pop network https://learn.onpop.io/appchains/guides/set-up-your-development-environment.
 3. Build the chain:
    pop build --release
-4. Deplopy the chain:
+4. Run the chain:
    pop up parachain -f network.toml
 5. Interact with softlaw chain clicking on the collator link.
 
@@ -58,24 +48,7 @@ Combining legal principles with blockchain technology, we offer a Smart IP Licen
 
 ## Pitch Deck
 Find our comprehensive pitch deck here:
-https://harlequin-quiet-smelt-978.mypinata.cloud/ipfs/QmRhq2sWRKLqH3NgBt9nWeQUFxdFpikSfpGzMNDPB6dg46
-
-
-## Project Creation Date
-October 2024
-
-
-## Long-term Planning for the Project and Product
-
-1. **Improve the Runtime Logic**  
-   Improve the runtime logic to ensure privacy and legallity in the Ipntellectual Property Management.
-
-2. **Launch on Polkadot Parachain**  
-   Integrate with the Polkadot ecosystem by deploying the project as a parachain, benefiting from Polkadot’s shared security, interoperability, and scalability.
-
-3. **Commercialize Our Product**  
-   Develop a go-to-market strategy to promote and commercialize the platform, targeting creators, inventors, builders, and companies in need of IP protection and management solutions through blockchain technology.
-
+https://harlequin-quiet-smelt-978.mypinata.cloud/ipfs/QmQtXZZnFzSwt4zoAVWwsUu111Yuwcu2121TBpUz4rfece
 
 ## Web
 Visit our website: https://soft.law/
@@ -85,3 +58,7 @@ Track: Building a blockchain with Polkadot SDK.
 
 ## Bounty
 Bounty: Blockchain for Good - Leveraging blockchain technology to protect intellectual property and support innovators worldwide.
+
+
+## Docs
+rust docs: https://warm-dasik-d33c94.netlify.app/

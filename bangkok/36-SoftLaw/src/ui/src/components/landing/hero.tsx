@@ -4,8 +4,8 @@ import { TextSpan } from "@/components/TextSpan";
 
 function Hero() {
 const ricardian = "RICARDIAN CONTRACTS".split("");
-const legalChains = "LEGAL CHAINS".split("");
-const realWorldAssets = "REAL WORLD ASSETS".split("");
+const ip = "  INTELLECTUAL PROPERTY LICENSE".split("");
+const innovation = "  PROOF OF INNOVATION".split("");
 
     return (
         <div>
@@ -27,14 +27,14 @@ const realWorldAssets = "REAL WORLD ASSETS".split("");
             </div>
 
             <div className="md:text-2xl xl:text-3xl flex min-[2000px]:text-4xl">
-              {legalChains.map((letter, index) => (
+              {ip.map((letter, index) => (
                 <TextSpan key={index}>
                   {letter === " " ? "\u00A0" : letter}
                 </TextSpan>
               ))}
             </div>
             <div className="sm:text-lg md:text-2xl xl:text-3xl flex min-[2000px]:text-4xl">
-              {realWorldAssets.map((letter, index) => (
+              {innovation.map((letter, index) => (
                 <TextSpan key={index}>
                   {letter === " " ? "\u00A0" : letter}
                 </TextSpan>

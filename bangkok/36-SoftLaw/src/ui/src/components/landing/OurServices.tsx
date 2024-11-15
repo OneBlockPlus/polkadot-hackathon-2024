@@ -11,18 +11,18 @@ function OurServices() {
           <h1 className="self-stretch font-Montesarrat text-[#D0DFE4] text-center text-[40px] font-bold leading-[110%] tracking-[-0.96px] min-[2000px]:text-6xl ">
             EMPOWER LEGAL ADVANCEMENT <br />
             IN THE DIGITAL ERA WITH EMERGING TECH
-            <p className="text-[16px] font-[400] text-[#EFF4F6] leading-[140%] tracking-[0.32px] text-center pt-[16px]   min-[2000px]:text-4xl">
+            {/* <p className="text-[16px] font-[400] text-[#EFF4F6] leading-[140%] tracking-[0.32px] text-center pt-[16px]   min-[2000px]:text-4xl">
               Economic Resilience: In countries facing economic challenges,
               Motoverse empowers people to purchase and sell assets using
               cryptocurrency, providing a stable alternative to local currencies
               and fostering financial inclusion.
-            </p>
+            </p> */}
           </h1>
         </div>
 
         <div className="flex self-stretch justify-between items-center flex-col md:flex-row lg:items-stretch md:gap-[auto] font-Montesarrat gap-[60px] min-[2000px]:gap-[70px]">
           <CardServices
-            imageUrl="/images/scales.svg"
+            imageUrl="/images/judg.svg"
             altText="Scales icon"
             title={
               <>

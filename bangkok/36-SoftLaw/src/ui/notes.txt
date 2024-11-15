@@ -1,5 +1,0 @@
-Components:
-
-- Loading Component
-- dashboard
-- My nfts

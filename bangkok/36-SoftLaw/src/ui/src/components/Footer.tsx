@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import MaxWidthWrapper from "./MaxWidhWrapper";
 
 const currentYear = new Date().getFullYear();
 interface FooterProps {
@@ -10,10 +11,12 @@ interface FooterProps {
 const Footer: React.FC<FooterProps> = ({ width, className }) => {
   return (
     <>
-      <footer
-        className={`flex ${width} min-h-400px flex-col md:px-[200px] pb-[60px] items-start self-stretch bg-[#1C1A11] gap-[40px] min-[2000px]:py-[60px] "> ${className}`}
+   
+    <footer
+        className={`flex ${width} min-h-400px flex-col md:px-[120px] pb-[60px] items-start self-stretch bg-[#1C1A11] min-[2000px]:w-[3000px] gap-[40px]  min-[2000px]:py-[120px] "> ${className}`}
       >
-        <div>
+         {/* <MaxWidthWrapper> */}
+        <div className="min-[2000px]:pb-5 pb-5">
           <img
             src="/images/logoHero.svg"
             alt="SOFT.LAW"
@@ -46,7 +49,10 @@ const Footer: React.FC<FooterProps> = ({ width, className }) => {
             </Link>
           </div>
         </div>
+         {/* </MaxWidthWrapper>    */}
       </footer>
+
+      
     </>
   );
 };

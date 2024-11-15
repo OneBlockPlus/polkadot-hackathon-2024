@@ -1,4 +1,5 @@
-use crate::{mock::*, Error, Event};
+use crate::{mock::*, pallet::{Error, Event, Config}};
+
 use frame_support::{assert_noop, assert_ok};
 
 #[test]
@@ -35,7 +36,7 @@ fn test_name_too_long() {
     new_test_ext().execute_with(|| {
         let account_id = 1;
         let origin = RuntimeOrigin::signed(account_id);
-        let long_name = "a".repeat(<Test as crate::Config>::MaxNameLength::get() as usize + 1);
+        let long_name = "a".repeat(<Test as Config>::MaxNameLength::get() as usize + 1);
 
         assert_noop!(
             IPPallet::mint_nft(
@@ -56,7 +57,7 @@ fn test_description_too_long() {
         let account_id = 1;
         let origin = RuntimeOrigin::signed(account_id);
         let long_description =
-            "a".repeat(<Test as crate::Config>::MaxDescriptionLength::get() as usize + 1);
+            "a".repeat(<Test as Config>::MaxDescriptionLength::get() as usize + 1);
 
         assert_noop!(
             IPPallet::mint_nft(
@@ -77,7 +78,7 @@ fn test_filing_date_too_long() {
         let account_id = 1;
         let origin = RuntimeOrigin::signed(account_id);
         let long_filing_date =
-            "a".repeat(<Test as crate::Config>::MaxNameLength::get() as usize + 1);
+            "a".repeat(<Test as Config>::MaxNameLength::get() as usize + 1);
 
         assert_noop!(
             IPPallet::mint_nft(
@@ -98,7 +99,7 @@ fn test_jurisdiction_too_long() {
         let account_id = 1;
         let origin = RuntimeOrigin::signed(account_id);
         let long_jurisdiction =
-            "a".repeat(<Test as crate::Config>::MaxNameLength::get() as usize + 1);
+            "a".repeat(<Test as Config>::MaxNameLength::get() as usize + 1);
 
         assert_noop!(
             IPPallet::mint_nft(

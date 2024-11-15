@@ -1,26 +1,24 @@
 "use client";
 import React, { useEffect, useState } from "react";
-// import { getSubstrateSigner } from "@/utils/getSigner";
 import MaxWidthWrapper from "@/components/MaxWidhWrapper";
 import { useToast } from "../../../hooks/use-toast";
 import Footer from "@/components/Footer";
-import ReusableHeading from "../textComponent";
-import TypesComponent from "../TypesProps";
-import InputField from "../input";
+import ReusableHeading from "../../textComponent";
+import TypesComponent from "../../TypesProps";
+// import InputField from "../input";
 import UploadFilesField from "../UploadFileField";
-import UploadMultipleFilesToIPFS from "@/components/UploadFiles";
 import Link from "next/link";
 import { ethers } from "ethers";
-// import { Address } from "@unique-nft/utils";
-// import { getSdkContract } from "@/utils/getSDK";
-// import { Abi } from "@unique-nft/sdk/full";
 import { useUnique } from "@/context/unique";
 import abi from "../../../utils/abi_minter.json";
-import VariousTypesButton from "../VariousTypesButton";
-import VariousTypesSelect from "../VariousTypesSelect";
-import CollectionTypes from "@/utils/collectionTypes.json";
+import VariousTypesButton from "../../VariousTypesButton";
 import { useContext } from 'react';
-import { FormDataContext } from "../FormDataContext";
+import { FormDataContext } from "../../FormDataContext";
+// import * as yup from 'yup';
+// import { useForm } from "react-hook-form";
+// import { yupResolver } from '@hookform/resolvers/yup';
+// import Button from "../../ui/button"
+import { useInnovationContext } from "@/context/innovation";
 
 interface AbiInput {
   name: string;
@@ -43,8 +41,13 @@ interface IpRegistriesProps {
   onDataChange: (data: any) => void;
 }
 
+const supportedImages = ["doc", "pdf"];
 
 export default function IpRegistries ({onDataChange}: IpRegistriesProps) {
+
+  const {selectedTabInnovation,
+    setSelectedTabInnovation} = useInnovationContext()
+
   const {formData, updateFormData} = useContext(FormDataContext);
 
   const [activeButton, setActiveButton] = useState<string | null>(null);
@@ -125,18 +128,39 @@ export default function IpRegistries ({onDataChange}: IpRegistriesProps) {
     });
   };
 
-  const abiTyped = abi as Abi;
+  // const abiTyped = abi as Abi;
 
   const handleMintCollection = async () => {
     console.log("uploadIpfS and Mint")
   }
 
+
+  const handleBack = async () =>{
+    try {
+      setSelectedTabInnovation("1")
+      console.log("test", selectedTabInnovation)
+    } catch(e){
+      console.log(e)
+    }
+  }
+
+  const handleNext = async () =>{
+    try {
+      setSelectedTabInnovation("2")
+      console.log("test", selectedTabInnovation)
+    } catch(e){
+      console.log(e)
+    }
+  }
+
+
+
   return (
-    <div className="bg-[#1C1A11] flex flex-col flex-shrink-0 w-full justify-center items-center text-white min-[2000px]:w-[1280px]">
+    <div className="bg-[#1C1A11] flex flex-col flex-shrink-0 w-full justify-center items-center text-white min-[2000px]:w-[3000px]">
     
-      <MaxWidthWrapper className="flex flex-col self-stretch min-[2000px]:min-h-[800px] pt-[120px] justify-center items-center">
-        <div className="flex flex-col w-full justify-items-center gap-[60px] pb-[120px]">
-          <div>
+      <MaxWidthWrapper className="flex flex-col self-stretch min-[2000px]:min-h-screen pt-[120px] justify-center items-center">
+        <div className="flex flex-col w-full justify-items-center gap-[px] pb-[120px]">
+          <div className="mb-[60px]">
             <ReusableHeading text="intellectual property Selection" />
           </div>
 
@@ -194,31 +218,14 @@ export default function IpRegistries ({onDataChange}: IpRegistriesProps) {
                   handleButtonClick("Copyright");
                 }}
               />
-
-              {/* <VariousTypesSelect
-                  types={CollectionTypes}
-                  className="h-[auto]"
-                  onChange={(selectedValue) => {
-                    console.log("Selected property type:", selectedValue);
-                  }}
-                /> */}
             </div>
           </div>
           <form
             action=""
-            className="flex flex-col gap-[60px]"
+            className="flex flex-col"
           >
-            <div className="flex flex-col items-start self-stretch gap-[8px]">
-              <InputField
-                label="Reference number"
-                className="min-[2000px]:w-[1254px]"
-                value={formData.IpRegistries.ReferenceNumber} //Display current state value
-                onChange={handleInputChange} //this captures the user's input and updates the global form state
-              />
-              <TypesComponent
-                className="text-[#8A8A8A]"
-                text="Eg: Reference number from the USPTO or WIPO database. This number is used to track your application throughout the examination process and may differ from the final patent number. Example: 16/123,456."
-              />
+            <div className="flex flex-col items-start self-stretch mt-[60px] gap-[8px]">
+        
               <div className="flex flex-col items-center self-stretch gap-[8px]">
                 {collection.name && (
                   <div className="mt-4 text-[#8A8A8A] w-1/2">
@@ -251,48 +258,46 @@ export default function IpRegistries ({onDataChange}: IpRegistriesProps) {
                   </div>
                 )}
               </div>
-
-              <div className="flex flex-col gap-[16px] w-full md:w-full mt-[60px]">
-                <UploadFilesField
-                  text="Intellectual Property Documentation"
-                  files="files"
-                  fileType={` File types: Doc, PDF`}
-                  onFileUpload={handleFileUpload} //pass the handler for file upload
-                />
-
-                <InputField
-                  label="or paste a link to the document"
-                  className="min-[2000px]:w-[1254px]"
-                  hasDropdown={false}
-                  value={formData.IpRegistries.ReferenceLink} //Display current state value
-                  onChange={handleReferenceLink} //handle input of link
-                />
-              </div>
             </div>
           </form>
 
-          <div className="flex items-start justify-between w-full ">
-            {/* <button className="bg-transparent rounded-[16px] px-[20px] py-[8px] flex-shrink-0 border border-[#D0DFE4] text-[#D0DFE4] hover:bg-[#FACC15]  hover:text-[#1C1A11] hover:border-none">
-                Cancel: selection
-              </button>
-              <button className="bg-[#D0DFE4] rounded-[16px] text-[#1C1A11] px-[22px] py-[8px] flex-shrink-0 hover:bg-[#FACC15]">
-                Next: nft
-              </button> */}
+          <div className="flex items-start justify-between w-full mt-[60px] ">
+            
+            <Link
+                href="/Dashboard"
+                className="bg-transparent rounded-[16px] px-[20px] py-[8px] min-[2000px]:py-[16px] min-[2000px]:tracking-[1px] min-[2000px]:text-3xl w-[128px] min-[2000px]:w-[200px] items-center text-center flex-shrink-0 border border-[#D0DFE4] text-[#D0DFE4] hover:bg-[#FACC15]  hover:text-[#1C1A11]"
+                children="Cancel"
+              />
 
-            <button className="bg-transparent rounded-[16px] px-[20px] py-[8px] flex-shrink-0 border border-[#D0DFE4] text-[#D0DFE4] hover:bg-[#FACC15]  hover:text-[#1C1A11] hover:border-none">
-              Cancel
+            <button
+             className={`bg-[#D0DFE4] min-[2000px]:py-[16px] min-[2000px]:tracking-[1px] min-[2000px]:text-3xl w-[128px] min-[2000px]:w-[200px] items-center text-center rounded-[16px] text-[#1C1A11] px-[22px] py-[8px] flex-shrink-0 hover:bg-[#FACC15]`}
+            onClick={handleNext}>
+              next
             </button>
-
-            <button className="bg-[#D0DFE4] rounded-[16px] text-[#1C1A11] px-[22px] py-[8px] flex-shrink-0 hover:bg-[#FACC15]">
-              Next
-            </button>
+            
+           
           </div>
         </div>
       </MaxWidthWrapper>
-      <Footer
+      {/* <Footer
         width="py-[60px] max-h-[400px]"
         className="border-t-[1px] border-[#8A8A8A] w-full"
-      />
+      /> */}
     </div>
   );
 }
+
+
+// const IpRegistry = ({ setToCompleted, renderIp }) => {
+//   if (renderIp === "business details") {
+//     return <IpRegistries setToCompleted={setToCompleted} />;
+//   } else {
+//     // return "Complete all fields";
+//     return <IpRegistries setToCompleted={setToCompleted} />;
+//   }
+// };
+
+// npm install react-hook-form @hookform/resolvers yup
+
+
+// export default IpRegistry;

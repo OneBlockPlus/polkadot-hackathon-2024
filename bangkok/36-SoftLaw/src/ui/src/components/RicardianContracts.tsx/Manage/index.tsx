@@ -188,6 +188,7 @@ export default function IpRegistries ({onDataChange}: IpRegistriesProps) {
           >
             <div className="flex flex-col items-start self-stretch gap-[8px]">
               <InputField
+              type={"text"}
                 label="Reference number"
                 className="min-[2000px]:w-[1254px]"
                 value={formData.IpRegistries.ReferenceNumber} //Display current state value
@@ -239,6 +240,7 @@ export default function IpRegistries ({onDataChange}: IpRegistriesProps) {
                 />
 
                 <InputField
+                type="text"
                   label="or paste a link to the document"
                   className="min-[2000px]:w-[1254px]"
                   hasDropdown={false}

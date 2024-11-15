@@ -9,7 +9,7 @@ scale-info = { version = "2.11.1", default-features = false, features = ["derive
 frame-support = { version = "36.0.0", default-features = false }
 frame-system = { version = "36.1.0", default-features = false }
 sp-std = { version = "14.0.0", default-features = false }
-
+pallet-balances = { version = "37.0.0", default-features = false }
 [dev-dependencies]
 sp-core = { version = "34.0.0", default-features = false }
 sp-io = { version = "37.0.0", default-features = false }
@@ -26,5 +26,6 @@ std = [
     "sp-core/std",
     "sp-io/std",
     "sp-runtime/std",
+    "pallet-balances/std",
 ]
 try-runtime = ["frame-support/try-runtime"]

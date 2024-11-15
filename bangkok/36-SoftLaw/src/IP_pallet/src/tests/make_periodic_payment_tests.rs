@@ -1,4 +1,9 @@
-use crate::{mock::*, Error, Event, LicenseStatus, PaymentType};
+use crate::tests::util::create_license;
+use crate::types::*;
+use crate::{
+    mock::*,
+    pallet::{Error, Event},
+};
 use frame_support::{assert_noop, assert_ok};
 
 fn mint_nft(account: <Test as frame_system::Config>::AccountId) -> u32 {
@@ -13,26 +18,6 @@ fn mint_nft(account: <Test as frame_system::Config>::AccountId) -> u32 {
     IPPallet::next_nft_id() - 1
 }
 
-fn create_license(
-    licensor: <Test as frame_system::Config>::AccountId,
-    nft_id: u32,
-    price: u32,
-    is_exclusive: bool,
-    payment_type: PaymentType<u32, u64>,
-) -> <Test as crate::Config>::LicenseId {
-    IPPallet::create_license(
-        RuntimeOrigin::signed(licensor),
-        nft_id,
-        price,
-        false,
-        None,
-        payment_type,
-        is_exclusive,
-    )
-    .unwrap();
-    IPPallet::next_license_id() - 1
-}
-
 #[test]
 fn test_make_periodic_payment_success() {
     new_test_ext().execute_with(|| {
@@ -43,13 +28,13 @@ fn test_make_periodic_payment_success() {
         let license_id = create_license(
             licensor,
             nft_id,
-            price,
             false,
             PaymentType::Periodic {
                 amount_per_payment: price / 4,
                 total_payments: 4,
                 frequency: 10,
             },
+            None,
         );
 
         assert_ok!(IPPallet::accept_license(
@@ -61,7 +46,6 @@ fn test_make_periodic_payment_success() {
             RuntimeOrigin::signed(licensee),
             license_id
         ));
-
 
         System::assert_last_event(RuntimeEvent::IPPallet(Event::PeriodicPaymentProcessed {
             license_id,
@@ -80,7 +64,10 @@ fn test_make_periodic_payment_license_not_found() {
         let non_existent_license_id = 999;
 
         assert_noop!(
-            IPPallet::make_periodic_payment(RuntimeOrigin::signed(licensee), non_existent_license_id),
+            IPPallet::make_periodic_payment(
+                RuntimeOrigin::signed(licensee),
+                non_existent_license_id
+            ),
             Error::<Test>::LicenseNotFound
         );
     });
@@ -93,7 +80,7 @@ fn test_make_periodic_payment_license_not_active() {
         let licensee = 2;
         let nft_id = mint_nft(licensor);
         let price = 100u32;
-        let license_id = create_license(licensor, nft_id, price, false, PaymentType::OneTime(price));
+        let license_id = create_license(licensor, nft_id, false, PaymentType::OneTime(price), None);
 
         assert_ok!(IPPallet::accept_license(
             RuntimeOrigin::signed(licensee),
@@ -107,7 +94,6 @@ fn test_make_periodic_payment_license_not_active() {
     });
 }
 
-
 #[test]
 fn test_make_periodic_payment_complete_license() {
     new_test_ext().execute_with(|| {
@@ -118,13 +104,13 @@ fn test_make_periodic_payment_complete_license() {
         let license_id = create_license(
             licensor,
             nft_id,
-            price,
             false,
             PaymentType::Periodic {
                 amount_per_payment: price / 2,
                 total_payments: 2,
                 frequency: 10,
             },
+            None,
         );
 
         assert_ok!(IPPallet::accept_license(
@@ -141,7 +127,7 @@ fn test_make_periodic_payment_complete_license() {
             license_id
         ));
 
-        let license = IPPallet::licenses(license_id).unwrap();
+        let license = IPPallet::active_contracts(license_id).unwrap();
         assert_eq!(license.status, LicenseStatus::Completed);
 
         System::assert_last_event(RuntimeEvent::IPPallet(Event::LicenseCompleted {

@@ -10,8 +10,8 @@ function OurProducts() {
           OUR PRODUCTS
         </h1>
 
+     
         <div className="border-b border-[#B2CBD3] my-[60px]" />
-        {/* Proof of ownership */}
         <ProofOwnership />
 
       </MaxWidthWrapper>

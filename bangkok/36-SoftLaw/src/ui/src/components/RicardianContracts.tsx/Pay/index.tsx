@@ -145,6 +145,7 @@ export default function Pay({onDataChange}: PayProps) {
                   <div className="flex flex-col items-start gap-[6px]">
                    
                     <InputField
+                    type={"number"}
                     label= "Patent Number"
                     value={formData.Identity.PatentNumber}
                     onChange={handlePatentNumber}

@@ -9,7 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 // import { Abi } from "@unique-nft/sdk/full";
 import UploadMultipleFilesToIPFS from "@/components/UploadFiles";
 import { useUnique } from "@/context/unique";
-import { useIpfs } from "@/context/ipfs";
+import { useInnovationContext } from "@/context/innovation";
 import Image from "next/image";
 
 interface AbiInput {
@@ -44,7 +44,7 @@ export default function Nft() {
     setImagesLinks,
     imageHash,
     imagesLinks,
-  } = useIpfs();
+  } = useInnovationContext();
 
   const { toast } = useToast();
 

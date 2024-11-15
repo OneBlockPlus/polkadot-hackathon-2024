@@ -1,4 +1,4 @@
-use crate as pallet_ip_pallet;
+use crate::pallet;
 use frame_support::parameter_types;
 use frame_system as system;
 use sp_core::H256;
@@ -6,21 +6,44 @@ use sp_runtime::{
     traits::{BlakeTwo256, IdentityLookup},
     BuildStorage,
 };
+use pallet_balances;
+use frame_support::traits::ConstU32;
 
 type Block = frame_system::mocking::MockBlock<Test>;
+pub type Balance = u128;
 
-// Configure a mock runtime to test the pallet.
 frame_support::construct_runtime!(
     pub enum Test {
         System: frame_system,
-        IPPallet: pallet_ip_pallet,
+        Balances: pallet_balances,
+        IPPallet: pallet,
     }
 );
+
 parameter_types! {
     pub const BlockHashCount: u64 = 250;
     pub const SS58Prefix: u8 = 42;
     pub const MaxNameLength: u32 = 50;
     pub const MaxDescriptionLength: u32 = 200;
+    pub const ExistentialDeposit: Balance = 1;
+    pub const MaxLocks: u32 = 50;
+    pub const MaxReserves: u32 = 50;
+}
+
+impl pallet_balances::Config for Test {
+    type RuntimeEvent = RuntimeEvent;
+    type WeightInfo = ();
+    type Balance = Balance;
+    type DustRemoval = ();
+    type ExistentialDeposit = ExistentialDeposit;
+    type AccountStore = System;
+    type ReserveIdentifier = [u8; 8];
+    type RuntimeHoldReason = ();
+    type FreezeIdentifier = ();
+    type MaxLocks = MaxLocks;
+    type MaxReserves = MaxReserves;
+    type MaxFreezes = ConstU32<0>;
+    type RuntimeFreezeReason = ();
 }
 
 impl system::Config for Test {
@@ -38,7 +61,7 @@ impl system::Config for Test {
     type BlockHashCount = BlockHashCount;
     type Version = ();
     type PalletInfo = PalletInfo;
-    type AccountData = ();
+    type AccountData = pallet_balances::AccountData<Balance>;
     type OnNewAccount = ();
     type OnKilledAccount = ();
     type SystemWeightInfo = ();
@@ -55,19 +78,33 @@ impl system::Config for Test {
     type PostTransactions = ();
 }
 
-impl pallet_ip_pallet::Config for Test {
+impl pallet::Config for Test {
     type RuntimeEvent = RuntimeEvent;
-    type Currency = ();
-    type LicenseId = u32;
+    type Currency = Balances;
+    type NFTId = u32;
+    type OfferId = u32;
+    type ContractId = u32;
+    type Index = u32;
     type MaxNameLength = MaxNameLength;
     type MaxDescriptionLength = MaxDescriptionLength;
 }
 
 pub fn new_test_ext() -> sp_io::TestExternalities {
-    let mut ext: sp_io::TestExternalities = system::GenesisConfig::<Test>::default()
+    let mut t = system::GenesisConfig::<Test>::default()
         .build_storage()
-        .unwrap()
-        .into();
+        .unwrap();
+
+    pallet_balances::GenesisConfig::<Test> {
+        balances: vec![
+            (1, 10_000),
+            (2, 20_000),
+            (3, 30_000),
+        ],
+    }
+    .assimilate_storage(&mut t)
+    .unwrap();
+
+    let mut ext = sp_io::TestExternalities::new(t);
     ext.execute_with(|| System::set_block_number(1));
     ext
 }

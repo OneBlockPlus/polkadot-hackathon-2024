@@ -128,11 +128,11 @@ export default function RicardianContracts() {
         )}
         <div className="flex h-screen min-[2000px]:w-[2560px]">
           <TabsContent value="collections">
-            <License
+            {/* <License
               onDataChange={(data) =>
                 handleFormDataChange("IpRegistries", data)
               }
-            />
+            /> */}
           </TabsContent>
           <TabsContent value="nfts">
             <Pay
