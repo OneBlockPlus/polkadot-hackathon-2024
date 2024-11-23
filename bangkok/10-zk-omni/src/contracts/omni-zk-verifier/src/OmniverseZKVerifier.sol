@@ -3,7 +3,10 @@ pragma solidity ^0.8.26;
 
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
-import {SP1Verifier} from "../lib/sp1-contracts/contracts/src/v2.0.0/SP1VerifierPlonk.sol";
+import "@moonbeam/contracts/xcm-transactor/XcmTransactorV3.sol";
+import {SP1Verifier} from "@sp1-contracts/SP1VerifierPlonk.sol";
+import "./ScaleEncoder.sol";
+import "./IRemoteVerifier.sol";
 // import {console} from "forge-std/Test.sol";
 
 struct TxLocation {
@@ -32,16 +35,25 @@ struct BatchState {
     bytes32 assetRootHash;
 }
 
-struct Multilocation {
-    uint8 parents;
-    bytes[] interior;
+// Information of destination which will receive proofs
+struct Destination {
+    // the SCALA encoding of interior, for example 0000000378
+    bytes paraChainSelector;
+    // the callindex of `transact` in xcm ethereum pallet, for example 0x2600
+    bytes callindex;
+    // evm contract address of the destination chain, for example 0x000000000000000000000000000000000000080C
+    address destContract;
+    // the reserved asset id which is mapping the native aaset of the destination chain, for example 000000000000000000000000000000000000000000000000000000000000080C
+    bytes reservedAssetId;
 }
 
 uint256 constant BLOCK_START_INDEX = 1;
 uint256 constant TRANSACTION_START_INDEX = 1;
 
-address constant XCM_UTILITIES_PRECOMPILE = 0x000000000000000000000000000000000000080C;
-bytes4 constant XCM_SEND_SELECTOR = 0x98600e64;
+uint64 constant REF_TIME = 1000000000;
+uint64 constant PROOF_SIZE = 40000;
+uint256 constant FEE_AMOUNT = 10000000;
+uint256 constant GAS_LIMT = 1000000;
 
 /// @title Omniverse ZK Verifier.
 /// @author Omnize Labs
@@ -54,7 +66,7 @@ contract OmniverseZKVerifier is
     /// @notice The verification key for the omniverse program.
     bytes32 public any_vkey_hash;
     uint128 public nextBatchId;
-    bytes[] public interiors;
+    Destination[] public destinations;
     mapping(uint128 => BatchState) batchStateList;
     mapping(uint256 => uint256) blockHeightToBatchId;
 
@@ -102,29 +114,77 @@ contract OmniverseZKVerifier is
         address newImplementation
     ) internal override onlyOwner {}
 
-    function initialize(bytes32 _any_vkey_hash, bytes[] memory _interiors) public initializer {
+    function initialize(bytes32 _any_vkey_hash, Destination[] memory _destinations) public initializer {
         __Ownable_init(msg.sender);
         __UUPSUpgradeable_init();
         any_vkey_hash = _any_vkey_hash;
-        for (uint i = 0; i < _interiors.length; i++) {
-            interiors.push(_interiors[i]);
+        for (uint i = 0; i < _destinations.length; i++) {
+            destinations.push(_destinations[i]);
         }
     }
 
     /**
      * @notice Send verification result to other parachains
-     * @param encodedXCMData SCALE encoded versioned XCM data
      */
-    function verifyResultToOtherParachains(bytes memory encodedXCMData) internal {
-        Multilocation memory dest = Multilocation(
-            1,
-            interiors
-        );
+    function verifyResultToOtherParachains() internal {
+        // get the latest batch state
+        BatchState storage batchState = batchStateList[nextBatchId - 1];
 
-        (bool success, ) = XCM_UTILITIES_PRECOMPILE.delegatecall(abi.encodeWithSelector(XCM_SEND_SELECTOR, dest, encodedXCMData));
-        if (!success) {
-            revert XCMSendFailed();
+        // encode the evm call data
+        bytes memory evmCalldata = abi.encodeWithSelector(IRemoteVerifier.receiveOriginProof.selector, batchState);
+
+        for (uint i = 0; i < destinations.length; i++) {
+            transactTo(destinations[i], evmCalldata);
         }
+    }
+
+    /**
+     */
+    function transactTo(Destination storage destination, bytes memory evmCalldata) internal {
+        // encode the substrate call data
+        bytes memory substrateCallData = abi.encodePacked(
+            destination.callindex,  // callindex
+            hex"01",    // V2
+            GAS_LIMT, // gas limit
+            hex"00",    // Action Call
+            destination.destContract,    // destination contract address
+            hex"00",    // value
+            evmCalldata    // evm call data
+        );
+        
+        // tranact XCM call
+        XcmTransactorV3.Multilocation memory dest = XcmTransactorV3.Multilocation(
+            1,
+            new bytes[](1)
+        );
+        dest.interior[0] = destination.paraChainSelector;
+
+        // fee
+        XcmTransactorV3.Multilocation memory fee = XcmTransactorV3.Multilocation(
+            1,
+            new bytes[](1)
+        );
+        dest.interior[0] = destination.reservedAssetId;
+
+        XcmTransactorV3.Weight memory weightInfo = XcmTransactorV3.Weight(
+            type(uint64).max,
+            PROOF_SIZE
+        );
+    
+        uint256 feeAmount = FEE_AMOUNT;
+
+        XcmTransactorV3(XCM_TRANSACTOR_V3_ADDRESS).transactThroughSignedMultilocation(
+            dest,
+            fee,
+            weightInfo,
+            substrateCallData,
+            feeAmount,
+            XcmTransactorV3.Weight(
+                0,
+                0
+            ),
+            true
+        );
     }
 
     /**
@@ -223,6 +283,8 @@ contract OmniverseZKVerifier is
             batchProof.proof.proof
         );
         nextBatchId = batchProof.batchId + 1;
+
+        verifyResultToOtherParachains();
     }
 
     function decodePublicValue(

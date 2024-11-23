@@ -49,6 +49,7 @@ We will participate Moonbeam bounty 1 and bounty 2:
 - a ZK-Rollup Layer serving for multiple chains, including parachain( like moonbeam ), BTC, and Ethereum.
 - the Beacon cell, in form of smart contract and substrate pallet and Taproot script.
 - the Operation cell,  in form of smart contract and substrate pallet.
+- the updated omniverse DLT protocol in the UTXO model edition.
 
 ## Detailed Introduction
 ### Problem Analysis
@@ -107,6 +108,54 @@ The multi-chain availability is guaranteed by the Ledger chain and the Beacon ch
 
 In general, who can be the Beacon chain or the Ledger chain and who can be the Opeartion chain is not mandatory. We choose the BTC and Ethereum to be the templet of the Beacon chain, and we suggest the Application chain built with Substrate to be the Operation chain, but that’s not always this case.
 
+### Additional update in protocol
+The last but not least, we have made some updates to the O-DLT protocol, we replace the account-balance model to the UTXO model ,like BTC, thus can bring some new benefits for the omni-asset.
+
+- First is the concurrency, one can initiate multiple transactions on multiple chains simultaneously by using different UTXO separately.
+- Second is self-preservation, which means you can store you UTXO by yourself, this further makes you asset perpetual.
+- Third is privacy, UTXO is easier for implement privacy, this is a generally acknowledged truth.
+
+As the O-DLT protocol in UTXO model edition, you can refer to the link below:
+
+https://github.com/Omniverse-Web3-Labs/bitcoin-proposals/blob/main/omni-utxo-proposal.md
+
+We have implement it in this hackathon project. You can some examples of the `UTXO` in this hackathon [here](./src/zk-6358-state-prover/src/mock/mock_utils.rs#L273)
+
+### Extensible function: Paymaster
+For the better user experience in the future, there is still something pending.
+
+It’s the related to the gas issue, but not the expense, it’s related to the convenience of paying the gas for multiple chains for each synchronization. 
+
+Luckily, we have the ZK-Rollup execution layer, besides the fundamental duty mentioned above, it can also act as the paymaster in EIP-4337.
+
+There are many ways for it to charge users for synchronization in one kind of token, the paymaster will exchange this kind of token into gas token needed for other chains, like BTC for Bitcoin, ETH for Ethereum and so on, And then pay the gas fee for each chain for users.
+
+Like the ZK-Rollup execution layer can issue their native token, just as arb of Arbtrium and op of Optimism, and users can pay the gas in this native token.
+
+Besides, it can also charge in the form of some existed token, like USDT, ETH or BTC, It's the same principle.
+
+The key components for this paymaster function is the deposit vault module, the payment vault module, the Oracle module and the exchange module.
+
+- the deposit vault module: user need to deposit the single kind of token to this vault for the paymaster
+- the deposit vault module: this vault is consist of multiple kind of tokens, using for paying for the actual gas fee of each chain.
+- the Oracle module: using for importing the real price of related token, and the gas price of each chain.
+- the exchange module: calculate the exchange ratio of these tokens, thus can charge fees to users in one kind of token appropriately.
+
+![Paymaster](https://github.com/user-attachments/assets/d6586bf8-f411-41be-9575-9eb2a1d0c280)
+
+Users even needn’t to know this process, they just pay one token everytime they initiating an omni-transaction, and the ZK-Rollup execution layer will do the rest thing for them.
+
+This is already on the agenda, we will finish that later.
+### ZK-6358-Prover in Particular
+
+![image](https://github.com/user-attachments/assets/811e8348-d3f6-42ef-8fda-7151ba692dbb)
+
+The State-Prover is built based on `Plonky2` and the details can be found [here](./src/zk-6358-state-prover/README.md). Then the `p2-state-proof` is aggregated into a compressed `SP1` proof, say, `sp1-aggregated-state-proof`. Details can be found [here](./src/zk-6358-final-prover/circuit/p2agg/).  
+
+On the other hand, the verification of the signatures of the batched transactions are proved by [zk-6358-eip712-sign-prover](./src/zk-6358-final-prover/circuit/sp1eip712/). Another `SP1 compressed proof` is generated.  
+
+Both the above proofs are `STARKy` proofs, which are costly being verified on-chain. And the connection between the `state proof` and `sig proof` has not been proved yet. As a result, a `final-prover` is built to generate an aggregated `SNARK` proof, the details can be found [here](./src/zk-6358-final-prover/README.md).  
+
 ### Conclusion
 We provide both the Beacon cell and the Operation cell for public,  you can choose the role for your chain by integrated different cell.
 
@@ -138,5 +187,12 @@ thus it can exert different effect to the omni-asset. The choice is free, it ult
 ## Material for Demo
 
 1. [Try It Yourself](https://hackathon.omnicoins.net/)
+    - [faucet](https://yourfaucet.hackathon.omnicoins.net)
+    - `OMNI`(**gas token**)
+        - erc-20 address on `Moonbase alpha`: `0x94A930781066D811DBDEFD4B7A0250D4a346786e`, which can be used for check the balance in `Metamask`
+        - [substrate asset](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fpallet.hackathon.omnicoins.net#/assets)
+    - `AWSOME`(cuscom deployed token)
+        - erc-20 address on `Moonbase alpha`: `0xF76463B43AEc7F2E7a198dc684DFb214fE31f58C`
+        - [substrate asset](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fpallet.hackathon.omnicoins.net#/assets)
 2. [Demo Video](https://omniverse-dev.s3.us-east-1.amazonaws.com/hackathon/Hackathon+Demo.mp4)
-3. PPT [link to google doc]
+3. [ZK-OMNI PPT](https://docs.google.com/presentation/d/1cBIcnYrU4dwlWp1XE4eB1fdnh5UqRi-5/edit#slide=id.p1)

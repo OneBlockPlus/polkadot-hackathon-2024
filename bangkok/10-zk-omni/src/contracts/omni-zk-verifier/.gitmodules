@@ -10,3 +10,6 @@
 [submodule "lib/openzeppelin-foundry-upgrades"]
 	path = lib/openzeppelin-foundry-upgrades
 	url = https://github.com/OpenZeppelin/openzeppelin-foundry-upgrades
+[submodule "lib/moonbeam"]
+        path = lib/moonbeam
+        url = https://github.com/moonbeam-foundation/moonbeam.git
